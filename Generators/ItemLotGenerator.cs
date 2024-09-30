@@ -380,7 +380,7 @@ public class ItemLotGenerator : BaseHandler
         dictionary.SetPropertyByName(editingArray.ItemlotParams[(int)ILEA.Category] + itemNumber.ToString(), itemCategory);
         dictionary.SetPropertyByName(editingArray.ItemlotParams[(int)ILEA.NumberOf] + itemNumber.ToString(), itemAmount);
         dictionary.SetPropertyByName(editingArray.ItemlotParams[(int)ILEA.Chance] + itemNumber.ToString(), itemChance);
-        dictionary.SetPropertyByName(editingArray.Luck + itemNumber.ToString(), "1");
+        dictionary.SetPropertyByName(editingArray.Luck + itemNumber.ToString(), 1);
     }
 
     public string CreateNpcMassEditString(ItemLotQueueEntry queueEntry, List<List<int>> npcIds = null, List<List<int>> npcItemLots = null)
@@ -394,7 +394,7 @@ public class ItemLotGenerator : BaseHandler
         string finalString = string.Empty;
         string npcParamName = GetNpcParam();
 
-        for (int x = 0; x < npcIds.Count; x++)
+        for (int x = 0; x < npcIds.Count - 1; x++)
         {
             List<int> currentIds = npcIds[x];
             List<int> currentItemLots = npcItemLots[x];

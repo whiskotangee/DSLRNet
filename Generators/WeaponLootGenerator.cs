@@ -39,7 +39,12 @@ public class WeaponLootGenerator : ParamLootGenerator
 
     public int CreateWeapon(int rarityId, List<int> whitelistLootIds = null)
     {
-        whitelistLootIds ??= [100];
+        whitelistLootIds ??= [];
+
+        if (whitelistLootIds.Count == 0)
+        {
+            whitelistLootIds.Add(100);
+        }
 
         bool uniqueWeapon = this.Random.GetRandomBoolByPercent(this.weaponGeneratorConfig.UniqueNameChance);
         double uniqueValueMultiplier = uniqueWeapon ? this.weaponGeneratorConfig.UniqueWeaponMultiplier : 1.0;
@@ -111,13 +116,13 @@ public class WeaponLootGenerator : ParamLootGenerator
             weaponOriginalTitle,
             rarityId,
             affinity,
-            DTAdditions.SpEffectTexts.First());
+            DTAdditions.SpEffectTexts.FirstOrDefault());
 
         string weaponFinalTitleColored = CreateLootTitle(
             weaponOriginalTitle,
             rarityId,
             affinity,
-            DTAdditions.SpEffectTexts.First(),
+            DTAdditions.SpEffectTexts.FirstOrDefault(),
             true);
 
         if (uniqueWeapon)
@@ -186,14 +191,14 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         var primaryAddition = MathFunctions.RoundToXDecimalPlaces((double)this.Random.NextDouble(scalingRange[0], scalingRange[1]) * 0.6f, 2);
 
-        var maxParam = currentScalings.Max(d => d.Value);
+        var maxParam = currentScalings.MaxBy(d => d.Value.Value).Value;
 
         weaponDictionary.SetValue(maxParam.ParamName, maxParam.Value + primaryAddition);
 
         // randomly choose secondary stat and apply
-        var randomScalingIndex = this.Random.NextInt(0, currentScalings.Count);
+        var randomScalingKey = this.Random.GetRandomItem(currentScalings.Keys.Except([maxParam.ParamName]).ToList());
 
-        var randomScaling = currentScalings[currentScalings.Keys.Except([maxParam.ParamName]).ToList()[randomScalingIndex]];
+        var randomScaling = currentScalings[randomScalingKey];
 
         weaponDictionary.SetValue(randomScaling.ParamName, Math.Clamp(this.Random.NextDouble(scalingRange[0], scalingRange[1]) * .5f, 0, 130));
     }

@@ -63,7 +63,7 @@ public class ItemLotQueueEntry
             OverrideType = setup.OverrideTypeEnd,
         });
 
-        obj.BlackListIds = File.ReadAllLines($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt").Select(long.Parse).ToList();
+        obj.BlackListIds = File.ReadAllLines($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt").Where(d => !string.IsNullOrWhiteSpace(d)).Select(long.Parse).ToList();
 
         return obj;
     }

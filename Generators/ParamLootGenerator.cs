@@ -114,24 +114,18 @@ public class ParamLootGenerator(
         }
     }
 
-    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, SpEffectText nameParts, bool colorCoded = false)
+    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, SpEffectText? nameParts, bool colorCoded = false)
     {
         var additions = new List<string>
         {
             !colorCoded ? this.RarityHandler.GetRarityName(rarityId) : this.RarityHandler.GetColorTextForRarity(rarityId),
             damageType,
-            nameParts.NameParts.Suffix,
-            nameParts.NameParts.Prefix,
-            nameParts.NameParts.Interfix
+            nameParts?.NameParts.Suffix ?? string.Empty,
+            nameParts?.NameParts.Prefix ?? string.Empty,
+            nameParts?.NameParts.Interfix ?? string.Empty
         };
 
-        var spaces = new List<string>();
-        for (int i = 0; i < additions.Count; i++)
-        {
-            spaces.Add(additions[i] == "" ? "" : " ");
-        }
-
-        return additions[0] + spaces[0] + additions[1] + spaces[1] + additions[3] + spaces[3] + additions[4] + spaces[4] + originalTitle + spaces[2] + additions[2];
+        return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)));
     }
 
     public GenericDictionary GetLootDictionaryFromId(int baseId = -1)
@@ -188,7 +182,7 @@ public class ParamLootGenerator(
     {
         if (lootDict.ContainsKey("weight"))
         {
-            double originalWeight = lootDict.GetValue<int>("weight");
+            double originalWeight = lootDict.GetValue<double>("weight");
             double newWeight = (double)Math.Round(originalWeight * this.Random.NextDouble(minMult, maxMult), 2);
             lootDict.SetValue("weight", Math.Clamp(newWeight, 0.0f, absoluteMax));
         }

@@ -1,0 +1,14 @@
+ID,Name,DamageElement,PriName,SecName,Param,ShieldParam,SpEffect,OnHitSpEffect,HitEffectCategory,PriWeight,SecWeight,OverallMultiplier,Message,EffectDescription,NoSecondEffect,CriticalMultAddition,VFXSpEffectID
+0,Physical,Physical,,Tempered,attackBasePhysics,physGuardCutRate,-1,-1,0,150,90,1,-1,,0,0,-1
+1,Magic,Magic,Magical,Magic,attackBaseMagic,magGuardCutRate,-1,-1,10,40,40,1,-1,,0,0,303071
+2,Fire,Fire,Burning,Fire,attackBaseFire,fireGuardCutRate,-1,-1,11,40,40,1,-1,,0,0,303001
+3,Thunder,Lightning,Shocking,Lightning,attackBaseThunder,thunGuardCutRate,-1,-1,12,40,40,1,-1,,0,0,303011
+4,Holy,Holy,Graceful,Graced,attackBaseDark,darkGuardCutRate,-1,-1,13,40,40,1,-1,,0,0,303131
+5,Poison,Physical,Poisonous,Poisoned,attackBasePhysics,,-1,106000,0,30,10,0.8,6401,Applies Poison,1,0,303061
+6,Frost,Physical,Winter,Cold,attackBasePhysics,,-1,107500,10,30,10,0.8,6601,Applies Frost,1,0,303111
+7,Bleed,Physical,Slicing,Bleed,attackBasePhysics,,-1,105000,0,30,10,0.8,6501,Applies Bleed,1,0,303091
+8,Runes On Hit,Physical,Runecleaving,Avaricious,attackBasePhysics,,5010601,5121300,0,10,8,0.9,-1,Grants Runes on Hit,1,0,303131
+9,HP On Hit,Physical,Bloodthirsty,Bloodthirsty,attackBasePhysics,,5121800,5121801,0,10,8,0.9,-1,Grants HP on Hit,1,0,303091
+10,HP On Kill,Physical,Soulclaiming,Souleating,attackBasePhysics,,5031400,-1,0,10,8,0.9,-1,Grants HP on Kill,1,0,-1
+11,Assassin,Physical,Assassin,Catspaw,attackBasePhysics,,-1,-1,0,30,20,0.9,-1,Extra Riposte/Backstab Damage,0,0.5,303091
+12,Sleep,Magic,Sleeping,Sleep,attackBaseMagic,,-1,6451,10,20,10,0.8,6651,Applies Sleep,0,0,303101

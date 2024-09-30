@@ -1,0 +1,141 @@
+ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEffectType,TalismanIcon,TalismanSortID,OverrideStacking,Stacks,InformationOnly
+80000000,1,0,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300009,0,1,0
+80000001,2,15,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300008,0,1,0
+80000002,3,25,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300007,0,1,0
+80000003,4,30,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300006,0,1,0
+80000004,5,40,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300005,0,1,0
+80000005,6,50,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300004,0,1,0
+80000006,7,60,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300003,0,1,0
+80000007,8,70,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300002,0,1,0
+80000008,9,80,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300001,0,1,0
+80000009,10,90,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300000,0,1,0
+80000010,1,0,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300019,0,1,0
+80000011,2,15,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300018,0,1,0
+80000012,3,25,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300017,0,1,0
+80000013,4,30,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300016,0,1,0
+80000014,5,40,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300015,0,1,0
+80000015,6,50,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300014,0,1,0
+80000016,7,60,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300013,0,1,0
+80000017,8,70,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300012,0,1,0
+80000018,9,80,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300011,0,1,0
+80000019,10,90,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300010,0,1,0
+80000020,1,0,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300029,0,1,0
+80000021,2,15,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300028,0,1,0
+80000022,3,25,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300027,0,1,0
+80000023,4,30,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300026,0,1,0
+80000024,5,40,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300025,0,1,0
+80000025,6,50,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300024,0,1,0
+80000026,7,60,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300023,0,1,0
+80000027,8,70,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300022,0,1,0
+80000028,9,80,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300021,0,1,0
+80000029,10,90,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300020,0,1,0
+80000030,1,0,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300049,0,1,0
+80000031,2,15,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300048,0,1,0
+80000032,3,25,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300047,0,1,0
+80000033,4,30,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300046,0,1,0
+80000034,5,40,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300045,0,1,0
+80000035,6,50,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300044,0,1,0
+80000036,7,60,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300043,0,1,0
+80000037,8,70,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300042,0,1,0
+80000038,9,80,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300041,0,1,0
+80000039,10,90,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300040,0,1,0
+80000040,1,0,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300059,0,1,0
+80000041,2,15,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300058,0,1,0
+80000042,3,25,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300057,0,1,0
+80000043,4,30,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300056,0,1,0
+80000044,5,40,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300055,0,1,0
+80000045,6,50,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300054,0,1,0
+80000046,7,60,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300053,0,1,0
+80000047,8,70,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300052,0,1,0
+80000048,9,80,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300051,0,1,0
+80000049,10,90,Dextrous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300050,0,1,0
+80000050,1,0,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300069,0,1,0
+80000051,2,15,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300068,0,1,0
+80000052,3,25,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300067,0,1,0
+80000053,4,30,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300066,0,1,0
+80000054,5,40,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300065,0,1,0
+80000055,6,50,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300064,0,1,0
+80000056,7,60,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300063,0,1,0
+80000057,8,70,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300062,0,1,0
+80000058,9,80,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300061,0,1,0
+80000059,10,90,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300060,0,1,0
+80000060,1,0,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300079,0,1,0
+80000061,2,15,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300078,0,1,0
+80000062,3,25,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300077,0,1,0
+80000063,4,30,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300076,0,1,0
+80000064,5,40,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300075,0,1,0
+80000065,6,50,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300074,0,1,0
+80000066,7,60,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300073,0,1,0
+80000067,8,70,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300072,0,1,0
+80000068,9,80,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300071,0,1,0
+80000069,10,90,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300070,0,1,0
+80000070,1,0,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300089,0,1,0
+80000071,2,15,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300088,0,1,0
+80000072,3,25,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300087,0,1,0
+80000073,4,30,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300086,0,1,0
+80000074,5,40,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300085,0,1,0
+80000075,6,50,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300084,0,1,0
+80000076,7,60,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300083,0,1,0
+80000077,8,70,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300082,0,1,0
+80000078,9,80,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300081,0,1,0
+80000079,10,90,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300080,0,1,0
+310000,6,35,Enlivening,Enlivening,of Life,Raises Max HP By {VALUE}%,Max HP Up,0,18000,400010,0,0,0
+350300,3,70,Soulthieving,Soulthieving,of Soulthieving,Grants {VALUE}% + 30 HP On Kill,HP on Kill,0,18000,406121,0,0,0
+6193010,10,40,Empathetic,Empath,of Empathy,Slowly Heals Others But Not User,Heals Others,0,18000,400020,1,0,0
+80010000,5,30,Godskin,Godskin,of the Godskin,Godskin Incantation Damage +{VALUE} Perc,Godskin Incant Up,2,18000,400020,0,1,0
+1922,10,50,Godskin,Godskin,of the Godskin,Godskin Incantation Damage +{VALUE} Perc,Godskin Incant Up,2,18000,400020,0,1,0
+80010001,15,70,Godskin,Godskin,of the Godskin,Godskin Incantation Damage +{VALUE} Perc,Godskin Incant Up,2,18000,400020,0,1,0
+80010030,5,30,Dragon,Dragon Communion,of Dragon Communion,Dragon Communion Incantation Damage +{VALUE} Perc,D Communion Up,2,18000,400020,0,1,0
+80010031,10,50,Dragon,Dragon Communion,of Dragon Communion,Dragon Communion Incantation Damage +{VALUE} Perc,D Communion Up,2,18000,400020,0,1,0
+1927,15,70,Dragon,Dragon Communion,of Dragon Communion,Dragon Communion Incantation Damage +{VALUE} Perc,D Communion Up,2,18000,400020,0,1,0
+80010020,5,30,Order,Order,of the Golden Order,Golden Order Incantation Damage +{VALUE} Perc,G Order Up,2,18000,400020,0,1,0
+1926,10,50,Order,Order,of the Golden Order,Golden Order Incantation Damage +{VALUE} Perc,G Order Up,2,18000,400020,0,1,0
+80010021,15,70,Order,Order,of the Golden Order,Golden Order Incantation Damage +{VALUE} Perc,G Order Up,2,18000,400020,0,1,0
+80010010,5,30,Cult,Cult,of the Dragon Cult,Dragon Cult Incantation Damage +{VALUE} Perc,D Cult Up,2,18000,400020,0,1,0
+80010011,10,50,Cult,Cult,of the Dragon Cult,Dragon Cult Incantation Damage +{VALUE} Perc,D Cult Up,2,18000,400020,0,1,0
+1924,15,70,Cult,Cult,of the Dragon Cult,Dragon Cult Incantation Damage +{VALUE} Perc,D Cult Up,2,18000,400020,0,1,0
+80010040,5,30,Frenzied,Madman,of the Frenzied,Frenzied Incantation Damage +{VALUE} Perc,Frenzied Incantations Up,2,18000,400020,0,1,0
+80010041,10,50,Frenzied,Madman,of the Frenzied,Frenzied Incantation Damage +{VALUE} Perc,Frenzied Incantations Up,2,18000,400020,0,1,0
+80010042,15,70,Frenzied,Madman,of the Frenzied,Frenzied Incantation Damage +{VALUE} Perc,Frenzied Incantations Up,2,18000,400020,0,1,0
+1928,20,80,Frenzied,Madman,of the Frenzied,Frenzied Incantation Damage +{VALUE} Perc,Frenzied Incantations Up,2,18000,400020,0,1,1
+80010050,5,30,Beastial,Beast,of the Beasts,Beast Incantation Damage +{VALUE} Perc,Beast Incantations Up,2,18000,400020,0,1,0
+1925,10,50,Beastial,Beast,of the Beasts,Beast Incantation Damage +{VALUE} Perc,Beast Incantations Up,2,18000,400020,0,1,0
+80010051,15,70,Beastial,Beast,of the Beasts,Beast Incantation Damage +{VALUE} Perc,Beast Incantations Up,2,18000,400020,0,1,0
+80010060,5,30,Giantsflame,Giantflame,of Giantsflame,Fire Giant and Fire Monk Incantations +{VALUE} Perc,Fire Giant Inc Up,2,18000,400020,0,1,0
+80010061,10,50,Giantsflame,Giantflame,of Giantsflame,Fire Giant and Fire Monk Incantations +{VALUE} Perc,Fire Giant Inc Up,2,18000,400020,0,1,0
+80010062,15,70,Giantsflame,Giantflame,of Giantsflame,Fire Giant and Fire Monk Incantations +{VALUE} Perc,Fire Giant Inc Up,2,18000,400020,0,1,0
+1923,20,80,Giantsflame,Giantflame,of Giantsflame,Fire Giant and Fire Monk Incantations +{VALUE} Perc,Fire Giant Inc Up,2,18000,400020,0,1,1
+80020000,5,30,Night,Night,of the Night,Night Sorcery Damage +{VALUE} Perc,Night Sorceries Up,3,18000,400020,0,1,0
+80020001,10,50,Night,Night,of the Night,Night Sorcery Damage +{VALUE} Perc,Night Sorceries Up,3,18000,400020,0,1,0
+80020002,15,70,Night,Night,of the Night,Night Sorcery Damage +{VALUE} Perc,Night Sorceries Up,3,18000,400020,0,1,0
+1921,20,80,Night,Night,of the Night,Night Sorcery Damage +{VALUE} Perc,Night Sorceries Up,3,18000,400020,0,1,1
+80020010,5,30,Carian,Carian,of the Carian Sword,Carian Sword Sorcery Damage +{VALUE} Perc,Carian Sword Sorc Up,3,18000,400020,0,1,0
+80020011,10,50,Carian,Carian,of the Carian Sword,Carian Sword Sorcery Damage +{VALUE} Perc,Carian Sword Sorc Up,3,18000,400020,0,1,0
+1911,15,70,Carian,Carian,of the Carian Sword,Carian Sword Sorcery Damage +{VALUE} Perc,Carian Sword Sorc Up,3,18000,400020,0,1,0
+80020020,5,30,Glintblade,Glintblade,of the Glintblade,Glintblade Sorcery Damage +{VALUE} Perc,Glintblade Sorc Up,3,18000,400020,0,1,0
+80020021,10,50,Glintblade,Glintblade,of the Glintblade,Glintblade Sorcery Damage +{VALUE} Perc,Glintblade Sorc Up,3,18000,400020,0,1,0
+1912,15,70,Glintblade,Glintblade,of the Glintblade,Glintblade Sorcery Damage +{VALUE} Perc,Glintblade Sorc Up,3,18000,400020,0,1,0
+80020030,5,30,Stonedigger,Digger,of the Stonedigger,Stonedigger Sorcery Damage +{VALUE} Perc,Stonedigger Sorc Up,3,18000,400020,0,1,0
+80020031,10,50,Stonedigger,Digger,of the Stonedigger,Stonedigger Sorcery Damage +{VALUE} Perc,Stonedigger Sorc Up,3,18000,400020,0,1,0
+80020032,15,70,Stonedigger,Digger,of the Stonedigger,Stonedigger Sorcery Damage +{VALUE} Perc,Stonedigger Sorc Up,3,18000,400020,0,1,0
+1913,20,80,Stonedigger,Digger,of the Stonedigger,Stonedigger Sorcery Damage +{VALUE} Perc,Stonedigger Sorc Up,3,18000,400020,0,1,1
+80020040,5,30,Crystalian,Crystal,of the Crystalian,Crystal Sorcery Damage +{VALUE} Perc,Crystal Sorc Up,3,18000,400020,0,1,0
+1914,10,50,Crystalian,Crystal,of the Crystalian,Crystal Sorcery Damage +{VALUE} Perc,Crystal Sorc Up,3,18000,400020,0,1,0
+80020041,15,70,Crystalian,Crystal,of the Crystalian,Crystal Sorcery Damage +{VALUE} Perc,Crystal Sorc Up,3,18000,400020,0,1,0
+80020050,5,30,Magma,Magma,of Mount Gelmir,Magma Sorcery Damage +{VALUE} Perc,Magma Sorc Up,3,18000,400020,0,1,0
+80020051,10,50,Magma,Magma,of Mount Gelmir,Magma Sorcery Damage +{VALUE} Perc,Magma Sorc Up,3,18000,400020,0,1,0
+1917,15,70,Magma,Magma,of Mount Gelmir,Magma Sorcery Damage +{VALUE} Perc,Magma Sorc Up,3,18000,400020,0,1,0
+80020060,5,30,Guilty,Guilt,of the Guilty,Thorn Sorcery Damage +{VALUE} Perc,Thorn Sorcery Up,3,18000,400020,0,1,0
+80020061,10,50,Guilty,Guilt,of the Guilty,Thorn Sorcery Damage +{VALUE} Perc,Thorn Sorcery Up,3,18000,400020,0,1,0
+80020062,15,70,Guilty,Guilt,of the Guilty,Thorn Sorcery Damage +{VALUE} Perc,Thorn Sorcery Up,3,18000,400020,0,1,0
+1918,20,80,Guilty,Guilt,of the Guilty,Thorn Sorcery Damage +{VALUE} Perc,Thorn Sorcery Up,3,18000,400020,0,1,1
+80020070,5,30,Deathblight,Deathblight,of the Death Prince,Death Sorcery Damage +{VALUE} Perc,Death Sorc Up,3,18000,400020,0,1,0
+1919,10,30,Deathblight,Deathblight,of the Death Prince,Death Sorcery Damage +{VALUE} Perc,Death Sorc Up,3,18000,400020,0,1,0
+80020071,15,30,Deathblight,Deathblight,of the Death Prince,Death Sorcery Damage +{VALUE} Perc,Death Sorc Up,3,18000,400020,0,1,0
+80020080,5,30,Gravitational,Gravity,of Gravity,Gravity Sorcery Damage +{VALUE} Perc,Gravity Sorcery Up,3,18000,400020,0,1,0
+80020081,10,50,Gravitational,Gravity,of Gravity,Gravity Sorcery Damage +{VALUE} Perc,Gravity Sorcery Up,3,18000,400020,0,1,0
+80020082,15,70,Gravitational,Gravity,of Gravity,Gravity Sorcery Damage +{VALUE} Perc,Gravity Sorcery Up,3,18000,400020,0,1,0
+1920,30,90,Gravitational,Gravity,of Gravity,Gravity Sorcery Damage +{VALUE} Perc,Gravity Sorcery Up,3,18000,400020,0,1,1
+80020090,5,30,Full Moon,Moon,of the Moon,Full Moon Sorcery Damage +{VALUE} Perc,Full Moon Sorc Up,3,18000,400020,0,1,0
+1910,10,50,Full Moon,Moon,of the Moon,Full Moon Sorcery Damage +{VALUE} Perc,Full Moon Sorc Up,3,18000,400020,0,1,0
+80020091,15,70,Full Moon,Moon,of the Moon,Full Moon Sorcery Damage +{VALUE} Perc,Full Moon Sorc Up,3,18000,400020,0,1,0

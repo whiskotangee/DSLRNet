@@ -1,0 +1,15 @@
+ID,Effect,ShortEffect,RefSpEffect,NoStackingGroupID
+1000,+6 Perc Max HP,Max HP Up,310000,7000
+1110,+20 Perc Extra Runes From Enemies,More Runes Per Kill,311100,7010
+1150,+8 Perc Stamina Recovery Speed,Stamina Recovery Up,311500,7020
+1100,+75 Item Discovery,Item Discovery Up,311000,7030
+5000,Increased Recovery From HP Flask,HP Flask Recovery Up,350000,7040
+5010,Increased Recovery From FP Flask,FP Flask Recovery Up,350100,7050
+1020,+11 Perc Max Stamina,Max Stamina Up,310200,7060
+4010,+13 Perc Magic Defence,Magic Defence Up,340100,7070
+4020,+13 Perc Fire Defence,Fire Defence Up,340200,7080
+4030,+13 Perc Lightning Defence,Lightning Defence Up,340300,7090
+4040,+13 Perc Holy Defence,Holy Defence Up,340400,7100
+4050,+5 Perc Elemental Defence,Elmnt Defence Up,340500,7110
+5030,3 Perc +30 HP Restored On Kill,HP On Kill,350300,7120
+2130,Increased Charge Attack Damage,Chrg Atk Dmg Up,321300,7130

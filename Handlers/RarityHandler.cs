@@ -36,14 +36,14 @@ public class RarityHandler : BaseHandler
         //FIRST, FIND THE NEAREST AVAILABLE ID FOR EACH ID IN THE SET
         foreach (var x in idset)
         {
-            valididset.Add(GetNearestRarityId(idset.Single(d => d == x)));
+            valididset.Add(GetNearestRarityId(x));
         }
 
         //NOW GET THE WEIGHTS FOR EACH OF THESE VALID RARITY IDS
         foreach (var x in idset)
         {
             //#print_debug(RarityConfigs)
-            valididweights.Add(this.RarityConfigs[valididset.Single(d => d == x)].SelectionWeight);
+            valididweights.Add(this.RarityConfigs[valididset.First(d => d == x)].SelectionWeight);
             //#print_debug(GD.Str(valididset)+" "+str(valididweights))
         }
 
@@ -124,7 +124,7 @@ public class RarityHandler : BaseHandler
         return (double)Math.Round(this.randomNumberGetter.NextDouble(range[0], range[1]), 4);
     }
 
-    public List<int> GetRaritiesWithinRange(int highest = 10, int lowerrange = 4)
+    public List<int> GetRaritiesWithinRange(int highest = 10, int lowerrange = 0)
     {
         //CATCH HIGHEST BEING EMPTY OR -1
         if (highest == -1)
@@ -141,7 +141,7 @@ public class RarityHandler : BaseHandler
 
         highest = GetNearestRarityId(highest);
         //CLAMP LOWEST VALUE TO MINIMUM AND MAXIMUM AVAILABLE RARITYCONFIG
-        int lowest = Math.Clamp(GetNearestRarityId(highest - lowerrange), GetLowestRarityId(), GetHighestRarityId());
+        int lowest = Math.Clamp(GetNearestRarityId((int)Math.Round((highest - lowerrange) / 2f)), GetLowestRarityId(), GetHighestRarityId());
         List<int> finalrarities = [];
         //ADD VALUES NEAREST TO HIGHEST AND HIGHEST-LOWERRANGE
         foreach (var x in new int[] { highest, lowest })
@@ -152,16 +152,13 @@ public class RarityHandler : BaseHandler
         //NOW ITERATE OVER ALL AVAILABLE RARITYIDS AND Add ANY HIGHER THAN LOWEST AND LESS THAN HIGHEST
         foreach (var x in RarityConfigs.Keys)
         {
-            if (x > lowest)
+            if (x > lowest && x < highest)
             {
-                if (x < highest)
-                {
-                    finalrarities.Add(x);
-                }
+                finalrarities.Add(x);                
             }
         }
 
-        Log.Logger.Debug($"FINAL RARITIES WITHIN RANGE {highest} / {lowest} {finalrarities}");
+        Log.Logger.Debug($"FINAL RARITIES WITHIN RANGE {highest} / {lowest} {string.Join(" ", finalrarities)}");
 
         return finalrarities;
     }

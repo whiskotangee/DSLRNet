@@ -148,7 +148,7 @@ public class SpEffectHandler : BaseHandler
 
         int superthreshold = Math.Clamp((int)(powermax * 0.9), 0, 9999);
 
-        if (this.LoadedSpEffectConfigs.Count != 0)
+        if (this.LoadedSpEffectConfigs.Count == 0)
         {
             return [];
         }

@@ -19,6 +19,9 @@ public class Configuration
 
 public class Settings
 {
+    public string DeployPath { get; set; }
+    public string DSMSPortablePath { get; set; }
+
     public int LootPerItemLot { get; set; }
 
     public bool ChaosLootEnabled { get; set; }
@@ -30,6 +33,8 @@ public class Settings
     public string OverrideModLocation { get; set; }
 
     public string GamePath { get; set; }
+
+    public List<string> MessageFileNames { get; set; }
 }
 
 public class AreaScalingConfig

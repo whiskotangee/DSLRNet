@@ -2,17 +2,25 @@
 
 public class DataRepository()
 {
-    private List<string> massEditLines = [];
+    private Dictionary<string, List<string>> massEdit = [];
     private List<string> textLines = [];
 
-    public void AddToMassEdit(string line)
+    public void AddToMassEdit(string name, string line)
     {
-        massEditLines.Add(line);
+        if (!massEdit.TryGetValue(name, out var list))
+        {
+            massEdit[name] = [];
+        }
+
+        massEdit[name].Add(line);
     }
 
-    public void AddToMassEdit(IEnumerable<string> lines)
+    public void AddToMassEdit(string name, IEnumerable<string> lines)
     {
-        massEditLines.AddRange(lines);
+        foreach (var line in lines)
+        {
+            this.AddToMassEdit(name, line);
+        }
     }
 
     public void AddText(List<string> text) 
@@ -20,9 +28,9 @@ public class DataRepository()
         textLines.AddRange(text);
     }
 
-    public List<string> GetMassEditContents() 
+    public Dictionary<string, List<string>> GetMassEditContents() 
     {
-        return [.. massEditLines];
+        return massEdit;
     }
 
     public List<string> GetTextLines() 

@@ -6,6 +6,7 @@ using DSLRNet.Generators;
 using DSLRNet.Handlers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Mods.Common;
 using Serilog;
 using System.Diagnostics;
@@ -26,14 +27,18 @@ var configuration = configurationBuilder.Build();
 
 IServiceCollection services = new ServiceCollection();
 
+string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmm");
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(configuration)
     .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File($"log\\log_{timestamp}.txt")
     .CreateLogger();
 
 services.AddLogging((builder) =>
 {
     builder.AddSerilog();
+    builder.AddConsole();
 });
 
 services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
@@ -55,12 +60,11 @@ services.AddSingleton<RandomNumberGetter>()
         .AddSingleton<WhiteListHandler>()
         .AddSingleton<DataRepository>()
         .AddSingleton<DSLRNetBuilder>()
+        .AddSingleton<ProcessRunner>()
         .AddTransient<CumulativeID>();
-
-services.Configure<Configuration>(nameof(Configuration), configuration);
 
 var sp = services.BuildServiceProvider();
 
 var dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
 
-dslrBuilder.BuildAndApply();
+await dslrBuilder.BuildAndApply();

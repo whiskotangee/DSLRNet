@@ -67,7 +67,8 @@ public class ParamLootGenerator(
     public void ExportLootGenParamAndTextToOutputs(GenericDictionary massEditDict, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null, bool multiName = false)
     {
         string finalMassEditOutput = CreateMassEditParamFromParamDictionary(massEditDict, OutputParamName, massEditDict.ContainsKey("ID") ? massEditDict.GetValue<int>("ID") : 0, extraFilters, extraBannedValues, ParamMandatoryKeys);
-        this.GeneratedDataRepository.AddToMassEdit(finalMassEditOutput);
+
+        this.GeneratedDataRepository.AddToMassEdit(OutputParamName, finalMassEditOutput);
         this.GeneratedDataRepository.AddText(CreateFmgLootEntrySet(OutputLootRealNames[lootType], massEditDict.GetValue<int>("ID"), title, description, summary, multiName));
     }
 
@@ -88,7 +89,7 @@ public class ParamLootGenerator(
         List<string> speffectParam = !overwriteExistingSpEffects ? GetAvailableSpEffectSlots(outputDictionary) : GetPassiveSpEffectSlotArrayFromOutputParamName();
         if (speffectParam.Count == 0)
         {
-            throw new Exception($"{outputDictionary.GetValue<int>("ID")} HAS NO AVAILABLE SPEFFECT SLOTS APPARENTLY! RETURNING EMPTY DICTIONARY");
+            Log.Logger.Warning($"{outputDictionary.GetValue<int>("ID")} HAS NO AVAILABLE SPEFFECT SLOTS APPARENTLY! RETURNING EMPTY DICTIONARY");
         }
 
         int finalNumber = spefNumOverride < 0 && spefNumOverride <= speffectParam.Count ? speffectParam.Count : spefNumOverride;
@@ -120,9 +121,10 @@ public class ParamLootGenerator(
         {
             !colorCoded ? this.RarityHandler.GetRarityName(rarityId) : this.RarityHandler.GetColorTextForRarity(rarityId),
             damageType,
-            nameParts?.NameParts.Suffix ?? string.Empty,
             nameParts?.NameParts.Prefix ?? string.Empty,
-            nameParts?.NameParts.Interfix ?? string.Empty
+            nameParts?.NameParts.Interfix ?? string.Empty,
+            originalTitle,
+            nameParts?.NameParts.Suffix ?? string.Empty
         };
 
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)));
@@ -132,7 +134,7 @@ public class ParamLootGenerator(
     {
         if (this.Configuration.Settings.ChaosLootEnabled)
         {
-            return ChooseLootDictionaryAtRandom();
+            return ChooseLootDictionaryAtRandom().Clone() as GenericDictionary;
         }
 
         if (baseId == -1 && PriorityIDs_Current.Count > 0)
@@ -146,7 +148,7 @@ public class ParamLootGenerator(
     public GenericDictionary ChooseLootDictionaryAtRandom()
     {
         int randomIndex = this.Random.NextInt(0, LoadedLoot.Count - 1);
-        return LoadedLoot[randomIndex];
+        return LoadedLoot[randomIndex].Clone() as GenericDictionary;
     }
 
     public string CreateAffinityTitle(DamageType dt1, DamageType dt2)

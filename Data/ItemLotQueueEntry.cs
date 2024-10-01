@@ -64,6 +64,7 @@ public class ItemLotQueueEntry
         });
 
         obj.BlackListIds = File.ReadAllLines($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt").Where(d => !string.IsNullOrWhiteSpace(d)).Select(long.Parse).ToList();
+        obj.Category = category;
 
         return obj;
     }

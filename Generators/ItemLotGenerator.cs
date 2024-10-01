@@ -55,14 +55,11 @@ public class ItemLotGenerator : BaseHandler
 
     public void CreateItemLots(IEnumerable<ItemLotQueueEntry> itemLotQueueEntries)
     {
-        // RESET MASSEDIT OUTPUT
         foreach (var itemLotEntry in itemLotQueueEntries)
         {
             CreateItemLot(itemLotEntry);
         }
     }
-
-    // MAIN ITEMLOT CREATION FUNCTION
 
     public void CreateItemLot(ItemLotQueueEntry queueEntry)
     {
@@ -115,8 +112,8 @@ public class ItemLotGenerator : BaseHandler
                     newItemLot.Name = $"DSLR {queueEntry.Realname} {x} {GetItemLotCategoriesForItemLotName(newItemLot)}";
 
                     // FINALLY, EXPORT TO MASSEDITOUTPUT
-                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(GenericDictionary.FromObject(newItemLot), queueEntry.Category, newItemLot.ID, new List<string>(), new List<string> { "0" });
-                    this.GeneratedDataRepository.AddToMassEdit(itemLotMassEdit);
+                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(GenericDictionary.FromObject(newItemLot), queueEntry.Category ?? "", newItemLot.ID, new List<string>(), new List<string> { "0" });
+                    this.GeneratedDataRepository.AddToMassEdit(queueEntry.Category, itemLotMassEdit);
                 }
                 else
                 {
@@ -125,7 +122,7 @@ public class ItemLotGenerator : BaseHandler
             }
 
             // EXPORT NPC ADJUSTMENTS TO MASSEDITOUTPUT
-            this.GeneratedDataRepository.AddToMassEdit(CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids));
+            this.GeneratedDataRepository.AddToMassEdit(this.configuration.ParamNames.NpcParam, CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids));
         }
     }
 
@@ -165,8 +162,7 @@ public class ItemLotGenerator : BaseHandler
         // THIS WILL HANDLE PROPERLY FILLING IN EACH ENTRY IN AN ITEMLOT'S PARAMETERS, FROM LOTID01-LOTID08
         // USE QUEUE DICTIONARY LOOTTYPE WEIGHTS TO DECIDE WHICH KIND OF LOOT TO MAKE IF WE CAN'T FIND A SET OVERRIDETYPE
         // FIND OVERRIDETYPE FROM ID
-        int overrideType = GetOverrideTypeForItemLot(queueEntry, itemLotId);
-        int lootType = overrideType > -1 ? overrideType : this.random.NextWeightedValue(ItemCategories, queueEntry.LootTypeWeights, 1.0f);
+        int lootType = this.random.NextWeightedValue(ItemCategories, queueEntry.LootTypeWeights, 1.0f);
 
         // USE ITEMLOTID TO FIND THE PERMITTED RARITIES BASED ON THE TIER OF THE ITEMLOTID WITHIN QUEUEDICTIONARY WE'RE WORKING WITH
         int rarity = ChooseRarityFromItemLotIdTierAllowedRarities(queueEntry, itemLotId);
@@ -240,7 +236,7 @@ public class ItemLotGenerator : BaseHandler
         // IF RARITYCHAOS RETURN ALL AVAILABLE RARITIES
         if (this.configuration.Settings.ChaosLootEnabled)
         {
-            return this.rarityHandler.GetRaritiesWithinRange();
+            return this.rarityHandler.GetRaritiesWithinRange(this.random.NextInt(1, 11), 0);
         }
 
         // FIRST, WE NEED TO FIND WHICH TIER THE ITEMLOT WE'RE DEALING WITH IS IN
@@ -248,25 +244,6 @@ public class ItemLotGenerator : BaseHandler
 
         // OTHERWISE ASSUME IT'S TWO IN THE FORMAT ABOVE
         return this.rarityHandler.GetRaritiesWithinRange(tier.AllowedRarities.Min(), tier.AllowedRarities.Max());
-    }
-
-    public int GetOverrideTypeForItemLot(ItemLotQueueEntry queueEntry, int itemLotId = 0)
-    {
-        //var tier = GetItemLotIdTier(queueEntry, itemLotId);
-        //if (tier.OverrideType)
-        //// CHECK EACH ITEMLOT TIER TO SEE IF IT HAS ITEMLOTID, IF IT DOES RETURN THE RELEVANT OVERRIDE ID
-        //foreach (var tier in tiers)
-        //{
-        //    string itemLots = itemrarities[0] + tier;
-        //    string overrides = itemrarities[2] + tier;
-
-        //    if (queueDict.ContainsKey(itemLots) && queueDict[itemLots] is List<int> itemLotList && itemLotList.Contains(itemLotId))
-        //    {
-        //        return Convert.ToInt32(queueDict[overrides]);
-        //    }
-        //}
-
-        return -1;
     }
 
     public int ChooseRarityFromItemLotIdTierAllowedRarities(ItemLotQueueEntry queueEntry, int itemLotId = 0)

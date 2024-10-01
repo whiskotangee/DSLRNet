@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Serilog;
 using System.Reflection;
 
 namespace DSLRNet;
@@ -29,9 +30,9 @@ public class GenericDictionary :  ICloneable
 
     public T GetValue<T>(string name)
     {
-        if (Properties.TryGetValue(name, out object? value) && value is T convertedValue)
+        if (Properties.TryGetValue(name, out object? value))
         {
-            return convertedValue;
+            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(value));
         }
 
         throw new Exception($"Param with name {name} not of type {typeof(T)} or not found in dictionary");

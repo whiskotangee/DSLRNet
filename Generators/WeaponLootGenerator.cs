@@ -241,11 +241,10 @@ public class WeaponLootGenerator : ParamLootGenerator
         var dmgParams = this.Configuration.LootParam.WeaponsDamageParam;
         //var params : Array = get_gametype_dictionary()["LootParam"]["weapons_damageparam"] if !isshield else get_gametype_dictionary()["LootParam"]["weapons_guardrate_param"]
 
-        Dictionary<string, int> originalValues = [];
+        GenericDictionary originalValues = weaponDictionary.Clone() as GenericDictionary;
         // reset all damage
         foreach (var dmgParam in dmgParams)
         {
-            originalValues.Add(dmgParam, weaponDictionary.GetValue<int>(dmgParam));
             weaponDictionary.SetValue(dmgParam, 0);
         }
 
@@ -255,7 +254,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         var secondaryDamage = (int)(this.Random.NextInt(dmgRange[0], dmgRange[1]) * overallMultiplier);
 
-        weaponDictionary.SetValue(dT1.Param, originalValues[dT1.Param] + primaryDamage);
+        weaponDictionary.SetValue(dT1.Param, originalValues.GetValue<int>(dT1.Param) + primaryDamage);
         weaponDictionary.SetValue(dT2.Param, secondaryDamage);
 
         dTAdditions.PrimaryDamageType.Value = primaryDamage;

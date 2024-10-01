@@ -16,8 +16,8 @@ public class LoreGenerator(IOptions<LoreConfig> config, RandomNumberGetter rando
         string locationName = loreConfig.Locations[this.random.NextInt(0, loreConfig.Locations.Count)];
         string template = loreConfig.Templates[this.random.NextInt(0, loreConfig.Templates.Count)];
 
-        return template.Replace("{friendName}", friendName)
-                        .Replace("{enemyName}", enemyName)
+        return template.Replace("{name1}", friendName)
+                        .Replace("{name2}", enemyName)
                         .Replace("{itemName}", itemName)
                         .Replace("{locationName}", locationName);
     }

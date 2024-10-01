@@ -1,10 +1,12 @@
 ﻿namespace DSLRNet.Handlers;
 
+using DSLRNet.Config;
 using DSLRNet.Data;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 
-public class AshofWarHandler(DataRepository generatedDataRepository) : BaseHandler(generatedDataRepository)
+public class AshofWarHandler(IOptions<Configuration> configuration, DataRepository generatedDataRepository) : BaseHandler(generatedDataRepository)
 {
     private const string aowparam = "swordArtsParamId";
 
@@ -25,12 +27,13 @@ public class AshofWarHandler(DataRepository generatedDataRepository) : BaseHandl
         { "shield", new List<int> { 48, 49, 47 } },
         { "staffseal", new List<int> { 31, 41 } }
     };
+    private readonly Configuration configuration = configuration.Value;
 
     // AOW ASSIGN FUNCTIONS
 
     public void AssignAshOfWar(GenericDictionary weaponDict)
     {
-        int weaponWmc = weaponDict.GetValue<int>("wepmotionCategory");
+        int weaponWmc = weaponDict.GetValue<int>(this.configuration.LootParam.WeaponsWepMotionCategory);
         string aowCat = GetAshOfWarCategoryFromWepMotionCategory(weaponWmc);
         List<int> aowArray = compatibleSwordArtsParam[aowCat];
         int finalId = aowArray[new Random().Next(aowArray.Count)];

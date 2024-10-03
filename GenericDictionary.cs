@@ -23,11 +23,6 @@ public class GenericDictionary :  ICloneable
 
     public Dictionary<string, object?> Properties { get; set; } = [];
 
-    public List<T> GetPropertiesByNames<T>(IEnumerable<string> names)
-    {
-        return names.Select(s => GetValue<T>(s)).ToList();
-    }
-
     public T GetValue<T>(string name)
     {
         if (Properties.TryGetValue(name, out object? value))
@@ -38,8 +33,16 @@ public class GenericDictionary :  ICloneable
         throw new Exception($"Param with name {name} not of type {typeof(T)} or not found in dictionary");
     }
 
-    public void SetValue(string name, object? value)
+    public void SetValue<T>(string name, T? value)
     {
+        if (typeof(T).Name != Properties[name].GetType().Name 
+            && !typeof(T).Name.Contains("Int32") && !Properties[name].GetType().Name.Contains("Int64")
+            && !typeof(T).Name.Contains("Single") && !Properties[name].GetType().Name.Contains("Double")
+            && !typeof(T).Name.Contains("Double") && !Properties[name].GetType().Name.Contains("Single"))
+        {
+            throw new Exception("Mismatched type being set");
+        }
+
         Properties[name] = value;
     }
 

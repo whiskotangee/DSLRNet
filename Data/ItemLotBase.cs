@@ -1,5 +1,9 @@
-﻿namespace DSLRNet.Data;
-public class ItemLotTemplate
+
+using Newtonsoft.Json;
+
+namespace DSLRNet.Data;
+
+public class ItemLotBase
 {
     public int ID { get; set; }
     public string Name { get; set; }
@@ -74,8 +78,8 @@ public class ItemLotTemplate
     public int GameClearOffset { get; set; }
     public int canExecByFriendlyGhost { get; set; }
     public int canExecByHostileGhost { get; set; }
-    public string PAD1 { get; set; }
-    public string PAD2 { get; set; }
+    public int PAD1 { get; set; }
+    public int PAD2 { get; set; }
 
     public void SetPropertyByName(string name, object value)
     {

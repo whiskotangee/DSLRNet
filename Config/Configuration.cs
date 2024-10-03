@@ -26,7 +26,7 @@ public class Settings
 
     public bool ChaosLootEnabled { get; set; }
 
-    public double GlobalDropChance { get; set; }
+    public float GlobalDropChance { get; set; }
 
     public bool AllLootGauranteed { get; set; }
 
@@ -73,7 +73,7 @@ public class UpgradesConfig
     public string WeaponReinforceType { get; set; }
     public List<string> WeaponDamageRateParams { get; set; }
     public string WeaponBaseDamageParam { get; set; }
-    public double WeaponBaseDamageMultiplier { get; set; }
+    public float WeaponBaseDamageMultiplier { get; set; }
 }
 
 public class DSLRDescTextConfig

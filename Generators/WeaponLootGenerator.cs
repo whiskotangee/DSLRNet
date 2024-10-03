@@ -47,7 +47,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         }
 
         bool uniqueWeapon = this.Random.GetRandomBoolByPercent(this.weaponGeneratorConfig.UniqueNameChance);
-        double uniqueValueMultiplier = uniqueWeapon ? this.weaponGeneratorConfig.UniqueWeaponMultiplier : 1.0;
+        float uniqueValueMultiplier = uniqueWeapon ? this.weaponGeneratorConfig.UniqueWeaponMultiplier : 1.0f;
         string weaponDesc = "";
 
         WeaponTypes goalWeaponType = this.Random.NextWeightedValue(this.weaponGeneratorConfig.Types, this.weaponGeneratorConfig.Weights, 1.0f);
@@ -92,7 +92,7 @@ public class WeaponLootGenerator : ParamLootGenerator
             this.ashofWarHandler.AssignAshOfWar(weaponDictionary);
         }
 
-        SetLootSellValue(weaponDictionary, rarityId, (double)uniqueValueMultiplier);
+        SetLootSellValue(weaponDictionary, rarityId, uniqueValueMultiplier);
         SetLootRarityParamValue(weaponDictionary, rarityId);
         RandomizeLootWeightBasedOnRarity(weaponDictionary, rarityId);
         ApplyNextId(weaponDictionary);
@@ -177,19 +177,19 @@ public class WeaponLootGenerator : ParamLootGenerator
 
     private void ApplyWeaponScalingRange(GenericDictionary weaponDictionary, int rarityId)
     {
-        var currentScalings = this.Configuration.LootParam.WeaponsScaling.Select(d => new { ParamName = d, Value = weaponDictionary.GetValue<double>(d) }).ToDictionary(d => d.ParamName);
+        var currentScalings = this.Configuration.LootParam.WeaponsScaling.Select(d => new { ParamName = d, Value = weaponDictionary.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
         List<int> scalingRange = this.RarityHandler.GetRarityDamageAdditionRange(rarityId);
 
         foreach (var scaling in currentScalings.Keys)
         {
             var currentScaling = currentScalings[scaling];
 
-            double newValue = Math.Max(currentScaling.Value, this.Random.NextDouble(15.0, 25.0));
+            float newValue = (float)Math.Max(currentScaling.Value, this.Random.NextDouble(15.0, 25.0));
 
             weaponDictionary.SetValue(currentScaling.ParamName, newValue);
         }
 
-        var primaryAddition = MathFunctions.RoundToXDecimalPlaces((double)this.Random.NextDouble(scalingRange[0], scalingRange[1]) * 0.6f, 2);
+        var primaryAddition = MathFunctions.RoundToXDecimalPlaces((float)this.Random.NextDouble(scalingRange[0], scalingRange[1]) * 0.6f, 2);
 
         var maxParam = currentScalings.MaxBy(d => d.Value.Value).Value;
 
@@ -203,11 +203,11 @@ public class WeaponLootGenerator : ParamLootGenerator
         weaponDictionary.SetValue(randomScaling.ParamName, Math.Clamp(this.Random.NextDouble(scalingRange[0], scalingRange[1]) * .5f, 0, 130));
     }
 
-    private void ApplyShieldCutRateChanges(DamageType dT1, DamageType dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
+    private void ApplyShieldCutRateChanges(DamageTypeSetup dT1, DamageTypeSetup dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
     {
         var spEffectMultiplier = 1.0f;
         int existingValue = weaponDictionary.GetValue<int>(dT1.ShieldParam);
-        
+
         if (dT1.SpEffect == existingValue)
         {
             spEffectMultiplier += 0.2f / 2;
@@ -225,7 +225,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         dTAdditions.SpEffectTexts = nameParts.ToList();
     }
 
-    private void ApplyStaffDamageChanges(DamageType dT1, DamageType dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
+    private void ApplyStaffDamageChanges(DamageTypeSetup dT1, DamageTypeSetup dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
     {
         var options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weaponDictionary);
 
@@ -234,7 +234,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         dTAdditions.SpEffectTexts = nameParts.ToList();
     }
 
-    private void ApplyNormalDamageChanges(DamageType dT1, DamageType dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
+    private void ApplyNormalDamageChanges(DamageTypeSetup dT1, DamageTypeSetup dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
     {
         List<int> dmgRange = this.RarityHandler.GetRarityDamageAdditionRange(rarityId);
 
@@ -245,7 +245,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         // reset all damage
         foreach (var dmgParam in dmgParams)
         {
-            weaponDictionary.SetValue(dmgParam, 0);
+            weaponDictionary.SetValue<long>(dmgParam, 0);
         }
 
         var overallMultiplier = Math.Min(dT1.OverallMultiplier, dT2.OverallMultiplier);
@@ -254,8 +254,8 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         var secondaryDamage = (int)(this.Random.NextInt(dmgRange[0], dmgRange[1]) * overallMultiplier);
 
-        weaponDictionary.SetValue(dT1.Param, originalValues.GetValue<int>(dT1.Param) + primaryDamage);
-        weaponDictionary.SetValue(dT2.Param, secondaryDamage);
+        weaponDictionary.SetValue<long>(dT1.Param, originalValues.GetValue<int>(dT1.Param) + primaryDamage);
+        weaponDictionary.SetValue<long>(dT2.Param, secondaryDamage);
 
         dTAdditions.PrimaryDamageType.Value = primaryDamage;
         dTAdditions.SecondaryDamageType.Value = secondaryDamage;
@@ -278,7 +278,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         {
             weaponDictionary.SetValue(passiveParams[1], dT2.SpEffect);
             weaponDictionary.SetValue(behSpEffectSlots[1], dT2.OnHitSpEffect);
-            weaponDictionary.SetValue(weaponEffectTextParams[1], dT2.Message);
+            weaponDictionary.SetValue<long>(weaponEffectTextParams[1], dT2.Message);
         }
 
         List<string> effectStrings = [];
@@ -297,7 +297,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         var hitVfxParam = this.Configuration.LootParam.WeaponsHitVfx;
         var hitVfx = dT1.HitEffectCategory != 0 ? dT1.HitEffectCategory : dT2.HitEffectCategory;
 
-        weaponDictionary.SetValue(hitVfxParam, hitVfx);
+        weaponDictionary.SetValue<long>(hitVfxParam, hitVfx);
 
         var critParam = this.Configuration.LootParam.WeaponsThrowDamageParam;
         var critMultiplier = dT1.CriticalMultAddition + dT2.CriticalMultAddition;
@@ -309,22 +309,22 @@ public class WeaponLootGenerator : ParamLootGenerator
             critValue = this.Random.NextInt(5, 20);
         }
 
-        weaponDictionary.SetValue(critParam, critValue * (1 + critMultiplier));
+        weaponDictionary.SetValue<int>(critParam, (int)(critValue * (1 + critMultiplier)));
 
         var staminaParam = this.Configuration.LootParam.WeaponsStaminaRate;
         var maxDamage = this.Configuration.LootParam.WeaponsDamageParam.Max(par => weaponDictionary.GetValue<int>(par));
 
         if (weaponDictionary.ContainsKey(staminaParam) && maxDamage > 170)
         {
-            weaponDictionary.SetValue(staminaParam, MathFunctions.RoundToXDecimalPlaces((double)(weaponDictionary.GetValue<double>(staminaParam) + this.Random.NextDouble(0.05, 0.3)), 3));
+            weaponDictionary.SetValue(staminaParam, MathFunctions.RoundToXDecimalPlaces((float)(weaponDictionary.GetValue<float>(staminaParam) + this.Random.NextDouble(0.05, 0.3)), 3));
         }
 
         this.DamageTypeHandler.ApplyWeaponVfxFromDamageTypes(weaponDictionary, dT1, dT2);
     }
 
-    private void ApplyWeaponDamageAdditions(DamageType dT1, DamageType dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId, WeaponTypes weaponType)
+    private void ApplyWeaponDamageAdditions(DamageTypeSetup dT1, DamageTypeSetup dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId, WeaponTypes weaponType)
     {
-        switch(weaponType)
+        switch (weaponType)
         {
             case WeaponTypes.Normal:
                 this.ApplyNormalDamageChanges(dT1, dT2, dTAdditions, weaponDictionary, rarityId);

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class CumulativeID
 {
     public int StartingID { get; set; } = 8000;
-    public double IDMultiplier { get; set; } = 10000;
+    public float IDMultiplier { get; set; } = 10000;
     public int AmountPerIncrement { get; set; } = 1;
     public bool UseWrapAround { get; set; } = false;
     public int WrapAroundLimit { get; set; } = 998;

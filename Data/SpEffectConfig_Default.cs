@@ -1,4 +1,5 @@
-﻿namespace DSLRNet.Data;
+
+namespace DSLRNet.Data;
 
 public class SpEffectConfig
 {
@@ -14,6 +15,6 @@ public class SpEffectConfig
     public int TalismanIcon { get; set; }
     public int TalismanSortID { get; set; }
     public int OverrideStacking { get; set; }
-    public bool Stacks { get; set; } = true;
+    public int Stacks { get; set; }
     public int InformationOnly { get; set; }
 }

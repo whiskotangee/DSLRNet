@@ -1,6 +1,7 @@
-﻿namespace DSLRNet.Data;
 
-public class DamageType
+namespace DSLRNet.Data;
+
+public class DamageTypeSetup
 {
     public int ID { get; set; }
     public string Name { get; set; }
@@ -14,10 +15,10 @@ public class DamageType
     public int HitEffectCategory { get; set; }
     public int PriWeight { get; set; }
     public int SecWeight { get; set; }
-    public double OverallMultiplier { get; set; }
-    public string Message { get; set; }
+    public float OverallMultiplier { get; set; }
+    public int Message { get; set; }
     public string EffectDescription { get; set; }
-    public bool NoSecondEffect { get; set; }
-    public double CriticalMultAddition { get; set; }
+    public int NoSecondEffect { get; set; }
+    public float CriticalMultAddition { get; set; }
     public int VFXSpEffectID { get; set; }
 }

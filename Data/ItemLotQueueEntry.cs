@@ -82,7 +82,7 @@ public class ItemLotQueueEntry
     public List<int> Whitelistedlootids { get; set; }
     public bool GuaranteedDrop { get; set; }
     public int OneTimePickup { get; set; }
-    public double DropChanceMultiplier { get; set; }
+    public float DropChanceMultiplier { get; set; }
     public List<GameStageConfig> GameStageConfigs { get; set; }
     public List<int> LootTypeWeights { get; set; }
     public List<int> WeaponTypeWeights { get; set; }
@@ -115,7 +115,7 @@ class DslItemLotSetup
             OneTimePickup = int.Parse(data["dslitemlotsetup"]["onetimepickup"]),
             LootTypeWeights = ParseList(data["dslitemlotsetup"]["loottypeweights"]),
             WeaponTypeWeights = ParseList(data["dslitemlotsetup"]["weapontypeweights"]),
-            DropChanceMultiplier = double.Parse(data["dslitemlotsetup"]["dropchancemultiplier"]),
+            DropChanceMultiplier = float.Parse(data["dslitemlotsetup"]["dropchancemultiplier"]),
             NpcIds = ParseNestedList(data["dslitemlotsetup"]["npc_ids"]),
             NpcItemLotIds = ParseNestedList(data["dslitemlotsetup"]["npc_itemlotids"]),
             OverrideTypeEarly = int.Parse(data["dslitemlotsetup"]["overridetype_early"]),
@@ -147,7 +147,7 @@ class DslItemLotSetup
     public int OneTimePickup { get; set; }
     public List<int> LootTypeWeights { get; set; }
     public List<int> WeaponTypeWeights { get; set; }
-    public double DropChanceMultiplier { get; set; }
+    public float DropChanceMultiplier { get; set; }
     public List<List<int>> NpcIds { get; set; }
     public List<List<int>> NpcItemLotIds { get; set; }
     public int OverrideTypeEarly { get; set; }

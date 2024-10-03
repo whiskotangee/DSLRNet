@@ -10,7 +10,7 @@ public class DamageTypeHandler : BaseHandler
 {
     private Configuration configuration { get; set; }
 
-    public List<DamageType> DamageTypes { get; set; }
+    public List<DamageTypeSetup> DamageTypes { get; set; }
 
     private const int ShieldParamOffset = 6;
 
@@ -21,12 +21,12 @@ public class DamageTypeHandler : BaseHandler
         this.configuration = configuration.Value;
         this.random = random;
 
-        this.DamageTypes = CsvLoader.LoadCsv<DamageType>("DefaultData\\ER\\CSVs\\DamageTypeSetup.csv");
+        this.DamageTypes = CsvLoader.LoadCsv<DamageTypeSetup>("DefaultData\\ER\\CSVs\\DamageTypeSetup.csv");
     }
 
     // DTH SELECTION FUNCTIONS
 
-    public DamageType ChooseDamageTypeAtRandom(bool totallyRandom = false, bool secondaryDamage = false)
+    public DamageTypeSetup ChooseDamageTypeAtRandom(bool totallyRandom = false, bool secondaryDamage = false)
     {
         // Choose weight to get from DamageType dictionary based on secondary damage
         int weightToGet = secondaryDamage ? 11 : 10;
@@ -53,7 +53,7 @@ public class DamageTypeHandler : BaseHandler
         return DamageTypes.Single(d => d.ID == finalDtId);
     }
 
-    public bool DamageTypesAffectSameParam(DamageType dt1, DamageType dt2)
+    public bool DamageTypesAffectSameParam(DamageTypeSetup dt1, DamageTypeSetup dt2)
     {
         if (string.IsNullOrEmpty(dt1.Param))
         {
@@ -68,7 +68,7 @@ public class DamageTypeHandler : BaseHandler
         return dt1.Param.Equals(dt2.Param);
     }
 
-    public void ApplyDamageTypeWeaponSpEffects(DamageType dt1, DamageType dt2, GenericDictionary weaponDict)
+    public void ApplyDamageTypeWeaponSpEffects(DamageTypeSetup dt1, DamageTypeSetup dt2, GenericDictionary weaponDict)
     {
         var speffParam = this.configuration.LootParam.Speffects.EquipParamWeapon;
         var behSpeffParam = this.configuration.LootParam.WeaponBehSpeffects;
@@ -90,7 +90,7 @@ public class DamageTypeHandler : BaseHandler
             if (weaponDict.ContainsKey(speffParam2))
             {
                 if (!dt2.SpEffect.Equals(dt1.SpEffect) ||
-                    (dt2.SpEffect.Equals(dt1.SpEffect) && !dt2.NoSecondEffect))
+                    (dt2.SpEffect.Equals(dt1.SpEffect) && dt2.NoSecondEffect == 0))
                 {
                     weaponDict.SetValue(speffParam2, dt2.SpEffect);
                 }
@@ -113,25 +113,25 @@ public class DamageTypeHandler : BaseHandler
             if (weaponDict.ContainsKey(behSpeffParam2))
             {
                 if (!dt2.OnHitSpEffect.Equals(dt1.OnHitSpEffect) ||
-                    (dt2.OnHitSpEffect.Equals(dt1.OnHitSpEffect) && !dt2.NoSecondEffect))
+                    (dt2.OnHitSpEffect.Equals(dt1.OnHitSpEffect) && dt2.NoSecondEffect == 0))
                 {
                     weaponDict.SetValue(behSpeffParam2, dt2.OnHitSpEffect);
                 }
             }
         }
     }
-    public double GetTotalThrowDamageModifier(DamageType dt1, DamageType dt2)
+    public float GetTotalThrowDamageModifier(DamageTypeSetup dt1, DamageTypeSetup dt2)
     {
         if (dt1.CriticalMultAddition < 0 || dt2.CriticalMultAddition < 0)
         {
             return 1.0f;
         }
 
-        double finalThrowDamage = dt1.CriticalMultAddition + dt2.CriticalMultAddition;
-        return MathFunctions.RoundToXDecimalPlaces((double)(1.0f + finalThrowDamage), 2);
+        float finalThrowDamage = dt1.CriticalMultAddition + dt2.CriticalMultAddition;
+        return (float)MathFunctions.RoundToXDecimalPlaces(1.0f + finalThrowDamage, 2);
     }
 
-    public void ApplyWeaponVfxFromDamageTypes(GenericDictionary weapDict, DamageType dt1, DamageType dt2)
+    public void ApplyWeaponVfxFromDamageTypes(GenericDictionary weapDict, DamageTypeSetup dt1, DamageTypeSetup dt2)
     {
         var vfxParams = this.configuration.LootParam.WeaponsVfxParam;
         var vfxDummyParams = this.configuration.LootParam.WeaponsVfxDummyParam;

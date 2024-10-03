@@ -46,7 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="DefaultData\ER\NewFolder\postfix.massedit" />
+    <None Remove="DefaultData\ER\MassEdit\postfix.massedit" />
   </ItemGroup>
 
 </Project>

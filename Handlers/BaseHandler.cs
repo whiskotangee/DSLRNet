@@ -69,7 +69,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
     public string CreateFmgTextEntry(string category = "Weapons", int id = 1000000, string text = "Dagger")
     {
         // Patch a specific bug with these characters sometimes replacing '
-        // Replace any quotes in text with double quotes - thanks Mountlover!
+        // Replace any quotes in text with float quotes - thanks Mountlover!
         text = text.Replace("\"", "\"\"");
 
         return $"\"{category}:{id}:{text}\"";
@@ -122,7 +122,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
             {
                 if (StringExtensions.StringContainsPeriod(arrayToCheck[i]))
                 {
-                    arrayToCheck[i] = double.Parse(arrayToCheck[i]).ToString();
+                    arrayToCheck[i] = float.Parse(arrayToCheck[i]).ToString();
                 }
                 else
                 {
@@ -205,50 +205,6 @@ public class GlobalOutput
     public static GlobalOutput Instance => _instance ??= new GlobalOutput();
     public string GlobalMassEdit { get; set; } = "";
 }
-
-public static class GlobalParamCompilationFunctions
-{
-    public static Dictionary<string, object> CreateParamDictionaryUsingHeaderArray(List<string> headersArray, List<object> valuesArray, bool warn = true)
-    {
-        var dict = new Dictionary<string, object>();
-
-        // Catch any blank headers
-        headersArray.RemoveAll(header => string.IsNullOrEmpty(header));
-
-        // Catch when we don't have enough values for our headers
-        if (headersArray.Count > valuesArray.Count)
-        {
-            var noParams = new List<string>();
-            for (int x = 0; x < headersArray.Count; x++)
-            {
-                if (x >= valuesArray.Count)
-                {
-                    noParams.Add(headersArray[x]);
-                }
-            }
-
-            string message = $"{valuesArray[0]} HAS TOO FEW VALUES TO FIT ALL HEADERS - MISSING HEADERS ARE {string.Join(", ", noParams)}. THEY WILL BE GIVEN -1 AS A DEFAULT VALUE.";
-            if (warn)
-            {
-                Log.Logger.Warning(message); // Replace with OS.alert(message) if using a specific alert system
-            }
-            Log.Logger.Information(message);
-
-            for (int x = 0; x < headersArray.Count - valuesArray.Count; x++)
-            {
-                valuesArray.Add(-1);
-            }
-        }
-
-        for (int x = 0; x < headersArray.Count; x++)
-        {
-            dict[headersArray[x]] = valuesArray[x];
-        }
-
-        return dict;
-    }
-}
-
 public static class StringExtensions
 {
     private const string Letters = "abcdefghijklmnopqrstuvwxyz";
@@ -303,7 +259,7 @@ public static class StringExtensions
 
     public static bool StringContainsPeriod(string stringToCheck)
     {
-        // This is used to determine whether we need to convert a string to an int or a double
+        // This is used to determine whether we need to convert a string to an int or a float
         return stringToCheck.Contains(".");
     }
 
@@ -318,7 +274,7 @@ public static class StringExtensions
     public static void CorrectArrayValuesFromStringToNumericalValue(List<string> arrayToCheck)
     {
         // Iterate over each value in an array, check if it only has numbers, if so check if it has a period, then convert
-        // to either int or double respectively
+        // to either int or float respectively
         for (int i = 0; i < arrayToCheck.Count; i++)
         {
             // Check for square brackets to avoid overwriting arrays
@@ -327,7 +283,7 @@ public static class StringExtensions
                 // First check to make sure we're not overwriting an array
                 if (StringContainsPeriod(arrayToCheck[i]))
                 {
-                    arrayToCheck[i] = double.Parse(arrayToCheck[i]).ToString();
+                    arrayToCheck[i] = float.Parse(arrayToCheck[i]).ToString();
                 }
                 else
                 {

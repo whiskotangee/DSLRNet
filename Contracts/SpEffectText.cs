@@ -2,7 +2,7 @@
 
 public class SpEffectText
 {
-    public int ID { get; set; }
+    public long ID { get; set; }
 
     public string Description { get; set; }
     public NameParts NameParts { get; set; }

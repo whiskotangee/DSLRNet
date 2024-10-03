@@ -44,7 +44,7 @@ public class DamageDetails
 
     public string Description { get; set; }
 
-    public double Value { get; set; }
+    public float Value { get; set; }
 }
 
 public class NameParts

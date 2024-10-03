@@ -48,10 +48,10 @@ public class ItemLotGenerator : BaseHandler
         this.random = random;
         this.configuration = configuration.Value;
         this.itemAcquisitionCumulativeId = itemAcquisitionCumulativeId;
-        this.ItemLotTemplate = CsvLoader.LoadCsv<ItemLotTemplate>("DefaultData\\ER\\CSVs\\ItemLotBase.csv")[0];
+        this.ItemLotTemplate = CsvLoader.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\ItemLotBase.csv")[0];
     }
 
-    private ItemLotTemplate ItemLotTemplate { get; set; }
+    private ItemLotBase ItemLotTemplate { get; set; }
 
     public void CreateItemLots(IEnumerable<ItemLotQueueEntry> itemLotQueueEntries)
     {
@@ -92,7 +92,7 @@ public class ItemLotGenerator : BaseHandler
                     // ITERATE OVER EACH POSSIBLE ITEMLOTID SLOT AND CREATE AN ITEMLOT ENTRY FOR IT
                     for (int y = 0; y < this.configuration.Settings.LootPerItemLot - (offset - 1); y++)
                     {
-                        CreateItemLotEntry(queueEntry, newItemLot, y + offset, itemLotIds[x], (double)queueEntry.DropChanceMultiplier);
+                        CreateItemLotEntry(queueEntry, newItemLot, y + offset, itemLotIds[x], (float)queueEntry.DropChanceMultiplier);
                     }
 
                     // NOW WE'VE CREATED THE LOOT FOR THIS ITEMLOT, CALCULATE THE ITEMLOTBASEPOINT01 VALUE BASED ON 
@@ -152,12 +152,12 @@ public class ItemLotGenerator : BaseHandler
         return (finalId, finalCategory);
     }
 
-    public ItemLotTemplate CreateDefaultItemLotDictionary()
+    public ItemLotBase CreateDefaultItemLotDictionary()
     {
-        return JsonConvert.DeserializeObject<ItemLotTemplate>(JsonConvert.SerializeObject(ItemLotTemplate));
+        return JsonConvert.DeserializeObject<ItemLotBase>(JsonConvert.SerializeObject(ItemLotTemplate));
     }
 
-    public void CreateItemLotEntry(ItemLotQueueEntry queueEntry, ItemLotTemplate itemLotDict, int whichOne = 1, int itemLotId = 0, double dropMult = 1.0f)
+    public void CreateItemLotEntry(ItemLotQueueEntry queueEntry, ItemLotBase itemLotDict, int whichOne = 1, int itemLotId = 0, float dropMult = 1.0f)
     {
         // THIS WILL HANDLE PROPERLY FILLING IN EACH ENTRY IN AN ITEMLOT'S PARAMETERS, FROM LOTID01-LOTID08
         // USE QUEUE DICTIONARY LOOTTYPE WEIGHTS TO DECIDE WHICH KIND OF LOOT TO MAKE IF WE CAN'T FIND A SET OVERRIDETYPE
@@ -175,7 +175,7 @@ public class ItemLotGenerator : BaseHandler
         ApplyItemLotEditingArray(itemLotDict, whichOne, genResult.FinalId, genResult.FinalCategory, (int)(GetGlobalDropChance() * dropMult));
     }
 
-    private double GetGlobalDropChance()
+    private float GetGlobalDropChance()
     {
         return Math.Clamp(this.configuration.Settings.GlobalDropChance + (Math.Max(0, 6 - this.configuration.Settings.LootPerItemLot) * 9), 0, 1000);
     }
@@ -185,7 +185,7 @@ public class ItemLotGenerator : BaseHandler
         return this.random.NextWeightedValue(new List<int> { 2, 3, 4 }, lootWeights, maxMult: 1.0f);
     }
 
-    public void SetAllUsedItemLotNumbersTo1(ItemLotTemplate itemLotDict)
+    public void SetAllUsedItemLotNumbersTo1(ItemLotBase itemLotDict)
     {
         // THIS FUNCTION SHOULD BE RUN TOWARDS THE END OF THE ITEMLOT CREATION PROCESS - IT WILL ITERATE OVER ALL EIGHT POSSIBLE ITEMLOTID ENTRIES,
         // AND SET ITS ITEMLOTNUMBER TO 1 IF IT'S ABOVE 0 OR 0 OTHERWISE
@@ -253,7 +253,7 @@ public class ItemLotGenerator : BaseHandler
         return this.rarityHandler.ChooseRarityFromIdSetWithBuiltInWeights(rarities, 1.2f);
     }
 
-    public string CreateItemLotName(ItemLotTemplate itemLotDict, string realName = "")
+    public string CreateItemLotName(ItemLotBase itemLotDict, string realName = "")
     {
         // ITERATE OVER EACH ITEMLOT0x ENTRY AND ADD IT TO A STRING
         string finalString = "";
@@ -266,7 +266,7 @@ public class ItemLotGenerator : BaseHandler
 
     // ITEMDROP CHANCE FUNCTIONS
 
-    public int GetItemLotChanceSum(ItemLotTemplate itemLotDict, bool includeFirst = false)
+    public int GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)
     {
         // INITIALISE THE SUM, GET ITEMLOT CHANCE PARAM'S NAME FROM GAMETYPE, AND SETUP AN OFFSET TO X TO DETERMINE HOW MANY
         // OF THE ITEMLOTDICT'S CHANCE VALUES WE'LL BE CHECKING BASED ON WHETHER OR NOT WE'RE INCLUDING lotItemBasePoint01 IN THE SUM
@@ -284,7 +284,7 @@ public class ItemLotGenerator : BaseHandler
         return itemLotChanceSum;
     }
 
-    public void CalculateNoItemChance(ItemLotTemplate itemLot, int baseChance = 1000, int fallback = 25)
+    public void CalculateNoItemChance(ItemLotBase itemLot, int baseChance = 1000, int fallback = 25)
     {
         // ASSUMING WE'RE MAKING A NON GUARANTEED ENEMY DROP, START BY STORING BASECHANCE IN A SEPARATE VARIABLE TO EDIT
         int finalBaseChance = baseChance;
@@ -309,7 +309,7 @@ public class ItemLotGenerator : BaseHandler
         return this.configuration.Itemlots.ItemlotEditingArray.ItemlotParams[(int)ilea];
     }
 
-    public string GetItemLotCategoriesForItemLotName(ItemLotTemplate itemLot)
+    public string GetItemLotCategoriesForItemLotName(ItemLotBase itemLot)
     {
         // GRAB THE ITEMLOT CATEGORY PARAM STRING FROM ITEMLOTPARAMS[GAMETYPE]
         string itemLotCatParam = this.configuration.Itemlots.ItemlotEditingArray.ItemlotParams[0];
@@ -350,7 +350,7 @@ public class ItemLotGenerator : BaseHandler
         return GetItemLotItemParamNameArray()[which];
     }
 
-    public void ApplyItemLotEditingArray(ItemLotTemplate dictionary, int itemNumber = 1, int itemId = 1000000, int itemCategory = 2, int itemChance = 50, int itemAmount = 1)
+    public void ApplyItemLotEditingArray(ItemLotBase dictionary, int itemNumber = 1, int itemId = 1000000, int itemCategory = 2, int itemChance = 50, int itemAmount = 1)
     {
         var editingArray = this.configuration.Itemlots.ItemlotEditingArray;
         dictionary.SetPropertyByName(editingArray.ItemlotParams[(int)ILEA.ItemId] + itemNumber.ToString(), itemId);

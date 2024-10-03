@@ -81,7 +81,7 @@ public class ParamLootGenerator(
         int rarityId, 
         List<int> allowedSpefTypes, 
         GenericDictionary outputDictionary, 
-        double spefChanceMult = 1.0f, 
+        float spefChanceMult = 1.0f, 
         bool armorTalisman = false,
         int spefNumOverride = -1,
         bool overwriteExistingSpEffects = false)
@@ -104,7 +104,7 @@ public class ParamLootGenerator(
         {
             for (int x = 0; x < speffectsToApply.Count; x++)
             {
-                outputDictionary.SetValue(speffectParam[x], speffectsToApply[x].ID);
+                outputDictionary.SetValue<long>(speffectParam[x], speffectsToApply[x].ID);
                 
                 yield return speffectsToApply[x];
             }
@@ -151,7 +151,7 @@ public class ParamLootGenerator(
         return LoadedLoot[randomIndex].Clone() as GenericDictionary;
     }
 
-    public string CreateAffinityTitle(DamageType dt1, DamageType dt2)
+    public string CreateAffinityTitle(DamageTypeSetup dt1, DamageTypeSetup dt2)
     {
         string firstName = dt1.PriName;
         string secondName = dt2.SecName;
@@ -180,27 +180,25 @@ public class ParamLootGenerator(
         return firstName + space + secondName;
     }
 
-    public void RandomizeLootWeight(GenericDictionary lootDict, double minMult = 0.95f, double maxMult = 1.05f, double absoluteMax = 30.0f)
+    public void RandomizeLootWeight(GenericDictionary lootDict, float minMult = 0.95f, float maxMult = 1.05f, float absoluteMax = 30.0f)
     {
         if (lootDict.ContainsKey("weight"))
         {
-            double originalWeight = lootDict.GetValue<double>("weight");
-            double newWeight = (double)Math.Round(originalWeight * this.Random.NextDouble(minMult, maxMult), 2);
-            lootDict.SetValue("weight", Math.Clamp(newWeight, 0.0f, absoluteMax));
+            float originalWeight = lootDict.GetValue<float>("weight");
+            float newWeight = (float)Math.Round(originalWeight * this.Random.NextDouble(minMult, maxMult), 2);
+            lootDict.SetValue("weight", (float)Math.Clamp(newWeight, 0.0f, absoluteMax));
         }
     }
 
     public void RandomizeLootWeightBasedOnRarity(GenericDictionary lootDict, int rarityId = 0)
     {
         var rarityWeight = RarityHandler.GetRarityWeightMultipliers(rarityId);
-        RandomizeLootWeight(lootDict, (double)rarityWeight[0], (double)rarityWeight[1]);
+        RandomizeLootWeight(lootDict, (float)rarityWeight[0], (float)rarityWeight[1]);
     }
 
-    public void SetLootSellValue(GenericDictionary lootDict, int rarityId, double mult = 1.0f)
+    public void SetLootSellValue(GenericDictionary lootDict, int rarityId, float mult = 1.0f)
     {
-        double guaranteedMult = 1.0f; // if all_loot_guaranteed() else 1.0
-
-        lootDict.SetValue(GetSellValueParam(), (RarityHandler.GetRaritySellValue(rarityId) * mult) * guaranteedMult);
+        lootDict.SetValue(GetSellValueParam(), (int)(RarityHandler.GetRaritySellValue(rarityId) * mult));
     }
 
     public void SetLootRarityParamValue(GenericDictionary lootDict, int rarityId)

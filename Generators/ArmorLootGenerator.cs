@@ -102,7 +102,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         string descriptionString = "";
 
         // GET ORIGINAL CUTRATE VALUES FOR ARMOR
-        var originalCutRate = new List<double>();
+        var originalCutRate = new List<float>();
 
         // GET THE PARAMS WE'LL BE WORKING WITH
         var cutRateParams = GetLootParamDictionaryFromGameType()["armor_param"];
@@ -118,7 +118,7 @@ public class ArmorLootGenerator : ParamLootGenerator
                 {
                     if (outputDictionary.ContainsKey(param))
                     {
-                        double oldValue = Convert.ToSingle(outputDictionary[param]);
+                        float oldValue = Convert.ToSingle(outputDictionary[param]);
                         // SUBTRACT A RARITY DEFINED CUTRATE VALUE FROM THE OLD VALUE AND SET IT TO THE NEW ONE
                         outputDictionary[param] = oldValue - RarityHandler.GetRarityArmorCutRateAddition(rarityId);
                     }
@@ -268,7 +268,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         // Placeholder for the actual implementation of randomize_loot_weight_based_on_rarity()
     }
 
-    private Dictionary<string, Dictionary<string, string>> ApplySpeffectsAndStoreFixesArray(int rarityId, List<int> speffIds, Dictionary<string, object> loot, double multiplier, bool apply, int speffType, bool store)
+    private Dictionary<string, Dictionary<string, string>> ApplySpeffectsAndStoreFixesArray(int rarityId, List<int> speffIds, Dictionary<string, object> loot, float multiplier, bool apply, int speffType, bool store)
     {
         // Placeholder for the actual implementation of apply_speffects_and_store_fixes_array()
         return new Dictionary<string, Dictionary<string, string>>();

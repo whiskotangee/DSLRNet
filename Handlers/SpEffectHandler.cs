@@ -37,7 +37,7 @@ public class SpEffectHandler : BaseHandler
 
     //SPEFFECTS WILL BE FILLED WITH MULTIPLE NUMERICAL KEYS DENOTING THE TYPE OF EFFECT - GENERAL WILL BE 0, BEHAVIOUR 1, STAFF ONLY 2, SEAL ONLY 3 ETC.
 
-    public List<SpEffectText> GetSpEffects(int desiredCount, List<int> allowedtypes, int rarityid, bool armortalisman = false, double chancemult = 1.0f)
+    public List<SpEffectText> GetSpEffects(int desiredCount, List<int> allowedtypes, int rarityid, bool armortalisman = false, float chancemult = 1.0f)
     {
         //PREPARE SPEFFECT CHANCE ARRAY BY GRABBING THE SPECIAL EFFECT CHANCES FROM CHOSEN RARITY
         int finalrarity = rarityHandler.GetNearestRarityId(rarityid);
@@ -66,14 +66,14 @@ public class SpEffectHandler : BaseHandler
                         string newdescription = GetSpeffectDescriptionWithValue(
                             newSpEffect.Description, 
                             newSpEffect.SpEffectPower.ToString(), 
-                            newSpEffect.Stacks);
+                            newSpEffect.Stacks == 1);
 
                         string newsummary = GetSpeffectDescriptionWithValue(
                             newSpEffect.ShortDescription == "" 
                                 ? newSpEffect.Description 
                                 : newSpEffect.ShortDescription, 
                             newSpEffect.SpEffectPower.ToString(), 
-                            newSpEffect.Stacks, 
+                            newSpEffect.Stacks == 1, 
                             true, 
                             "");
 

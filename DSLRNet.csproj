@@ -45,4 +45,8 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="DefaultData\ER\NewFolder\postfix.massedit" />
+  </ItemGroup>
+
 </Project>

@@ -24,11 +24,11 @@ public class DSLRNetBuilder(
         // get all queue entries
 
         // TODO: Loading ini is failing due to [] in values
-        var enemyItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
+        var enemyItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Enemies", "godrick*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.ParamCategories[0]));
 
-        var mapItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
-            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.ParamCategories[1]));
+        //var mapItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
+            //.Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.ParamCategories[1]));
 
         // ItemLotGenerator
         // do enemies
@@ -40,7 +40,8 @@ public class DSLRNetBuilder(
         // Get/Generator massedit
         // dsms apply
 
-        itemLotGenerator.CreateItemLots(enemyItemLotsSetups.Union(mapItemLotsSetups));
+        //itemLotGenerator.CreateItemLots(enemyItemLotsSetups.Union(mapItemLotsSetups));
+        itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
 
         var generatedData = dataRepository.GetMassEditContents();
         var generatedMessages = dataRepository.GetTextLines();
@@ -50,16 +51,6 @@ public class DSLRNetBuilder(
 
         Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
-        foreach (var massEdit in generatedData)
-        {
-            await UpdateItems($"{massEdit.Key}.massedit");
-        }
-        
-        await UpdateMessages(generatedMessages);          
-    }
-
-    public async Task UpdateItems(string massEditFile)
-    {
         var regulationFile = Path.Combine(this.configuration.Settings.OverrideModLocation, "regulation.bin");
         if (!File.Exists(regulationFile))
         {
@@ -69,13 +60,26 @@ public class DSLRNetBuilder(
         var destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
         File.Copy(regulationFile, destinationFile, true);
 
+        foreach (var massEdit in generatedData)
+        {
+            await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
+            {
+                ExePath = this.configuration.Settings.DSMSPortablePath,
+                //"%dsms%\DSMSPortable.exe" regulation.bin - G % gametype % -P "%erpath%" - M + "%dsmsmassedit%"
+                Arguments = $"\"{destinationFile}\" -G ER -P \"{this.configuration.Settings.GamePath}\" -M+ \"{massEdit.Key}.massedit\"",
+                RetryCount = 0
+            });
+        }
+
         await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
         {
             ExePath = this.configuration.Settings.DSMSPortablePath,
             //"%dsms%\DSMSPortable.exe" regulation.bin - G % gametype % -P "%erpath%" - M + "%dsmsmassedit%"
-            Arguments = $"\"{destinationFile}\" -G ER -P \"{this.configuration.Settings.GamePath}\" -M+ \"{massEditFile}\"",
+            Arguments = $"\"{destinationFile}\" -G ER -P \"{this.configuration.Settings.GamePath}\" -M+ \"DefaultData\\ER\\MassEdit\\postfix.massedit\"",
             RetryCount = 0
         });
+
+        await UpdateMessages(generatedMessages);          
     }
 
     public async Task UpdateMessages(List<string> strArray)
@@ -84,8 +88,8 @@ public class DSLRNetBuilder(
 
         var gameMsgFiles = this.configuration.Settings.MessageFileNames.Select(s =>
         {
-            var modDir = Path.Combine(this.configuration.Settings.OverrideModLocation, "msg", "enus", s);
-            var gameDir = Path.Combine(this.configuration.Settings.GamePath, "msg", "enus", s);
+            var modDir = Path.Combine(this.configuration.Settings.OverrideModLocation, "msg", "engus", s);
+            var gameDir = Path.Combine(this.configuration.Settings.GamePath, "msg", "engus", s);
 
             return File.Exists(modDir) ? modDir : gameDir;
         }).ToList();
@@ -96,8 +100,8 @@ public class DSLRNetBuilder(
 
         foreach (var gameMsgFile in gameMsgFiles)
         {
-            var destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "enus", Path.GetFileName(gameMsgFile));
-            Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "enus"));
+            var destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
+            Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus"));
 
             File.Copy(gameMsgFile, destinationFile, true);
 
@@ -114,7 +118,7 @@ public class DSLRNetBuilder(
                     await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
                     {
                         ExePath = this.configuration.Settings.DSMSPortablePath,
-                        Arguments = $"-fmgentry \"{destinationFile}\" {currentLine}"
+                        Arguments = $"--fmgentry \"{destinationFile}\" {currentLine}"
                     });
                     currentLine = "";
                 }

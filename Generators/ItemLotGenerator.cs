@@ -177,7 +177,7 @@ public class ItemLotGenerator : BaseHandler
 
     private double GetGlobalDropChance()
     {
-        return this.configuration.Settings.GlobalDropChance + (Math.Max(0, 6 - this.configuration.Settings.LootPerItemLot) * 9);
+        return Math.Clamp(this.configuration.Settings.GlobalDropChance + (Math.Max(0, 6 - this.configuration.Settings.LootPerItemLot) * 9), 0, 1000);
     }
 
     public int ChooseItemLotLootType(List<int> lootWeights)

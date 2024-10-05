@@ -1,0 +1,31 @@
+{
+  "FMG_ID": 311,
+  "Entries": [
+    {
+      "Text": "%null%",
+      "IDList": [
+        4530000,
+        4540000,
+        4550000
+      ]
+    },
+    {
+      "Text": "Fletched bone arrow with putrescence-soaked tip",
+      "IDList": [
+        50540000
+      ]
+    },
+    {
+      "Text": "Animal bone arrow with putrescence-soaked tip",
+      "IDList": [
+        50550000
+      ]
+    },
+    {
+      "Text": "Animal bone bolt with putrescence-soaked tip",
+      "IDList": [
+        52520000
+      ]
+    }
+  ]
+}

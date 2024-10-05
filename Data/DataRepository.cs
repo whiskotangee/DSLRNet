@@ -1,63 +1,51 @@
 ﻿namespace DSLRNet.Data;
 
+public enum ParamOperation { Create, MassEdit }
+
+public class ParamEdit
+{
+    public ParamOperation Operation { get; set; }
+
+    public string ParamName { get; set; }
+
+    public List<string> MessageText { get; set; }
+    public string MassEditString { get; set; }
+
+    public GenericDictionary ParamObject { get; set; }
+}
+
 public class DataRepository()
 {
-    private Dictionary<string, List<string>> massEdit = [];
-    private Dictionary<string, List<GenericDictionary>> paramEdits = [];
+    private List<ParamEdit> paramEdits = [];
 
-    private List<string> textLines = [];
-
-    public void AddParamEdit(string name, GenericDictionary param)
+    public void AddParamEdit(string name, ParamOperation operation, string massEditString, List<string> text,  GenericDictionary? param)
     {
-        if (!paramEdits.TryGetValue(name, out List<GenericDictionary>? list))
+        var currentEdit = this.paramEdits.FirstOrDefault(d => d.ParamName.Equals(name) && d.Operation == operation) ?? new ParamEdit() { ParamName = name, Operation = operation };
+
+        paramEdits.Add(new ParamEdit
         {
-            paramEdits[name] = [];
-            list = paramEdits[name];
+            Operation = operation,
+            ParamName = name,
+            MassEditString = massEditString,
+            MessageText = text,
+            ParamObject = param ?? new GenericDictionary()
+        });
+    }
+
+    public List<ParamEdit> GetParamEdits(ParamOperation? operation = null, string? paramName = null)
+    {
+        IEnumerable<ParamEdit> edits = [.. paramEdits];
+
+        if (operation != null)
+        {
+            edits = edits.Where(d => d.Operation == operation);
         }
 
-        list.Add(param);
-    }
-
-    public List<GenericDictionary> GetAllEditsForParam(string name)
-    {
-        if (paramEdits.TryGetValue(name, out List<GenericDictionary>? list))
+        if (paramName != null)
         {
-            return [.. list];
+            edits = edits.Where(d => d.Equals(paramName));
         }
 
-        return [];
-    }
-
-    public void AddToMassEdit(string name, string line)
-    {
-        if (!massEdit.TryGetValue(name, out List<string>? list))
-        {
-            massEdit[name] = [];
-        }
-
-        massEdit[name].Add(line);
-    }
-
-    public void AddToMassEdit(string name, IEnumerable<string> lines)
-    {
-        foreach (string line in lines)
-        {
-            this.AddToMassEdit(name, line);
-        }
-    }
-
-    public void AddText(List<string> text) 
-    { 
-        textLines.AddRange(text);
-    }
-
-    public Dictionary<string, List<string>> GetMassEditContents() 
-    {
-        return massEdit;
-    }
-
-    public List<string> GetTextLines() 
-    {
-        return textLines;
+        return edits.ToList();
     }
 }

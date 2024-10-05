@@ -42,12 +42,12 @@ public class EquipParamProtector
     public int originEquipPro15 { get; set; }
     public int faceScaleM_ScaleX { get; set; }
     public int faceScaleM_ScaleZ { get; set; }
-    public int faceScaleM_MaxX { get; set; }
-    public int faceScaleM_MaxZ { get; set; }
+    public float faceScaleM_MaxX { get; set; }
+    public float faceScaleM_MaxZ { get; set; }
     public int faceScaleF_ScaleX { get; set; }
     public int faceScaleF_ScaleZ { get; set; }
-    public int faceScaleF_MaxX { get; set; }
-    public int faceScaleF_MaxZ { get; set; }
+    public float faceScaleF_MaxX { get; set; }
+    public float faceScaleF_MaxZ { get; set; }
     public int qwcId { get; set; }
     public int equipModelId { get; set; }
     public int iconIdM { get; set; }

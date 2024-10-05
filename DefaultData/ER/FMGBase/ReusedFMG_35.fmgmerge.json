@@ -1,0 +1,782 @@
+{
+  "FMG_ID": 35,
+  "Entries": [
+    {
+      "Text": "[ERROR]test gem 1",
+      "IDList": [
+        10
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        145,
+        150,
+        162,
+        172,
+        188,
+        189,
+        193
+      ]
+    },
+    {
+      "Text": "[ERROR]test gem 2",
+      "IDList": [
+        20
+      ]
+    },
+    {
+      "Text": "[ERROR]test gem 3",
+      "IDList": [
+        30
+      ]
+    },
+    {
+      "Text": "[ERROR]",
+      "IDList": [
+        40,
+        41,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        146,
+        147,
+        148,
+        149,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        190,
+        191,
+        192,
+        194,
+        195,
+        196,
+        197,
+        198,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006,
+        1007,
+        1008,
+        1009,
+        1010,
+        1011,
+        1012,
+        1013,
+        1014,
+        1015,
+        1016,
+        1017
+      ]
+    },
+    {
+      "Text": "Ash of War: Lion\u0027s Claw",
+      "IDList": [
+        10000
+      ]
+    },
+    {
+      "Text": "Ash of War: Impaling Thrust",
+      "IDList": [
+        10100
+      ]
+    },
+    {
+      "Text": "Ash of War: Piercing Fang",
+      "IDList": [
+        10200
+      ]
+    },
+    {
+      "Text": "Ash of War: Spinning Slash",
+      "IDList": [
+        10300
+      ]
+    },
+    {
+      "Text": "Ash of War: Charge Forth",
+      "IDList": [
+        10500
+      ]
+    },
+    {
+      "Text": "Ash of War: Stamp (Upward Cut)",
+      "IDList": [
+        10600
+      ]
+    },
+    {
+      "Text": "Ash of War: Stamp (Sweep)",
+      "IDList": [
+        10700
+      ]
+    },
+    {
+      "Text": "Ash of War: Blood Tax",
+      "IDList": [
+        10800
+      ]
+    },
+    {
+      "Text": "Ash of War: Repeating Thrust",
+      "IDList": [
+        10900
+      ]
+    },
+    {
+      "Text": "Ash of War: Wild Strikes",
+      "IDList": [
+        11000
+      ]
+    },
+    {
+      "Text": "Ash of War: Spinning Strikes",
+      "IDList": [
+        11100
+      ]
+    },
+    {
+      "Text": "Ash of War: Double Slash",
+      "IDList": [
+        11200
+      ]
+    },
+    {
+      "Text": "Ash of War: Prelate\u0027s Charge",
+      "IDList": [
+        11300
+      ]
+    },
+    {
+      "Text": "Ash of War: Unsheathe",
+      "IDList": [
+        11400
+      ]
+    },
+    {
+      "Text": "Ash of War: Square Off",
+      "IDList": [
+        11500
+      ]
+    },
+    {
+      "Text": "Ash of War: Giant Hunt",
+      "IDList": [
+        11600
+      ]
+    },
+    {
+      "Text": "Ash of War: Torch Attack",
+      "IDList": [
+        11700
+      ]
+    },
+    {
+      "Text": "Ash of War: Loretta\u0027s Slash",
+      "IDList": [
+        11800
+      ]
+    },
+    {
+      "Text": "Ash of War: Poison Moth Flight",
+      "IDList": [
+        11900
+      ]
+    },
+    {
+      "Text": "Ash of War: Spinning Weapon",
+      "IDList": [
+        12000
+      ]
+    },
+    {
+      "Text": "Ashes of War: Wicked Stance",
+      "IDList": [
+        12100
+      ]
+    },
+    {
+      "Text": "Ash of War: Storm Assault",
+      "IDList": [
+        12200
+      ]
+    },
+    {
+      "Text": "Ash of War: Stormcaller",
+      "IDList": [
+        12300
+      ]
+    },
+    {
+      "Text": "Ash of War: Sword Dance",
+      "IDList": [
+        12400
+      ]
+    },
+    {
+      "Text": "Ash of War: Spinning Chain",
+      "IDList": [
+        12500
+      ]
+    },
+    {
+      "Text": "Ash of War: Glintblade Phalanx",
+      "IDList": [
+        20000
+      ]
+    },
+    {
+      "Text": "Ash of War: Sacred Blade",
+      "IDList": [
+        20100
+      ]
+    },
+    {
+      "Text": "Ash of War: Ice Spear",
+      "IDList": [
+        20200
+      ]
+    },
+    {
+      "Text": "Ash of War: Glintstone Pebble",
+      "IDList": [
+        20300
+      ]
+    },
+    {
+      "Text": "Ash of War: Bloody Slash",
+      "IDList": [
+        20400
+      ]
+    },
+    {
+      "Text": "Ash of War: Lifesteal Fist",
+      "IDList": [
+        20500
+      ]
+    },
+    {
+      "Text": "Ash of War: Eruption",
+      "IDList": [
+        20700
+      ]
+    },
+    {
+      "Text": "Ash of War: Prayerful Strike",
+      "IDList": [
+        20800
+      ]
+    },
+    {
+      "Text": "Ash of War: Gravitas",
+      "IDList": [
+        20900
+      ]
+    },
+    {
+      "Text": "Ash of War: Storm Blade",
+      "IDList": [
+        21000
+      ]
+    },
+    {
+      "Text": "Ash of War: Earthshaker",
+      "IDList": [
+        21200
+      ]
+    },
+    {
+      "Text": "Ash of War: Golden Land",
+      "IDList": [
+        21300
+      ]
+    },
+    {
+      "Text": "Ash of War: Flaming Strike",
+      "IDList": [
+        21400
+      ]
+    },
+    {
+      "Text": "Ash of War: Thunderbolt",
+      "IDList": [
+        21600
+      ]
+    },
+    {
+      "Text": "Ash of War: Lightning Slash",
+      "IDList": [
+        21700
+      ]
+    },
+    {
+      "Text": "Ash of War: Carian Grandeur",
+      "IDList": [
+        21800
+      ]
+    },
+    {
+      "Text": "Ash of War: Carian Greatsword",
+      "IDList": [
+        21900
+      ]
+    },
+    {
+      "Text": "Ash of War: Vacuum Slice",
+      "IDList": [
+        22000
+      ]
+    },
+    {
+      "Text": "Ash of War: Black Flame Tornado",
+      "IDList": [
+        22100
+      ]
+    },
+    {
+      "Text": "Ash of War: Sacred Ring of Light",
+      "IDList": [
+        22200
+      ]
+    },
+    {
+      "Text": "Ash of War: Firebreather",
+      "IDList": [
+        22300
+      ]
+    },
+    {
+      "Text": "Ash of War: Blood Blade",
+      "IDList": [
+        22400
+      ]
+    },
+    {
+      "Text": "Ash of War: Phantom Slash",
+      "IDList": [
+        22500
+      ]
+    },
+    {
+      "Text": "Ash of War: Spectral Lance",
+      "IDList": [
+        22600
+      ]
+    },
+    {
+      "Text": "Ash of War: Chilling Mist",
+      "IDList": [
+        22700
+      ]
+    },
+    {
+      "Text": "Ash of War: Poisonous Mist",
+      "IDList": [
+        22800
+      ]
+    },
+    {
+      "Text": "Ash of War: Shield Bash",
+      "IDList": [
+        30000
+      ]
+    },
+    {
+      "Text": "Ash of War: Barricade Shield",
+      "IDList": [
+        30100
+      ]
+    },
+    {
+      "Text": "Ash of War: Parry",
+      "IDList": [
+        30200,
+        30400
+      ]
+    },
+    {
+      "Text": "Ash of War: Buckler Parry",
+      "IDList": [
+        30300
+      ]
+    },
+    {
+      "Text": "Ash of War: Carian Retaliation",
+      "IDList": [
+        30500
+      ]
+    },
+    {
+      "Text": "Ash of War: Storm Wall",
+      "IDList": [
+        30600
+      ]
+    },
+    {
+      "Text": "Ash of War: Golden Parry",
+      "IDList": [
+        30700
+      ]
+    },
+    {
+      "Text": "Ash of War: Shield Crash",
+      "IDList": [
+        30800
+      ]
+    },
+    {
+      "Text": "Ash of War: No Skill",
+      "IDList": [
+        30900
+      ]
+    },
+    {
+      "Text": "Ash of War: Thops\u0027s Barrier",
+      "IDList": [
+        31000
+      ]
+    },
+    {
+      "Text": "Ash of War: Through and Through",
+      "IDList": [
+        40000
+      ]
+    },
+    {
+      "Text": "Ash of War: Barrage",
+      "IDList": [
+        40100
+      ]
+    },
+    {
+      "Text": "Ash of War: Mighty Shot",
+      "IDList": [
+        40200
+      ]
+    },
+    {
+      "Text": "Ash of War: Enchanted Shot",
+      "IDList": [
+        40400
+      ]
+    },
+    {
+      "Text": "Ash of War: Sky Shot",
+      "IDList": [
+        40500
+      ]
+    },
+    {
+      "Text": "Ash of War: Rain of Arrows",
+      "IDList": [
+        40600
+      ]
+    },
+    {
+      "Text": "Ashes of War: Invisible Arrow",
+      "IDList": [
+        40700
+      ]
+    },
+    {
+      "Text": "Ash of War: Hoarfrost Stomp",
+      "IDList": [
+        50100
+      ]
+    },
+    {
+      "Text": "Ash of War: Storm Stomp",
+      "IDList": [
+        50200
+      ]
+    },
+    {
+      "Text": "Ash of War: Kick",
+      "IDList": [
+        50300
+      ]
+    },
+    {
+      "Text": "Ash of War: Lightning Ram",
+      "IDList": [
+        50400
+      ]
+    },
+    {
+      "Text": "Ash of War: Flame of the Redmanes",
+      "IDList": [
+        50500
+      ]
+    },
+    {
+      "Text": "Ash of War: Ground Slam",
+      "IDList": [
+        50600
+      ]
+    },
+    {
+      "Text": "Ash of War: Golden Slam",
+      "IDList": [
+        50700
+      ]
+    },
+    {
+      "Text": "Ash of War: Waves of Darkness",
+      "IDList": [
+        50800
+      ]
+    },
+    {
+      "Text": "Ash of War: Hoarah Loux\u0027s Earthshaker",
+      "IDList": [
+        50900
+      ]
+    },
+    {
+      "Text": "Ash of War: Determination",
+      "IDList": [
+        60000
+      ]
+    },
+    {
+      "Text": "Ash of War: Royal Knight\u0027s Resolve",
+      "IDList": [
+        60100
+      ]
+    },
+    {
+      "Text": "Ash of War: Assassin\u0027s Gambit",
+      "IDList": [
+        60200
+      ]
+    },
+    {
+      "Text": "Ash of War: Golden Vow",
+      "IDList": [
+        60300
+      ]
+    },
+    {
+      "Text": "Ash of War: Sacred Order",
+      "IDList": [
+        60400
+      ]
+    },
+    {
+      "Text": "Ash of War: Shared Order",
+      "IDList": [
+        60500
+      ]
+    },
+    {
+      "Text": "Ash of War: Seppuku",
+      "IDList": [
+        60600
+      ]
+    },
+    {
+      "Text": "Ash of War: Cragblade",
+      "IDList": [
+        60700
+      ]
+    },
+    {
+      "Text": "Ash of War: Barbaric Roar",
+      "IDList": [
+        65000
+      ]
+    },
+    {
+      "Text": "Ash of War: War Cry",
+      "IDList": [
+        65100
+      ]
+    },
+    {
+      "Text": "Ash of War: Beast\u0027s Roar",
+      "IDList": [
+        65200
+      ]
+    },
+    {
+      "Text": "Ash of War: Troll\u0027s Roar",
+      "IDList": [
+        65300
+      ]
+    },
+    {
+      "Text": "Ash of War: Braggart\u0027s Roar",
+      "IDList": [
+        65400
+      ]
+    },
+    {
+      "Text": "Ash of War: Endure",
+      "IDList": [
+        70000
+      ]
+    },
+    {
+      "Text": "Ash of War: Vow of the Indomitable",
+      "IDList": [
+        70100
+      ]
+    },
+    {
+      "Text": "Ash of War: Holy Ground",
+      "IDList": [
+        70200
+      ]
+    },
+    {
+      "Text": "Ash of War: Quickstep",
+      "IDList": [
+        80000
+      ]
+    },
+    {
+      "Text": "Ash of War: Bloodhound\u0027s Step",
+      "IDList": [
+        80100
+      ]
+    },
+    {
+      "Text": "Ash of War: Raptor of the Mists",
+      "IDList": [
+        80200
+      ]
+    },
+    {
+      "Text": "Ash of War: White Shadow\u0027s Lure",
+      "IDList": [
+        85000
+      ]
+    }
+  ]
+}

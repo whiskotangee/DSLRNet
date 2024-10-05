@@ -1,0 +1,908 @@
+{
+  "FMG_ID": 209,
+  "Entries": [
+    {
+      "Text": "KG_R_R",
+      "IDList": [
+        2001
+      ]
+    },
+    {
+      "Text": "KG_R_D",
+      "IDList": [
+        2002
+      ]
+    },
+    {
+      "Text": "KG_L_U",
+      "IDList": [
+        2003
+      ]
+    },
+    {
+      "Text": "KG_L_D",
+      "IDList": [
+        2004
+      ]
+    },
+    {
+      "Text": "KG_L_L",
+      "IDList": [
+        2005
+      ]
+    },
+    {
+      "Text": "KG_L_R",
+      "IDList": [
+        2006
+      ]
+    },
+    {
+      "Text": "KG_L_UD",
+      "IDList": [
+        2007
+      ]
+    },
+    {
+      "Text": "KG_L_LR",
+      "IDList": [
+        2008
+      ]
+    },
+    {
+      "Text": "KG_L_UDLR",
+      "IDList": [
+        2009
+      ]
+    },
+    {
+      "Text": "KG_R_U",
+      "IDList": [
+        2010
+      ]
+    },
+    {
+      "Text": "KG_R_L",
+      "IDList": [
+        2011
+      ]
+    },
+    {
+      "Text": "KG_L1",
+      "IDList": [
+        2012
+      ]
+    },
+    {
+      "Text": "KG_R1",
+      "IDList": [
+        2013
+      ]
+    },
+    {
+      "Text": "KG_L2",
+      "IDList": [
+        2014
+      ]
+    },
+    {
+      "Text": "KG_R2",
+      "IDList": [
+        2015
+      ]
+    },
+    {
+      "Text": "KG_L3",
+      "IDList": [
+        2016
+      ]
+    },
+    {
+      "Text": "KG_R3",
+      "IDList": [
+        2017
+      ]
+    },
+    {
+      "Text": "KG_LS",
+      "IDList": [
+        2018
+      ]
+    },
+    {
+      "Text": "KG_RS",
+      "IDList": [
+        2019
+      ]
+    },
+    {
+      "Text": "KG_Back",
+      "IDList": [
+        2020
+      ]
+    },
+    {
+      "Text": "KG_Start",
+      "IDList": [
+        2021
+      ]
+    },
+    {
+      "Text": "KG_TEX_Copyright",
+      "IDList": [
+        2201
+      ]
+    },
+    {
+      "Text": "KG_TEX_R_mark",
+      "IDList": [
+        2202
+      ]
+    },
+    {
+      "Text": "KG_TEX_TradeMark",
+      "IDList": [
+        2203
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        2204,
+        712012,
+        712013,
+        712017,
+        712018,
+        712019,
+        712254,
+        712255,
+        712256,
+        712257,
+        712258,
+        712259,
+        712263,
+        712264,
+        712265,
+        712266,
+        712267,
+        712268,
+        712269,
+        712273,
+        712274,
+        712275,
+        712276,
+        712277,
+        712278,
+        712279,
+        712321,
+        712322
+      ]
+    },
+    {
+      "Text": "KG_TEX_R_mark_LineHelp",
+      "IDList": [
+        2205
+      ]
+    },
+    {
+      "Text": "KG_TEX_Highlight_mark",
+      "IDList": [
+        3000
+      ]
+    },
+    {
+      "Text": "KG_TEX_NewItem_mark",
+      "IDList": [
+        3001
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Left",
+      "IDList": [
+        712010
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Right",
+      "IDList": [
+        712011
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Wheel_U",
+      "IDList": [
+        712014
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Wheel_D",
+      "IDList": [
+        712015
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Middle",
+      "IDList": [
+        712016
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Button_4",
+      "IDList": [
+        712020
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Button_5",
+      "IDList": [
+        712021
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Button_6",
+      "IDList": [
+        712022
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Button_7",
+      "IDList": [
+        712023
+      ]
+    },
+    {
+      "Text": "KG_Mouse_Button_8",
+      "IDList": [
+        712024
+      ]
+    },
+    {
+      "Text": "KG_Mouse_UDLR",
+      "IDList": [
+        712025
+      ]
+    },
+    {
+      "Text": "KG_Key_BackSpace",
+      "IDList": [
+        712100
+      ]
+    },
+    {
+      "Text": "KG_Key_Tab",
+      "IDList": [
+        712101
+      ]
+    },
+    {
+      "Text": "KG_Key_Enter",
+      "IDList": [
+        712102
+      ]
+    },
+    {
+      "Text": "KG_Key_Shift",
+      "IDList": [
+        712103
+      ]
+    },
+    {
+      "Text": "KG_Key_Shift_L",
+      "IDList": [
+        712104
+      ]
+    },
+    {
+      "Text": "KG_Key_Shift_R",
+      "IDList": [
+        712105
+      ]
+    },
+    {
+      "Text": "KG_Key_Ctrl",
+      "IDList": [
+        712106
+      ]
+    },
+    {
+      "Text": "KG_Key_Ctrl_L",
+      "IDList": [
+        712107
+      ]
+    },
+    {
+      "Text": "KG_Key_Ctrl_R",
+      "IDList": [
+        712108
+      ]
+    },
+    {
+      "Text": "KG_Key_Alt",
+      "IDList": [
+        712109
+      ]
+    },
+    {
+      "Text": "KG_Key_Alt_L",
+      "IDList": [
+        712110
+      ]
+    },
+    {
+      "Text": "KG_Key_Alt_R",
+      "IDList": [
+        712111
+      ]
+    },
+    {
+      "Text": "KG_Key_Alt_LR",
+      "IDList": [
+        712112
+      ]
+    },
+    {
+      "Text": "KG_Key_AltGr",
+      "IDList": [
+        712113
+      ]
+    },
+    {
+      "Text": "KG_Key_CapsLock",
+      "IDList": [
+        712114
+      ]
+    },
+    {
+      "Text": "KG_Key_Esc",
+      "IDList": [
+        712115
+      ]
+    },
+    {
+      "Text": "KG_Key_Space",
+      "IDList": [
+        712116
+      ]
+    },
+    {
+      "Text": "KG_Key_PageUp",
+      "IDList": [
+        712117
+      ]
+    },
+    {
+      "Text": "KG_Key_PageDown",
+      "IDList": [
+        712118
+      ]
+    },
+    {
+      "Text": "KG_Key_Home",
+      "IDList": [
+        712119
+      ]
+    },
+    {
+      "Text": "KG_Key_End",
+      "IDList": [
+        712120
+      ]
+    },
+    {
+      "Text": "KG_Key_Insert",
+      "IDList": [
+        712121
+      ]
+    },
+    {
+      "Text": "KG_Key_Delete",
+      "IDList": [
+        712122
+      ]
+    },
+    {
+      "Text": "KG_Key_Arrow_L",
+      "IDList": [
+        712150
+      ]
+    },
+    {
+      "Text": "KG_Key_Arrow_U",
+      "IDList": [
+        712151
+      ]
+    },
+    {
+      "Text": "KG_Key_Arrow_R",
+      "IDList": [
+        712152
+      ]
+    },
+    {
+      "Text": "KG_Key_Arrow_D",
+      "IDList": [
+        712153
+      ]
+    },
+    {
+      "Text": "KG_Key_Arrow_UD",
+      "IDList": [
+        712154
+      ]
+    },
+    {
+      "Text": "KG_Key_Arrow_LR",
+      "IDList": [
+        712155
+      ]
+    },
+    {
+      "Text": "KG_Key_Arrow_UDLR",
+      "IDList": [
+        712156
+      ]
+    },
+    {
+      "Text": "KG_Key_0",
+      "IDList": [
+        712200
+      ]
+    },
+    {
+      "Text": "KG_Key_1",
+      "IDList": [
+        712201
+      ]
+    },
+    {
+      "Text": "KG_Key_2",
+      "IDList": [
+        712202
+      ]
+    },
+    {
+      "Text": "KG_Key_3",
+      "IDList": [
+        712203
+      ]
+    },
+    {
+      "Text": "KG_Key_4",
+      "IDList": [
+        712204
+      ]
+    },
+    {
+      "Text": "KG_Key_5",
+      "IDList": [
+        712205
+      ]
+    },
+    {
+      "Text": "KG_Key_6",
+      "IDList": [
+        712206
+      ]
+    },
+    {
+      "Text": "KG_Key_7",
+      "IDList": [
+        712207
+      ]
+    },
+    {
+      "Text": "KG_Key_8",
+      "IDList": [
+        712208
+      ]
+    },
+    {
+      "Text": "KG_Key_9",
+      "IDList": [
+        712209
+      ]
+    },
+    {
+      "Text": "KG_Key_A",
+      "IDList": [
+        712210
+      ]
+    },
+    {
+      "Text": "KG_Key_B",
+      "IDList": [
+        712211
+      ]
+    },
+    {
+      "Text": "KG_Key_C",
+      "IDList": [
+        712212
+      ]
+    },
+    {
+      "Text": "KG_Key_D",
+      "IDList": [
+        712213
+      ]
+    },
+    {
+      "Text": "KG_Key_E",
+      "IDList": [
+        712214
+      ]
+    },
+    {
+      "Text": "KG_Key_F",
+      "IDList": [
+        712215
+      ]
+    },
+    {
+      "Text": "KG_Key_G",
+      "IDList": [
+        712216
+      ]
+    },
+    {
+      "Text": "KG_Key_H",
+      "IDList": [
+        712217
+      ]
+    },
+    {
+      "Text": "KG_Key_I",
+      "IDList": [
+        712218
+      ]
+    },
+    {
+      "Text": "KG_Key_J",
+      "IDList": [
+        712219
+      ]
+    },
+    {
+      "Text": "KG_Key_K",
+      "IDList": [
+        712220
+      ]
+    },
+    {
+      "Text": "KG_Key_L",
+      "IDList": [
+        712221
+      ]
+    },
+    {
+      "Text": "KG_Key_M",
+      "IDList": [
+        712222
+      ]
+    },
+    {
+      "Text": "KG_Key_N",
+      "IDList": [
+        712223
+      ]
+    },
+    {
+      "Text": "KG_Key_O",
+      "IDList": [
+        712224
+      ]
+    },
+    {
+      "Text": "KG_Key_P",
+      "IDList": [
+        712225
+      ]
+    },
+    {
+      "Text": "KG_Key_Q",
+      "IDList": [
+        712226
+      ]
+    },
+    {
+      "Text": "KG_Key_R",
+      "IDList": [
+        712227
+      ]
+    },
+    {
+      "Text": "KG_Key_S",
+      "IDList": [
+        712228
+      ]
+    },
+    {
+      "Text": "KG_Key_T",
+      "IDList": [
+        712229
+      ]
+    },
+    {
+      "Text": "KG_Key_U",
+      "IDList": [
+        712230
+      ]
+    },
+    {
+      "Text": "KG_Key_V",
+      "IDList": [
+        712231
+      ]
+    },
+    {
+      "Text": "KG_Key_W",
+      "IDList": [
+        712232
+      ]
+    },
+    {
+      "Text": "KG_Key_X",
+      "IDList": [
+        712233
+      ]
+    },
+    {
+      "Text": "KG_Key_Y",
+      "IDList": [
+        712234
+      ]
+    },
+    {
+      "Text": "KG_Key_Z",
+      "IDList": [
+        712235
+      ]
+    },
+    {
+      "Text": "KG_Key_Comma",
+      "IDList": [
+        712250
+      ]
+    },
+    {
+      "Text": "KG_Key_Period",
+      "IDList": [
+        712251
+      ]
+    },
+    {
+      "Text": "KG_Key_Semicolon",
+      "IDList": [
+        712252
+      ]
+    },
+    {
+      "Text": "KG_Key_Apostrophe",
+      "IDList": [
+        712253
+      ]
+    },
+    {
+      "Text": "KG_Key_WASD",
+      "IDList": [
+        712260
+      ]
+    },
+    {
+      "Text": "KG_Key_WS",
+      "IDList": [
+        712261
+      ]
+    },
+    {
+      "Text": "KG_Key_AD",
+      "IDList": [
+        712262
+      ]
+    },
+    {
+      "Text": "KG_Key_ZQSD",
+      "IDList": [
+        712270
+      ]
+    },
+    {
+      "Text": "KG_Key_ZS",
+      "IDList": [
+        712271
+      ]
+    },
+    {
+      "Text": "KG_Key_QD",
+      "IDList": [
+        712272
+      ]
+    },
+    {
+      "Text": "KG_Key_CommaAQE",
+      "IDList": [
+        712280
+      ]
+    },
+    {
+      "Text": "KG_Key_CommaQ",
+      "IDList": [
+        712281
+      ]
+    },
+    {
+      "Text": "KG_Key_AE",
+      "IDList": [
+        712282
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_0",
+      "IDList": [
+        712310
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_1",
+      "IDList": [
+        712311
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_2",
+      "IDList": [
+        712312
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_3",
+      "IDList": [
+        712313
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_4",
+      "IDList": [
+        712314
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_5",
+      "IDList": [
+        712315
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_6",
+      "IDList": [
+        712316
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_7",
+      "IDList": [
+        712317
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_8",
+      "IDList": [
+        712318
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_9",
+      "IDList": [
+        712319
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_Enter",
+      "IDList": [
+        712320
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_Slash",
+      "IDList": [
+        712323
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_Asterisk",
+      "IDList": [
+        712324
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_Minus",
+      "IDList": [
+        712325
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_Plus",
+      "IDList": [
+        712326
+      ]
+    },
+    {
+      "Text": "KG_Key_Num_Period",
+      "IDList": [
+        712327
+      ]
+    },
+    {
+      "Text": "KG_Key_F1",
+      "IDList": [
+        712401
+      ]
+    },
+    {
+      "Text": "KG_Key_F2",
+      "IDList": [
+        712402
+      ]
+    },
+    {
+      "Text": "KG_Key_F3",
+      "IDList": [
+        712403
+      ]
+    },
+    {
+      "Text": "KG_Key_F4",
+      "IDList": [
+        712404
+      ]
+    },
+    {
+      "Text": "KG_Key_F5",
+      "IDList": [
+        712405
+      ]
+    },
+    {
+      "Text": "KG_Key_F6",
+      "IDList": [
+        712406
+      ]
+    },
+    {
+      "Text": "KG_Key_F7",
+      "IDList": [
+        712407
+      ]
+    },
+    {
+      "Text": "KG_Key_F8",
+      "IDList": [
+        712408
+      ]
+    },
+    {
+      "Text": "KG_Key_F9",
+      "IDList": [
+        712409
+      ]
+    },
+    {
+      "Text": "KG_Key_F10",
+      "IDList": [
+        712410
+      ]
+    },
+    {
+      "Text": "KG_Key_F11",
+      "IDList": [
+        712411
+      ]
+    },
+    {
+      "Text": "KG_Key_F12",
+      "IDList": [
+        712412
+      ]
+    }
+  ]
+}

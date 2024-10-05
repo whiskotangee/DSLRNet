@@ -68,8 +68,12 @@ public class ParamLootGenerator(
     {
         string finalMassEditOutput = CreateMassEditParamFromParamDictionary(massEditDict, OutputParamName, massEditDict.ContainsKey("ID") ? massEditDict.GetValue<int>("ID") : 0, extraFilters, extraBannedValues, ParamMandatoryKeys);
 
-        this.GeneratedDataRepository.AddToMassEdit(OutputParamName, finalMassEditOutput);
-        this.GeneratedDataRepository.AddText(CreateFmgLootEntrySet(OutputLootRealNames[lootType], massEditDict.GetValue<int>("ID"), title, description, summary, multiName));
+        this.GeneratedDataRepository.AddParamEdit(
+            OutputParamName,
+            ParamOperation.Create,
+            finalMassEditOutput,
+            CreateFmgLootEntrySet(OutputLootRealNames[lootType], massEditDict.GetValue<int>("ID"), title, description, summary, multiName),
+            massEditDict);
     }
 
     public void ApplyNextId(GenericDictionary outputDictionary)
@@ -122,12 +126,12 @@ public class ParamLootGenerator(
             !colorCoded ? this.RarityHandler.GetRarityName(rarityId) : this.RarityHandler.GetColorTextForRarity(rarityId),
             damageType,
             nameParts?.NameParts.Prefix ?? string.Empty,
-            nameParts?.NameParts.Interfix ?? string.Empty,
+            //nameParts?.NameParts.Interfix ?? string.Empty,
             originalTitle,
             nameParts?.NameParts.Suffix ?? string.Empty
         ];
 
-        return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)));
+        return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)).Distinct());
     }
 
     public GenericDictionary GetLootDictionaryFromId(int baseId = -1)

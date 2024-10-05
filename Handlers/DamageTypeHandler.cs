@@ -21,7 +21,7 @@ public class DamageTypeHandler : BaseHandler
         this.configuration = configuration.Value;
         this.random = random;
 
-        this.DamageTypes = CsvLoader.LoadCsv<DamageTypeSetup>("DefaultData\\ER\\CSVs\\DamageTypeSetup.csv");
+        this.DamageTypes = Data.Csv.LoadCsv<DamageTypeSetup>("DefaultData\\ER\\CSVs\\DamageTypeSetup.csv");
     }
 
     // DTH SELECTION FUNCTIONS

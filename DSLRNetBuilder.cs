@@ -1,4 +1,6 @@
-﻿using DSLRNet.Config;
+﻿using CsvHelper.Configuration;
+using CsvHelper;
+using DSLRNet.Config;
 using DSLRNet.Contracts;
 using DSLRNet.Data;
 using DSLRNet.Generators;
@@ -11,6 +13,7 @@ using System.Data.SqlTypes;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Xml.Linq;
+using Newtonsoft.Json;
 
 namespace DSLRNet;
 
@@ -26,12 +29,14 @@ public class DSLRNetBuilder(
 
     public async Task BuildAndApply()
     {
-        //var csvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs", "*.csv");
+        Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
-        //foreach (var csvFile in csvFiles)
-        //{
-        //    GenerateClassFromCsv(csvFile);
-        //}
+        var csvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\LatestParams", "*.csv");
+
+        foreach (var csvFile in csvFiles)
+        {
+            GenerateClassFromCsv(csvFile);
+        }
 
         // get all queue entries
 
@@ -55,13 +60,6 @@ public class DSLRNetBuilder(
         itemLotGenerator.CreateItemLots(enemyItemLotsSetups.Union(mapItemLotsSetups));
         //itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
 
-        Dictionary<string, List<string>> generatedData = dataRepository.GetMassEditContents();
-        List<string> generatedMessages = dataRepository.GetTextLines();
-
-        generatedData.Keys.ToList().ForEach(d => File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{d}.massedit"), generatedData[d]));
-
-        Directory.CreateDirectory(this.configuration.Settings.DeployPath);
-
         string regulationFile = Path.Combine(this.configuration.Settings.OverrideModLocation, "regulation.bin");
         if (!File.Exists(regulationFile))
         {
@@ -71,82 +69,47 @@ public class DSLRNetBuilder(
         string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
         File.Copy(regulationFile, destinationFile, true);
         File.Copy("DefaultData\\ER\\MassEdit\\postfix.massedit", Path.Combine(this.configuration.Settings.DeployPath, "postfix.massedit"), true);
-        /*
-        foreach (var massEdit in generatedData)
+
+        List<ParamEdit> generatedData = dataRepository.GetParamEdits(ParamOperation.MassEdit);
+
+        List<string> generatedMessages = dataRepository.GetParamEdits().SelectMany(s => s.MessageText).ToList();
+
+        var groups = generatedData.GroupBy(d => d.ParamName);
+
+        foreach(var group in groups)
         {
-            await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{massEdit.Key}.massedit"), destinationFile);
-        }
-        */
-
-        //await this.ApplyEdits(destinationFile, dataRepository);
-
-        foreach (KeyValuePair<string, List<string>> massEdit in generatedData)
-        {
-            await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{massEdit.Key}.massedit"), destinationFile);
+            File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), group.Select(s => s.MassEditString));
+            await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), destinationFile);
         }
 
-        //await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, Path.Combine(this.configuration.Settings.DeployPath, "postfix.massedit")), destinationFile);
+        await this.ApplyCreates(destinationFile, dataRepository);
 
         await UpdateMessages(generatedMessages);
     }
 
-    public async Task ApplyEdits(string regulationFile, DataRepository repository)
+    public async Task ApplyCreates(string regulationFile, DataRepository repository)
     {
-        if (Directory.Exists(regulationFile.Replace(".", "-")))
+        // write csv file with headers, but only for new things, aka none of the 
+        var edits = repository.GetParamEdits(ParamOperation.Create);
+
+        var paramNames = edits.Select(d => d.ParamName).Distinct();
+
+        foreach(var paramName in paramNames)
         {
-            Directory.Delete(regulationFile.Replace(".", "-"), true);
-        }
+            // write csv
+            var csvFile = Path.Combine(this.configuration.Settings.DeployPath, $"{paramName}.csv");
 
-        await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
-        {
-            ExePath = "O:\\EldenRingShitpostEdition\\Tools\\WitchyBND\\WitchyBND.exe",
-            Arguments = $"{regulationFile} --silent --recursive"
-        });
+            var parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.GetValue<int>("ID")).Select(d => d.ParamObject).ToList();
+            Csv.WriteCsv(csvFile, parms);
 
-        string paramPath = regulationFile.Replace(".", "-");
-        string[] paramFiles = Directory.GetFiles(paramPath, "*.xml");
-
-        foreach (string paramFile in paramFiles)
-        {
-            string name = Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(paramFile));
-            List<GenericDictionary> adds = repository.GetAllEditsForParam(name);
-
-            if (adds.Count == 0 || name == "NpcParam")
+            // dsms csv
+            await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
             {
-                continue;
-            }
-
-            XDocument doc = XDocument.Parse(File.ReadAllText(paramFile));
-
-            foreach (GenericDictionary add in adds)
-            {
-                XElement newRow = new("row", 
-                    add.Properties
-                    .Where(d => d.Key != "ID")
-                    .Select(s => new XAttribute(s.Key, s.Value))
-                    .Union([new XAttribute("id", add.Properties["ID"])]));
-
-                doc.Root.Element("rows").Add(newRow);
-            }
-
-            doc.Save(paramFile);
-
-            (string Context, string Output) output = await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
-            {
-                ExePath = "O:\\EldenRingShitpostEdition\\Tools\\WitchyBND\\WitchyBND.exe",
-                Arguments = $"{paramFile} --silent"
+                ExePath = this.configuration.Settings.DSMSPortablePath,
+                Arguments = $"\"{regulationFile}\" -G ER -P \"{this.configuration.Settings.GamePath}\" -C \"{csvFile}\"",
+                RetryCount = 0
             });
-
-            this.logger.LogInformation(output.Output);
         }
-
-        (string Context, string Output) overallOutput = await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
-        {
-            ExePath = "O:\\EldenRingShitpostEdition\\Tools\\WitchyBND\\WitchyBND.exe",
-            Arguments = $"{paramPath} --silent"
-        });
-
-        this.logger.LogInformation(overallOutput.Output);
     }
 
     private async Task ApplyMassEdit(string massEditFile, string destinationFile)
@@ -167,7 +130,7 @@ public class DSLRNetBuilder(
             throw new InvalidOperationException("CSV file must contain at least two lines (header and one data row).");
         }
 
-        string[] headers = lines[0].Split(',');
+        string[] headers = lines[0].Split(',', StringSplitOptions.RemoveEmptyEntries);
         string[][] dataRows = lines.Skip(1).Select(line => line.Split(',')).ToArray();
 
         List<string> properties = [];
@@ -188,7 +151,9 @@ public class {Path.GetFileNameWithoutExtension(csvFilePath)}
     {string.Join(Environment.NewLine + "    ", properties)}
 }}";
 
-        File.WriteAllText($"{Path.GetFileNameWithoutExtension(csvFilePath)}.cs", classDefinition);
+        var path = $"{Path.Combine("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\Data", Path.GetFileNameWithoutExtension(csvFilePath))}.cs";
+
+        File.WriteAllText(path, classDefinition);
 
         Console.WriteLine(classDefinition);
     }
@@ -210,8 +175,6 @@ public class {Path.GetFileNameWithoutExtension(csvFilePath)}
 
     public async Task UpdateMessages(List<string> strArray)
     {
-        Directory.CreateDirectory(this.configuration.Settings.DeployPath);
-
         List<string> gameMsgFiles = this.configuration.Settings.MessageFileNames.Select(s =>
         {
             string modDir = Path.Combine(this.configuration.Settings.OverrideModLocation, "msg", "engus", s);
@@ -257,5 +220,76 @@ public class {Path.GetFileNameWithoutExtension(csvFilePath)}
                 }
             }
         });
+    }
+}
+
+public class CsvFixer
+{
+    public class Entry
+    {
+        public string Text { get; set; }
+        public List<int> IDList { get; set; }
+    }
+
+    public class JsonData
+    {
+        public int FMG_ID { get; set; }
+        public List<Entry> Entries { get; set; }
+    }
+
+    public class CsvRecord
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        // Other fields can be added here
+        public string OtherField1 { get; set; }
+        public string OtherField2 { get; set; }
+        // Add as many fields as needed
+    }
+
+    public static void UpdateNamesInCSVs()
+    {
+        // TODO: fix the csvs with references from the json files like below
+        // YOU HAVEN'T DONE ANY YET
+        string jsonFilePath = "DefaultData\\ER\\FMGBase\\TitleWeapons_SOTE.fmgmerge.json";
+        string csvFilePath = "DefaultData\\ER\\CSVs\\EquipParamWeapon.csv";
+
+        // Read JSON file
+        var jsonData = JsonConvert.DeserializeObject<JsonData>(File.ReadAllText(jsonFilePath));
+
+        // Read CSV file
+        var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+        {
+            HasHeaderRecord = true,
+        };
+
+        List<EquipParamWeapon> csvRecords;
+        using (var reader = new StreamReader(csvFilePath))
+        using (var csv = new CsvReader(reader, csvConfig))
+        {
+            csvRecords = csv.GetRecords<EquipParamWeapon>().ToList();
+        }
+
+        // Update CSV records with JSON data
+        foreach (var entry in jsonData.Entries)
+        {
+            foreach (var id in entry.IDList)
+            {
+                var record = csvRecords.FirstOrDefault(r => r.ID == id);
+                if (record != null)
+                {
+                    record.Name = entry.Text;
+                }
+            }
+        }
+
+        // Write updated records back to CSV file
+        using (var writer = new StreamWriter(csvFilePath))
+        using (var csv = new CsvWriter(writer, csvConfig))
+        {
+            csv.WriteRecords(csvRecords);
+        }
+
+        Console.WriteLine("CSV file updated successfully.");
     }
 }

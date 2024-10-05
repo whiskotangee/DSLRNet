@@ -166,7 +166,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
             finalBannedEquals.AddRange(bannedEquals);
         }
 
-        foreach (KeyValuePair<string, object?> kvp in dict.Properties)
+        foreach (KeyValuePair<string, object?> kvp in dict.Properties.Where(d => !d.Key.Contains("pad", StringComparison.OrdinalIgnoreCase)))
         {
             string newKey = kvp.Key;
             string? newValue = kvp.Value?.ToString();
@@ -194,8 +194,6 @@ public class BaseHandler(DataRepository generatedDataRepository)
                 finalMassEdit += CreateMassEditLine(paramName, id, newKey, newValue);
             }
         }
-
-        this.GeneratedDataRepository.AddParamEdit(paramName, dict);
 
         return finalMassEdit;
     }

@@ -1,0 +1,59 @@
+{
+  "FMG_ID": 372,
+  "Entries": [
+    {
+      "Text": "The frame rate limit setting will be changed, as the previous value is now invalid.",
+      "IDList": [
+        111108
+      ]
+    },
+    {
+      "Text": "Offer Heart of Bayle\nto make \u003C?itemName?\u003E thine own",
+      "IDList": [
+        225001
+      ]
+    },
+    {
+      "Text": "Cannot craft this item as you do not have enough hefty cracked pots",
+      "IDList": [
+        236031
+      ]
+    },
+    {
+      "Text": "Cannot craft this item as you do not have any hefty cracked pots",
+      "IDList": [
+        236061
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Gravesite Plain)",
+      "IDList": [
+        241200
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Scadu Altus)",
+      "IDList": [
+        241201
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Southern Shore)",
+      "IDList": [
+        241202
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Rauh Ruins)",
+      "IDList": [
+        241203
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Abyss)",
+      "IDList": [
+        241204
+      ]
+    }
+  ]
+}

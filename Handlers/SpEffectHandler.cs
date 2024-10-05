@@ -32,22 +32,24 @@ public class SpEffectHandler : BaseHandler
         this.rarityHandler = rarityHandler;
         randomNumberGetter = random;
 
-        this.LoadedSpEffectConfigs = CsvLoader.LoadCsv<SpEffectConfig>("DefaultData\\ER\\CSVs\\SpEffectConfig_Default.csv");
+        this.LoadedSpEffectConfigs = Data.Csv.LoadCsv<SpEffectConfig>("DefaultData\\ER\\CSVs\\SpEffectConfig_Default.csv");
 
-        List<SpEffectParam> loadedSpEffectParams = CsvLoader.LoadCsv<SpEffectParam>("DefaultData\\ER\\CSVs\\SpEffectParam.csv");
+        List<SpEffectParam> loadedSpEffectParams = Data.Csv.LoadCsv<SpEffectParam>("DefaultData\\ER\\CSVs\\SpEffectParam.csv");
 
         foreach (GenericDictionary? spEffectParam in loadedSpEffectParams.Select(GenericDictionary.FromObject))
         {
-            this.GeneratedDataRepository.AddParamEdit("SpEffectParam", spEffectParam);
-            this.GeneratedDataRepository.AddToMassEdit(
+            this.GeneratedDataRepository.AddParamEdit(
                 "SpEffectParam", 
+                ParamOperation.MassEdit, 
                 this.CreateMassEditParamFromParamDictionary(
-                    spEffectParam, 
-                    "SpEffectParam", 
-                    spEffectParam.GetValue<int>("ID"), 
+                    spEffectParam,
+                    "SpEffectParam",
+                    spEffectParam.GetValue<int>("ID"),
                     [],
-                    ["0", "-1"], 
-                    ["conditionHp", "effectEndurance", "conditionHpRate"]));
+                    ["0", "-1"],
+                    ["conditionHp", "effectEndurance", "conditionHpRate"]),
+                [],
+                spEffectParam);
         }
     }
 

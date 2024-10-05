@@ -1,0 +1,875 @@
+{
+  "FMG_ID": 315,
+  "Entries": [
+    {
+      "Text": "The sun-faded and lightly soiled hat of Dryleaf Dane. Worn low over the eyes, it obscures the wearer\u0027s vision.\n\nMeeting the gaze of another can overcome the senses, often leading to the downfall of those who would walk the noble and solitary seekers\u0027 path.",
+      "IDList": [
+        3000000
+      ]
+    },
+    {
+      "Text": "Sun-faded and lightly soiled travel attire worn by clergymen.\n\nThe gold necklace found under the breast belongs to a group of spiritual seekers known as the Dryleaf Sect.\n\nThis sect rejects dependence on others in all matters of faith, seeking self-discipline and self-sufficiency above all else.",
+      "IDList": [
+        3000100
+      ]
+    },
+    {
+      "Text": "Sun-faded and lightly soiled arm wraps.\n\nWound tightly around the arms as if it might prevent them from being broken.",
+      "IDList": [
+        3000200
+      ]
+    },
+    {
+      "Text": "Sun-faded and lightly soiled travel attire worn by clergymen.\nBoots made of sturdy leather.",
+      "IDList": [
+        3000300
+      ]
+    },
+    {
+      "Text": "Sun-faded and lightly soiled travel attire worn by clergymen.\n\nThe leather satchel hanging from the shoulder is decorated with one of Miquella\u0027s emblems, a golden grass motif.",
+      "IDList": [
+        3001100
+      ]
+    },
+    {
+      "Text": "The black iron helm of Commander Gaius.\nPart of an armor set patterned after fallen seeds.\n\nGaius was the most senior disciple of the same Alabaster Lord who taught Radahn and Gaea gravitational technique.",
+      "IDList": [
+        3010000
+      ]
+    },
+    {
+      "Text": "The black iron chest armor of Commander Gaius.\nPart of an armor set patterned after fallen seeds.\n\nGaius was the most senior disciple of the same Alabaster Lord who taught Radahn and Gaea gravitational technique.",
+      "IDList": [
+        3010100
+      ]
+    },
+    {
+      "Text": "The black iron gauntlets of Commander Gaius.\nPart of an armor set patterned after fallen seeds.\n\nGaius was the most senior disciple of the same Alabaster Lord who taught Radahn and Gaea gravitational technique.",
+      "IDList": [
+        3010200
+      ]
+    },
+    {
+      "Text": "Black iron greaves made for Commander Gaius.\nA cruel joke, for he could not wear them.\n\nRiding atop the boar he called his other half, Gaius was in fact a warrior of albinauric extraction.",
+      "IDList": [
+        3010300
+      ]
+    },
+    {
+      "Text": "An Oathseeker Knight helm.\nBlack with gold ornamentation.\n\nThese knights set off on quests of discovery, hoping to find by themselves an oath of their own choosing to serve in perfect, lifelong devotion.",
+      "IDList": [
+        5000000
+      ]
+    },
+    {
+      "Text": "Chest armor of Needle Knight Leda.\n\nSlightly strengthens attacks following a dodge roll or backstep, as well as dash attacks.\n\nEmbroidered with a golden crossed-tree motif, the chalk white cloak and surcoat symbolize the honor of the Needle Knights.\n\n\u0022Kindly Miquella fashioned us as his needles to quell all, to ward away all.\u0022",
+      "IDList": [
+        5000100
+      ]
+    },
+    {
+      "Text": "Oathseeker Knight gauntlets.\nBlack with gold ornamentation.\n\nThese knights set off on quests of discovery, hoping to find by themselves an oath of their own choosing to serve in perfect, lifelong devotion.",
+      "IDList": [
+        5000200
+      ]
+    },
+    {
+      "Text": "Oathseeker Knight greaves.\nBlack with gold ornamentation.\n\nThese knights set off on quests of discovery, hoping to find by themselves an oath of their own choosing to serve in perfect, lifelong devotion.",
+      "IDList": [
+        5000300
+      ]
+    },
+    {
+      "Text": "Oathseeker Knight chest armor.\nBlack with gold ornamentation.\n\nThese knights set off on quests of discovery, hoping to find by themselves an oath of their own choosing to serve in perfect, lifelong devotion.",
+      "IDList": [
+        5002100
+      ]
+    },
+    {
+      "Text": "Helm made from an unusual metal known as verdigris.\n\nVerdigris is said to be the gift of an outer god.\nPossessed of an enormously hefty yet supple strength thanks to its rusted nature.",
+      "IDList": [
+        5010000
+      ]
+    },
+    {
+      "Text": "Chest armor made from an unusual metal known as verdigris.\n\nVerdigris is said to be the gift of an outer god.\nPossessed of an enormously hefty yet supple strength thanks to its rusted nature.",
+      "IDList": [
+        5010100
+      ]
+    },
+    {
+      "Text": "Gauntlets made from an unusual metal known as verdigris.\n\nVerdigris is said to be the gift of an outer god.\nPossessed of an enormously hefty yet supple strength thanks to its rusted nature.",
+      "IDList": [
+        5010200
+      ]
+    },
+    {
+      "Text": "Greaves made from an unusual metal known as verdigris.\n\nVerdigris is said to be the gift of an outer god.\nPossessed of an enormously hefty yet supple strength thanks to its rusted nature.",
+      "IDList": [
+        5010300
+      ]
+    },
+    {
+      "Text": "The pelt of Ralva the Great Red Bear, worn upon the head without modification.\n\nEnhances incantations of what is jokingly called \u0022Bear Communion.\u0022\n\nThis untreated hide, won at the end of a bloody bout, is just the thing to make a wild bear out of a warrior.",
+      "IDList": [
+        5020000
+      ]
+    },
+    {
+      "Text": "Chest armor of Red Bear, whose name is lost to madness.\nA vest reinforced with iron rivets.\n\nAfter killing the great red bear in a blood-soaked bout, he became fascinated by the untainted glory of its naked strength.\n\n\u0022I wish to be a bear, no more, and no less.\u0022",
+      "IDList": [
+        5020100
+      ]
+    },
+    {
+      "Text": "Gauntlets of Red Bear, whose name is lost to madness.\nReinforced with iron rivets.\n\nAfter killing the great red bear in a blood-soaked bout, he became fascinated by the untainted glory of its naked strength.\n\n\u0022I wish to be a bear, no more, and no less.\u0022",
+      "IDList": [
+        5020200
+      ]
+    },
+    {
+      "Text": "Greaves of Red Bear, whose name is lost to madness.\nReinforced with iron rivets.\n\nAfter killing the great red bear in a blood-soaked bout, he became fascinated by the untainted glory of its naked strength.\n\n\u0022I wish to be a bear, no more, and no less.\u0022",
+      "IDList": [
+        5020300
+      ]
+    },
+    {
+      "Text": "Helm of Red Bear, whose name is lost to madness.\nThe cheek guards are shaped after lion fangs.\n\nPerhaps his fascination with the untamed strength of the wild stemmed from his past as a Redmane.",
+      "IDList": [
+        5021000
+      ]
+    },
+    {
+      "Text": "A mask upon which is carved a tranquil sleeping face.\n\nThe silver hair is arranged in the same style as St. Trina\u0027s, increasing arcane.\n\nJust once, Thiollier was granted the sweet repose of velvety sleep. The remainder of his days would be spent attempting to recapture it.",
+      "IDList": [
+        5030000
+      ]
+    },
+    {
+      "Text": "The dark attire of those who wield poison in secret.\n\nThe silver hair is arranged in the same style as St. Trina\u0027s, increasing arcane.\n\nAdditionally, countless needles are sewn onto the exterior, apparently for talismanic effect.",
+      "IDList": [
+        5030100
+      ]
+    },
+    {
+      "Text": "The dark gloves of those who wield poison in secret, ever scorned and loathed.",
+      "IDList": [
+        5030200
+      ]
+    },
+    {
+      "Text": "The dark trousers of those who wield poison in secret, ever scorned and loathed.",
+      "IDList": [
+        5030300
+      ]
+    },
+    {
+      "Text": "The dark attire of those who wield poison in secret.\n\nCountless needles are sewn onto the exterior for talismanic effect.",
+      "IDList": [
+        5031100
+      ]
+    },
+    {
+      "Text": "The hat of Count Ymir, High Priest.\n\nThe circular design at the top represents the Greater Will and its lightless abyss, imparting increased intelligence and arcane to the wearer.\n\nThough Count Ymir instructed Rellana in the sorcerous arts, he abandoned his allegiance to the moon.\n\n\u0022It was merely the closest of the celestial bodies. Nothing more.\u0022",
+      "IDList": [
+        5060000
+      ]
+    },
+    {
+      "Text": "Robe of Count Ymir, High Priest.\nConceals the abundance of squirming beneath.\n\nGold embroidery decorates the purple cloth, with a jewelled ruff that sparkles like a flower wet with dew.",
+      "IDList": [
+        5060100
+      ]
+    },
+    {
+      "Text": "Gloves of Count Ymir, High Priest.\nSoft and well-tailored.",
+      "IDList": [
+        5060200
+      ]
+    },
+    {
+      "Text": "Undergarments of Count Ymir, High Priest.\nSoft and well-tailored.",
+      "IDList": [
+        5060300
+      ]
+    },
+    {
+      "Text": "Robe of Count Ymir, High Priest.\nThe front is open, exposing the squirming fingers beneath.\n\nThis robe is the image of his fervent desire having broken free, laying bare his greatest wish, and wearing it enhances finger sorceries.\n\n\u0022I will be the true mother.\nMy fingers will grant us redemption!\u0022",
+      "IDList": [
+        5062100
+      ]
+    },
+    {
+      "Text": "Grotesque mask constructed from countless solidified caterpillars. A ritual implement of the greater potentates of Bonny Village.\n\nUsed to ward off thoughts of impurity, doubt, temptation, and other wickednesses one is vulnerable to while absorbed in divine ritual.",
+      "IDList": [
+        5070000
+      ]
+    },
+    {
+      "Text": "Ragged black cloth overlaid with braided cord. Attire of a vengeance-seeking hornsent.\n\nThe braided cord ties together the vow of the revenger with the victims\u0027 grudges. It must never come undone.\n\nEnhances both watchful spirits and the vengeful spirits summoned by horned bairns.",
+      "IDList": [
+        5070100
+      ]
+    },
+    {
+      "Text": "Ragged black cloth tied with braided cord. Attire of a vengeance-seeking hornsent.",
+      "IDList": [
+        5070200
+      ]
+    },
+    {
+      "Text": "This lightly soiled loincloth of ragged cloth does little more than conceal one\u0027s nether regions.",
+      "IDList": [
+        5070300
+      ]
+    },
+    {
+      "Text": "Bright-red hood of the Ranah dancers.\nEnhances the power of dancing attacks.\n\nThe dance of Ranah is one of burning passion, and the most passionate dancers never allow their fiery dance to end, losing even their names as they dance on.\n\nTo see the passion fade is to see the dancer\u0027s flame extinguished.",
+      "IDList": [
+        5080000
+      ]
+    },
+    {
+      "Text": "Bright-red dress of the Ranah dancers.\nEnhances the power of dancing attacks.\n\nThe dance of Ranah is one of burning passion, and the most passionate dancers never allow their fiery dance to end, losing even their names as they dance on.\n\nTo see the passion fade is to see the dancer\u0027s flame extinguished.",
+      "IDList": [
+        5080100
+      ]
+    },
+    {
+      "Text": "Metal bracer of the Ranah dancers.\n\nEnhances the power of dancing attacks.\n\nDesigned to protect the sword-wielding hand.",
+      "IDList": [
+        5080200
+      ]
+    },
+    {
+      "Text": "Long, black trousers worn underneath the bright-red dress of the Ranah dancers.\n\nEnhances the power of dancing attacks.",
+      "IDList": [
+        5080300
+      ]
+    },
+    {
+      "Text": "Altered form of the bright-red dress of the Ranah dancers.\nThese are the black undergarments worn beneath.\n\nEnhances the power of dancing attacks.",
+      "IDList": [
+        5081100
+      ]
+    },
+    {
+      "Text": "Bottomless black helm, cool to the touch.\nFlowing lines in the seeming shape of a fingerprint adorn the surface. Imprisons the wearer in utterly lightless dark.\n\nBestowed upon those born deep underground, ordaining them as Swordhands of Night.",
+      "IDList": [
+        5090000
+      ]
+    },
+    {
+      "Text": "Bottomless black chest armor, cool to the touch.\nFlowing lines in the seeming shape of a fingerprint adorn the surface. Imprisons the wearer in utterly lightless dark.\n\nBestowed upon those born deep underground, ordaining them as Swordhands of Night.",
+      "IDList": [
+        5090100
+      ]
+    },
+    {
+      "Text": "Bottomless black gauntlets, cool to the touch.\nFlowing lines in the seeming shape of a fingerprint adorn the surface. Imprisons the wearer in utterly lightless dark.\n\nBestowed upon those born deep underground, ordaining them as Swordhands of Night.",
+      "IDList": [
+        5090200
+      ]
+    },
+    {
+      "Text": "Bottomless black greaves, cool to the touch.\nFlowing lines in the seeming shape of a fingerprint adorn the surface. Imprisons the wearer in utterly lightless dark.\n\nBestowed upon those born deep underground, ordaining them as Swordhands of Night.",
+      "IDList": [
+        5090300
+      ]
+    },
+    {
+      "Text": "Helm of the broken drake warrior Igon, from a set of armor comprised of a miscellany of parts. This tattered protective-wear is shaped like a bugle.\n\nThe poor scavenger of battlefields found honor through Dragon Communion.",
+      "IDList": [
+        5100000
+      ]
+    },
+    {
+      "Text": "Armor of the broken drake warrior Igon, from a set comprised of a miscellany of parts. Filthy belongings are attached to this tattered piece of protective-wear.\n\nThe poor scavenger of battlefields found honor through Dragon Communion.",
+      "IDList": [
+        5100100
+      ]
+    },
+    {
+      "Text": "Gauntlets of the broken drake warrior Igon. \nNo more than a mish-mash of tatters and remnants stripped from a corpse found in the aftermath of a battle.",
+      "IDList": [
+        5100200
+      ]
+    },
+    {
+      "Text": "Loincloth of the broken drake warrior Igon. Stripped from a corpse found in the aftermath of a battle, this scrap of cloth smells utterly foul.",
+      "IDList": [
+        5100300
+      ]
+    },
+    {
+      "Text": "Helm of the broken drake warrior Igon, from a set of armor comprised of a miscellany of parts. Patched with scraps of cloth.\n\nThe poor scavenger of battlefields found honor through Dragon Communion.",
+      "IDList": [
+        5101000
+      ]
+    },
+    {
+      "Text": "Armor of the broken drake warrior Igon, from a set comprised of a miscellany of parts. Patched with scraps of cloth.\n\nThe poor scavenger of battlefields found honor through Dragon Communion.",
+      "IDList": [
+        5101100
+      ]
+    },
+    {
+      "Text": "The iron mask of Sir Ansbach, giving the appearance of a quiet, wise, old bearded man.\n\nBut an old fear lurks beneath, together with the cold, unflinching discipline that once honed his blade, now employed to enhance Blood Oath and dynastic skills.",
+      "IDList": [
+        5110000
+      ]
+    },
+    {
+      "Text": "Attire of Sir Ansbach. The embroidered crest of the Pureblood Knights has now all but faded away.\n\nSlightly enhances Blood Oath and dynastic skills.\n\nAnsbach understood that keeping his oath to his old master was not an act of logic, nor would it bear any justice, but it was for these very reasons he was unable to let go.",
+      "IDList": [
+        5110100
+      ]
+    },
+    {
+      "Text": "Manchettes of Sir Ansbach. Black leather adorned with gold embroidery.\n\nSlightly enhances Blood Oath and dynastic skills.",
+      "IDList": [
+        5110200
+      ]
+    },
+    {
+      "Text": "Boots of Sir Ansbach. Black leather adorned with gold embroidery.\n\nSlightly enhances Blood Oath and dynastic skills.",
+      "IDList": [
+        5110300
+      ]
+    },
+    {
+      "Text": "Attire of Sir Ansbach. Black cloth adorned with gold embroidery.\n\nSlightly enhances Blood Oath and dynastic skills.",
+      "IDList": [
+        5111100
+      ]
+    },
+    {
+      "Text": "Golden helm of Redmane Freyja, member of General Radahn\u0027s most distinguished knights.\n\nA hideous scarlet wound was once hewn into the center of her face.\n\nLater, Miquella gently put his lips to it and the unfading scar became the compass that Freyja would thereafter follow.",
+      "IDList": [
+        5120000
+      ]
+    },
+    {
+      "Text": "Golden armor of Redmane Freyja, member of General Radahn\u0027s most distinguished knights. Affixed with a black woolen mantle.\n\nAfter witnessing Freyja\u0027s valor as a gladiator in his youth, Radahn invited her to join the ranks of his most trusted warriors.",
+      "IDList": [
+        5120100
+      ]
+    },
+    {
+      "Text": "Golden gauntlets of Redmane Freyja, member of General Radahn\u0027s most distinguished knights.\n\nAfter witnessing Freyja\u0027s valor as a gladiator in his youth, Radahn invited her to join the ranks of his most trusted warriors.",
+      "IDList": [
+        5120200
+      ]
+    },
+    {
+      "Text": "Greaves of Redmane Freyja, member of General Radahn\u0027s most distinguished knights.\n\nAfter witnessing Freyja\u0027s valor as a gladiator in his youth, Radahn invited her to join the ranks of his most trusted warriors.",
+      "IDList": [
+        5120300
+      ]
+    },
+    {
+      "Text": "Golden armor of Redmane Freyja, member of General Radahn\u0027s most distinguished knights.\n\nAfter witnessing Freyja\u0027s valor as a gladiator in his youth, Radahn invited her to join the ranks of his most trusted warriors.",
+      "IDList": [
+        5121100
+      ]
+    },
+    {
+      "Text": "Steel helm of the Knights of the Solitary Gaol.\nPart of a heavy armor set that covers the whole body in overlapping plates of steel.\n\nThe nameless mausoleums of the realm of shadow are said to hold the spirits of warriors who lost their names, or their hearts.",
+      "IDList": [
+        5130000
+      ]
+    },
+    {
+      "Text": "Steel chest armor of the Knights of the Solitary Gaol.\nPart of a heavy armor set that covers the whole body in overlapping plates of steel, and bedecked with a black cloak.\n\nThe nameless mausoleums of the realm of shadow are said to hold the spirits of warriors who lost their names, or their hearts.",
+      "IDList": [
+        5130100
+      ]
+    },
+    {
+      "Text": "Steel gauntlets of the Knights of the Solitary Gaol.\nPart of a heavy armor set that covers the whole body in overlapping plates of steel.\n\nThe nameless mausoleums of the realm of shadow are said to hold the spirits of warriors who lost their names, or their hearts.",
+      "IDList": [
+        5130200
+      ]
+    },
+    {
+      "Text": "Steel greaves of the Knights of the Solitary Gaol.\nPart of a heavy armor set that covers the whole body in overlapping plates of steel.\n\nThe nameless mausoleums of the realm of shadow are said to hold the spirits of warriors who lost their names, or their hearts.",
+      "IDList": [
+        5130300
+      ]
+    },
+    {
+      "Text": "Steel chest armor of the Knights of the Solitary Gaol.\nPart of a heavy armor set that covers the whole body in overlapping plates of steel.\n\nThe nameless mausoleums of the realm of shadow are said to hold the spirits of warriors who lost their names, or their hearts.",
+      "IDList": [
+        5131100
+      ]
+    },
+    {
+      "Text": "Helm worn by soldiers who serve Messmer the Impaler. The iron helm features a visor.\n\nThough the engraving upon the forehead is a Scadutree design, it is etched in gold. A small consolation to those forced to wage a war without grace or honor.",
+      "IDList": [
+        5140000
+      ]
+    },
+    {
+      "Text": "Armor worn by soldiers who serve Messmer the Impaler. A ragged cloak is draped over rusted mail.\n\nThough the chestpiece features a Scadutree motif, gold has been used for its engraving. A small consolation to those forced to wage a war without grace or honor.",
+      "IDList": [
+        5140100
+      ]
+    },
+    {
+      "Text": "Gauntlets worn by soldiers who serve Messmer the Impaler, rusted and crusted in filth from fighting in unending war.",
+      "IDList": [
+        5140200
+      ]
+    },
+    {
+      "Text": "Greaves worn by soldiers who serve Messmer the Impaler, rusted and crusted in filth from fighting in unending war.",
+      "IDList": [
+        5140300
+      ]
+    },
+    {
+      "Text": "Armor worn by soldiers who serve Messmer the Impaler. The mail has rusted while fighting in unending war.\n\nThough the chestpiece features a Scadutree motif, gold has been used for its engraving. A small consolation to those forced to wage a war without grace or honor.",
+      "IDList": [
+        5141100
+      ]
+    },
+    {
+      "Text": "Helm worn by the Black Knights, servants of Messmer the Impaler. Black iron ornamented with gold. A rotten odor stubbornly clings to it.\n\nPerhaps it arises from the tainted nature of the blood that splattered upon it. Or perhaps it is the wearer\u0027s own blackened soul, festering after endless slaughter.",
+      "IDList": [
+        5150000
+      ]
+    },
+    {
+      "Text": "Armor worn by the Black Knights, servants of Messmer the Impaler.\n\nThough the engraving above the heart is a Scadutree design, it is etched in gold. A small consolation to those forced to wage a war without grace or honor.",
+      "IDList": [
+        5150100
+      ]
+    },
+    {
+      "Text": "Gauntlets worn by the Black Knights, servants of Messmer the Impaler. Black iron ornamented with gold. A rotten odor stubbornly clings to it.\n\nPerhaps it arises from the tainted nature of the blood that splattered upon it. Or perhaps it is the wearer\u0027s own blackened soul, festering after endless slaughter.",
+      "IDList": [
+        5150200
+      ]
+    },
+    {
+      "Text": "Greaves worn by the Black Knights, servants of Messmer the Impaler. Black iron ornamented with gold. A rotten odor stubbornly clings to it.\n\nPerhaps it arises from the tainted nature of the blood that splattered upon it. Or perhaps it is the wearer\u0027s own blackened soul, festering after endless slaughter.",
+      "IDList": [
+        5150300
+      ]
+    },
+    {
+      "Text": "Helm of Rakshasa, soaked in the spurting blood of her victims. Tatters of ragged cloth jut out haphazardly, as if her lust for carnage threatens to break free.\n\nIncreases damage dealt to foes, but greatly increases damage taken by the wearer.\n\nCut down and devour. Only those who repeat the cycle without rest can truly subvert the self and become Rakshasa.",
+      "IDList": [
+        5160000
+      ]
+    },
+    {
+      "Text": "Armor of Rakshasa, soaked in the spurting blood of her victims. Tatters of ragged cloth jut out haphazardly, as if her lust for carnage threatens to break free.\n\nIncreases damage dealt to foes, but greatly increases damage taken by the wearer.\n\nCut down and devour. Only those who repeat the cycle without rest can truly subvert the self and become Rakshasa.",
+      "IDList": [
+        5160100
+      ]
+    },
+    {
+      "Text": "Gauntlets of Rakshasa, soaked in the spurting blood of her victims. Tatters of ragged cloth jut out haphazardly, as if her lust for carnage threatens to break free.\n\nIncreases damage dealt to foes, but greatly increases damage taken by the wearer.\n\nCut down and devour. Only those who repeat the cycle without rest can truly subvert the self and become Rakshasa.",
+      "IDList": [
+        5160200
+      ]
+    },
+    {
+      "Text": "Greaves of Rakshasa, soaked the spurting blood of her victims. Tatters of ragged cloth jut out haphazardly, as if her lust for carnage threatens to break free.\n\nIncreases damage dealt to foes, but greatly increases damage taken by the wearer.\n\nCut down and devour. Only those who repeat the cycle without rest can truly subvert the self and become Rakshasa.",
+      "IDList": [
+        5160300
+      ]
+    },
+    {
+      "Text": "Pointed helm of the Fire Knights under Messmer the Impaler\u0027s personal command.\n\nSlightly increases maximum HP, stamina, and maximum equip load.\n\nEach and every knight hailed from a renowned family of the Erdtree\u0027s upper echelons, but were shunned and chased from their homes after pledging allegiance to Messmer as their master.",
+      "IDList": [
+        5180000
+      ]
+    },
+    {
+      "Text": "Armor of the Fire Knights under Messmer the Impaler\u0027s personal command.\n\nDistinguished by its red cape and twin golden snakes which adorn the neck, enhancing incantations of Messmer\u0027s flame.\n\nThese were the only ones who truly knew Messmer. His flames, like serpents. The painful fate that accompanied his accursed form.",
+      "IDList": [
+        5180100
+      ]
+    },
+    {
+      "Text": "Gauntlets of the Fire Knights under Messmer the Impaler\u0027s personal command.\n\nEach and every knight hailed from a renowned family of the Erdtree\u0027s upper echelons, but were shunned and chased from their homes after pledging allegiance to Messmer as their master.",
+      "IDList": [
+        5180200
+      ]
+    },
+    {
+      "Text": "Greaves of the Fire Knights under Messmer the Impaler\u0027s personal command.\n\nEach and every knight hailed from a renowned family of the Erdtree\u0027s upper echelons, but were shunned and chased from their homes after pledging allegiance to Messmer as their master.",
+      "IDList": [
+        5180300
+      ]
+    },
+    {
+      "Text": "Armor of the Fire Knights under Messmer the Impaler\u0027s personal command.\n\nEach and every knight hailed from a renowned family of the Erdtree\u0027s upper echelons, but were shunned and chased from their homes after pledging allegiance to Messmer as their master.",
+      "IDList": [
+        5181100
+      ]
+    },
+    {
+      "Text": "Helm of Wego, elder among the Fire Knights. Two warped death masks stacked one atop the other.\n\nReduces FP used to summon spirits.\n\nGnawed at by loneliness, the old man turned his attention to the spirituality of Messmer\u0027s flame, using it in a rite of resurrection.\n\nYet the soulless bodies he brought to life were no comfort to poor Wego.",
+      "IDList": [
+        5182000
+      ]
+    },
+    {
+      "Text": "Helm of Kood, captain of the Fire Knights. A winged serpent perches atop it.\n\nEnhances Fire Knight skills.\n\nThe winged serpent is the token creature of Messmer\u0027s military forces. It is a wise friend which keeps the base serpent at bay and holds its power in check.",
+      "IDList": [
+        5183000
+      ]
+    },
+    {
+      "Text": "Hood of Salza, sage of the Fire Knights.\n\nA prodigious amount of cloth wound around it, giving the impression of a greatly swollen head, and wearing it increases intelligence.\n\nA disciple of the elder Wego, he refused to burn down an old ruin, at the risk of his own life.",
+      "IDList": [
+        5184000
+      ]
+    },
+    {
+      "Text": "Headband worn by highland warriors, made of woven leather. The white favor represents their home settlement.\n\nHighland warriors are known to be hunters of bears; to them, there is no act more glorious than the subjugation of a savage beast.",
+      "IDList": [
+        5190000
+      ]
+    },
+    {
+      "Text": "Traditional garb of highland warriors, made from woven fabric and finished with fur. This garment is made from fabrics with both blue and red patterns.\n\nRed-patterned fabrics were allowed only to those who hunted bears\u2014the greatest and most glorious of the highlanders.",
+      "IDList": [
+        5190100
+      ]
+    },
+    {
+      "Text": "Arm wraps worn by highland warriors, made of sturdy leather and fastened with winding straps.\n\nHighland warriors are known to be hunters of bears; to them, there is no act more glorious than the subjugation of a savage beast.",
+      "IDList": [
+        5190200
+      ]
+    },
+    {
+      "Text": "Leg wraps worn by highland warriors, made of sturdy leather and fastened with winding straps. The addition of animal pelt keeps the wearer warm.\n\nHighland warriors are known to be hunters of bears; to them, there is no act more glorious than the subjugation of a savage beast.",
+      "IDList": [
+        5190300
+      ]
+    },
+    {
+      "Text": "Helm worn by highland warriors, pieced together using leather. The white favor represents their home settlement.\n\nHighland warriors are known to be hunters of bears; to them, there is no act more glorious than the subjugation of a savage beast.",
+      "IDList": [
+        5191000
+      ]
+    },
+    {
+      "Text": "Traditional garb of highland warriors, made from woven fabric and finished with a blue patterned cloth.\n\nHighland warriors are known to be hunters of bears; to them, there is no act more glorious than the subjugation of a savage beast.",
+      "IDList": [
+        5191100
+      ]
+    },
+    {
+      "Text": "Golden helm of the Death Knights, whose own death masks served as the visards of their armor.\n\nEnhances skills and incantations of the capital\u0027s ancient dragon cult.\n\nThe decayed golden wheel that adorns it represents their unbroken loyalty to Godwyn, he who became Prince of Death.",
+      "IDList": [
+        5200000
+      ]
+    },
+    {
+      "Text": "Golden armor of the Death Knights, adorned with an antiquated depiction of the Erdtree.\n\nEnhances skills and incantations of the capital\u0027s ancient dragon cult.\n\nThese knights, once Godwyn\u0027s personal guard, quested to find their transfigured master\u0027s cadaver surrogate\u2014for the coming age of the Duskborn.",
+      "IDList": [
+        5200100
+      ]
+    },
+    {
+      "Text": "Golden gauntlets of the Death Knights, adorned with an antiquated depiction of the Erdtree.\n\nEnhances skills and incantations of the capital\u0027s ancient dragon cult.\n\nThese knights, once Godwyn\u0027s personal guard, quested to find their transfigured master\u0027s cadaver surrogate\u2014for the coming age of the Duskborn.",
+      "IDList": [
+        5200200
+      ]
+    },
+    {
+      "Text": "Golden greaves of the Death Knights, adorned with an antiquated depiction of the Erdtree.\n\nEnhances skills and incantations of the capital\u0027s ancient dragon cult.\n\nThese knights, once Godwyn\u0027s personal guard, quested to find their transfigured master\u0027s cadaver surrogate\u2014for the coming age of the Duskborn.",
+      "IDList": [
+        5200300
+      ]
+    },
+    {
+      "Text": "A mask affixed with a crown of tangled horns, worn by those who would invoke divinity.\n\nDivine invocation heightens the dexterity of the wearer, but causes the blessing of the Erdtree to become nauseating, reducing the restorative effect of drinking from a flask of sacred tears.\n\nFocus is also troubled by wearing this mask.",
+      "IDList": [
+        5210000
+      ]
+    },
+    {
+      "Text": "Attire of the tower\u0027s ascetics, embodying their commitment to an austere existence of strict self-control.\n\nIn order to ascend from their mortal flesh into tutelary deities of the land, they heighten their spirituality through severe ascetic training.",
+      "IDList": [
+        5210100
+      ]
+    },
+    {
+      "Text": "Wrist guards of the tower\u0027s ascetics which embody their commitment to an austere existence of strict self-control.\n\nIn order to ascend from their mortal flesh into tutelary deities of the land, they heighten their spirituality through severe ascetic training.",
+      "IDList": [
+        5210200
+      ]
+    },
+    {
+      "Text": "Ankle guards of the tower\u0027s ascetics which embody their commitment to an austere existence of strict self-control.\n\nIn order to ascend from their mortal flesh into tutelary deities of the land, they heighten their spirituality through severe ascetic training.",
+      "IDList": [
+        5210300
+      ]
+    },
+    {
+      "Text": "Black helm of Messmer the Impaler, crowned with two intertwined winged serpents.\nSlightly enhances incantations of Messmer\u0027s flame as well as Fire Knight skills.\n\nThe winged snakes were Messmer\u0027s constant companions.\n\nThey were there when the base serpent was sealed away behind his eye. They were there through his eternity of suffering. They will accompany him yet, in his hideous new form, born when he destroyed the grace granted by his mother. They have accepted his fate as much as he.",
+      "IDList": [
+        5220000
+      ]
+    },
+    {
+      "Text": "Black armor of Messmer the Impaler.\nDraped with a red cloak bearing his crest embroidered.\n\nOn his mother\u0027s wishes, Messmer made himself a symbol of fear, undertaking the cleansing crusade she desired.\n\n\u0022Direct thy maledictions, thine ire, and thy grief towards me alone.\u0022",
+      "IDList": [
+        5220100
+      ]
+    },
+    {
+      "Text": "Black gauntlets of Messmer the Impaler.\n\nOn his mother\u0027s wishes, Messmer made himself a symbol of fear, undertaking the cleansing crusade she desired.\n\n\u0022Direct thy maledictions, thine ire, and thy grief towards me alone.\u0022",
+      "IDList": [
+        5220200
+      ]
+    },
+    {
+      "Text": "Black greaves of Messmer the Impaler.\n\nOn his mother\u0027s wishes, Messmer made himself a symbol of fear, undertaking the cleansing crusade she desired.\n\n\u0022Direct thy maledictions, thine ire, and thy grief towards me alone.\u0022",
+      "IDList": [
+        5220300
+      ]
+    },
+    {
+      "Text": "Black helm of Messmer the Impaler, crowned with two intertwined winged serpents. \nSlightly enhances incantations of Messmer\u0027s flame as well as Fire Knight skills.\n\nThe winged snakes were Messmer\u0027s constant companions.\n\nThey were there when the base serpent was sealed away behind his eye. They were there through his eternity of suffering. They will accompany him yet, in his hideous new form, born when he destroyed the grace granted by his mother. They have accepted his fate as much as he.",
+      "IDList": [
+        5221000
+      ]
+    },
+    {
+      "Text": "Stone helm with a tinge of green. One of a set of armor pieces cast in the image of the Gravebird.\nEmpowers spells which summon rings of spectral light.\n\nGravebirds are ancient golems, created to guard the spiritgraves built where all manners of Death ultimately drift.",
+      "IDList": [
+        5230000
+      ]
+    },
+    {
+      "Text": "Stone armor with a tinge of green. One of a set of armor pieces cast in the image of the Gravebird.\nFeaturing a cape of black Deathbird feathers, it enhances jumping attacks.\n\nGravebirds are ancient golems, created to guard the spiritgraves built where all manners of Death ultimately drift.",
+      "IDList": [
+        5230100
+      ]
+    },
+    {
+      "Text": "Stone bracelets with a tinge of green. One of a set of armor pieces cast in the image of the Gravebird.\n\nGravebirds are ancient golems, created to guard the spiritgraves built where all manners of Death ultimately drift.",
+      "IDList": [
+        5230200
+      ]
+    },
+    {
+      "Text": "Stone anklets with a tinge of green. One of a set of armor pieces cast in the image of the Gravebird.\n\nGravebirds are ancient golems, created to guard the spiritgraves built where all manners of Death ultimately drift.",
+      "IDList": [
+        5230300
+      ]
+    },
+    {
+      "Text": "Stone armor with a tinge of green. One of a set of armor pieces cast in the image of the Gravebird.\n\nGravebirds are ancient golems, created to guard the spiritgraves built where all manners of Death ultimately drift.",
+      "IDList": [
+        5231100
+      ]
+    },
+    {
+      "Text": "Helm of the rank-and-file soldiers of Messmer\u0027s army.\n\nA pitch-dark soot clings to it, much like the inner faces of the men who wore them.",
+      "IDList": [
+        5240000
+      ]
+    },
+    {
+      "Text": "Cloth armor of the rank-and-file soldiers of Messmer\u0027s army.\n\nA pitch-dark soot clings to it, much like the inner faces of the men who wore them.",
+      "IDList": [
+        5240100
+      ]
+    },
+    {
+      "Text": "Gauntlets of the rank-and-file soldiers of Messmer\u0027s army.\n\nA pitch-dark soot clings to it, much like the inner faces of the men who wore them.",
+      "IDList": [
+        5240200
+      ]
+    },
+    {
+      "Text": "Greaves of the rank-and-file soldiers of Messmer\u0027s army.\n\nA pitch-dark soot clings to it, much like the inner faces of the men who wore them.",
+      "IDList": [
+        5240300
+      ]
+    },
+    {
+      "Text": "Helm featuring a crown of sturdy tangled horns, allowing the wearer to invoke divinity. Attire of the horned warriors, keepers of the tower.\n\nDivine invocation bolsters the strength of the wearer, but causes the blessing of the Erdtree to become nauseating, reducing the restorative effect of drinking from a flask of sacred tears.\n\nFocus is also troubled by wearing this helm.",
+      "IDList": [
+        5250000
+      ]
+    },
+    {
+      "Text": "Armor of the horned warriors, keepers of the tower.\n\nThe ochre fabric is draped over a chest-piece made to resemble the unclothed form of a hero from older times.",
+      "IDList": [
+        5250100
+      ]
+    },
+    {
+      "Text": "Gauntlets of the horned warriors, keepers of the tower, made from a thick metal.",
+      "IDList": [
+        5250200
+      ]
+    },
+    {
+      "Text": "Greaves of the horned warriors, keepers of the tower. Shaped to resemble the unclothed form of a hero from older times.",
+      "IDList": [
+        5250300
+      ]
+    },
+    {
+      "Text": "A helm of tangled horn attached to a divine beast mask, allowing the wearer to invoke divinity. Worn by divine beast warriors; the chosen of the horned warriors.\n\nDivine invocation heightens intensity of the storm alongside strength and dexterity, but reduces the restorative effect of drinking from a flask of sacred tears.\n\nFocus is also troubled by wearing this helm.",
+      "IDList": [
+        5252000
+      ]
+    },
+    {
+      "Text": "Armor of feted horned warriors chosen to become divine beast warriors, adorned with a lion\u0027s pelt.\n\nAmong the divine beast warriors, only those who truly excel at divine invocation become sculpted keepers, and are granted the honor of the lion dance.",
+      "IDList": [
+        5252100
+      ]
+    },
+    {
+      "Text": "A helm of tangled horn attached to a divine bird mask, allowing the wearer to invoke divinity. Worn by divine bird warriors; the very first of all horned warriors.\n\nDivine invocation heightens the power of divine bird feathers alongside strength and dexterity, but reduces the restorative effect of drinking from a flask of sacred tears.\n\nFocus is also troubled by wearing this helm.",
+      "IDList": [
+        5253000
+      ]
+    },
+    {
+      "Text": "Armor of divine bird warriors, the very first of all horned warriors, made from a golden metal.\n\nThe golden-hued divine birds are known to be cruel, never taking to human companionship. Those who invoked their divinity were few and far between.",
+      "IDList": [
+        5253100
+      ]
+    },
+    {
+      "Text": "Gauntlets of divine bird warriors, the very first of all horned warriors, made from a golden metal.\n\nThe golden-hued divine birds are known to be cruel, never taking to human companionship. Those who invoked their divinity were few and far between.",
+      "IDList": [
+        5253200
+      ]
+    },
+    {
+      "Text": "Greaves of divine bird warriors, the very first of all horned warriors, made from a golden metal.\n\nThe great, sharp talons increase the force generated by kicks.",
+      "IDList": [
+        5253300
+      ]
+    },
+    {
+      "Text": "Ornate helm of Rellana, the Twin Moon Knight, fashioned from silver steel.\n\nRennala, head of the royal family of Caria, was said to have given her younger sister, who renounced her lineage to chase after Messmer, a gift of lustrous black hair.",
+      "IDList": [
+        5260000
+      ]
+    },
+    {
+      "Text": "Ornate armor of Rellana, the Twin Moon Knight, fashioned from silver steel.\n\nAdorned with the lapis-lazuli blue that is symbolic of Caria, its radiance is yet to fully fade.",
+      "IDList": [
+        5260100
+      ]
+    },
+    {
+      "Text": "Gloves of Rellana, the Twin Moon Knight, fashioned from quality leather.",
+      "IDList": [
+        5260200
+      ]
+    },
+    {
+      "Text": "Ornate greaves of Rellana, the Twin Moon Knight, fashioned from silver steel.",
+      "IDList": [
+        5260300
+      ]
+    },
+    {
+      "Text": "The golden helm worn by Radahn in his younger years. Proudly displaying his heroic red hair, it is fitting attire for a lion.\n\nWhen Malenia, Blade of Miquella, let the rotflower blossom in Aeonia, Radahn heard a murmur in his ear\u2014\n\n\u0022Miquella awaits thee, O promised consort.\u0022",
+      "IDList": [
+        5270000
+      ]
+    },
+    {
+      "Text": "The golden armor worn by Radahn in his younger years. Proudly adorned with heroic red accents, it is fitting attire for a lion.\n\nWhen Malenia, Blade of Miquella, let the rotflower blossom in Aeonia, Radahn heard a murmur in his ear\u2014\n\n\u0022Miquella awaits thee, O promised consort.\u0022",
+      "IDList": [
+        5270100
+      ]
+    },
+    {
+      "Text": "The golden gauntlets worn by Radahn in his younger years.\n\nWhen Malenia, Blade of Miquella, let the rotflower blossom in Aeonia, Radahn heard a murmur in his ear\u2014\n\n\u0022Miquella awaits thee, O promised consort.\u0022",
+      "IDList": [
+        5270200
+      ]
+    },
+    {
+      "Text": "The golden greaves worn by Radahn in his younger years. Worn by a fierce lion.\n\nWhen Malenia, Blade of Miquella, let the rotflower blossom in Aeonia, Radahn heard a murmur in his ear\u2014\n\n\u0022Miquella awaits thee, O promised consort.\u0022",
+      "IDList": [
+        5270300
+      ]
+    },
+    {
+      "Text": "The golden armor worn by Radahn in his younger years. Worn by a fierce lion.\n\nWhen Malenia, Blade of Miquella, let the rotflower blossom in Aeonia, Radahn heard a murmur in his ear\u2014\n\n\u0022Miquella awaits thee, O promised consort.\u0022",
+      "IDList": [
+        5271100
+      ]
+    },
+    {
+      "Text": "The circlet of light which adorned Miquella\u0027s head as he returned in divine aspect. It has begun to fade into nothingness.\n\nSlightly boosts intelligence, faith, and arcane, while also boosting the power of Miquella\u0027s light.\n\nThis circle was to be the very foundation upon which Miquella\u0027s age of compassion would be built, should it have ever come to pass.",
+      "IDList": [
+        5272000
+      ]
+    },
+    {
+      "Text": "Helm as dark as shadow, worn by vulgar militiamen.\n\nFreshly-singed battlegrounds effusing with the stench of the dead. Forbidden lands that will be excised from the memory of history. What better place than the realms of shadow then, for such an army?",
+      "IDList": [
+        5280000
+      ]
+    },
+    {
+      "Text": "Armor as dark as shadow, worn by vulgar militiamen.\n\nFreshly-singed battlegrounds effusing with the stench of the dead. Forbidden lands that will be excised from the memory of history. What better place than the realms of shadow then, for such an army?",
+      "IDList": [
+        5280100
+      ]
+    },
+    {
+      "Text": "Gauntlets as dark as shadow, worn by vulgar militiamen.\n\nFreshly-singed battlegrounds effusing with the stench of the dead. Forbidden lands that will be excised from the memory of history. What better place than the realms of shadow then, for such an army?",
+      "IDList": [
+        5280200
+      ]
+    },
+    {
+      "Text": "Greaves as dark as shadow, worn by vulgar militiamen.\n\nFreshly-singed battlegrounds effusing with the stench of the dead. Forbidden lands that will be excised from the memory of history. What better place than the realms of shadow then, for such an army?",
+      "IDList": [
+        5280300
+      ]
+    },
+    {
+      "Text": "Ritual headwear in the form of a divine beast\u0027s head, used to perform the lion dance. Worn by the very finest of the sculpted keepers. Alas, it no longer responds to the old woman\u0027s earnest prayer.\n\nDivine invocation heightens intensity of the storm alongside strength and dexterity, but reduces the restorative effect of drinking from a flask of sacred tears.\n\nFocus is also troubled by wearing this headwear.",
+      "IDList": [
+        5290000
+      ]
+    },
+    {
+      "Text": "St. Trina\u0027s life withered and fell, as fleeting as the seasons. At her last, she left a single water lily.\n\nSlightly boosts max FP.\n\nDespite the velvety-purple hue, the flower is in no way poisonous\u2014it merely blooms in quietude.",
+      "IDList": [
+        5300000
+      ]
+    },
+    {
+      "Text": "Helm worn by Devonia, longest-serving of the Crucible Knights.\n\nHolds the power of the crucible of life, the primordial form of the Erdtree. Strengthens Aspects of the Crucible incantations.\n\nIt is said Devonia quested in search of the Crucible\u0027s origin, and departed from the lands of the Erdtree alone.",
+      "IDList": [
+        5310000
+      ]
+    },
+    {
+      "Text": "A greatjar which fits comfortably over the head when upturned. Attire of the shamans who perform their worship at gaols.\n\nIncreases the power of thrown pots of all sizes.\n\nThey offer their prayers to the innards of the greatjars, such that they might be reborn one day into sainthood. This is the cycle of death and rebirth, taken into the hands of mortal men.",
+      "IDList": [
+        5320000
+      ]
+    },
+    {
+      "Text": "Head covering made from the largely unaltered head of an impish golem.\n\nResembling a lion in appearance, life force faintly clings to it.",
+      "IDList": [
+        5330000
+      ]
+    }
+  ]
+}

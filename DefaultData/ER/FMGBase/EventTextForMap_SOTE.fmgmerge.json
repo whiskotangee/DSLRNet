@@ -1,0 +1,375 @@
+{
+  "FMG_ID": 367,
+  "Entries": [
+    {
+      "Text": "Map of cross sites received.\nCheck in inventory.",
+      "IDList": [
+        1030000,
+        1030001
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        1030002,
+        1030003,
+        1030004,
+        1030005,
+        1030006,
+        1030007,
+        1030008,
+        1030009,
+        1030013,
+        1030014,
+        1030015,
+        1030016,
+        1030017,
+        1030018,
+        1030019,
+        1030031,
+        1030032,
+        1030033,
+        1030034,
+        1030035,
+        1030036,
+        1030037,
+        1030038,
+        1030039,
+        1030042,
+        1030043,
+        1030044,
+        1030045,
+        1030046,
+        1030047,
+        1030048,
+        1030049,
+        2020001,
+        2020003,
+        2020029,
+        2080801,
+        2080802,
+        2080803,
+        2080804,
+        2080805,
+        2080806,
+        2080807,
+        2080808,
+        2080809,
+        2080841,
+        2080842,
+        2080843,
+        2080844,
+        2080845,
+        2080846,
+        2080847,
+        2080848,
+        2080849,
+        2080851,
+        2080852,
+        2080853,
+        2080854,
+        2080855,
+        2080856,
+        2080857,
+        2080858,
+        2080859,
+        2080861,
+        2080862,
+        2080863,
+        2080864,
+        2080865,
+        2080866,
+        2080867,
+        2080868,
+        2080869,
+        2080871,
+        2080872,
+        2080873,
+        2080874,
+        2080875,
+        2080876,
+        2080877,
+        2080878,
+        2080879,
+        20208007,
+        20208008,
+        20208009,
+        20208010,
+        20208011,
+        20208012,
+        20208014,
+        20208015,
+        20208016,
+        20208017,
+        20208018,
+        20208019,
+        20208020,
+        20208021,
+        20208022
+      ]
+    },
+    {
+      "Text": "Map to old ruins received.\nCheck in inventory.",
+      "IDList": [
+        1030010,
+        1030011,
+        1030012
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here my arm sinistral.\u0022",
+      "IDList": [
+        1030020
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here my eye.\u0022",
+      "IDList": [
+        1030021
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here the first of the flesh of my body.\u0022",
+      "IDList": [
+        1030022
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here a part of the flesh of my body.\u0022",
+      "IDList": [
+        1030023,
+        1030027
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here my heart.\u0022",
+      "IDList": [
+        1030024
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here my doubt and vacillation.\u0022",
+      "IDList": [
+        1030025
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here the last of the flesh of my body.\u0022",
+      "IDList": [
+        1030026
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here all my fears.\u0022",
+      "IDList": [
+        1030028
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here my love.\u0022",
+      "IDList": [
+        1030029
+      ]
+    },
+    {
+      "Text": "Yuri, beloved child. Taken before his time.",
+      "IDList": [
+        1030030
+      ]
+    },
+    {
+      "Text": "Somewhere, a great rune has broken...",
+      "IDList": [
+        1030040
+      ]
+    },
+    {
+      "Text": "And so too has a powerful charm.",
+      "IDList": [
+        1030041
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here the flesh of my body.\u0022",
+      "IDList": [
+        1030050,
+        1030052
+      ]
+    },
+    {
+      "Text": "Carved words coalesce.\n\u0022I abandon here my arm dextral.\u0022",
+      "IDList": [
+        1030051
+      ]
+    },
+    {
+      "Text": "Head to the realm of shadow?",
+      "IDList": [
+        2020000
+      ]
+    },
+    {
+      "Text": "Sealed and obscured by shadow",
+      "IDList": [
+        2020002
+      ]
+    },
+    {
+      "Text": "Sealed and obscured by Miquella",
+      "IDList": [
+        2020004
+      ]
+    },
+    {
+      "Text": "Raise the Stone-Sheathed Sword to the light?",
+      "IDList": [
+        2020025
+      ]
+    },
+    {
+      "Text": "Raise the Stone-Sheathed Sword to the dark?",
+      "IDList": [
+        2020026
+      ]
+    },
+    {
+      "Text": "Raise the Sword of Darkness to the light?",
+      "IDList": [
+        2020027
+      ]
+    },
+    {
+      "Text": "Raise the Sword of Light to the dark?",
+      "IDList": [
+        2020028
+      ]
+    },
+    {
+      "Text": "Somewhere, a spiritspring has been unsealed",
+      "IDList": [
+        2020030
+      ]
+    },
+    {
+      "Text": "Burn the sealing tree?",
+      "IDList": [
+        2030000
+      ]
+    },
+    {
+      "Text": "The sealing tree obscures the tower in shadow.\nIt cannot be burned without Messmer\u0027s kindling.",
+      "IDList": [
+        2030001
+      ]
+    },
+    {
+      "Text": "The very center of the Lands Between.\nAll manners of Death wash up here, only to be suppressed.",
+      "IDList": [
+        2062000
+      ]
+    },
+    {
+      "Text": "Be summoned to assist Needle Knight Leda?",
+      "IDList": [
+        2080601,
+        2080603
+      ]
+    },
+    {
+      "Text": "Be summoned to assist Sir Ansbach?",
+      "IDList": [
+        2080602
+      ]
+    },
+    {
+      "Text": "Be summoned to assist Hornsent?",
+      "IDList": [
+        2080604
+      ]
+    },
+    {
+      "Text": "Be summoned to challenge Needle Knight Leda and her allies?",
+      "IDList": [
+        2080605
+      ]
+    },
+    {
+      "Text": "Summon Drake Warrior Igon?",
+      "IDList": [
+        2080800
+      ]
+    },
+    {
+      "Text": "Summon Thiollier?",
+      "IDList": [
+        2080810
+      ]
+    },
+    {
+      "Text": "Summon Pureblood Knight Ansbach?\nThis cooperator will not arrive until the time is right.",
+      "IDList": [
+        2080840
+      ]
+    },
+    {
+      "Text": "Summon Thiollier?\nThis cooperator will not arrive until the time is right.",
+      "IDList": [
+        2080850
+      ]
+    },
+    {
+      "Text": "Summon Sanguine Noble Nataan?\nThis cooperator will not arrive until the time is right.",
+      "IDList": [
+        2080860
+      ]
+    },
+    {
+      "Text": "Summon Hornsent?",
+      "IDList": [
+        2080870
+      ]
+    },
+    {
+      "Text": "Summon Swordhand of Night Jol\u00E1n?",
+      "IDList": [
+        2080880
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@2008004?\u003E",
+      "IDList": [
+        20208004
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@2008005?\u003E",
+      "IDList": [
+        20208005
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@2008006?\u003E",
+      "IDList": [
+        20208006
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@2008013?\u003E",
+      "IDList": [
+        20208013
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@2008023?\u003E",
+      "IDList": [
+        20208023
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@2008036?\u003E",
+      "IDList": [
+        20208036
+      ]
+    }
+  ]
+}

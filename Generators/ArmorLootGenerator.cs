@@ -28,7 +28,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         IOptions<Configuration> configuration,
         CumulativeID cumulativeID) : base(rarityHandler, whiteListHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, cumulativeID, dataRepository)
     {
-        List<EquipParamProtector> armorLoots = CsvLoader.LoadCsv<EquipParamProtector>("DefaultData\\ER\\CSVs\\EquipParamProtector.csv");
+        List<EquipParamProtector> armorLoots = Csv.LoadCsv<EquipParamProtector>("DefaultData\\ER\\CSVs\\EquipParamProtector.csv");
 
         this.LoadedLoot = armorLoots.Select(GenericDictionary.FromObject).ToList();
     }
@@ -49,6 +49,7 @@ public class ArmorLootGenerator : ParamLootGenerator
     public int CreateArmor(int rarityId, List<int> wllIds)
     {
         // TRY TO GRAB A WHITELISTED LOOT ARMOR DICTIONARY FOR OUR NEW ARMOR PIECE OR CHOOSE ONE AT RANDOM IF WE DON'T FIND IT
+
         GenericDictionary newArmor = GetLootDictionaryFromId(this.WhiteListHandler.GetLootByWhiteList(wllIds, LootType.Armor));
 
         // INITIALISE ARMOR DESCRIPTION
@@ -94,22 +95,18 @@ public class ArmorLootGenerator : ParamLootGenerator
         // CREATE STRING TO RETURN A PRECOMPILED DESCRIPTION FOR EASY ADDITION
         string descriptionString = "";
 
-        // GET ORIGINAL CUTRATE VALUES FOR ARMOR
-        var originalCutRate = new List<float>();
-
         // GET THE PARAMS WE'LL BE WORKING WITH
-        var cutRateParams = this.Configuration.LootParam.ArmorParam;
-        var defenseParams = this.Configuration.LootParam.ArmorDefenseParams;
+        List<string> cutRateParams = this.Configuration.LootParam.ArmorParam;
+        List<string> defenseParams = this.Configuration.LootParam.ArmorDefenseParams;
 
         // ITERATE OVER ALL PARAMS HERE, IF THE DICTIONARY HAS THAT PARAM, SUBTRACT A RARITY-DEFINED EXTRA CUTRATE FROM THE ORIGINAL VALUE
         if (cutRateParams.Count > 0)
         {
-            foreach (var param in cutRateParams)
+            foreach (string param in cutRateParams)
             {
                 if (outputDictionary.ContainsKey(param))
                 {
                     float oldValue = outputDictionary.GetValue<float>(param);
-                    // SUBTRACT A RARITY DEFINED CUTRATE VALUE FROM THE OLD VALUE AND SET IT TO THE NEW ONE
                     outputDictionary.SetValue(param, oldValue - RarityHandler.GetRarityArmorCutRateAddition(rarityId));
                 }
             }
@@ -118,7 +115,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         // INITIALISE ALL DEFENCE PARAMS JUST TO BE SURE
         if (defenseParams.Count > 0)
         {
-            foreach (var param in defenseParams)
+            foreach (string param in defenseParams)
             {
                 if (outputDictionary.ContainsKey(param))
                 {
@@ -138,7 +135,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         // IF WE FOUND ANY PARAMS, MULTIPLY THEM BY A VALUE BETWEEN A RARITY DEFINED MIN AND MAX MULTIPLIER
         if (resistances.Count > 0)
         {
-            foreach (var param in resistances)
+            foreach (string param in resistances)
             {
                 if (newArmor.ContainsKey(param))
                 {
@@ -152,11 +149,11 @@ public class ArmorLootGenerator : ParamLootGenerator
     public string CreateArmorDescription(string speffects = "", string extraProtection = "")
     {
         // FIRST CREATE REQUIRED NEWLINES BASED ON WHETHER OR NOT ARGUMENTS ARE EMPTY
-        var newLines = new List<string>();
-        var additions = new List<string> { speffects, extraProtection };
+        List<string> newLines = new List<string>();
+        List<string> additions = new List<string> { speffects, extraProtection };
 
         // ITERATE OVER ALL ADDITIONS AND ADD A NEWLINE TO NEWLINES ARRAY IF THEY'RE NOT EMPTY
-        foreach (var addition in additions)
+        foreach (string addition in additions)
         {
             newLines.Add(string.IsNullOrEmpty(addition) ? "" : Environment.NewLine);
         }

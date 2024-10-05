@@ -1,0 +1,2268 @@
+{
+  "FMG_ID": 329,
+  "Entries": [
+    {
+      "Text": "Belurat, Tower Settlement",
+      "IDList": [
+        20000,
+        200001,
+        6801000,
+        10670841
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        21002,
+        21003,
+        21004,
+        21005,
+        21006,
+        21007,
+        21008,
+        21009,
+        40001,
+        40002,
+        40003,
+        40004,
+        40005,
+        40006,
+        40007,
+        40008,
+        40009,
+        40011,
+        40012,
+        40013,
+        40014,
+        40015,
+        40016,
+        40017,
+        40018,
+        40019,
+        41001,
+        41002,
+        41003,
+        41004,
+        41005,
+        41006,
+        41007,
+        41008,
+        41009,
+        41011,
+        41012,
+        41013,
+        41014,
+        41015,
+        41016,
+        41017,
+        41018,
+        41019,
+        42021,
+        42022,
+        42023,
+        42024,
+        42025,
+        42026,
+        42027,
+        42028,
+        42029,
+        43001,
+        43002,
+        43003,
+        43004,
+        43005,
+        43006,
+        43007,
+        43008,
+        43009,
+        200101,
+        210003,
+        210004,
+        210005,
+        210105,
+        690001,
+        690015,
+        10670165,
+        10670166,
+        10670167,
+        10670168,
+        10670169,
+        10670176,
+        10670177,
+        10670178,
+        10670179,
+        10670234,
+        10670235,
+        10670236,
+        10670237,
+        10670238,
+        10670239,
+        10670263,
+        10670264,
+        10670265,
+        10670266,
+        10670267,
+        10670268,
+        10670269,
+        10670273,
+        10670274,
+        10670275,
+        10670276,
+        10670277,
+        10670278,
+        10670279,
+        10670302,
+        10670335,
+        10670336,
+        10670337,
+        10670338,
+        10670339,
+        10670343,
+        10670344,
+        10670345,
+        10670346,
+        10670347,
+        10670348,
+        10670349,
+        10670350,
+        10670355,
+        10670356,
+        10670357,
+        10670358,
+        10670359,
+        10670365,
+        10670366,
+        10670367,
+        10670368,
+        10670369,
+        10670374,
+        10670375,
+        10670376,
+        10670377,
+        10670378,
+        10670379,
+        10670382,
+        10670383,
+        10670384,
+        10670385,
+        10670386,
+        10670387,
+        10670388,
+        10670389,
+        10670391,
+        10670392,
+        10670393,
+        10670394,
+        10670395,
+        10670396,
+        10670397,
+        10670398,
+        10670399,
+        10670463,
+        10670464,
+        10670465,
+        10670466,
+        10670467,
+        10670468,
+        10670469,
+        10670474,
+        10670475,
+        10670476,
+        10670477,
+        10670478,
+        10670479,
+        10670482,
+        10670483,
+        10670484,
+        10670485,
+        10670486,
+        10670487,
+        10670488,
+        10670489,
+        10670491,
+        10670492,
+        10670493,
+        10670494,
+        10670495,
+        10670496,
+        10670497,
+        10670498,
+        10670499,
+        10670533,
+        10670538,
+        10670564,
+        10670565,
+        10670566,
+        10670567,
+        10670568,
+        10670569,
+        10670572,
+        10670573,
+        10670574,
+        10670575,
+        10670576,
+        10670577,
+        10670578,
+        10670579,
+        10670617,
+        10670618,
+        10670619,
+        10670627,
+        10670628,
+        10670629,
+        10670732,
+        10670733,
+        10670734,
+        10670735,
+        10670736,
+        10670737,
+        10670738,
+        10670739,
+        10670748,
+        10670749,
+        10670832,
+        10670833,
+        10670834,
+        10670835,
+        10670836,
+        10670837,
+        10670838,
+        10670839,
+        10670844,
+        10670845,
+        10670846,
+        10670847,
+        10670848,
+        10670849,
+        10670855,
+        10670856,
+        10670857,
+        10670858,
+        10670859,
+        10670861,
+        10670862,
+        10670863,
+        10670864,
+        10670865,
+        10670866,
+        10670867,
+        10670868,
+        10670869,
+        10670872,
+        10670873,
+        10670874,
+        10670875,
+        10670876,
+        10670877,
+        10670878,
+        10670879,
+        10670905,
+        10670931,
+        10670932,
+        10670933,
+        10670934,
+        10670935,
+        10670936,
+        10670937,
+        10670938,
+        10670939,
+        10670944,
+        10670946,
+        10670947,
+        10670948,
+        10670949,
+        10670954,
+        10670957,
+        10670958,
+        10670959,
+        10670962,
+        10670963,
+        10670964,
+        10670965,
+        10670966,
+        10670967,
+        10670968,
+        10670969,
+        10670971,
+        10670972,
+        10670973,
+        10670974,
+        10670975,
+        10670976,
+        10670977,
+        10670978,
+        10670979
+      ]
+    },
+    {
+      "Text": "Enir-Ilim",
+      "IDList": [
+        20010,
+        6941100
+      ]
+    },
+    {
+      "Text": "Shadow Keep",
+      "IDList": [
+        21000,
+        6901300
+      ]
+    },
+    {
+      "Text": "Shadow Keep, Church District",
+      "IDList": [
+        21001
+      ]
+    },
+    {
+      "Text": "Specimen Storehouse",
+      "IDList": [
+        21010
+      ]
+    },
+    {
+      "Text": "Stone Coffin Fissure",
+      "IDList": [
+        22000,
+        220001,
+        6831700,
+        10670830
+      ]
+    },
+    {
+      "Text": "Midra\u0027s Manse",
+      "IDList": [
+        28000,
+        6861800
+      ]
+    },
+    {
+      "Text": "Fog Rift Catacombs",
+      "IDList": [
+        40000,
+        400000,
+        10670860
+      ]
+    },
+    {
+      "Text": "Scorpion River Catacombs",
+      "IDList": [
+        40010,
+        400100,
+        10670960
+      ]
+    },
+    {
+      "Text": "Darklight Catacombs",
+      "IDList": [
+        40020,
+        400200,
+        10670961
+      ]
+    },
+    {
+      "Text": "Belurat Gaol",
+      "IDList": [
+        41000,
+        410000,
+        10670870
+      ]
+    },
+    {
+      "Text": "Bonny Gaol",
+      "IDList": [
+        41010,
+        410100,
+        10670970
+      ]
+    },
+    {
+      "Text": "Lamenter\u0027s Gaol",
+      "IDList": [
+        41020,
+        410200,
+        10670871
+      ]
+    },
+    {
+      "Text": "Ruined Forge Lava Intake",
+      "IDList": [
+        42000,
+        420000
+      ]
+    },
+    {
+      "Text": "Ruined Forge of Starfall Past",
+      "IDList": [
+        42020,
+        420200
+      ]
+    },
+    {
+      "Text": "Taylew\u0027s Ruined Forge",
+      "IDList": [
+        42030,
+        420300
+      ]
+    },
+    {
+      "Text": "Rivermouth Cave",
+      "IDList": [
+        43000,
+        430000,
+        10670980
+      ]
+    },
+    {
+      "Text": "Dragon\u0027s Pit",
+      "IDList": [
+        43010,
+        430100,
+        10670880
+      ]
+    },
+    {
+      "Text": "Gravesite Plain",
+      "IDList": [
+        68000,
+        680000
+      ]
+    },
+    {
+      "Text": "Castle Ensis",
+      "IDList": [
+        68200,
+        6824100
+      ]
+    },
+    {
+      "Text": "Cerulean Coast",
+      "IDList": [
+        68300,
+        683001,
+        10670804
+      ]
+    },
+    {
+      "Text": "Charo\u0027s Hidden Grave",
+      "IDList": [
+        68400,
+        684001
+      ]
+    },
+    {
+      "Text": "Jagged Peak",
+      "IDList": [
+        68500
+      ]
+    },
+    {
+      "Text": "Foot of the Jagged Peak",
+      "IDList": [
+        68501,
+        685000,
+        10670810
+      ]
+    },
+    {
+      "Text": "Abyssal Woods",
+      "IDList": [
+        68600,
+        686000
+      ]
+    },
+    {
+      "Text": "Scadu Altus",
+      "IDList": [
+        69000
+      ]
+    },
+    {
+      "Text": "Rauh Base",
+      "IDList": [
+        69001
+      ]
+    },
+    {
+      "Text": "Scaduview",
+      "IDList": [
+        69200,
+        692000,
+        6920000
+      ]
+    },
+    {
+      "Text": "Ancient Ruins of Rauh",
+      "IDList": [
+        69400,
+        10670906
+      ]
+    },
+    {
+      "Text": "Theatre of the Divine Beast",
+      "IDList": [
+        200000
+      ]
+    },
+    {
+      "Text": "Small Private Altar",
+      "IDList": [
+        200002,
+        10670842
+      ]
+    },
+    {
+      "Text": "Stagefront",
+      "IDList": [
+        200003,
+        10670843
+      ]
+    },
+    {
+      "Text": "Gate of Divinity",
+      "IDList": [
+        200100
+      ]
+    },
+    {
+      "Text": "Enir-Ilim: Outer Wall",
+      "IDList": [
+        200102,
+        10670850
+      ]
+    },
+    {
+      "Text": "First Rise",
+      "IDList": [
+        200103,
+        10670851
+      ]
+    },
+    {
+      "Text": "Spiral Rise",
+      "IDList": [
+        200104,
+        10670852
+      ]
+    },
+    {
+      "Text": "Cleansing Chamber Anteroom",
+      "IDList": [
+        200105,
+        10670853
+      ]
+    },
+    {
+      "Text": "Divine Gate Front Staircase",
+      "IDList": [
+        200106,
+        10670854
+      ]
+    },
+    {
+      "Text": "Main Gate Plaza",
+      "IDList": [
+        210001
+      ]
+    },
+    {
+      "Text": "Shadow Keep Main Gate",
+      "IDList": [
+        210002,
+        10670940
+      ]
+    },
+    {
+      "Text": "Church District Entrance",
+      "IDList": [
+        210006,
+        10670941
+      ]
+    },
+    {
+      "Text": "Sunken Chapel",
+      "IDList": [
+        210007,
+        10670942
+      ]
+    },
+    {
+      "Text": "Tree-Worship Passage",
+      "IDList": [
+        210008,
+        10670943
+      ]
+    },
+    {
+      "Text": "Tree-Worship Sanctum",
+      "IDList": [
+        210009,
+        10670909
+      ]
+    },
+    {
+      "Text": "Messmer\u0027s Dark Chamber",
+      "IDList": [
+        210100
+      ]
+    },
+    {
+      "Text": "Storehouse, First Floor",
+      "IDList": [
+        210101,
+        10670950
+      ]
+    },
+    {
+      "Text": "Storehouse, Fourth Floor",
+      "IDList": [
+        210102,
+        10670951
+      ]
+    },
+    {
+      "Text": "Storehouse, Seventh Floor",
+      "IDList": [
+        210103,
+        10670952
+      ]
+    },
+    {
+      "Text": "Dark Chamber Entrance",
+      "IDList": [
+        210104,
+        10670953
+      ]
+    },
+    {
+      "Text": "Storehouse, Back Section",
+      "IDList": [
+        210106,
+        10670955
+      ]
+    },
+    {
+      "Text": "Storehouse, Loft",
+      "IDList": [
+        210107,
+        10670956
+      ]
+    },
+    {
+      "Text": "West Rampart",
+      "IDList": [
+        210201,
+        10670945
+      ]
+    },
+    {
+      "Text": "Garden of Deep Purple",
+      "IDList": [
+        220000
+      ]
+    },
+    {
+      "Text": "Fissure Cross",
+      "IDList": [
+        220002
+      ]
+    },
+    {
+      "Text": "Fissure Waypoint",
+      "IDList": [
+        220003
+      ]
+    },
+    {
+      "Text": "Fissure Depths",
+      "IDList": [
+        220004,
+        10670831
+      ]
+    },
+    {
+      "Text": "Finger Birthing Grounds",
+      "IDList": [
+        250000
+      ]
+    },
+    {
+      "Text": "Discussion Chamber",
+      "IDList": [
+        280000
+      ]
+    },
+    {
+      "Text": "Manse Hall",
+      "IDList": [
+        280001,
+        10670814
+      ]
+    },
+    {
+      "Text": "Midra\u0027s Library",
+      "IDList": [
+        280002
+      ]
+    },
+    {
+      "Text": "Second Floor Chamber",
+      "IDList": [
+        280003,
+        10670815
+      ]
+    },
+    {
+      "Text": "Dragon\u0027s Pit Terminus",
+      "IDList": [
+        430101
+      ]
+    },
+    {
+      "Text": "Scorched Ruins",
+      "IDList": [
+        680001,
+        6805000
+      ]
+    },
+    {
+      "Text": "Three-Path Cross",
+      "IDList": [
+        680002
+      ]
+    },
+    {
+      "Text": "Main Gate Cross",
+      "IDList": [
+        680003
+      ]
+    },
+    {
+      "Text": "Cliffroad Terminus",
+      "IDList": [
+        680004
+      ]
+    },
+    {
+      "Text": "Greatbridge, North",
+      "IDList": [
+        680005
+      ]
+    },
+    {
+      "Text": "Ellac River Cave",
+      "IDList": [
+        681000
+      ]
+    },
+    {
+      "Text": "Pillar Path Cross",
+      "IDList": [
+        681001
+      ]
+    },
+    {
+      "Text": "Pillar Path Waypoint",
+      "IDList": [
+        681002
+      ]
+    },
+    {
+      "Text": "Castle Front",
+      "IDList": [
+        681003,
+        10670802
+      ]
+    },
+    {
+      "Text": "Castle Ensis Checkpoint",
+      "IDList": [
+        682000
+      ]
+    },
+    {
+      "Text": "Castle-Lord\u0027s Chamber",
+      "IDList": [
+        682001,
+        10670803
+      ]
+    },
+    {
+      "Text": "Ensis Moongazing Grounds",
+      "IDList": [
+        682002
+      ]
+    },
+    {
+      "Text": "Ellac River Downstream",
+      "IDList": [
+        683000
+      ]
+    },
+    {
+      "Text": "Cerulean Coast West",
+      "IDList": [
+        683002
+      ]
+    },
+    {
+      "Text": "The Fissure",
+      "IDList": [
+        683003
+      ]
+    },
+    {
+      "Text": "Finger Ruins of Rhia",
+      "IDList": [
+        683004,
+        6830000,
+        6835500
+      ]
+    },
+    {
+      "Text": "Cerulean Coast Cross",
+      "IDList": [
+        683005
+      ]
+    },
+    {
+      "Text": "Grand Altar of Dragon Communion",
+      "IDList": [
+        684000,
+        6844900
+      ]
+    },
+    {
+      "Text": "Jagged Peak Mountainside",
+      "IDList": [
+        685001
+      ]
+    },
+    {
+      "Text": "Jagged Peak Summit",
+      "IDList": [
+        685002,
+        10670812
+      ]
+    },
+    {
+      "Text": "Rest of the Dread Dragon",
+      "IDList": [
+        685003
+      ]
+    },
+    {
+      "Text": "Divided Falls",
+      "IDList": [
+        686001
+      ]
+    },
+    {
+      "Text": "Forsaken Graveyard",
+      "IDList": [
+        686002
+      ]
+    },
+    {
+      "Text": "Woodland Trail",
+      "IDList": [
+        686003
+      ]
+    },
+    {
+      "Text": "Church Ruins",
+      "IDList": [
+        686004
+      ]
+    },
+    {
+      "Text": "Highroad Cross",
+      "IDList": [
+        690000
+      ]
+    },
+    {
+      "Text": "Moorth Ruins",
+      "IDList": [
+        690002,
+        6905400
+      ]
+    },
+    {
+      "Text": "Bonny Village",
+      "IDList": [
+        690003,
+        6906800
+      ]
+    },
+    {
+      "Text": "Bridge Leading to the Village",
+      "IDList": [
+        690004
+      ]
+    },
+    {
+      "Text": "Church District Highroad",
+      "IDList": [
+        690005
+      ]
+    },
+    {
+      "Text": "Cathedral of Manus Metyr",
+      "IDList": [
+        690006,
+        6904800
+      ]
+    },
+    {
+      "Text": "Scadu Altus, West",
+      "IDList": [
+        690007
+      ]
+    },
+    {
+      "Text": "Moorth Highway, South",
+      "IDList": [
+        690008,
+        10670913
+      ]
+    },
+    {
+      "Text": "Fort of Reprimand",
+      "IDList": [
+        690009,
+        6904300
+      ]
+    },
+    {
+      "Text": "Behind the Fort of Reprimand",
+      "IDList": [
+        690010
+      ]
+    },
+    {
+      "Text": "Scaduview Cross",
+      "IDList": [
+        690011
+      ]
+    },
+    {
+      "Text": "Ancient Ruins Base",
+      "IDList": [
+        690012
+      ]
+    },
+    {
+      "Text": "Temple Town Ruins",
+      "IDList": [
+        690013,
+        6905200
+      ]
+    },
+    {
+      "Text": "Ravine North",
+      "IDList": [
+        690014
+      ]
+    },
+    {
+      "Text": "Castle Watering Hole",
+      "IDList": [
+        690016
+      ]
+    },
+    {
+      "Text": "Recluses\u0027 River Upstream",
+      "IDList": [
+        690017
+      ]
+    },
+    {
+      "Text": "Recluses\u0027 River Downstream",
+      "IDList": [
+        690018
+      ]
+    },
+    {
+      "Text": "Shadow Keep, Back Gate",
+      "IDList": [
+        692001,
+        10670904
+      ]
+    },
+    {
+      "Text": "Hinterland",
+      "IDList": [
+        693000,
+        10670910
+      ]
+    },
+    {
+      "Text": "Fingerstone Hill",
+      "IDList": [
+        693001
+      ]
+    },
+    {
+      "Text": "Hinterland Bridge",
+      "IDList": [
+        693002
+      ]
+    },
+    {
+      "Text": "Viaduct Minor Tower",
+      "IDList": [
+        694000
+      ]
+    },
+    {
+      "Text": "Rauh Ancient Ruins, East",
+      "IDList": [
+        694001
+      ]
+    },
+    {
+      "Text": "Rauh Ancient Ruins, West",
+      "IDList": [
+        694002
+      ]
+    },
+    {
+      "Text": "Church of the Bud, Main Entrance",
+      "IDList": [
+        694003
+      ]
+    },
+    {
+      "Text": "Ancient Ruins, Grand Stairway",
+      "IDList": [
+        694004
+      ]
+    },
+    {
+      "Text": "Church of the Bud",
+      "IDList": [
+        694005,
+        10670908
+      ]
+    },
+    {
+      "Text": "Scadutree Base",
+      "IDList": [
+        696000,
+        6920001
+      ]
+    },
+    {
+      "Text": "Miquella\u0027s Cross",
+      "IDList": [
+        6800800,
+        6800801,
+        6810800,
+        6820800,
+        6830800,
+        6870800,
+        6880800,
+        6890800,
+        6900800,
+        6900801,
+        6900802,
+        6940800,
+        6990800
+      ]
+    },
+    {
+      "Text": "Abandoned Ailing Village",
+      "IDList": [
+        6804400
+      ]
+    },
+    {
+      "Text": "Church of Consolation",
+      "IDList": [
+        6804700
+      ]
+    },
+    {
+      "Text": "Church of Benediction",
+      "IDList": [
+        6804701
+      ]
+    },
+    {
+      "Text": "Prospect Town",
+      "IDList": [
+        6805100
+      ]
+    },
+    {
+      "Text": "Western Nameless Mausoleum",
+      "IDList": [
+        6805600,
+        10670800
+      ]
+    },
+    {
+      "Text": "Run-Down Traveler\u0027s Rest",
+      "IDList": [
+        6805900
+      ]
+    },
+    {
+      "Text": "Artist\u0027s Shack",
+      "IDList": [
+        6805901
+      ]
+    },
+    {
+      "Text": "Ellac Greatbridge",
+      "IDList": [
+        6806000
+      ]
+    },
+    {
+      "Text": "Suppressing Pillar",
+      "IDList": [
+        6815700
+      ]
+    },
+    {
+      "Text": "Elder\u0027s Hovel",
+      "IDList": [
+        6815901
+      ]
+    },
+    {
+      "Text": "Southern Nameless Mausoleum",
+      "IDList": [
+        6835600,
+        10670806
+      ]
+    },
+    {
+      "Text": "Finger-Weaver\u0027s Hovel",
+      "IDList": [
+        6835900
+      ]
+    },
+    {
+      "Text": "Abandoned Church",
+      "IDList": [
+        6864700
+      ]
+    },
+    {
+      "Text": "Finger Ruins of Miyr",
+      "IDList": [
+        6900000,
+        6905500
+      ]
+    },
+    {
+      "Text": "Fog Rift Fort",
+      "IDList": [
+        6904200,
+        10670912
+      ]
+    },
+    {
+      "Text": "Church of the Crusade",
+      "IDList": [
+        6904700
+      ]
+    },
+    {
+      "Text": "Ruins of Unte",
+      "IDList": [
+        6905300
+      ]
+    },
+    {
+      "Text": "Northern Nameless Mausoleum",
+      "IDList": [
+        6905600,
+        10670902
+      ]
+    },
+    {
+      "Text": "Eastern Nameless Mausoleum",
+      "IDList": [
+        6905601,
+        10670903
+      ]
+    },
+    {
+      "Text": "Rabbath\u0027s Rise",
+      "IDList": [
+        6905800
+      ]
+    },
+    {
+      "Text": "Whipping Hut",
+      "IDList": [
+        6905900
+      ]
+    },
+    {
+      "Text": "Village of Flies",
+      "IDList": [
+        6906100
+      ]
+    },
+    {
+      "Text": "Scadutree Chalice",
+      "IDList": [
+        6924000
+      ]
+    },
+    {
+      "Text": "Albinauric\u0027s Shack",
+      "IDList": [
+        6925900
+      ]
+    },
+    {
+      "Text": "Finger Ruins of Dheo",
+      "IDList": [
+        6930000,
+        6935500
+      ]
+    },
+    {
+      "Text": "Shaman Village",
+      "IDList": [
+        6934600
+      ]
+    },
+    {
+      "Text": "Realm of Shadow",
+      "IDList": [
+        8020000
+      ]
+    },
+    {
+      "Text": "Witchbane Ruins",
+      "IDList": [
+        10670100
+      ]
+    },
+    {
+      "Text": "The First Step",
+      "IDList": [
+        10670101
+      ]
+    },
+    {
+      "Text": "Agheel Lake",
+      "IDList": [
+        10670102
+      ]
+    },
+    {
+      "Text": "Dragon-Burnt Ruins",
+      "IDList": [
+        10670103
+      ]
+    },
+    {
+      "Text": "Peninsula Minor Erdtree",
+      "IDList": [
+        10670104
+      ]
+    },
+    {
+      "Text": "Castle Morne",
+      "IDList": [
+        10670105
+      ]
+    },
+    {
+      "Text": "Waypoint Ruins",
+      "IDList": [
+        10670106
+      ]
+    },
+    {
+      "Text": "Castleward Tunnel",
+      "IDList": [
+        10670130
+      ]
+    },
+    {
+      "Text": "Secluded Cell",
+      "IDList": [
+        10670131
+      ]
+    },
+    {
+      "Text": "Liftside Chamber",
+      "IDList": [
+        10670132
+      ]
+    },
+    {
+      "Text": "Rampart Tower",
+      "IDList": [
+        10670133
+      ]
+    },
+    {
+      "Text": "Stormveil Cliffside",
+      "IDList": [
+        10670134
+      ]
+    },
+    {
+      "Text": "Stormveil Main Gate",
+      "IDList": [
+        10670135
+      ]
+    },
+    {
+      "Text": "Tombsward Catacombs",
+      "IDList": [
+        10670160
+      ]
+    },
+    {
+      "Text": "Impaler\u0027s Catacombs",
+      "IDList": [
+        10670161
+      ]
+    },
+    {
+      "Text": "Stormfoot Catacombs",
+      "IDList": [
+        10670162
+      ]
+    },
+    {
+      "Text": "Deathtouched Catacombs",
+      "IDList": [
+        10670163
+      ]
+    },
+    {
+      "Text": "Murkwater Catacombs",
+      "IDList": [
+        10670164
+      ]
+    },
+    {
+      "Text": "Tombsward Cave",
+      "IDList": [
+        10670170
+      ]
+    },
+    {
+      "Text": "Earthbore Cave",
+      "IDList": [
+        10670171
+      ]
+    },
+    {
+      "Text": "Murkwater Cave",
+      "IDList": [
+        10670172
+      ]
+    },
+    {
+      "Text": "Groveside Cave",
+      "IDList": [
+        10670173
+      ]
+    },
+    {
+      "Text": "Coastal Cave",
+      "IDList": [
+        10670174
+      ]
+    },
+    {
+      "Text": "Highroad Cave",
+      "IDList": [
+        10670175
+      ]
+    },
+    {
+      "Text": "Morne Tunnel",
+      "IDList": [
+        10670180
+      ]
+    },
+    {
+      "Text": "Limgrave Tunnels",
+      "IDList": [
+        10670181
+      ]
+    },
+    {
+      "Text": "Lake Minor Erdtree",
+      "IDList": [
+        10670200
+      ]
+    },
+    {
+      "Text": "Temple Quarter",
+      "IDList": [
+        10670201
+      ]
+    },
+    {
+      "Text": "Village of the Albinaurics",
+      "IDList": [
+        10670202
+      ]
+    },
+    {
+      "Text": "Kingsrealm Ruins",
+      "IDList": [
+        10670203
+      ]
+    },
+    {
+      "Text": "Caria Manor",
+      "IDList": [
+        10670204
+      ]
+    },
+    {
+      "Text": "Uld Minor Erdtree",
+      "IDList": [
+        10670205
+      ]
+    },
+    {
+      "Text": "Main Academy Gate",
+      "IDList": [
+        10670230
+      ]
+    },
+    {
+      "Text": "Schoolhouse Classroom",
+      "IDList": [
+        10670231
+      ]
+    },
+    {
+      "Text": "Church of the Cuckoo",
+      "IDList": [
+        10670232
+      ]
+    },
+    {
+      "Text": "Debate Parlor",
+      "IDList": [
+        10670233
+      ]
+    },
+    {
+      "Text": "Ruin-Strewn Precipice",
+      "IDList": [
+        10670240
+      ]
+    },
+    {
+      "Text": "Ruin-Strewn Precipice Overlook",
+      "IDList": [
+        10670241
+      ]
+    },
+    {
+      "Text": "Black Knife Catacombs",
+      "IDList": [
+        10670260
+      ]
+    },
+    {
+      "Text": "Road\u0027s End Catacombs",
+      "IDList": [
+        10670261
+      ]
+    },
+    {
+      "Text": "Cliffbottom Catacombs",
+      "IDList": [
+        10670262
+      ]
+    },
+    {
+      "Text": "Stillwater Cave",
+      "IDList": [
+        10670270
+      ]
+    },
+    {
+      "Text": "Lakeside Crystal Cave",
+      "IDList": [
+        10670271
+      ]
+    },
+    {
+      "Text": "Academy Crystal Cave",
+      "IDList": [
+        10670272
+      ]
+    },
+    {
+      "Text": "Raya Lucaria Crystal Tunnel",
+      "IDList": [
+        10670280
+      ]
+    },
+    {
+      "Text": "Fort Laiedd South",
+      "IDList": [
+        10670300
+      ]
+    },
+    {
+      "Text": "Hermit Village Cliff Road",
+      "IDList": [
+        10670301
+      ]
+    },
+    {
+      "Text": "Road of Iniquity",
+      "IDList": [
+        10670303
+      ]
+    },
+    {
+      "Text": "Craftsman\u0027s Shack",
+      "IDList": [
+        10670304
+      ]
+    },
+    {
+      "Text": "Wyndham Ruins",
+      "IDList": [
+        10670305
+      ]
+    },
+    {
+      "Text": "The Shaded Castle",
+      "IDList": [
+        10670306
+      ]
+    },
+    {
+      "Text": "Writheblood Ruins",
+      "IDList": [
+        10670307
+      ]
+    },
+    {
+      "Text": "Dominula, Windmill Village",
+      "IDList": [
+        10670308
+      ]
+    },
+    {
+      "Text": "Outer Wall Minor Erdtree",
+      "IDList": [
+        10670309
+      ]
+    },
+    {
+      "Text": "Outer Wall East",
+      "IDList": [
+        10670310
+      ]
+    },
+    {
+      "Text": "East Capital Rampart",
+      "IDList": [
+        10670330
+      ]
+    },
+    {
+      "Text": "Avenue Balcony",
+      "IDList": [
+        10670331
+      ]
+    },
+    {
+      "Text": "Lower Capital Church",
+      "IDList": [
+        10670332
+      ]
+    },
+    {
+      "Text": "West Capital Rampart",
+      "IDList": [
+        10670333
+      ]
+    },
+    {
+      "Text": "Queen\u0027s Bedchamber",
+      "IDList": [
+        10670334,
+        10670730
+      ]
+    },
+    {
+      "Text": "Underground Roadside",
+      "IDList": [
+        10670340
+      ]
+    },
+    {
+      "Text": "Forsaken Depths",
+      "IDList": [
+        10670341
+      ]
+    },
+    {
+      "Text": "Leyndell Catacombs",
+      "IDList": [
+        10670342
+      ]
+    },
+    {
+      "Text": "Prison Town Church",
+      "IDList": [
+        10670351
+      ]
+    },
+    {
+      "Text": "Guest Hall",
+      "IDList": [
+        10670352
+      ]
+    },
+    {
+      "Text": "Temple of Eiglay",
+      "IDList": [
+        10670353
+      ]
+    },
+    {
+      "Text": "Audience Pathway",
+      "IDList": [
+        10670354
+      ]
+    },
+    {
+      "Text": "Sainted Hero\u0027s Grave",
+      "IDList": [
+        10670360
+      ]
+    },
+    {
+      "Text": "Gelmir Hero\u0027s Grave",
+      "IDList": [
+        10670361
+      ]
+    },
+    {
+      "Text": "Auriza Hero\u0027s Grave",
+      "IDList": [
+        10670362
+      ]
+    },
+    {
+      "Text": "Unsightly Catacombs",
+      "IDList": [
+        10670363
+      ]
+    },
+    {
+      "Text": "Wyndham Catacombs",
+      "IDList": [
+        10670364
+      ]
+    },
+    {
+      "Text": "Seethewater Cave",
+      "IDList": [
+        10670370
+      ]
+    },
+    {
+      "Text": "Volcano Cave",
+      "IDList": [
+        10670371
+      ]
+    },
+    {
+      "Text": "Perfumer\u0027s Grotto",
+      "IDList": [
+        10670372
+      ]
+    },
+    {
+      "Text": "Sage\u0027s Cave",
+      "IDList": [
+        10670373
+      ]
+    },
+    {
+      "Text": "Old Altus Tunnel",
+      "IDList": [
+        10670380
+      ]
+    },
+    {
+      "Text": "Altus Tunnel",
+      "IDList": [
+        10670381
+      ]
+    },
+    {
+      "Text": "Sealed Tunnel",
+      "IDList": [
+        10670390
+      ]
+    },
+    {
+      "Text": "Caelid Minor Erdtree",
+      "IDList": [
+        10670400
+      ]
+    },
+    {
+      "Text": "Caelem Ruins",
+      "IDList": [
+        10670401
+      ]
+    },
+    {
+      "Text": "Caelid Highway South",
+      "IDList": [
+        10670402
+      ]
+    },
+    {
+      "Text": "Swamp of Aeonia",
+      "IDList": [
+        10670403
+      ]
+    },
+    {
+      "Text": "Sellia, Town of Sorcery",
+      "IDList": [
+        10670404
+      ]
+    },
+    {
+      "Text": "Greyoll\u0027s Dragonbarrow",
+      "IDList": [
+        10670405
+      ]
+    },
+    {
+      "Text": "Redmane Castle",
+      "IDList": [
+        10670406
+      ]
+    },
+    {
+      "Text": "Wailing Dunes South",
+      "IDList": [
+        10670407
+      ]
+    },
+    {
+      "Text": "Dragonbarrow Minor Erdtree",
+      "IDList": [
+        10670408
+      ]
+    },
+    {
+      "Text": "Farum Greatbridge",
+      "IDList": [
+        10670409
+      ]
+    },
+    {
+      "Text": "Minor Erdtree Catacombs",
+      "IDList": [
+        10670460
+      ]
+    },
+    {
+      "Text": "Caelid Catacombs",
+      "IDList": [
+        10670461
+      ]
+    },
+    {
+      "Text": "War-Dead Catacombs",
+      "IDList": [
+        10670462
+      ]
+    },
+    {
+      "Text": "Gaol Cave",
+      "IDList": [
+        10670470
+      ]
+    },
+    {
+      "Text": "Dragonbarrow Cave",
+      "IDList": [
+        10670471
+      ]
+    },
+    {
+      "Text": "Abandoned Cave",
+      "IDList": [
+        10670472
+      ]
+    },
+    {
+      "Text": "Sellia Hideaway",
+      "IDList": [
+        10670473
+      ]
+    },
+    {
+      "Text": "Gael Tunnel",
+      "IDList": [
+        10670480
+      ]
+    },
+    {
+      "Text": "Sellia Crystal Tunnel",
+      "IDList": [
+        10670481
+      ]
+    },
+    {
+      "Text": "Divine Tower of Caelid",
+      "IDList": [
+        10670490
+      ]
+    },
+    {
+      "Text": "Forbidden Lands",
+      "IDList": [
+        10670500
+      ]
+    },
+    {
+      "Text": "Freezing Lake",
+      "IDList": [
+        10670501
+      ]
+    },
+    {
+      "Text": "Foot of the Forge",
+      "IDList": [
+        10670502
+      ]
+    },
+    {
+      "Text": "Mountaintop Minor Erdtree",
+      "IDList": [
+        10670503
+      ]
+    },
+    {
+      "Text": "Ancient Valley Ruins",
+      "IDList": [
+        10670504
+      ]
+    },
+    {
+      "Text": "Castle Sol",
+      "IDList": [
+        10670505
+      ]
+    },
+    {
+      "Text": "Freezing River",
+      "IDList": [
+        10670506
+      ]
+    },
+    {
+      "Text": "Snowfield Minor Erdtree",
+      "IDList": [
+        10670507
+      ]
+    },
+    {
+      "Text": "Haligtree Canopy",
+      "IDList": [
+        10670530
+      ]
+    },
+    {
+      "Text": "Haligtree Town",
+      "IDList": [
+        10670531
+      ]
+    },
+    {
+      "Text": "Haligtree Town Plaza",
+      "IDList": [
+        10670532
+      ]
+    },
+    {
+      "Text": "Haligtree Promenade",
+      "IDList": [
+        10670534
+      ]
+    },
+    {
+      "Text": "Prayer Room",
+      "IDList": [
+        10670535
+      ]
+    },
+    {
+      "Text": "Elphael Inner Wall",
+      "IDList": [
+        10670536
+      ]
+    },
+    {
+      "Text": "Drainage Channel",
+      "IDList": [
+        10670537
+      ]
+    },
+    {
+      "Text": "Haligtree Roots",
+      "IDList": [
+        10670539
+      ]
+    },
+    {
+      "Text": "Giant-Conquering Hero\u0027s Grave",
+      "IDList": [
+        10670560
+      ]
+    },
+    {
+      "Text": "Giants\u0027 Mountaintop Catacombs",
+      "IDList": [
+        10670561
+      ]
+    },
+    {
+      "Text": "Consecrated Snowfield Catacombs",
+      "IDList": [
+        10670562
+      ]
+    },
+    {
+      "Text": "Hidden Path to the Haligtree",
+      "IDList": [
+        10670563
+      ]
+    },
+    {
+      "Text": "Cave of the Forlorn",
+      "IDList": [
+        10670570
+      ]
+    },
+    {
+      "Text": "Spiritcaller Cave",
+      "IDList": [
+        10670571
+      ]
+    },
+    {
+      "Text": "Yelough Anix Tunnel",
+      "IDList": [
+        10670580
+      ]
+    },
+    {
+      "Text": "Ainsel River Well Depths",
+      "IDList": [
+        10670610
+      ]
+    },
+    {
+      "Text": "Ainsel River Sluice Gate",
+      "IDList": [
+        10670611
+      ]
+    },
+    {
+      "Text": "Ainsel River Downstream",
+      "IDList": [
+        10670612
+      ]
+    },
+    {
+      "Text": "Ainsel River Main",
+      "IDList": [
+        10670613
+      ]
+    },
+    {
+      "Text": "Nokstella, Eternal City",
+      "IDList": [
+        10670614
+      ]
+    },
+    {
+      "Text": "Lake of Rot Shoreside",
+      "IDList": [
+        10670615
+      ]
+    },
+    {
+      "Text": "Grand Cloister",
+      "IDList": [
+        10670616
+      ]
+    },
+    {
+      "Text": "Siofra River Bank",
+      "IDList": [
+        10670620
+      ]
+    },
+    {
+      "Text": "Worshippers\u0027 Woods",
+      "IDList": [
+        10670621
+      ]
+    },
+    {
+      "Text": "Mimic Tear",
+      "IDList": [
+        10670622
+      ]
+    },
+    {
+      "Text": "Ancestral Woods",
+      "IDList": [
+        10670623
+      ]
+    },
+    {
+      "Text": "Aqueduct-Facing Cliffs",
+      "IDList": [
+        10670624
+      ]
+    },
+    {
+      "Text": "Night\u0027s Sacred Ground",
+      "IDList": [
+        10670625
+      ]
+    },
+    {
+      "Text": "Below the Well",
+      "IDList": [
+        10670626
+      ]
+    },
+    {
+      "Text": "Root-Facing Cliffs",
+      "IDList": [
+        10670630
+      ]
+    },
+    {
+      "Text": "Great Waterfall Crest",
+      "IDList": [
+        10670631
+      ]
+    },
+    {
+      "Text": "Deeproot Depths",
+      "IDList": [
+        10670632
+      ]
+    },
+    {
+      "Text": "Across the Roots",
+      "IDList": [
+        10670633
+      ]
+    },
+    {
+      "Text": "The Nameless Eternal City",
+      "IDList": [
+        10670634
+      ]
+    },
+    {
+      "Text": "Palace Approach Ledge-Road",
+      "IDList": [
+        10670650
+      ]
+    },
+    {
+      "Text": "Dynasty Mausoleum Entrance",
+      "IDList": [
+        10670651
+      ]
+    },
+    {
+      "Text": "Dynasty Mausoleum Midpoint",
+      "IDList": [
+        10670652
+      ]
+    },
+    {
+      "Text": "Siofra River Well Depths",
+      "IDList": [
+        10670670
+      ]
+    },
+    {
+      "Text": "Nokron, Eternal City",
+      "IDList": [
+        10670671
+      ]
+    },
+    {
+      "Text": "Erdtree Sanctuary",
+      "IDList": [
+        10670731
+      ]
+    },
+    {
+      "Text": "Crumbling Beast Grave",
+      "IDList": [
+        10670740
+      ]
+    },
+    {
+      "Text": "Crumbling Beast Grave Depths",
+      "IDList": [
+        10670741
+      ]
+    },
+    {
+      "Text": "Tempest-Facing Balcony",
+      "IDList": [
+        10670742
+      ]
+    },
+    {
+      "Text": "Dragon Temple",
+      "IDList": [
+        10670743
+      ]
+    },
+    {
+      "Text": "Dragon Temple Altar",
+      "IDList": [
+        10670744
+      ]
+    },
+    {
+      "Text": "Dragon Temple Lift",
+      "IDList": [
+        10670745
+      ]
+    },
+    {
+      "Text": "Beside the Great Bridge",
+      "IDList": [
+        10670746
+      ]
+    },
+    {
+      "Text": "Dragon Temple Rooftop",
+      "IDList": [
+        10670747
+      ]
+    },
+    {
+      "Text": "Elden Throne",
+      "IDList": [
+        10670750
+      ]
+    },
+    {
+      "Text": "Lake North of the Greatbridge",
+      "IDList": [
+        10670801
+      ]
+    },
+    {
+      "Text": "Demi-Human Valley",
+      "IDList": [
+        10670805
+      ]
+    },
+    {
+      "Text": "Drake Graveyard",
+      "IDList": [
+        10670807
+      ]
+    },
+    {
+      "Text": "Hidden Grave South",
+      "IDList": [
+        10670808
+      ]
+    },
+    {
+      "Text": "Hidden Grave North",
+      "IDList": [
+        10670809
+      ]
+    },
+    {
+      "Text": "Jagged Peak Cavern",
+      "IDList": [
+        10670811
+      ]
+    },
+    {
+      "Text": "Darklight Catacombs, Lower Level",
+      "IDList": [
+        10670813
+      ]
+    },
+    {
+      "Text": "Darkroad Sanctuary",
+      "IDList": [
+        10670840
+      ]
+    },
+    {
+      "Text": "Moorth Highway",
+      "IDList": [
+        10670900
+      ]
+    },
+    {
+      "Text": "Rauh Base, Bear Woods",
+      "IDList": [
+        10670901
+      ]
+    },
+    {
+      "Text": "Ancient Ruins, Under-Stair",
+      "IDList": [
+        10670907
+      ]
+    },
+    {
+      "Text": "Altus, Bear Woods",
+      "IDList": [
+        10670911
+      ]
+    },
+    {
+      "Text": "Miyr Hanging Bell",
+      "IDList": [
+        10670930
+      ]
+    }
+  ]
+}

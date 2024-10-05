@@ -48,7 +48,7 @@ public class ItemLotGenerator : BaseHandler
         this.random = random;
         this.configuration = configuration.Value;
         this.itemAcquisitionCumulativeId = itemAcquisitionCumulativeId;
-        this.ItemLotTemplate = CsvLoader.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\ItemLotBase.csv")[0];
+        this.ItemLotTemplate = Data.Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\ItemLotBase.csv")[0];
     }
 
     private ItemLotBase ItemLotTemplate { get; set; }
@@ -112,8 +112,9 @@ public class ItemLotGenerator : BaseHandler
                     newItemLot.Name = $"DSLR {queueEntry.Realname} {x} {GetItemLotCategoriesForItemLotName(newItemLot)}";
 
                     // FINALLY, EXPORT TO MASSEDITOUTPUT
-                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(GenericDictionary.FromObject(newItemLot), queueEntry.Category ?? "", newItemLot.ID, [], ["0"]);
-                    this.GeneratedDataRepository.AddToMassEdit(queueEntry.Category, itemLotMassEdit);
+                    var genericDict = GenericDictionary.FromObject(newItemLot);
+                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.Category ?? "", newItemLot.ID, [], ["0"]);
+                    this.GeneratedDataRepository.AddParamEdit(queueEntry.Category, ParamOperation.Create, itemLotMassEdit, [], genericDict);
                 }
                 else
                 {
@@ -122,31 +123,37 @@ public class ItemLotGenerator : BaseHandler
             }
 
             // EXPORT NPC ADJUSTMENTS TO MASSEDITOUTPUT
-            this.GeneratedDataRepository.AddToMassEdit(this.configuration.ParamNames.NpcParam, CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids));
+
+            this.GeneratedDataRepository.AddParamEdit(
+                this.configuration.ParamNames.NpcParam, 
+                ParamOperation.MassEdit, 
+                CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids), 
+                [], 
+                null);
         }
     }
 
     public (int FinalId, int FinalCategory) TaskLootGeneratorBasedOnLootType(ItemLotQueueEntry queueEntry, int rarityId = 0, int lootType = 0)
     {
-        // FUNCTION WILL ASK THE APPROPRIATE NODE TO CREATE THE REQUIRED LOOT TYPE, THEN RETURN THE ID OF THE LOOT THAT
-        // THE GENERATOR GIVES BACK AND THE ITEM CATEGORY
-        int finalId = -1;
-        int finalCategory = -1;
+        LootType itemType = this.random.NextWeightedValue([LootType.Weapon, LootType.Armor, LootType.Talisman], queueEntry.LootTypeWeights, 1.0);
 
-        if (!this.weaponLootGenerator.HasNoLootTemplates())
-        {
-            finalId = this.weaponLootGenerator.CreateWeapon(rarityId, queueEntry.Whitelistedlootids);
-            finalCategory = 2;
-        }
-        else if (!this.armorLootGenerator.HasNoLootTemplates())
+        int finalCategory;
+        int finalId;
+
+        if (LootType.Armor == itemType && !this.armorLootGenerator.HasNoLootTemplates())
         {
             finalId = this.armorLootGenerator.CreateArmor(rarityId, queueEntry.Whitelistedlootids);
             finalCategory = 3;
         }
-        else if (!this.talismanLootGenerator.HasNoLootTemplates())
+        else if (LootType.Talisman == itemType && !this.talismanLootGenerator.HasNoLootTemplates())
         {
             finalId = this.talismanLootGenerator.CreateTalisman(rarityId, queueEntry.Whitelistedlootids);
             finalCategory = 4;
+        }
+        else
+        {
+            finalId = this.weaponLootGenerator.CreateWeapon(rarityId, queueEntry.Whitelistedlootids);
+            finalCategory = 2;
         }
 
         return (finalId, finalCategory);

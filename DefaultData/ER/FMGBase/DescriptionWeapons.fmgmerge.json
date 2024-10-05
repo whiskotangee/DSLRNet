@@ -1,0 +1,5468 @@
+{
+  "FMG_ID": 25,
+  "Entries": [
+    {
+      "Text": "%null%",
+      "IDList": [
+        1,
+        12000,
+        13000,
+        34050000
+      ]
+    },
+    {
+      "Text": "No armament equipped.\nBare fists will be used to attack.",
+      "IDList": [
+        110000
+      ]
+    },
+    {
+      "Text": "A standard dagger with a straight blade.\n\nThough modest in reach and capacity for harm, this weapon is light enough to jab in rapid succession and delivers devastating critical hits.",
+      "IDList": [
+        1000000,
+        1000100,
+        1000200,
+        1000300,
+        1000400,
+        1000500,
+        1000600,
+        1000700,
+        1000800,
+        1000900,
+        1001000,
+        1001100,
+        1001200
+      ]
+    },
+    {
+      "Text": "Dagger once belonging to one of the assassins who murdered Godwyn the Golden on the Night of the Black Knives.\n\nA ritual performed on the oddly misshapen blade imbued it with the power of the stolen Rune of Death.",
+      "IDList": [
+        1010000
+      ]
+    },
+    {
+      "Text": "A knife with curved handguards.\nDesigned to parry, turning foes\u0027 attacks against them.\n\nFor masters of combat who anticipate every enemy strike and counter accordingly, this weapon is all they need.",
+      "IDList": [
+        1020000,
+        1020100,
+        1020200,
+        1020300,
+        1020400,
+        1020500,
+        1020600,
+        1020700,
+        1020800,
+        1020900,
+        1021000,
+        1021100,
+        1021200
+      ]
+    },
+    {
+      "Text": "Dagger favored by military physicians in white.\nThe pointed blade is hard and sharp, making critical hits especially potent.\n\nMedicine is mercy, and mercy upon the battlefield is ruthless. Beware the killers clothed as men of compassion.",
+      "IDList": [
+        1030000,
+        1030100,
+        1030200,
+        1030300,
+        1030400,
+        1030500,
+        1030600,
+        1030700,
+        1030800,
+        1030900,
+        1031000,
+        1031100,
+        1031200
+      ]
+    },
+    {
+      "Text": "Jagged dagger with a distinctive curved blade.\nUsed by the noble servants of the Lord of Blood.\n\nThis dagger rips the flesh as it enters, inflicting blood loss with sickening efficacy. A proud testament to the success of its vicious design, this weapon is perpetually coated in blood. ",
+      "IDList": [
+        1040000
+      ]
+    },
+    {
+      "Text": "A knife made by sharpening hard crystal.\nSignature weapon of glintstone miners.\n\nUsed as tool to extract glintstone from broken rock, and as such a faint magic enwreathes the blade.",
+      "IDList": [
+        1050000
+      ]
+    },
+    {
+      "Text": "Sickle decorated with flowers and many-colored fabrics. Ceremonial tool used by dancers during the festivities of Dominula. Its attacks can slip through an enemy\u0027s guard.\n\nCrafted from human bone.\nGrants trace amounts of runes on landing attacks.",
+      "IDList": [
+        1060000,
+        1060100,
+        1060200,
+        1060300,
+        1060400,
+        1060500,
+        1060600,
+        1060700,
+        1060800,
+        1060900,
+        1061000,
+        1061100,
+        1061200
+      ]
+    },
+    {
+      "Text": "Ritual blade once presented to Leyndell by the Academy of Raya Lucaria to celebrate their newfound peace. Though the weapon is embedded with precious glintstones and features Erdtree ornamentation, the undulating blade is symbolic of an ancient ritual.",
+      "IDList": [
+        1070000
+      ]
+    },
+    {
+      "Text": "Dagger fashioned from a great scorpion\u0027s tail, glistening with scarlet rot.\n\nA ceremonial tool used by heretics, crafted from the relic of a sealed outer god.",
+      "IDList": [
+        1080000
+      ]
+    },
+    {
+      "Text": "Large knife with a broad, curved blade.\n\nThis weapon is designed to slash and rend, inflicting blood loss upon the recipient.",
+      "IDList": [
+        1090000,
+        1090100,
+        1090200,
+        1090300,
+        1090400,
+        1090500,
+        1090600,
+        1090700,
+        1090800,
+        1090900,
+        1091000,
+        1091100,
+        1091200
+      ]
+    },
+    {
+      "Text": "Short sword with a tempering pattern on the blade.\nA weapon unique to warriors of the Land of Reeds.\nAfflicts targets with blood loss.\nThese swords are considered auxiliary weapons.\nYet, one man is known to wield this weapon in his left hand while using a full-sized katana in his right. A demonic swordsman known only as Okina.",
+      "IDList": [
+        1100000,
+        1100100,
+        1100200,
+        1100300,
+        1100400,
+        1100500,
+        1100600,
+        1100700,
+        1100800,
+        1100900,
+        1101000,
+        1101100,
+        1101200
+      ]
+    },
+    {
+      "Text": "Short sword given to high ranking clergymen of Farum Azula.\nRaises potency of bestial incantations.\n\nThe design celebrates a beast\u0027s five fingers, symbolic of the intelligence once granted upon their kind.",
+      "IDList": [
+        1110000
+      ]
+    },
+    {
+      "Text": "Sickle fashioned from ivory.\nWeapon carried by aged Albinaurics.\n\nThese weapons are evidence of their dedication to the Haligtree, despite never having entered its presence.",
+      "IDList": [
+        1130000
+      ]
+    },
+    {
+      "Text": "Dagger with a bloodstained blade.\nAfflicts targets with blood loss.\n\nAs blood darkened the dagger through repeated slashing and stabbing, its blade only grew sharper and harder.",
+      "IDList": [
+        1140000,
+        1140100,
+        1140200,
+        1140300,
+        1140400,
+        1140500,
+        1140600,
+        1140700,
+        1140800,
+        1140900,
+        1141000,
+        1141100,
+        1141200
+      ]
+    },
+    {
+      "Text": "An erdsteel dagger with a grass crest engraved upon its blade. Carried by the Erdtree royalty for self-defense in times of peace.\n\nThough forged to a high standard, the weapon is difficult to wield.\nAttack power also scales with faith.",
+      "IDList": [
+        1150000,
+        1150100,
+        1150200,
+        1150300,
+        1150400,
+        1150500,
+        1150600,
+        1150700,
+        1150800,
+        1150900,
+        1151000,
+        1151100,
+        1151200
+      ]
+    },
+    {
+      "Text": "Dagger given to one who set out on a journey to fulfill her duty long ago. The power of its former owner, the kindling maiden, is still apparent.\n\nThe one who walks alongside flame,\nShall one day meet the road of Destined Death.",
+      "IDList": [
+        1160000
+      ]
+    },
+    {
+      "Text": "A straight sword with a double-edged blade.\n\nIn addition to its reliable standard damage, this weapon also boasts powerful piercing attacks. A superbly balanced armament.",
+      "IDList": [
+        2000000,
+        2000100,
+        2000200,
+        2000300,
+        2000400,
+        2000500,
+        2000600,
+        2000700,
+        2000800,
+        2000900,
+        2001000,
+        2001100,
+        2001200
+      ]
+    },
+    {
+      "Text": "A short straight sword with a short blade.\nIn addition to its reliable standard damage, this weapon also boasts powerful piercing attacks.\n\nLightweight amongst straight swords, this weapon is easy to wield, requiring only humble attributes.",
+      "IDList": [
+        2010000,
+        2010100,
+        2010200,
+        2010300,
+        2010400,
+        2010500,
+        2010600,
+        2010700,
+        2010800,
+        2010900,
+        2011000,
+        2011100,
+        2011200
+      ]
+    },
+    {
+      "Text": "A straight sword with a wide blade, suited to slashing attacks.\n\nHorizontal swings boast wide attack range, making it easier to connect with foes.",
+      "IDList": [
+        2020000,
+        2020100,
+        2020200,
+        2020300,
+        2020400,
+        2020500,
+        2020600,
+        2020700,
+        2020800,
+        2020900,
+        2021000,
+        2021100,
+        2021200
+      ]
+    },
+    {
+      "Text": "A straight sword with a wide blade.\nEffective for slashing attacks.\n\nBroad horizontal swings widen the attack range, making it easier to connect with foes.",
+      "IDList": [
+        2030000
+      ]
+    },
+    {
+      "Text": "Well-crafted straight sword with an illustrious\ndesign, wielded by regulars of a lord\u0027s army.\n\nThough blackened and damaged by years of use,\nit appears to have otherwise been kept in a\nserviceable condition, despite the soldiers having\nlong since lost their minds.",
+      "IDList": [
+        2040000,
+        2040100,
+        2040200,
+        2040300,
+        2040400,
+        2040500,
+        2040600,
+        2040700,
+        2040800,
+        2040900,
+        2041000,
+        2041100,
+        2041200
+      ]
+    },
+    {
+      "Text": "Straight sword with a rather short but wide blade.\nSimple to wield, it was known as the sword of the people.\n\nThough the Erdtree styling is still visible, time has not been kind to this sword, now merely a shadow of its former self.",
+      "IDList": [
+        2050000,
+        2050100,
+        2050200,
+        2050300,
+        2050400,
+        2050500,
+        2050600,
+        2050700,
+        2050800,
+        2050900,
+        2051000,
+        2051100,
+        2051200
+      ]
+    },
+    {
+      "Text": "Slender straight sword patterned after an antique ornament.\nSuperior swordsmen prefer to wield one in each hand.\n\nAfter falling from grace, the dregs of the golden lineage sought power and purpose in the past.",
+      "IDList": [
+        2060000
+      ]
+    },
+    {
+      "Text": "A sword made to commemorate the death of Godwyn the Golden, first of the demigods to die.\n\nInfused with the humble prayer of a young boy; \u0022O brother, lord brother, please die a true death.\u0022",
+      "IDList": [
+        2070000
+      ]
+    },
+    {
+      "Text": "A grim weapon wielded by swordsmen of the Eternal City, this shotel has a blade as fine as a needle.\n\nForged from the liquid metal of a Silver Tear, it is thoroughly tempered until hardened. ",
+      "IDList": [
+        2080000
+      ]
+    },
+    {
+      "Text": "Sword forged by compounding silver and gold.\nA sacred weapon to hunt Those Who Live in Death.\nDeals holy damage. \n\nThe inseparable twins found solace in the Golden Order, the only institution not to revile them as accursed beings.",
+      "IDList": [
+        2090000
+      ]
+    },
+    {
+      "Text": "Sharp sword used by D, Knight of the Golden Order.\nThe blade was forged with a mix of silver and brass.",
+      "IDList": [
+        2090100,
+        2090200,
+        2090300,
+        2090400,
+        2090500,
+        2090600,
+        2090700,
+        2090800,
+        2090900,
+        2091000,
+        2091100,
+        2091200
+      ]
+    },
+    {
+      "Text": "Hidden sword once granted to the Tarnished of the Roundtable by the Two Fingers. A formless cipher comprises its blade, which deals holy damage no shield can repel. Champions would gather at the Roundtable Hold in days long past, when the Two Fingers were masters of oration, their flesh yet full of vigor.",
+      "IDList": [
+        2110000
+      ]
+    },
+    {
+      "Text": "Storied sword and treasure of Caria Manor.\nOne of the legendary armaments.\n\nAstrologers, who preceded the sorcerers, established themselves in mountaintops that nearly touched the sky, and considered the Fire Giants their neighbors.",
+      "IDList": [
+        2140000
+      ]
+    },
+    {
+      "Text": "Sword fashioned from pure crystal; a deed impossible for a human. Enwreathed with powerful magic, its attack scales with intelligence. The inscrutable Crystalians have but one clear purpose; to safeguard their crystals unto the end. One theory posits that they yearn for the return of their creator who will carve for them new brethren.",
+      "IDList": [
+        2150000
+      ]
+    },
+    {
+      "Text": "Straight sword embedded with a blue glintstone.\nWeapon of knights sworn to Carian royalty.\n\nThese knights\u0027 swords could serve as catalysts, letting them wield sorcerous battle skills. Despite numbering fewer than twenty, this power made them a match for even the champions of gold in battle.",
+      "IDList": [
+        2180000
+      ]
+    },
+    {
+      "Text": "Silver sword carried by clerics of St. Trina.\nInflicts sleep ailment upon foes.\n\nSt. Trina is an enigmatic figure. Some say she is a comely young girl, others are sure he is a boy. The only certainty is that their appearance was as sudden as their disappearance.",
+      "IDList": [
+        2190000
+      ]
+    },
+    {
+      "Text": "Sword forged by servants of Miquella of the Haligtree, with a design modeled after those carried by Carian knights. Instead of glintstone however, amber from the Haligtree is embedded in the blade.\n\nA sumptuous piece, yet it has never been offered to any knight\u2014an ill-starred sword with no master.",
+      "IDList": [
+        2200000
+      ]
+    },
+    {
+      "Text": "Beloved sword of an aged knight whose last quest was long behind him, repurposed into a walking stick. The tip is rather worn.\n\nThough bent of back and without the brawn required even to raise the sword aloft, still he wished to meet his end with weapon in hand. ",
+      "IDList": [
+        2210000,
+        2210100,
+        2210200,
+        2210300,
+        2210400,
+        2210500,
+        2210600,
+        2210700,
+        2210800,
+        2210900,
+        2211000,
+        2211100,
+        2211200
+      ]
+    },
+    {
+      "Text": "Treasured sword of Eochaid, a lesser, long-vanished domain.\nThe copper coloration is not to be confused for rust, but is a conduit for its wielder to move it by their will alone.\n\nSwords of Eochaid dance through the skies.",
+      "IDList": [
+        2220000
+      ]
+    },
+    {
+      "Text": "Narrow blade carried by wandering nobles.\nMade to be easy to wield.\n\nDaubed with gold from tip to tail, it should fetch a good sum.",
+      "IDList": [
+        2230000,
+        2230100,
+        2230200,
+        2230300,
+        2230400,
+        2230500,
+        2230600,
+        2230700,
+        2230800,
+        2230900,
+        2231000,
+        2231100,
+        2231200
+      ]
+    },
+    {
+      "Text": "Talon-swords are affixed to the legs of Stormveil\u0027s warhawks, but this one has been repurposed for human use.\n\nThe blade is thin and lightweight so as not to obstruct the hawk\u0027s mobility.",
+      "IDList": [
+        2240000,
+        2240100,
+        2240200,
+        2240300,
+        2240400,
+        2240500,
+        2240600,
+        2240700,
+        2240800,
+        2240900,
+        2241000,
+        2241100,
+        2241200
+      ]
+    },
+    {
+      "Text": "A sword with a glintstone in its handguards. Wielded by scholars of the Lazuli Conspectus who seek to master Carian sorcery.\nDeals magic damage.\n\nApparently once used as a staff of sorcery, this sword is made of wood.",
+      "IDList": [
+        2250000
+      ]
+    },
+    {
+      "Text": "Sword fashioned from pure crystal; a deed impossible for a human.\nIt festers with scarlet rot.\n\nEnwreathed with powerful magic, its attack scales with intelligence.",
+      "IDList": [
+        2260000
+      ]
+    },
+    {
+      "Text": "A large sword with a straight blade. This heavy sword is usually wielded with two hands, but for those with enough strength, one is sufficient.\n\nThe hefty blade can be swung into multiple foes\nat once thanks to the broad, sweeping attack,\nmaking fending off crowds all the easier.",
+      "IDList": [
+        3000000,
+        3000100,
+        3000200,
+        3000300,
+        3000400,
+        3000500,
+        3000600,
+        3000700,
+        3000800,
+        3000900,
+        3001000,
+        3001100,
+        3001200
+      ]
+    },
+    {
+      "Text": "Oddly shaped greatsword wielded by imps.\n\nThe gently undulating forked blade is known as an \u0022imp\u0027s tongue\u0022 and causes blood loss.",
+      "IDList": [
+        3010000,
+        3010100,
+        3010200,
+        3010300,
+        3010400,
+        3010500,
+        3010600,
+        3010700,
+        3010800,
+        3010900,
+        3011000,
+        3011100,
+        3011200
+      ]
+    },
+    {
+      "Text": "Greatsword with a blade of unusually thick steel.\nA coarse weapon to which polishing is a foreign concept.\n\nWeighty even among others of its class, the impact of each strike is sure to be felt.",
+      "IDList": [
+        3020000,
+        3020100,
+        3020200,
+        3020300,
+        3020400,
+        3020500,
+        3020600,
+        3020700,
+        3020800,
+        3020900,
+        3021000,
+        3021100,
+        3021200
+      ]
+    },
+    {
+      "Text": "Well-crafted straight sword with an illustrious\ndesign, wielded by regulars of a lord\u0027s army.\n\nThough blackened and damaged by years of use, it appears to have otherwise been kept in a serviceable condition, despite the soldiers having long since lost their minds.",
+      "IDList": [
+        3030000,
+        3030100,
+        3030200,
+        3030300,
+        3030400,
+        3030500,
+        3030600,
+        3030700,
+        3030800,
+        3030900,
+        3031000,
+        3031100,
+        3031200
+      ]
+    },
+    {
+      "Text": "Greatsword bestowed upon skilled swordsmen in the demigods\u0027 service, and yet had no rank or title.\n\nFeaturing a long grip enabling dual-handed use, this weapon was designed to dispatch larger foes. Being charged with such a duty was undoubtedly a great honor.",
+      "IDList": [
+        3040000,
+        3040100,
+        3040200,
+        3040300,
+        3040400,
+        3040500,
+        3040600,
+        3040700,
+        3040800,
+        3040900,
+        3041000,
+        3041100,
+        3041200
+      ]
+    },
+    {
+      "Text": "Greatsword featuring a flame-like undulation.\nShreds enemy flesh, inducing blood loss.\n\nScarlet rot is kept at bay with flame at Redmane Castle, and as such, this beloved sword of Jerren\u0027s eventually became the symbol of the castle itself.",
+      "IDList": [
+        3050000,
+        3050100,
+        3050200,
+        3050300,
+        3050400,
+        3050500,
+        3050600,
+        3050700,
+        3050800,
+        3050900,
+        3051000,
+        3051100,
+        3051200
+      ]
+    },
+    {
+      "Text": "Greatsword of Ordovis, one of the two honored as foremost among the Crucible Knights.\n\nThis sword is imbued with an ancient holy essence.\nIts red tint exemplifies the nature of primordial gold, said to be close in nature to life itself.",
+      "IDList": [
+        3060000
+      ]
+    },
+    {
+      "Text": "Greatsword forged from a blue-white meteoric ore.\nThe blade conceals gravity-manipulating magic.\n\nA weapon unique to the Alabaster Lords, a race of ancients with skin of stone who were said to have risen to life when a meteor struck long ago.",
+      "IDList": [
+        3070000
+      ]
+    },
+    {
+      "Text": "A finely-crafted greatsword intricately engraved with an ancient motif.\nGiven to knights who, whether by misfortune or misdeed, were forced to abandon their homes.\nMost of these knights were sent to the fringes, where they were forced to start anew with only despair for company.",
+      "IDList": [
+        3080000,
+        3080100,
+        3080200,
+        3080300,
+        3080400,
+        3080500,
+        3080600,
+        3080700,
+        3080800,
+        3080900,
+        3081000,
+        3081100,
+        3081200
+      ]
+    },
+    {
+      "Text": "A Moon Greatsword, bestowed by a Carian queen upon her spouse to honor long-standing tradition.\nOne of the legendary armaments.\n\nRanni\u0027s sigil is a full moon, cold and leaden, and this sword is but a beam of its light.",
+      "IDList": [
+        3090000
+      ]
+    },
+    {
+      "Text": "Sword wrought from the remains of a god who should have lived a life eternal.\n\nThoughts on what the weapon portends are many and varied. Some consider it the mark of a great sin, or a sign of great devastation. Some think it as the end of an age, while others; the beginning.",
+      "IDList": [
+        3100000
+      ]
+    },
+    {
+      "Text": "Greatsword patterned after the black steeple of the Helphen, the lampwood which guides the dead of the spirit world.\n\nThe lamplight is similar to grace in appearance, only it is said that it can only be seen by those who met their death in battle.",
+      "IDList": [
+        3130000
+      ]
+    },
+    {
+      "Text": "Sacred sword of Rykard, Lord of Blasphemy.\nRemains of the countless heroes he has devoured writhe upon the surface of this blade.\n\nNow they share the same blood, bound together as family.\nSome HP is restored upon defeating an enemy.",
+      "IDList": [
+        3140000
+      ]
+    },
+    {
+      "Text": "Storied sword of House Marais, the family of executioners who presided over the Shaded Castle.\nOne of the legendary armaments.\n\nElemer of the Briar, the Bell Bearing Hunter, snatched the sword from the site of his looming execution, and furnished it with battle skills from his home of Eochaid.",
+      "IDList": [
+        3150000
+      ]
+    },
+    {
+      "Text": "Sinister greatsword fashioned from a giant\u0027s backbone.\nMetes out wounds like a lopsided saw-blade, and restores some FP upon defeating an enemy.\n\nMilos was undersized for a giant, and was viewed as sullied and terribly grotesque.",
+      "IDList": [
+        3160000
+      ]
+    },
+    {
+      "Text": "Greatsword fashioned from the strong spine of\na dragon. The fine, serrated blade lacerates\nits prey, causing severe hemorrhaging.",
+      "IDList": [
+        3160100,
+        3160200,
+        3160300,
+        3160400,
+        3160500,
+        3160600,
+        3160700,
+        3160800,
+        3160900,
+        3161000,
+        3161100,
+        3161200
+      ]
+    },
+    {
+      "Text": "Greatsword made of light, modeled after the Elden Ring itself. Forged by King Consort Radagon to proudly\nsymbolize the tenets of the Golden Order.\nOne of the legendary armaments.\n\nTelltale signs betray that this was once the greatsword bequeathed to him by his first wife, Rennala.",
+      "IDList": [
+        3170000
+      ]
+    },
+    {
+      "Text": "A large sword with a long, straight blade. This heavy sword is usually wielded with two hands, but for those with enough strength, one is sufficient.\n\nIn addition to the heavy sweeping attacks, it can also make a heavy piercing thrust, making this a versatile weapon.",
+      "IDList": [
+        3180000,
+        3180100,
+        3180200,
+        3180300,
+        3180400,
+        3180500,
+        3180600,
+        3180700,
+        3180800,
+        3180900,
+        3181000,
+        3181100,
+        3181200
+      ]
+    },
+    {
+      "Text": "Bronze greatsword wielded by Valiant Gargoyles.\n\nJust like the wielder, the missing parts have been mended with corpse wax; a patchwork of champions.",
+      "IDList": [
+        3190000,
+        3190100,
+        3190200,
+        3190300,
+        3190400,
+        3190500,
+        3190600,
+        3190700,
+        3190800,
+        3190900,
+        3191000,
+        3191100,
+        3191200
+      ]
+    },
+    {
+      "Text": "Barbed rod carried by Deathbirds.\n\nThe birds are graveyard fire keepers; it is said they rake out the ashen remains of the dead from their kilns.",
+      "IDList": [
+        3200000
+      ]
+    },
+    {
+      "Text": "Bronze greatsword wielded by Valiant Gargoyles, mended with blackened corpse wax.\nDeals holy damage.\n\nSuch is the mark of those who serve Maliketh, the Black Blade.",
+      "IDList": [
+        3210000
+      ]
+    },
+    {
+      "Text": "Greatsword wielded by the gargoyles\nserving under Maliketh.",
+      "IDList": [
+        3210100,
+        3210200,
+        3210300,
+        3210400,
+        3210500,
+        3210600,
+        3210700,
+        3210800,
+        3210900,
+        3211000,
+        3211100,
+        3211200
+      ]
+    },
+    {
+      "Text": "A coarse iron lump of an ultra greatsword.\nMows down foes by utilizing its incredible weight.\n\nThough handling it likely requires the wielder to have surpassed the realm of the merely human, it is precisely for this reason the weapon is used to slaughter even inhuman foes.",
+      "IDList": [
+        4000000,
+        4000100,
+        4000200,
+        4000300,
+        4000400,
+        4000500,
+        4000600,
+        4000700,
+        4000800,
+        4000900,
+        4001000,
+        4001100,
+        4001200
+      ]
+    },
+    {
+      "Text": "Stone greatsword wielded by Erdtree Burial Watchdogs.\n\nThough decorated with the watchman\u0027s eye, the pupil was taken by graverobbers and is now hollow, leaving this sword a mere lump of stone.",
+      "IDList": [
+        4010000,
+        4010100,
+        4010200,
+        4010300,
+        4010400,
+        4010500,
+        4010600,
+        4010700,
+        4010800,
+        4010900,
+        4011000,
+        4011100,
+        4011200
+      ]
+    },
+    {
+      "Text": "Maliketh\u0027s black blade which once harbored the power of the Rune of Death. A sad shadow of its former glory.\n\nAfter a fragment of Death was stolen on that fateful night, Maliketh bound the blade within his own flesh, such that none might ever rob Death again.",
+      "IDList": [
+        4020000
+      ]
+    },
+    {
+      "Text": "Sword given to the lesser giants who fought for the Erdtree during the War against the Giants long ago.\n\nThough they have lost their minds, they stay inseparable from their swords that are in sad shape\u2014such that the gold plating had flaked away.",
+      "IDList": [
+        4030000,
+        4030100,
+        4030200,
+        4030300,
+        4030400,
+        4030500,
+        4030600,
+        4030700,
+        4030800,
+        4030900,
+        4031000,
+        4031100,
+        4031200
+      ]
+    },
+    {
+      "Text": "Just about the largest sword a mere man is capable of swinging.\nTrue to its name, it is designed to be wielded in both hands, but those of merely ordinary strength will still struggle to do so.\n\nThe long blade is heavy and sharp, sending foes reeling back with its broader strokes, while also capable of a devastating piercing thrust.",
+      "IDList": [
+        4040000,
+        4040100,
+        4040200,
+        4040300,
+        4040400,
+        4040500,
+        4040600,
+        4040700,
+        4040800,
+        4040900,
+        4041000,
+        4041100,
+        4041200
+      ]
+    },
+    {
+      "Text": "Curved greatswords of black steel wielded by General Radahn.\nA pair of weapons decorated with a lion mane motif.\n\nRadahn earned considerable renown as the Starscourge in his youth, and it is said that it was during this time he engraved the gravity crest upon these blades.",
+      "IDList": [
+        4050000
+      ]
+    },
+    {
+      "Text": "Greatsword decorated in royal Carian style.\nFavored weapon of Blaidd the Half-Wolf.\n\nIn defiance of the fate he was born to, Blaidd swore to serve no master but Ranni. As proof, the sword was imbued with a cold magic at the moment the oath was sworn.",
+      "IDList": [
+        4060000
+      ]
+    },
+    {
+      "Text": "Sacred sword of the Gloam-Eyed Queen who controlled the Godskin Apostles before her defeat at the hands of Maliketh.\n\nThe black flames wielded by the apostles are channeled from this sword.",
+      "IDList": [
+        4070000
+      ]
+    },
+    {
+      "Text": "Originally rubble from a ruin which fell from the sky, this surviving fragment was honed into a weapon.\nOne of the legendary armaments.\n\nThe ruin it came from crumbled when struck by a meteorite, as such this weapon harbors its destructive power.",
+      "IDList": [
+        4080000
+      ]
+    },
+    {
+      "Text": "The storied sword of Castle Morne. A revenger\u0027s weapon, it is burdened with oceans of anger and regret.\nOne of the legendary armaments.\n\nA lone surviving champion from a country now vanished was so determined to continue fighting that he claimed the swords of an entire clan of warriors.",
+      "IDList": [
+        4100000
+      ]
+    },
+    {
+      "Text": "Greatsword embedded with a blue glintstone.\nWeapon of the trolls in service to the royal family of Caria. Called into service when the Queen invoked an oath they swore, the trolls are treated as true knights of Caria, and fight arm in arm with their human comrades.",
+      "IDList": [
+        4110000
+      ]
+    },
+    {
+      "Text": "Large piercing sword with a long, hard bladed edge which is also capable of slashing attacks.\n\nFor its large size, it can be wielded rather nimbly, leaving little opportunity for the enemy to counter.",
+      "IDList": [
+        5000000,
+        5000100,
+        5000200,
+        5000300,
+        5000400,
+        5000500,
+        5000600,
+        5000700,
+        5000800,
+        5000900,
+        5001000,
+        5001100,
+        5001200
+      ]
+    },
+    {
+      "Text": "Piercing sword of the Cleanrot Knights who fought alongside Malenia, Blade of Miquella.\n\nMainly used as a backup weapon, in combination with a long-handled armament.",
+      "IDList": [
+        5010000,
+        5010100,
+        5010200,
+        5010300,
+        5010400,
+        5010500,
+        5010600,
+        5010700,
+        5010800,
+        5010900,
+        5011000,
+        5011100,
+        5011200
+      ]
+    },
+    {
+      "Text": "A piercing sword with a sharp, slender blade.\nIn addition to this weapon\u0027s thrusting attack prowess, it also boasts the ability to be used while guarding with a shield.\n\nAs one of the smaller piercing swords, quick successive thrusts are easy to perform, but without a cutting edge, it cannot be used for slashing attacks.",
+      "IDList": [
+        5020000,
+        5020100,
+        5020200,
+        5020300,
+        5020400,
+        5020500,
+        5020600,
+        5020700,
+        5020800,
+        5020900,
+        5021000,
+        5021100,
+        5021200
+      ]
+    },
+    {
+      "Text": "Piercing sword of superior quality, featuring intricate ornamentation.\nSignature weapon of the sorcerer Rogier.\n\nHigh dexterity is required to wield the blade to its full potential, but mastery is a sight to behold, characterized by a flowing style which excels in successive attacks.",
+      "IDList": [
+        5030000,
+        5030100,
+        5030200,
+        5030300,
+        5030400,
+        5030500,
+        5030600,
+        5030700,
+        5030800,
+        5030900,
+        5031000,
+        5031100,
+        5031200
+      ]
+    },
+    {
+      "Text": "Spur of a giant ant which has been fashioned into a rapier. The blade drips with scarlet rot.\n\nScarlet rot is an old legend, of which Maleigh Marais of the Shaded Castle was a private believer. And indeed, he eventually found his own personal goddess.",
+      "IDList": [
+        5040000,
+        5040100,
+        5040200,
+        5040300,
+        5040400,
+        5040500,
+        5040600,
+        5040700,
+        5040800,
+        5040900,
+        5041000,
+        5041100,
+        5041200
+      ]
+    },
+    {
+      "Text": "A razor-thin piercing blade of ice.\nForged by Iji, the Carian Royal Blacksmith.\n\nCan inflict frost upon enemies, and launch its blade with a strong attack. The blade immediately regenerates.",
+      "IDList": [
+        5050000
+      ]
+    },
+    {
+      "Text": "Estoc carried by wandering nobles.\nMade to be easy to wield.\n\nDaubed with gold from tip to tail, it should fetch a good sum.",
+      "IDList": [
+        5060000,
+        5060100,
+        5060200,
+        5060300,
+        5060400,
+        5060500,
+        5060600,
+        5060700,
+        5060800,
+        5060900,
+        5061000,
+        5061100,
+        5061200
+      ]
+    },
+    {
+      "Text": "Ominous piercing sword with a winding blade.\nCarried by the noble servants of the Lord of Blood.\n\nDesigned to bore into flesh, causing severe blood loss at the wound. The extracted blood trickles gracefully down the length of the blade.",
+      "IDList": [
+        6000000
+      ]
+    },
+    {
+      "Text": "Elegant piercing sword with a celadon colored blade wielded by Godskin Nobles.\n\nThe nobles possess skill with the sword unmatched by any lowborn. Despite its size, successive attacks from this weapon are swifter than the eye can follow.",
+      "IDList": [
+        6010000,
+        6010100,
+        6010200,
+        6010300,
+        6010400,
+        6010500,
+        6010600,
+        6010700,
+        6010800,
+        6010900,
+        6011000,
+        6011100,
+        6011200
+      ]
+    },
+    {
+      "Text": "Large rapier featuring a thin, sharp blade.\nCommonly used in life or death duels.\n\nLike its smaller counterparts, it is made for thrusting attacks, and can be used while guarding with a shield.",
+      "IDList": [
+        6020000,
+        6020100,
+        6020200,
+        6020300,
+        6020400,
+        6020500,
+        6020600,
+        6020700,
+        6020800,
+        6020900,
+        6021000,
+        6021100,
+        6021200
+      ]
+    },
+    {
+      "Text": "Piercing Gravel Stone sword containing primeval lightning.\nA portion of the Dragonlord\u0027s power, gained from a remembrance.\n\nThis weapon commands great power over the paltry, mortal dragons of today.",
+      "IDList": [
+        6040000
+      ]
+    },
+    {
+      "Text": "A curved sword with a single-sided blade.\nDelivers slashing attacks with its sharp blade, but is ineffective against thick armor and hides covered in tough scales.\n\nWielders of the weapon employ a unique style that enhances attacks with spinning motions.",
+      "IDList": [
+        7000000,
+        7000100,
+        7000200,
+        7000300,
+        7000400,
+        7000500,
+        7000600,
+        7000700,
+        7000800,
+        7000900,
+        7001000,
+        7001100,
+        7001200
+      ]
+    },
+    {
+      "Text": "Curved sword forged of dull iron wielded by the beastmen of Farum Azula.\n\nThe blade is heavy but well-balanced. Comparatively easy to wield for the damage it delivers.",
+      "IDList": [
+        7010000,
+        7010100,
+        7010200,
+        7010300,
+        7010400,
+        7010500,
+        7010600,
+        7010700,
+        7010800,
+        7010900,
+        7011000,
+        7011100,
+        7011200
+      ]
+    },
+    {
+      "Text": "Curved sword with a severely hooked blade. Its attacks can slip through an enemy\u0027s guard.\n\nMade to hunt down humans, this weapon requires high dexterity to wield effectively.",
+      "IDList": [
+        7020000,
+        7020100,
+        7020200,
+        7020300,
+        7020400,
+        7020500,
+        7020600,
+        7020700,
+        7020800,
+        7020900,
+        7021000,
+        7021100,
+        7021200
+      ]
+    },
+    {
+      "Text": "Curved sword with a thin blade of ample length.\nLight of weight despite its larger size, its slicing attacks come in rapid succession.\n\nA devastatingly powerful weapon in the hands of a skilled swordsman.",
+      "IDList": [
+        7030000,
+        7030100,
+        7030200,
+        7030300,
+        7030400,
+        7030500,
+        7030600,
+        7030700,
+        7030800,
+        7030900,
+        7031000,
+        7031100,
+        7031200
+      ]
+    },
+    {
+      "Text": "Curved sword with a light, crescent-shaped blade.\nUsed by the bandits who ran rampant in the wake of the Shattering.\n\nMost of the blade is now darkened and covered in rust, but with enough dexterity this weapon may still stand up to some use.",
+      "IDList": [
+        7040000,
+        7040100,
+        7040200,
+        7040300,
+        7040400,
+        7040500,
+        7040600,
+        7040700,
+        7040800,
+        7040900,
+        7041000,
+        7041100,
+        7041200
+      ]
+    },
+    {
+      "Text": "Curved sword with a blade fashioned from the lava of Mt. Gelmir.\nAn armament of the man-serpents, impossible for a human to have made.\n\nDeals fire damage.",
+      "IDList": [
+        7050000
+      ]
+    },
+    {
+      "Text": "Legends speak of a master of the sword garbed in blue, and his curved blade that was patterned after flowing water.\n\nStrong attack unleashes a series of strikes akin to a dance, offering a glimpse into the legend.",
+      "IDList": [
+        7060000,
+        7060100,
+        7060200,
+        7060300,
+        7060400,
+        7060500,
+        7060600,
+        7060700,
+        7060800,
+        7060900,
+        7061000,
+        7061100,
+        7061200
+      ]
+    },
+    {
+      "Text": "Sword fashioned from a delicate wing, suffused with the magic of the stars.\nStrong attack unleashes a wave of enchanted light.\n\nCrafted from a relic of the Naturalborn of the Void who is said to have assailed the Eternal City.",
+      "IDList": [
+        7070000
+      ]
+    },
+    {
+      "Text": "Unique curved sword, notched like shark\u0027s teeth.\nWeapon carried by corpse pillagers who prowl the sites of old battles.\n\nThe blade is tacky with blood and covered in hefty nicks, making it totally uneven. Life can be sinister indeed.",
+      "IDList": [
+        7080000,
+        7080100,
+        7080200,
+        7080300,
+        7080400,
+        7080500,
+        7080600,
+        7080700,
+        7080800,
+        7080900,
+        7081000,
+        7081100,
+        7081200
+      ]
+    },
+    {
+      "Text": "Unique curved sword, notched like a shark\u0027s tooth.\nStubborn bloodstains cling to the blade, which was\nonce used to cut the horns from countless Omen.",
+      "IDList": [
+        7090000,
+        7090100,
+        7090200,
+        7090300,
+        7090400,
+        7090500,
+        7090600,
+        7090700,
+        7090800,
+        7090900,
+        7091000,
+        7091100,
+        7091200
+      ]
+    },
+    {
+      "Text": "Storied sword and treasure of Castle Sol that depicts an eclipsed sun drained of color.\nOne of the legendary armaments.\n\nIn Sol, the sight of an eclipse inspires a dreadful awe, preventing an onlooker from averting his gaze.",
+      "IDList": [
+        7100000
+      ]
+    },
+    {
+      "Text": "Curved sword fashioned in the image of an ancient serpent deity and tool of a forgotten religion practiced on Mt. Gelmir.\n\nFormerly used to offer up sacrifices, this sword restores HP upon slaying an enemy.",
+      "IDList": [
+        7110000,
+        7110100,
+        7110200,
+        7110300,
+        7110400,
+        7110500,
+        7110600,
+        7110700,
+        7110800,
+        7110900,
+        7111000,
+        7111100,
+        7111200
+      ]
+    },
+    {
+      "Text": "A curved sword with a blade at both ends wielded by the Cemetery Shades, the insect-ridden grave keepers.\n\nThe blade is thin and sharp, and strong attack unleashes a far-reaching slash.",
+      "IDList": [
+        7120000,
+        7120100,
+        7120200,
+        7120300,
+        7120400,
+        7120500,
+        7120600,
+        7120700,
+        7120800,
+        7120900,
+        7121000,
+        7121100,
+        7121200
+      ]
+    },
+    {
+      "Text": "A curved sword with a single-sided blade.\nDelivers slashing attacks with its sharp blade, but is ineffective against thick armor and hides covered in tough scales.\n\nSmaller in size than most curved swords, it carves into enemies with quick, sharp cuts.",
+      "IDList": [
+        7140000,
+        7140100,
+        7140200,
+        7140300,
+        7140400,
+        7140500,
+        7140600,
+        7140700,
+        7140800,
+        7140900,
+        7141000,
+        7141100,
+        7141200
+      ]
+    },
+    {
+      "Text": "Curved sword boasting a large blade.\nThis weapon is designed to make use of its weight in combination with its sharp cutting edge.\n\nA thoroughly reliable choice of weapon for those who can master its particulars.",
+      "IDList": [
+        7150000,
+        7150100,
+        7150200,
+        7150300,
+        7150400,
+        7150500,
+        7150600,
+        7150700,
+        7150800,
+        7150900,
+        7151000,
+        7151100,
+        7151200
+      ]
+    },
+    {
+      "Text": "Greatsword forged from golden-hued meteoric ore.\nThe blade conceals gravity-manipulating magic.\n\nA weapon unique to the Onyx Lords, a race of ancients with skin of stone who were said to have risen to life when a meteor struck long ago.",
+      "IDList": [
+        8010000
+      ]
+    },
+    {
+      "Text": "This curved greatsword wielded by the brawny sellswords of Kaiden combines the blade of a scimitar with the heft of a hatchet.\n\nA difficult to handle weapon that demands much of the wielder\u0027s strength and dexterity, but with practice and ability, it can serve as a versatile weapon even on horseback.",
+      "IDList": [
+        8020000,
+        8020100,
+        8020200,
+        8020300,
+        8020400,
+        8020500,
+        8020600,
+        8020700,
+        8020800,
+        8020900,
+        8021000,
+        8021100,
+        8021200
+      ]
+    },
+    {
+      "Text": "Curved greatsword with a gently undulating blade wielded by Bloodhound Knights.\n\nA fearsome blade capable of brutal airborne attacks.",
+      "IDList": [
+        8030000,
+        8030100,
+        8030200,
+        8030300,
+        8030400,
+        8030500,
+        8030600,
+        8030700,
+        8030800,
+        8030900,
+        8031000,
+        8031100,
+        8031200
+      ]
+    },
+    {
+      "Text": "Curved greatsword wielded by Magma Wyrms. The shape resembles a dragon\u0027s jaw and is covered in hard scales.\n\nIt\u0027s said these land-bound dragons were once human heroes who partook in dragon communion, a grave transgression for which they were cursed to crawl the earth upon their bellies, shadows of their former selves.",
+      "IDList": [
+        8040000
+      ]
+    },
+    {
+      "Text": "Weapon wielded by the knights of Zamor who earned great renown during the War against the Giants.\n\nIn apparent devotion to winter, the curved blade is styled after an icy wind and imbued with a powerful frost effect.",
+      "IDList": [
+        8050000
+      ]
+    },
+    {
+      "Text": "Heavy-bladed curved sword of colossal size awarded to Omen as a tool of war. This weapon is made to take advantage of brute strength.\n\nThe pattern etched upon the blade is the remnant of a deteriorative malediction. Indeed, when bestowing a weapon, preparations must be made for taking it away.",
+      "IDList": [
+        8060000,
+        8060100,
+        8060200,
+        8060300,
+        8060400,
+        8060500,
+        8060600,
+        8060700,
+        8060800,
+        8060900,
+        8061000,
+        8061100,
+        8061200
+      ]
+    },
+    {
+      "Text": "Curved sword with a flickering flame motif.\nWielded by the Fire Monks who came from the Mountaintops of the Giants.\n\nThe monks came to the land of Liurnia in pursuit of a fugitive who stole their fire.",
+      "IDList": [
+        8070000,
+        8070100,
+        8070200,
+        8070300,
+        8070400,
+        8070500,
+        8070600,
+        8070700,
+        8070800,
+        8070900,
+        8071000,
+        8071100,
+        8071200
+      ]
+    },
+    {
+      "Text": "Curved greatsword of colossal size forged of dull iron and wielded by the beastmen of Farum Azula.\n\nThe blade is incredibly heavy, but well-balanced. Comparatively easy to wield for the damage it delivers. It\u0027s clear the beastmen possess knowledge beyond human ken.",
+      "IDList": [
+        8080000,
+        8080100,
+        8080200,
+        8080300,
+        8080400,
+        8080500,
+        8080600,
+        8080700,
+        8080800,
+        8080900,
+        8081000,
+        8081100,
+        8081200
+      ]
+    },
+    {
+      "Text": "Warped blade of shifting hue used by Morgott, the Omen King.\n\nThe accursed blood that Morgott recanted and sealed away reformed into this blade.",
+      "IDList": [
+        8100000
+      ]
+    },
+    {
+      "Text": "Large katana used by Monks of the Giants\u0027 Flame.\nThe characteristic blade has the motif\nof flickering flames.",
+      "IDList": [
+        8110000,
+        8110100,
+        8110200,
+        8110300,
+        8110400,
+        8110500,
+        8110600,
+        8110700,
+        8110800,
+        8110900,
+        8111000,
+        8111100,
+        8111200
+      ]
+    },
+    {
+      "Text": "A katana with a long single-edged curved blade.\nA unique weapon wielded by the samurai from the Land of Reeds.\n\nThe blade, with its undulating design, boasts extraordinary sharpness, and its slash attacks cause blood loss.",
+      "IDList": [
+        9000000,
+        9000100,
+        9000200,
+        9000300,
+        9000400,
+        9000500,
+        9000600,
+        9000700,
+        9000800,
+        9000900,
+        9001000,
+        9001100,
+        9001200
+      ]
+    },
+    {
+      "Text": "Katana with a ferociously long blade.\nSignature weapon of Yura, hunter of Bloody Fingers.\n\nReminiscent of a reinforced spear, its imposing length can be put to good use with powerful thrusting attacks.",
+      "IDList": [
+        9010000,
+        9010100,
+        9010200,
+        9010300,
+        9010400,
+        9010500,
+        9010600,
+        9010700,
+        9010800,
+        9010900,
+        9011000,
+        9011100,
+        9011200
+      ]
+    },
+    {
+      "Text": "Blade built into Malenia\u0027s prosthetic arm.\nThrough consecration it is resistant to rot.\n\nMalenia\u0027s war prosthesis symbolized her victories.\nSome claim to have seen wings when the weapon was raised aloft; wings of fierce determination that have never known defeat.",
+      "IDList": [
+        9020000
+      ]
+    },
+    {
+      "Text": "Katana forged from meteoric ore to dispatch lifeforms born of falling stars.\nDeals magic damage.\n\nThe blade is weighty, known to deliver slashes of such ferocity that the impact is said to resemble the crash of a falling meteor.",
+      "IDList": [
+        9030000,
+        9030100,
+        9030200,
+        9030300,
+        9030400,
+        9030500,
+        9030600,
+        9030700,
+        9030800,
+        9030900,
+        9031000,
+        9031100,
+        9031200
+      ]
+    },
+    {
+      "Text": "Weapon of Okina, swordsman from the Land of Reeds.\nA cursed weapon that has felled countless men.\n\nWhen Mohg, the Lord of Blood, first felt Okina\u0027s sword, and madness, upon his flesh, he had a proposal, to offer Okina the life of a demon, whose thirst would never go unsated.",
+      "IDList": [
+        9040000
+      ]
+    },
+    {
+      "Text": "Katana forged of glintstone.\nMasterpiece of a Sellian swordsmith.\n\nLight enwreathes the blade when sheathed, explaining its Moonveil moniker.",
+      "IDList": [
+        9060000
+      ]
+    },
+    {
+      "Text": "A weapon made by sharpening a Gravel Stone scale, thought to be the source of ancient dragon immortality, into an unclouded blade.\n\nAlas, the Dragonkin Soldiers never attained immortality, and perished as decrepit, pale imitations of their skyborn kin.",
+      "IDList": [
+        9070000
+      ]
+    },
+    {
+      "Text": "Sinister katana modeled after a serpent bone.\n\nThe densely packed row of spines that jut away from the cutting edge are coated in a lethal poison.",
+      "IDList": [
+        9080000,
+        9080100,
+        9080200,
+        9080300,
+        9080400,
+        9080500,
+        9080600,
+        9080700,
+        9080800,
+        9080900,
+        9081000,
+        9081100,
+        9081200
+      ]
+    },
+    {
+      "Text": "A sword with blades on both sides of the hilt.\nThis weapon is difficult to wield and demands high dexterity.\n\nCan be wielded with a single hand, but its true strength is unlocked with dual-handed spinning attacks.",
+      "IDList": [
+        10000000,
+        10000100,
+        10000200,
+        10000300,
+        10000400,
+        10000500,
+        10000600,
+        10000700,
+        10000800,
+        10000900,
+        10001000,
+        10001100,
+        10001200
+      ]
+    },
+    {
+      "Text": "Unique twinblade wielded by Godskin Apostles characterized by its disturbing design. One end features a sickle for slicing attacks while the other boasts a winding spike for boring into flesh.\n\nMuch skill is required to wield this weapon due to its asymmetric nature.",
+      "IDList": [
+        10010000,
+        10010100,
+        10010200,
+        10010300,
+        10010400,
+        10010500,
+        10010600,
+        10010700,
+        10010800,
+        10010900,
+        10011000,
+        10011100,
+        10011200
+      ]
+    },
+    {
+      "Text": "An attractive twinblade of fine make that prizes the chivalric way.\n\nCan be wielded with a single hand, but its true strength is unlocked with dual-handed spinning attacks.",
+      "IDList": [
+        10030000,
+        10030100,
+        10030200,
+        10030300,
+        10030400,
+        10030500,
+        10030600,
+        10030700,
+        10030800,
+        10030900,
+        10031000,
+        10031100,
+        10031200
+      ]
+    },
+    {
+      "Text": "Twinned naginata forged in the Land of Reeds.\nChosen weapon of Eleonora, Violet Bloody Finger.\n\nHer mastery of the sword was such that her onslaught was likened to a whirlwind, but now her legacy is stained by accursed blood.",
+      "IDList": [
+        10050000
+      ]
+    },
+    {
+      "Text": "Twinblade symbolizing twins Miquella and Malenia.\nMiquella and his sister were born from an\ninseparable fate.\n\nThe blades contain the Runes of both\nAbundance and Decay.",
+      "IDList": [
+        10060000
+      ]
+    },
+    {
+      "Text": "Twinblade that contain the power of the\nRune of Abundance.\nThe holy power within the blade can\ncall upon part of Miquella\u0027s own strength.",
+      "IDList": [
+        10070000
+      ]
+    },
+    {
+      "Text": "Bronze twinblade wielded by Valiant Gargoyles.\n\nJust like the wielder, the missing parts have been mended with corpse wax; a patchwork of champions.",
+      "IDList": [
+        10080000,
+        10080100,
+        10080200,
+        10080300,
+        10080400,
+        10080500,
+        10080600,
+        10080700,
+        10080800,
+        10080900,
+        10081000,
+        10081100,
+        10081200
+      ]
+    },
+    {
+      "Text": "Bronze twinblade wielded by Valiant Gargoyles, mended with blackened corpse wax.\nDeals holy damage.\n\nSuch is the mark of those who serve Maliketh, the Black Blade.",
+      "IDList": [
+        10090000,
+        10090100,
+        10090200,
+        10090300,
+        10090400,
+        10090500,
+        10090600,
+        10090700,
+        10090800,
+        10090900,
+        10091000,
+        10091100,
+        10091200
+      ]
+    },
+    {
+      "Text": "An iron bludgeon with sharp protrusions.\n\nStriking attacks have few drawbacks, potent as they are at breaking through guards and stances. Most suited to head on slugging matches.",
+      "IDList": [
+        11000000,
+        11000100,
+        11000200,
+        11000300,
+        11000400,
+        11000500,
+        11000600,
+        11000700,
+        11000800,
+        11000900,
+        11001000,
+        11001100,
+        11001200
+      ]
+    },
+    {
+      "Text": "A thick, solid lump of wood.\nWielding this striking weapon requires no skill.\n\nA simple, primitive weapon that requires only brute strength and persistence to hammer your foe into the ground.",
+      "IDList": [
+        11010000,
+        11010100,
+        11010200,
+        11010300,
+        11010400,
+        11010500,
+        11010600,
+        11010700,
+        11010800,
+        11010900,
+        11011000,
+        11011100,
+        11011200
+      ]
+    },
+    {
+      "Text": "Hard, curved club, shaped like a crescent moon.\n\nWielded instead of a curved sword by Albinaurics lacking dexterity. The only point of similarity between the two is the shape.",
+      "IDList": [
+        11030000,
+        11030100,
+        11030200,
+        11030300,
+        11030400,
+        11030500,
+        11030600,
+        11030700,
+        11030800,
+        11030900,
+        11031000,
+        11031100,
+        11031200
+      ]
+    },
+    {
+      "Text": "Battle hammer with a hard protruding beak.\nA pickaxe designed for combat, in essence.\n\nA simple but highly effective weapon, the weighty piercing attack casually rips through metal armor.",
+      "IDList": [
+        11040000,
+        11040100,
+        11040200,
+        11040300,
+        11040400,
+        11040500,
+        11040600,
+        11040700,
+        11040800,
+        11040900,
+        11041000,
+        11041100,
+        11041200
+      ]
+    },
+    {
+      "Text": "Battle hammer comprised of a globe attached to a handle. Though a bludgeon dealing strike damage, the appellative star is covered in spikes which cause blood loss.\n\nIronic given its graceful name, this weapon often reeks of blood.",
+      "IDList": [
+        11050000,
+        11050100,
+        11050200,
+        11050300,
+        11050400,
+        11050500,
+        11050600,
+        11050700,
+        11050800,
+        11050900,
+        11051000,
+        11051100,
+        11051200
+      ]
+    },
+    {
+      "Text": "A steel mace resembling a charming bouquet of roses. Each petal has a sharpened edge, leaving the roses perpetually colored with blood.\n\nThis weapon reflects White Mask Varr\u00E9\u0027s manner of speech rather well, enticing in its splendor, but full of deadly consequence.",
+      "IDList": [
+        11060000
+      ]
+    },
+    {
+      "Text": "A steel mace resembling a bouquet of roses.\n\nOn the contrary to its elaborate design,\nthe flowers are stained blood-red,\ngiving it the name \u0022Red Rose Mace\u0022.",
+      "IDList": [
+        11060100,
+        11060200,
+        11060300,
+        11060400,
+        11060500,
+        11060600,
+        11060700,
+        11060800,
+        11060900,
+        11061000,
+        11061100,
+        11061200
+      ]
+    },
+    {
+      "Text": "A club with beast fangs wrapped around the striking end. The uneven spread of fangs causes blood loss.\n\nGiven only to the toughest of demi-humans, this weapon is a badge of honor. Or so the demi-humans believe.",
+      "IDList": [
+        11070000,
+        11070100,
+        11070200,
+        11070300,
+        11070400,
+        11070500,
+        11070600,
+        11070700,
+        11070800,
+        11070900,
+        11071000,
+        11071100,
+        11071200
+      ]
+    },
+    {
+      "Text": "Hammer comprised of a large stone affixed to a metal handle. Originally a blacksmith\u0027s tool.\n\nThe art of smithing is said to have originated among the giants. This weapon\u0027s striking attacks boast ample weight behind them.",
+      "IDList": [
+        11080000,
+        11080100,
+        11080200,
+        11080300,
+        11080400,
+        11080500,
+        11080600,
+        11080700,
+        11080800,
+        11080900,
+        11081000,
+        11081100,
+        11081200
+      ]
+    },
+    {
+      "Text": "Battle hammer made to resemble flickering flames. Signature weapon of the Fire Monks, who hail from the Mountaintops of the Giants.\n\nThe unique strong attack rouses fiery combative spirit.",
+      "IDList": [
+        11090000,
+        11090100,
+        11090200,
+        11090300,
+        11090400,
+        11090500,
+        11090600,
+        11090700,
+        11090800,
+        11090900,
+        11091000,
+        11091100,
+        11091200
+      ]
+    },
+    {
+      "Text": "Golden horn of the Oracle Envoys. Profoundly weighty, its blows are sure to be felt.\n\nOriginally an instrument, but one that cannot be sounded by a mere human. Or perhaps it is too early to sound the call.",
+      "IDList": [
+        11100000
+      ]
+    },
+    {
+      "Text": "Scepter in the form of a hand grasping a pearl. Signature weapon of Sir Gideon Ofnir, the All-Knowing. The pearl stands for the world, the heavens, and an eye, representing the many forms of knowledge, never fully attainable. Even knowing that, the All-Knowing\u0027s hand grasps for it.",
+      "IDList": [
+        11110000
+      ]
+    },
+    {
+      "Text": "Mace shaped like a suspended metal droplet wielded by monks of the Eternal City.\n\nForged from liquid metal from a Silver Tear, it is thoroughly tempered until hardened.",
+      "IDList": [
+        11120000
+      ]
+    },
+    {
+      "Text": "Bludgeon made of an enormous finger sheathed in several heavy rings. Thought to have been cut from an ancestor of the Fingercreeper.\n\nSome life yet remains in this legacy of an ancient act of blasphemy, as evidenced by the barely perceptible warmth it still exudes.",
+      "IDList": [
+        11130000
+      ]
+    },
+    {
+      "Text": "Signature weapon of battlemages, hewn from hard glintstone. This club is much heavier than its size suggests, but has no magic power.\n\nSo that they not lose sight of the true essence of combat, battlemages prefer to feel the impact of their blows, fighting their opponents hand to hand.",
+      "IDList": [
+        11140000,
+        11140100,
+        11140200,
+        11140300,
+        11140400,
+        11140500,
+        11140600,
+        11140700,
+        11140800,
+        11140900,
+        11141000,
+        11141100,
+        11141200
+      ]
+    },
+    {
+      "Text": "Stone hammer made in the lands of the Numen, outside the Lands Between. The tool with which Queen Marika shattered the Elden Ring and Radagon attempted to repair it.\n\nThe hammer partially broke upon shattering the Ring, becoming splintered with rune fragments.",
+      "IDList": [
+        11150000
+      ]
+    },
+    {
+      "Text": "Club of simple design, made by fitting\nstone to a piece of lumber.\nIts small size compared to most clubs\nmake it easier to wield in close-quarters.",
+      "IDList": [
+        11160000,
+        11160100,
+        11160200,
+        11160300,
+        11160400,
+        11160500,
+        11160600,
+        11160700,
+        11160800,
+        11160900,
+        11161000,
+        11161100
+      ]
+    },
+    {
+      "Text": "Warhammer wielded by Radagon.\nForged in the age of gods, it harbors\ncolossal magic power.",
+      "IDList": [
+        11161200
+      ]
+    },
+    {
+      "Text": "A thick, solid lump of wood.\nWielding this striking weapon requires no skill.\n\nA simple, primitive weapon that requires only brute strength to swing about.",
+      "IDList": [
+        12000000,
+        12000100,
+        12000200,
+        12000300,
+        12000400,
+        12000500,
+        12000600,
+        12000700,
+        12000800,
+        12000900,
+        12001000,
+        12001100,
+        12001200
+      ]
+    },
+    {
+      "Text": "Huge thick horn carved with tree ring-like markings adapted into a bludgeoning weapon. Wielded by ancestral follower warriors.\n\nThe ancient horn is imbued with the power of ancestral spirits. A small amount of HP is restored upon defeating an enemy.",
+      "IDList": [
+        12010000,
+        12010100,
+        12010200,
+        12010300,
+        12010400,
+        12010500,
+        12010600,
+        12010700,
+        12010800,
+        12010900,
+        12011000,
+        12011100,
+        12011200
+      ]
+    },
+    {
+      "Text": "Large iron great hammer designed for gladiatorial combat. Used by duelists who were exiled from the colosseum.\n\nWeighty enough to crush armor and its wearer alike.",
+      "IDList": [
+        12020000,
+        12020100,
+        12020200,
+        12020300,
+        12020400,
+        12020500,
+        12020600,
+        12020700,
+        12020800,
+        12020900,
+        12021000,
+        12021100,
+        12021200
+      ]
+    },
+    {
+      "Text": "Huge bludgeon with sharp protrusions. An enlarged version of its smaller cousin.\n\nMaintains all the advantages of smaller bludgeons, boasting few deficiencies while being very capable at breaking enemy guards and stances. A shrewd choice for simple slugging matches.",
+      "IDList": [
+        12060000,
+        12060100,
+        12060200,
+        12060300,
+        12060400,
+        12060500,
+        12060600,
+        12060700,
+        12060800,
+        12060900,
+        12061000,
+        12061100,
+        12061200
+      ]
+    },
+    {
+      "Text": "Large curved club of hard wood, shaped like a crescent moon.\n\nWielded by Albinaurics lacking the dexterity demanded by a curved sword, and who prefer the added weight and destructive force.",
+      "IDList": [
+        12080000,
+        12080100,
+        12080200,
+        12080300,
+        12080400,
+        12080500,
+        12080600,
+        12080700,
+        12080800,
+        12080900,
+        12081000,
+        12081100,
+        12081200
+      ]
+    },
+    {
+      "Text": "Large bludgeon decorated with flowers and many-colored fabrics. Ceremonial tool used by dancers during the festivities of Dominula, Windmill Village.\n\nThe striking end is a skull too large in size to be human.\nGrants trace amounts of runes on landing attacks.",
+      "IDList": [
+        12130000,
+        12130100,
+        12130200,
+        12130300,
+        12130400,
+        12130500,
+        12130600,
+        12130700,
+        12130800,
+        12130900,
+        12131000,
+        12131100,
+        12131200
+      ]
+    },
+    {
+      "Text": "Large pickaxe designed to crack thick bedrock. Tool of sturdy miners.\n\nNot originally designed as a weapon, but very adept at piercing armor.\n\u0022Little wretches, do you think your armor harder than stone?\u0022",
+      "IDList": [
+        12140000,
+        12140100,
+        12140200,
+        12140300,
+        12140400,
+        12140500,
+        12140600,
+        12140700,
+        12140800,
+        12140900,
+        12141000,
+        12141100,
+        12141200
+      ]
+    },
+    {
+      "Text": "Great hammer with a striking end modelled to resemble five beastly claws.\n\nThe black nails protruding from golden fur are said to represent Serosh, Lord of Beasts, who went on to become King Godfrey\u0027s Regent.",
+      "IDList": [
+        12150000
+      ]
+    },
+    {
+      "Text": "Long golden horn of the Oracle Envoys. Profoundly weighty, its blows are sure to be felt.\n\nOriginally an instrument, but one that cannot be sounded by a mere human. Or perhaps it is too early to sound the call.",
+      "IDList": [
+        12160000
+      ]
+    },
+    {
+      "Text": "Candlestand used in worship of Birac, the most hallowed Monk Prelate of the Giants\u0027 Flame. Concerned over the lazy arrogance with which the monks treated the Flame, Birac severed his own head as a lesson to the others, intending it be used as a candlestand. His faith yet smolders from within the cranial vessel.",
+      "IDList": [
+        12170000
+      ]
+    },
+    {
+      "Text": "Huge bludgeon with three stars at the striking end. Though primarily a striking weapon, the stars\u0027 spikes cause blood loss.\n\nA blood-stained star is an ill omen, a fact not lost upon those against whom this weapon is brought to bear. Landing attacks slightly restores HP.",
+      "IDList": [
+        12180000,
+        12180100,
+        12180200,
+        12180300,
+        12180400,
+        12180500,
+        12180600,
+        12180700,
+        12180800,
+        12180900,
+        12181000,
+        12181100,
+        12181200
+      ]
+    },
+    {
+      "Text": "Weapon made from an ordinary stone brick. Wielded by a laborer who lead a rebellion, and later become a champion himself.\n\nEven among other bludgeons of its size, this weapon is especially weighty. The strength of a giant is required to wield it.",
+      "IDList": [
+        12190000,
+        12190100,
+        12190200,
+        12190300,
+        12190400,
+        12190500,
+        12190600,
+        12190700,
+        12190800,
+        12190900,
+        12191000,
+        12191100,
+        12191200
+      ]
+    },
+    {
+      "Text": "Scepter in the shape of a serpent devouring the world. This weapon will one day become the very symbol of the Lord of Blasphemy.\nOne of the legendary armaments.\n\nA vision of the future briefly seen by Rykard in his final moments before being devoured by the great serpent.",
+      "IDList": [
+        12200000
+      ]
+    },
+    {
+      "Text": "Large iron great hammer designed for gladiatorial combat, now festering with scarlet rot.\n\nWeighty enough to crush armor and its wearer alike.",
+      "IDList": [
+        12210000,
+        12210100,
+        12210200,
+        12210300,
+        12210400,
+        12210500,
+        12210600,
+        12210700,
+        12210800,
+        12210900,
+        12211000,
+        12211100,
+        12211200
+      ]
+    },
+    {
+      "Text": "A flail with two additional bludgeoning heads.\nWeapon of the Night\u0027s Cavalry who ride funeral steeds.\n\nThe large spikes make it highly effective at inducing blood loss, but also demand higher dexterity to wield.",
+      "IDList": [
+        13000000,
+        13000100,
+        13000200,
+        13000300,
+        13000400,
+        13000500,
+        13000600,
+        13000700,
+        13000800,
+        13000900,
+        13001000,
+        13001100,
+        13001200
+      ]
+    },
+    {
+      "Text": "Weapon consisting of a bludgeoning head attached to a handle by a chain. The iron ball is spiked and induces blood loss.\n\nBlows from this weapon cannot be parried. The charge attack whirls the iron ball around for increased force before striking.",
+      "IDList": [
+        13010000,
+        13010100,
+        13010200,
+        13010300,
+        13010400,
+        13010500,
+        13010600,
+        13010700,
+        13010800,
+        13010900,
+        13011000,
+        13011100,
+        13011200
+      ]
+    },
+    {
+      "Text": "Three bludgeoning copper heads attached to a handle by chains. Signature weapon of Necromancer Garris, the heretical sage.\n\nThe heads were made to resemble those of his wife and two children.",
+      "IDList": [
+        13020000
+      ]
+    },
+    {
+      "Text": "Flail which deals magic damage, having been imbued with power by the remembrance of Astel.\n\nFormed of the same many-colored star debris that comprised the form of the Naturalborn of the Void.",
+      "IDList": [
+        13030000
+      ]
+    },
+    {
+      "Text": "A spiked iron tube attached by a chain wielded by Mad Pumpkin Heads.\n\nEspecially large for a flail, wielding it requires more strength than it does dexterity.",
+      "IDList": [
+        13040000,
+        13040100,
+        13040200,
+        13040300,
+        13040400,
+        13040500,
+        13040600,
+        13040700,
+        13040800,
+        13040900,
+        13041000,
+        13041100,
+        13041200
+      ]
+    },
+    {
+      "Text": "A thick, heavy blade attached to a handle. A versatile, standard weapon\n\nCapable of powerful attacks thanks to the weighty blade, these weapons are also regarded for their powerful charge attacks.",
+      "IDList": [
+        14000000,
+        14000100,
+        14000200,
+        14000300,
+        14000400,
+        14000500,
+        14000600,
+        14000700,
+        14000800,
+        14000900,
+        14001000,
+        14001100,
+        14001200
+      ]
+    },
+    {
+      "Text": "Peculiar hatchet wielded by imps.\n\nThe gently undulating forked blade is known as an \u0022imp\u0027s tongue\u0022 and causes blood loss.",
+      "IDList": [
+        14010000,
+        14010100,
+        14010200,
+        14010300,
+        14010400,
+        14010500,
+        14010600,
+        14010700,
+        14010800,
+        14010900,
+        14011000,
+        14011100,
+        14011200
+      ]
+    },
+    {
+      "Text": "Commonly known as a hatchet, this smaller variety of axe is an everyday work tool.\n\nDespite its short reach, it is easy to handle, exceling in successive attacks.",
+      "IDList": [
+        14020000,
+        14020100,
+        14020200,
+        14020300,
+        14020400,
+        14020500,
+        14020600,
+        14020700,
+        14020800,
+        14020900,
+        14021000,
+        14021100,
+        14021200
+      ]
+    },
+    {
+      "Text": "Axe made from a herbivore\u0027s skull. Weapon of the ancestral followers who disdain metal.\n\nThis axe is more of a bludgeon; it forgoes a bladed edge, instead using the beast\u0027s molar teeth to buffet foes, dealing strike damage.",
+      "IDList": [
+        14030000,
+        14030100,
+        14030200,
+        14030300,
+        14030400,
+        14030500,
+        14030600,
+        14030700,
+        14030800,
+        14030900,
+        14031000,
+        14031100,
+        14031200
+      ]
+    },
+    {
+      "Text": "Fairly large iron cleaver, commonly used by the maltreated Misbegotten.\n\nSteeped in resentment, these weapons are swung wildly and relentlessly, often after rushing up to foes. ",
+      "IDList": [
+        14040000,
+        14040100,
+        14040200,
+        14040300,
+        14040400,
+        14040500,
+        14040600,
+        14040700,
+        14040800,
+        14040900,
+        14041000,
+        14041100,
+        14041200
+      ]
+    },
+    {
+      "Text": "Unique weapon wielded by young Albinaurics, this sword is modelled after the ripples that are thought to be the origin of their species.\n\nIts attack power is greatly enhanced with one\u0027s arcane attribute.",
+      "IDList": [
+        14050000,
+        14050100,
+        14050200,
+        14050300,
+        14050400,
+        14050500,
+        14050600,
+        14050700,
+        14050800,
+        14050900,
+        14051000,
+        14051100,
+        14051200
+      ]
+    },
+    {
+      "Text": "Cleaver decorated with many-colored fabrics. Ceremonial tool used by dancers during the festivities of Dominula, Windmill Village.\n\nCrafted from human bone.\nGrants trace amounts of runes upon landing attacks.",
+      "IDList": [
+        14060000,
+        14060100,
+        14060200,
+        14060300,
+        14060400,
+        14060500,
+        14060600,
+        14060700,
+        14060800,
+        14060900,
+        14061000,
+        14061100,
+        14061200
+      ]
+    },
+    {
+      "Text": "A hatchet with a frost-coated blade. One of several gifts given by Castle Sol in the distant north.\n\nKnown as \u0022freezing fog,\u0022 the blade is thought to be a dragon\u0027s scale. Inflicts a powerful frost effect.",
+      "IDList": [
+        14080000
+      ]
+    },
+    {
+      "Text": "Single-sided axe used by the warriors of the highlands.\n\nBrave combatants begin battle by crying out their names. Roars are enhanced by this weapon.",
+      "IDList": [
+        14100000,
+        14100100,
+        14100200,
+        14100300,
+        14100400,
+        14100500,
+        14100600,
+        14100700,
+        14100800,
+        14100900,
+        14101000,
+        14101100,
+        14101200
+      ]
+    },
+    {
+      "Text": "Hatchet used in ancient sacrificial rite. A Deathbird is depicted as a malevolent deity.\n\nThe power of the rite yet lingers. A small amount of FP is restored upon slaying a foe.",
+      "IDList": [
+        14110000,
+        14110100,
+        14110200,
+        14110300,
+        14110400,
+        14110500,
+        14110600,
+        14110700,
+        14110800,
+        14110900,
+        14111000,
+        14111100,
+        14111200
+      ]
+    },
+    {
+      "Text": "Usher of Death, Rosus, who shows the path to the catacombs throughout the Lands Between, is depicted on this ritual axe.\n\nThe dead easily lose their way, and have always been in sore need of a guiding hand.",
+      "IDList": [
+        14120000
+      ]
+    },
+    {
+      "Text": "Axe of rotted bronze.\nA burial gift devoted to the deaths of heroes.\nPieces of meat clinging to the blade have\nbegun to form into mortuary wax.",
+      "IDList": [
+        14130000,
+        14130100,
+        14130200,
+        14130300,
+        14130400,
+        14130500,
+        14130600,
+        14130700,
+        14130800,
+        14130900,
+        14131000,
+        14131100,
+        14131200
+      ]
+    },
+    {
+      "Text": "Battle axe designed to resemble a hawk, with its wings comprising the blade. Signature weapon of warriors who strive to remain one with the storm, despite being so far from their place of birth.\n\nTheir hearts are proud, and thereby easily undone.",
+      "IDList": [
+        14140000
+      ]
+    },
+    {
+      "Text": "Greataxe akin to a huge lump of iron. Recognized as the weapon of choice of badland chieftains.\n\nToo heavy to be wielded by those of merely ordinary strength, blows from this axe will flatten enemies, and the force of its charged attack is a sight to behold.",
+      "IDList": [
+        15000000,
+        15000100,
+        15000200,
+        15000300,
+        15000400,
+        15000500,
+        15000600,
+        15000700,
+        15000800,
+        15000900,
+        15001000,
+        15001100,
+        15001200
+      ]
+    },
+    {
+      "Text": "Oversized double-headed axe with a bizarre, almost melted appearance.\n\nBrute strength is the only thing required to wield this weapon, which appears to have taken quite the beating itself.",
+      "IDList": [
+        15010000,
+        15010100,
+        15010200,
+        15010300,
+        15010400,
+        15010500,
+        15010600,
+        15010700,
+        15010800,
+        15010900,
+        15011000,
+        15011100,
+        15011200
+      ]
+    },
+    {
+      "Text": "The blade of this huge, loathsome cleaver comprises a row of amputated Omen horns. Weapon of slaughter wielded by Omenkillers. \n\nThe hideous horns cause blood loss, adding vibrant colors to the ongoing mayhem.",
+      "IDList": [
+        15020000,
+        15020100,
+        15020200,
+        15020300,
+        15020400,
+        15020500,
+        15020600,
+        15020700,
+        15020800,
+        15020900,
+        15021000,
+        15021100,
+        15021200
+      ]
+    },
+    {
+      "Text": "Greataxe with a large, arcing blade and long handle. The \u0022Crescent Moon\u0022 of its name is said to have been spurred by nostalgia.\n\nSpecializes in sweeping through foes by making use of its long handle.",
+      "IDList": [
+        15030000,
+        15030100,
+        15030200,
+        15030300,
+        15030400,
+        15030500,
+        15030600,
+        15030700,
+        15030800,
+        15030900,
+        15031000,
+        15031100,
+        15031200
+      ]
+    },
+    {
+      "Text": "Greataxe wielded by Godrick the Grafted. This golden battleaxe is emblazoned with the figure of a beast, representing the strength of Godfrey, First Elden Lord and patriarch of the golden lineage.\n\n\u0022I command thee kneel! For I am the lord of all that is golden!\u0022",
+      "IDList": [
+        15040000
+      ]
+    },
+    {
+      "Text": "Large iron axe with a long handle. Weapon of the maltreated Misbegotten.\n\nMaking use of the force generated by its length, this weapon\u0027s resentment-charged blows are difficult to stop.",
+      "IDList": [
+        15050000,
+        15050100,
+        15050200,
+        15050300,
+        15050400,
+        15050500,
+        15050600,
+        15050700,
+        15050800,
+        15050900,
+        15051000,
+        15051100,
+        15051200
+      ]
+    },
+    {
+      "Text": "A rusty anchor wielded as a weapon. Each of its four flukes is thick and sharp, enabling piercing attacks.\n\nWhen the Tarnished left the Lands Between with their Lord, one boat alone was said to have been left behind.",
+      "IDList": [
+        15060000,
+        15060100,
+        15060200,
+        15060300,
+        15060400,
+        15060500,
+        15060600,
+        15060700,
+        15060800,
+        15060900,
+        15061000,
+        15061100,
+        15061200
+      ]
+    },
+    {
+      "Text": "Bulky cleaver welded to a long haft. Said to have been used to dispatch the remnants of defeated armies, felling them like timber.\n\nPerhaps that is the reason it excels at critical hits.",
+      "IDList": [
+        15080000,
+        15080100,
+        15080200,
+        15080300,
+        15080400,
+        15080500,
+        15080600,
+        15080700,
+        15080800,
+        15080900,
+        15081000,
+        15081100,
+        15081200
+      ]
+    },
+    {
+      "Text": "Distinctive horn suffused with the power of ancestral spirits. This large, wing-shaped specimen is wielded as a weapon of spirit worship.\n\nIn the ancestral spirit-worshipping faith, these are considered envoys\u0027 wings, made to reap the lives of beings which experience no sprouting.",
+      "IDList": [
+        15110000
+      ]
+    },
+    {
+      "Text": "Huge carving knife made to cleanly butcher the human body. Signature weapon of the Ogress Anastasia, known to have eaten countless Tarnished while disguised as a Finger Maiden.\n\nRestores a very small amount of HP when it squarely strikes an enemy.",
+      "IDList": [
+        15120000,
+        15120100,
+        15120200,
+        15120300,
+        15120400,
+        15120500,
+        15120600,
+        15120700,
+        15120800,
+        15120900,
+        15121000,
+        15121100,
+        15121200
+      ]
+    },
+    {
+      "Text": "Bronze greataxe wielded by Valiant Gargoyles.\n\nJust like the wielder, the missing parts have been mended with corpse wax; a patchwork of champions.",
+      "IDList": [
+        15130000,
+        15130100,
+        15130200,
+        15130300,
+        15130400,
+        15130500,
+        15130600,
+        15130700,
+        15130800,
+        15130900,
+        15131000,
+        15131100,
+        15131200
+      ]
+    },
+    {
+      "Text": "Bronze greataxe wielded by Valiant Gargoyles, mended with blackened corpse wax.\nDeals holy damage.\n\nSuch is the mark of those who serve Maliketh, the Black Blade.",
+      "IDList": [
+        15140000
+      ]
+    },
+    {
+      "Text": "Greataxe wielded by the gargoyles\nserving under Maliketh.",
+      "IDList": [
+        15140100,
+        15140200,
+        15140300,
+        15140400,
+        15140500,
+        15140600,
+        15140700,
+        15140800,
+        15140900,
+        15141000,
+        15141100,
+        15141200
+      ]
+    },
+    {
+      "Text": "An exceedingly plain spear of modest weight.\n\nSimple to wield compared to many of its peers, its strong attack unleashes a series of successive piercing thrusts.",
+      "IDList": [
+        16000000,
+        16000100,
+        16000200,
+        16000300,
+        16000400,
+        16000500,
+        16000600,
+        16000700,
+        16000800,
+        16000900,
+        16001000,
+        16001100,
+        16001200
+      ]
+    },
+    {
+      "Text": "Weapon comprised of a blade attached to a long haft.\n\nA far-reaching piercing weapon, it can be wielded from behind the safety of a raised shield. Very effective against mounted foes.",
+      "IDList": [
+        16010000,
+        16010100,
+        16010200,
+        16010300,
+        16010400,
+        16010500,
+        16010600,
+        16010700,
+        16010800,
+        16010900,
+        16011000,
+        16011100,
+        16011200
+      ]
+    },
+    {
+      "Text": "Spear fashioned from pure crystal; a deed impossible for a human. Enwreathed with powerful magic, its attack scales with intelligence. The inscrutable Crystalians have but one clear purpose; to safeguard their crystals unto the end. One theory posits that they yearn for the return of their creator who will carve for them new brethren.",
+      "IDList": [
+        16020000
+      ]
+    },
+    {
+      "Text": "Harpoon with a tip made from a sharpened meteorite shard. Wielded by the claymen who infest dynastic remains.\n\nThe blade emits a faint light and deals magic damage.",
+      "IDList": [
+        16030000,
+        16030100,
+        16030200,
+        16030300,
+        16030400,
+        16030500,
+        16030600,
+        16030700,
+        16030800,
+        16030900,
+        16031000,
+        16031100,
+        16031200
+      ]
+    },
+    {
+      "Text": "Spear of the Cleanrot Knights who fought alongside Malenia, Blade of Miquella.\n\nThe winged golden blade deals holy damage. The diminutive shield is blessed with an incantation that wards off rot.",
+      "IDList": [
+        16040000
+      ]
+    },
+    {
+      "Text": "Spear used by knights in service of Malenia,\nthe twin sister who possessed the Rune of Decay.\nWith its sharp tip, the weapon specializes in\nrunning opponents through.",
+      "IDList": [
+        16040100,
+        16040200,
+        16040300,
+        16040400,
+        16040500,
+        16040600,
+        16040700,
+        16040800,
+        16040900,
+        16041000,
+        16041100,
+        16041200
+      ]
+    },
+    {
+      "Text": "Spear with a wide tip.\n\nIn addition to its thrusting attacks, this highly versatile weapon can be swung to sweep through foes.",
+      "IDList": [
+        16050000,
+        16050100,
+        16050200,
+        16050300,
+        16050400,
+        16050500,
+        16050600,
+        16050700,
+        16050800,
+        16050900,
+        16051000,
+        16051100,
+        16051200
+      ]
+    },
+    {
+      "Text": "Rake decorated with many-colored fabrics. Ceremonial tool used by dancers during the festivities of Dominula, Windmill Village.\n\nCrafted from human bone.\nGrants trace amounts of runes upon landing attacks.",
+      "IDList": [
+        16060000,
+        16060100,
+        16060200,
+        16060300,
+        16060400,
+        16060500,
+        16060600,
+        16060700,
+        16060800,
+        16060900,
+        16061000,
+        16061100,
+        16061200
+      ]
+    },
+    {
+      "Text": "A longspear featuring an especially lengthy handle.\n\nSpecialized for use from long distances, it boasts the longest reach of any melee weapon. Incredibly useful even against foes on horseback, but hard to wield in cramped spaces.",
+      "IDList": [
+        16070000,
+        16070100,
+        16070200,
+        16070300,
+        16070400,
+        16070500,
+        16070600,
+        16070700,
+        16070800,
+        16070900,
+        16071000,
+        16071100,
+        16071200
+      ]
+    },
+    {
+      "Text": "Torch fastened to a long pole. Lights up dark areas, but cannot be raised overhead.\n\nUsed by soldiers on watch, its attacks set foes aflame.",
+      "IDList": [
+        16080000
+      ]
+    },
+    {
+      "Text": "Spear whittled from the weapon wielded by Gransax.\nOne of the legendary armaments.\n\nA great ancient dragon, Gransax once rained calamity upon the Royal Capital\u2014the only time in historical record that Leyndell\u0027s walls have fallen. This marked the dawn of the war against the ancient dragons.",
+      "IDList": [
+        16090000
+      ]
+    },
+    {
+      "Text": "Weapon consisting of a three-pronged blade affixed to a long pole. The long central blade closely resembles a katana.\n\nA weapon of the Land of Reeds, known for its ability to be wielded as a spear while still being capable of performing slashing attacks.",
+      "IDList": [
+        16110000,
+        16110100,
+        16110200,
+        16110300,
+        16110400,
+        16110500,
+        16110600,
+        16110700,
+        16110800,
+        16110900,
+        16111000,
+        16111100,
+        16111200
+      ]
+    },
+    {
+      "Text": "Ritual spear used by priests of old who were permitted to come among the Deathbirds.\n\nThe priests became guardians of the birds through the rite of Death, which also serves as an oath sworn to their distant resurrection.",
+      "IDList": [
+        16120000
+      ]
+    },
+    {
+      "Text": "Instrument of torture used on nobles behind the curtain at the Volcano Manor of Mt. Gelmir.\n\nIts numerous spikes pierce the flesh, then singe the wounds with flame. The smell of burnt blood induces despair in the victim. A candlestick conceived by a thorough mind.",
+      "IDList": [
+        16130000
+      ]
+    },
+    {
+      "Text": "Weapon comprised of a spiked cylinder attached to a long pole. Capable of dealing strike damage when swung. The spikes induce blood loss.\n\nWeapon of the Marionette Soldiers employed by sorcerers.",
+      "IDList": [
+        16140000,
+        16140100,
+        16140200,
+        16140300,
+        16140400,
+        16140500,
+        16140600,
+        16140700,
+        16140800,
+        16140900,
+        16141000,
+        16141100,
+        16141200
+      ]
+    },
+    {
+      "Text": "Commonly used iron spear with no notable traits.\nThe blade is severely rusted.",
+      "IDList": [
+        16150000,
+        16150100,
+        16150200,
+        16150300,
+        16150400,
+        16150500,
+        16150600,
+        16150700,
+        16150800,
+        16150900,
+        16151000,
+        16151100,
+        16151200
+      ]
+    },
+    {
+      "Text": "Spear fashioned from pure crystal; a deed impossible for a human.\nIt festers with scarlet rot.\n\nEnwreathed with powerful magic, its attack scales with intelligence.",
+      "IDList": [
+        16160000
+      ]
+    },
+    {
+      "Text": "Trident of Mohg, Lord of Blood. A sacred spear that will come to symbolize his dynasty.\n\nAs well as serving as a weapon, it is an instrument of communion with an outer god who bestows power upon accursed blood. The mother of truth desires a wound.",
+      "IDList": [
+        17010000
+      ]
+    },
+    {
+      "Text": "Siluria\u0027s Tree, weapon of one of the two honored as foremost among the Crucible Knights.\n\nThe primordial form of the Erdtree is close in nature to life itself, and this spear, modeled on its crucible, is imbued with ancient holy essence. ",
+      "IDList": [
+        17020000
+      ]
+    },
+    {
+      "Text": "Weapon that serves as both greatsword and spear. Thought to have been used to hunt an immortal great serpent in the distant past, it manifests a long blade of light when facing such a creature. When their master\u0027s heroic aspirations degenerated into mere greed, his men searched for a weapon with which they might halt their lord.",
+      "IDList": [
+        17030000
+      ]
+    },
+    {
+      "Text": "War spear singed and blistered by fingers, used by Vyke, Knight of the Roundtable Hold.\n\nLike Vyke himself, it has been tormented by the yellow flame of frenzy from within.",
+      "IDList": [
+        17050000
+      ]
+    },
+    {
+      "Text": "Considered a type of greatspear, this weapon has no blade, but instead features a long, conical body designed to pierce.\n\nThough heavy and hard to wield, this weapon displays its worth in horseback combat whether mounted or even on foot.",
+      "IDList": [
+        17060000,
+        17060100,
+        17060200,
+        17060300,
+        17060400,
+        17060500,
+        17060600,
+        17060700,
+        17060800,
+        17060900,
+        17061000,
+        17061100,
+        17061200
+      ]
+    },
+    {
+      "Text": "Golden spear with tree-like design. Wielded by knights employed as palace guards in the Royal Capital of Leyndell.\nDeals holy damage.\n\nRequiring superior dexterity to wield, this greatspear can perform consecutive thrust attacks despite its larger size.",
+      "IDList": [
+        17070000,
+        17070100,
+        17070200,
+        17070300,
+        17070400,
+        17070500,
+        17070600,
+        17070700,
+        17070800,
+        17070900,
+        17071000,
+        17071100,
+        17071200
+      ]
+    },
+    {
+      "Text": "A long-handled polearm that combines the functions of both axe and spear.\n\nCan be used to press a single enemy with continuous thrusting attacks, or swept at groups, taking advantage of its great reach and cleaving blade. A versatile weapon for any situation.",
+      "IDList": [
+        18000000,
+        18000100,
+        18000200,
+        18000300,
+        18000400,
+        18000500,
+        18000600,
+        18000700,
+        18000800,
+        18000900,
+        18001000,
+        18001100,
+        18001200
+      ]
+    },
+    {
+      "Text": "Glaive made from a hard, sharpened shell. Wielded by the pests who emerged from the Swamp of Aeonia.\nSlightly increases non-physical damage negation.\n\nThough men might recognize the keen intellect of the pests evidenced by this spear\u0027s uncanny design, it will never be understood by them.",
+      "IDList": [
+        18010000,
+        18010100,
+        18010200,
+        18010300,
+        18010400,
+        18010500,
+        18010600,
+        18010700,
+        18010800,
+        18010900,
+        18011000,
+        18011100,
+        18011200
+      ]
+    },
+    {
+      "Text": "This polearm features a hard, sharpened beak-like spike attached to its head, designed to pierce armor.\n\nThough designed mainly as a thrusting weapon, its long handle can be utilized to get around an enemy\u0027s guard with a sideward sweeping attack.",
+      "IDList": [
+        18020000,
+        18020100,
+        18020200,
+        18020300,
+        18020400,
+        18020500,
+        18020600,
+        18020700,
+        18020800,
+        18020900,
+        18021000,
+        18021100,
+        18021200
+      ]
+    },
+    {
+      "Text": "A finely-crafted halberd intricately engraved with an ancient motif.\nGiven to knights who, whether by misfortune or misdeed, were forced to abandon their homes.\n\nMost of these knights were sent to the fringes, where they were forced to start anew with only despair for company.",
+      "IDList": [
+        18030000,
+        18030100,
+        18030200,
+        18030300,
+        18030400,
+        18030500,
+        18030600,
+        18030700,
+        18030800,
+        18030900,
+        18031000,
+        18031100,
+        18031200
+      ]
+    },
+    {
+      "Text": "A beaten red battle standard is furled around this time-worn halberd.\n\nEven after his lord was fled, Commander O\u0027Neil continued to brandish this flag in the devastation of the rot-eaten field of battle, the sole veteran who remembers this battle with pride.",
+      "IDList": [
+        18040000
+      ]
+    },
+    {
+      "Text": "A jet-black glaive with a blade as weighty as a bludgeon. Weapon of the Night\u0027s Cavalry who ride funeral steeds.\n\nThis glaive excels at weighty slash attacks that crash into foes, making it a powerful weapon even on horseback.",
+      "IDList": [
+        18050000,
+        18050100,
+        18050200,
+        18050300,
+        18050400,
+        18050500,
+        18050600,
+        18050700,
+        18050800,
+        18050900,
+        18051000,
+        18051100,
+        18051200
+      ]
+    },
+    {
+      "Text": "Weapon wielded by young Albinaurics.\n\nThe blade is said to resemble a partial image of a ripple, and its attack power scales with one\u0027s arcane attribute.",
+      "IDList": [
+        18060000,
+        18060100,
+        18060200,
+        18060300,
+        18060400,
+        18060500,
+        18060600,
+        18060700,
+        18060800,
+        18060900,
+        18061000,
+        18061100,
+        18061200
+      ]
+    },
+    {
+      "Text": "A weapon comprised of a saw blade attached to a long grip. Brandished by the vulgar militia, its serrated edge is very effective at inflicting blood loss. The saw is said to also be used to cut up bodies to feed the militia, but there are no firsthand witnesses to confirm the dire rumor.",
+      "IDList": [
+        18070000,
+        18070100,
+        18070200,
+        18070300,
+        18070400,
+        18070500,
+        18070600,
+        18070700,
+        18070800,
+        18070900,
+        18071000,
+        18071100,
+        18071200
+      ]
+    },
+    {
+      "Text": "Weighty halberd forged of gold. Wielded by the Order of Tree Sentinels, heavily equipped knights.\nDeals holy damage.\n\nA masterfully crafted weapon that lives up to its heft, but is difficult for one of mere human strength to wield.",
+      "IDList": [
+        18080000,
+        18080100,
+        18080200,
+        18080300,
+        18080400,
+        18080500,
+        18080600,
+        18080700,
+        18080800,
+        18080900,
+        18081000,
+        18081100,
+        18081200
+      ]
+    },
+    {
+      "Text": "Weapon comprised of a sharp blade affixed to a long grip. It is in fact a sickle repurposed to be a tool of war.\n\nThis far-reaching weapon excels at slashing attacks.",
+      "IDList": [
+        18090000,
+        18090100,
+        18090200,
+        18090300,
+        18090400,
+        18090500,
+        18090600,
+        18090700,
+        18090800,
+        18090900,
+        18091000,
+        18091100,
+        18091200
+      ]
+    },
+    {
+      "Text": "Intricately crafted silver war sickle wielded by Loretta, Knight of the Haligtree.\n\nOriginally given for service as a personal guard to Carian royalty, the weapon\u0027s blue glintstone has been replaced with unalloyed gold.",
+      "IDList": [
+        18100000
+      ]
+    },
+    {
+      "Text": "Weapon comprising a long handle and broad blade sharpened from the hard wood of old trees.\n\nWielded by guardians of the Minor Erdtrees, known as experts in the arts of combat. The power of this weapon scales greatly with dexterity.",
+      "IDList": [
+        18110000,
+        18110100,
+        18110200,
+        18110300,
+        18110400,
+        18110500,
+        18110600,
+        18110700,
+        18110800,
+        18110900,
+        18111000,
+        18111100,
+        18111200
+      ]
+    },
+    {
+      "Text": "A hooked blade attached to a long handle. Wielded by the vulgar militia, its attacks can slip through an enemy\u0027s guard.\n\nThe vulgar militia are the undecorated stewards of rancid, scorched battlefields that none dare approach, and forbidden domains better forgotten by the rest of the world.",
+      "IDList": [
+        18130000,
+        18130100,
+        18130200,
+        18130300,
+        18130400,
+        18130500,
+        18130600,
+        18130700,
+        18130800,
+        18130900,
+        18131000,
+        18131100,
+        18131200
+      ]
+    },
+    {
+      "Text": "Halberd shaped like a dragon, enwreathed with both ice and lightning.\n\nAlas, the Dragonkin Soldiers never attained immortality, and perished as decrepit, pale imitations of their skyborn kin.",
+      "IDList": [
+        18140000
+      ]
+    },
+    {
+      "Text": "Relatively large halberd with a striking point\nmodeled on a dragon.\nA one-of-a-kind masterwork made by\na weaponsmith who was enamored with\ndragons and their strength.",
+      "IDList": [
+        18140100,
+        18140200,
+        18140300,
+        18140400,
+        18140500,
+        18140600,
+        18140700,
+        18140800,
+        18140900,
+        18141000,
+        18141100,
+        18141200
+      ]
+    },
+    {
+      "Text": "Bronze halberd wielded by Valiant Gargoyles.\n\nJust like the wielder, the missing parts have been mended with corpse wax; a patchwork of champions.",
+      "IDList": [
+        18150000,
+        18150100,
+        18150200,
+        18150300,
+        18150400,
+        18150500,
+        18150600,
+        18150700,
+        18150800,
+        18150900,
+        18151000,
+        18151100,
+        18151200
+      ]
+    },
+    {
+      "Text": "Bronze halberd wielded by Valiant Gargoyles, mended with blackened corpse wax.\nDeals holy damage.\n\nSuch is the mark of those who serve Maliketh, the Black Blade.",
+      "IDList": [
+        18160000
+      ]
+    },
+    {
+      "Text": "Halberd wielded by the gargoyles\nserving under Maliketh.",
+      "IDList": [
+        18160100,
+        18160200,
+        18160300,
+        18160400,
+        18160500,
+        18160600,
+        18160700,
+        18160800,
+        18160900,
+        18161000,
+        18161100,
+        18161200
+      ]
+    },
+    {
+      "Text": "Large scythe featuring a long, slender blade. Designed to reap, this weapon is capable of rapidly inflicting blood loss while also slipping through an enemy\u0027s guard.\n\nIn the hands of a highly dexterous wielder it is capable of striking fear into the heart of any foe.",
+      "IDList": [
+        19000000,
+        19000100,
+        19000200,
+        19000300,
+        19000400,
+        19000500,
+        19000600,
+        19000700,
+        19000800,
+        19000900,
+        19001000,
+        19001100,
+        19001200
+      ]
+    },
+    {
+      "Text": "Greatscythe comprised of a large blade affixed to a crooked stick. Weapon wielded by the aged grave keepers who tend the forgotten graveyards throughout the Lands Between.\n\nThis weapon is said to have served as a charm against evil spirits in times of old.",
+      "IDList": [
+        19010000,
+        19010100,
+        19010200,
+        19010300,
+        19010400,
+        19010500,
+        19010600,
+        19010700,
+        19010800,
+        19010900,
+        19011000,
+        19011100,
+        19011200
+      ]
+    },
+    {
+      "Text": "War scythe of the Cleanrot Knights who fought alongside Malenia, Blade of Miquella.\n\nThis was the weapon of commanders in Malenia\u0027s army, and the half-halo blade deals holy damage.",
+      "IDList": [
+        19020000
+      ]
+    },
+    {
+      "Text": "Scythe used both for collecting\nand offering up the dead.\nThe blade itself seems to be\na tortured, maddened thing.",
+      "IDList": [
+        19050000
+      ]
+    },
+    {
+      "Text": "Sacred scythe resembling a pair of white wings. Deals holy damage.\n\nAccording to pagan belief, white-winged maidens are said to be Death\u0027s gentle envoys.",
+      "IDList": [
+        19060000
+      ]
+    },
+    {
+      "Text": "A leather whip. Not originally used for combat, but as an instrument of pain.\n\nThough its supple attacks cannot be thwarted by parrying or even guarding, it is incapable of dealing critical hits.",
+      "IDList": [
+        20000000,
+        20000100,
+        20000200,
+        20000300,
+        20000400,
+        20000500,
+        20000600,
+        20000700,
+        20000800,
+        20000900,
+        20001000,
+        20001100,
+        20001200
+      ]
+    },
+    {
+      "Text": "Hefty whip covered in crimson thorns. Weapon of the Prelates who lead the Fire Monks. A device of fearsome religious encouragement, it is fashioned in the image of the briars of sin.\n\nVery effective at inflicting blood loss.",
+      "IDList": [
+        20020000,
+        20020100,
+        20020200,
+        20020300,
+        20020400,
+        20020500,
+        20020600,
+        20020700,
+        20020800,
+        20020900,
+        20021000,
+        20021100,
+        20021200
+      ]
+    },
+    {
+      "Text": "This ritual implement is a three pronged candlestick with solid flames formed of the magma of Mt. Gelmir.\n\nWhen wielded as a weapon, the flames become supple whips of lava.",
+      "IDList": [
+        20030000
+      ]
+    },
+    {
+      "Text": "Whip with a unique three-headed shape.\n\nThe power of flame dwells within, and when\nimbued with magic, lava spews from its end.",
+      "IDList": [
+        20030100,
+        20030200,
+        20030300,
+        20030400,
+        20030500,
+        20030600,
+        20030700,
+        20030800,
+        20030900,
+        20031000,
+        20031100,
+        20031200
+      ]
+    },
+    {
+      "Text": "Metal whip formed of razor-sharp chain-link blades that have the appearance of flower petals. This work of art is handed down through the generations of the illustrious House Hoslow.\nHigh dexterity is required to wield this weapon, but it excels at inflicting devastating blood loss.\n\u0022The tale of House Hoslow is told in blood.\u0022",
+      "IDList": [
+        20050000,
+        20050100,
+        20050200,
+        20050300,
+        20050400,
+        20050500,
+        20050600,
+        20050700,
+        20050800,
+        20050900,
+        20051000,
+        20051100,
+        20051200
+      ]
+    },
+    {
+      "Text": "Hefty whip woven from the flame-red hair of a Fire Giant.\n\nEvery giant is red of hair, and Radagon was said to have despised his own red locks. Perhaps that was a curse of their kind.",
+      "IDList": [
+        20060000
+      ]
+    },
+    {
+      "Text": "This weapon made of extremely thin, flexible blades of metal is wielded like a whip by Nightfolk warriors.\n\nThough in essence a whip with a cutting edge, it can also be used as a spear to pierce foes.",
+      "IDList": [
+        20070000,
+        20070100,
+        20070200,
+        20070300,
+        20070400,
+        20070500,
+        20070600,
+        20070700,
+        20070800,
+        20070900,
+        20071000,
+        20071100,
+        20071200
+      ]
+    },
+    {
+      "Text": "A weapon built for striking with the fists, made of tough leather inlaid with iron rivets.\n\nFist weapons come in pairs, and two-handing this weapon will equip it to both hands.",
+      "IDList": [
+        21000000,
+        21000100,
+        21000200,
+        21000300,
+        21000400,
+        21000500,
+        21000600,
+        21000700,
+        21000800,
+        21000900,
+        21001000,
+        21001100,
+        21001200
+      ]
+    },
+    {
+      "Text": "A caestus with the rivets replaced by blood loss-inducing spikes.\n\nFist weapons come in pairs, and two-handing this weapon will equip it to both hands.",
+      "IDList": [
+        21010000,
+        21010100,
+        21010200,
+        21010300,
+        21010400,
+        21010500,
+        21010600,
+        21010700,
+        21010800,
+        21010900,
+        21011000,
+        21011100,
+        21011200
+      ]
+    },
+    {
+      "Text": "The embodiment of the power that still remained in the dragon\u0027s head that was grafted to Godrick\u0027s left arm.\n\nThe wielder\u0027s arm will take the form of a small dragon, sprouting sharp dragon fangs at the fist.\nThis weapon cannot be two-handed.",
+      "IDList": [
+        21060000
+      ]
+    },
+    {
+      "Text": "Iron manifer of spherical shape. Big Boggart the blackguard\u0027s weapon of choice.\n\nNot a weapon to be taken lightly, as its weighty blows shatter bones with ease.",
+      "IDList": [
+        21070000,
+        21070100,
+        21070200,
+        21070300,
+        21070400,
+        21070500,
+        21070600,
+        21070700,
+        21070800,
+        21070900,
+        21071000,
+        21071100,
+        21071200
+      ]
+    },
+    {
+      "Text": "Spherical iron manifer covered in spikes which induce blood loss.\n\nUsed in brutal games of pugilism.",
+      "IDList": [
+        21080000,
+        21080100,
+        21080200,
+        21080300,
+        21080400,
+        21080500,
+        21080600,
+        21080700,
+        21080800,
+        21080900,
+        21081000,
+        21081100,
+        21081200
+      ]
+    },
+    {
+      "Text": "Imported dagger design with a rather unique handle. The blade can be swung about as the extension of one\u0027s fist.",
+      "IDList": [
+        21100000,
+        21100100,
+        21100200,
+        21100300,
+        21100400,
+        21100500,
+        21100600,
+        21100700,
+        21100800,
+        21100900,
+        21101000,
+        21101100,
+        21101200
+      ]
+    },
+    {
+      "Text": "Horrific weapon made of a hardened skeletal arm. Wielded by Ensha of the Royal Remains.\n\nFitted by placing one\u0027s hands into the fists\u0027 grips until they dig in.\n\u0022O clinging creature. A king relinquishes not the hand.\u0022",
+      "IDList": [
+        21110000
+      ]
+    },
+    {
+      "Text": "Bladed prosthetic leg enwreathed with the power of lightning, instead attached to the fist. Commander Niall, veteran of Castle Sol, offered this prosthesis in exchange for the lives of defeated knights held prisoner. He went on to lead these men as an army of no nation.",
+      "IDList": [
+        21120000
+      ]
+    },
+    {
+      "Text": "One of the weapons originating from the Two Fingers. A formless sequence of ciphers comprise its blade, and as such no shield can repel it. Deals holy damage.\n\nThe furtive inscription appears to hang in the air; the language of light spoken by the Two Fingers.",
+      "IDList": [
+        21130000
+      ]
+    },
+    {
+      "Text": "Weapon worn on the fist comprised of sharp parallel blades favored by those who lurk in the dark. Lacerations cause blood loss with great effect.\n\nClaw weapons come in pairs, and two-handing this weapon will equip it to both hands.",
+      "IDList": [
+        22000000,
+        22000100,
+        22000200,
+        22000300,
+        22000400,
+        22000500,
+        22000600,
+        22000700,
+        22000800,
+        22000900,
+        22001000,
+        22001100,
+        22001200
+      ]
+    },
+    {
+      "Text": "One of the weapons designed for gladiatorial combat. Used by duelists who were exiled from the colosseum.\n\nThe black fang protruding from the bronze snake head is coated in deadly poison.",
+      "IDList": [
+        22010000,
+        22010100,
+        22010200,
+        22010300,
+        22010400,
+        22010500,
+        22010600,
+        22010700,
+        22010800,
+        22010900,
+        22011000,
+        22011100,
+        22011200
+      ]
+    },
+    {
+      "Text": "Large curved claws used by Bloodhound Knights.\n\nThe curve allows the weapon to slip through an enemy\u0027s guard.",
+      "IDList": [
+        22020000,
+        22020100,
+        22020200,
+        22020300,
+        22020400,
+        22020500,
+        22020600,
+        22020700,
+        22020800,
+        22020900,
+        22021000,
+        22021100,
+        22021200
+      ]
+    },
+    {
+      "Text": "Claw comprised of two sharp, thin blades. Wielded by the assassins of ravenmount, this weapon allows them to imitate the attacks of Deathbirds.\n\nBesides excelling at airborne attacks, its charge attack mimics the vicious swoop of a bird of prey. ",
+      "IDList": [
+        22030000,
+        22030100,
+        22030200,
+        22030300,
+        22030400,
+        22030500,
+        22030600,
+        22030700,
+        22030800,
+        22030900,
+        22031000,
+        22031100,
+        22031200
+      ]
+    },
+    {
+      "Text": "Colossal hammer with the appearance of roiling flames. Weapon of the Prelates who lead the Fire Monks. Its heft represents the weight of their guardianship.\n\nThe hammer\u0027s head is unusually substantial, and strong attacks will fling foes into the air.",
+      "IDList": [
+        23000000,
+        23000100,
+        23000200,
+        23000300,
+        23000400,
+        23000500,
+        23000600,
+        23000700,
+        23000800,
+        23000900,
+        23001000,
+        23001100,
+        23001200
+      ]
+    },
+    {
+      "Text": "Large stone staff embedded with glintstone. Wielded by Erdtree Burial Watchdogs who protect catacombs.\n\nThe Watchdogs, battered and broken over their lengthy tenure, rule the catacombs and are even said to command the imps.",
+      "IDList": [
+        23010000
+      ]
+    },
+    {
+      "Text": "Great hammer wielded by golems\nprotecting the Undercapital Labyrinth.\nExtraordinary strength is required\nto wield something so heavy.",
+      "IDList": [
+        23010100,
+        23010200,
+        23010300,
+        23010400,
+        23010500,
+        23010600,
+        23010700,
+        23010800,
+        23010900,
+        23011000,
+        23011100,
+        23011200
+      ]
+    },
+    {
+      "Text": "An enormous club of hard wood. Wildly hammering foes with this striking weapon requires no dexterity; only brute force. While it may seem sacrilegious, this weapon is said to be a withered branch of the Erdtree. Imbued with holy power, this weapon will never snap.",
+      "IDList": [
+        23020000,
+        23020100,
+        23020200,
+        23020300,
+        23020400,
+        23020500,
+        23020600,
+        23020700,
+        23020800,
+        23020900,
+        23021000,
+        23021100,
+        23021200
+      ]
+    },
+    {
+      "Text": "Fanned golden horn of the Oracle Envoys. Profoundly weighty, its blows are sure to be felt.\n\nOriginally an instrument, but one that cannot be sounded by a mere human. Or perhaps it is too early to sound the call.",
+      "IDList": [
+        23030000
+      ]
+    },
+    {
+      "Text": "Greataxe designed for gladiatorial combat. Used by duelists who were exiled from the colosseum.\n\nA weapon reserved for duelist champions, the charge attack is particularly ferocious.",
+      "IDList": [
+        23040000,
+        23040100,
+        23040200,
+        23040300,
+        23040400,
+        23040500,
+        23040600,
+        23040700,
+        23040800,
+        23040900,
+        23041000,
+        23041100,
+        23041200
+      ]
+    },
+    {
+      "Text": "Weapon of Godfrey, Elden Lord. It was broken in a battle fought as leader of the Tarnished during the Long March. This weapon is symbolic of Godfrey\u0027s vow to conduct himself as a lord, later becoming an emblem of the golden lineage. In the days of the past, a crown was warranted with strength.",
+      "IDList": [
+        23050000
+      ]
+    },
+    {
+      "Text": "Weapon said to have been whittled from the claw of a great, ancient dragon, wielded by grotesque Tree Sentinels who yet serve the Erdtree.\n\nThe claw is enwreathed with lightning, and tears through the dragons\u0027 feeble descendants with ease.",
+      "IDList": [
+        23060000
+      ]
+    },
+    {
+      "Text": "Ceremonial staff depicting the Erdtree in its historic radiance. Wielded by the avatars who protect the Minor Erdtrees.\n\nThe avatars, emerging in the wake of the Elden Ring\u0027s shattering, were determined to protect the withering Erdtree\u0027s offspring.",
+      "IDList": [
+        23070000
+      ]
+    },
+    {
+      "Text": "Part of a Fallingstar Beast\u0027s jaw, hard and shining black, fashioned into a weapon.\n\nWith its sharp point, this colossal weapon can skewer foes.",
+      "IDList": [
+        23080000
+      ]
+    },
+    {
+      "Text": "Great iron wheel lined with flesh-flaying blades. Device of torture used by Inquisitor Ghiza. As the wheel spins it causes severe pain and blood loss.\n\nThe design was adopted for use as the iconic weapon wielded by Iron Virgins.",
+      "IDList": [
+        23100000
+      ]
+    },
+    {
+      "Text": "A hammer made from a boulder, used in the War against the Giants. One of the heftiest weapons in the entire Lands Between. After the giants were quelled, and man turned against man in violence, this weapon was all but forgotten. Man has grown feeble in comparison to his forebears.",
+      "IDList": [
+        23110000,
+        23110100,
+        23110200,
+        23110300,
+        23110400,
+        23110500,
+        23110600,
+        23110700,
+        23110800,
+        23110900,
+        23111000,
+        23111100,
+        23111200
+      ]
+    },
+    {
+      "Text": "A great halberd of black stone crafted by a civilization now gone to ruin. Wielded by the Guardian Golem.",
+      "IDList": [
+        23120000,
+        23120100,
+        23120200,
+        23120300,
+        23120400,
+        23120500,
+        23120600,
+        23120700,
+        23120800,
+        23120900,
+        23121000,
+        23121100,
+        23121200
+      ]
+    },
+    {
+      "Text": "Mining tool of stonedigger trolls used to crack bedrock.\n\nTrolls are descended from the giants, and these were supposedly once used as ceremonial smithing tools. In the distant past, smithing was considered divine.",
+      "IDList": [
+        23130000,
+        23130100,
+        23130200,
+        23130300,
+        23130400,
+        23130500,
+        23130600,
+        23130700,
+        23130800,
+        23130900,
+        23131000,
+        23131100,
+        23131200
+      ]
+    },
+    {
+      "Text": "Ceremonial staff depicting the Erdtree in its historic radiance. It festers with scarlet rot.\n\nWielded by the avatars who protect the Minor Erdtrees.",
+      "IDList": [
+        23140000
+      ]
+    },
+    {
+      "Text": "Greataxe designed for gladiatorial combat, now festering with scarlet rot.\n\nUsed by duelists who were exiled from the colosseum.",
+      "IDList": [
+        23150000,
+        23150100,
+        23150200,
+        23150300,
+        23150400,
+        23150500,
+        23150600,
+        23150700,
+        23150800,
+        23150900,
+        23151000,
+        23151100,
+        23151200
+      ]
+    },
+    {
+      "Text": "This torch\u0027s tip is wrapped in oil-soaked rags and set on fire.\nThe flame can illuminate dark locales, or be used to attack enemies.\n\nCan be raised up when equipped in the left hand,\nilluminating more of the surrounding area.",
+      "IDList": [
+        24000000
+      ]
+    },
+    {
+      "Text": "Torch wound with metal wire. The flame can illuminate dark locales, or be used to attack enemies.\n\nHeavier than a normal torch, but the heated filament boosts fire damage dealt.",
+      "IDList": [
+        24020000
+      ]
+    },
+    {
+      "Text": "Candlestand torch that burns with a light-purple flame. The carvings depict St. Trina, but in adult form, somewhat unnervingly.\n\nThe light-purple flame induces sleep.",
+      "IDList": [
+        24040000
+      ]
+    },
+    {
+      "Text": "Metal torch that burns with cold ghostflame. Tool of the Fallen Hawks who prowl the underground rivers. When the band\u0027s last embers were used up in their long search, they began to burn the bones of their fellows, acquiring the cold ghostflame, but sealing their fate as dwellers of the underground for all eternity.",
+      "IDList": [
+        24050000
+      ]
+    },
+    {
+      "Text": "A torch which burns oil infused with a special incense. The aroma pacifies wild beasts.\n\nTorches such as these were used to keep unwelcome beasts away from treasure troves hidden in caves.",
+      "IDList": [
+        24060000
+      ]
+    },
+    {
+      "Text": "Torch given to protectors of the Erdtree. Its flames are bestowed with a special incantation which allows the bearer to see assassins cloaked in veils. Furnished on behalf of the Erdtree and the Grace-Given Lord such that a Night of Black Knives will never come again.",
+      "IDList": [
+        24070000
+      ]
+    },
+    {
+      "Text": "A small metal roundshield. The bump in the center is designed to parry.\n\nA well-timed parry deflects an enemy\u0027s attack, breaking their stance and leaving them open to a critical hit. Though risk is inherent, this shield favors aggression.",
+      "IDList": [
+        30000000,
+        30000100,
+        30000200,
+        30000300,
+        30000400,
+        30000500,
+        30000600,
+        30000700,
+        30000800,
+        30000900,
+        30001000,
+        30001100,
+        30001200
+      ]
+    },
+    {
+      "Text": "Golden shield used by the perfumers of Leyndell during military service.\n\nMade to be thin and light of weight, even those lacking strength can employ this immunity-boosting shield.",
+      "IDList": [
+        30010000,
+        30010100,
+        30010200,
+        30010300,
+        30010400,
+        30010500,
+        30010600,
+        30010700,
+        30010800,
+        30010900,
+        30011000,
+        30011100,
+        30011200
+      ]
+    },
+    {
+      "Text": "Small copper dome-shaped roundshield carried by the man-serpents of Mt. Gelmir.\n\nSaid to have been tempered in lava, it boasts great resistance to fire.",
+      "IDList": [
+        30020000,
+        30020100,
+        30020200,
+        30020300,
+        30020400,
+        30020500,
+        30020600,
+        30020700,
+        30020800,
+        30020900,
+        30021000,
+        30021100,
+        30021200
+      ]
+    },
+    {
+      "Text": "A creaky old wooden shield, circular in shape. Roughly reinforced with vines.\n\nThere are countless other shields available of better make. This piece of scrap isn\u0027t worth the effort of equipping.",
+      "IDList": [
+        30030000,
+        30030100,
+        30030200,
+        30030300,
+        30030400,
+        30030500,
+        30030600,
+        30030700,
+        30030800,
+        30030900,
+        30031000,
+        30031100,
+        30031200
+      ]
+    },
+    {
+      "Text": "Pillory made to punish serious felons, used as a shield. Though made of good, sturdy wood, it is only a makeshift tool and performs as such.\n\nPerhaps due to its use as a device with which the guilty were made to endure prolonged suffering, it raises vitality.",
+      "IDList": [
+        30040000,
+        30040100,
+        30040200,
+        30040300,
+        30040400,
+        30040500,
+        30040600,
+        30040700,
+        30040800,
+        30040900,
+        30041000,
+        30041100,
+        30041200
+      ]
+    },
+    {
+      "Text": "Shield fashioned from a tall broken jar carried by the beastmen of Farum Azula. There is a particular knack to wielding it.\n\nThe beastmen have always fired earthenware jars for the express purpose of making shields. Such are their ways, strange though they are.",
+      "IDList": [
+        30060000,
+        30060100,
+        30060200,
+        30060300,
+        30060400,
+        30060500,
+        30060600,
+        30060700,
+        30060800,
+        30060900,
+        30061000,
+        30061100,
+        30061200
+      ]
+    },
+    {
+      "Text": "A small, wooden roundshield. It is light and easy to handle, but cannot offer the damage negation of a metal shield.\n\nIts emblem is an ancient thorn design. Though it isn\u0027t much, it boosts fire damage negation.",
+      "IDList": [
+        30070000,
+        30070100,
+        30070200,
+        30070300,
+        30070400,
+        30070500,
+        30070600,
+        30070700,
+        30070800,
+        30070900,
+        30071000,
+        30071100,
+        30071200
+      ]
+    },
+    {
+      "Text": "A small, wooden roundshield. It is light and easy to handle, but cannot offer the damage negation of a metal shield.\n\nAn ancient cipher engraving lines the circumference. Though it isn\u0027t much, it boosts holy damage negation.",
+      "IDList": [
+        30080000,
+        30080100,
+        30080200,
+        30080300,
+        30080400,
+        30080500,
+        30080600,
+        30080700,
+        30080800,
+        30080900,
+        30081000,
+        30081100,
+        30081200
+      ]
+    },
+    {
+      "Text": "Small wooden roundshield that has been reinforced with metal. It is light and easy to handle, but cannot offer the damage negation of a true metal shield.\n\nThe design riveted to the center represents both sword and tree.",
+      "IDList": [
+        30090000,
+        30090100,
+        30090200,
+        30090300,
+        30090400,
+        30090500,
+        30090600,
+        30090700,
+        30090800,
+        30090900,
+        30091000,
+        30091100,
+        30091200
+      ]
+    },
+    {
+      "Text": "Small wooden roundshield that has been reinforced with metal. It is light and easy to handle, but cannot offer the damage negation of a true metal shield.\n\nThe design is said to represent the stars of the night sky, portending fate.",
+      "IDList": [
+        30100000,
+        30100100,
+        30100200,
+        30100300,
+        30100400,
+        30100500,
+        30100600,
+        30100700,
+        30100800,
+        30100900,
+        30101000,
+        30101100,
+        30101200
+      ]
+    },
+    {
+      "Text": "Small metal roundshield depicting a sinister rift.\n\nAn antiquated charm that glares back at an enemy, it boosts focus.",
+      "IDList": [
+        30110000,
+        30110100,
+        30110200,
+        30110300,
+        30110400,
+        30110500,
+        30110600,
+        30110700,
+        30110800,
+        30110900,
+        30111000,
+        30111100,
+        30111200
+      ]
+    },
+    {
+      "Text": "An ordinary small roundshield made of metal. Heavier than a wooden shield, but boasts higher damage negation.\n\nFinely balanced, this shield is easy to use.",
+      "IDList": [
+        30120000,
+        30120100,
+        30120200,
+        30120300,
+        30120400,
+        30120500,
+        30120600,
+        30120700,
+        30120800,
+        30120900,
+        30121000,
+        30121100,
+        30121200
+      ]
+    },
+    {
+      "Text": "Small metal roundshield. Heavier than a wooden shield, but boasts higher damage negation.\n\nThough the gold leaf is peeling and the effect is slight, it still boosts holy damage negation.",
+      "IDList": [
+        30130000,
+        30130100,
+        30130200,
+        30130300,
+        30130400,
+        30130500,
+        30130600,
+        30130700,
+        30130800,
+        30130900,
+        30131000,
+        30131100,
+        30131200
+      ]
+    },
+    {
+      "Text": "Small metal roundshield. Heavier than a wooden shield, but boasts higher damage negation.\n\nThe ice crest originates from a Carian princess. Though the effect is slight, it boosts magic damage negation and resistance to frost.",
+      "IDList": [
+        30140000,
+        30140100,
+        30140200,
+        30140300,
+        30140400,
+        30140500,
+        30140600,
+        30140700,
+        30140800,
+        30140900,
+        30141000,
+        30141100,
+        30141200
+      ]
+    },
+    {
+      "Text": "Small shield made upon Mt. Gelmir forged from uncooling lava.\n\nResists frost with its heat, and can even be used to deal fire damage if wielded as a weapon.",
+      "IDList": [
+        30150000,
+        30150100,
+        30150200,
+        30150300,
+        30150400,
+        30150500,
+        30150600,
+        30150700,
+        30150800,
+        30150900,
+        30151000,
+        30151100,
+        30151200
+      ]
+    },
+    {
+      "Text": "Small shield of antlers arranged in an eddy-like pattern. If used to attack a foe, the shield\u0027s antlers inflict blood loss. Once given to a Tarnished warrior who cultivated close ties to the ancestral followers. Though the effect is only slight, it boosts immunity, robustness, and focus.",
+      "IDList": [
+        30190000,
+        30190100,
+        30190200,
+        30190300,
+        30190400,
+        30190500,
+        30190600,
+        30190700,
+        30190800,
+        30190900,
+        30191000,
+        30191100,
+        30191200
+      ]
+    },
+    {
+      "Text": "Armament designed for gladiatorial combat. Rises above its peers as a particularly showy specimen.\n\nThe sculpted bronze snake is a poisonous breed, boosting the wielder\u0027s resistance to poison.",
+      "IDList": [
+        30200000
+      ]
+    },
+    {
+      "Text": "A standard medium-sized metal shield.\n\nMetal shields reliably negate physical damage when guarding, a trait which made them highly trusted on the battlefield.",
+      "IDList": [
+        31000000,
+        31000100,
+        31000200,
+        31000300,
+        31000400,
+        31000500,
+        31000600,
+        31000700,
+        31000800,
+        31000900,
+        31001000,
+        31001100,
+        31001200
+      ]
+    },
+    {
+      "Text": "Leather shield of Stormveil soldiers. Much like the castle, it is marred by mottling and thorns.\n\nSome say it is the curse of grafting which causes such affliction, while others talk of its root being something altogether more sinister hidden deep within the castle.",
+      "IDList": [
+        31010000,
+        31010100,
+        31010200,
+        31010300,
+        31010400,
+        31010500,
+        31010600,
+        31010700,
+        31010800,
+        31010900,
+        31011000,
+        31011100,
+        31011200
+      ]
+    },
+    {
+      "Text": "Wooden shield of Stormveil soldiers. Much like the castle, it is marred by mottling and thorns.\n\nSome say it is the curse of grafting which causes such affliction, while others talk of its root being something altogether more sinister hidden deep within the castle.",
+      "IDList": [
+        31020000,
+        31020100,
+        31020200,
+        31020300,
+        31020400,
+        31020500,
+        31020600,
+        31020700,
+        31020800,
+        31020900,
+        31021000,
+        31021100,
+        31021200
+      ]
+    },
+    {
+      "Text": "A tall medium-sized metal shield. Given to knights who, whether by misfortune or misdeed, were forced to abandon their homes.\n\nMost of these knights were sent to the fringes, where they were forced to start anew with only despair for company.",
+      "IDList": [
+        31030000,
+        31030100,
+        31030200,
+        31030300,
+        31030400,
+        31030500,
+        31030600,
+        31030700,
+        31030800,
+        31030900,
+        31031000,
+        31031100,
+        31031200
+      ]
+    },
+    {
+      "Text": "Tall oval shield made of metal carried by young Albinaurics. The ornamentation represents the primordial drop of dew from which they are said to have been created.\nBoasts exceptional magic damage negation. The Albinaurics\u0027 most formidable foes were sorcerers, after all.",
+      "IDList": [
+        31040000,
+        31040100,
+        31040200,
+        31040300,
+        31040400,
+        31040500,
+        31040600,
+        31040700,
+        31040800,
+        31040900,
+        31041000,
+        31041100,
+        31041200
+      ]
+    },
+    {
+      "Text": "Shield of honor depicting a city crowned by the sun. It has seen better days.\n\nMuch like the wear upon the shield, the Seat of the Sun is long faded away.",
+      "IDList": [
+        31050000,
+        31050100,
+        31050200,
+        31050300,
+        31050400,
+        31050500,
+        31050600,
+        31050700,
+        31050800,
+        31050900,
+        31051000,
+        31051100,
+        31051200
+      ]
+    },
+    {
+      "Text": "Shield of radiant silver, festooned with amber and carried by Loretta, Knight of the Haligtree.\n\nThe shape is said to imitate that of a sacred drop of dew, which inspired the absurd rumor that Loretta herself was an Albinauric.",
+      "IDList": [
+        31060000
+      ]
+    },
+    {
+      "Text": "A wooden roundshield that has been reinforced with metal.\n\nComparatively light for its size, this shield is easy to handle but lacks a true metal shield\u0027s ability to negate damage.",
+      "IDList": [
+        31070000,
+        31070100,
+        31070200,
+        31070300,
+        31070400,
+        31070500,
+        31070600,
+        31070700,
+        31070800,
+        31070900,
+        31071000,
+        31071100,
+        31071200
+      ]
+    },
+    {
+      "Text": "A standard medium-sized metal shield. Highly reputed for its solid build and reliability.\n\nEmblazoned with a yellow scorpion, a warning of surprise attacks and sudden strikes.",
+      "IDList": [
+        31080000,
+        31080100,
+        31080200,
+        31080300,
+        31080400,
+        31080500,
+        31080600,
+        31080700,
+        31080800,
+        31080900,
+        31081000,
+        31081100,
+        31081200
+      ]
+    },
+    {
+      "Text": "Shield featuring a vividly painted twinbird.\nThe twinbird is said to be the envoy of an outer god, and mother of the Deathbirds.\n\nAt dwindling levels of HP, this shield slightly boosts both attack and defense.",
+      "IDList": [
+        31090000,
+        31090100,
+        31090200,
+        31090300,
+        31090400,
+        31090500,
+        31090600,
+        31090700,
+        31090800,
+        31090900,
+        31091000,
+        31091100,
+        31091200
+      ]
+    },
+    {
+      "Text": "A standard medium-sized metal shield. Highly reputed for its solid build and reliability.\n\nThe design represents the Erdtree foregrounded against a blue sky.",
+      "IDList": [
+        31100000,
+        31100100,
+        31100200,
+        31100300,
+        31100400,
+        31100500,
+        31100600,
+        31100700,
+        31100800,
+        31100900,
+        31101000,
+        31101100,
+        31101200
+      ]
+    },
+    {
+      "Text": "On the larger side for a medium-sized shield, the face has been covered in brass.\n\nCommonly employed in the Shattering.",
+      "IDList": [
+        31130000,
+        31130100,
+        31130200,
+        31130300,
+        31130400,
+        31130500,
+        31130600,
+        31130700,
+        31130800,
+        31130900,
+        31131000,
+        31131100,
+        31131200
+      ]
+    },
+    {
+      "Text": "Shield fashioned from a great turtle shell. The natural curve helps it contend with foes\u0027 attacks.\n\nThe turtle is a symbol of tirelessness, and this shield boosts stamina recovery speed.",
+      "IDList": [
+        31140000,
+        31140100,
+        31140200,
+        31140300,
+        31140400,
+        31140500,
+        31140600,
+        31140700,
+        31140800,
+        31140900,
+        31141000,
+        31141100,
+        31141200
+      ]
+    },
+    {
+      "Text": "Shield made to venerate a maiden whose eyes were crushed by Briars of Sin before being reborn in these lands.\n\nVenerating the repose of the soul, this shield boosts focus. The briars can be used to attack foes.",
+      "IDList": [
+        31170000,
+        31170100,
+        31170200,
+        31170300,
+        31170400,
+        31170500,
+        31170600,
+        31170700,
+        31170800,
+        31170900,
+        31171000,
+        31171100,
+        31171200
+      ]
+    },
+    {
+      "Text": "A teardrop-shaped, medium-sized shield embedded with blue glintstones.\nCarried by knights who served the Carian royal family.\n\nExcels when facing magic or holy attacks. Just who were these knights preparing to fight?",
+      "IDList": [
+        31190000,
+        31190100,
+        31190200,
+        31190300,
+        31190400,
+        31190500,
+        31190600,
+        31190700,
+        31190800,
+        31190900,
+        31191000,
+        31191100,
+        31191200
+      ]
+    },
+    {
+      "Text": "A roundshield covered in leather. On the larger side for a medium-sized shield.\n\nThough its damage negation may be lacking compared to a metal shield, it can handle a wider range of attack affinities.",
+      "IDList": [
+        31230000,
+        31230100,
+        31230200,
+        31230300,
+        31230400,
+        31230500,
+        31230600,
+        31230700,
+        31230800,
+        31230900,
+        31231000,
+        31231100,
+        31231200
+      ]
+    },
+    {
+      "Text": "A tall, medium-sized wooden shield. Light for its size, and easy to handle.\n\nThe circular horsehead design evokes a swift gallop.",
+      "IDList": [
+        31240000,
+        31240100,
+        31240200,
+        31240300,
+        31240400,
+        31240500,
+        31240600,
+        31240700,
+        31240800,
+        31240900,
+        31241000,
+        31241100,
+        31241200
+      ]
+    },
+    {
+      "Text": "A tall, medium-sized wooden shield. Light for its size, and easy to handle.\n\nThought to represent a surreptitious prophecy of cardinal sin, the lit candle-tree design was forbidden.",
+      "IDList": [
+        31250000,
+        31250100,
+        31250200,
+        31250300,
+        31250400,
+        31250500,
+        31250600,
+        31250700,
+        31250800,
+        31250900,
+        31251000,
+        31251100,
+        31251200
+      ]
+    },
+    {
+      "Text": "A tall, medium-sized wooden shield. Light for its size, and easy to handle. Carried by soldiers of the village that is afflicted by frenzy.\n\nThe yellow flame is the symbol of the affliction, serving as a warning to those who might approach the village.",
+      "IDList": [
+        31260000,
+        31260100,
+        31260200,
+        31260300,
+        31260400,
+        31260500,
+        31260600,
+        31260700,
+        31260800,
+        31260900,
+        31261000,
+        31261100,
+        31261200
+      ]
+    },
+    {
+      "Text": "A tall, medium-sized wooden shield. Light for its size, and easy to handle.\n\nAdorned with a long-forgotten crest of Stormveil, ancient in design.",
+      "IDList": [
+        31270000,
+        31270100,
+        31270200,
+        31270300,
+        31270400,
+        31270500,
+        31270600,
+        31270700,
+        31270800,
+        31270900,
+        31271000,
+        31271100,
+        31271200
+      ]
+    },
+    {
+      "Text": "A medium-sized metal shield. Easier to handle than a kite shield.\n\nFeatures a beast as its crest, serving to remind warriors not to succumb to the arousal of battle. Fight with passion, but become not its prisoner.",
+      "IDList": [
+        31280000,
+        31280100,
+        31280200,
+        31280300,
+        31280400,
+        31280500,
+        31280600,
+        31280700,
+        31280800,
+        31280900,
+        31281000,
+        31281100,
+        31281200
+      ]
+    },
+    {
+      "Text": "A medium-sized metal shield. Easier to handle than a kite shield.\n\nThe crest symbolizes red wings.",
+      "IDList": [
+        31290000,
+        31290100,
+        31290200,
+        31290300,
+        31290400,
+        31290500,
+        31290600,
+        31290700,
+        31290800,
+        31290900,
+        31291000,
+        31291100,
+        31291200
+      ]
+    },
+    {
+      "Text": "A medium-sized metal shield. Easier to handle than a kite shield.\n\nThe crest represents a forest and river.",
+      "IDList": [
+        31300000,
+        31300100,
+        31300200,
+        31300300,
+        31300400,
+        31300500,
+        31300600,
+        31300700,
+        31300800,
+        31300900,
+        31301000,
+        31301100,
+        31301200
+      ]
+    },
+    {
+      "Text": "A medium-sized metal shield. Easier to handle than a kite shield.\n\nThe sun in eclipse is said to be the symbol of the Wandering Mausoleum where the soulless demigods slumber.",
+      "IDList": [
+        31310000,
+        31310100,
+        31310200,
+        31310300,
+        31310400,
+        31310500,
+        31310600,
+        31310700,
+        31310800,
+        31310900,
+        31311000,
+        31311100,
+        31311200
+      ]
+    },
+    {
+      "Text": "A medium-sized metal shield. Easier to handle than a kite shield.\n\nThe inverted hawk is the emblem of the company of slaves ordered to explore the Eternal City.",
+      "IDList": [
+        31320000,
+        31320100,
+        31320200,
+        31320300,
+        31320400,
+        31320500,
+        31320600,
+        31320700,
+        31320800,
+        31320900,
+        31321000,
+        31321100,
+        31321200
+      ]
+    },
+    {
+      "Text": "A medium-sized metal shield, comparatively easy to handle.\n\nMetal shields reliably negate physical damage when guarding, a trait which made them highly trusted on the battlefield.",
+      "IDList": [
+        31330000,
+        31330100,
+        31330200,
+        31330300,
+        31330400,
+        31330500,
+        31330600,
+        31330700,
+        31330800,
+        31330900,
+        31331000,
+        31331100,
+        31331200
+      ]
+    },
+    {
+      "Text": "Roundshield covered in black leather. On the larger side for a medium-sized shield.\n\nFrom the north, this shield depicts the polar star in rivets of gold. The inside is lined with fur, protecting the carrier from frost.",
+      "IDList": [
+        31340000,
+        31340100,
+        31340200,
+        31340300,
+        31340400,
+        31340500,
+        31340600,
+        31340700,
+        31340800,
+        31340900,
+        31341000,
+        31341100,
+        31341200
+      ]
+    },
+    {
+      "Text": "Tower shield engraved with a dragon, symbol of protection. Heavy even among greatshields, it possesses exceptional guarding ability.\n\nThe ancient dragons, who ruled in the prehistoric era before the Erdtree, would protect their lord as a wall of living rock.",
+      "IDList": [
+        32000000,
+        32000100,
+        32000200,
+        32000300,
+        32000400,
+        32000500,
+        32000600,
+        32000700,
+        32000800,
+        32000900,
+        32001000,
+        32001100,
+        32001200
+      ]
+    },
+    {
+      "Text": "Greatshield featuring sumptuous ornamentation used by the scions of great families.\n\nDue to their excessive size, these shields were at times seen as the hallmark of little lordlings who were too timid to earn a few nicks and scratches.",
+      "IDList": [
+        32020000,
+        32020100,
+        32020200,
+        32020300,
+        32020400,
+        32020500,
+        32020600,
+        32020700,
+        32020800,
+        32020900,
+        32021000,
+        32021100,
+        32021200
+      ]
+    },
+    {
+      "Text": "Greatshield of red-tinged gold carried by Crucible Knights. Features a great horn.\n\nAn ancient holiness dwells within. The crucible horn skewers foes when performing shield bashes.",
+      "IDList": [
+        32030000,
+        32030100,
+        32030200,
+        32030300,
+        32030400,
+        32030500,
+        32030600,
+        32030700,
+        32030800,
+        32030900,
+        32031000,
+        32031100,
+        32031200
+      ]
+    },
+    {
+      "Text": "Greatshield said to have been whittled from the claw of a great, ancient dragon, wielded by grotesque Tree Sentinels who yet serve the Erdtree.\n\nImbued with lightning.",
+      "IDList": [
+        32040000,
+        32040100,
+        32040200,
+        32040300,
+        32040400,
+        32040500,
+        32040600,
+        32040700,
+        32040800,
+        32040900,
+        32041000,
+        32041100,
+        32041200
+      ]
+    },
+    {
+      "Text": "Greatshield from a foreign land, used by Elemer of the Briar. Attacks with this armament utilize the iron thorns that have been wound around its frame.\n\nOriginates from Eochaid, a land of proudly solitary ascetics.",
+      "IDList": [
+        32050000,
+        32050100,
+        32050200,
+        32050300,
+        32050400,
+        32050500,
+        32050600,
+        32050700,
+        32050800,
+        32050900,
+        32051000,
+        32051100,
+        32051200
+      ]
+    },
+    {
+      "Text": "Weighty greatshield forged of gold carried by the order of Tree Sentinels, heavily equipped knights. Blessed by an old incantation of protection.\n\nThe living rampart of the Erdtree, the Tree Sentinels are the standard to which all defenders of the Erdtree aspire.",
+      "IDList": [
+        32080000
+      ]
+    },
+    {
+      "Text": "Shield used by Tree Sentinels.\nTreated with gold, featuring a delicate design.",
+      "IDList": [
+        32080100,
+        32080200,
+        32080300,
+        32080400,
+        32080500,
+        32080600,
+        32080700,
+        32080800,
+        32080900,
+        32081000,
+        32081100,
+        32081200
+      ]
+    },
+    {
+      "Text": "Shield of dull gold with a beast engraved as its crest. Lighter than most greatshields, and subsequently easier to wield.\n\nThe beast depicted is Serosh, aged counselor who guides the golden lineage.",
+      "IDList": [
+        32090000,
+        32090100,
+        32090200,
+        32090300,
+        32090400,
+        32090500,
+        32090600,
+        32090700,
+        32090800,
+        32090900,
+        32091000,
+        32091100,
+        32091200
+      ]
+    },
+    {
+      "Text": "The head of a spirit jellyfish, commonly found floating above sacred ground throughout the Lands Between, wielded without modification as a shield.\n\nThe see-through head is extremely light, but its flesh is supple, providing absolutely no protection from piercing attacks.",
+      "IDList": [
+        32120000
+      ]
+    },
+    {
+      "Text": "A great stone shield with an intricately carved fingerprint design. One of the heaviest of all greatshields. Part of the tomb of an ancient god, the Readerless Fingers relayed their message through these imprints, said to be the very seeds from which frenzy first sprouted.",
+      "IDList": [
+        32130000,
+        32130100,
+        32130200,
+        32130300,
+        32130400,
+        32130500,
+        32130600,
+        32130700,
+        32130800,
+        32130900,
+        32131000,
+        32131100,
+        32131200
+      ]
+    },
+    {
+      "Text": "Greatshield painted with a divine scene; the recipience of a blessed tear from the Erdtree. An item that looks back fondly on the age of plenty.\n\nThe divine scene acts in and of itself as a sacred invocation; gradually restoring the carrier\u0027s HP.",
+      "IDList": [
+        32140000,
+        32140100,
+        32140200,
+        32140300,
+        32140400,
+        32140500,
+        32140600,
+        32140700,
+        32140800,
+        32140900,
+        32141000,
+        32141100,
+        32141200
+      ]
+    },
+    {
+      "Text": "Tricksome shield made from white stone depicting a malformed one-eyed god. The barrel of a firearm pokes through the open mouth.\n\nOnce worshipped by the giants, this evil deity is believed to have been slain by Queen Marika.",
+      "IDList": [
+        32150000
+      ]
+    },
+    {
+      "Text": "Tricksome bronze shield depicting the face of a Fire Giant. Several tongues leap from its open mouth.\n\nThe dreadful visage and burning flames are designed to remind one of the horror of facing a Fire Giant. In other words, this shield has an instructional function.",
+      "IDList": [
+        32160000
+      ]
+    },
+    {
+      "Text": "A large wooden shield covered with spikes. Though relatively light, it lacks in damage negation.\n\nDesigned to perform shield bashes, these attacks riddle the enemy with holes, earning it the nickname of \u0022pard shield.\u0022",
+      "IDList": [
+        32170000,
+        32170100,
+        32170200,
+        32170300,
+        32170400,
+        32170500,
+        32170600,
+        32170700,
+        32170800,
+        32170900,
+        32171000,
+        32171100,
+        32171200
+      ]
+    },
+    {
+      "Text": "An iron greatshield large enough to cover the entire body. Depicts the Roundtable Hold, gathering place of champions.\n\nGreatshields boast high damage negation and guard capacity, making enemy attacks easy to repel.",
+      "IDList": [
+        32190000,
+        32190100,
+        32190200,
+        32190300,
+        32190400,
+        32190500,
+        32190600,
+        32190700,
+        32190800,
+        32190900,
+        32191000,
+        32191100,
+        32191200
+      ]
+    },
+    {
+      "Text": "An iron greatshield large enough to cover the entire body. Emblazoned with an old, interleaving tree.\n\nGreatshields boast high damage negation and guard capacity, making enemy attacks easy to repel.",
+      "IDList": [
+        32200000,
+        32200100,
+        32200200,
+        32200300,
+        32200400,
+        32200500,
+        32200600,
+        32200700,
+        32200800,
+        32200900,
+        32201000,
+        32201100,
+        32201200
+      ]
+    },
+    {
+      "Text": "An iron greatshield large enough to cover the entire body. Features an inverted hawk crest.\n\nGreatshields boast high damage negation and guard capacity, making enemy attacks easy to repel.",
+      "IDList": [
+        32210000,
+        32210100,
+        32210200,
+        32210300,
+        32210400,
+        32210500,
+        32210600,
+        32210700,
+        32210800,
+        32210900,
+        32211000,
+        32211100,
+        32211200
+      ]
+    },
+    {
+      "Text": "Huge head of one of the giant ants which inhabit the two underground rivers, used without modification as a shield. Excels at repelling enemy attacks.\n\nGiant ants are venomous creatures, granting a boost to immunity when wielding this shield.",
+      "IDList": [
+        32220000
+      ]
+    },
+    {
+      "Text": "Greatshield shaped like a fang, featuring the crest of red-maned lion. Carried by the Redmane Knights who fought alongside Radahn.",
+      "IDList": [
+        32230000,
+        32230100,
+        32230200,
+        32230300,
+        32230400,
+        32230500,
+        32230600,
+        32230700,
+        32230800,
+        32230900,
+        32231000,
+        32231100,
+        32231200
+      ]
+    },
+    {
+      "Text": "Metal greatshield painted with a sun in eclipse. Carried by the headless mausoleum knights.\n\nThe eclipsed sun, drained of color, is the protective star of soulless demigods. It aids the mausoleum knights by keeping Destined Death at bay.",
+      "IDList": [
+        32240000,
+        32240100,
+        32240200,
+        32240300,
+        32240400,
+        32240500,
+        32240600,
+        32240700,
+        32240800,
+        32240900,
+        32241000,
+        32241100,
+        32241200
+      ]
+    },
+    {
+      "Text": "Metal greatshield painted with a peering cuckoo. Carried by the enchanted knights sworn to the academy.\n\nBoasting high magic damage negation, this shield is used to hunt down mages.\n\u0022Our enemy is none other than Caria itself.\u0022",
+      "IDList": [
+        32250000,
+        32250100,
+        32250200,
+        32250300,
+        32250400,
+        32250500,
+        32250600,
+        32250700,
+        32250800,
+        32250900,
+        32251000,
+        32251100,
+        32251200
+      ]
+    },
+    {
+      "Text": "Oval greatshield made of gold, carried by knights who protect the Royal Capital of Leyndell.\n\nKnights of Leyndell are reputed for their sturdiness, exemplified by this shield\u0027s exceptional guard capacity.",
+      "IDList": [
+        32260000,
+        32260100,
+        32260200,
+        32260300,
+        32260400,
+        32260500,
+        32260600,
+        32260700,
+        32260800,
+        32260900,
+        32261000,
+        32261100,
+        32261200
+      ]
+    },
+    {
+      "Text": "Metal greatshield coated with gold. Carried by knights loyal to Godrick.\n\nThe red tinge in the gold coat mirrors the primordial matter that became the Erdtree. The color of homeward yearning.",
+      "IDList": [
+        32270000,
+        32270100,
+        32270200,
+        32270300,
+        32270400,
+        32270500,
+        32270600,
+        32270700,
+        32270800,
+        32270900,
+        32271000,
+        32271100,
+        32271200
+      ]
+    },
+    {
+      "Text": "Metal greatshield depicting the Haligtree with unalloyed gold. Carried by knights who have vowed to serve Miquella\u0027s Haligtree. Possesses high holy damage negation. Yet now, with the Haligtree misshapen, this wondrous rendition is a fleeting fantasy.",
+      "IDList": [
+        32280000,
+        32280100,
+        32280200,
+        32280300,
+        32280400,
+        32280500,
+        32280600,
+        32280700,
+        32280800,
+        32280900,
+        32281000,
+        32281100,
+        32281200
+      ]
+    },
+    {
+      "Text": "Wooden greatshield reinforced with a metal ornamentation.\n\nGreatshields boast high damage negation and guard capacity, making enemy attacks easy to repel.",
+      "IDList": [
+        32290000,
+        32290100,
+        32290200,
+        32290300,
+        32290400,
+        32290500,
+        32290600,
+        32290700,
+        32290800,
+        32290900,
+        32291000,
+        32291100,
+        32291200
+      ]
+    },
+    {
+      "Text": "Wooden tower shield. Lightweight for a greatshield and easy to handle.\nCommonly used in the Shattering.\n\nGreatshields boast high damage negation and guard capacity, making enemy attacks easy to repel.",
+      "IDList": [
+        32300000,
+        32300100,
+        32300200,
+        32300300,
+        32300400,
+        32300500,
+        32300600,
+        32300700,
+        32300800,
+        32300900,
+        32301000,
+        32301100,
+        32301200
+      ]
+    },
+    {
+      "Text": "Staff with a glintstone embedded at the tip. A catalyst for casting sorceries.\n\nSorceries must be memorized first at a site of lost grace, and a staff must be equipped to cast them.",
+      "IDList": [
+        33000000
+      ]
+    },
+    {
+      "Text": "Staff fashioned from pure crystal; a deed impossible for a human. Enhances Crystalian sorceries.\n\nThe Crystalian\u0027s faint cogitation is known as the \u0022wisdom of stone.\u0022 This staff can only be wielded by those of intellect high enough to grasp such wisdom.",
+      "IDList": [
+        33040000
+      ]
+    },
+    {
+      "Text": "Staff with a forked tip, embedded with red glintstones. Enhances lava sorceries.\n\nThe Man-Serpents of Mt. Gelmir draw from faith in addition to intelligence to enhance the potency of their sorcery.",
+      "IDList": [
+        33050000
+      ]
+    },
+    {
+      "Text": "Glintstone staff styled as a scepter. A gift once given to the demi-humans to foster peace, it can be wielded even by those of low intelligence.\n\nSneered at by fools in the academy.",
+      "IDList": [
+        33060000
+      ]
+    },
+    {
+      "Text": "Magic scepter of Rennala, Queen of the Full Moon. The glintstone is known as a Carian Blue, enhancing full moon sorceries.\n\nOnly those of the highest intelligence may wield this, the finest of all glintstone staves.",
+      "IDList": [
+        33090000
+      ]
+    },
+    {
+      "Text": "Staff of a sorcerer-miner who extracts glintstone from crystal tunnels. The staff itself is a tool used to mine, and the ferrule is also embedded with a glintstone.\n\nBoosts the power of Stonedigger sorceries.",
+      "IDList": [
+        33120000
+      ]
+    },
+    {
+      "Text": "Staff of the astrologers. A glintstone is embedded in the tip, enabling it to be used as a catalyst for sorceries.\n\nSorceries must be memorized first at a site of lost grace, and a staff must be equipped to cast them.",
+      "IDList": [
+        33130000
+      ]
+    },
+    {
+      "Text": "Staff embedded with a blue glintstone. One of two types of Carian staff.\n\nGifted to enchanted knights, it enhances Glintblade sorceries.",
+      "IDList": [
+        33170000
+      ]
+    },
+    {
+      "Text": "Staff embedded with sullied amber, said to be a very part of the Prince of Death. Enhances death sorceries.\n\nOne of the staves deemed heretical by the academy for its ability to allow sorceries to be augmented through faith in addition to intelligence.",
+      "IDList": [
+        33180000
+      ]
+    },
+    {
+      "Text": "Short staff with a blue glintstone embedded. Wielded by the Albinaurics of old.\n\nThe Albinaurics harbor a secret; they cast sorcery using their innate arcaneness.",
+      "IDList": [
+        33190000
+      ]
+    },
+    {
+      "Text": "Staff of the Academy of Raya Lucaria, embedded with a turquoise glintstone.\n\nOnly a recognized sorcerer is permitted to wield this staff.",
+      "IDList": [
+        33200000
+      ]
+    },
+    {
+      "Text": "Staff embedded with a blue glintstone. One of two types of Carian staff.\n\nGiven to sorcerers that they might enact the role of knight. Enhances Carian sword sorceries.",
+      "IDList": [
+        33210000
+      ]
+    },
+    {
+      "Text": "Staff of the primeval glintstone sorcerer Azur. Only those who have glimpsed what lies beyond the wisdom of stone may wield it.\n\nReduces casting time of all sorceries, but consumes additional FP.",
+      "IDList": [
+        33230000
+      ]
+    },
+    {
+      "Text": "Staff of the primeval glintstone sorcerer Lusat. Only those who have glimpsed what lies beyond the wisdom of stone may wield it.\n\nEnhances power of all sorceries, but consumes additional FP.",
+      "IDList": [
+        33240000
+      ]
+    },
+    {
+      "Text": "Staff embedded with a dark purple glintstone, said to be the fragment of a meteorite. Boasts high sorcery scaling and boosts gravity sorceries as well.\n\nHowever, this staff cannot be strengthened in any way.",
+      "IDList": [
+        33250000
+      ]
+    },
+    {
+      "Text": "A heretical staff fashioned from a smoldering, withered sapling that turns the blood of sacrifices pierced by it into glintstone. Similar to hex magic.\n\nSorceries are scaled with faith rather than intelligence when wielding this staff which enhances thorn sorceries in particular.",
+      "IDList": [
+        33260000
+      ]
+    },
+    {
+      "Text": "Staff fashioned from pure crystal; a deed impossible for a human. It festers with scarlet rot.\n\nEnhances Crystalian sorceries.",
+      "IDList": [
+        33270000
+      ]
+    },
+    {
+      "Text": "Staff missing its glintstone. Wielded by sorcerers who believe that discovery comes through acts of asceticism.\n\nThis staff only distinguishes itself when casting invisibility sorceries, but that is reason enough for some to wield it.",
+      "IDList": [
+        33280000
+      ]
+    },
+    {
+      "Text": "A sacred seal bestowed by a Finger Maiden which serves as a catalyst for casting sacred incantations.\n\nIncantations must be memorized first at a site of grace, and a sacred seal must be equipped to cast them.",
+      "IDList": [
+        34000000
+      ]
+    },
+    {
+      "Text": "Sacred seal of the Godskin Apostles, inlaid with obsidian.\n\nSaid to represent the manipulation of black flame, this catalyst enhances godslayer incantations.",
+      "IDList": [
+        34010000
+      ]
+    },
+    {
+      "Text": "Sacred seal depicting the one-eyed god of the Fire Giants, adorned with braids of red hair.\n\nSacred seal wielded by Fire Monks and Prelates, this catalyst enhances Giants\u0027 Flame incantations.",
+      "IDList": [
+        34020000
+      ]
+    },
+    {
+      "Text": "Sacred seal made from Gravel Stone thought to be an ancient dragon scale. Enhances Dragon Cult incantations of the Royal Capital.\n\nThe worship of the ancient dragons does not conflict with belief in the Erdtree. After all, this seal, and lightning itself, are both imbued with gold.",
+      "IDList": [
+        34030000
+      ]
+    },
+    {
+      "Text": "Sacred seal granted by Gurranq, the Beast Clergyman. A rare trinket which allows incantations to be scaled with strength.\n\nThe claw mark represents Gurranq\u0027s wrath. Enhances bestial incantations learned from Gurranq.",
+      "IDList": [
+        34040000
+      ]
+    },
+    {
+      "Text": "A formless sacred seal depicting the ceremonial observation of Order. Enhances Golden Order Fundamentalist incantations.\n\nFundamentalism is scholarship in all but name. Scales incantations using both intelligence and faith.",
+      "IDList": [
+        34060000
+      ]
+    },
+    {
+      "Text": "A formless sacred seal decorated with an Erdtree crest, once the focus of religion in the Lands Between.\n\nEven though the Elden Ring is shattered, and the Erdtree has dulled from its former radiance, earnest faith continues to hold the answers.",
+      "IDList": [
+        34070000
+      ]
+    },
+    {
+      "Text": "Formless drakeblood seal with a dragon communion crest. Enhances Dragon Communion incantations.\n\nThe sacrificial devouring of the heart gives power.\nIndeed, Dragon Communion is too primal in nature for the term \u0022incantation\u0022 to be appropriate.\nThis seal scales incantations with one\u0027s arcane attribute.",
+      "IDList": [
+        34080000
+      ]
+    },
+    {
+      "Text": "Formless sacred seal bestowed by the maiden of the Three Fingers. Enhances incantations of the frenzied flame.\n\nThis seal is the mark of the Lord of Frenzied Flame. Scales incantations using strength, dexterity, intelligence, and faith all together.",
+      "IDList": [
+        34090000
+      ]
+    },
+    {
+      "Text": "Small bow made to fire arrows over great distances. Other than its ability to fire off arrows in rapid succession, it is also well-suited for use on horseback.\n\nTo use a bow, arrows must also be equipped.",
+      "IDList": [
+        40000000
+      ]
+    },
+    {
+      "Text": "Shortbow wielded by Winged Misbegotten. Fine fur clings to it.\n\nDesigned to inflict additional damage by sacrificing range.",
+      "IDList": [
+        40010000
+      ]
+    },
+    {
+      "Text": "Shortbow of polished red wood. Fashioned by a master craftsman and wielded by pages.\n\nA bow which requires dexterity rather than strength to master.",
+      "IDList": [
+        40020000
+      ]
+    },
+    {
+      "Text": "Bow fashioned from a minstrel\u0027s harp. Sonorous tones still resound when firing arrows.\n\nTroubadours sing tales of champions, both in the honorable service of the Erdtree, and the one who spurns honor for blasphemy.",
+      "IDList": [
+        40030000
+      ]
+    },
+    {
+      "Text": "Bow composited from a mix of materials.\n\nDemands high attributes, and is tricky to wield, but is a fearsome tool when mastered.",
+      "IDList": [
+        40050000
+      ]
+    },
+    {
+      "Text": "Longbow made to fire arrows over great distances. Compared to a shortbow, arrows fired reach further and deal more damage.\n\nTo use a bow, arrows must also be equipped.",
+      "IDList": [
+        41000000
+      ]
+    },
+    {
+      "Text": "Longbow featuring delicate silverwork. Wielded by Albinauric wolfback archers.\n\nThis bow requires dexterity over strength to master.",
+      "IDList": [
+        41010000
+      ]
+    },
+    {
+      "Text": "Longbow made from animal horn. Wielded by the master hunters of the ancestral followers.\n\nImbues arrows fired with magic damage.\nReveals its true worth when used with magic-infused arrows.",
+      "IDList": [
+        41020000
+      ]
+    },
+    {
+      "Text": "Longbow featuring Erdtree styling. In times of old, when faith and battle went hand in hand, this weapon was created in tandem with the Golden Arrow.\n\nScales all arrow damage with faith, revealing its true worth when used with holy-infused arrows.",
+      "IDList": [
+        41030000
+      ]
+    },
+    {
+      "Text": "Malformed bow in the shape of a pair of poisonous snakes. Imbues arrows with poison through pagan magic, revealing its true worth when used with poison-infused arrows.\n\nUsed by assassins known as the Formless Serpents.",
+      "IDList": [
+        41040000
+      ]
+    },
+    {
+      "Text": "Longbow which utilizes a series of pulleys and springs. The complex mechanism, which required advanced mathematical and mechanical understanding to craft, was likely made by a certain genius who learned Golden Order fundamentalism.\n\nEnhances precision while shooting, enabling arrows to fly much further distances.",
+      "IDList": [
+        41060000
+      ]
+    },
+    {
+      "Text": "Longbow carved from black wood to resemble a blade. One of the most difficult bows to master.\n\nThe blade-like body of the bow is light in the hand and cuts through the air. Can be wielded as nimbly as a light bow, despite its fuller size.",
+      "IDList": [
+        41070000
+      ]
+    },
+    {
+      "Text": "Greatbow of black iron wielded by General Radahn. Decorated with a lion mane motif.\n\nImbued with gravitational power of the Starscourge, when used along with Radahn\u0027s Spear, it becomes a true weapon of a champion.",
+      "IDList": [
+        42000000
+      ]
+    },
+    {
+      "Text": "Greatbow of black stone crafted by a civilization now gone to ruin. Weapon of the Guardian Golem.\n\nExtremely heavy, this greatbow requires enormous strength just to draw, suggesting it was not designed for human use.",
+      "IDList": [
+        42010000
+      ]
+    },
+    {
+      "Text": "Greatbow featuring Erdtree styling. In times of old, when faith and battle went hand in hand, this weapon was created in tandem with the Golden Great Arrow.\n\nScales all arrow damage with faith, revealing its true worth when used with holy-infused arrows.",
+      "IDList": [
+        42030000
+      ]
+    },
+    {
+      "Text": "Enormous greatbow larger than any man. Can not be drawn with any ordinary level of strength, but the force of its shots is extraordinary.\n\nA greatbow can only fire great arrows.",
+      "IDList": [
+        42040000
+      ]
+    },
+    {
+      "Text": "A crossbow of simple make, usable by anyone, but lacking in both power and accuracy.\n\nBolts must be equipped to use a crossbow.",
+      "IDList": [
+        43000000
+      ]
+    },
+    {
+      "Text": "Ranged weapon made from a bow fixed to a stock. Deals good damage and is simple to use, but requires reloading after firing.\n\nBolts must be equipped to use a crossbow.",
+      "IDList": [
+        43020000
+      ]
+    },
+    {
+      "Text": "Heavy crossbow with iron limbs, increasing damage dealt.\n\nCommonly employed in the Shattering.",
+      "IDList": [
+        43030000
+      ]
+    },
+    {
+      "Text": "Crossbow made with pulleys and power springs. The complex mechanism, which required advanced mathematical and mechanical understanding to craft, was likely made by a certain genius who learned Golden Order fundamentalism.\nOne touch fires a volley of bolts. Be warned; large stores of bolts can be quickly spent.",
+      "IDList": [
+        43050000
+      ]
+    },
+    {
+      "Text": "One-of-a-kind enchanted crossbow of exquisitely detailed craftsmanship. Made to celebrate the matrimonial union, and reconciliation, between the houses of the Erdtree and the Full Moon, Leyndell and Raya Lucaria. The two rings dance when reloading the weapon. Reveals true worth when used with holy-infused bolts.",
+      "IDList": [
+        43060000
+      ]
+    },
+    {
+      "Text": "Large crossbow made from composite materials. One of the largest of all bolt-firing devices.\n\nIts limbs are more pliable than metallic ones, allowing bolts fired from this weapon to pierce even helms forged of steel.",
+      "IDList": [
+        43080000
+      ]
+    },
+    {
+      "Text": "A weapon that combines two crossbows to scatter bolts in a wide arc.\n\nA crude and inaccurate weapon, yet carries considerable might for those who might wield it.",
+      "IDList": [
+        43100000
+      ]
+    },
+    {
+      "Text": "Black crossbow featuring a long stock. Used for sniping, it has a very long range.\n\nWeapon of Crepus, who served the Two Fingers from the shadows of the Roundtable as the head confessor.",
+      "IDList": [
+        43110000
+      ]
+    },
+    {
+      "Text": "An unconventional ballistic device modelled on a weapon used to besiege castles. Only capable of firing greatbolts.\n\nPerfect for reckless acts such as storming a castle or facing an entire army alone.",
+      "IDList": [
+        44000000
+      ]
+    },
+    {
+      "Text": "Jar cannon which uses explosives to fire greatbolts. Deals great damage but is slow to reload.\n\nExperimental firearm brought to the assault on Volcano Manor, where it was discovered that no one knew how to use it.",
+      "IDList": [
+        44010000
+      ]
+    },
+    {
+      "Text": "Arrows used with small and long bows.\nUnremarkable in any way, shape or form.",
+      "IDList": [
+        50000000
+      ]
+    },
+    {
+      "Text": "Arrow with the tip set alight.\nDeals fire damage.",
+      "IDList": [
+        50010000
+      ]
+    },
+    {
+      "Text": "Arrow carved to resemble a flying snake. Used in tandem with the Serpent Bow.\n\nLoyal minions of the Formless Serpents, their fangs are daubed with deadly poison.",
+      "IDList": [
+        50020000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from thin animal bones. Craftable item.\n\nThe feather fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50030000
+      ]
+    },
+    {
+      "Text": "Arrow carved to resemble a withered water lily. Afflicts targets with a powerful sleep effect.\n\nPriests of St. Trina use these arrows to spread their teachings. The sweet oblivion of sleep can become quite the habit.",
+      "IDList": [
+        50040000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones tipped with a shard of crystal. Creates a resonating noise at the point of impact.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50060000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones tipped with chips of Rainbow Stone. Colored light shines at the point of impact.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50080000
+      ]
+    },
+    {
+      "Text": "Carved arrows made in tandem with the Erdtree Bow. Deals holy damage.\n\nHighly effective against Those Who Live in Death, and able to prevent them from rising again.",
+      "IDList": [
+        50090000
+      ]
+    },
+    {
+      "Text": "Arrow in which the spirits of small animals are thought to dwell. \nDeals magic damage.\n\nUsed by the master hunters of the ancestral followers. ",
+      "IDList": [
+        50100000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from thin animal bones. Craftable item.\n\nThough the tip is certainly sharp, it does not fly particularly true.",
+      "IDList": [
+        50110000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is set alight before firing. Deals fire damage.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50130000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is set alight before firing. Deals fire damage.\n\nCraftable item.",
+      "IDList": [
+        50140000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with venom. Afflicts targets with poison.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50150000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with venom. Afflicts targets with poison.\n\nCraftable item.",
+      "IDList": [
+        50160000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with a water lily tincture. Afflicts targets with sleep.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50170000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with a water lily tincture. Afflicts targets with sleep.\n\nCraftable item.",
+      "IDList": [
+        50180000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones fletched with stormhawk feathers. Craftable item.\n\nFlies enshrouded in storm winds, breaking enemy stances and guards with ease.",
+      "IDList": [
+        50190000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones with a lightning-infused tip. Deals lightning damage.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50200000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones with a lightning-infused tip. Deals lightning damage.\n\nCraftable item.",
+      "IDList": [
+        50210000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones tipped with chips of Rainbow Stone. Colored light shines at the point of impact.\n\nCraftable item.",
+      "IDList": [
+        50220000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones tipped with a shard of crystal. Creates a resonating noise at the point of impact.\n\nCraftable item.",
+      "IDList": [
+        50230000
+      ]
+    },
+    {
+      "Text": "Arrow set alight with ghostflame before firing. Deals magic damage while also afflicting foes with frost.\n\nUsed by the Company of the Fallen Hawk, once ordered to explore the Eternal City.",
+      "IDList": [
+        50240000
+      ]
+    },
+    {
+      "Text": "Animal bone arrow that knocks enemies away with a gust of wind.\n\nCraftable item.",
+      "IDList": [
+        50250000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with a glintstone tincture. Deals magic damage.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50260000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with a glintstone tincture. Deals magic damage.\n\nCraftable item.",
+      "IDList": [
+        50270000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with a golden tincture. Deals holy damage.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50280000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with a golden tincture. Deals holy damage.\n\nCraftable item.",
+      "IDList": [
+        50290000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with a blood tincture. Afflicts targets with blood loss.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50300000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with a blood tincture. Afflicts targets with blood loss.\n\nCraftable item.",
+      "IDList": [
+        50310000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones with a frozen tip. Afflicts targets with frost.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50320000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones with a frozen tip. Afflicts targets with frost.\n\nCraftable item.",
+      "IDList": [
+        50330000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with rot. Afflicts targets with scarlet rot.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        50340000
+      ]
+    },
+    {
+      "Text": "Arrow whittled from animal bones. The tip is daubed with rot. Afflicts targets with scarlet rot.\n\nCraftable item.",
+      "IDList": [
+        50350000
+      ]
+    },
+    {
+      "Text": "A greatarrow as large as a spear for use with greatbows. Used by archers of monstrous strength employed by a lord\u0027s army.",
+      "IDList": [
+        51000000
+      ]
+    },
+    {
+      "Text": "Greatarrow of black stone crafted by a civilization now gone to ruin. Used by the Guardian Golem.\n\nThis hefty arrow is enrobed in tempestuous winds, allowing it to break enemy stances and guards with ease.",
+      "IDList": [
+        51010000
+      ]
+    },
+    {
+      "Text": "Carved greatarrows made together with the Erdtree Greatbow. Deals holy damage.\n\nImbued with an oath-sworn incantation, which boosts the attack and defense of the archer and their nearby allies.",
+      "IDList": [
+        51020000
+      ]
+    },
+    {
+      "Text": "Greatarrow of black stone crafted by a civilization now gone to ruin. Imbued with its ancient magic.\n\nDeals magic damage.",
+      "IDList": [
+        51030000
+      ]
+    },
+    {
+      "Text": "Greatarrows used by General Radahn during the festival of combat. These are in fact the many spears with which he was stabbed by the Cleanrot Knights.\n\nImbued with Radahn\u0027s gravitational power.",
+      "IDList": [
+        51040000
+      ]
+    },
+    {
+      "Text": "Greatarrow as large as a spear whittled from stout animal bones.\n\nCraftable item. The fletching adds distance to the arrow\u0027s flight.",
+      "IDList": [
+        51050000
+      ]
+    },
+    {
+      "Text": "Greatarrow as large as a spear whittled from stout animal bones.\n\nThough the tip is certainly sharp, it does not fly particularly true.",
+      "IDList": [
+        51060000
+      ]
+    },
+    {
+      "Text": "Ammunition used for crossbows.\nA widespread, common type of bolt.",
+      "IDList": [
+        52000000
+      ]
+    },
+    {
+      "Text": "Bolt tipped with a shard of Gravel Stone. Deals powerful lightning damage.\n\nUsed by worshippers of the ancient dragons.",
+      "IDList": [
+        52010000
+      ]
+    },
+    {
+      "Text": "Bolt created with perfumer techniques. Used by nobles\u0027 guards and the like.\n\nThe point of impact explodes with sparks, dealing fire damage.",
+      "IDList": [
+        52020000
+      ]
+    },
+    {
+      "Text": "Bolts used in Crepus\u0027 Black-Key Crossbow, an assassin\u0027s tool of exquisite craftsmanship.\n\nThe intricate spiral tip bores deep, injecting scarlet rot far into the flesh of its target.",
+      "IDList": [
+        52030000
+      ]
+    },
+    {
+      "Text": "Bolt covered in thorns. One of the most horrific weapons used in the Shattering. Afflicts target with blood loss.\n\nDifficult to remove once buried in flesh, causing appalling damage to the body.",
+      "IDList": [
+        52040000
+      ]
+    },
+    {
+      "Text": "Enchanted work of craft made in tandem with the Full Moon Crossbow. The tip is embedded with glintstone.\n\nLike a shooting star, these bolts leave a beautiful trail when fired. Deals magic damage.",
+      "IDList": [
+        52050000
+      ]
+    },
+    {
+      "Text": "Bolt tipped with a shard of Explosive Stone. Explodes on impact, dealing fire damage.",
+      "IDList": [
+        52060000
+      ]
+    },
+    {
+      "Text": "Bolt blessed with an incantation of the Erdtree. Deals powerful holy damage.\n\nOnce used by guards of the Capital.",
+      "IDList": [
+        52070000
+      ]
+    },
+    {
+      "Text": "Well-crafted bolt with an illustrious design, wielded by regulars of a lord\u0027s army.\n\nDeals more damage than its commonplace cousin.",
+      "IDList": [
+        52080000
+      ]
+    },
+    {
+      "Text": "Bolt carved from a thin animal bone. Craftable item.\n\nThough the tip is certainly sharp, it does not fly particularly true.",
+      "IDList": [
+        52090000
+      ]
+    },
+    {
+      "Text": "Bolt carved from animal bone. The tip is set alight before firing. Deals fire damage.\n\nCraftable item.",
+      "IDList": [
+        52100000
+      ]
+    },
+    {
+      "Text": "Bolt crafted from animal bone with a lightning-infused tip. Deals lightning damage.\n\nCraftable item.",
+      "IDList": [
+        52110000
+      ]
+    },
+    {
+      "Text": "Bolt carved from animal bone. The tip is daubed with a glintstone tincture. Deals magic damage.\n\nCraftable item.",
+      "IDList": [
+        52120000
+      ]
+    },
+    {
+      "Text": "Bolt carved from animal bone. The tip is daubed with a golden tincture. Deals holy damage.\n\nCraftable item.",
+      "IDList": [
+        52130000
+      ]
+    },
+    {
+      "Text": "Bolt carved from animal bone. The tip is daubed with venom. Afflicts targets with poison.\n\nCraftable item.",
+      "IDList": [
+        52140000
+      ]
+    },
+    {
+      "Text": "Bolt carved from animal bone. The tip is daubed with a blood tincture. Afflicts targets with blood loss.\n\nCraftable item.",
+      "IDList": [
+        52150000
+      ]
+    },
+    {
+      "Text": "Bolt carved from animal bone with a frozen tip. Afflicts targets with frost.\n\nCraftable item.",
+      "IDList": [
+        52160000
+      ]
+    },
+    {
+      "Text": "Bolt carved from animal bone. The tip is daubed with rot. Afflicts targets with scarlet rot.\n\nCraftable item.",
+      "IDList": [
+        52170000
+      ]
+    },
+    {
+      "Text": "Bolt carved from animal bone. The tip is daubed with a waterlily tincture. Afflicts targets with sleep.\n\nCraftable item.",
+      "IDList": [
+        52180000
+      ]
+    },
+    {
+      "Text": "Bolt with a fiercely burned tip. Deals powerful fire damage.\n\nUsed by survivors of Radahn\u0027s army to stave off the scarlet rot.",
+      "IDList": [
+        52190000
+      ]
+    },
+    {
+      "Text": "Greatbolt as large as a spear for use with Hand Ballista.",
+      "IDList": [
+        53000000
+      ]
+    },
+    {
+      "Text": "Greatbolt tipped with a clump of Gravel Stone shards.\n\nDeals powerful lightning damage.",
+      "IDList": [
+        53010000
+      ]
+    },
+    {
+      "Text": "Greatbolt tipped with a clump of Explosive Stone shards.\n\nDetonates a large explosion on impact, dealing fire damage.",
+      "IDList": [
+        53020000
+      ]
+    },
+    {
+      "Text": "Greatbolt as large as a spear carved from stout animal bones. Craftable item.\n\nThough the tip is certainly sharp, it does not fly particularly true.",
+      "IDList": [
+        53030000
+      ]
+    }
+  ]
+}

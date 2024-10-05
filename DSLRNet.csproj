@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DefaultData\ER\CSVs\LatestParams\" />
     <Folder Include="DefaultData\ER\FMGBase\" />
     <Folder Include="DefaultData\ER\ItemLots\" />
   </ItemGroup>

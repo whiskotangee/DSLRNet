@@ -1,0 +1,2191 @@
+{
+  "FMG_ID": 320,
+  "Entries": [
+    {
+      "Text": "Throw at enemies to inflict severe fire damage",
+      "IDList": [
+        2000300
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        2000301,
+        2000302,
+        2000303,
+        2000304,
+        2000305,
+        2000306,
+        2000307,
+        2000308,
+        2000309,
+        2000311,
+        2000312,
+        2000313,
+        2000314,
+        2000315,
+        2000316,
+        2000317,
+        2000318,
+        2000319,
+        2000321,
+        2000322,
+        2000323,
+        2000324,
+        2000325,
+        2000326,
+        2000327,
+        2000328,
+        2000329,
+        2000331,
+        2000332,
+        2000333,
+        2000334,
+        2000335,
+        2000336,
+        2000337,
+        2000338,
+        2000339,
+        2000361,
+        2000362,
+        2000363,
+        2000364,
+        2000365,
+        2000366,
+        2000367,
+        2000368,
+        2000369,
+        2000371,
+        2000372,
+        2000373,
+        2000374,
+        2000375,
+        2000376,
+        2000377,
+        2000378,
+        2000379,
+        2000651,
+        2000652,
+        2000653,
+        2000654,
+        2000655,
+        2000656,
+        2000657,
+        2000658,
+        2000659,
+        2000661,
+        2000662,
+        2000663,
+        2000664,
+        2000665,
+        2000666,
+        2000667,
+        2000668,
+        2000669,
+        2000671,
+        2000672,
+        2000673,
+        2000674,
+        2000675,
+        2000676,
+        2000677,
+        2000678,
+        2000679,
+        2000681,
+        2000682,
+        2000683,
+        2000684,
+        2000685,
+        2000686,
+        2000687,
+        2000688,
+        2000689,
+        2000691,
+        2000692,
+        2000693,
+        2000694,
+        2000695,
+        2000696,
+        2000697,
+        2000698,
+        2000699,
+        2000701,
+        2000702,
+        2000703,
+        2000704,
+        2000705,
+        2000706,
+        2000707,
+        2000708,
+        2000709,
+        2000901,
+        2000902,
+        2000903,
+        2000904,
+        2000905,
+        2000906,
+        2000907,
+        2000908,
+        2000909,
+        2001101,
+        2001102,
+        2001103,
+        2001104,
+        2001106,
+        2001107,
+        2001108,
+        2001109,
+        2001111,
+        2001112,
+        2001113,
+        2001114,
+        2001115,
+        2001116,
+        2001117,
+        2001118,
+        2001119,
+        2001121,
+        2001122,
+        2001123,
+        2001124,
+        2001125,
+        2001126,
+        2001127,
+        2001128,
+        2001129,
+        2001131,
+        2001132,
+        2001133,
+        2001134,
+        2001135,
+        2001136,
+        2001137,
+        2001138,
+        2001139,
+        2001141,
+        2001142,
+        2001143,
+        2001144,
+        2001145,
+        2001146,
+        2001147,
+        2001148,
+        2001149,
+        2001151,
+        2001152,
+        2001153,
+        2001154,
+        2001155,
+        2001156,
+        2001157,
+        2001158,
+        2001159,
+        2001161,
+        2001162,
+        2001163,
+        2001164,
+        2001165,
+        2001166,
+        2001167,
+        2001168,
+        2001169,
+        2001204,
+        2001205,
+        2001206,
+        2001207,
+        2001208,
+        2001209,
+        2001211,
+        2001212,
+        2001213,
+        2001214,
+        2001215,
+        2001216,
+        2001217,
+        2001218,
+        2001219,
+        2001221,
+        2001222,
+        2001223,
+        2001224,
+        2001225,
+        2001226,
+        2001227,
+        2001228,
+        2001229,
+        2001401,
+        2001402,
+        2001403,
+        2001404,
+        2001405,
+        2001406,
+        2001407,
+        2001408,
+        2001409,
+        2001411,
+        2001412,
+        2001413,
+        2001414,
+        2001415,
+        2001416,
+        2001417,
+        2001418,
+        2001419,
+        2001421,
+        2001422,
+        2001423,
+        2001424,
+        2001425,
+        2001426,
+        2001427,
+        2001428,
+        2001429,
+        2001501,
+        2001502,
+        2001503,
+        2001504,
+        2001505,
+        2001506,
+        2001507,
+        2001508,
+        2001509,
+        2001511,
+        2001512,
+        2001513,
+        2001514,
+        2001515,
+        2001516,
+        2001517,
+        2001518,
+        2001519,
+        2001521,
+        2001522,
+        2001523,
+        2001524,
+        2001525,
+        2001526,
+        2001527,
+        2001528,
+        2001529,
+        2001701,
+        2001702,
+        2001703,
+        2001704,
+        2001705,
+        2001706,
+        2001707,
+        2001708,
+        2001709,
+        2002001,
+        2002002,
+        2002003,
+        2002004,
+        2002005,
+        2002006,
+        2002007,
+        2002008,
+        2002009,
+        2002011,
+        2002012,
+        2002013,
+        2002014,
+        2002015,
+        2002016,
+        2002017,
+        2002018,
+        2002019,
+        2002021,
+        2002022,
+        2002023,
+        2002024,
+        2002025,
+        2002026,
+        2002027,
+        2002028,
+        2002029,
+        2002121,
+        2002122,
+        2002123,
+        2002124,
+        2002125,
+        2002126,
+        2002127,
+        2002128,
+        2002129,
+        2002131,
+        2002132,
+        2002133,
+        2002134,
+        2002135,
+        2002136,
+        2002137,
+        2002138,
+        2002139,
+        2002141,
+        2002142,
+        2002143,
+        2002144,
+        2002145,
+        2002146,
+        2002147,
+        2002148,
+        2002149,
+        2002906,
+        2003131,
+        2003132,
+        2003133,
+        2003134,
+        2003135,
+        2003136,
+        2003137,
+        2003138,
+        2003139,
+        2003141,
+        2003142,
+        2003143,
+        2003144,
+        2003145,
+        2003146,
+        2003147,
+        2003148,
+        2003149,
+        2003151,
+        2003152,
+        2003153,
+        2003154,
+        2003155,
+        2003156,
+        2003157,
+        2003158,
+        2003159,
+        2003161,
+        2003162,
+        2003163,
+        2003164,
+        2003165,
+        2003166,
+        2003167,
+        2003168,
+        2003169,
+        2003171,
+        2003172,
+        2003173,
+        2003174,
+        2003175,
+        2003176,
+        2003177,
+        2003178,
+        2003179,
+        2003181,
+        2003182,
+        2003183,
+        2003184,
+        2003185,
+        2003186,
+        2003187,
+        2003188,
+        2003189,
+        2003191,
+        2003192,
+        2003193,
+        2003194,
+        2003195,
+        2003196,
+        2003197,
+        2003198,
+        2003199,
+        2004301,
+        2004302,
+        2004303,
+        2004304,
+        2004305,
+        2004306,
+        2004307,
+        2004308,
+        2004309,
+        2004311,
+        2004312,
+        2004313,
+        2004314,
+        2004315,
+        2004316,
+        2004317,
+        2004318,
+        2004319,
+        2004501,
+        2004502,
+        2004503,
+        2004504,
+        2004505,
+        2004506,
+        2004507,
+        2004508,
+        2004509,
+        2004701,
+        2004702,
+        2004703,
+        2004704,
+        2004705,
+        2004706,
+        2004707,
+        2004708,
+        2004709,
+        2004901,
+        2004902,
+        2004903,
+        2004904,
+        2004905,
+        2004906,
+        2004907,
+        2004908,
+        2004909,
+        2006201,
+        2006202,
+        2006203,
+        2006204,
+        2006205,
+        2006206,
+        2006207,
+        2006208,
+        2006209,
+        2006651,
+        2006652,
+        2006653,
+        2006654,
+        2006655,
+        2006656,
+        2006657,
+        2006658,
+        2006659,
+        2006661,
+        2006662,
+        2006663,
+        2006664,
+        2006665,
+        2006666,
+        2006667,
+        2006668,
+        2006669,
+        2006671,
+        2006672,
+        2006673,
+        2006674,
+        2006675,
+        2006676,
+        2006677,
+        2006678,
+        2006679,
+        2006681,
+        2006682,
+        2006683,
+        2006684,
+        2006685,
+        2006686,
+        2006687,
+        2006688,
+        2006689,
+        2006691,
+        2006692,
+        2006693,
+        2006694,
+        2006695,
+        2006696,
+        2006697,
+        2006698,
+        2006699,
+        2006701,
+        2006702,
+        2006703,
+        2006704,
+        2006705,
+        2006706,
+        2006707,
+        2006708,
+        2006709,
+        2006901,
+        2006902,
+        2006903,
+        2006904,
+        2006905,
+        2006906,
+        2006907,
+        2006908,
+        2006909,
+        2006911,
+        2006912,
+        2006913,
+        2006914,
+        2006915,
+        2006916,
+        2006917,
+        2006918,
+        2006919,
+        2007001,
+        2007002,
+        2007003,
+        2007004,
+        2007005,
+        2007006,
+        2007007,
+        2007008,
+        2007009,
+        2007011,
+        2007012,
+        2007013,
+        2007014,
+        2007015,
+        2007016,
+        2007017,
+        2007018,
+        2007019,
+        2007201,
+        2007202,
+        2007203,
+        2007204,
+        2007205,
+        2007206,
+        2007207,
+        2007208,
+        2007209,
+        2007411,
+        2007412,
+        2007413,
+        2007414,
+        2007415,
+        2007416,
+        2007417,
+        2007418,
+        2007419,
+        2007701,
+        2007702,
+        2007703,
+        2007704,
+        2007705,
+        2007706,
+        2007707,
+        2007708,
+        2007709,
+        2007711,
+        2007712,
+        2007713,
+        2007714,
+        2007715,
+        2007716,
+        2007717,
+        2007718,
+        2007719,
+        2007721,
+        2007722,
+        2007723,
+        2007724,
+        2007725,
+        2007726,
+        2007727,
+        2007728,
+        2007729,
+        2007731,
+        2007732,
+        2007733,
+        2007734,
+        2007735,
+        2007736,
+        2007737,
+        2007738,
+        2007739,
+        2007801,
+        2007802,
+        2007803,
+        2007804,
+        2007805,
+        2007806,
+        2007807,
+        2007808,
+        2007809,
+        2007811,
+        2007812,
+        2007813,
+        2007814,
+        2007815,
+        2007816,
+        2007817,
+        2007818,
+        2007819,
+        2008001,
+        2008002,
+        2008009,
+        2008010,
+        2008020,
+        2008022,
+        2008024,
+        2008026,
+        2008035,
+        2009000,
+        2009001,
+        2009002,
+        2009003,
+        2009004,
+        2011001,
+        2011002,
+        2011003,
+        2011004,
+        2011005,
+        2011006,
+        2011007,
+        2011008,
+        2011009,
+        2011011,
+        2011012,
+        2011013,
+        2011014,
+        2011015,
+        2011016,
+        2011017,
+        2011018,
+        2011019,
+        2011021,
+        2011022,
+        2011023,
+        2011024,
+        2011025,
+        2011026,
+        2011027,
+        2011028,
+        2011029,
+        2011031,
+        2011032,
+        2011033,
+        2011034,
+        2011035,
+        2011036,
+        2011037,
+        2011038,
+        2011039,
+        2011041,
+        2011042,
+        2011043,
+        2011044,
+        2011045,
+        2011046,
+        2011047,
+        2011048,
+        2011049,
+        2011051,
+        2011052,
+        2011053,
+        2011054,
+        2011055,
+        2011056,
+        2011057,
+        2011058,
+        2011059,
+        2011061,
+        2011062,
+        2011063,
+        2011064,
+        2011065,
+        2011066,
+        2011067,
+        2011068,
+        2011069,
+        2015001,
+        2015002,
+        2015003,
+        2015004,
+        2015005,
+        2015006,
+        2015007,
+        2015008,
+        2015009,
+        2015011,
+        2015012,
+        2015013,
+        2015014,
+        2015015,
+        2015016,
+        2015017,
+        2015018,
+        2015019,
+        2015021,
+        2015022,
+        2015023,
+        2015024,
+        2015025,
+        2015026,
+        2015027,
+        2015028,
+        2015029,
+        2015031,
+        2015032,
+        2015033,
+        2015034,
+        2015035,
+        2015036,
+        2015037,
+        2015038,
+        2015039
+      ]
+    },
+    {
+      "Text": "Throw at enemies to inflict heavy damage",
+      "IDList": [
+        2000310
+      ]
+    },
+    {
+      "Text": "Throw at enemies to inflict severe lightning damage",
+      "IDList": [
+        2000320
+      ]
+    },
+    {
+      "Text": "Throw at enemies to cause a large buildup of deadly poison",
+      "IDList": [
+        2000330
+      ]
+    },
+    {
+      "Text": "Throw at enemies to release a large swarm of bloodflies",
+      "IDList": [
+        2000340
+      ]
+    },
+    {
+      "Text": "Throw at enemies to cause a large buildup of frost",
+      "IDList": [
+        2000360
+      ]
+    },
+    {
+      "Text": "Throw at enemies to cause a large buildup of poison",
+      "IDList": [
+        2000370
+      ]
+    },
+    {
+      "Text": "Throw at enemies to soak them in a heavy coat of oil",
+      "IDList": [
+        2000380
+      ]
+    },
+    {
+      "Text": "Creates heat cloud, causing continuous heavy fire damage",
+      "IDList": [
+        2000600
+      ]
+    },
+    {
+      "Text": "Throw at enemies to cause a large buildup of madness",
+      "IDList": [
+        2000620
+      ]
+    },
+    {
+      "Text": "Uses FP. Throw to spawn a throng of vengeful spirits.",
+      "IDList": [
+        2000650
+      ]
+    },
+    {
+      "Text": "Throw to inflict severe magic damage",
+      "IDList": [
+        2000660
+      ]
+    },
+    {
+      "Text": "Throw at enemies to cause a large buildup of scarlet rot",
+      "IDList": [
+        2000670
+      ]
+    },
+    {
+      "Text": "Throw at enemies to create a whirlwind of flame",
+      "IDList": [
+        2000680
+      ]
+    },
+    {
+      "Text": "Inflict heavy lightning damage that links to nearby enemies",
+      "IDList": [
+        2000690
+      ]
+    },
+    {
+      "Text": "Inflict lightning damage that links to nearby enemies",
+      "IDList": [
+        2000700
+      ]
+    },
+    {
+      "Text": "Throw at enemies to cause buildup of madness",
+      "IDList": [
+        2000710
+      ]
+    },
+    {
+      "Text": "Uses FP. Throw to cause buildup of eternal sleep.",
+      "IDList": [
+        2000740
+      ]
+    },
+    {
+      "Text": "Throw behind to cause buildup of madness",
+      "IDList": [
+        2000760
+      ]
+    },
+    {
+      "Text": "Spectral steed pushes back enemies when breaking into gallop",
+      "IDList": [
+        2000800
+      ]
+    },
+    {
+      "Text": "Completely restores HP and heals all ailments",
+      "IDList": [
+        2000900
+      ]
+    },
+    {
+      "Text": "Slowly builds up sleep while gradually restoring FP",
+      "IDList": [
+        2000910
+      ]
+    },
+    {
+      "Text": "Boosts vigor, endurance, strength, and dexterity at the cost of gradual HP loss",
+      "IDList": [
+        2001100,
+        2001105
+      ]
+    },
+    {
+      "Text": "Boosts mind, intelligence, faith, and arcane at cost of gradual HP loss",
+      "IDList": [
+        2001110
+      ]
+    },
+    {
+      "Text": "Temporarily grants large boost to magic damage negation",
+      "IDList": [
+        2001120
+      ]
+    },
+    {
+      "Text": "Temporarily grants large boost to fire damage negation",
+      "IDList": [
+        2001130
+      ]
+    },
+    {
+      "Text": "Temporarily grants large boost to lightning damage negation",
+      "IDList": [
+        2001140
+      ]
+    },
+    {
+      "Text": "Temporarily grants large boost to holy damage negation",
+      "IDList": [
+        2001150
+      ]
+    },
+    {
+      "Text": "Temporarily grants large boost to non-physical damage negation",
+      "IDList": [
+        2001160
+      ]
+    },
+    {
+      "Text": "Temporarily grants large boost to stamina recovery speed",
+      "IDList": [
+        2001170
+      ]
+    },
+    {
+      "Text": "Boosts physical damage negation temporarily and gradually restores HP",
+      "IDList": [
+        2001200,
+        2001202
+      ]
+    },
+    {
+      "Text": "Boosts physical damage negation temporarily and gradually restores a great amount of HP",
+      "IDList": [
+        2001201,
+        2001203
+      ]
+    },
+    {
+      "Text": "Boosts physical attack power and arcane once. Attack power boosted further when blood loss occurs.",
+      "IDList": [
+        2001210
+      ]
+    },
+    {
+      "Text": "Temporarily boosts item discovery",
+      "IDList": [
+        2001220
+      ]
+    },
+    {
+      "Text": "Boosts rune acquisition for a time",
+      "IDList": [
+        2001230
+      ]
+    },
+    {
+      "Text": "Coats armament, inflicting heavy fire damage",
+      "IDList": [
+        2001400
+      ]
+    },
+    {
+      "Text": "Coats armament, inflicting heavy lightning damage",
+      "IDList": [
+        2001410
+      ]
+    },
+    {
+      "Text": "Coats armament, inflicting heavy magic damage",
+      "IDList": [
+        2001420
+      ]
+    },
+    {
+      "Text": "Coats armament, inflicting heavy holy damage",
+      "IDList": [
+        2001430
+      ]
+    },
+    {
+      "Text": "Coats armament, inflicting eternal sleep",
+      "IDList": [
+        2001450
+      ]
+    },
+    {
+      "Text": "Coats armament, granting potent anti-dragon effect",
+      "IDList": [
+        2001480
+      ]
+    },
+    {
+      "Text": "Quickly coats armament, inflicting heavy fire damage",
+      "IDList": [
+        2001500
+      ]
+    },
+    {
+      "Text": "Quickly coats armament, inflicting heavy lightning damage",
+      "IDList": [
+        2001510
+      ]
+    },
+    {
+      "Text": "Quickly coats armament, inflicting heavy magic damage",
+      "IDList": [
+        2001520
+      ]
+    },
+    {
+      "Text": "Quickly coats armament, inflicting heavy holy damage",
+      "IDList": [
+        2001530
+      ]
+    },
+    {
+      "Text": "Quickly coats armament, inflicting eternal sleep",
+      "IDList": [
+        2001550
+      ]
+    },
+    {
+      "Text": "Coats armament, granting wielder trace amount of runes on landing attacks",
+      "IDList": [
+        2001600
+      ]
+    },
+    {
+      "Text": "Throw at enemies to inflict damage",
+      "IDList": [
+        2001700
+      ]
+    },
+    {
+      "Text": "Throw to inflict damage with anti-dragon effect",
+      "IDList": [
+        2001710
+      ]
+    },
+    {
+      "Text": "Makes a noise imitative of human presence",
+      "IDList": [
+        2002000
+      ]
+    },
+    {
+      "Text": "Turns human frame into ancient dragon and boosts Dragon Communion incantations",
+      "IDList": [
+        2002010
+      ]
+    },
+    {
+      "Text": "Turns human frame into ancient dragon and boosts Dragon Cult incantations",
+      "IDList": [
+        2002020
+      ]
+    },
+    {
+      "Text": "Transforms wearer into a lamenter and causes head to swell in size",
+      "IDList": [
+        2002030
+      ]
+    },
+    {
+      "Text": "Uses FP to increase all damage negation",
+      "IDList": [
+        2002100
+      ]
+    },
+    {
+      "Text": "Place on the eye of another to grant them the light of grace as a fleeting blessing",
+      "IDList": [
+        2002120
+      ]
+    },
+    {
+      "Text": "Place on the eye of another to deny them light in all its forms",
+      "IDList": [
+        2002130
+      ]
+    },
+    {
+      "Text": "Causes immediate death if imbibed by an ordinary human",
+      "IDList": [
+        2002140
+      ]
+    },
+    {
+      "Text": "Emits a blissful lamentation",
+      "IDList": [
+        2002150
+      ]
+    },
+    {
+      "Text": "Take the power of its namesake via Finger Reader",
+      "IDList": [
+        2002900,
+        2002901,
+        2002902,
+        2002903,
+        2002904,
+        2002905,
+        2002907,
+        2002908,
+        2002909,
+        2002910
+      ]
+    },
+    {
+      "Text": "Use to gain 40000 runes",
+      "IDList": [
+        2002950
+      ]
+    },
+    {
+      "Text": "Use to gain 500 runes",
+      "IDList": [
+        2002951
+      ]
+    },
+    {
+      "Text": "Use to gain 7500 runes",
+      "IDList": [
+        2002952
+      ]
+    },
+    {
+      "Text": "Use to gain 10000 runes",
+      "IDList": [
+        2002953
+      ]
+    },
+    {
+      "Text": "Use to gain 12500 runes",
+      "IDList": [
+        2002954
+      ]
+    },
+    {
+      "Text": "Use to gain 15000 runes",
+      "IDList": [
+        2002955
+      ]
+    },
+    {
+      "Text": "Use to gain 17500 runes",
+      "IDList": [
+        2002956
+      ]
+    },
+    {
+      "Text": "Use to gain 22500 runes",
+      "IDList": [
+        2002957
+      ]
+    },
+    {
+      "Text": "Use to gain 30000 runes",
+      "IDList": [
+        2002958
+      ]
+    },
+    {
+      "Text": "Use to gain 50000 runes",
+      "IDList": [
+        2002959
+      ]
+    },
+    {
+      "Text": "Use to gain 80000 runes",
+      "IDList": [
+        2002960
+      ]
+    },
+    {
+      "Text": "Causes a spiritual explosion, consuming sprite dwelling within spritestone",
+      "IDList": [
+        2003000
+      ]
+    },
+    {
+      "Text": "Uses FP to release a sprite that slowly homes in on enemies",
+      "IDList": [
+        2003001
+      ]
+    },
+    {
+      "Text": "Uses FP to summon vengeful spirits surrounding caster",
+      "IDList": [
+        2003130
+      ]
+    },
+    {
+      "Text": "Uses FP to spout flames forward",
+      "IDList": [
+        2003140
+      ]
+    },
+    {
+      "Text": "Uses FP to summon one lost in death",
+      "IDList": [
+        2003150
+      ]
+    },
+    {
+      "Text": "Uses FP to spew frenzied flame",
+      "IDList": [
+        2003160
+      ]
+    },
+    {
+      "Text": "Uses FP to increase attack and defense",
+      "IDList": [
+        2003170
+      ]
+    },
+    {
+      "Text": "Uses FP to conjure tiny fire snakes.",
+      "IDList": [
+        2003180
+      ]
+    },
+    {
+      "Text": "Uses FP to release a fire sprite that bounces along the ground",
+      "IDList": [
+        2003190
+      ]
+    },
+    {
+      "Text": "Uses FP to fire a shattering magic nail",
+      "IDList": [
+        2003200
+      ]
+    },
+    {
+      "Text": "Uses FP to continuously heal nearby allies",
+      "IDList": [
+        2003310
+      ]
+    },
+    {
+      "Text": "Uses FP to charm stabbed enemy and surrounding enemies",
+      "IDList": [
+        2003350
+      ]
+    },
+    {
+      "Text": "Conceals self in a glintstone haze",
+      "IDList": [
+        2004300
+      ]
+    },
+    {
+      "Text": "Creates sigil that forms three projectile glintblades after delay",
+      "IDList": [
+        2004310
+      ]
+    },
+    {
+      "Text": "Incarnate twin moons and repeatedly strike the ground",
+      "IDList": [
+        2004320
+      ]
+    },
+    {
+      "Text": "Fires a shattering magic nail",
+      "IDList": [
+        2004500
+      ]
+    },
+    {
+      "Text": "Fires multiple shattering magic nails",
+      "IDList": [
+        2004510
+      ]
+    },
+    {
+      "Text": "Pulls blade-like clumps of rock from the earth",
+      "IDList": [
+        2004700
+      ]
+    },
+    {
+      "Text": "Fires a bolt of gravity that pulls in enemies before exploding",
+      "IDList": [
+        2004710
+      ]
+    },
+    {
+      "Text": "Covers self with the Scadutree\u0027s impenetrable thorns",
+      "IDList": [
+        2004900
+      ]
+    },
+    {
+      "Text": "Summons the Scadutree\u0027s impenetrable thorns from the earth",
+      "IDList": [
+        2004910
+      ]
+    },
+    {
+      "Text": "Creates rings of spectral light that fire in unison",
+      "IDList": [
+        2005000
+      ]
+    },
+    {
+      "Text": "Launches a whirl of putrescent jets",
+      "IDList": [
+        2006200
+      ]
+    },
+    {
+      "Text": "Flings a great mass of putrescence",
+      "IDList": [
+        2006210
+      ]
+    },
+    {
+      "Text": "Cleaves through enemies with bloodflame blade summoned from side of the hand",
+      "IDList": [
+        2006300
+      ]
+    },
+    {
+      "Text": "Greatly heals HP for distant allies the spell reaches",
+      "IDList": [
+        2006400
+      ]
+    },
+    {
+      "Text": "Creates a mass of bristling thorns on back to scour the area",
+      "IDList": [
+        2006650
+      ]
+    },
+    {
+      "Text": "Creates a miranda flower on chest to summon rain of light",
+      "IDList": [
+        2006660
+      ]
+    },
+    {
+      "Text": "Continuously heals allies in the area",
+      "IDList": [
+        2006670
+      ]
+    },
+    {
+      "Text": "Fires a hail of golden projectiles toward foes",
+      "IDList": [
+        2006680
+      ]
+    },
+    {
+      "Text": "Fires a golden shockwave that knocks back foes",
+      "IDList": [
+        2006690
+      ]
+    },
+    {
+      "Text": "Annihilates foes with a pillar of light",
+      "IDList": [
+        2006700
+      ]
+    },
+    {
+      "Text": "Fires a multilayered golden ring of light that continuously inflicts damage",
+      "IDList": [
+        2006710
+      ]
+    },
+    {
+      "Text": "Channels great red bear to emit a furious roar",
+      "IDList": [
+        2006800
+      ]
+    },
+    {
+      "Text": "Hurls lightning spear while firing additional spears from ancient dragon crests",
+      "IDList": [
+        2006900
+      ]
+    },
+    {
+      "Text": "Calls down red lightning to bolster self and nearby allies",
+      "IDList": [
+        2006910
+      ]
+    },
+    {
+      "Text": "Calls down lightning to charge body with electricity",
+      "IDList": [
+        2006920
+      ]
+    },
+    {
+      "Text": "Channels dread dragon to roar with a heatwave blast",
+      "IDList": [
+        2007000
+      ]
+    },
+    {
+      "Text": "Channels dread dragon to strike with flame-lightning-infused talon bone",
+      "IDList": [
+        2007010
+      ]
+    },
+    {
+      "Text": "Spews ghostflame breath from above",
+      "IDList": [
+        2007020
+      ]
+    },
+    {
+      "Text": "Summons countless butterflies to scatter rot",
+      "IDList": [
+        2007200
+      ]
+    },
+    {
+      "Text": "Secrete sticky threads and twist them into two frontward flying spears",
+      "IDList": [
+        2007210
+      ]
+    },
+    {
+      "Text": "Summons Lord of Frenzied Flame\u0027s head to spew frenzied flame",
+      "IDList": [
+        2007300
+      ]
+    },
+    {
+      "Text": "Conjures a microcosm that pulses with a single wave, disappearing in a burst",
+      "IDList": [
+        2007410
+      ]
+    },
+    {
+      "Text": "Surrounds the caster with a mesh of hefty fingers",
+      "IDList": [
+        2007420
+      ]
+    },
+    {
+      "Text": "Summons a guardian spirit above the caster\u0027s head",
+      "IDList": [
+        2007600
+      ]
+    },
+    {
+      "Text": "Releases a procession of golden arcs with a swing of the arm",
+      "IDList": [
+        2007700
+      ]
+    },
+    {
+      "Text": "Releases a giant golden arc with a swing of the arm",
+      "IDList": [
+        2007710
+      ]
+    },
+    {
+      "Text": "Summons a spiral of light that erupts at the enemy\u0027s feet",
+      "IDList": [
+        2007720
+      ]
+    },
+    {
+      "Text": "Summons a storm that launches a tornado forward",
+      "IDList": [
+        2007730
+      ]
+    },
+    {
+      "Text": "Spreads arms like wings and releases a flurry of feathers",
+      "IDList": [
+        2007740
+      ]
+    },
+    {
+      "Text": "Launches a flame with a serpentine coil",
+      "IDList": [
+        2007800
+      ]
+    },
+    {
+      "Text": "Pelts foe with rain of fire from above",
+      "IDList": [
+        2007810
+      ]
+    },
+    {
+      "Text": "Shapes Messmer\u0027s flame into a giant orb that soars at foe",
+      "IDList": [
+        2007820
+      ]
+    },
+    {
+      "Text": "Retains naught but the power to resist charms",
+      "IDList": [
+        2008000
+      ]
+    },
+    {
+      "Text": "Summons Drake Warrior Igon from his sign",
+      "IDList": [
+        2008003
+      ]
+    },
+    {
+      "Text": "Opens the iron grating at the bottom of the well in Belurat",
+      "IDList": [
+        2008004
+      ]
+    },
+    {
+      "Text": "Opens the iron grating on the upper level of the Lamenter\u0027s Gaol",
+      "IDList": [
+        2008005
+      ]
+    },
+    {
+      "Text": "Opens the iron grating on the lower level of the Lamenter\u0027s Gaol",
+      "IDList": [
+        2008006
+      ]
+    },
+    {
+      "Text": "Map marked with the locations of golden crosses\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008007
+      ]
+    },
+    {
+      "Text": "Use at a hallowed ruin to sound a hanging bell",
+      "IDList": [
+        2008008
+      ]
+    },
+    {
+      "Text": "Gain power of Bayle at the Grand Altar of Dragon Communion",
+      "IDList": [
+        2008011
+      ]
+    },
+    {
+      "Text": "Map showing new locations of golden crosses\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008012
+      ]
+    },
+    {
+      "Text": "Use to open the storeroom on the second floor of Belurat",
+      "IDList": [
+        2008013
+      ]
+    },
+    {
+      "Text": "Learn about the secret rite of the divine gateway",
+      "IDList": [
+        2008014
+      ]
+    },
+    {
+      "Text": "A piece of paper, folded over so that the contents cannot be read",
+      "IDList": [
+        2008015
+      ]
+    },
+    {
+      "Text": "Map indicating the location of a hallowed ruin\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008016,
+        2008017,
+        2008018
+      ]
+    },
+    {
+      "Text": "Something Moore asked to be delivered to Thiollier",
+      "IDList": [
+        2008019
+      ]
+    },
+    {
+      "Text": "Burns the sealing tree",
+      "IDList": [
+        2008021
+      ]
+    },
+    {
+      "Text": "Opens the wooden door on the west wall of the keep",
+      "IDList": [
+        2008023
+      ]
+    },
+    {
+      "Text": "Note left by a furnace keeper\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008025
+      ]
+    },
+    {
+      "Text": "Message left for the author\u0027s compatriots\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008027,
+        2008028,
+        2008030,
+        2008034,
+        2008037
+      ]
+    },
+    {
+      "Text": "Letter with terse message and an illustration of a monk\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008029
+      ]
+    },
+    {
+      "Text": "Note imparting knowledge in brief\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008031
+      ]
+    },
+    {
+      "Text": "Discarded page ripped from a diary\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008032
+      ]
+    },
+    {
+      "Text": "Material needed by Rennala to grant rebirth",
+      "IDList": [
+        2008033
+      ]
+    },
+    {
+      "Text": "Opens prayer room door in the house of worship found in the church district",
+      "IDList": [
+        2008036
+      ]
+    },
+    {
+      "Text": "Note imparting knowledge in brief",
+      "IDList": [
+        2008131
+      ]
+    },
+    {
+      "Text": "Reminiscence of the painting \u0022Incursion\u0022\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008200
+      ]
+    },
+    {
+      "Text": "Reminiscence of the painting \u0022The Sacred Tower\u0022\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008201
+      ]
+    },
+    {
+      "Text": "Reminiscence of the painting \u0022Domain of Dragons\u0022\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2008202
+      ]
+    },
+    {
+      "Text": "Map of Gravesite Plain",
+      "IDList": [
+        2008600
+      ]
+    },
+    {
+      "Text": "Map of Scadu Altus",
+      "IDList": [
+        2008601
+      ]
+    },
+    {
+      "Text": "Map of the southern shore of Gravesite Plain",
+      "IDList": [
+        2008602
+      ]
+    },
+    {
+      "Text": "Map of the Rauh Ruins",
+      "IDList": [
+        2008603
+      ]
+    },
+    {
+      "Text": "Map of the Abyss to the east of Gravesite Plain",
+      "IDList": [
+        2008604
+      ]
+    },
+    {
+      "Text": "Offer to Twin Maiden Husks for new item access",
+      "IDList": [
+        2008900,
+        2008901,
+        2008902,
+        2008903,
+        2008904,
+        2008905,
+        2008906,
+        2008907,
+        2008908,
+        2008909
+      ]
+    },
+    {
+      "Text": "Information about the Scadutree Blessing\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2009160
+      ]
+    },
+    {
+      "Text": "Information about the Revered Spirit Ash Blessing\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2009161
+      ]
+    },
+    {
+      "Text": "Information about new inventory features\nExamine using \u003C?keyicon@31?\u003E",
+      "IDList": [
+        2009162
+      ]
+    },
+    {
+      "Text": "Expands crafting repertoire",
+      "IDList": [
+        2009301,
+        2009302,
+        2009303,
+        2009304,
+        2009305,
+        2009306,
+        2009307,
+        2009308,
+        2009309,
+        2009310,
+        2009311,
+        2009312,
+        2009313,
+        2009314,
+        2009315,
+        2009316,
+        2009317,
+        2009318,
+        2009319,
+        2009320,
+        2009321,
+        2009322,
+        2009323,
+        2009324,
+        2009325,
+        2009326,
+        2009327,
+        2009328,
+        2009329,
+        2009330,
+        2009331,
+        2009332,
+        2009333,
+        2009334,
+        2009335,
+        2009336,
+        2009337,
+        2009338,
+        2009339,
+        2009340,
+        2009341,
+        2009342,
+        2009343,
+        2009344,
+        2009345
+      ]
+    },
+    {
+      "Text": "Container required for crafting hefty cracked pot items",
+      "IDList": [
+        2009500
+      ]
+    },
+    {
+      "Text": "Bolsters Scadutree Blessing",
+      "IDList": [
+        2010000
+      ]
+    },
+    {
+      "Text": "Bolsters Revered Spirit Ash Blessing",
+      "IDList": [
+        2010100
+      ]
+    },
+    {
+      "Text": "Eliminates all stamina consumption in mixed physick",
+      "IDList": [
+        2011000
+      ]
+    },
+    {
+      "Text": "Steadily restores HP of nearby allies for a time in mixed physick",
+      "IDList": [
+        2011010
+      ]
+    },
+    {
+      "Text": "Grants attacks HP-restoring effect in mixed physick",
+      "IDList": [
+        2011020
+      ]
+    },
+    {
+      "Text": "Grants attacks FP-restoring effect in mixed physick",
+      "IDList": [
+        2011030
+      ]
+    },
+    {
+      "Text": "Coats nearby enemies with oil in mixed physick",
+      "IDList": [
+        2011040
+      ]
+    },
+    {
+      "Text": "Enhances attacks at the cost of HP in mixed physick",
+      "IDList": [
+        2011050
+      ]
+    },
+    {
+      "Text": "Enhances attacks of spirits in mixed physick",
+      "IDList": [
+        2011060
+      ]
+    },
+    {
+      "Text": "Enhances spontaneous guard in mixed physick",
+      "IDList": [
+        2011070
+      ]
+    },
+    {
+      "Text": "Material used for crafting items",
+      "IDList": [
+        2015000,
+        2015010,
+        2015020,
+        2015030,
+        2015040,
+        2020001,
+        2020002,
+        2020003,
+        2020004,
+        2020005,
+        2020006,
+        2020007,
+        2020008,
+        2020009,
+        2020010,
+        2020011,
+        2020012,
+        2020013,
+        2020014,
+        2020015,
+        2020016,
+        2020017,
+        2020018,
+        2020019,
+        2020020,
+        2020021,
+        2020022,
+        2020023,
+        2020024,
+        2020025,
+        2020026,
+        2020027,
+        2020028,
+        2020029,
+        2020030,
+        2020031,
+        2020032,
+        2020033,
+        2020034,
+        2020035
+      ]
+    },
+    {
+      "Text": "Summons spirit of Curseblade Meera",
+      "IDList": [
+        2200000,
+        2200001,
+        2200002,
+        2200003,
+        2200004,
+        2200005,
+        2200006,
+        2200007,
+        2200008,
+        2200009,
+        2200010
+      ]
+    },
+    {
+      "Text": "Summons bloodfiend hexer spirit",
+      "IDList": [
+        2201000,
+        2201001,
+        2201002,
+        2201003,
+        2201004,
+        2201005,
+        2201006,
+        2201007,
+        2201008,
+        2201009,
+        2201010
+      ]
+    },
+    {
+      "Text": "Summons Gravebird spirit",
+      "IDList": [
+        2202000,
+        2202001,
+        2202002,
+        2202003,
+        2202004,
+        2202005,
+        2202006,
+        2202007,
+        2202008,
+        2202009,
+        2202010
+      ]
+    },
+    {
+      "Text": "Summons spirit of Fire Knight Hilde",
+      "IDList": [
+        2203000,
+        2203001,
+        2203002,
+        2203003,
+        2203004,
+        2203005,
+        2203006,
+        2203007,
+        2203008,
+        2203009,
+        2203010
+      ]
+    },
+    {
+      "Text": "Summons spider scorpion spirit",
+      "IDList": [
+        2204000,
+        2204001,
+        2204002,
+        2204003,
+        2204004,
+        2204005,
+        2204006,
+        2204007,
+        2204008,
+        2204009,
+        2204010
+      ]
+    },
+    {
+      "Text": "Summons two inquisitor spirits",
+      "IDList": [
+        2205000,
+        2205001,
+        2205002,
+        2205003,
+        2205004,
+        2205005,
+        2205006,
+        2205007,
+        2205008,
+        2205009,
+        2205010
+      ]
+    },
+    {
+      "Text": "Summons spirit of Demi-Human Swordsman Yosh",
+      "IDList": [
+        2206000,
+        2206001,
+        2206002,
+        2206003,
+        2206004,
+        2206005,
+        2206006,
+        2206007,
+        2206008,
+        2206009,
+        2206010
+      ]
+    },
+    {
+      "Text": "Summons two Messmer soldier spirits",
+      "IDList": [
+        2207000,
+        2207001,
+        2207002,
+        2207003,
+        2207004,
+        2207005,
+        2207006,
+        2207007,
+        2207008,
+        2207009,
+        2207010
+      ]
+    },
+    {
+      "Text": "Summons spirit of Black Knight Commander Andreas",
+      "IDList": [
+        2208000,
+        2208001,
+        2208002,
+        2208003,
+        2208004,
+        2208005,
+        2208006,
+        2208007,
+        2208008,
+        2208009,
+        2208010
+      ]
+    },
+    {
+      "Text": "Summons spirit of Black Knight Captain Huw",
+      "IDList": [
+        2209000,
+        2209001,
+        2209002,
+        2209003,
+        2209004,
+        2209005,
+        2209006,
+        2209007,
+        2209008,
+        2209009,
+        2209010
+      ]
+    },
+    {
+      "Text": "Summons bigmouth imp spirit",
+      "IDList": [
+        2210000,
+        2210001,
+        2210002,
+        2210003,
+        2210004,
+        2210005,
+        2210006,
+        2210007,
+        2210008,
+        2210009,
+        2210010
+      ]
+    },
+    {
+      "Text": "Summons three man-fly spirits",
+      "IDList": [
+        2211000,
+        2211001,
+        2211002,
+        2211003,
+        2211004,
+        2211005,
+        2211006,
+        2211007,
+        2211008,
+        2211009,
+        2211010
+      ]
+    },
+    {
+      "Text": "Summons spirit of Taylew the Golem Smith",
+      "IDList": [
+        2212000,
+        2212001,
+        2212002,
+        2212003,
+        2212004,
+        2212005,
+        2212006,
+        2212007,
+        2212008,
+        2212009,
+        2212010
+      ]
+    },
+    {
+      "Text": "Summons spirit of Divine Bird Warrior Ornis",
+      "IDList": [
+        2213000,
+        2213001,
+        2213002,
+        2213003,
+        2213004,
+        2213005,
+        2213006,
+        2213007,
+        2213008,
+        2213009,
+        2213010
+      ]
+    },
+    {
+      "Text": "Summons horned warrior spirit",
+      "IDList": [
+        2214000,
+        2214001,
+        2214002,
+        2214003,
+        2214004,
+        2214005,
+        2214006,
+        2214007,
+        2214008,
+        2214009,
+        2214010
+      ]
+    },
+    {
+      "Text": "Summons spirit of Ancient Dragon Florissax",
+      "IDList": [
+        2215000,
+        2215001,
+        2215002,
+        2215003,
+        2215004,
+        2215005,
+        2215006,
+        2215007,
+        2215008,
+        2215009,
+        2215010
+      ]
+    },
+    {
+      "Text": "Summons Fingercreeper spirit",
+      "IDList": [
+        2217000,
+        2217001,
+        2217002,
+        2217003,
+        2217004,
+        2217005,
+        2217006,
+        2217007,
+        2217008,
+        2217009,
+        2217010
+      ]
+    },
+    {
+      "Text": "Summons spirit of Fire Knight Queelign",
+      "IDList": [
+        2218000,
+        2218001,
+        2218002,
+        2218003,
+        2218004,
+        2218005,
+        2218006,
+        2218007,
+        2218008,
+        2218009,
+        2218010
+      ]
+    },
+    {
+      "Text": "Summons spirit of Swordhand of Night Jol\u00E1n",
+      "IDList": [
+        2219000,
+        2219001,
+        2219002,
+        2219003,
+        2219004,
+        2219005,
+        2219006,
+        2219007,
+        2219008,
+        2219009,
+        2219010
+      ]
+    },
+    {
+      "Text": "Summons spirits of Jol\u00E1n and Anna",
+      "IDList": [
+        2220000,
+        2220001,
+        2220002,
+        2220003,
+        2220004,
+        2220005,
+        2220006,
+        2220007,
+        2220008,
+        2220009,
+        2220010
+      ]
+    }
+  ]
+}

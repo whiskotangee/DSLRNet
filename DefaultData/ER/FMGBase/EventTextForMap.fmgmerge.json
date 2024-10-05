@@ -1,0 +1,1261 @@
+{
+  "FMG_ID": 34,
+  "Entries": [
+    {
+      "Text": "Cannot proceed until game is fully installed",
+      "IDList": [
+        2000
+      ]
+    },
+    {
+      "Text": "Contraption does not move",
+      "IDList": [
+        4000
+      ]
+    },
+    {
+      "Text": "Locked by some contraption",
+      "IDList": [
+        4001
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        4002,
+        4003,
+        4004,
+        4005,
+        4006,
+        4007,
+        4008,
+        4009,
+        4201,
+        4202,
+        4203,
+        4204,
+        4205,
+        4206,
+        4207,
+        4208,
+        4209,
+        20001,
+        20002,
+        20022,
+        20023,
+        20024,
+        20025,
+        20026,
+        20027,
+        20028,
+        20029,
+        20032,
+        20033,
+        20034,
+        20035,
+        20036,
+        20037,
+        20038,
+        20039,
+        20041,
+        20042,
+        20043,
+        20044,
+        20045,
+        20046,
+        20047,
+        20048,
+        20049,
+        20201,
+        20202,
+        20203,
+        20204,
+        20205,
+        20206,
+        20207,
+        20208,
+        20209,
+        20400,
+        20401,
+        20402,
+        20403,
+        20404,
+        20405,
+        20406,
+        20407,
+        20408,
+        20409,
+        20410,
+        20501,
+        20502,
+        20503,
+        20504,
+        20505,
+        20506,
+        20507,
+        20508,
+        20509,
+        30001,
+        30002,
+        30003,
+        30004,
+        30005,
+        30006,
+        30007,
+        30008,
+        30009,
+        30011,
+        30012,
+        30013,
+        30014,
+        30015,
+        30016,
+        30017,
+        30018,
+        30019,
+        30022,
+        30024,
+        30025,
+        30026,
+        30027,
+        30028,
+        30029,
+        30032,
+        30033,
+        30034,
+        30035,
+        30036,
+        30037,
+        30038,
+        30039,
+        30041,
+        30042,
+        30043,
+        30044,
+        30045,
+        30046,
+        30047,
+        30048,
+        30049,
+        30052,
+        30053,
+        30054,
+        30055,
+        30056,
+        30057,
+        30058,
+        30059,
+        30081,
+        30082,
+        30083,
+        30084,
+        30085,
+        30086,
+        30087,
+        30088,
+        30089,
+        30091,
+        30092,
+        30093,
+        30094,
+        30095,
+        30096,
+        30097,
+        30098,
+        30099,
+        30102,
+        30103,
+        30104,
+        30105,
+        30106,
+        30107,
+        30108,
+        30109,
+        30111,
+        30112,
+        30113,
+        30114,
+        30115,
+        30116,
+        30117,
+        30118,
+        30119,
+        30121,
+        30122,
+        30123,
+        30124,
+        30125,
+        30126,
+        30127,
+        30128,
+        30129,
+        30131,
+        30132,
+        30133,
+        30134,
+        30135,
+        30136,
+        30137,
+        30138,
+        30139,
+        30141,
+        30142,
+        30143,
+        30144,
+        30145,
+        30146,
+        30147,
+        30148,
+        30149,
+        60012,
+        60013,
+        60014,
+        60015,
+        60016,
+        60017,
+        60018,
+        60019,
+        60020,
+        60023,
+        60024,
+        60025,
+        60028,
+        60029,
+        60030,
+        60032,
+        60033,
+        60034,
+        60035,
+        60036,
+        60037,
+        60038,
+        60039,
+        60040,
+        60041,
+        60042,
+        60043,
+        60044,
+        60045,
+        60046,
+        60047,
+        60048,
+        60049,
+        60050,
+        60052,
+        61013,
+        61014,
+        61015,
+        61016,
+        61017,
+        61018,
+        61019,
+        61024,
+        61025,
+        61026,
+        61027,
+        61028,
+        61029,
+        61034,
+        61035,
+        61036,
+        61037,
+        61038,
+        61039,
+        61042,
+        61043,
+        61044,
+        61045,
+        61046,
+        61047,
+        61048,
+        61049,
+        80004,
+        80005,
+        80006,
+        80007,
+        80008,
+        80009,
+        80011,
+        80012,
+        80013,
+        80014,
+        80015,
+        80016,
+        80017,
+        80018,
+        80019,
+        80803,
+        80804,
+        80805,
+        80806,
+        80807,
+        80808,
+        80809,
+        80813,
+        80814,
+        80815,
+        80816,
+        80817,
+        80818,
+        80819,
+        80823,
+        80824,
+        80825,
+        80826,
+        80827,
+        80828,
+        80829,
+        80833,
+        80834,
+        80835,
+        80836,
+        80837,
+        80838,
+        80839,
+        80843,
+        80844,
+        80845,
+        80846,
+        80847,
+        80848,
+        80849,
+        80853,
+        80854,
+        80855,
+        80856,
+        80857,
+        80858,
+        80859,
+        80863,
+        80864,
+        80865,
+        80866,
+        80867,
+        80868,
+        80869,
+        88041,
+        88042,
+        88043,
+        88044,
+        88045,
+        88046,
+        88047,
+        88048,
+        88049,
+        90001,
+        90002,
+        90003,
+        90004,
+        90005,
+        90006,
+        90007,
+        90008,
+        90009,
+        108001,
+        108002,
+        108003,
+        108004,
+        108005,
+        108006,
+        108007,
+        108008,
+        108009,
+        208001,
+        208002,
+        208003,
+        208004,
+        208005,
+        208006,
+        208007,
+        208008,
+        208009,
+        208170,
+        208171,
+        208172,
+        208173,
+        208174,
+        208175,
+        208176,
+        208177,
+        208179,
+        208180,
+        208181,
+        208182,
+        208183,
+        208184,
+        208185,
+        208198
+      ]
+    },
+    {
+      "Text": "Cannot open from this side",
+      "IDList": [
+        4010
+      ]
+    },
+    {
+      "Text": "The door is shut tight",
+      "IDList": [
+        4080
+      ]
+    },
+    {
+      "Text": "Return to entrance?",
+      "IDList": [
+        4100
+      ]
+    },
+    {
+      "Text": "Somewhere, a heavy door has opened",
+      "IDList": [
+        4200
+      ]
+    },
+    {
+      "Text": "Guide and gatekeeper for those returning to the roots",
+      "IDList": [
+        4210
+      ]
+    },
+    {
+      "Text": "Travel to another location?",
+      "IDList": [
+        4300
+      ]
+    },
+    {
+      "Text": "Summon signs can now be sent to summoning pools",
+      "IDList": [
+        6000
+      ]
+    },
+    {
+      "Text": "Impenetrable thorns refuse all.\nNone may enter the Erdtree.",
+      "IDList": [
+        20000
+      ]
+    },
+    {
+      "Text": "You cannot proceed without more Great Runes",
+      "IDList": [
+        20003
+      ]
+    },
+    {
+      "Text": "You cannot use this without more Great Runes",
+      "IDList": [
+        20004
+      ]
+    },
+    {
+      "Text": "Sealed by Morgott the Grace-Given",
+      "IDList": [
+        20005
+      ]
+    },
+    {
+      "Text": "You cannot proceed without a ring of oath",
+      "IDList": [
+        20006
+      ]
+    },
+    {
+      "Text": "You do not have the required medallion",
+      "IDList": [
+        20020,
+        20021
+      ]
+    },
+    {
+      "Text": "You cannot proceed without a glintstone key",
+      "IDList": [
+        20030
+      ]
+    },
+    {
+      "Text": "You cannot proceed without a sealbreaker",
+      "IDList": [
+        20031
+      ]
+    },
+    {
+      "Text": "Something fits on this pedestal",
+      "IDList": [
+        20040
+      ]
+    },
+    {
+      "Text": "Opens only to those carrying a finger",
+      "IDList": [
+        20050
+      ]
+    },
+    {
+      "Text": "Summon broken spirit?",
+      "IDList": [
+        20100
+      ]
+    },
+    {
+      "Text": "You must solve the puzzle to enter",
+      "IDList": [
+        20200
+      ]
+    },
+    {
+      "Text": "The seal on the rise opened",
+      "IDList": [
+        20210
+      ]
+    },
+    {
+      "Text": "Enter evergaol?",
+      "IDList": [
+        20300,
+        30021
+      ]
+    },
+    {
+      "Text": "Closed with an imp\u0027s seal",
+      "IDList": [
+        20500
+      ]
+    },
+    {
+      "Text": "The imp\u0027s seal is in effect",
+      "IDList": [
+        20510
+      ]
+    },
+    {
+      "Text": "The Beast Eye quivers",
+      "IDList": [
+        20600
+      ]
+    },
+    {
+      "Text": "Ensnared in a transporter trap!",
+      "IDList": [
+        20700
+      ]
+    },
+    {
+      "Text": "A seal was broken in town somewhere",
+      "IDList": [
+        30000
+      ]
+    },
+    {
+      "Text": "Power gathers somewhere in horned remains",
+      "IDList": [
+        30010
+      ]
+    },
+    {
+      "Text": "A seal was broken in town",
+      "IDList": [
+        30020
+      ]
+    },
+    {
+      "Text": "Held shut by a seal",
+      "IDList": [
+        30023,
+        30031
+      ]
+    },
+    {
+      "Text": "A seal was broken somewhere",
+      "IDList": [
+        30030
+      ]
+    },
+    {
+      "Text": "Cannot be used now",
+      "IDList": [
+        30040
+      ]
+    },
+    {
+      "Text": "Blocked shut for now",
+      "IDList": [
+        30050,
+        30051
+      ]
+    },
+    {
+      "Text": "A new draconic power is available at the Cathedral of Dragon Communion",
+      "IDList": [
+        30060,
+        30061,
+        30062,
+        30063,
+        30064,
+        30065,
+        30066
+      ]
+    },
+    {
+      "Text": "Seal can only be broken by a sealbreaker",
+      "IDList": [
+        30080
+      ]
+    },
+    {
+      "Text": "Here lie Aurelia and Aureliette,\nwho never saw the stars",
+      "IDList": [
+        30090
+      ]
+    },
+    {
+      "Text": "You found a simple map.\nCheck in inventory.",
+      "IDList": [
+        30100,
+        30101
+      ]
+    },
+    {
+      "Text": "You can now see the Knight of the Great Jar\u0027s red summon sign",
+      "IDList": [
+        30110
+      ]
+    },
+    {
+      "Text": "New items can be purchased from the Twin Maiden Husks",
+      "IDList": [
+        30120
+      ]
+    },
+    {
+      "Text": "The primal glintstone shudders.\nIt seems Sellen\u0027s body has died.",
+      "IDList": [
+        30130
+      ]
+    },
+    {
+      "Text": "A red mark was made on the map",
+      "IDList": [
+        30140
+      ]
+    },
+    {
+      "Text": "You have no Festering Bloody Finger",
+      "IDList": [
+        30150
+      ]
+    },
+    {
+      "Text": "Seek three wise beasts",
+      "IDList": [
+        60011,
+        60022
+      ]
+    },
+    {
+      "Text": "Endow the eyes of the mask in light",
+      "IDList": [
+        60021
+      ]
+    },
+    {
+      "Text": "Seek three great wise beasts",
+      "IDList": [
+        60026
+      ]
+    },
+    {
+      "Text": "Access to those outside of the \nroyal family is strictly forbidden",
+      "IDList": [
+        60027
+      ]
+    },
+    {
+      "Text": "Touch three phantom crests",
+      "IDList": [
+        60031
+      ]
+    },
+    {
+      "Text": "Falling snow marks something unseen",
+      "IDList": [
+        60051
+      ]
+    },
+    {
+      "Text": "Light the four figures in the evergaol",
+      "IDList": [
+        60100
+      ]
+    },
+    {
+      "Text": "Godrick the Golden, humiliated\nHaving tasted defeat by the Blade of Miquella\nNow on his knees, begging for mercy",
+      "IDList": [
+        61010
+      ]
+    },
+    {
+      "Text": "Lord Godfrey, at last at the end of his campaign\nHis golden armies unvanquished and unbowed\nYet finds grace lost, tattered and faded",
+      "IDList": [
+        61011
+      ]
+    },
+    {
+      "Text": "The siege of Castle Morne\nA lone hero fights for his vengeance\nOnly to fall at the hand of Lord Godfrey",
+      "IDList": [
+        61012
+      ]
+    },
+    {
+      "Text": "This marks Malenia\u0027s southward march\nThe Blade of Miquella and her Cleanrot Knights\nGrant her wings never to be clipped",
+      "IDList": [
+        61020
+      ]
+    },
+    {
+      "Text": "The Second Liurnian War\nNo victory for the golden, nor for the moon\nNo prize but atonement; the birth of a vow",
+      "IDList": [
+        61021
+      ]
+    },
+    {
+      "Text": "The resting place of the contemptible Cuckoos\nLost in the siege of Caria Manor",
+      "IDList": [
+        61022
+      ]
+    },
+    {
+      "Text": "The First Liurnian War\nRadagon\u0027s glory burns red as his hair",
+      "IDList": [
+        61023
+      ]
+    },
+    {
+      "Text": "The Routing of the Ancient Dragons\nGodwyn the Golden fought to the last,\nEarning the friendship of dread Fortissax",
+      "IDList": [
+        61030
+      ]
+    },
+    {
+      "Text": "The First Defense of Leyndell\nA sovereign alliance rots from within\nTraces yet remain of bloody conspiracy",
+      "IDList": [
+        61031
+      ]
+    },
+    {
+      "Text": "The Second Defense of Leyndell\nThe Fell Omen stacks high the corpses of heroes\nYet the Erdtree remains unshaken",
+      "IDList": [
+        61032
+      ]
+    },
+    {
+      "Text": "The Assault on Volcano Manor\nThe squalid, the sick, the blasphemous;\na wretched, unending war with no glory",
+      "IDList": [
+        61033
+      ]
+    },
+    {
+      "Text": "The Battle of Aeonia\nRadahn and Malenia locked in stalemate\nThen, the scarlet rot blooms",
+      "IDList": [
+        61040
+      ]
+    },
+    {
+      "Text": "The Starscourge Conflict\nRadahn alone holds Sellia secure\nAnd stands tall, to shatter the stars",
+      "IDList": [
+        61041
+      ]
+    },
+    {
+      "Text": "The War against the Giants\nChampions battle, trolls betray\nFire vanquished, the era of the Erdtree begins",
+      "IDList": [
+        61050
+      ]
+    },
+    {
+      "Text": "Redeemer Guilbert has invaded!",
+      "IDList": [
+        79000
+      ]
+    },
+    {
+      "Text": "Redeemer Guilbert died",
+      "IDList": [
+        79001
+      ]
+    },
+    {
+      "Text": "Redeemer Guilbert returned home",
+      "IDList": [
+        79002
+      ]
+    },
+    {
+      "Text": "Bloody Finger Hunter Yura was summoned",
+      "IDList": [
+        80000
+      ]
+    },
+    {
+      "Text": "With his objective accomplished, Bloody Finger Hunter Yura returned to his world",
+      "IDList": [
+        80001
+      ]
+    },
+    {
+      "Text": "Bloody Finger Hunter Yura has died",
+      "IDList": [
+        80002
+      ]
+    },
+    {
+      "Text": "Bloody Finger Hunter Yura returned to his world",
+      "IDList": [
+        80003
+      ]
+    },
+    {
+      "Text": "Bloody Finger Nerijus returned to his world",
+      "IDList": [
+        80010
+      ]
+    },
+    {
+      "Text": "Invaded by Tanith\u0027s Knight!",
+      "IDList": [
+        80020
+      ]
+    },
+    {
+      "Text": "Tanith\u0027s Knight has died",
+      "IDList": [
+        80021
+      ]
+    },
+    {
+      "Text": "Invade White Mask Varr\u00E9\u0027s world?",
+      "IDList": [
+        80601
+      ]
+    },
+    {
+      "Text": "Invade Old Knight Istvan\u0027s world?",
+      "IDList": [
+        80602
+      ]
+    },
+    {
+      "Text": "Invade Rileigh the Idle\u0027s world?",
+      "IDList": [
+        80603
+      ]
+    },
+    {
+      "Text": "Invade Juno Hoslow, Knight of Blood\u0027s world?",
+      "IDList": [
+        80604
+      ]
+    },
+    {
+      "Text": "Invade Vargram the Raging Wolf and Errant Sorcerer Wilhelm\u0027s world?",
+      "IDList": [
+        80605
+      ]
+    },
+    {
+      "Text": "Invade Great Horned Tragoth\u0027s world?",
+      "IDList": [
+        80606
+      ]
+    },
+    {
+      "Text": "Be summoned to assist Yura, Hunter of Bloody Fingers?",
+      "IDList": [
+        80607
+      ]
+    },
+    {
+      "Text": "Be summoned to assist Sorceress Sellen?",
+      "IDList": [
+        80608
+      ]
+    },
+    {
+      "Text": "Be summoned to challenge Sorceress Sellen?",
+      "IDList": [
+        80609
+      ]
+    },
+    {
+      "Text": "Be summoned to assist Millicent?",
+      "IDList": [
+        80610
+      ]
+    },
+    {
+      "Text": "Be summoned to challenge Millicent?",
+      "IDList": [
+        80611
+      ]
+    },
+    {
+      "Text": "Invade Magnus the Beast Claw\u0027s world?",
+      "IDList": [
+        80612
+      ]
+    },
+    {
+      "Text": "Use Festering Bloody Finger and invade Magnus the Beast Claw\u0027s world?",
+      "IDList": [
+        80613
+      ]
+    },
+    {
+      "Text": "Summoned Castellan Jerren",
+      "IDList": [
+        80800
+      ]
+    },
+    {
+      "Text": "Castellan Jerren has died",
+      "IDList": [
+        80801
+      ]
+    },
+    {
+      "Text": "Castellan Jerren returned to his world",
+      "IDList": [
+        80802
+      ]
+    },
+    {
+      "Text": "Summoned Blaidd the Half-Wolf",
+      "IDList": [
+        80810
+      ]
+    },
+    {
+      "Text": "Blaidd the Half-Wolf has died",
+      "IDList": [
+        80811
+      ]
+    },
+    {
+      "Text": "Blaidd the Half-Wolf returned to his world",
+      "IDList": [
+        80812
+      ]
+    },
+    {
+      "Text": "Summoned Alexander, Warrior Jar",
+      "IDList": [
+        80820
+      ]
+    },
+    {
+      "Text": "Alexander, Warrior Jar has died",
+      "IDList": [
+        80821
+      ]
+    },
+    {
+      "Text": "Alexander, Warrior Jar returned to his world",
+      "IDList": [
+        80822
+      ]
+    },
+    {
+      "Text": "Summoned Great Horned Tragoth",
+      "IDList": [
+        80830
+      ]
+    },
+    {
+      "Text": "Great Horned Tragoth has died",
+      "IDList": [
+        80831
+      ]
+    },
+    {
+      "Text": "Great Horned Tragoth returned to his world",
+      "IDList": [
+        80832
+      ]
+    },
+    {
+      "Text": "Summoned Okina",
+      "IDList": [
+        80840
+      ]
+    },
+    {
+      "Text": "Okina has died",
+      "IDList": [
+        80841
+      ]
+    },
+    {
+      "Text": "Okina returned to his world",
+      "IDList": [
+        80842
+      ]
+    },
+    {
+      "Text": "Summoned Finger Maiden Therolina",
+      "IDList": [
+        80850
+      ]
+    },
+    {
+      "Text": "Finger Maiden Therolina has died",
+      "IDList": [
+        80851
+      ]
+    },
+    {
+      "Text": "Finger Maiden Therolina returned to her world",
+      "IDList": [
+        80852
+      ]
+    },
+    {
+      "Text": "Summoned Lionel the Lionhearted",
+      "IDList": [
+        80860
+      ]
+    },
+    {
+      "Text": "Lionel the Lionhearted has died",
+      "IDList": [
+        80861
+      ]
+    },
+    {
+      "Text": "Lionel the Lionhearted returned to his world",
+      "IDList": [
+        80862
+      ]
+    },
+    {
+      "Text": "Summoned Patches",
+      "IDList": [
+        80870
+      ]
+    },
+    {
+      "Text": "Patches has died",
+      "IDList": [
+        80871
+      ]
+    },
+    {
+      "Text": "Patches returned to his world",
+      "IDList": [
+        80872
+      ]
+    },
+    {
+      "Text": "Commencing combat.\nTime limit: \u003C?matchDuel_TotalTime?\u003Es.",
+      "IDList": [
+        88000
+      ]
+    },
+    {
+      "Text": "Commencing combat.\nTime limit: \u003C?matchDM2_TotalTime?\u003Es.",
+      "IDList": [
+        88001
+      ]
+    },
+    {
+      "Text": "Commencing combat.\nTime limit: \u003C?matchDM4_TotalTime?\u003Es.",
+      "IDList": [
+        88002
+      ]
+    },
+    {
+      "Text": "Commencing combat.\nTime limit: \u003C?matchDM6_TotalTime?\u003Es.",
+      "IDList": [
+        88003
+      ]
+    },
+    {
+      "Text": "Commencing combat.\nTime limit: \u003C?matchTM1vs1_TotalTime?\u003Es.",
+      "IDList": [
+        88004
+      ]
+    },
+    {
+      "Text": "Commencing combat.\nTime limit: \u003C?matchTM2vs2_TotalTime?\u003Es.",
+      "IDList": [
+        88005
+      ]
+    },
+    {
+      "Text": "Commencing combat.\nTime limit: \u003C?matchTM3vs3_TotalTime?\u003Es.",
+      "IDList": [
+        88006
+      ]
+    },
+    {
+      "Text": "\u003C?matchDuel_SecondHalfTime?\u003Es remaining",
+      "IDList": [
+        88020
+      ]
+    },
+    {
+      "Text": "\u003C?matchDM2_SecondHalfTime?\u003Es remaining",
+      "IDList": [
+        88021
+      ]
+    },
+    {
+      "Text": "\u003C?matchDM4_SecondHalfTime?\u003Es remaining",
+      "IDList": [
+        88022
+      ]
+    },
+    {
+      "Text": "\u003C?matchDM6_SecondHalfTime?\u003Es remaining",
+      "IDList": [
+        88023
+      ]
+    },
+    {
+      "Text": "\u003C?matchTM1vs1_SecondHalfTime?\u003Es remaining",
+      "IDList": [
+        88024
+      ]
+    },
+    {
+      "Text": "\u003C?matchTM2vs2_SecondHalfTime?\u003Es remaining",
+      "IDList": [
+        88025
+      ]
+    },
+    {
+      "Text": "\u003C?matchTM3vs3_SecondHalfTime?\u003Es remaining",
+      "IDList": [
+        88026
+      ]
+    },
+    {
+      "Text": "Cease Combat",
+      "IDList": [
+        88040
+      ]
+    },
+    {
+      "Text": "Combat ends in your victory!",
+      "IDList": [
+        88050
+      ]
+    },
+    {
+      "Text": "Combat ends in a stalemate",
+      "IDList": [
+        88051
+      ]
+    },
+    {
+      "Text": "Combat ends in your loss",
+      "IDList": [
+        88052
+      ]
+    },
+    {
+      "Text": "More awaits you, in the official release",
+      "IDList": [
+        90000
+      ]
+    },
+    {
+      "Text": "Cannot use this now",
+      "IDList": [
+        90010
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@8000?\u003E?",
+      "IDList": [
+        108000
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@8010?\u003E?",
+      "IDList": [
+        108010
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@8186?\u003E?",
+      "IDList": [
+        108186
+      ]
+    },
+    {
+      "Text": "\u003C?gdsparam@8000?\u003E was lost with use",
+      "IDList": [
+        208000
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@8010?\u003E",
+      "IDList": [
+        208010
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@8134?\u003E",
+      "IDList": [
+        208134
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@8169?\u003E",
+      "IDList": [
+        208169
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@8178?\u003E",
+      "IDList": [
+        208178
+      ]
+    },
+    {
+      "Text": "\u003C?gdsparam@8186?\u003E was lost with use",
+      "IDList": [
+        208186
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@8197?\u003E",
+      "IDList": [
+        208197
+      ]
+    },
+    {
+      "Text": "Used \u003C?gdsparam@8199?\u003E",
+      "IDList": [
+        208199
+      ]
+    },
+    {
+      "Text": "No \u003C?gdsparam@8000?\u003E in inventory",
+      "IDList": [
+        308000
+      ]
+    },
+    {
+      "Text": "No \u003C?gdsparam@8186?\u003E in inventory",
+      "IDList": [
+        308186
+      ]
+    },
+    {
+      "Text": "Not enough \u003C?gdsparam@8000?\u003E",
+      "IDList": [
+        408000
+      ]
+    }
+  ]
+}

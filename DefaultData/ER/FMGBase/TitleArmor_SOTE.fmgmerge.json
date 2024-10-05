@@ -1,0 +1,875 @@
+{
+  "FMG_ID": 313,
+  "Entries": [
+    {
+      "Text": "Dane\u0027s Hat",
+      "IDList": [
+        3000000
+      ]
+    },
+    {
+      "Text": "Dryleaf Robe",
+      "IDList": [
+        3000100
+      ]
+    },
+    {
+      "Text": "Dryleaf Arm Wraps",
+      "IDList": [
+        3000200
+      ]
+    },
+    {
+      "Text": "Dryleaf Cuissardes",
+      "IDList": [
+        3000300
+      ]
+    },
+    {
+      "Text": "Dryleaf Robe (Altered)",
+      "IDList": [
+        3001100
+      ]
+    },
+    {
+      "Text": "Gaius\u0027s Helm",
+      "IDList": [
+        3010000
+      ]
+    },
+    {
+      "Text": "Gaius\u0027s Armor",
+      "IDList": [
+        3010100
+      ]
+    },
+    {
+      "Text": "Gaius\u0027s Gauntlets",
+      "IDList": [
+        3010200
+      ]
+    },
+    {
+      "Text": "Gaius\u0027s Greaves",
+      "IDList": [
+        3010300
+      ]
+    },
+    {
+      "Text": "Oathseeker Knight Helm",
+      "IDList": [
+        5000000
+      ]
+    },
+    {
+      "Text": "Leda\u0027s Armor",
+      "IDList": [
+        5000100
+      ]
+    },
+    {
+      "Text": "Oathseeker Knight Gauntlets",
+      "IDList": [
+        5000200
+      ]
+    },
+    {
+      "Text": "Oathseeker Knight Greaves",
+      "IDList": [
+        5000300
+      ]
+    },
+    {
+      "Text": "Oathseeker Knight Armor",
+      "IDList": [
+        5002100
+      ]
+    },
+    {
+      "Text": "Verdigris Helm",
+      "IDList": [
+        5010000
+      ]
+    },
+    {
+      "Text": "Verdigris Armor",
+      "IDList": [
+        5010100
+      ]
+    },
+    {
+      "Text": "Verdigris Gauntlets",
+      "IDList": [
+        5010200
+      ]
+    },
+    {
+      "Text": "Verdigris Greaves",
+      "IDList": [
+        5010300
+      ]
+    },
+    {
+      "Text": "Pelt of Ralva",
+      "IDList": [
+        5020000
+      ]
+    },
+    {
+      "Text": "Iron Rivet Armor",
+      "IDList": [
+        5020100
+      ]
+    },
+    {
+      "Text": "Iron Rivet Gauntlets",
+      "IDList": [
+        5020200
+      ]
+    },
+    {
+      "Text": "Iron Rivet Greaves",
+      "IDList": [
+        5020300
+      ]
+    },
+    {
+      "Text": "Fang Helm",
+      "IDList": [
+        5021000
+      ]
+    },
+    {
+      "Text": "Thiollier\u0027s Mask",
+      "IDList": [
+        5030000
+      ]
+    },
+    {
+      "Text": "Thiollier\u0027s Garb",
+      "IDList": [
+        5030100
+      ]
+    },
+    {
+      "Text": "Thiollier\u0027s Gloves",
+      "IDList": [
+        5030200
+      ]
+    },
+    {
+      "Text": "Thiollier\u0027s Trousers",
+      "IDList": [
+        5030300
+      ]
+    },
+    {
+      "Text": "Thiollier\u0027s Garb (Altered)",
+      "IDList": [
+        5031100
+      ]
+    },
+    {
+      "Text": "High Priest Hat",
+      "IDList": [
+        5060000
+      ]
+    },
+    {
+      "Text": "High Priest Robe",
+      "IDList": [
+        5060100
+      ]
+    },
+    {
+      "Text": "High Priest Gloves",
+      "IDList": [
+        5060200
+      ]
+    },
+    {
+      "Text": "High Priest Undergarments",
+      "IDList": [
+        5060300
+      ]
+    },
+    {
+      "Text": "Finger Robe",
+      "IDList": [
+        5062100
+      ]
+    },
+    {
+      "Text": "Caterpillar Mask",
+      "IDList": [
+        5070000
+      ]
+    },
+    {
+      "Text": "Braided Cord Robe",
+      "IDList": [
+        5070100
+      ]
+    },
+    {
+      "Text": "Braided Arm Wraps",
+      "IDList": [
+        5070200
+      ]
+    },
+    {
+      "Text": "Soiled Loincloth",
+      "IDList": [
+        5070300
+      ]
+    },
+    {
+      "Text": "Dancer\u0027s Hood",
+      "IDList": [
+        5080000
+      ]
+    },
+    {
+      "Text": "Dancer\u0027s Dress",
+      "IDList": [
+        5080100
+      ]
+    },
+    {
+      "Text": "Dancer\u0027s Bracer",
+      "IDList": [
+        5080200
+      ]
+    },
+    {
+      "Text": "Dancer\u0027s Trousers",
+      "IDList": [
+        5080300
+      ]
+    },
+    {
+      "Text": "Dancer\u0027s Dress (Altered)",
+      "IDList": [
+        5081100
+      ]
+    },
+    {
+      "Text": "Helm of Night",
+      "IDList": [
+        5090000
+      ]
+    },
+    {
+      "Text": "Armor of Night",
+      "IDList": [
+        5090100
+      ]
+    },
+    {
+      "Text": "Gauntlets of Night",
+      "IDList": [
+        5090200
+      ]
+    },
+    {
+      "Text": "Greaves of Night",
+      "IDList": [
+        5090300
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Helm",
+      "IDList": [
+        5100000
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Armor",
+      "IDList": [
+        5100100
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Gauntlets",
+      "IDList": [
+        5100200
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Loincloth",
+      "IDList": [
+        5100300
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Helm (Altered)",
+      "IDList": [
+        5101000
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Armor (Altered)",
+      "IDList": [
+        5101100
+      ]
+    },
+    {
+      "Text": "Wise Man\u0027s Mask",
+      "IDList": [
+        5110000
+      ]
+    },
+    {
+      "Text": "Ansbach\u0027s Attire",
+      "IDList": [
+        5110100
+      ]
+    },
+    {
+      "Text": "Ansbach\u0027s Manchettes",
+      "IDList": [
+        5110200
+      ]
+    },
+    {
+      "Text": "Ansbach\u0027s Boots",
+      "IDList": [
+        5110300
+      ]
+    },
+    {
+      "Text": "Ansbach\u0027s Attire (Altered)",
+      "IDList": [
+        5111100
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Helm",
+      "IDList": [
+        5120000
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Armor",
+      "IDList": [
+        5120100
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Gauntlets",
+      "IDList": [
+        5120200
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Greaves",
+      "IDList": [
+        5120300
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Armor (Altered)",
+      "IDList": [
+        5121100
+      ]
+    },
+    {
+      "Text": "Helm of Solitude",
+      "IDList": [
+        5130000
+      ]
+    },
+    {
+      "Text": "Armor of Solitude",
+      "IDList": [
+        5130100
+      ]
+    },
+    {
+      "Text": "Gauntlets of Solitude",
+      "IDList": [
+        5130200
+      ]
+    },
+    {
+      "Text": "Greaves of Solitude",
+      "IDList": [
+        5130300
+      ]
+    },
+    {
+      "Text": "Armor of Solitude (Altered)",
+      "IDList": [
+        5131100
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Helm",
+      "IDList": [
+        5140000
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Armor",
+      "IDList": [
+        5140100
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Gauntlets",
+      "IDList": [
+        5140200
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Greaves",
+      "IDList": [
+        5140300
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Armor (Altered)",
+      "IDList": [
+        5141100
+      ]
+    },
+    {
+      "Text": "Black Knight Helm",
+      "IDList": [
+        5150000
+      ]
+    },
+    {
+      "Text": "Black Knight Armor",
+      "IDList": [
+        5150100
+      ]
+    },
+    {
+      "Text": "Black Knight Gauntlets",
+      "IDList": [
+        5150200
+      ]
+    },
+    {
+      "Text": "Black Knight Greaves",
+      "IDList": [
+        5150300
+      ]
+    },
+    {
+      "Text": "Rakshasa Helm",
+      "IDList": [
+        5160000
+      ]
+    },
+    {
+      "Text": "Rakshasa Armor",
+      "IDList": [
+        5160100
+      ]
+    },
+    {
+      "Text": "Rakshasa Gauntlets",
+      "IDList": [
+        5160200
+      ]
+    },
+    {
+      "Text": "Rakshasa Greaves",
+      "IDList": [
+        5160300
+      ]
+    },
+    {
+      "Text": "Fire Knight Helm",
+      "IDList": [
+        5180000
+      ]
+    },
+    {
+      "Text": "Fire Knight Armor",
+      "IDList": [
+        5180100
+      ]
+    },
+    {
+      "Text": "Fire Knight Gauntlets",
+      "IDList": [
+        5180200
+      ]
+    },
+    {
+      "Text": "Fire Knight Greaves",
+      "IDList": [
+        5180300
+      ]
+    },
+    {
+      "Text": "Fire Knight Armor (Altered)",
+      "IDList": [
+        5181100
+      ]
+    },
+    {
+      "Text": "Death Mask Helm",
+      "IDList": [
+        5182000
+      ]
+    },
+    {
+      "Text": "Winged Serpent Helm",
+      "IDList": [
+        5183000
+      ]
+    },
+    {
+      "Text": "Salza\u0027s Hood",
+      "IDList": [
+        5184000
+      ]
+    },
+    {
+      "Text": "Leather Headband",
+      "IDList": [
+        5190000
+      ]
+    },
+    {
+      "Text": "Gloried Attire",
+      "IDList": [
+        5190100
+      ]
+    },
+    {
+      "Text": "Leather Arm Wraps",
+      "IDList": [
+        5190200
+      ]
+    },
+    {
+      "Text": "Leather Leg Wraps",
+      "IDList": [
+        5190300
+      ]
+    },
+    {
+      "Text": "Leather Crown",
+      "IDList": [
+        5191000
+      ]
+    },
+    {
+      "Text": "Highland Attire",
+      "IDList": [
+        5191100
+      ]
+    },
+    {
+      "Text": "Death Knight Helm",
+      "IDList": [
+        5200000
+      ]
+    },
+    {
+      "Text": "Death Knight Armor",
+      "IDList": [
+        5200100
+      ]
+    },
+    {
+      "Text": "Death Knight Gauntlets",
+      "IDList": [
+        5200200
+      ]
+    },
+    {
+      "Text": "Death Knight Greaves",
+      "IDList": [
+        5200300
+      ]
+    },
+    {
+      "Text": "Curseblade Mask",
+      "IDList": [
+        5210000
+      ]
+    },
+    {
+      "Text": "Ascetic\u0027s Loincloth",
+      "IDList": [
+        5210100
+      ]
+    },
+    {
+      "Text": "Ascetic\u0027s Wrist Guards",
+      "IDList": [
+        5210200
+      ]
+    },
+    {
+      "Text": "Ascetic\u0027s Ankle Guards",
+      "IDList": [
+        5210300
+      ]
+    },
+    {
+      "Text": "Messmer\u0027s Helm",
+      "IDList": [
+        5220000
+      ]
+    },
+    {
+      "Text": "Messmer\u0027s Armor",
+      "IDList": [
+        5220100
+      ]
+    },
+    {
+      "Text": "Messmer\u0027s Gauntlets",
+      "IDList": [
+        5220200
+      ]
+    },
+    {
+      "Text": "Messmer\u0027s Greaves",
+      "IDList": [
+        5220300
+      ]
+    },
+    {
+      "Text": "Messmer\u0027s Helm (Altered)",
+      "IDList": [
+        5221000
+      ]
+    },
+    {
+      "Text": "Gravebird Helm",
+      "IDList": [
+        5230000
+      ]
+    },
+    {
+      "Text": "Gravebird\u0027s Blackquill Armor",
+      "IDList": [
+        5230100
+      ]
+    },
+    {
+      "Text": "Gravebird Bracelets",
+      "IDList": [
+        5230200
+      ]
+    },
+    {
+      "Text": "Gravebird Anklets",
+      "IDList": [
+        5230300
+      ]
+    },
+    {
+      "Text": "Gravebird Armor",
+      "IDList": [
+        5231100
+      ]
+    },
+    {
+      "Text": "Common Soldier Helm",
+      "IDList": [
+        5240000
+      ]
+    },
+    {
+      "Text": "Common Soldier Cloth Armor",
+      "IDList": [
+        5240100
+      ]
+    },
+    {
+      "Text": "Common Soldier Gauntlets",
+      "IDList": [
+        5240200
+      ]
+    },
+    {
+      "Text": "Common Soldier Greaves",
+      "IDList": [
+        5240300
+      ]
+    },
+    {
+      "Text": "Horned Warrior Helm",
+      "IDList": [
+        5250000
+      ]
+    },
+    {
+      "Text": "Horned Warrior Armor",
+      "IDList": [
+        5250100
+      ]
+    },
+    {
+      "Text": "Horned Warrior Gauntlets",
+      "IDList": [
+        5250200
+      ]
+    },
+    {
+      "Text": "Horned Warrior Greaves",
+      "IDList": [
+        5250300
+      ]
+    },
+    {
+      "Text": "Divine Beast Helm",
+      "IDList": [
+        5252000
+      ]
+    },
+    {
+      "Text": "Divine Beast Warrior Armor",
+      "IDList": [
+        5252100
+      ]
+    },
+    {
+      "Text": "Divine Bird Helm",
+      "IDList": [
+        5253000
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Armor",
+      "IDList": [
+        5253100
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Gauntlets",
+      "IDList": [
+        5253200
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Greaves",
+      "IDList": [
+        5253300
+      ]
+    },
+    {
+      "Text": "Rellana\u0027s Helm",
+      "IDList": [
+        5260000
+      ]
+    },
+    {
+      "Text": "Rellana\u0027s Armor",
+      "IDList": [
+        5260100
+      ]
+    },
+    {
+      "Text": "Rellana\u0027s Gloves",
+      "IDList": [
+        5260200
+      ]
+    },
+    {
+      "Text": "Rellana\u0027s Greaves",
+      "IDList": [
+        5260300
+      ]
+    },
+    {
+      "Text": "Young Lion\u0027s Helm",
+      "IDList": [
+        5270000
+      ]
+    },
+    {
+      "Text": "Young Lion\u0027s Armor",
+      "IDList": [
+        5270100
+      ]
+    },
+    {
+      "Text": "Young Lion\u0027s Gauntlets",
+      "IDList": [
+        5270200
+      ]
+    },
+    {
+      "Text": "Young Lion\u0027s Greaves",
+      "IDList": [
+        5270300
+      ]
+    },
+    {
+      "Text": "Young Lion\u0027s Armor (Altered)",
+      "IDList": [
+        5271100
+      ]
+    },
+    {
+      "Text": "Circlet of Light",
+      "IDList": [
+        5272000
+      ]
+    },
+    {
+      "Text": "Shadow Militiaman Helm",
+      "IDList": [
+        5280000
+      ]
+    },
+    {
+      "Text": "Shadow Militiaman Armor",
+      "IDList": [
+        5280100
+      ]
+    },
+    {
+      "Text": "Shadow Militiaman Gauntlets",
+      "IDList": [
+        5280200
+      ]
+    },
+    {
+      "Text": "Shadow Militiaman Greaves",
+      "IDList": [
+        5280300
+      ]
+    },
+    {
+      "Text": "Divine Beast Head",
+      "IDList": [
+        5290000
+      ]
+    },
+    {
+      "Text": "St. Trina\u0027s Blossom",
+      "IDList": [
+        5300000
+      ]
+    },
+    {
+      "Text": "Crucible Hammer-Helm",
+      "IDList": [
+        5310000
+      ]
+    },
+    {
+      "Text": "Greatjar",
+      "IDList": [
+        5320000
+      ]
+    },
+    {
+      "Text": "Imp Head (Lion)",
+      "IDList": [
+        5330000
+      ]
+    }
+  ]
+}

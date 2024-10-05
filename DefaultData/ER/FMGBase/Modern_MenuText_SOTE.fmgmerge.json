@@ -1,0 +1,396 @@
+{
+  "FMG_ID": 368,
+  "Entries": [
+    {
+      "Text": "Scadutree Blessing",
+      "IDList": [
+        10410
+      ]
+    },
+    {
+      "Text": "Revered Spirit Ash Blessing",
+      "IDList": [
+        10411
+      ]
+    },
+    {
+      "Text": "Strength of the Scadutree Blessing.\nAffects only those within the realm of shadow\nwho have received the Scadutree Blessing.",
+      "IDList": [
+        30205
+      ]
+    },
+    {
+      "Text": "Strength of the Revered Spirit Ash Blessing.\nEnhances summoned spirits and spectral steed, but only while within the bounds of the realm of shadow.",
+      "IDList": [
+        30206
+      ]
+    },
+    {
+      "Text": "Keyboard Only",
+      "IDList": [
+        40382
+      ]
+    },
+    {
+      "Text": "Keyboard and Mouse",
+      "IDList": [
+        40383
+      ]
+    },
+    {
+      "Text": "Recent Items",
+      "IDList": [
+        40524
+      ]
+    },
+    {
+      "Text": "Hand-to-Hand",
+      "IDList": [
+        60180
+      ]
+    },
+    {
+      "Text": "Perfume Bottle",
+      "IDList": [
+        60181
+      ]
+    },
+    {
+      "Text": "Thrusting Shield",
+      "IDList": [
+        60182
+      ]
+    },
+    {
+      "Text": "Throwing Blade",
+      "IDList": [
+        60183
+      ]
+    },
+    {
+      "Text": "Backhand Blade",
+      "IDList": [
+        60184
+      ]
+    },
+    {
+      "Text": "Light Greatsword",
+      "IDList": [
+        60185
+      ]
+    },
+    {
+      "Text": "Great Katana",
+      "IDList": [
+        60186
+      ]
+    },
+    {
+      "Text": "Beast Claw",
+      "IDList": [
+        60187
+      ]
+    },
+    {
+      "Text": "Usable on hand-to-hand weapons",
+      "IDList": [
+        63051
+      ]
+    },
+    {
+      "Text": "Usable on perfume bottles",
+      "IDList": [
+        63052
+      ]
+    },
+    {
+      "Text": "Usable on thrusting shields",
+      "IDList": [
+        63053
+      ]
+    },
+    {
+      "Text": "Usable on throwing blades",
+      "IDList": [
+        63054
+      ]
+    },
+    {
+      "Text": "Usable on backhand blades",
+      "IDList": [
+        63055
+      ]
+    },
+    {
+      "Text": "Usable on light greatswords",
+      "IDList": [
+        63056
+      ]
+    },
+    {
+      "Text": "Usable on great katana",
+      "IDList": [
+        63057
+      ]
+    },
+    {
+      "Text": "Usable on beast claws",
+      "IDList": [
+        63058
+      ]
+    },
+    {
+      "Text": "Usable on armaments capable of thrusting (claws and backhand blades excepted)",
+      "IDList": [
+        63059
+      ]
+    },
+    {
+      "Text": "Usable on large and colossal swords",
+      "IDList": [
+        63060
+      ]
+    },
+    {
+      "Text": "Usable on swords and spears (small armaments, twinblades, and backhand blades excepted)",
+      "IDList": [
+        63061
+      ]
+    },
+    {
+      "Text": "Hefty Cracked Pot",
+      "IDList": [
+        80020
+      ]
+    },
+    {
+      "Text": "Display",
+      "IDList": [
+        110600
+      ]
+    },
+    {
+      "Text": "Mark New Items",
+      "IDList": [
+        110601
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        110602,
+        225002,
+        225003,
+        225004,
+        225005,
+        225006,
+        225007,
+        225008,
+        225009,
+        225010
+      ]
+    },
+    {
+      "Text": "Show Recent Items Tab",
+      "IDList": [
+        110603
+      ]
+    },
+    {
+      "Text": "Sound",
+      "IDList": [
+        110700
+      ]
+    },
+    {
+      "Text": "Map Menu Cursor Movement",
+      "IDList": [
+        111024
+      ]
+    },
+    {
+      "Text": "Target Changing Sensitivity",
+      "IDList": [
+        111025
+      ]
+    },
+    {
+      "Text": "Dragon Communion: Bayle",
+      "IDList": [
+        225001
+      ]
+    },
+    {
+      "Text": "Offerings",
+      "IDList": [
+        225011
+      ]
+    },
+    {
+      "Text": "Scadu Altus",
+      "IDList": [
+        241337,
+        241418
+      ]
+    },
+    {
+      "Text": "Cerulean Coast",
+      "IDList": [
+        241338
+      ]
+    },
+    {
+      "Text": "Foot of the Jagged Peak",
+      "IDList": [
+        241339
+      ]
+    },
+    {
+      "Text": "Jagged Peak",
+      "IDList": [
+        241340
+      ]
+    },
+    {
+      "Text": "Charo\u0027s Hidden Grave",
+      "IDList": [
+        241341
+      ]
+    },
+    {
+      "Text": "Ancient Ruins of Rauh",
+      "IDList": [
+        241342
+      ]
+    },
+    {
+      "Text": "Scaduview",
+      "IDList": [
+        241343
+      ]
+    },
+    {
+      "Text": "Abyssal Woods",
+      "IDList": [
+        241344
+      ]
+    },
+    {
+      "Text": "Belurat, Tower Settlement",
+      "IDList": [
+        241345
+      ]
+    },
+    {
+      "Text": "Enir-Ilim",
+      "IDList": [
+        241346
+      ]
+    },
+    {
+      "Text": "Shadow Keep",
+      "IDList": [
+        241347,
+        241420
+      ]
+    },
+    {
+      "Text": "Shadow Keep, Church District",
+      "IDList": [
+        241348
+      ]
+    },
+    {
+      "Text": "Specimen Storehouse",
+      "IDList": [
+        241349
+      ]
+    },
+    {
+      "Text": "Stone Coffin Fissure",
+      "IDList": [
+        241350
+      ]
+    },
+    {
+      "Text": "Midra\u0027s Manse",
+      "IDList": [
+        241351
+      ]
+    },
+    {
+      "Text": "Castle Ensis",
+      "IDList": [
+        241352
+      ]
+    },
+    {
+      "Text": "Gravesite Plain",
+      "IDList": [
+        241353,
+        241417
+      ]
+    },
+    {
+      "Text": "Rauh Base",
+      "IDList": [
+        241354
+      ]
+    },
+    {
+      "Text": "Land of the Tower",
+      "IDList": [
+        241419
+      ]
+    },
+    {
+      "Text": "Map Functions Menu",
+      "IDList": [
+        241500
+      ]
+    },
+    {
+      "Text": "Multiplayer Status Display",
+      "IDList": [
+        241501
+      ]
+    },
+    {
+      "Text": "Summoning Pool List",
+      "IDList": [
+        241502,
+        241600
+      ]
+    },
+    {
+      "Text": "View Controls",
+      "IDList": [
+        241503
+      ]
+    },
+    {
+      "Text": "Menu Explanation",
+      "IDList": [
+        241504
+      ]
+    },
+    {
+      "Text": "Menu",
+      "IDList": [
+        280060
+      ]
+    },
+    {
+      "Text": "Map",
+      "IDList": [
+        280600
+      ]
+    },
+    {
+      "Text": "HEART STOLEN",
+      "IDList": [
+        331340
+      ]
+    }
+  ]
+}

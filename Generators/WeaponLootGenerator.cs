@@ -16,6 +16,8 @@ public class WeaponLootGenerator : ParamLootGenerator
     private readonly WeaponGeneratorConfig weaponGeneratorConfig;
     private readonly AshofWarHandler ashofWarHandler;
 
+    public List<GenericDictionary> LoadedStaffsSealsLoot { get; private set; }
+
     public WeaponLootGenerator(
         IOptions<Configuration> configuration,
         IOptions<WeaponGeneratorConfig> weaponGeneratorConfig,
@@ -32,9 +34,11 @@ public class WeaponLootGenerator : ParamLootGenerator
         this.weaponGeneratorConfig = weaponGeneratorConfig.Value;
         this.ashofWarHandler = ashofWarHandler;
 
-        List<EquipWeaponParam> weaponLoots = CsvLoader.LoadCsv<EquipWeaponParam>("DefaultData\\ER\\CSVs\\EquipWeaponParam.csv");
+        List<EquipParamWeapon> weaponLoots = Csv.LoadCsv<EquipParamWeapon>("DefaultData\\ER\\CSVs\\EquipParamWeapon.csv");
+        List<EquipParamWeapon> staffsSeals = Csv.LoadCsv<EquipParamWeapon>("DefaultData\\ER\\CSVs\\StaffsSeals\\EquipParamWeapon_StaffsSeals.csv");
 
         this.LoadedLoot = weaponLoots.Select(GenericDictionary.FromObject).ToList();
+        this.LoadedStaffsSealsLoot = staffsSeals.Select(GenericDictionary.FromObject).ToList();
     }
 
     public int CreateWeapon(int rarityId, List<int> whitelistLootIds = null)
@@ -58,9 +62,6 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         WeaponTypes generatedType = this.GetWeaponType(weaponDictionary.GetValue<int>(this.Configuration.LootParam.WeaponsWepMotionCategory));
 
-        bool isStaffSeal = generatedType == WeaponTypes.StaffsSeals;
-        bool isShield = generatedType == WeaponTypes.Shields;
-
         // randomize damage type
         DamageTypeSetup DT1 = this.DamageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ChaosLootEnabled, false);
         DamageTypeSetup DT2 = this.DamageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ChaosLootEnabled, true);
@@ -82,7 +83,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         weaponDesc += DTAdditions.SpEffectDescription;
 
-        if (!isShield && !isStaffSeal)
+        if (generatedType == WeaponTypes.Normal)
         {
             affinity = CreateAffinityTitle(DT1, DT2);
         }
@@ -127,7 +128,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         if (uniqueWeapon)
         {
-            string uniqueName = this.LoreGenerator.CreateRandomUniqueName("", isShield);
+            string uniqueName = this.LoreGenerator.CreateRandomUniqueName("", generatedType == WeaponTypes.Shields);
             if (!string.IsNullOrEmpty(uniqueName))
             {
                 weaponFinalTitleColored = $"{uniqueName} ({weaponRarity})";

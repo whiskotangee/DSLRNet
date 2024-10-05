@@ -41,7 +41,13 @@ public class WhiteListHandler(
 
         if (itemIds.Count == 0)
         {
-            WhiteListConfigItem randomConfig = this.random.GetRandomItem(whitelistConfig.Configs);
+            var validConfigs = whitelistConfig.Configs.Where(d =>
+            {
+                (List<int> lootIds, List<int> weights) = GetRandomLootAndWeightsFromConfig(d, type);
+                return lootIds.Count > 0;
+            }).ToList();
+
+            WhiteListConfigItem randomConfig = this.random.GetRandomItem(validConfigs);
 
             (List<int> lootIds, List<int> weights) = GetRandomLootAndWeightsFromConfig(randomConfig, type);
 

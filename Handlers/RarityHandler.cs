@@ -18,7 +18,7 @@ public class RarityHandler : BaseHandler
     {
         this.randomNumberGetter = randomNumberGetter;
 
-        this.RarityConfigs = CsvLoader.LoadCsv<RaritySetup>("DefaultData\\ER\\CSVs\\RaritySetup.csv").ToDictionary(d => d.ID);
+        this.RarityConfigs = Csv.LoadCsv<RaritySetup>("DefaultData\\ER\\CSVs\\RaritySetup.csv").ToDictionary(d => d.ID);
     }
 
     //RARITY MAINTENANCE FUNCTIONS

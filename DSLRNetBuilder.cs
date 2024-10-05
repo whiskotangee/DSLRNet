@@ -6,7 +6,11 @@ using DSLRNet.Handlers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Mods.Common;
+using SoulsFormats;
+using System.Data.SqlTypes;
 using System.Globalization;
+using System.Security.Cryptography;
+using System.Xml.Linq;
 
 namespace DSLRNet;
 
@@ -32,11 +36,11 @@ public class DSLRNetBuilder(
         // get all queue entries
 
         // TODO: Loading ini is failing due to [] in values
-        var enemyItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
-            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.ParamCategories[0]));
+        IEnumerable<ItemLotQueueEntry> enemyItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
+            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[0]));
 
-        var mapItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
-            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.ParamCategories[1]));
+        IEnumerable<ItemLotQueueEntry> mapItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
+            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[1]));
 
         // ItemLotGenerator
         // do enemies
@@ -51,31 +55,98 @@ public class DSLRNetBuilder(
         itemLotGenerator.CreateItemLots(enemyItemLotsSetups.Union(mapItemLotsSetups));
         //itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
 
-        var generatedData = dataRepository.GetMassEditContents();
-        var generatedMessages = dataRepository.GetTextLines();
+        Dictionary<string, List<string>> generatedData = dataRepository.GetMassEditContents();
+        List<string> generatedMessages = dataRepository.GetTextLines();
 
         generatedData.Keys.ToList().ForEach(d => File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{d}.massedit"), generatedData[d]));
 
         Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
-        var regulationFile = Path.Combine(this.configuration.Settings.OverrideModLocation, "regulation.bin");
+        string regulationFile = Path.Combine(this.configuration.Settings.OverrideModLocation, "regulation.bin");
         if (!File.Exists(regulationFile))
         {
             regulationFile = Path.Combine(this.configuration.Settings.GamePath, "regulation.bin");
         }
 
-        var destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+        string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
         File.Copy(regulationFile, destinationFile, true);
         File.Copy("DefaultData\\ER\\MassEdit\\postfix.massedit", Path.Combine(this.configuration.Settings.DeployPath, "postfix.massedit"), true);
-
+        /*
         foreach (var massEdit in generatedData)
         {
             await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{massEdit.Key}.massedit"), destinationFile);
         }
+        */
 
-        await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, Path.Combine(this.configuration.Settings.DeployPath, "postfix.massedit")), destinationFile);
+        //await this.ApplyEdits(destinationFile, dataRepository);
+
+        foreach (KeyValuePair<string, List<string>> massEdit in generatedData)
+        {
+            await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{massEdit.Key}.massedit"), destinationFile);
+        }
+
+        //await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, Path.Combine(this.configuration.Settings.DeployPath, "postfix.massedit")), destinationFile);
 
         await UpdateMessages(generatedMessages);
+    }
+
+    public async Task ApplyEdits(string regulationFile, DataRepository repository)
+    {
+        if (Directory.Exists(regulationFile.Replace(".", "-")))
+        {
+            Directory.Delete(regulationFile.Replace(".", "-"), true);
+        }
+
+        await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
+        {
+            ExePath = "O:\\EldenRingShitpostEdition\\Tools\\WitchyBND\\WitchyBND.exe",
+            Arguments = $"{regulationFile} --silent --recursive"
+        });
+
+        string paramPath = regulationFile.Replace(".", "-");
+        string[] paramFiles = Directory.GetFiles(paramPath, "*.xml");
+
+        foreach (string paramFile in paramFiles)
+        {
+            string name = Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(paramFile));
+            List<GenericDictionary> adds = repository.GetAllEditsForParam(name);
+
+            if (adds.Count == 0 || name == "NpcParam")
+            {
+                continue;
+            }
+
+            XDocument doc = XDocument.Parse(File.ReadAllText(paramFile));
+
+            foreach (GenericDictionary add in adds)
+            {
+                XElement newRow = new("row", 
+                    add.Properties
+                    .Where(d => d.Key != "ID")
+                    .Select(s => new XAttribute(s.Key, s.Value))
+                    .Union([new XAttribute("id", add.Properties["ID"])]));
+
+                doc.Root.Element("rows").Add(newRow);
+            }
+
+            doc.Save(paramFile);
+
+            (string Context, string Output) output = await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
+            {
+                ExePath = "O:\\EldenRingShitpostEdition\\Tools\\WitchyBND\\WitchyBND.exe",
+                Arguments = $"{paramFile} --silent"
+            });
+
+            this.logger.LogInformation(output.Output);
+        }
+
+        (string Context, string Output) overallOutput = await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
+        {
+            ExePath = "O:\\EldenRingShitpostEdition\\Tools\\WitchyBND\\WitchyBND.exe",
+            Arguments = $"{paramPath} --silent"
+        });
+
+        this.logger.LogInformation(overallOutput.Output);
     }
 
     private async Task ApplyMassEdit(string massEditFile, string destinationFile)
@@ -87,28 +158,29 @@ public class DSLRNetBuilder(
             RetryCount = 0
         });
     }
+
     public static void GenerateClassFromCsv(string csvFilePath)
     {
-        var lines = File.ReadAllLines(csvFilePath);
+        string[] lines = File.ReadAllLines(csvFilePath);
         if (lines.Length < 2)
         {
             throw new InvalidOperationException("CSV file must contain at least two lines (header and one data row).");
         }
 
-        var headers = lines[0].Split(',');
-        var dataRows = lines.Skip(1).Select(line => line.Split(',')).ToArray();
+        string[] headers = lines[0].Split(',');
+        string[][] dataRows = lines.Skip(1).Select(line => line.Split(',')).ToArray();
 
-        var properties = new List<string>();
+        List<string> properties = [];
 
         for (int i = 0; i < headers.Length; i++)
         {
-            var header = headers[i];
-            var columnValues = dataRows.Select(row => row[i]);
-            var type = DetermineType(columnValues);
+            string header = headers[i];
+            IEnumerable<string> columnValues = dataRows.Select(row => row[i]);
+            string type = DetermineType(columnValues);
             properties.Add($"public {type} {header} {{ get; set; }}");
         }
 
-        var classDefinition = $@"
+        string classDefinition = $@"
 namespace DSLRNet.Data;
 
 public class {Path.GetFileNameWithoutExtension(csvFilePath)}
@@ -140,10 +212,10 @@ public class {Path.GetFileNameWithoutExtension(csvFilePath)}
     {
         Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
-        var gameMsgFiles = this.configuration.Settings.MessageFileNames.Select(s =>
+        List<string> gameMsgFiles = this.configuration.Settings.MessageFileNames.Select(s =>
         {
-            var modDir = Path.Combine(this.configuration.Settings.OverrideModLocation, "msg", "engus", s);
-            var gameDir = Path.Combine(this.configuration.Settings.GamePath, "msg", "engus", s);
+            string modDir = Path.Combine(this.configuration.Settings.OverrideModLocation, "msg", "engus", s);
+            string gameDir = Path.Combine(this.configuration.Settings.GamePath, "msg", "engus", s);
 
             return File.Exists(modDir) ? modDir : gameDir;
         }).ToList();
@@ -154,7 +226,7 @@ public class {Path.GetFileNameWithoutExtension(csvFilePath)}
 
         await Parallel.ForEachAsync(gameMsgFiles, async (gameMsgFile, c) =>
         {
-            var destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
+            string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
             Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus"));
 
             File.Copy(gameMsgFile, destinationFile, true);

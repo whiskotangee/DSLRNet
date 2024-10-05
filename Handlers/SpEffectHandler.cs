@@ -33,6 +33,22 @@ public class SpEffectHandler : BaseHandler
         randomNumberGetter = random;
 
         this.LoadedSpEffectConfigs = CsvLoader.LoadCsv<SpEffectConfig>("DefaultData\\ER\\CSVs\\SpEffectConfig_Default.csv");
+
+        List<SpEffectParam> loadedSpEffectParams = CsvLoader.LoadCsv<SpEffectParam>("DefaultData\\ER\\CSVs\\SpEffectParam.csv");
+
+        foreach (GenericDictionary? spEffectParam in loadedSpEffectParams.Select(GenericDictionary.FromObject))
+        {
+            this.GeneratedDataRepository.AddParamEdit("SpEffectParam", spEffectParam);
+            this.GeneratedDataRepository.AddToMassEdit(
+                "SpEffectParam", 
+                this.CreateMassEditParamFromParamDictionary(
+                    spEffectParam, 
+                    "SpEffectParam", 
+                    spEffectParam.GetValue<int>("ID"), 
+                    [],
+                    ["0", "-1"], 
+                    ["conditionHp", "effectEndurance", "conditionHpRate"]));
+        }
     }
 
     //SPEFFECTS WILL BE FILLED WITH MULTIPLE NUMERICAL KEYS DENOTING THE TYPE OF EFFECT - GENERAL WILL BE 0, BEHAVIOUR 1, STAFF ONLY 2, SEAL ONLY 3 ETC.
@@ -57,7 +73,7 @@ public class SpEffectHandler : BaseHandler
             List<SpEffectConfig> spEffectChoices = this.GetAvailableSpEffectConfigs(speffectpowerrange[0], speffectpowerrange[1], allowedtypes).ToList();
             if (spEffectChoices.Count > 0)
             {
-                foreach (var x in Enumerable.Range(0, desiredCount))
+                foreach (int x in Enumerable.Range(0, desiredCount))
                 {
                     if (chancearray[x])
                     {
@@ -154,14 +170,14 @@ public class SpEffectHandler : BaseHandler
         }
 
         //ITERATE OVER EACH ALLOWEDTYPE
-        foreach (var x in allowedtypes)
+        foreach (int x in allowedtypes)
         {
             // try with effects in range
-            var allOptions = LoadedSpEffectConfigs
+            List<SpEffectConfig> allOptions = LoadedSpEffectConfigs
                 .Where(d => d.SpEffectType == x)
                 .ToList();
 
-            var filteredOptions = allOptions
+            IEnumerable<SpEffectConfig> filteredOptions = allOptions
                 .Where(d => d.SpEffectPower >= powermin && d.SpEffectPower <= powermax);
 
             if (filteredOptions.Any())

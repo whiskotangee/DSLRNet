@@ -19,7 +19,7 @@ public class AshofWarHandler(IOptions<Configuration> configuration, DataReposito
         { "other", new List<int> { 800, 801, 802, 850, 10, 103, 105, 106, 107, 115, 120, 122, 123, 650, 652, 654, 653, 700, 701, 702 } }
     };
 
-    private static readonly List<string> aowCategories = new List<string> { "bowcrossbow", "shield", "staffseal" };
+    private static readonly List<string> aowCategories = ["bowcrossbow", "shield", "staffseal"];
 
     private static readonly Dictionary<string, List<int>> sapwmc = new Dictionary<string, List<int>>
     {

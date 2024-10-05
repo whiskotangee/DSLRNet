@@ -48,9 +48,16 @@ public class AreaScalingConfig
 
 public class ItemlotsConfig
 {
-    public List<string> ParamCategories { get; set; }
-    public List<string> NpcParamCategories { get; set; }
+    public List<Category> Categories { get; set; }
+    
     public ItemlotEditingArrayConfig ItemlotEditingArray { get; set; }
+}
+
+public class Category
+{
+    public string ParamCategory { get; set; }
+
+    public string NpcParamCategory { get; set; }
 }
 
 public class ItemlotEditingArrayConfig

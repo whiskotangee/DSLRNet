@@ -34,13 +34,13 @@ public class RarityHandler : BaseHandler
         List<int> valididweights = [];
 
         //FIRST, FIND THE NEAREST AVAILABLE ID FOR EACH ID IN THE SET
-        foreach (var x in idset)
+        foreach (int x in idset)
         {
             valididset.Add(GetNearestRarityId(x));
         }
 
         //NOW GET THE WEIGHTS FOR EACH OF THESE VALID RARITY IDS
-        foreach (var x in idset)
+        foreach (int x in idset)
         {
             //#print_debug(RarityConfigs)
             valididweights.Add(this.RarityConfigs[valididset.First(d => d == x)].SelectionWeight);
@@ -87,9 +87,9 @@ public class RarityHandler : BaseHandler
         for(int i = 0; i < 4 - offset; i++)
         {
             String spefchance = $"SpEffect{i}Chance";
-            var item = RarityConfigs[finalrarityid];
+            RaritySetup item = RarityConfigs[finalrarityid];
 
-            var speffectchance = (float)item.GetType().GetProperty(spefchance).GetValue(item);
+            float speffectchance = (float)item.GetType().GetProperty(spefchance).GetValue(item);
             finalboolarray.Add(this.randomNumberGetter.GetRandomBoolByPercent(speffectchance));
         }
 
@@ -144,13 +144,13 @@ public class RarityHandler : BaseHandler
         int lowest = Math.Clamp(GetNearestRarityId((int)Math.Round((highest - lowerrange) / 2f)), GetLowestRarityId(), GetHighestRarityId());
         List<int> finalrarities = [];
         //ADD VALUES NEAREST TO HIGHEST AND HIGHEST-LOWERRANGE
-        foreach (var x in new int[] { highest, lowest })
+        foreach (int x in new int[] { highest, lowest })
         {
             finalrarities.Add(x);
         }
 
         //NOW ITERATE OVER ALL AVAILABLE RARITYIDS AND Add ANY HIGHER THAN LOWEST AND LESS THAN HIGHEST
-        foreach (var x in RarityConfigs.Keys)
+        foreach (int x in RarityConfigs.Keys)
         {
             if (x > lowest && x < highest)
             {
@@ -199,10 +199,10 @@ public class RarityHandler : BaseHandler
         int finalrarity = GetNearestRarityId(rarityid);
         //CREATE ARRAY VARIABLE AND ITERATE OVER ALL POSSIBLE SpEffect(x)Chance ENTRIES TO GET FINAL ARRAY VARIABLE
         List<int> finalarray = [];
-        foreach (var x in Enumerable.Range(0,4))
+        foreach (int x in Enumerable.Range(0,4))
         {
             String spefchance = $"SpEffect{x}Chance";
-            var item = RarityConfigs[finalrarity];
+            RaritySetup item = RarityConfigs[finalrarity];
             
             finalarray.Add((int)item.GetType().GetProperty(spefchance).GetValue(item));
         }
@@ -237,9 +237,9 @@ public class RarityHandler : BaseHandler
 
     public string GetColorTextForRarity(int rarityId)
     {
-        var matchedRarity = this.GetNearestRarityId(rarityId);
+        int matchedRarity = this.GetNearestRarityId(rarityId);
         string name = this.GetRarityName(matchedRarity);
-        return $"{{\"HEX\":str({this.RarityConfigs[matchedRarity].ColorHex}),\"CONTENT\": {name}}}";
+        return $"&lt;font color=#{this.RarityConfigs[matchedRarity].ColorHex}&gt;{name}&lt;/font&gt;";
     }
 
     public int GetRarityDropChance(int rarityid = 0)
@@ -263,8 +263,8 @@ public class RarityHandler : BaseHandler
     //LOAD RARITY FUNCTIONS
     public void LoadRarityConfigs()
     {
-        using var reader = new StreamReader("DefaultData\\ER\\RaritySetup.csv");
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        using StreamReader reader = new StreamReader("DefaultData\\ER\\RaritySetup.csv");
+        using CsvReader csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
         this.RarityConfigs = csv.GetRecords<RaritySetup>().ToDictionary((k) => k.ID);
     }
@@ -274,7 +274,7 @@ public class RarityHandler : BaseHandler
         List<int> rarities = [];
         List<float> weights = [];
 
-        foreach (var x in RarityConfigs.Keys)
+        foreach (int x in RarityConfigs.Keys)
         {
             rarities.Add(x);
             weights.Add(this.RarityConfigs[x].SelectionWeight);
@@ -304,7 +304,7 @@ public class RarityHandler : BaseHandler
         //IF RARITYIDS ALREADY HAS THE DRV, SKIP ITERATING TO FIND IT
         if (!RarityConfigs.ContainsKey(desiredrarityvalue))
         {
-            foreach (var x in RarityConfigs.Keys)
+            foreach (int x in RarityConfigs.Keys)
             {
                 if (desiredrarityvalue <= x)
                 {

@@ -6,7 +6,7 @@ public class EquipWeaponParam
     public int ID { get; set; }
     public string Name { get; set; }
     public int disableParam_NT { get; set; }
-    public int disableParamReserve1 { get; set; }
+    public string disableParamReserve1 { get; set; }
     public string disableParamReserve2 { get; set; }
     public int behaviorVariationId { get; set; }
     public int sortId { get; set; }

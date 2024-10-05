@@ -93,7 +93,7 @@ public class ParamLootGenerator(
         }
 
         int finalNumber = spefNumOverride < 0 && spefNumOverride <= speffectParam.Count ? speffectParam.Count : spefNumOverride;
-        var speffectsToApply = SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, armorTalisman, spefChanceMult);
+        List<SpEffectText> speffectsToApply = SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, armorTalisman, spefChanceMult);
 
         if (armorTalisman)
         {
@@ -117,15 +117,15 @@ public class ParamLootGenerator(
 
     public string CreateLootTitle(string originalTitle, int rarityId, string damageType, SpEffectText? nameParts, bool colorCoded = false)
     {
-        var additions = new List<string>
-        {
+        List<string> additions =
+        [
             !colorCoded ? this.RarityHandler.GetRarityName(rarityId) : this.RarityHandler.GetColorTextForRarity(rarityId),
             damageType,
             nameParts?.NameParts.Prefix ?? string.Empty,
             nameParts?.NameParts.Interfix ?? string.Empty,
             originalTitle,
             nameParts?.NameParts.Suffix ?? string.Empty
-        };
+        ];
 
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)));
     }
@@ -192,7 +192,7 @@ public class ParamLootGenerator(
 
     public void RandomizeLootWeightBasedOnRarity(GenericDictionary lootDict, int rarityId = 0)
     {
-        var rarityWeight = RarityHandler.GetRarityWeightMultipliers(rarityId);
+        List<float> rarityWeight = RarityHandler.GetRarityWeightMultipliers(rarityId);
         RandomizeLootWeight(lootDict, (float)rarityWeight[0], (float)rarityWeight[1]);
     }
 
@@ -229,9 +229,9 @@ public class ParamLootGenerator(
 
     public List<string> GetAvailableSpEffectSlots(GenericDictionary lootDict)
     {
-        var baseParams = GetPassiveSpEffectSlotArrayFromOutputParamName();
-        var finalArray = new List<string>();
-        foreach (var param in baseParams)
+        List<string> baseParams = GetPassiveSpEffectSlotArrayFromOutputParamName();
+        List<string> finalArray = [];
+        foreach (string param in baseParams)
         {
             if (lootDict.ContainsKey(param) && lootDict.GetValue<int>(param) <= 0)
             {

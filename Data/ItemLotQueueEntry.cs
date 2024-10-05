@@ -1,4 +1,5 @@
-﻿using IniParser;
+﻿using DSLRNet.Config;
+using IniParser;
 using Newtonsoft.Json;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -25,11 +26,11 @@ public class GameStageConfig
 
 public class ItemLotQueueEntry
 {
-    public static ItemLotQueueEntry Create(string file, string category)
+    public static ItemLotQueueEntry Create(string file, Category category )
     {
-        var setup = DslItemLotSetup.Create(file);
+        DslItemLotSetup setup = DslItemLotSetup.Create(file);
 
-        var obj = JsonConvert.DeserializeObject<ItemLotQueueEntry>(JsonConvert.SerializeObject(setup));
+        ItemLotQueueEntry? obj = JsonConvert.DeserializeObject<ItemLotQueueEntry>(JsonConvert.SerializeObject(setup));
         obj.GameStageConfigs = [];
         obj.GameStageConfigs.Add(new GameStageConfig
         {
@@ -64,7 +65,8 @@ public class ItemLotQueueEntry
         });
 
         obj.BlackListIds = File.ReadAllLines($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt").Where(d => !string.IsNullOrWhiteSpace(d)).Select(long.Parse).ToList();
-        obj.Category = category;
+        obj.Category = category.ParamCategory;
+        obj.NpcParamCategory = category.NpcParamCategory;
 
         return obj;
     }
@@ -76,6 +78,9 @@ public class ItemLotQueueEntry
 
     public List<long> BlackListIds { get; set; }
     public string Category { get; set; }
+
+    public string NpcParamCategory { get; set; }
+
     public int Id { get; set; }
     public string Realname { get; set; }
     public int Enabled { get; set; }
@@ -95,8 +100,8 @@ class DslItemLotSetup
 {
     public static DslItemLotSetup Create(string file)
     {
-        var iniParser = new FileIniDataParser();
-        var data = iniParser.ReadFile(file);
+        FileIniDataParser iniParser = new FileIniDataParser();
+        IniParser.Model.IniData data = iniParser.ReadFile(file);
         return new DslItemLotSetup
         {
             Id = int.Parse(data["dslitemlotsetup"]["id"]),
@@ -159,12 +164,12 @@ class DslItemLotSetup
     static List<int> ParseList(string input)
     {
         input = input.Trim('[', ']');
-        var result = new List<int>();
+        List<int> result = [];
         if (!string.IsNullOrEmpty(input))
         {
-            foreach (var item in input.Split(','))
+            foreach (string item in input.Split(','))
             {
-                var preppedItem = item.Trim(new[] { '[', ']' });
+                string preppedItem = item.Trim(new[] { '[', ']' });
                 if (!string.IsNullOrWhiteSpace(preppedItem))
                 {
                     result.Add(int.Parse(preppedItem));
@@ -177,10 +182,10 @@ class DslItemLotSetup
     static List<List<int>> ParseNestedList(string input)
     {
         input = input.Trim('[', ']');
-        var result = new List<List<int>>();
+        List<List<int>> result = [];
         if (!string.IsNullOrEmpty(input))
         {
-            foreach (var item in input.Split(new[] { "], [" }, StringSplitOptions.None))
+            foreach (string item in input.Split(new[] { "], [" }, StringSplitOptions.None))
             {
                 result.Add(ParseList(item));
             }

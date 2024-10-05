@@ -25,7 +25,7 @@ public class AcquisitionFlagHandler(
     // If we fill every flag in the range 0000-9999, increase this
     private int OverallAcquisitionIDMultiplier { get; set; } = 0;
 
-    private List<int> SaveableFlags { get; set; } = new List<int>();
+    private List<int> SaveableFlags { get; set; } = [];
 
     public void ResetAcquisitionFlagHandler()
     {

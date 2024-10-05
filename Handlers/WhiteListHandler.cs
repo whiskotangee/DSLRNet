@@ -21,11 +21,11 @@ public class WhiteListHandler(
         List<int> itemIds = [];
         List<int> itemWeights = [];
 
-        foreach (var id in ids)
+        foreach (int id in ids)
         {
             if (this.whitelistConfig.Configs.Any(d => d.Id == id))
             {
-                var (lootIds, weights) = GetRandomLootAndWeightsFromConfig(this.whitelistConfig.Configs.Single(d => d.Id == id), type);
+                (List<int> lootIds, List<int> weights) = GetRandomLootAndWeightsFromConfig(this.whitelistConfig.Configs.Single(d => d.Id == id), type);
 
                 if (lootIds.Count != 0)
                 {
@@ -41,9 +41,9 @@ public class WhiteListHandler(
 
         if (itemIds.Count == 0)
         {
-            var randomConfig = this.random.GetRandomItem(whitelistConfig.Configs);
+            WhiteListConfigItem randomConfig = this.random.GetRandomItem(whitelistConfig.Configs);
 
-            var (lootIds, weights) = GetRandomLootAndWeightsFromConfig(randomConfig, type);
+            (List<int> lootIds, List<int> weights) = GetRandomLootAndWeightsFromConfig(randomConfig, type);
 
             if (lootIds.Count != 0)
             {

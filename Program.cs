@@ -13,17 +13,17 @@ using System.Diagnostics;
 
 Stopwatch overallTimer = Stopwatch.StartNew();
 
-var configurationBuilder = new ConfigurationBuilder();
+ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
 
-var jsonFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "appsettings*.json");
+string[] jsonFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "appsettings*.json");
 
 // Add each JSON file to the configuration builder
-foreach (var jsonFile in jsonFiles)
+foreach (string jsonFile in jsonFiles)
 {
     configurationBuilder.AddJsonFile(jsonFile, optional: false);
 }
 
-var configuration = configurationBuilder.Build();
+IConfigurationRoot configuration = configurationBuilder.Build();
 
 IServiceCollection services = new ServiceCollection();
 
@@ -63,8 +63,8 @@ services.AddSingleton<RandomNumberGetter>()
         .AddSingleton<ProcessRunner>()
         .AddTransient<CumulativeID>();
 
-var sp = services.BuildServiceProvider();
+ServiceProvider sp = services.BuildServiceProvider();
 
-var dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
+DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
 
 await dslrBuilder.BuildAndApply();

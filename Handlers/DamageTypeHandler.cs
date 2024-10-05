@@ -34,15 +34,15 @@ public class DamageTypeHandler : BaseHandler
         // If totally random, choose from the available DamageTypes at complete random
         if (totallyRandom)
         {
-            var randomIndex = this.random.NextInt(0, this.DamageTypes.Count);
+            int randomIndex = this.random.NextInt(0, this.DamageTypes.Count);
             return DamageTypes[randomIndex];
         }
 
-        var weights = new List<int>();
-        var ids = new List<int>();
+        List<int> weights = [];
+        List<int> ids = [];
 
         // Iterate over all DamageType keys, add their weightsToGet and ID to relevant arrays
-        foreach (var damageType in this.DamageTypes)
+        foreach (DamageTypeSetup damageType in this.DamageTypes)
         {
             weights.Add(secondaryDamage ? damageType.SecWeight : damageType.PriWeight);
             ids.Add(damageType.ID);
@@ -70,8 +70,8 @@ public class DamageTypeHandler : BaseHandler
 
     public void ApplyDamageTypeWeaponSpEffects(DamageTypeSetup dt1, DamageTypeSetup dt2, GenericDictionary weaponDict)
     {
-        var speffParam = this.configuration.LootParam.Speffects.EquipParamWeapon;
-        var behSpeffParam = this.configuration.LootParam.WeaponBehSpeffects;
+        List<string> speffParam = this.configuration.LootParam.Speffects.EquipParamWeapon;
+        List<string> behSpeffParam = this.configuration.LootParam.WeaponBehSpeffects;
 
         // For weapons, we'll leave the first speff slot free, but the latter ones (slots 2 and 3 in ER) should be used to apply damage type effects
         if (speffParam.Count > 0)
@@ -133,12 +133,12 @@ public class DamageTypeHandler : BaseHandler
 
     public void ApplyWeaponVfxFromDamageTypes(GenericDictionary weapDict, DamageTypeSetup dt1, DamageTypeSetup dt2)
     {
-        var vfxParams = this.configuration.LootParam.WeaponsVfxParam;
-        var vfxDummyParams = this.configuration.LootParam.WeaponsVfxDummyParam;
-        var vfxDummies = this.configuration.LootParam.WeaponsVfxDummies;
+        List<string> vfxParams = this.configuration.LootParam.WeaponsVfxParam;
+        List<string> vfxDummyParams = this.configuration.LootParam.WeaponsVfxDummyParam;
+        List<int> vfxDummies = this.configuration.LootParam.WeaponsVfxDummies;
         int dt1Vfx = dt1.VFXSpEffectID;
         int dt2Vfx = dt2.VFXSpEffectID;
-        var dtArray = new int[] { dt1Vfx, dt2Vfx };
+        int[] dtArray = new int[] { dt1Vfx, dt2Vfx };
 
         if (dt1Vfx != dt2Vfx)
         {
@@ -165,7 +165,7 @@ public class DamageTypeHandler : BaseHandler
     private int RngRandomWeighted(List<int> ids, List<int> weights)
     {
         int totalWeight = 0;
-        foreach (var weight in weights)
+        foreach (int weight in weights)
         {
             totalWeight += weight;
         }

@@ -55,7 +55,7 @@ public class ItemLotGenerator : BaseHandler
 
     public void CreateItemLots(IEnumerable<ItemLotQueueEntry> itemLotQueueEntries)
     {
-        foreach (var itemLotEntry in itemLotQueueEntries)
+        foreach (ItemLotQueueEntry itemLotEntry in itemLotQueueEntries)
         {
             CreateItemLot(itemLotEntry);
         }
@@ -67,7 +67,7 @@ public class ItemLotGenerator : BaseHandler
         // DON'T DO ANYTHING IF ITEMLOTIDS IS EMPTY
 
         // FIRST, COLLECT ALL OF THE ITEMLOTIDS ACROSS ALL THE AVAILABLE TIERS IN QUEUEDICTIONARY
-        var itemLotIds = GetAllItemLotIdsFromAllTiers(queueEntry);
+        List<int> itemLotIds = GetAllItemLotIdsFromAllTiers(queueEntry);
 
         if (itemLotIds.Count > 0)
         {
@@ -78,7 +78,7 @@ public class ItemLotGenerator : BaseHandler
                 {
                     // Log.Logger.Debug($"{this.GetType().Name} creating itemlot {itemLotIds[x]}");
                     // CREATE ITEMLOT DICTIONARY
-                    var newItemLot = CreateDefaultItemLotDictionary();
+                    ItemLotBase newItemLot = CreateDefaultItemLotDictionary();
 
                     // SET NEW ITEMLOT ID FROM WHICH OF THE QUEUEDICTIONARY ITEMLOT IDS ARRAY WE ARE CURRENTLY WORKING WITH
                     newItemLot.ID = itemLotIds[x];
@@ -112,7 +112,7 @@ public class ItemLotGenerator : BaseHandler
                     newItemLot.Name = $"DSLR {queueEntry.Realname} {x} {GetItemLotCategoriesForItemLotName(newItemLot)}";
 
                     // FINALLY, EXPORT TO MASSEDITOUTPUT
-                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(GenericDictionary.FromObject(newItemLot), queueEntry.Category ?? "", newItemLot.ID, new List<string>(), new List<string> { "0" });
+                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(GenericDictionary.FromObject(newItemLot), queueEntry.Category ?? "", newItemLot.ID, [], ["0"]);
                     this.GeneratedDataRepository.AddToMassEdit(queueEntry.Category, itemLotMassEdit);
                 }
                 else
@@ -169,7 +169,7 @@ public class ItemLotGenerator : BaseHandler
 
         // NOW WE'VE GOT THE VALUES WE NEED, TASK THE APPROPRIATE LOOT GENERATOR AND GET A DICTIONARY BACK
         // WE'LL USE TO FILL OUT THE ITEMLOT'S PARAMS - THE GENERATOR SHOULD TAKE CARE OF THE REST, I.E. WEAPON/ARMOR PARAM CREATION AND TEXT EXPORT
-        var genResult = TaskLootGeneratorBasedOnLootType(queueEntry, rarity, lootType);
+        (int FinalId, int FinalCategory) genResult = TaskLootGeneratorBasedOnLootType(queueEntry, rarity, lootType);
 
         // NOW APPLY THE GENRESULT DICTIONARY TO OUR ITEMLOTPARAMS
         ApplyItemLotEditingArray(itemLotDict, whichOne, genResult.FinalId, genResult.FinalCategory, (int)(GetGlobalDropChance() * dropMult));
@@ -212,11 +212,11 @@ public class ItemLotGenerator : BaseHandler
         // COMPILED ARRAY OF TIERS WE'LL BE CHECKING TO MAKE A FOR LOOP EASIER
 
         // CREATE FINAL ARRAY, WHICH WE WILL FILL WITH ITEMLOTIDS AS WE FIND THEM
-        var finalArray = new List<int>();
+        List<int> finalArray = [];
 
         foreach (GameStage tier in Enum.GetValues(typeof(GameStage)))
         {
-            var potentialAdds = itemLotEntry.GameStageConfigs.Where(d => d.Stage == tier && d.ItemLotIds.Count > 0);
+            IEnumerable<GameStageConfig> potentialAdds = itemLotEntry.GameStageConfigs.Where(d => d.Stage == tier && d.ItemLotIds.Count > 0);
             if (potentialAdds.Any())
             {
                 finalArray.AddRange(potentialAdds.SelectMany(s => s.ItemLotIds));
@@ -240,7 +240,7 @@ public class ItemLotGenerator : BaseHandler
         }
 
         // FIRST, WE NEED TO FIND WHICH TIER THE ITEMLOT WE'RE DEALING WITH IS IN
-        var tier = GetItemLotIdTier(queueEntry, itemLotId);
+        GameStageConfig tier = GetItemLotIdTier(queueEntry, itemLotId);
 
         // OTHERWISE ASSUME IT'S TWO IN THE FORMAT ABOVE
         return this.rarityHandler.GetRaritiesWithinRange(tier.AllowedRarities.Min(), tier.AllowedRarities.Max());
@@ -248,7 +248,7 @@ public class ItemLotGenerator : BaseHandler
 
     public int ChooseRarityFromItemLotIdTierAllowedRarities(ItemLotQueueEntry queueEntry, int itemLotId = 0)
     {
-        var rarities = GetItemLotIdTierAllowedRarities(queueEntry, itemLotId);
+        List<int> rarities = GetItemLotIdTierAllowedRarities(queueEntry, itemLotId);
         // INCREASE THE CHANCE OF DROPPING THE LOWEST TIER IN THE CURRENT RANGE BY 20%
         return this.rarityHandler.ChooseRarityFromIdSetWithBuiltInWeights(rarities, 1.2f);
     }
@@ -352,7 +352,7 @@ public class ItemLotGenerator : BaseHandler
 
     public void ApplyItemLotEditingArray(ItemLotBase dictionary, int itemNumber = 1, int itemId = 1000000, int itemCategory = 2, int itemChance = 50, int itemAmount = 1)
     {
-        var editingArray = this.configuration.Itemlots.ItemlotEditingArray;
+        ItemlotEditingArrayConfig editingArray = this.configuration.Itemlots.ItemlotEditingArray;
         dictionary.SetPropertyByName(editingArray.ItemlotParams[(int)ILEA.ItemId] + itemNumber.ToString(), itemId);
         dictionary.SetPropertyByName(editingArray.ItemlotParams[(int)ILEA.Category] + itemNumber.ToString(), itemCategory);
         dictionary.SetPropertyByName(editingArray.ItemlotParams[(int)ILEA.NumberOf] + itemNumber.ToString(), itemAmount);
@@ -381,7 +381,7 @@ public class ItemLotGenerator : BaseHandler
             for (int y = 0; y < currentIds.Count; y++)
             {
                 int assignedLot = currentItemLots[new Random().Next(0, maxItemLots + 1)];
-                finalString += CreateMassEditLine(npcParamName, currentIds[y], queueEntry.Category, assignedLot.ToString());
+                finalString += CreateMassEditLine(npcParamName, currentIds[y], queueEntry.NpcParamCategory, assignedLot.ToString());
             }
         }
 

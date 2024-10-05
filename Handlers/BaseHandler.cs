@@ -78,7 +78,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
     public List<string> CreateFmgLootEntrySet(string category = "Weapons", int id = 1000000, string title = "Dagger",
                                         string description = "This is a dagger!", string summary = "", bool multiname = false)
     {
-        List<string> final = new List<string>();
+        List<string> final = [];
 
         // Add Title Entry
         if (title != "")
@@ -134,7 +134,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
 
     private static Dictionary<string, object> CreateParamDictionaryUsingHeaderArray(List<string> headersArray, List<string> valuesArray)
     {
-        var dict = new Dictionary<string, object>();
+        Dictionary<string, object> dict = [];
 
         for (int i = 0; i < headersArray.Count; i++)
         {
@@ -149,7 +149,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
         return $"param {paramName}: id {id}: {propName}: = {value};{newLine}";
     }
 
-    public static string CreateMassEditParamFromParamDictionary(GenericDictionary dict, string paramName = "EquipParamWeapon", int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null)
+    public string CreateMassEditParamFromParamDictionary(GenericDictionary dict, string paramName = "EquipParamWeapon", int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null)
     {
         string finalMassEdit = "";
         List<string> banned = ["[", "]", "|"];
@@ -166,7 +166,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
             finalBannedEquals.AddRange(bannedEquals);
         }
 
-        foreach (var kvp in dict.Properties)
+        foreach (KeyValuePair<string, object?> kvp in dict.Properties)
         {
             string newKey = kvp.Key;
             string? newValue = kvp.Value?.ToString();
@@ -194,6 +194,8 @@ public class BaseHandler(DataRepository generatedDataRepository)
                 finalMassEdit += CreateMassEditLine(paramName, id, newKey, newValue);
             }
         }
+
+        this.GeneratedDataRepository.AddParamEdit(paramName, dict);
 
         return finalMassEdit;
     }

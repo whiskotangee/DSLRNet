@@ -8,7 +8,7 @@ public class GenericDictionary :  ICloneable
 {
     public static GenericDictionary FromObject(object obj)
     {
-        var dictionary = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+        Dictionary<string, object> dictionary = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
 
         foreach (PropertyInfo property in obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
         {
@@ -59,11 +59,11 @@ public class GenericDictionary :  ICloneable
 
     public object Clone()
     {
-        var newDictionary = new GenericDictionary();
+        GenericDictionary newDictionary = new GenericDictionary();
 
-        var clonedDictionary = new Dictionary<string, object?>(StringComparer.OrdinalIgnoreCase);
+        Dictionary<string, object?> clonedDictionary = new Dictionary<string, object?>(StringComparer.OrdinalIgnoreCase);
 
-        foreach(var keyValue in  this.Properties)
+        foreach(KeyValuePair<string, object?> keyValue in  this.Properties)
         {
             clonedDictionary[keyValue.Key] = JsonConvert.DeserializeObject<object?>(JsonConvert.SerializeObject(keyValue.Value));
         }

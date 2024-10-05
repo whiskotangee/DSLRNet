@@ -23,7 +23,7 @@ public class TalismanLootGenerator : ParamLootGenerator
         CumulativeID cumulativeID)
         : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, cumulativeID, dataRepository)
     {
-        var talismanLoots = CsvLoader.LoadCsv<EquipParamAccessory>("DefaultData\\ER\\CSVs\\EquipParamAccessory.csv");
+        List<EquipParamAccessory> talismanLoots = CsvLoader.LoadCsv<EquipParamAccessory>("DefaultData\\ER\\CSVs\\EquipParamAccessory.csv");
 
         this.LoadedLoot = talismanLoots.Select(GenericDictionary.FromObject).ToList();
     }

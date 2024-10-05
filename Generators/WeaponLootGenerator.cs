@@ -32,7 +32,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         this.weaponGeneratorConfig = weaponGeneratorConfig.Value;
         this.ashofWarHandler = ashofWarHandler;
 
-        var weaponLoots = CsvLoader.LoadCsv<EquipWeaponParam>("DefaultData\\ER\\CSVs\\EquipWeaponParam.csv");
+        List<EquipWeaponParam> weaponLoots = CsvLoader.LoadCsv<EquipWeaponParam>("DefaultData\\ER\\CSVs\\EquipWeaponParam.csv");
 
         this.LoadedLoot = weaponLoots.Select(GenericDictionary.FromObject).ToList();
     }
@@ -62,15 +62,15 @@ public class WeaponLootGenerator : ParamLootGenerator
         bool isShield = generatedType == WeaponTypes.Shields;
 
         // randomize damage type
-        var DT1 = this.DamageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ChaosLootEnabled, false);
-        var DT2 = this.DamageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ChaosLootEnabled, true);
+        DamageTypeSetup DT1 = this.DamageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ChaosLootEnabled, false);
+        DamageTypeSetup DT2 = this.DamageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ChaosLootEnabled, true);
 
         if (!this.Random.GetRandomBoolByPercent(this.weaponGeneratorConfig.SplitDamageTypeChance))
         {
             DT2 = DT1;
         }
 
-        var DTAdditions = DamageTypeAddition.CreateEmpty();
+        DamageTypeAddition DTAdditions = DamageTypeAddition.CreateEmpty();
 
         ApplyWeaponDamageAdditions(
             DT1,
@@ -141,14 +141,14 @@ public class WeaponLootGenerator : ParamLootGenerator
         string wftDescription = uniqueWeapon ? $"({weaponFinalTitle})\\n" : "";
         weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
 
-        ExportLootGenParamAndTextToOutputs(weaponDictionary, LootType.Weapon, weaponFinalTitleColored, wftDescription + weaponDesc + GetParamLootLore(weaponFinalTitle, false), "", new List<string>(), new List<string> { "-1", "0" });
+        ExportLootGenParamAndTextToOutputs(weaponDictionary, LootType.Weapon, weaponFinalTitleColored, wftDescription + weaponDesc + GetParamLootLore(weaponFinalTitle, false), "", [], []);
 
         return Convert.ToInt32(weaponDictionary.GetValue<int>("ID"));
     }
 
     private void SetWeaponOriginParam(GenericDictionary weaponDictionary, int id, int upgradeCap = 25, bool replace = true)
     {
-        var originParams =
+        List<string> originParams =
             Enumerable.Range(1, upgradeCap)
             .Where(d => weaponDictionary.ContainsKey($"{this.Configuration.LootParam.WeaponOriginParamBase}{d}") &&
                         weaponDictionary.GetValue<int>($"{this.Configuration.LootParam.WeaponOriginParamBase}{d}") > 0)
@@ -158,7 +158,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         if (replace)
         {
-            foreach (var param in originParams)
+            foreach (string? param in originParams)
             {
                 if (weaponDictionary.GetValue<int>(param) > 0)
                 {
@@ -168,7 +168,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         }
         else
         {
-            foreach (var param in originParams)
+            foreach (string? param in originParams)
             {
                 weaponDictionary.SetValue(param, id);
             }
@@ -180,7 +180,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         var currentScalings = this.Configuration.LootParam.WeaponsScaling.Select(d => new { ParamName = d, Value = weaponDictionary.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
         List<int> scalingRange = this.RarityHandler.GetRarityDamageAdditionRange(rarityId);
 
-        foreach (var scaling in currentScalings.Keys)
+        foreach (string scaling in currentScalings.Keys)
         {
             var currentScaling = currentScalings[scaling];
 
@@ -189,14 +189,14 @@ public class WeaponLootGenerator : ParamLootGenerator
             weaponDictionary.SetValue(currentScaling.ParamName, newValue);
         }
 
-        var primaryAddition = MathFunctions.RoundToXDecimalPlaces((float)this.Random.NextDouble(scalingRange[0], scalingRange[1]) * 0.6f, 2);
+        double primaryAddition = MathFunctions.RoundToXDecimalPlaces((float)this.Random.NextDouble(scalingRange[0], scalingRange[1]) * 0.6f, 2);
 
         var maxParam = currentScalings.MaxBy(d => d.Value.Value).Value;
 
         weaponDictionary.SetValue(maxParam.ParamName, maxParam.Value + primaryAddition);
 
         // randomly choose secondary stat and apply
-        var randomScalingKey = this.Random.GetRandomItem(currentScalings.Keys.Except([maxParam.ParamName]).ToList());
+        string randomScalingKey = this.Random.GetRandomItem(currentScalings.Keys.Except([maxParam.ParamName]).ToList());
 
         var randomScaling = currentScalings[randomScalingKey];
 
@@ -205,7 +205,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
     private void ApplyShieldCutRateChanges(DamageTypeSetup dT1, DamageTypeSetup dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
     {
-        var spEffectMultiplier = 1.0f;
+        float spEffectMultiplier = 1.0f;
         int existingValue = weaponDictionary.GetValue<int>(dT1.ShieldParam);
 
         if (dT1.SpEffect == existingValue)
@@ -220,16 +220,16 @@ public class WeaponLootGenerator : ParamLootGenerator
         dTAdditions.PrimaryDamageType.Params.SetValue(dT1.ShieldParam, Math.Clamp(existingValue * spEffectMultiplier, 0, 100));
         dTAdditions.SecondaryDamageType.Params.SetValue(dT2.ShieldParam, Math.Clamp(existingValue * spEffectMultiplier, 0, 100));
 
-        var nameParts = ApplySpEffects(rarityId, [0], weaponDictionary, spEffectMultiplier, true);
+        IEnumerable<SpEffectText> nameParts = ApplySpEffects(rarityId, [0], weaponDictionary, spEffectMultiplier, true);
 
         dTAdditions.SpEffectTexts = nameParts.ToList();
     }
 
     private void ApplyStaffDamageChanges(DamageTypeSetup dT1, DamageTypeSetup dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
     {
-        var options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weaponDictionary);
+        List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weaponDictionary);
 
-        var nameParts = ApplySpEffects(rarityId, options, weaponDictionary, 1.0f, true);
+        IEnumerable<SpEffectText> nameParts = ApplySpEffects(rarityId, options, weaponDictionary, 1.0f, true);
 
         dTAdditions.SpEffectTexts = nameParts.ToList();
     }
@@ -238,21 +238,21 @@ public class WeaponLootGenerator : ParamLootGenerator
     {
         List<int> dmgRange = this.RarityHandler.GetRarityDamageAdditionRange(rarityId);
 
-        var dmgParams = this.Configuration.LootParam.WeaponsDamageParam;
+        List<string> dmgParams = this.Configuration.LootParam.WeaponsDamageParam;
         //var params : Array = get_gametype_dictionary()["LootParam"]["weapons_damageparam"] if !isshield else get_gametype_dictionary()["LootParam"]["weapons_guardrate_param"]
 
         GenericDictionary originalValues = weaponDictionary.Clone() as GenericDictionary;
         // reset all damage
-        foreach (var dmgParam in dmgParams)
+        foreach (string dmgParam in dmgParams)
         {
             weaponDictionary.SetValue<long>(dmgParam, 0);
         }
 
-        var overallMultiplier = Math.Min(dT1.OverallMultiplier, dT2.OverallMultiplier);
+        float overallMultiplier = Math.Min(dT1.OverallMultiplier, dT2.OverallMultiplier);
 
-        var primaryDamage = (int)(this.Random.NextInt(dmgRange[0], dmgRange[1]) * overallMultiplier);
+        int primaryDamage = (int)(this.Random.NextInt(dmgRange[0], dmgRange[1]) * overallMultiplier);
 
-        var secondaryDamage = (int)(this.Random.NextInt(dmgRange[0], dmgRange[1]) * overallMultiplier);
+        int secondaryDamage = (int)(this.Random.NextInt(dmgRange[0], dmgRange[1]) * overallMultiplier);
 
         weaponDictionary.SetValue<long>(dT1.Param, originalValues.GetValue<int>(dT1.Param) + primaryDamage);
         weaponDictionary.SetValue<long>(dT2.Param, secondaryDamage);
@@ -260,15 +260,15 @@ public class WeaponLootGenerator : ParamLootGenerator
         dTAdditions.PrimaryDamageType.Value = primaryDamage;
         dTAdditions.SecondaryDamageType.Value = secondaryDamage;
 
-        var options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weaponDictionary);
+        List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weaponDictionary);
 
-        var texts = this.ApplySpEffects(rarityId, options, weaponDictionary);
+        this.ApplySpEffects(rarityId, options, weaponDictionary);
 
-        var passiveParams = this.GetPassiveSpEffectSlotArrayFromOutputParamName();
+        List<string> passiveParams = this.GetPassiveSpEffectSlotArrayFromOutputParamName();
 
-        var behSpEffectSlots = this.Configuration.LootParam.WeaponBehSpeffects;
+        List<string> behSpEffectSlots = this.Configuration.LootParam.WeaponBehSpeffects;
 
-        var weaponEffectTextParams = this.Configuration.LootParam.SpeffectMsg;
+        List<string> weaponEffectTextParams = this.Configuration.LootParam.SpeffectMsg;
 
         weaponDictionary.SetValue(passiveParams[0], dT1.SpEffect);
         weaponDictionary.SetValue(behSpEffectSlots[0], dT1.OnHitSpEffect);
@@ -293,16 +293,15 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         dTAdditions.SpEffectDescription = "Effect: " + string.Join("\\n", effectStrings);
 
-
-        var hitVfxParam = this.Configuration.LootParam.WeaponsHitVfx;
-        var hitVfx = dT1.HitEffectCategory != 0 ? dT1.HitEffectCategory : dT2.HitEffectCategory;
+        string hitVfxParam = this.Configuration.LootParam.WeaponsHitVfx;
+        int hitVfx = dT1.HitEffectCategory != 0 ? dT1.HitEffectCategory : dT2.HitEffectCategory;
 
         weaponDictionary.SetValue<long>(hitVfxParam, hitVfx);
 
-        var critParam = this.Configuration.LootParam.WeaponsThrowDamageParam;
-        var critMultiplier = dT1.CriticalMultAddition + dT2.CriticalMultAddition;
+        string critParam = this.Configuration.LootParam.WeaponsThrowDamageParam;
+        float critMultiplier = dT1.CriticalMultAddition + dT2.CriticalMultAddition;
 
-        var critValue = 0;
+        int critValue = 0;
 
         if (critMultiplier > 0.0)
         {
@@ -311,8 +310,8 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         weaponDictionary.SetValue<int>(critParam, (int)(critValue * (1 + critMultiplier)));
 
-        var staminaParam = this.Configuration.LootParam.WeaponsStaminaRate;
-        var maxDamage = this.Configuration.LootParam.WeaponsDamageParam.Max(par => weaponDictionary.GetValue<int>(par));
+        string staminaParam = this.Configuration.LootParam.WeaponsStaminaRate;
+        int maxDamage = this.Configuration.LootParam.WeaponsDamageParam.Max(par => weaponDictionary.GetValue<int>(par));
 
         if (weaponDictionary.ContainsKey(staminaParam) && maxDamage > 170)
         {
@@ -327,6 +326,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         switch (weaponType)
         {
             case WeaponTypes.Normal:
+            case WeaponTypes.BowsCrossbows:
                 this.ApplyNormalDamageChanges(dT1, dT2, dTAdditions, weaponDictionary, rarityId);
                 break;
             case WeaponTypes.StaffsSeals:

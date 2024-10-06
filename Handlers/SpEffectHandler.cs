@@ -85,14 +85,14 @@ public class SpEffectHandler : BaseHandler
 
                         string newdescription = GetSpeffectDescriptionWithValue(
                             newSpEffect.Description, 
-                            newSpEffect.SpEffectPower.ToString(), 
+                            newSpEffect.Value.ToString(), 
                             newSpEffect.Stacks == 1);
 
                         string newsummary = GetSpeffectDescriptionWithValue(
                             newSpEffect.ShortDescription == "" 
                                 ? newSpEffect.Description 
                                 : newSpEffect.ShortDescription, 
-                            newSpEffect.SpEffectPower.ToString(), 
+                            newSpEffect.Value.ToString(), 
                             newSpEffect.Stacks == 1, 
                             true, 
                             "");

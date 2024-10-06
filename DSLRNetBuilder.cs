@@ -52,8 +52,8 @@ public class DSLRNetBuilder(
         // Get/Generator massedit
         // dsms apply
 
-        itemLotGenerator.CreateItemLots(enemyItemLotsSetups.Union(mapItemLotsSetups));
-        //itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
+        itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
+        itemLotGenerator.CreateItemLots(mapItemLotsSetups);
 
         string regulationFile = Path.Combine(this.configuration.Settings.OverrideModLocation, "regulation.bin");
         if (!File.Exists(regulationFile))
@@ -63,8 +63,7 @@ public class DSLRNetBuilder(
 
         string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
         File.Copy(regulationFile, destinationFile, true);
-        File.Copy("DefaultData\\ER\\MassEdit\\postfix.massedit", Path.Combine(this.configuration.Settings.DeployPath, "postfix.massedit"), true);
-
+        
         List<ParamEdit> generatedData = dataRepository.GetParamEdits(ParamOperation.MassEdit);
 
         IEnumerable<IGrouping<string, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
@@ -76,6 +75,14 @@ public class DSLRNetBuilder(
         }
 
         await this.ApplyCreates(destinationFile, dataRepository);
+
+        Directory.GetFiles("DefaultData\\ER\\MassEdit\\", "*.massedit")
+            .ToList()
+            .ForEach(async d =>
+            {
+                File.Copy(d, Path.Combine(this.configuration.Settings.DeployPath, Path.GetFileName(d)), true);
+                await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, Path.GetFileName(d)), destinationFile);
+            });
 
         await UpdateMessages(dataRepository.GetParamEdits());
     }

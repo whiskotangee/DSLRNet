@@ -20,10 +20,11 @@ public class TalismanLootGenerator : ParamLootGenerator
         RandomNumberGetter random,
         LoreGenerator loreGenerator,
         DamageTypeHandler damageTypeHandler,
-        DataRepository dataRepository,
-        CumulativeID cumulativeID)
-        : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, cumulativeID, dataRepository)
+        DataRepository dataRepository)
+        : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository)
     {
+        this.CumulativeID = new CumulativeID() { IDMultiplier = 10 };
+
         this.TalismanConfigs = Csv.LoadCsv<TalismanConfig>("DefaultData\\ER\\CSVs\\TalismanConfig.csv");
 
         this.LoadedLoot = Csv.LoadCsv<EquipParamAccessory>("DefaultData\\ER\\CSVs\\EquipParamAccessory.csv").Select(GenericDictionary.FromObject).ToList();
@@ -115,7 +116,9 @@ public class TalismanLootGenerator : ParamLootGenerator
 
     public void SetTalismanGroupVariables(TalismanConfig talisConfig, GenericDictionary newTalisman, string accGroupName)
     {
-        int accGroup = TalismanCanBeStacked(talisConfig) ? AccessoryGroupCumulativeID.GetNext() : talisConfig.NoStackingGroupID;
+        int accGroup = TalismanCanBeStacked(talisConfig) 
+            ? AccessoryGroupCumulativeID.GetNext() 
+            : talisConfig.NoStackingGroupID;
         newTalisman.SetValue(accGroupName, accGroup);
     }
 
@@ -128,7 +131,7 @@ public class TalismanLootGenerator : ParamLootGenerator
             return false;
         }
 
-        return new List<int> { 0, -1 }.Contains(talisConfig.NoStackingGroupID);
+        return talisConfig.NoStackingGroupID <= 0;
     }
 
     public TalismanConfig GetRandomTalismanConfig()

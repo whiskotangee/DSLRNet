@@ -51,7 +51,8 @@
     <None Remove="DefaultData\ER\CSVs\EquipParamAccessory.csv" />
     <None Remove="DefaultData\ER\CSVs\EquipParamProtector.csv" />
     <None Remove="DefaultData\ER\CSVs\EquipParamWeapon.csv" />
-    <None Remove="DefaultData\ER\MassEdit\postfix.massedit" />
+    <None Remove="DefaultData\ER\MassEdit\SpEffect_NewDamageTypes.massedit" />
+    <None Remove="DefaultData\ER\MassEdit\WeaponVFX.massedit" />
   </ItemGroup>
 
   <ItemGroup>

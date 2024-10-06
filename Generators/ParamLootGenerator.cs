@@ -19,7 +19,6 @@ public class ParamLootGenerator(
     LoreGenerator loreGenerator,
     RandomNumberGetter random,
     IOptions<Configuration> configuration,
-    CumulativeID cumulativeID,
     DataRepository dataRepository) : BaseHandler(dataRepository)
 {
     // RARITY HANDLER - ALL LOOT IS HANDLED BY RARITY
@@ -41,7 +40,7 @@ public class ParamLootGenerator(
     public Configuration Configuration { get; set; } = configuration.Value;
 
     // CUMULATIVE ID TO HANDLE ID ASSIGNMENTS
-    public CumulativeID CumulativeID { get; set; } = cumulativeID;
+    public CumulativeID CumulativeID { get; set; }
 
     public List<GenericDictionary> LoadedLoot = [];
 

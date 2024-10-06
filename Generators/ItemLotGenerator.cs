@@ -37,7 +37,6 @@ public class ItemLotGenerator : BaseHandler
         WhiteListHandler whitelistHandler,
         DataRepository dataRepository,
         RandomNumberGetter random,
-        CumulativeID itemAcquisitionCumulativeId,
         IOptions<Configuration> configuration) : base(dataRepository)
     {
         this.armorLootGenerator = armorLootGenerator;
@@ -47,7 +46,7 @@ public class ItemLotGenerator : BaseHandler
         this.whitelistHandler = whitelistHandler;
         this.random = random;
         this.configuration = configuration.Value;
-        this.itemAcquisitionCumulativeId = itemAcquisitionCumulativeId;
+        this.itemAcquisitionCumulativeId = new CumulativeID();
         this.ItemLotTemplate = Data.Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\ItemLotBase.csv")[0];
     }
 

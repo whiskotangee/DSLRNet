@@ -74,8 +74,7 @@ services.AddSingleton<RandomNumberGetter>()
         .AddSingleton<WhiteListHandler>()
         .AddSingleton<DataRepository>()
         .AddSingleton<DSLRNetBuilder>()
-        .AddSingleton<ProcessRunner>()
-        .AddTransient<CumulativeID>();
+        .AddSingleton<ProcessRunner>();
 
 ServiceProvider sp = services.BuildServiceProvider();
 

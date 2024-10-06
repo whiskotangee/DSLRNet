@@ -26,9 +26,9 @@ public class WeaponLootGenerator : ParamLootGenerator
         RandomNumberGetter random,
         LoreGenerator loreGenerator,
         DamageTypeHandler damageTypeHandler,
-        DataRepository dataRepository,
-        CumulativeID cumulativeID) : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, cumulativeID, dataRepository)
+        DataRepository dataRepository) : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository)
     {
+        this.CumulativeID = new CumulativeID();
         this.weaponGeneratorConfig = weaponGeneratorConfig.Value;
         this.ashofWarHandler = ashofWarHandler;
 
@@ -76,6 +76,8 @@ public class WeaponLootGenerator : ParamLootGenerator
             weaponDictionary,
             rarityId,
             generatedType);
+
+        this.DamageTypeHandler.ApplyDamageTypeWeaponSpEffects(DT1, DT2, weaponDictionary);
 
         weaponDesc += DTAdditions.SpEffectDescription;
 
@@ -127,7 +129,7 @@ public class WeaponLootGenerator : ParamLootGenerator
             string uniqueName = this.LoreGenerator.CreateRandomUniqueName("", generatedType == WeaponTypes.Shields);
             if (!string.IsNullOrEmpty(uniqueName))
             {
-                weaponFinalTitleColored = $"<font color=\"ffb4d0\">{uniqueName}</font>";
+                weaponFinalTitleColored = $"<font color=\"#ffb4d0\">{uniqueName}</font>";
             }
             else
             {
@@ -135,10 +137,9 @@ public class WeaponLootGenerator : ParamLootGenerator
             }
         }
 
-        string wftDescription = uniqueWeapon ? $"({weaponFinalTitle})\\n" : "";
         weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
 
-        ExportLootGenParamAndTextToOutputs(weaponDictionary, LootType.Weapon, weaponFinalTitleColored, wftDescription + weaponDesc + GetParamLootLore(weaponFinalTitle, false), "", [], []);
+        ExportLootGenParamAndTextToOutputs(weaponDictionary, LootType.Weapon, weaponFinalTitleColored, weaponDesc + GetParamLootLore(weaponFinalTitle, false), "", [], []);
 
         return weaponDictionary.GetValue<int>("ID");
     }
@@ -202,18 +203,8 @@ public class WeaponLootGenerator : ParamLootGenerator
 
     private void ApplyShieldCutRateChanges(DamageTypeSetup dT1, DamageTypeSetup dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
     {
-        List<string> dmgParams = this.Configuration.LootParam.WeaponsGuardRateParam;
-        //var params : Array = get_gametype_dictionary()["LootParam"]["weapons_damageparam"] if !isshield else get_gametype_dictionary()["LootParam"]["weapons_guardrate_param"]
-
-        GenericDictionary originalValues = weaponDictionary.Clone() as GenericDictionary;
-        // reset all damage
-        foreach (string dmgParam in dmgParams)
-        {
-            weaponDictionary.SetValue<long>(dmgParam, 0);
-        }
-
         float spEffectMultiplier = 1.0f;
-        float existingValue = originalValues.GetValue<float>(dT1.ShieldParam);
+        float existingValue = weaponDictionary.GetValue<float>(dT1.ShieldParam);
 
         if (dT1.SpEffect == existingValue)
         {
@@ -251,13 +242,15 @@ public class WeaponLootGenerator : ParamLootGenerator
         List<int> dmgRange = this.RarityHandler.GetRarityDamageAdditionRange(rarityId);
 
         List<string> dmgParams = this.Configuration.LootParam.WeaponsDamageParam;
-        //var params : Array = get_gametype_dictionary()["LootParam"]["weapons_damageparam"] if !isshield else get_gametype_dictionary()["LootParam"]["weapons_guardrate_param"]
+
+        long maxValue = 0;
 
         GenericDictionary originalValues = weaponDictionary.Clone() as GenericDictionary;
         // reset all damage
         foreach (string dmgParam in dmgParams)
         {
             weaponDictionary.SetValue<long>(dmgParam, 0);
+            maxValue = Math.Max(originalValues.GetValue<long>(dmgParam), maxValue);
         }
 
         float overallMultiplier = Math.Min(dT1.OverallMultiplier, dT2.OverallMultiplier);
@@ -266,8 +259,14 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         int secondaryDamage = (int)(this.Random.NextInt(dmgRange[0], dmgRange[1]) * overallMultiplier);
 
-        weaponDictionary.SetValue<long>(dT1.Param, originalValues.GetValue<int>(dT1.Param) + primaryDamage);
-        weaponDictionary.SetValue<long>(dT2.Param, secondaryDamage);
+        if (dT1.Param == dT2.Param)
+        {
+            weaponDictionary.SetValue<long>(dT1.Param, (long)1.2 * maxValue + primaryDamage);
+        }
+        else
+        {
+            weaponDictionary.SetValue<long>(dT2.Param, (maxValue / 2) + secondaryDamage);
+        }        
 
         dTAdditions.PrimaryDamageType.Value = primaryDamage;
         dTAdditions.SecondaryDamageType.Value = secondaryDamage;

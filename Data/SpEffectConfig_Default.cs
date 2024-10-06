@@ -4,7 +4,7 @@ namespace DSLRNet.Data;
 public partial class SpEffectConfig_Default
 {
     public int ID { get; set; }
-    public int Value { get; set; }
+    public float Value { get; set; }
     public int SpEffectPower { get; set; }
     public string Prefix { get; set; }
     public string Interfix { get; set; }

@@ -12,14 +12,14 @@ ID,Name,DamageElement,PriName,SecName,Param,ShieldParam,SpEffect,OnHitSpEffect,H
 10,HP On Kill,Physical,Soulclaiming,Souleating,attackBasePhysics,physGuardCutRate,5031400,-1,0,10,8,0.9,-1,Grants HP on Kill,1,0,-1
 11,Assassin,Physical,Assassin,Catspaw,attackBasePhysics,physGuardCutRate,-1,-1,0,30,20,0.9,-1,Extra Riposte/Backstab Damage,0,0.5,303091
 12,Sleep,Magic,Sleeping,Sleep,attackBaseMagic,physGuardCutRate,-1,6451,10,20,10,0.8,6651,Applies Sleep,0,0,303101
-13,Scarlet Rot,Physical,Rotten,Scarlet,attackBasePhysics,,146710,107016,0,30,10,0.9,6451,Applies Scarlet Rot,0,0,303191
-14,Deathblight,Holy,Prince of Death's,Blighted,attackBaseDark,,146810,108020,13,30,10,1,6551,Applies Deathblight,0,0,450620
-15,Madness,Fire,Shabriri's,Frenzied,attackBaseFire,,146510,108520,11,30,10,1,6701,Applies Madness,0,0,527010
-16,Bestial,Physical,Berserker's,Bestial,attackBasePhysics,,147210,442200,0,10,8,1,1030,Gives Atk Up/Def Down on Hit,0,0,-1
-17,Destined Death,Holy,Black,Destined,attackBaseDark,,468626,468600,13,10,8,0.9,1047,Applies Destined Death,0,0,450270
-18,Stamina On Hit,Physical,Nox,Sapping,attackBasePhysics,,5020850,5020800,0,10,8,1,1053,Steals Stamina on Hit,0,0,-1
-19,FP Regen,Magic,All-Knowing,Wise,attackBaseMagic,,140810,109900,10,10,8,0.9,1035,Grants Passive FP Regen in Combat,0,0,303071
+13,Scarlet Rot,Physical,Rotten,Scarlet,attackBasePhysics,darkGuardCutRate,146710,107016,0,30,10,0.9,6451,Applies Scarlet Rot,0,0,303191
+14,Deathblight,Holy,Prince of Death's,Blighted,attackBaseDark,darkGuardCutRate,146810,108020,13,30,10,1,6551,Applies Deathblight,0,0,450620
+15,Madness,Fire,Shabriri's,Frenzied,attackBaseFire,fireGuardCutRate,146510,108520,11,30,10,1,6701,Applies Madness,0,0,527010
+16,Bestial,Physical,Berserker's,Bestial,attackBasePhysics,physGuardCutRate,147210,442200,0,10,8,1,1030,Gives Atk Up/Def Down on Hit,0,0,-1
+17,Destined Death,Holy,Black,Destined,attackBaseDark,darkGuardCutRate,468626,468600,13,10,8,0.9,1047,Applies Destined Death,0,0,450270
+18,Stamina On Hit,Physical,Nox,Sapping,attackBasePhysics,physGuardCutRate,5020850,5020800,0,10,8,1,1053,Steals Stamina on Hit,0,0,-1
+19,FP Regen,Magic,All-Knowing,Wise,attackBaseMagic,magGuardCutRate,140810,109900,10,10,8,0.9,1035,Grants Passive FP Regen in Combat,0,0,303071
 20,Blackflame,Fire,Godskin,Blackflame,attackBaseFire,fireGuardCutRate,145410,468700,11,10,8,0.9,1032,Applies Blackflame,1,0,303161
-21,Ghostflame,Magic,Ritual,Ghostflame,attackBaseMagic,,145910,107495,23,10,8,1,6601,Applies Frostbite,1,0,303121
+21,Ghostflame,Magic,Ritual,Ghostflame,attackBaseMagic,magGuardCutRate,145910,107495,23,10,8,1,6601,Applies Frostbite,1,0,303121
 22,Bloodflame,Fire,Mohg's,Bloodflame,attackBaseFire,fireGuardCutRate,468926,468900,11,10,8,0.9,1032,Applies Bloodflame,1,0,303171
 23,Ice Lightning,Lightning,Dragonkin,Frostbolt,attackBaseThunder,thunGuardCutRate,145910,107497,12,10,8,0.9,6601,Applies Frostbite,1,0,450311

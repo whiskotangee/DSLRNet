@@ -15,7 +15,7 @@ public class ArmorLootGenerator : ParamLootGenerator
     public List<string> ArmorCutRateParamNames { get; set; } = [];
     public List<string> ArmorCutRateParamRealNames { get; set; } = [];
 
-    private const string CutRateDescString = "+{amt} Extra {type} Damage Cut Rate\\n";
+    private const string CutRateDescString = "+{amt} Extra {type} Damage Cut Rate";
 
     public ArmorLootGenerator(
         RarityHandler rarityHandler,
@@ -25,9 +25,10 @@ public class ArmorLootGenerator : ParamLootGenerator
         LoreGenerator loreGenerator,
         RandomNumberGetter random,
         DataRepository dataRepository,
-        IOptions<Configuration> configuration,
-        CumulativeID cumulativeID) : base(rarityHandler, whiteListHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, cumulativeID, dataRepository)
+        IOptions<Configuration> configuration) : base(rarityHandler, whiteListHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository)
     {
+        this.CumulativeID = new CumulativeID();
+
         List<EquipParamProtector> armorLoots = Csv.LoadCsv<EquipParamProtector>("DefaultData\\ER\\CSVs\\EquipParamProtector.csv");
 
         this.LoadedLoot = armorLoots.Select(GenericDictionary.FromObject).ToList();

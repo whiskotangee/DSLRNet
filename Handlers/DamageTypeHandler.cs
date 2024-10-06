@@ -34,8 +34,7 @@ public class DamageTypeHandler : BaseHandler
         // If totally random, choose from the available DamageTypes at complete random
         if (totallyRandom)
         {
-            int randomIndex = this.random.NextInt(0, this.DamageTypes.Count);
-            return DamageTypes[randomIndex];
+            return this.random.GetRandomItem(this.DamageTypes);
         }
 
         List<int> weights = [];
@@ -120,6 +119,7 @@ public class DamageTypeHandler : BaseHandler
             }
         }
     }
+
     public float GetTotalThrowDamageModifier(DamageTypeSetup dt1, DamageTypeSetup dt2)
     {
         if (dt1.CriticalMultAddition < 0 || dt2.CriticalMultAddition < 0)

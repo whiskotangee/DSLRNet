@@ -8,7 +8,7 @@ public class ParamEdit
 
     public string ParamName { get; set; }
 
-    public List<string> MessageText { get; set; }
+    public LootFMG? MessageText { get; set; }
     public string MassEditString { get; set; }
 
     public GenericDictionary ParamObject { get; set; }
@@ -18,7 +18,7 @@ public class DataRepository()
 {
     private List<ParamEdit> paramEdits = [];
 
-    public void AddParamEdit(string name, ParamOperation operation, string massEditString, List<string> text,  GenericDictionary? param)
+    public void AddParamEdit(string name, ParamOperation operation, string massEditString, LootFMG text,  GenericDictionary? param)
     {
         ParamEdit currentEdit = this.paramEdits.FirstOrDefault(d => d.ParamName.Equals(name) && d.Operation == operation) ?? new ParamEdit() { ParamName = name, Operation = operation };
 

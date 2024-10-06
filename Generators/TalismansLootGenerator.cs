@@ -95,7 +95,7 @@ public class TalismanLootGenerator : ParamLootGenerator
          true);
 
         // EXPORT PARAMETERS
-        ExportLootGenParamAndTextToOutputs(newTalisman, LootType.Talisman, talismanFinalTitleColored, talismanDesc, talismanSummary, [], [], false);
+        ExportLootGenParamAndTextToOutputs(newTalisman, LootType.Talisman, talismanFinalTitleColored, talismanDesc, talismanSummary, [], []);
 
         return newTalisman.GetValue<int>("ID");
     }

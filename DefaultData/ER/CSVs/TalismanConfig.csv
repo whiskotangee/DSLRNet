@@ -1,15 +1,60 @@
 ID,Effect,ShortEffect,RefSpEffect,NoStackingGroupID
 1000,+6 Perc Max HP,Max HP Up,310000,7000
-1110,+20 Perc Extra Runes From Enemies,More Runes Per Kill,311100,7010
-1150,+8 Perc Stamina Recovery Speed,Stamina Recovery Up,311500,7020
+1020,+11 Perc Max Stamina,Max Stamina Up,310200,7060
+1040,+3%% Max HP/+7%% Max Stamina/+5%% Max Equip Load,Max HP/Stamina/Equip Load Up,310400,1040
+1050,Vigor/Endurance/Strength/Dexterity +2 & 10%% More Damage Taken,Stats Up/Dmg Taken Up,310500,1050
+1051,Vigor/Endurance/Strength/Dexterity +4 & 15%% More Damage Taken,Stats Up/Dmg Taken Up,310510,1050
 1100,+75 Item Discovery,Item Discovery Up,311000,7030
+1100,+50%% Item Discovery,Item Discovery Up,311000,1100
+1110,+10%% Rune Acquisition Rate,Rune Drop Rate Up,311100,1110
+1140,+1 Memory Slot,Memory Slots Up,311400,1140
+1150,+8 Perc Stamina Recovery Speed,Stamina Recovery Up,311500,7020
+1160,Bleed/Frostbite Resist +40,Bleed/Frost Resist Up,311600,1160
+1170,Poison/Rot Resist +40,Poison/Rot Resist Up,311700,1170
+1180,Sleep/Madness Resist +40,Sleep/Madness Resist Up,311800,1180
+1190,Deathblight Resist +40,Death Resist Up,311900,1190
+1220,Mind/Intelligence/Faith/Arcane +2 & 10%% More Damage Taken,Stats Up/Dmg Taken Up,312200,1220
+1221,Mind/Intelligence/Faith/Arcane +4 & 15%% More Damage Taken,Stats Up/Dmg Taken Up,312210,1220
+2000,Magic Damage +12%% & Physical Resistance -12%%,Magic Dmg Up/Phys Resist Down,320000,2000
+2010,Lightning Damage +12%% & Physical Resistance -12%%,Lightning Dmg Up/Phys Resist Down,320100,2010
+2020,Fire Damage +12%% & Physical Resistance -12%%,Fire Dmg Up/Phys Resist Down,320200,2020
+2030,Holy Damage +12%% & Physical Resistance -12%%,Holy Dmg Up/Phys Resist Down,320300,2030
+2040,+20%% Damage When Below 20%% HP,Dmg Up at Low HP,320400,2040
+2050,+10%% Damage at Full HP,Dmg Up at Full HP,320500,2050
+2080,+2.5%% Damage per Hit after 3 Hits & +5%% after 7 Hits,Dmg Up With Successive Hits,320800,2080
+2100,Arrow Reach Up,Arrow Reach Up,321000,2100
+2110,+12%% Damage at Light Load,Dmg Up at Light Load,321100,2110
+2130,Increased Charge Attack Damage,Chrg Atk Dmg Up,321300,7130
+2160,+10%% Damage near Bloodloss,Dmg Up near Bleed,321600,2160
+2170,Fast HP Regen near Scarlet Rot,HP Regen near Rot,321700,2170
+2210,+11%% Damage with Throwing Pots,Dmg Up with Throwing Pots,322100,2210
+2220,+11%% Damage with Perfumes,Dmg Up with Perfumes,322200,2220
+2240,+15%% Damage Resist near Frostbite,Dmg Resist Up near Frost,322400,2240
+3060,Extends special effect duration,Effect Duration Up,330600,3060
+3070,+100 Casting Dexterity,Casting Time Down,330700,3070
+3080,75%% Spellcasting FP Cost && 75%% Max HP,Max HP Down/FP Cost Down,330800,3080
+4000,+8%% Physical Damage Resistance,Phys Resist Up,340000,4000
+4010,+14%% Magic Damage Resistance,Magic Resist Up,340100,4010
+4020,+14%% Fire Damage Resistance,Fire Resist Up,340200,4020
+4030,+14%% Lightning Damage Resistance,Lightning Resist Up,340300,4030
+4040,+14%% Holy Damage Resistance,Holy Resist Up,340400,4040
+4050,+6%% Elemental Damage Resistance,Elemental Resist Up,340500,4050
+4060,+35%% Critical Damage Resistance,Crit Resist Up,340600,4060
+4070,-30%% Damage Resist & Improved Dodge Rolling,Dmg Resist Down/Dodge Up,340700,4070
+4080,+50%% Damage Resist When Below 20%% HP,Dmg Resist Up at Low HP,340800,4080
+4090,+30%% Damage Resist at Full HP,Dmg Resist Up at Full HP,340900,4090
+4100,-15%% Stamina Cost for Blocking,Guard Boost Up,341000,4100
+4110,Shrug off headshots and weaker attacks,Def Flick Power Up,341100,4110
 5000,Increased Recovery From HP Flask,HP Flask Recovery Up,350000,7040
 5010,Increased Recovery From FP Flask,FP Flask Recovery Up,350100,7050
-1020,+11 Perc Max Stamina,Max Stamina Up,310200,7060
-4010,+13 Perc Magic Defence,Magic Defence Up,340100,7070
-4020,+13 Perc Fire Defence,Fire Defence Up,340200,7080
-4030,+13 Perc Lightning Defence,Lightning Defence Up,340300,7090
-4040,+13 Perc Holy Defence,Holy Defence Up,340400,7100
-4050,+5 Perc Elemental Defence,Elmnt Defence Up,340500,7110
 5030,3 Perc +30 HP Restored On Kill,HP On Kill,350300,7120
-2130,Increased Charge Attack Damage,Chrg Atk Dmg Up,321300,7130
+5040,Heal 3.3%%+33 HP per hit after 6 hits,Heal With Successive Hits,350400,5040
+5050,Heal 10%%+75 HP on Critical Hit,Heal on Critical Hit,350500,5050
+5060,Restore 10%%+75 FP on Critical Hit,Restore FP on Critical Hit,350600,5060
+6000,Eliminates all sound made by the wearer during movement ,Sneak Up,360000,6000
+6010,Conceals wearer while crouching away from foes ,Sneak Up,360100,6010
+6020,-20%% FP Cost for Skills,Skill FP Cost Down,360200,6020
+6040,Eliminates Fall Damage & +14%% Plunging Attack Damage,No Fall Damage/Plunging Atk Up,360400,6040
+6050,Constantly attracts enemies' aggression ,Aggro Up,360500,6050
+6060,2x Damage Taken & 2x Physical Damage/Improved Dodge Rolls when Unarmed & Light Load,Dmg Resist Down & Unarmed Atk/Dodge Up at Light Load,360600,6060
+8990,-10%% Rune Acquisition Rate/-30 Fire Defense & Awakens Serpent Hunter,Rune Drop Rate Down/Fire Def Down & Awakens Serpent Hunter,313000,1240

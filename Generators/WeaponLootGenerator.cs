@@ -127,7 +127,7 @@ public class WeaponLootGenerator : ParamLootGenerator
             string uniqueName = this.LoreGenerator.CreateRandomUniqueName("", generatedType == WeaponTypes.Shields);
             if (!string.IsNullOrEmpty(uniqueName))
             {
-                weaponFinalTitleColored = $"{uniqueName} ({weaponRarity})";
+                weaponFinalTitleColored = $"<font color=\"ffb4d0\">{uniqueName}</font>";
             }
             else
             {

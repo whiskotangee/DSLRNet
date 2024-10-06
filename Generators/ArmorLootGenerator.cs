@@ -84,9 +84,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         // APPLY NEW ARMOR TITLE
         newArmor.SetValue("Name", finalTitle);
 
-        // OUTPUT TEXT AND LOOTGEN
-        // -EXPORT TITLE MULTIPLE TIMES, MAYBE THIS WILL FIX ARMOR TITLES NOT GOING THROUGH?
-        ExportLootGenParamAndTextToOutputs(newArmor, LootType.Armor, finalTitle, CreateArmorDescription(speffs.First().Description, armorStatDesc + GetParamLootLore(finalTitle, true)), multiName: true);
+        ExportLootGenParamAndTextToOutputs(newArmor, LootType.Armor, finalTitle, CreateArmorDescription(speffs.First().Description, armorStatDesc + GetParamLootLore(finalTitle, true)));
 
         // RETURN NEW ARMOR'S ID FOR INSTANT ADDITION TO ITEMLOT
         return newArmor.GetValue<int>("ID");

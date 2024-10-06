@@ -1,0 +1,10 @@
+﻿namespace DSLRNet.Data;
+
+public class LootFMG
+{
+    public string Category { get; set; }
+    public string Name { get; set; }
+    public string Caption { get; set; }
+
+    public string Info { get; set; }
+}

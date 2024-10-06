@@ -158,8 +158,6 @@ public class RarityHandler : BaseHandler
             }
         }
 
-        Log.Logger.Debug($"FINAL RARITIES WITHIN RANGE {highest} / {lowest} {string.Join(" ", finalrarities)}");
-
         return finalrarities;
     }
 
@@ -239,7 +237,7 @@ public class RarityHandler : BaseHandler
     {
         int matchedRarity = this.GetNearestRarityId(rarityId);
         string name = this.GetRarityName(matchedRarity);
-        return $"&lt;font color=#{this.RarityConfigs[matchedRarity].ColorHex}&gt;{name}&lt;/font&gt;";
+        return $"<font color=\"#{this.RarityConfigs[matchedRarity].ColorHex}\">{name}</font>";
     }
 
     public int GetRarityDropChance(int rarityid = 0)

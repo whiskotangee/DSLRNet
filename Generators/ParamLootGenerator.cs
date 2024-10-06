@@ -64,7 +64,7 @@ public class ParamLootGenerator(
         { LootType.Talisman, "Accessory" }
     };
 
-    public void ExportLootGenParamAndTextToOutputs(GenericDictionary massEditDict, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null, bool multiName = false)
+    public void ExportLootGenParamAndTextToOutputs(GenericDictionary massEditDict, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null)
     {
         string finalMassEditOutput = CreateMassEditParamFromParamDictionary(massEditDict, OutputParamName, massEditDict.ContainsKey("ID") ? massEditDict.GetValue<int>("ID") : 0, extraFilters, extraBannedValues, ParamMandatoryKeys);
 
@@ -72,7 +72,7 @@ public class ParamLootGenerator(
             OutputParamName,
             ParamOperation.Create,
             finalMassEditOutput,
-            CreateFmgLootEntrySet(OutputLootRealNames[lootType], massEditDict.GetValue<int>("ID"), title, description, summary, multiName),
+            CreateFmgLootEntrySet(OutputLootRealNames[lootType], massEditDict.GetValue<int>("ID"), title, description, summary),
             massEditDict);
     }
 

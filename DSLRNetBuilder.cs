@@ -14,6 +14,8 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Xml.Linq;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Primitives;
+using Serilog;
 
 namespace DSLRNet;
 
@@ -65,8 +67,6 @@ public class DSLRNetBuilder(
 
         List<ParamEdit> generatedData = dataRepository.GetParamEdits(ParamOperation.MassEdit);
 
-        List<string> generatedMessages = dataRepository.GetParamEdits().SelectMany(s => s.MessageText).ToList();
-
         IEnumerable<IGrouping<string, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
 
         foreach(IGrouping<string, ParamEdit> group in groups)
@@ -77,7 +77,7 @@ public class DSLRNetBuilder(
 
         await this.ApplyCreates(destinationFile, dataRepository);
 
-        await UpdateMessages(generatedMessages);
+        await UpdateMessages(dataRepository.GetParamEdits());
     }
 
     public async Task ApplyCreates(string regulationFile, DataRepository repository)
@@ -115,7 +115,7 @@ public class DSLRNetBuilder(
         });
     }
 
-    public async Task UpdateMessages(List<string> strArray)
+    public async Task UpdateMessages(List<ParamEdit> paramEdits)
     {
         List<string> gameMsgFiles = this.configuration.Settings.MessageFileNames.Select(s =>
         {
@@ -125,12 +125,58 @@ public class DSLRNetBuilder(
             return File.Exists(modDir) ? modDir : gameDir;
         }).ToList();
 
-        // Add preset baseline
-
-        int splitThreshold = 7000;
-
-        await Parallel.ForEachAsync(gameMsgFiles, async (gameMsgFile, c) =>
+        await Parallel.ForEachAsync(gameMsgFiles, (gameMsgFile, c) =>
         {
+            string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
+            Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus"));
+
+            Log.Logger.Information($"Processing {Path.GetFileName(destinationFile)}");
+            BND4 bnd = BND4.Read(gameMsgFile);
+
+            var categories = paramEdits.Where(d => d.MessageText != null).GroupBy(d => d.MessageText.Category).ToList();
+
+            foreach ( var category in categories)
+            {
+                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key}");
+                var captionFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Caption")).ToList();
+                var infoFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Info")).ToList();
+                var nameFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Name")).ToList();
+
+                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key} captions");
+                foreach (var captionFile in captionFilesToUpdate)
+                {
+                    FMG fmg = FMG.Read(captionFile.Bytes.ToArray());
+                    fmg.Entries.AddRange(category.Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption)));
+                    captionFile.Bytes = fmg.Write();
+                }
+
+                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key} info");
+                foreach (var infoFile in infoFilesToUpdate)
+                {
+                    FMG fmg = FMG.Read(infoFile.Bytes.ToArray());
+                    fmg.Entries.AddRange(category.Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info)));
+                    infoFile.Bytes = fmg.Write();
+                }
+
+                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key} names");
+                foreach (var nameFile in nameFilesToUpdate)
+                {
+                    FMG fmg = FMG.Read(nameFile.Bytes.ToArray());
+                    fmg.Entries.AddRange(category.Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name)));
+                    nameFile.Bytes = fmg.Write();
+                }
+
+                Log.Logger.Information($"Finished Processing category {Path.GetFileName(destinationFile)}-{category.Key}");
+            }
+
+            bnd.Write(destinationFile);
+
+            Log.Logger.Information($"Finished Processing {Path.GetFileName(destinationFile)}");
+
+            return ValueTask.CompletedTask;
+
+
+            /*
             string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
             Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus"));
 
@@ -161,6 +207,7 @@ public class DSLRNetBuilder(
                     currentLine += " ";
                 }
             }
+            */
         });
     }
 }

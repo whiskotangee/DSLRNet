@@ -114,7 +114,7 @@ public class ItemLotGenerator : BaseHandler
                     // FINALLY, EXPORT TO MASSEDITOUTPUT
                     GenericDictionary genericDict = GenericDictionary.FromObject(newItemLot);
                     string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.Category ?? "", newItemLot.ID, [], ["0"]);
-                    this.GeneratedDataRepository.AddParamEdit(queueEntry.Category, ParamOperation.Create, itemLotMassEdit, [], genericDict);
+                    this.GeneratedDataRepository.AddParamEdit(queueEntry.Category, ParamOperation.Create, itemLotMassEdit, null, genericDict);
                 }
                 else
                 {
@@ -128,7 +128,7 @@ public class ItemLotGenerator : BaseHandler
                 this.configuration.ParamNames.NpcParam, 
                 ParamOperation.MassEdit, 
                 CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids), 
-                [], 
+                null, 
                 null);
         }
     }

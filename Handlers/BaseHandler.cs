@@ -42,106 +42,21 @@ public class BaseHandler(DataRepository generatedDataRepository)
         return finalString;
     }
 
-    public int GetFmgType(string whichtext = "Title", string whichloottype = "Weapons")
+    public LootFMG CreateFmgLootEntrySet(string category = "Weapons", int id = 1000000, string title = "Dagger",string description = "This is a dagger!", string summary = "")
     {
-        int fmgtoreturn = 0;
-        string fmgquery = whichtext + whichloottype;
-
-        if (Enum.TryParse<FMG>(fmgquery, out FMG fmg))
+        return new LootFMG()
         {
-            // TODO
-            //fmgtoreturn = GetNode<GlobalVariables>("/root/GlobalVariables").FMGTypes[GetGameId()][FMG.Get(fmgquery)];
-        }
-
-        if (fmgtoreturn == 0)
-        {
-
-            Log.Logger.Error($"{this.Name}'s request for FMGID has returned 0 - this may not work!");
-        }
-        else
-        {
-            Log.Logger.Error($"{this.Name} requesting FMGID for {fmgquery} has returned {fmgtoreturn}");
-        }
-
-        return fmgtoreturn;
-    }
-
-    public string CreateFmgTextEntry(string category = "Weapons", int id = 1000000, string text = "Dagger")
-    {
-        // Patch a specific bug with these characters sometimes replacing '
-        // Replace any quotes in text with float quotes - thanks Mountlover!
-        text = text.Replace("\"", "\"\"");
-
-        return $"\"{category}:{id}:{text}\"";
-    }
-
-    public List<string> CreateFmgLootEntrySet(string category = "Weapons", int id = 1000000, string title = "Dagger",
-                                        string description = "This is a dagger!", string summary = "", bool multiname = false)
-    {
-        List<string> final = [];
-
-        // Add Title Entry
-        if (title != "")
-        {
-            // If multiname add name multiple times - trying to fix armor names not being included for some reason
-            int times = !multiname ? 1 : 2;
-
-            for (int x = 0; x < times; x++)
-            {
-                final.Add(CreateFmgTextEntry($"{category}Name", id, title));
-            }
-        }
-
-        // Add Description Entry
-        if (description != "")
-        {
-            final.Add(CreateFmgTextEntry($"{category}Caption", id, description));
-        }
-
-        // Add Summary Entry
-        if (summary != "")
-        {
-            final.Add(CreateFmgTextEntry($"{category}Info", id, summary));
-        }
-
-        // Log.Logger.Error(finalarray);
-        return final;
+            Category = category,
+            Name = title,
+            Caption = description,
+            Info = summary
+        };
     }
 
     public void SetFmgJsonTemplate()
     {
         // Load custom FMG template, get its text and return the result
         FMGTemplate = File.ReadAllText("DefaultData/ER/FMGBase/DSMSFMGTemplate.txt");
-    }
-
-    private static void CorrectArrayValuesFromStringToNumericalValue(List<string> arrayToCheck)
-    {
-        for (int i = 0; i < arrayToCheck.Count; i++)
-        {
-            if (StringExtensions.StringHasNumbersOnly(arrayToCheck[i]) && !StringExtensions.StringContainsBrackets(arrayToCheck[i]))
-            {
-                if (StringExtensions.StringContainsPeriod(arrayToCheck[i]))
-                {
-                    arrayToCheck[i] = float.Parse(arrayToCheck[i]).ToString();
-                }
-                else
-                {
-                    arrayToCheck[i] = int.Parse(arrayToCheck[i]).ToString();
-                }
-            }
-        }
-    }
-
-    private static Dictionary<string, object> CreateParamDictionaryUsingHeaderArray(List<string> headersArray, List<string> valuesArray)
-    {
-        Dictionary<string, object> dict = [];
-
-        for (int i = 0; i < headersArray.Count; i++)
-        {
-            dict[headersArray[i]] = valuesArray[i];
-        }
-
-        return dict;
     }
 
     public static string CreateMassEditLine(string paramName = "EquipParamWeapon", int id = 0, string propName = "Name", string value = "DSLR", string newLine = "\n")

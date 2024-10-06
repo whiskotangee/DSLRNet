@@ -50,7 +50,7 @@ public class SpEffectHandler : BaseHandler
                     [],
                     ["0", "-1"],
                     ["conditionHp", "effectEndurance", "conditionHpRate"]),
-                [],
+                null,
                 spEffectParam);
         }
     }

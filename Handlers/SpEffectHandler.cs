@@ -22,7 +22,7 @@ public class SpEffectHandler : BaseHandler
 
     //SPEFFECTCONFIGS ARE WHAT DSLR ACTUALLY USES TO ASSIGN SPEFFECTS, PROVIDING SPEFFECTIDS (CUSTOM ONES NEED TO BE IN A
     //SPEFFECT PARAM CSV THAT WILL BE CONVERTED TO MASSEDIT AS ABOVE), POWER RATINGS, DESCRIPTIONS, VALUES ETC. 
-    public List<SpEffectConfig> LoadedSpEffectConfigs;
+    public List<SpEffectConfig_Default> LoadedSpEffectConfigs;
 
     public HashSet<string> SpEffectConfigWordFilter = ["SpEffectConfig", "speffectconfig", "Speffectconfig", "speffectConfig", "SpEffectSetup", "speffectSetup", "speffectsetup"];
 
@@ -32,11 +32,13 @@ public class SpEffectHandler : BaseHandler
         this.rarityHandler = rarityHandler;
         randomNumberGetter = random;
 
-        this.LoadedSpEffectConfigs = Data.Csv.LoadCsv<SpEffectConfig>("DefaultData\\ER\\CSVs\\SpEffectConfig_Default.csv");
+        this.LoadedSpEffectConfigs = Data.Csv.LoadCsv<SpEffectConfig_Default>("DefaultData\\ER\\CSVs\\SpEffectConfig_Default.csv");
 
-        List<SpEffectParam> loadedSpEffectParams = Data.Csv.LoadCsv<SpEffectParam>("DefaultData\\ER\\CSVs\\SpEffectParam.csv");
+        List<GenericDictionary> loadedSpEffectParams = Data.Csv.LoadCsv<SpEffectParam>("DefaultData\\ER\\CSVs\\SpEffectParam.csv")
+            .Select(GenericDictionary.FromObject)
+            .ToList();
 
-        foreach (GenericDictionary? spEffectParam in loadedSpEffectParams.Select(GenericDictionary.FromObject))
+        foreach (GenericDictionary? spEffectParam in loadedSpEffectParams)
         {
             this.GeneratedDataRepository.AddParamEdit(
                 "SpEffectParam", 
@@ -72,14 +74,14 @@ public class SpEffectHandler : BaseHandler
         if (desiredCount > 0)
         {
             //STORE AN ARRAY OF POSSIBLE CHOICES BASED ON AVAILABLE SPEFF POWER RANGE
-            List<SpEffectConfig> spEffectChoices = this.GetAvailableSpEffectConfigs(speffectpowerrange[0], speffectpowerrange[1], allowedtypes).ToList();
+            List<SpEffectConfig_Default> spEffectChoices = this.GetAvailableSpEffectConfigs(speffectpowerrange[0], speffectpowerrange[1], allowedtypes).ToList();
             if (spEffectChoices.Count > 0)
             {
                 foreach (int x in Enumerable.Range(0, desiredCount))
                 {
                     if (chancearray[x])
                     {
-                        SpEffectConfig newSpEffect = spEffectChoices[this.randomNumberGetter.NextInt(0, spEffectChoices.Count - 1)];
+                        SpEffectConfig_Default newSpEffect = spEffectChoices[this.randomNumberGetter.NextInt(0, spEffectChoices.Count - 1)];
 
                         string newdescription = GetSpeffectDescriptionWithValue(
                             newSpEffect.Description, 
@@ -152,11 +154,11 @@ public class SpEffectHandler : BaseHandler
         return speffecttypes;
     }
 
-    public IEnumerable<SpEffectConfig> GetAvailableSpEffectConfigs(int powermin, int powermax, List<int> allowedtypes)
+    public IEnumerable<SpEffectConfig_Default> GetAvailableSpEffectConfigs(int powermin, int powermax, List<int> allowedtypes)
     {
         //GET ALL SPEFFECT IDS WITHIN EACH SPEFFECT POWER AVAILABLE IN RANGE, ADDING THOSE CLOSER TO MAX TWICE TO MAKE
         //THEM MORE LIKELY
-        List<SpEffectConfig> spEffects = [];
+        List<SpEffectConfig_Default> spEffects = [];
 
         //CREATE A THRESHOLD VALUE HALFWAY BETWEEN PMIN AND PMAX SO WE KNOW WHICH POWER TO PRIORITISE
         //CLAMP VALUES
@@ -175,11 +177,11 @@ public class SpEffectHandler : BaseHandler
         foreach (int x in allowedtypes)
         {
             // try with effects in range
-            List<SpEffectConfig> allOptions = LoadedSpEffectConfigs
+            List<SpEffectConfig_Default> allOptions = LoadedSpEffectConfigs
                 .Where(d => d.SpEffectType == x)
                 .ToList();
 
-            IEnumerable<SpEffectConfig> filteredOptions = allOptions
+            IEnumerable<SpEffectConfig_Default> filteredOptions = allOptions
                 .Where(d => d.SpEffectPower >= powermin && d.SpEffectPower <= powermax);
 
             if (filteredOptions.Any())

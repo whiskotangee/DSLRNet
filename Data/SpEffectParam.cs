@@ -1,40 +1,40 @@
 
 namespace DSLRNet.Data;
 
-public class SpEffectParam
+public partial class SpEffectParam
 {
     public int ID { get; set; }
     public string Name { get; set; }
     public int iconId { get; set; }
     public int conditionHp { get; set; }
-    public float effectEndurance { get; set; }
-    public float motionInterval { get; set; }
-    public float maxHpRate { get; set; }
-    public float maxMpRate { get; set; }
-    public float maxStaminaRate { get; set; }
-    public float slashDamageCutRate { get; set; }
-    public float blowDamageCutRate { get; set; }
-    public float thrustDamageCutRate { get; set; }
-    public float neutralDamageCutRate { get; set; }
-    public float magicDamageCutRate { get; set; }
-    public float fireDamageCutRate { get; set; }
-    public float thunderDamageCutRate { get; set; }
+    public int effectEndurance { get; set; }
+    public int motionInterval { get; set; }
+    public int maxHpRate { get; set; }
+    public int maxMpRate { get; set; }
+    public int maxStaminaRate { get; set; }
+    public int slashDamageCutRate { get; set; }
+    public int blowDamageCutRate { get; set; }
+    public int thrustDamageCutRate { get; set; }
+    public int neutralDamageCutRate { get; set; }
+    public int magicDamageCutRate { get; set; }
+    public int fireDamageCutRate { get; set; }
+    public int thunderDamageCutRate { get; set; }
     public float physicsAttackRate { get; set; }
     public float magicAttackRate { get; set; }
     public float fireAttackRate { get; set; }
     public float thunderAttackRate { get; set; }
-    public float physicsAttackPowerRate { get; set; }
-    public float magicAttackPowerRate { get; set; }
-    public float fireAttackPowerRate { get; set; }
-    public float thunderAttackPowerRate { get; set; }
+    public int physicsAttackPowerRate { get; set; }
+    public int magicAttackPowerRate { get; set; }
+    public int fireAttackPowerRate { get; set; }
+    public int thunderAttackPowerRate { get; set; }
     public int physicsAttackPower { get; set; }
     public int magicAttackPower { get; set; }
     public int fireAttackPower { get; set; }
     public int thunderAttackPower { get; set; }
-    public float physicsDiffenceRate { get; set; }
-    public float magicDiffenceRate { get; set; }
-    public float fireDiffenceRate { get; set; }
-    public float thunderDiffenceRate { get; set; }
+    public int physicsDiffenceRate { get; set; }
+    public int magicDiffenceRate { get; set; }
+    public int fireDiffenceRate { get; set; }
+    public int thunderDiffenceRate { get; set; }
     public int physicsDiffence { get; set; }
     public int magicDiffence { get; set; }
     public int fireDiffence { get; set; }
@@ -42,9 +42,9 @@ public class SpEffectParam
     public int NoGuardDamageRate { get; set; }
     public int vitalSpotChangeRate { get; set; }
     public int normalSpotChangeRate { get; set; }
-    public float lookAtTargetPosOffset { get; set; }
+    public int lookAtTargetPosOffset { get; set; }
     public int behaviorId { get; set; }
-    public float changeHpRate { get; set; }
+    public int changeHpRate { get; set; }
     public int changeHpPoint { get; set; }
     public int changeMpRate { get; set; }
     public int changeMpPoint { get; set; }
@@ -55,34 +55,34 @@ public class SpEffectParam
     public int magicEffectTimeChange { get; set; }
     public int insideDurability { get; set; }
     public int maxDurability { get; set; }
-    public float staminaAttackRate { get; set; }
+    public int staminaAttackRate { get; set; }
     public int poizonAttackPower { get; set; }
     public int diseaseAttackPower { get; set; }
     public int bloodAttackPower { get; set; }
     public int curseAttackPower { get; set; }
-    public float fallDamageRate { get; set; }
-    public float soulRate { get; set; }
-    public float equipWeightChangeRate { get; set; }
+    public int fallDamageRate { get; set; }
+    public int soulRate { get; set; }
+    public int equipWeightChangeRate { get; set; }
     public int allItemWeightChangeRate { get; set; }
     public int soul { get; set; }
     public int animIdOffset { get; set; }
     public int haveSoulRate { get; set; }
-    public float targetPriority { get; set; }
-    public float sightSearchEnemyRate { get; set; }
-    public float hearingSearchEnemyRate { get; set; }
+    public int targetPriority { get; set; }
+    public int sightSearchEnemyRate { get; set; }
+    public int hearingSearchEnemyRate { get; set; }
     public int grabityRate { get; set; }
-    public float registPoizonChangeRate { get; set; }
-    public float registDiseaseChangeRate { get; set; }
-    public float registBloodChangeRate { get; set; }
+    public int registPoizonChangeRate { get; set; }
+    public int registDiseaseChangeRate { get; set; }
+    public int registBloodChangeRate { get; set; }
     public int registCurseChangeRate { get; set; }
     public int soulStealRate { get; set; }
     public int lifeReductionRate { get; set; }
-    public float hpRecoverRate { get; set; }
+    public int hpRecoverRate { get; set; }
     public int replaceSpEffectId { get; set; }
     public int cycleOccurrenceSpEffectId { get; set; }
     public int atkOccurrenceSpEffectId { get; set; }
-    public float guardDefFlickPowerRate { get; set; }
-    public float guardStaminaCutRate { get; set; }
+    public int guardDefFlickPowerRate { get; set; }
+    public int guardStaminaCutRate { get; set; }
     public int rayCastPassedTime { get; set; }
     public int magicSubCategoryChange1 { get; set; }
     public int magicSubCategoryChange2 { get; set; }
@@ -182,7 +182,7 @@ public class SpEffectParam
     public int vowType14 { get; set; }
     public int vowType15 { get; set; }
     public int repAtkDmgLv { get; set; }
-    public float sightSearchRate { get; set; }
+    public int sightSearchRate { get; set; }
     public int effectTargetOpposeTarget { get; set; }
     public int effectTargetFriendlyTarget { get; set; }
     public int effectTargetSelfTarget { get; set; }
@@ -214,37 +214,37 @@ public class SpEffectParam
     public int addFootEffectSfxId { get; set; }
     public int dexterityCancelSystemOnlyAddDexterity { get; set; }
     public int teamOffenseEffectivity { get; set; }
-    public float toughnessDamageCutRate { get; set; }
+    public int toughnessDamageCutRate { get; set; }
     public int weakDmgRateA { get; set; }
-    public float weakDmgRateB { get; set; }
-    public float weakDmgRateC { get; set; }
-    public float weakDmgRateD { get; set; }
-    public float weakDmgRateE { get; set; }
+    public int weakDmgRateB { get; set; }
+    public int weakDmgRateC { get; set; }
+    public int weakDmgRateD { get; set; }
+    public int weakDmgRateE { get; set; }
     public int weakDmgRateF { get; set; }
-    public float darkDamageCutRate { get; set; }
-    public float darkDiffenceRate { get; set; }
+    public int darkDamageCutRate { get; set; }
+    public int darkDiffenceRate { get; set; }
     public int darkDiffence { get; set; }
     public float darkAttackRate { get; set; }
-    public float darkAttackPowerRate { get; set; }
+    public int darkAttackPowerRate { get; set; }
     public int darkAttackPower { get; set; }
     public int antiDarkSightRadius { get; set; }
     public int antiDarkSightDmypolyId { get; set; }
     public int conditionHpRate { get; set; }
-    public float consumeStaminaRate { get; set; }
-    public float itemDropRate { get; set; }
+    public int consumeStaminaRate { get; set; }
+    public int itemDropRate { get; set; }
     public int changePoisonResistPoint { get; set; }
     public int changeDiseaseResistPoint { get; set; }
     public int changeBloodResistPoint { get; set; }
     public int changeCurseResistPoint { get; set; }
     public int changeFreezeResistPoint { get; set; }
-    public float slashAttackRate { get; set; }
-    public float blowAttackRate { get; set; }
-    public float thrustAttackRate { get; set; }
-    public float neutralAttackRate { get; set; }
-    public float slashAttackPowerRate { get; set; }
-    public float blowAttackPowerRate { get; set; }
-    public float thrustAttackPowerRate { get; set; }
-    public float neutralAttackPowerRate { get; set; }
+    public int slashAttackRate { get; set; }
+    public int blowAttackRate { get; set; }
+    public int thrustAttackRate { get; set; }
+    public int neutralAttackRate { get; set; }
+    public int slashAttackPowerRate { get; set; }
+    public int blowAttackPowerRate { get; set; }
+    public int thrustAttackPowerRate { get; set; }
+    public int neutralAttackPowerRate { get; set; }
     public int slashAttackPower { get; set; }
     public int blowAttackPower { get; set; }
     public int thrustAttackPower { get; set; }
@@ -268,29 +268,29 @@ public class SpEffectParam
     public int isStopSearchedNotify { get; set; }
     public int isCheckAboveShadowTest { get; set; }
     public int addBehaviorJudgeId_add { get; set; }
-    public float saReceiveDamageRate { get; set; }
-    public float defPlayerDmgCorrectRate_Physics { get; set; }
-    public float defPlayerDmgCorrectRate_Magic { get; set; }
-    public float defPlayerDmgCorrectRate_Fire { get; set; }
-    public float defPlayerDmgCorrectRate_Thunder { get; set; }
-    public float defPlayerDmgCorrectRate_Dark { get; set; }
-    public float defEnemyDmgCorrectRate_Physics { get; set; }
-    public float defEnemyDmgCorrectRate_Magic { get; set; }
-    public float defEnemyDmgCorrectRate_Fire { get; set; }
-    public float defEnemyDmgCorrectRate_Thunder { get; set; }
-    public float defEnemyDmgCorrectRate_Dark { get; set; }
-    public float defObjDmgCorrectRate { get; set; }
-    public float atkPlayerDmgCorrectRate_Physics { get; set; }
-    public float atkPlayerDmgCorrectRate_Magic { get; set; }
-    public float atkPlayerDmgCorrectRate_Fire { get; set; }
-    public float atkPlayerDmgCorrectRate_Thunder { get; set; }
-    public float atkPlayerDmgCorrectRate_Dark { get; set; }
-    public float atkEnemyDmgCorrectRate_Physics { get; set; }
-    public float atkEnemyDmgCorrectRate_Magic { get; set; }
-    public float atkEnemyDmgCorrectRate_Fire { get; set; }
-    public float atkEnemyDmgCorrectRate_Thunder { get; set; }
-    public float atkEnemyDmgCorrectRate_Dark { get; set; }
-    public float registFreezeChangeRate { get; set; }
+    public int saReceiveDamageRate { get; set; }
+    public int defPlayerDmgCorrectRate_Physics { get; set; }
+    public int defPlayerDmgCorrectRate_Magic { get; set; }
+    public int defPlayerDmgCorrectRate_Fire { get; set; }
+    public int defPlayerDmgCorrectRate_Thunder { get; set; }
+    public int defPlayerDmgCorrectRate_Dark { get; set; }
+    public int defEnemyDmgCorrectRate_Physics { get; set; }
+    public int defEnemyDmgCorrectRate_Magic { get; set; }
+    public int defEnemyDmgCorrectRate_Fire { get; set; }
+    public int defEnemyDmgCorrectRate_Thunder { get; set; }
+    public int defEnemyDmgCorrectRate_Dark { get; set; }
+    public int defObjDmgCorrectRate { get; set; }
+    public int atkPlayerDmgCorrectRate_Physics { get; set; }
+    public int atkPlayerDmgCorrectRate_Magic { get; set; }
+    public int atkPlayerDmgCorrectRate_Fire { get; set; }
+    public int atkPlayerDmgCorrectRate_Thunder { get; set; }
+    public int atkPlayerDmgCorrectRate_Dark { get; set; }
+    public int atkEnemyDmgCorrectRate_Physics { get; set; }
+    public int atkEnemyDmgCorrectRate_Magic { get; set; }
+    public int atkEnemyDmgCorrectRate_Fire { get; set; }
+    public int atkEnemyDmgCorrectRate_Thunder { get; set; }
+    public int atkEnemyDmgCorrectRate_Dark { get; set; }
+    public int registFreezeChangeRate { get; set; }
     public int invocationConditionsStateChange1 { get; set; }
     public int invocationConditionsStateChange2 { get; set; }
     public int invocationConditionsStateChange3 { get; set; }
@@ -299,23 +299,23 @@ public class SpEffectParam
     public int addAwarePointCorrectValue_forMe { get; set; }
     public int addAwarePointCorrectValue_forTarget { get; set; }
     public int sightSearchEnemyAdd { get; set; }
-    public float sightSearchAdd { get; set; }
+    public int sightSearchAdd { get; set; }
     public int hearingSearchAdd { get; set; }
-    public float hearingSearchRate { get; set; }
+    public int hearingSearchRate { get; set; }
     public int hearingSearchEnemyAdd { get; set; }
     public int value_Magnification { get; set; }
-    public float artsConsumptionRate { get; set; }
-    public float magicConsumptionRate { get; set; }
-    public float shamanConsumptionRate { get; set; }
-    public float miracleConsumptionRate { get; set; }
+    public int artsConsumptionRate { get; set; }
+    public int magicConsumptionRate { get; set; }
+    public int shamanConsumptionRate { get; set; }
+    public int miracleConsumptionRate { get; set; }
     public int changeHpEstusFlaskRate { get; set; }
     public int changeHpEstusFlaskPoint { get; set; }
     public int changeMpEstusFlaskRate { get; set; }
     public int changeMpEstusFlaskPoint { get; set; }
-    public float changeHpEstusFlaskCorrectRate { get; set; }
-    public float changeMpEstusFlaskCorrectRate { get; set; }
+    public int changeHpEstusFlaskCorrectRate { get; set; }
+    public int changeMpEstusFlaskCorrectRate { get; set; }
     public int applyIdOnGetSoul { get; set; }
-    public float extendLifeRate { get; set; }
+    public int extendLifeRate { get; set; }
     public int contractLifeRate { get; set; }
     public int defObjectAttackPowerRate { get; set; }
     public int effectEndDeleteDecalGroupId { get; set; }
@@ -333,13 +333,13 @@ public class SpEffectParam
     public int spAttributeVariationValue { get; set; }
     public int atkFlickPower { get; set; }
     public int wetConditionDepth { get; set; }
-    public float changeSaRecoveryVelocity { get; set; }
+    public int changeSaRecoveryVelocity { get; set; }
     public int regainRate { get; set; }
-    public float saAttackPowerRate { get; set; }
+    public int saAttackPowerRate { get; set; }
     public int sleepAttackPower { get; set; }
     public int madnessAttackPower { get; set; }
-    public float registSleepChangeRate { get; set; }
-    public float registMadnessChangeRate { get; set; }
+    public int registSleepChangeRate { get; set; }
+    public int registMadnessChangeRate { get; set; }
     public int changeSleepResistPoint { get; set; }
     public int changeMadnessResistPoint { get; set; }
     public int sleepDamageRate { get; set; }
@@ -360,19 +360,19 @@ public class SpEffectParam
     public int unknown_0x353_5 { get; set; }
     public int changeSuperArmorPoint { get; set; }
     public int changeSaPoint { get; set; }
-    public float hugeEnemyPickupHeightOverwrite { get; set; }
-    public float poisonDefDamageRate { get; set; }
-    public float diseaseDefDamageRate { get; set; }
-    public float bloodDefDamageRate { get; set; }
-    public float curseDefDamageRate { get; set; }
-    public float freezeDefDamageRate { get; set; }
-    public float sleepDefDamageRate { get; set; }
-    public float madnessDefDamageRate { get; set; }
+    public int hugeEnemyPickupHeightOverwrite { get; set; }
+    public int poisonDefDamageRate { get; set; }
+    public int diseaseDefDamageRate { get; set; }
+    public int bloodDefDamageRate { get; set; }
+    public int curseDefDamageRate { get; set; }
+    public int freezeDefDamageRate { get; set; }
+    public int sleepDefDamageRate { get; set; }
+    public int madnessDefDamageRate { get; set; }
     public int overwrite_maxBackhomeDist { get; set; }
     public int overwrite_backhomeDist { get; set; }
     public int overwrite_backhomeBattleDist { get; set; }
     public int overwrite_BackHome_LookTargetDist { get; set; }
-    public float goodsConsumptionRate { get; set; }
-    public float guardStaminaMult { get; set; }
+    public int goodsConsumptionRate { get; set; }
+    public int guardStaminaMult { get; set; }
     public int spiritDeathSpEffectId { get; set; }
 }

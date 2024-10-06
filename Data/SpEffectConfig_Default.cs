@@ -1,7 +1,7 @@
 
 namespace DSLRNet.Data;
 
-public class SpEffectConfig
+public partial class SpEffectConfig_Default
 {
     public int ID { get; set; }
     public int Value { get; set; }

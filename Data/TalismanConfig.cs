@@ -1,7 +1,7 @@
 
 namespace DSLRNet.Data;
 
-public class TalismanConfig
+public partial class TalismanConfig
 {
     public int ID { get; set; }
     public string Effect { get; set; }

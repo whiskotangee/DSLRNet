@@ -1,7 +1,7 @@
 
 namespace DSLRNet.Data;
 
-public class EquipParamAccessory
+public partial class EquipParamAccessory
 {
     public int ID { get; set; }
     public string Name { get; set; }

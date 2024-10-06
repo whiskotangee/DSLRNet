@@ -42,7 +42,7 @@ public class TalismanLootGenerator : ParamLootGenerator
         GenericDictionary newTalisman = GetLootDictionaryFromId(this.WhiteListHandler.GetLootByWhiteList(wllIds, LootType.Talisman));
 
         // GET OUR TALISMAN'S CONFIG
-        var newTalismanConfig = GetRandomTalismanConfig();
+        TalismanConfig newTalismanConfig = GetRandomTalismanConfig();
 
         // ADD NEW TALISMAN'S DETAILS TO DESCRIPTION AND SUMMARY
         string talismanEffectDesc = GetTalismanConfigEffectDescription(newTalismanConfig, newTalisman.GetValue<int>("ID"));
@@ -53,7 +53,7 @@ public class TalismanLootGenerator : ParamLootGenerator
 
         // CHOOSE A SET OF NEW SPEFFECTS BASED ON RARITY
         // STORE HOW MANY FREE SPEFFECT SLOTS OUR PARAM HAS
-        var freeSlotCount = GetAvailableSpeffectSlotCount(newTalisman);
+        int freeSlotCount = GetAvailableSpeffectSlotCount(newTalisman);
 
         // DON'T CONTINUE IF THERE'S NO FREE SLOTS - IF THEY'RE FULL BY DEFAULT THEY'RE PROBABLY NECESSARY FOR THE TALISMAN TO WORK,
         // AND THERE'S NO POINT USING IT AS A BASE IF WE CAN'T REALLY ADD ANYTHING TO IT

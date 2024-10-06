@@ -9,11 +9,13 @@ public class Csv
 {
     public static List<T> LoadCsv<T>(string filename)
     {
+        Log.Logger.Information($"CSV Loading {filename}");
         using StreamReader reader = new StreamReader(filename);
         using CsvReader csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             PrepareHeaderForMatch = (PrepareHeaderForMatchArgs args) => args.Header.ToLower(),
-            MissingFieldFound = (MissingFieldFoundArgs args) => Log.Logger.Error($"{filename} missing field at index {args.Index}")
+            MissingFieldFound = (MissingFieldFoundArgs args) => Log.Logger.Error($"{filename} missing field at index {args.Index}"),
+            HasHeaderRecord = true
         });
 
         IEnumerable<T> records = csv.GetRecords<T>();
@@ -22,17 +24,19 @@ public class Csv
 
     public static void WriteCsv(string fileName, List<GenericDictionary> dictionaries)
     {
-        var headers = dictionaries.First().Properties.Keys;
+        Log.Logger.Information($"CSV Writing {fileName}");
 
-        using var writer = new StreamWriter(fileName);
+        Dictionary<string, object?>.KeyCollection headers = dictionaries.First().Properties.Keys;
+
+        using StreamWriter writer = new StreamWriter(fileName);
         writer.WriteLine(string.Join(",", headers));
         
-        foreach(var obj in dictionaries)
+        foreach(GenericDictionary obj in dictionaries)
         {
             List<string> values = [];
-            foreach (var header in headers)
+            foreach (string header in headers)
             {
-                if (obj.Properties.TryGetValue(header, out var value))
+                if (obj.Properties.TryGetValue(header, out object? value))
                 {
                     values.Add(value?.ToString());
                 }

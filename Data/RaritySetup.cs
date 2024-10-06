@@ -1,7 +1,7 @@
 
 namespace DSLRNet.Data;
 
-public class RaritySetup
+public partial class RaritySetup
 {
     public int ID { get; set; }
     public string Name { get; set; }

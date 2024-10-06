@@ -25,8 +25,7 @@ public class LoreGenerator(IOptions<LoreConfig> config, RandomNumberGetter rando
 
     public string CreateRandomUniqueName(string originalName, bool isShield)
     {
-        return $"" +
-            $"{this.random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameFirstWord)} " +
+        return $"{this.random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameFirstWord)} " +
             $"{this.random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameFirstHalf)} " +
             $"{this.random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameSecondWord)} " +
             $"{(isShield ? this.random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameSecondHalfShield) : this.random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameSecondHalf))} ";

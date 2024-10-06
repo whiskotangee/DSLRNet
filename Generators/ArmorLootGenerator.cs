@@ -31,6 +31,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         List<EquipParamProtector> armorLoots = Csv.LoadCsv<EquipParamProtector>("DefaultData\\ER\\CSVs\\EquipParamProtector.csv");
 
         this.LoadedLoot = armorLoots.Select(GenericDictionary.FromObject).ToList();
+        OutputParamName = "EquipParamProtector";
     }
 
     public enum CutRates
@@ -140,7 +141,7 @@ public class ArmorLootGenerator : ParamLootGenerator
                 if (newArmor.ContainsKey(param))
                 {
                     int oldValue = newArmor.GetValue<int>(param);
-                    newArmor.SetValue(param, oldValue * RarityHandler.GetRarityArmorresistmultMultiplier(rarity));
+                    newArmor.SetValue(param, (int)(oldValue * RarityHandler.GetRarityArmorresistmultMultiplier(rarity)));
                 }
             }
         }

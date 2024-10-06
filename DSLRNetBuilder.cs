@@ -31,13 +31,6 @@ public class DSLRNetBuilder(
     {
         Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
-        var csvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\LatestParams", "*.csv");
-
-        foreach (var csvFile in csvFiles)
-        {
-            GenerateClassFromCsv(csvFile);
-        }
-
         // get all queue entries
 
         // TODO: Loading ini is failing due to [] in values
@@ -74,9 +67,9 @@ public class DSLRNetBuilder(
 
         List<string> generatedMessages = dataRepository.GetParamEdits().SelectMany(s => s.MessageText).ToList();
 
-        var groups = generatedData.GroupBy(d => d.ParamName);
+        IEnumerable<IGrouping<string, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
 
-        foreach(var group in groups)
+        foreach(IGrouping<string, ParamEdit> group in groups)
         {
             File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), group.Select(s => s.MassEditString));
             await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), destinationFile);
@@ -90,16 +83,16 @@ public class DSLRNetBuilder(
     public async Task ApplyCreates(string regulationFile, DataRepository repository)
     {
         // write csv file with headers, but only for new things, aka none of the 
-        var edits = repository.GetParamEdits(ParamOperation.Create);
+        List<ParamEdit> edits = repository.GetParamEdits(ParamOperation.Create);
 
-        var paramNames = edits.Select(d => d.ParamName).Distinct();
+        IEnumerable<string> paramNames = edits.Select(d => d.ParamName).Distinct();
 
-        foreach(var paramName in paramNames)
+        foreach(string? paramName in paramNames)
         {
             // write csv
-            var csvFile = Path.Combine(this.configuration.Settings.DeployPath, $"{paramName}.csv");
+            string csvFile = Path.Combine(this.configuration.Settings.DeployPath, $"{paramName}.csv");
 
-            var parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.GetValue<int>("ID")).Select(d => d.ParamObject).ToList();
+            List<GenericDictionary> parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.GetValue<int>("ID")).Select(d => d.ParamObject).ToList();
             Csv.WriteCsv(csvFile, parms);
 
             // dsms csv
@@ -120,57 +113,6 @@ public class DSLRNetBuilder(
             Arguments = $"\"{destinationFile}\" -G ER -P \"{this.configuration.Settings.GamePath}\" -M+ \"{massEditFile}\"",
             RetryCount = 0
         });
-    }
-
-    public static void GenerateClassFromCsv(string csvFilePath)
-    {
-        string[] lines = File.ReadAllLines(csvFilePath);
-        if (lines.Length < 2)
-        {
-            throw new InvalidOperationException("CSV file must contain at least two lines (header and one data row).");
-        }
-
-        string[] headers = lines[0].Split(',', StringSplitOptions.RemoveEmptyEntries);
-        string[][] dataRows = lines.Skip(1).Select(line => line.Split(',')).ToArray();
-
-        List<string> properties = [];
-
-        for (int i = 0; i < headers.Length; i++)
-        {
-            string header = headers[i];
-            IEnumerable<string> columnValues = dataRows.Select(row => row[i]);
-            string type = DetermineType(columnValues);
-            properties.Add($"public {type} {header} {{ get; set; }}");
-        }
-
-        string classDefinition = $@"
-namespace DSLRNet.Data;
-
-public class {Path.GetFileNameWithoutExtension(csvFilePath)}
-{{
-    {string.Join(Environment.NewLine + "    ", properties)}
-}}";
-
-        var path = $"{Path.Combine("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\Data", Path.GetFileNameWithoutExtension(csvFilePath))}.cs";
-
-        File.WriteAllText(path, classDefinition);
-
-        Console.WriteLine(classDefinition);
-    }
-
-    private static string DetermineType(IEnumerable<string> values)
-    {
-        if (values.All(d => int.TryParse(d, out _)))
-        {
-            return "int";
-        }
-
-        if (values.All(d => float.TryParse(d, NumberStyles.Float, CultureInfo.InvariantCulture, out _)))
-        {
-            return "float";
-        }
-
-        return "string";
     }
 
     public async Task UpdateMessages(List<string> strArray)
@@ -220,76 +162,5 @@ public class {Path.GetFileNameWithoutExtension(csvFilePath)}
                 }
             }
         });
-    }
-}
-
-public class CsvFixer
-{
-    public class Entry
-    {
-        public string Text { get; set; }
-        public List<int> IDList { get; set; }
-    }
-
-    public class JsonData
-    {
-        public int FMG_ID { get; set; }
-        public List<Entry> Entries { get; set; }
-    }
-
-    public class CsvRecord
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        // Other fields can be added here
-        public string OtherField1 { get; set; }
-        public string OtherField2 { get; set; }
-        // Add as many fields as needed
-    }
-
-    public static void UpdateNamesInCSVs()
-    {
-        // TODO: fix the csvs with references from the json files like below
-        // YOU HAVEN'T DONE ANY YET
-        string jsonFilePath = "DefaultData\\ER\\FMGBase\\TitleWeapons_SOTE.fmgmerge.json";
-        string csvFilePath = "DefaultData\\ER\\CSVs\\EquipParamWeapon.csv";
-
-        // Read JSON file
-        var jsonData = JsonConvert.DeserializeObject<JsonData>(File.ReadAllText(jsonFilePath));
-
-        // Read CSV file
-        var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
-        {
-            HasHeaderRecord = true,
-        };
-
-        List<EquipParamWeapon> csvRecords;
-        using (var reader = new StreamReader(csvFilePath))
-        using (var csv = new CsvReader(reader, csvConfig))
-        {
-            csvRecords = csv.GetRecords<EquipParamWeapon>().ToList();
-        }
-
-        // Update CSV records with JSON data
-        foreach (var entry in jsonData.Entries)
-        {
-            foreach (var id in entry.IDList)
-            {
-                var record = csvRecords.FirstOrDefault(r => r.ID == id);
-                if (record != null)
-                {
-                    record.Name = entry.Text;
-                }
-            }
-        }
-
-        // Write updated records back to CSV file
-        using (var writer = new StreamWriter(csvFilePath))
-        using (var csv = new CsvWriter(writer, csvConfig))
-        {
-            csv.WriteRecords(csvRecords);
-        }
-
-        Console.WriteLine("CSV file updated successfully.");
     }
 }

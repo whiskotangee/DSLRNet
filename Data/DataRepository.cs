@@ -20,7 +20,7 @@ public class DataRepository()
 
     public void AddParamEdit(string name, ParamOperation operation, string massEditString, List<string> text,  GenericDictionary? param)
     {
-        var currentEdit = this.paramEdits.FirstOrDefault(d => d.ParamName.Equals(name) && d.Operation == operation) ?? new ParamEdit() { ParamName = name, Operation = operation };
+        ParamEdit currentEdit = this.paramEdits.FirstOrDefault(d => d.ParamName.Equals(name) && d.Operation == operation) ?? new ParamEdit() { ParamName = name, Operation = operation };
 
         paramEdits.Add(new ParamEdit
         {

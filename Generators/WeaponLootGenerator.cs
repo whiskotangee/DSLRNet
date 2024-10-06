@@ -16,8 +16,6 @@ public class WeaponLootGenerator : ParamLootGenerator
     private readonly WeaponGeneratorConfig weaponGeneratorConfig;
     private readonly AshofWarHandler ashofWarHandler;
 
-    public List<GenericDictionary> LoadedStaffsSealsLoot { get; private set; }
-
     public WeaponLootGenerator(
         IOptions<Configuration> configuration,
         IOptions<WeaponGeneratorConfig> weaponGeneratorConfig,
@@ -35,10 +33,8 @@ public class WeaponLootGenerator : ParamLootGenerator
         this.ashofWarHandler = ashofWarHandler;
 
         List<EquipParamWeapon> weaponLoots = Csv.LoadCsv<EquipParamWeapon>("DefaultData\\ER\\CSVs\\EquipParamWeapon.csv");
-        List<EquipParamWeapon> staffsSeals = Csv.LoadCsv<EquipParamWeapon>("DefaultData\\ER\\CSVs\\StaffsSeals\\EquipParamWeapon_StaffsSeals.csv");
 
         this.LoadedLoot = weaponLoots.Select(GenericDictionary.FromObject).ToList();
-        this.LoadedStaffsSealsLoot = staffsSeals.Select(GenericDictionary.FromObject).ToList();
     }
 
     public int CreateWeapon(int rarityId, List<int> whitelistLootIds = null)
@@ -144,7 +140,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         ExportLootGenParamAndTextToOutputs(weaponDictionary, LootType.Weapon, weaponFinalTitleColored, wftDescription + weaponDesc + GetParamLootLore(weaponFinalTitle, false), "", [], []);
 
-        return Convert.ToInt32(weaponDictionary.GetValue<int>("ID"));
+        return weaponDictionary.GetValue<int>("ID");
     }
 
     private void SetWeaponOriginParam(GenericDictionary weaponDictionary, int id, int upgradeCap = 25, bool replace = true)
@@ -206,8 +202,18 @@ public class WeaponLootGenerator : ParamLootGenerator
 
     private void ApplyShieldCutRateChanges(DamageTypeSetup dT1, DamageTypeSetup dT2, DamageTypeAddition dTAdditions, GenericDictionary weaponDictionary, int rarityId)
     {
+        List<string> dmgParams = this.Configuration.LootParam.WeaponsGuardRateParam;
+        //var params : Array = get_gametype_dictionary()["LootParam"]["weapons_damageparam"] if !isshield else get_gametype_dictionary()["LootParam"]["weapons_guardrate_param"]
+
+        GenericDictionary originalValues = weaponDictionary.Clone() as GenericDictionary;
+        // reset all damage
+        foreach (string dmgParam in dmgParams)
+        {
+            weaponDictionary.SetValue<long>(dmgParam, 0);
+        }
+
         float spEffectMultiplier = 1.0f;
-        int existingValue = weaponDictionary.GetValue<int>(dT1.ShieldParam);
+        float existingValue = originalValues.GetValue<float>(dT1.ShieldParam);
 
         if (dT1.SpEffect == existingValue)
         {
@@ -218,8 +224,13 @@ public class WeaponLootGenerator : ParamLootGenerator
             spEffectMultiplier += 0.2f;
         }
 
-        dTAdditions.PrimaryDamageType.Params.SetValue(dT1.ShieldParam, Math.Clamp(existingValue * spEffectMultiplier, 0, 100));
-        dTAdditions.SecondaryDamageType.Params.SetValue(dT2.ShieldParam, Math.Clamp(existingValue * spEffectMultiplier, 0, 100));
+        float value = Math.Clamp(existingValue * spEffectMultiplier, 0, 100);
+
+        weaponDictionary.SetValue(dT1.ShieldParam, value);
+        weaponDictionary.SetValue(dT2.ShieldParam, value);
+
+        dTAdditions.PrimaryDamageType.Value = value;
+        dTAdditions.SecondaryDamageType.Value = value;
 
         IEnumerable<SpEffectText> nameParts = ApplySpEffects(rarityId, [0], weaponDictionary, spEffectMultiplier, true);
 

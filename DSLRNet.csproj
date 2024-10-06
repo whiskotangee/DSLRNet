@@ -48,7 +48,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="DefaultData\ER\CSVs\EquipParamAccessory.csv" />
+    <None Remove="DefaultData\ER\CSVs\EquipParamProtector.csv" />
+    <None Remove="DefaultData\ER\CSVs\EquipParamWeapon.csv" />
     <None Remove="DefaultData\ER\MassEdit\postfix.massedit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="DefaultData\ER\CSVs\EquipParamWeapon.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="DefaultData\ER\CSVs\EquipParamAccessory.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="DefaultData\ER\CSVs\EquipParamProtector.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

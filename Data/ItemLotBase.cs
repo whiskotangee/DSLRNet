@@ -1,9 +1,7 @@
 
-using Newtonsoft.Json;
-
 namespace DSLRNet.Data;
 
-public class ItemLotBase
+public partial class ItemLotBase
 {
     public int ID { get; set; }
     public string Name { get; set; }
@@ -80,14 +78,4 @@ public class ItemLotBase
     public int canExecByHostileGhost { get; set; }
     public int PAD1 { get; set; }
     public int PAD2 { get; set; }
-
-    public void SetPropertyByName(string name, object value)
-    {
-        this.GetType().GetProperty(name).SetValue(this, value);
-    }
-
-    public T GetValue<T>(string propertyName)
-    {
-        return (T)this.GetType().GetProperty(propertyName).GetValue(this);
-    }
 }

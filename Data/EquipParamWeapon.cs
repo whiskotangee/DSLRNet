@@ -1,7 +1,7 @@
 
 namespace DSLRNet.Data;
 
-public class EquipParamWeapon
+public partial class EquipParamWeapon
 {
     public int ID { get; set; }
     public string Name { get; set; }
@@ -197,7 +197,7 @@ public class EquipParamWeapon
     public int freezeGuardResist { get; set; }
     public int autoReplenishType { get; set; }
     public int swordArtsParamId { get; set; }
-    public float correctLuck { get; set; }
+    public int correctLuck { get; set; }
     public int arrowBoltEquipId { get; set; }
     public int DerivationLevelType { get; set; }
     public int enchantSfxSize { get; set; }

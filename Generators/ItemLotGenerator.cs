@@ -112,7 +112,7 @@ public class ItemLotGenerator : BaseHandler
                     newItemLot.Name = $"DSLR {queueEntry.Realname} {x} {GetItemLotCategoriesForItemLotName(newItemLot)}";
 
                     // FINALLY, EXPORT TO MASSEDITOUTPUT
-                    var genericDict = GenericDictionary.FromObject(newItemLot);
+                    GenericDictionary genericDict = GenericDictionary.FromObject(newItemLot);
                     string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.Category ?? "", newItemLot.ID, [], ["0"]);
                     this.GeneratedDataRepository.AddParamEdit(queueEntry.Category, ParamOperation.Create, itemLotMassEdit, [], genericDict);
                 }

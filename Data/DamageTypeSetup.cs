@@ -1,7 +1,7 @@
 
 namespace DSLRNet.Data;
 
-public class DamageTypeSetup
+public partial class DamageTypeSetup
 {
     public int ID { get; set; }
     public string Name { get; set; }

@@ -22,6 +22,22 @@ public class DamageTypeHandler : BaseHandler
         this.random = random;
 
         this.DamageTypes = Data.Csv.LoadCsv<DamageTypeSetup>("DefaultData\\ER\\CSVs\\DamageTypeSetup.csv");
+
+        this.DamageTypes.Where(d => d.Message >= 1022 && d.Message <= 1100)
+            .ToList()
+            .ForEach(d =>
+            {
+                this.GeneratedDataRepository.AddParamEdit(
+                    "WeaponEffectText",
+                    ParamOperation.TextOnly,
+                    string.Empty,
+                    new LootFMG()
+                    {
+                        Category = "Weapon",
+                        Effect = d.EffectDescription
+                    },
+                    new GenericDictionary() { Properties = new Dictionary<string, object?>() { { "ID", d.Message } } });
+            });
     }
 
     // DTH SELECTION FUNCTIONS

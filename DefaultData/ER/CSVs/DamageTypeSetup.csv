@@ -18,7 +18,7 @@ ID,Name,DamageElement,PriName,SecName,Param,ShieldParam,SpEffect,OnHitSpEffect,H
 16,Bestial,Physical,Berserker's,Bestial,attackBasePhysics,physGuardCutRate,147210,442200,0,10,8,1,1030,Gives Atk Up/Def Down on Hit,0,0,-1
 17,Destined Death,Holy,Black,Destined,attackBaseDark,darkGuardCutRate,468626,468600,13,10,8,0.9,1047,Applies Destined Death,0,0,450270
 18,Stamina On Hit,Physical,Nox,Sapping,attackBasePhysics,physGuardCutRate,5020850,5020800,0,10,8,1,1053,Steals Stamina on Hit,0,0,-1
-19,FP Regen,Magic,All-Knowing,Wise,attackBaseMagic,magGuardCutRate,140810,109900,10,10,8,0.9,1035,Grants Passive FP Regen in Combat,0,0,303071
+19,FP Regen,Magic,All-Knowing,Wise,attackBaseMagic,magGuardCutRate,140810,140815,10,10,8,0.9,1035,Grants Passive FP Regen in Combat,0,0,303071
 20,Blackflame,Fire,Godskin,Blackflame,attackBaseFire,fireGuardCutRate,145410,468700,11,10,8,0.9,1032,Applies Blackflame,1,0,303161
 21,Ghostflame,Magic,Ritual,Ghostflame,attackBaseMagic,magGuardCutRate,145910,107495,23,10,8,1,6601,Applies Frostbite,1,0,303121
 22,Bloodflame,Fire,Mohg's,Bloodflame,attackBaseFire,fireGuardCutRate,468926,468900,11,10,8,0.9,1032,Applies Bloodflame,1,0,303171

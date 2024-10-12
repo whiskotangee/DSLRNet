@@ -48,7 +48,6 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         bool uniqueWeapon = this.Random.GetRandomBoolByPercent(this.weaponGeneratorConfig.UniqueNameChance);
         float uniqueValueMultiplier = uniqueWeapon ? this.weaponGeneratorConfig.UniqueWeaponMultiplier : 1.0f;
-        string weaponDesc = "";
 
         WeaponTypes goalWeaponType = this.Random.NextWeightedValue(this.weaponGeneratorConfig.Types, this.weaponGeneratorConfig.Weights, 1.0f);
 
@@ -79,7 +78,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         this.DamageTypeHandler.ApplyDamageTypeWeaponSpEffects(DT1, DT2, weaponDictionary);
 
-        weaponDesc += DTAdditions.SpEffectDescription;
+        string weaponDesc = DTAdditions.SpEffectDescription + Environment.NewLine;
 
         if (generatedType == WeaponTypes.Normal)
         {
@@ -93,6 +92,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         SetLootSellValue(weaponDictionary, rarityId, uniqueValueMultiplier);
         SetLootRarityParamValue(weaponDictionary, rarityId);
+        weaponDictionary.SetValue<int>("iconId", this.RarityHandler.GetIconIdForRarity(weaponDictionary.GetValue<int>("iconId"), rarityId, isUnique: uniqueWeapon));
         RandomizeLootWeightBasedOnRarity(weaponDictionary, rarityId);
         ApplyNextId(weaponDictionary);
 
@@ -109,7 +109,6 @@ public class WeaponLootGenerator : ParamLootGenerator
         SetWeaponOriginParam(weaponDictionary, weaponDictionary.GetValue<int>("ID"), replace: true);
 
         string weaponOriginalTitle = weaponDictionary.GetValue<string>("Name");
-        string weaponRarity = this.RarityHandler.GetRarityName(rarityId);
 
         string weaponFinalTitle = CreateLootTitle(
             weaponOriginalTitle,
@@ -129,7 +128,7 @@ public class WeaponLootGenerator : ParamLootGenerator
             string uniqueName = this.LoreGenerator.CreateRandomUniqueName("", generatedType == WeaponTypes.Shields);
             if (!string.IsNullOrEmpty(uniqueName))
             {
-                weaponFinalTitleColored = $"<font color=\"#ffb4d0\">{uniqueName}</font>";
+                weaponFinalTitleColored = $"<font color=\"#ffa3c5\">{uniqueName}</font>";
             }
             else
             {

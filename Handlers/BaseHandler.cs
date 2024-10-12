@@ -64,7 +64,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
         return $"param {paramName}: id {id}: {propName}: = {value};{newLine}";
     }
 
-    public string CreateMassEditParamFromParamDictionary(GenericDictionary dict, string paramName = "EquipParamWeapon", int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null)
+    public string CreateMassEditParamFromParamDictionary(GenericDictionary dict, string paramName = "EquipParamWeapon", int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null, GenericDictionary? defaultValue = null)
     {
         string finalMassEdit = "";
         List<string> banned = ["[", "]", "|"];
@@ -101,6 +101,11 @@ public class BaseHandler(DataRepository generatedDataRepository)
                         valueValid = false;
                         break;
                     }
+                }
+
+                if (valueValid && defaultValue != null && defaultValue.Properties.TryGetValue(newKey, out object? defaultval) && newValue?.ToString() == defaultval?.ToString())
+                {
+                    valueValid = false;
                 }
             }
 

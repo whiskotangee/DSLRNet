@@ -1,6 +1,11 @@
-﻿namespace DSLRNet.Data;
+﻿using DSLRNet.Config;
+using Microsoft.Extensions.Options;
+using SoulsFormats;
+using System.Collections.Concurrent;
 
-public enum ParamOperation { Create, MassEdit }
+namespace DSLRNet.Data;
+
+public enum ParamOperation { Create, MassEdit, TextOnly }
 
 public class ParamEdit
 {
@@ -14,7 +19,7 @@ public class ParamEdit
     public GenericDictionary ParamObject { get; set; }
 }
 
-public class DataRepository()
+public class DataRepository
 {
     private List<ParamEdit> paramEdits = [];
 

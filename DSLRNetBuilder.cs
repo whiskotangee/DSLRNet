@@ -35,7 +35,6 @@ public class DSLRNetBuilder(
 
         // get all queue entries
 
-        // TODO: Loading ini is failing due to [] in values
         IEnumerable<ItemLotQueueEntry> enemyItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[0]));
 
@@ -148,12 +147,13 @@ public class DSLRNetBuilder(
                 var captionFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Caption")).ToList();
                 var infoFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Info")).ToList();
                 var nameFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Name")).ToList();
+                var effectFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Effect")).ToList();
 
                 Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key} captions");
                 foreach (var captionFile in captionFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(captionFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Caption != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption)));
                     captionFile.Bytes = fmg.Write();
                 }
 
@@ -161,7 +161,7 @@ public class DSLRNetBuilder(
                 foreach (var infoFile in infoFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(infoFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Info != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info)));
                     infoFile.Bytes = fmg.Write();
                 }
 
@@ -169,8 +169,16 @@ public class DSLRNetBuilder(
                 foreach (var nameFile in nameFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(nameFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Name != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name)));
                     nameFile.Bytes = fmg.Write();
+                }
+
+                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key} effects");
+                foreach (var effectFile in effectFilesToUpdate)
+                {
+                    FMG fmg = FMG.Read(effectFile.Bytes.ToArray());
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Effect != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Effect)));
+                    effectFile.Bytes = fmg.Write();
                 }
 
                 Log.Logger.Information($"Finished Processing category {Path.GetFileName(destinationFile)}-{category.Key}");

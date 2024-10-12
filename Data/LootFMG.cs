@@ -7,4 +7,6 @@ public class LootFMG
     public string Caption { get; set; }
 
     public string Info { get; set; }
+
+    public string Effect { get; set; }
 }

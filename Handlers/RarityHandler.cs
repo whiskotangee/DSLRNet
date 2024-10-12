@@ -2,6 +2,7 @@
 using DSLRNet.Config;
 using DSLRNet.Data;
 using Mods.Common;
+using Newtonsoft.Json;
 using Serilog;
 using System.Globalization;
 
@@ -10,6 +11,7 @@ namespace DSLRNet.Handlers;
 public class RarityHandler : BaseHandler
 {
     private readonly RandomNumberGetter randomNumberGetter;
+    private readonly RarityIconMappingConfig iconMappingConfig;
 
     //DICTIONARY TO HOLD ALL OF THE RARITY CONFIGURATIONS AVAILABLE WHEN MODSREADY SIGNAL IS RECEIVED - KEY IS THE RARITY ID
     private Dictionary<int,RaritySetup> RarityConfigs = [];
@@ -17,6 +19,8 @@ public class RarityHandler : BaseHandler
     public RarityHandler(RandomNumberGetter randomNumberGetter, DataRepository dataRepository) : base(dataRepository)
     {
         this.randomNumberGetter = randomNumberGetter;
+
+        this.iconMappingConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText("DefaultData\\ER\\iconmappings.json"));
 
         this.RarityConfigs = Csv.LoadCsv<RaritySetup>("DefaultData\\ER\\CSVs\\RaritySetup.csv").ToDictionary(d => d.ID);
     }
@@ -316,5 +320,23 @@ public class RarityHandler : BaseHandler
     public int GetHighestRarityId()
     {
         return this.RarityConfigs.Keys.Max();
+    }
+
+    public int GetIconIdForRarity(int iconId, int rarityId, bool isUnique = false)
+    {
+        if (rarityId == 0)
+        {
+            return iconId;
+        }
+
+        if (isUnique)
+        {
+            rarityId = -1;
+        }
+
+        var options = this.iconMappingConfig.IconSheets.Where(d => d.IconMappings.RarityIds.Contains(rarityId)).Select(s => s.IconMappings)
+            .Where(d => d.IconReplacements.Any(d => d.OriginalIconId == iconId)).FirstOrDefault();
+
+        return options?.IconReplacements.FirstOrDefault(s => s.OriginalIconId == iconId)?.NewIconId ?? iconId;
     }
 }

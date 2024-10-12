@@ -78,6 +78,9 @@ public class ArmorLootGenerator : ParamLootGenerator
         // STORE AND APPLY SPEFFECTS
         IEnumerable<SpEffectText> speffs = ApplySpEffects(rarityId, [0], newArmor, 1.0f, true, -1, true);
 
+        newArmor.SetValue<int>("iconIdM", this.RarityHandler.GetIconIdForRarity(newArmor.GetValue<int>("iconIdM"), rarityId));
+        newArmor.SetValue<int>("iconIdF", this.RarityHandler.GetIconIdForRarity(newArmor.GetValue<int>("iconIdF"), rarityId));
+
         // CREATE NEW ARMOR TITLE
         string originalName = newArmor.GetValue<string>("Name");
         string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs.First(), true);

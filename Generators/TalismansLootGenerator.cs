@@ -85,6 +85,8 @@ public class TalismanLootGenerator : ParamLootGenerator
         // SET TALISMAN RARITY
         SetLootRarityParamValue(newTalisman, rarityId);
 
+        newTalisman.SetValue<int>("iconId", this.RarityHandler.GetIconIdForRarity(newTalisman.GetValue<int>("iconId"), rarityId));
+
         string talismanOriginalTitle = newTalisman.GetValue<string>("Name");
         string rarityName = this.RarityHandler.GetRarityName(rarityId);
 

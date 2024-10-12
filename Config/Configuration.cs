@@ -164,3 +164,26 @@ public class ItemlotBaseConfig
     public List<string> Header { get; set; }
     public List<object> Default { get; set; }
 }
+
+public class RarityIconMappingConfig
+{
+    public List<IconSheetParameters> IconSheets { get; set; }
+}
+public class IconSheetParameters
+{
+    public RarityIconMapping IconMappings { get; set; }
+    public string Name { get; set; }
+}
+
+public class RarityIconMapping
+{
+    public List<int> RarityIds { get; set; }
+
+    public List<IconMapping> IconReplacements { get; set; }
+}
+
+public class IconMapping
+{
+    public int OriginalIconId { get; set; }
+    public int NewIconId { get; set; }
+}

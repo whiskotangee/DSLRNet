@@ -86,7 +86,7 @@ public class ItemLotGenerator : BaseHandler
                     bool dropGuaranteed = this.configuration.Settings.AllLootGauranteed || queueEntry.GuaranteedDrop;
 
                     // USE QUEUEDICTIONARY'S GUARANTEED DROP VARIABLE TO DECIDE IF WE NEED TO OFFSET BY ONE OR TWO FROM X(0)
-                    int offset = dropGuaranteed ? 1 : 2;
+                    int offset = dropGuaranteed ? 2 : 3;
 
                     // ITERATE OVER EACH POSSIBLE ITEMLOTID SLOT AND CREATE AN ITEMLOT ENTRY FOR IT
                     for (int y = 0; y < this.configuration.Settings.LootPerItemLot - (offset - 1); y++)
@@ -112,8 +112,8 @@ public class ItemLotGenerator : BaseHandler
 
                     // FINALLY, EXPORT TO MASSEDITOUTPUT
                     GenericDictionary genericDict = GenericDictionary.FromObject(newItemLot);
-                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.Category ?? "", newItemLot.ID, [], ["0"]);
-                    this.GeneratedDataRepository.AddParamEdit(queueEntry.Category, ParamOperation.Create, itemLotMassEdit, null, genericDict);
+                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.Category ?? "", newItemLot.ID, [], ["0", "-1"], defaultValue: GenericDictionary.FromObject(CreateDefaultItemLotDictionary()));
+                    this.GeneratedDataRepository.AddParamEdit(queueEntry.Category, ParamOperation.MassEdit, itemLotMassEdit, null, genericDict);
                 }
                 else
                 {

@@ -1,4 +1,5 @@
-﻿using DSLRNet;
+﻿using DotNext.Collections.Generic;
+using DSLRNet;
 using DSLRNet.Config;
 using DSLRNet.Contracts;
 using DSLRNet.Data;
@@ -8,8 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Mods.Common;
+using Newtonsoft.Json;
 using Serilog;
+using SoulsFormats;
 using System.Diagnostics;
+
+// TODO: dynamically read itemlot_param and don't overwrite existing mapped drops
 
 //string[] csvFiles = Directory.GetFiles("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\DefaultData\\ER\\CSVs\\", "*.csv");
 
@@ -24,6 +29,10 @@ using System.Diagnostics;
 //}
 
 //CsvFixer.UpdateNamesInCSVs();
+
+//var ret = NpcParamFinder.GetNpcIdsByModelId();
+
+//File.WriteAllText("npcmappings.json", JsonConvert.SerializeObject(ret));
 
 Stopwatch overallTimer = Stopwatch.StartNew();
 
@@ -81,3 +90,54 @@ ServiceProvider sp = services.BuildServiceProvider();
 DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
 
 await dslrBuilder.BuildAndApply();
+
+
+public class NpcParamFinder
+{
+    public static Dictionary<int, List<int>> GetNpcIdsByModelId()
+    {
+        var gameDir = "O:\\Steam\\SteamApps\\Common\\Elden Ring\\Game\\map\\mapstudio";
+        var workDir = "O:\\EldenRingShitpostEdition\\work\\npcfinder";
+
+        Directory.CreateDirectory(workDir);
+
+        Directory.GetFiles(gameDir, "*.msb.dcx")
+            .ToList()
+            .ForEach(d => File.Copy(d, Path.Combine(workDir, Path.GetFileName(d)), true));
+
+        var returnDictionary = new Dictionary<int, List<int>>();
+
+        var mapStudioFiles = Directory.GetFiles(workDir, "*.msb.dcx");
+
+        foreach(var mapFile in mapStudioFiles)
+        {
+            var bnd = DCX.Decompress(mapFile);
+
+            MSBE msb = MSBE.Read(bnd.Span.ToArray());
+            if (msb.Parts.Enemies.Any())
+            {
+                foreach(var enemy in msb.Parts.Enemies)
+                {
+                    int modelNumber = int.Parse(enemy.ModelName.Substring(1));
+
+                    if (modelNumber >= 2000 && modelNumber <= 6000 && enemy.NPCParamID > 100)
+                    {
+                        if (!returnDictionary.TryGetValue(modelNumber, out List<int> ids))
+                        {
+                            returnDictionary[modelNumber] = [enemy.NPCParamID];
+                        }
+                        else
+                        {
+                            if (!ids.Contains(enemy.NPCParamID))
+                            {
+                                ids.Add(enemy.NPCParamID);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return returnDictionary;
+    }
+}

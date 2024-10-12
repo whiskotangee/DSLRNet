@@ -46,7 +46,7 @@ public partial class SpEffectParam
     public int behaviorId { get; set; }
     public float changeHpRate { get; set; }
     public int changeHpPoint { get; set; }
-    public int changeMpRate { get; set; }
+    public float changeMpRate { get; set; }
     public int changeMpPoint { get; set; }
     public int mpRecoverChangeSpeed { get; set; }
     public int changeStaminaRate { get; set; }
@@ -269,16 +269,16 @@ public partial class SpEffectParam
     public int isCheckAboveShadowTest { get; set; }
     public int addBehaviorJudgeId_add { get; set; }
     public int saReceiveDamageRate { get; set; }
-    public int defPlayerDmgCorrectRate_Physics { get; set; }
-    public int defPlayerDmgCorrectRate_Magic { get; set; }
-    public int defPlayerDmgCorrectRate_Fire { get; set; }
-    public int defPlayerDmgCorrectRate_Thunder { get; set; }
-    public int defPlayerDmgCorrectRate_Dark { get; set; }
-    public int defEnemyDmgCorrectRate_Physics { get; set; }
-    public int defEnemyDmgCorrectRate_Magic { get; set; }
-    public int defEnemyDmgCorrectRate_Fire { get; set; }
-    public int defEnemyDmgCorrectRate_Thunder { get; set; }
-    public int defEnemyDmgCorrectRate_Dark { get; set; }
+    public float defPlayerDmgCorrectRate_Physics { get; set; }
+    public float defPlayerDmgCorrectRate_Magic { get; set; }
+    public float defPlayerDmgCorrectRate_Fire { get; set; }
+    public float defPlayerDmgCorrectRate_Thunder { get; set; }
+    public float defPlayerDmgCorrectRate_Dark { get; set; }
+    public float defEnemyDmgCorrectRate_Physics { get; set; }
+    public float defEnemyDmgCorrectRate_Magic { get; set; }
+    public float defEnemyDmgCorrectRate_Fire { get; set; }
+    public float defEnemyDmgCorrectRate_Thunder { get; set; }
+    public float defEnemyDmgCorrectRate_Dark { get; set; }
     public int defObjDmgCorrectRate { get; set; }
     public float atkPlayerDmgCorrectRate_Physics { get; set; }
     public float atkPlayerDmgCorrectRate_Magic { get; set; }
@@ -373,6 +373,6 @@ public partial class SpEffectParam
     public int overwrite_backhomeBattleDist { get; set; }
     public int overwrite_BackHome_LookTargetDist { get; set; }
     public int goodsConsumptionRate { get; set; }
-    public int guardStaminaMult { get; set; }
+    public float guardStaminaMult { get; set; }
     public int spiritDeathSpEffectId { get; set; }
 }

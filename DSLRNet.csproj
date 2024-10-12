@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="DefaultData\ER\CSVs\LatestParams\" />
     <Folder Include="DefaultData\ER\FMGBase\" />
-    <Folder Include="DefaultData\ER\ItemLots\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,9 +47,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="DefaultData\ER\ParamDefs.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="DefaultData\ER\CSVs\EquipParamAccessory.csv" />
     <None Remove="DefaultData\ER\CSVs\EquipParamProtector.csv" />
     <None Remove="DefaultData\ER\CSVs\EquipParamWeapon.csv" />
+    <None Remove="DefaultData\ER\iconmappings.json" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_all_golems.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_bloodfiends.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_commoners.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_dogs.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_fingers.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_furnace_golems.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_gravebirds.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_horned_warriors.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_jar_innards.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_messmer_foot_soldiers_and_shadow_soldiers.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_reused_lesser.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Enemies\sote_scorpions.ini" />
     <None Remove="DefaultData\ER\MassEdit\SpEffect_NewDamageTypes.massedit" />
     <None Remove="DefaultData\ER\MassEdit\WeaponVFX.massedit" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Mods.Common;
+using System.Text.RegularExpressions;
 
 namespace DSLRNet.Config;
 
@@ -14,9 +15,102 @@ public class LoreConfig
 
 public class LoreTemplates
 {
-    public string GetRandomDescription(RandomNumberGetter random)
+    private string GetTemplatePart(List<string> templateList, List<string> excludedIdentifiers, RandomNumberGetter random)
     {
-        return random.GetRandomItem(Prefixes) + " " + random.GetRandomItem(Interfixes) + " " + random.GetRandomItem(PostFixes);
+        var ret = templateList.Where(d => !excludedIdentifiers.Any(s => d.Contains(s))).ToList();
+
+        if (ret.Count == 0)
+        {
+            ret = templateList;
+        }
+
+        return random.GetRandomItem(ret);
+    }
+
+    public List<string> FindPlaceholdersInString(string input, List<string> placeholders)
+    {
+        var matches = new List<string>();
+        foreach (var placeholder in placeholders)
+        {
+            var pattern = @"\{" + Regex.Escape(placeholder) + @"\}";
+            var regex = new Regex(pattern);
+            if (regex.IsMatch(input))
+            {
+                matches.Add("{" + placeholder + "}");
+            }
+        }
+        return matches;
+    }
+
+    public (string Prefix, string Interfix, string Postfix) GetRandomDescription(RandomNumberGetter random, List<string> possibleSubtitutions)
+    {
+        var sources = new Dictionary<int, List<string>>()
+        {
+            { 0, Prefixes },
+            { 1, Interfixes },
+            { 2, PostFixes }
+        };
+
+        // Randomly pick the first item
+        var firstKey = random.NextInt(0, 3);
+        string firstValue = random.GetRandomItem(sources[firstKey]);
+        List<string> claimedSubstitutions = FindPlaceholdersInString(firstValue, possibleSubtitutions);
+
+        // Assign the first value based on the key
+        string prefix = string.Empty, interfix = string.Empty, postfix = string.Empty;
+
+        // Randomly pick the remaining keys
+        var remainingKeys = new List<int> { 0, 1, 2 };
+        remainingKeys.Remove(firstKey);
+        var secondKey = remainingKeys[random.NextInt(0, remainingKeys.Count)];
+        var thirdKey = remainingKeys.First(key => key != secondKey);
+
+        var secondValue = GetTemplatePart(sources[secondKey], claimedSubstitutions, random);
+        claimedSubstitutions.AddRange(FindPlaceholdersInString(secondValue, possibleSubtitutions));
+
+        var thirdValue = GetTemplatePart(sources[thirdKey], claimedSubstitutions, random);
+
+        switch (firstKey)
+        {
+            case 0:
+                prefix = firstValue;
+                break;
+            case 1:
+                interfix = firstValue;
+                break;
+            case 2:
+                postfix = firstValue;
+                break;
+        }
+
+        // Assign the remaining values
+        switch (secondKey)
+        {
+            case 0:
+                prefix = secondValue;
+                break;
+            case 1:
+                interfix = secondValue;
+                break;
+            case 2:
+                postfix = secondValue;
+                break;
+        }
+
+        switch (thirdKey)
+        {
+            case 0:
+                prefix = thirdValue;
+                break;
+            case 1:
+                interfix = thirdValue;
+                break;
+            case 2:
+                postfix = thirdValue;
+                break;
+        }
+
+        return (prefix, interfix, postfix);
     }
 
     public List<string> Prefixes { get; set; }

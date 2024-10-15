@@ -15,12 +15,13 @@ public class LoreGenerator(IOptions<LoreConfig> config, RandomNumberGetter rando
         string enemyName = loreConfig.Names[this.random.NextInt(0, loreConfig.Names.Count - 1)];
         string locationName = loreConfig.Locations[this.random.NextInt(0, loreConfig.Locations.Count - 1)];
 
-        string template = loreConfig.MadLibsConfig.GetRandomDescription(random);
+        (string Prefix, string Interfix, string Postfix) = loreConfig.MadLibsConfig.GetRandomDescription(random, ["name1", "name2", "location", "item"]);
 
-        return template.Replace("{name1}", friendName)
-                        .Replace("{name2}", enemyName)
-                        .Replace("{item}", itemName)
-                        .Replace("{location}", locationName);
+        return (Prefix + " " + Interfix + " " + Postfix)
+            .Replace("{name1}", friendName)
+            .Replace("{name2}", enemyName)
+            .Replace("{item}", itemName)
+            .Replace("{location}", locationName);
     }
 
     public string CreateRandomUniqueName(string originalName, bool isShield)

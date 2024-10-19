@@ -2,6 +2,7 @@
 using CsvHelper;
 using Newtonsoft.Json;
 using System.Globalization;
+using Serilog;
 
 namespace DSLRNet.Data;
 
@@ -162,12 +163,13 @@ public partial class {Path.GetFileNameWithoutExtension(csvFilePath)}
         dynamic firstNewRecord = newCsv.GetRecord<dynamic>();
         Dictionary<string, object> firstNewRecordDict = ((IDictionary<string, object>)firstNewRecord).ToDictionary(k => k.Key, v => v.Value);
 
-        List<string> missingHeaders = newHeaders.Where(d => !oldHeaders.Any(header => header.Equals(d, StringComparison.OrdinalIgnoreCase))).ToList();
+        List<string> missingHeaders = newHeaders.Where(d => !oldHeaders.Any(header => header.Equals(d, StringComparison.OrdinalIgnoreCase)) && !string.IsNullOrEmpty(d)).ToList();
 
         if (missingHeaders.Count != 0)
         {
             foreach (string? missingHeader in missingHeaders)
             {
+                Log.Logger.Warning($"Adding header {missingHeader} that was missing from csv {oldCsv}");
                 oldHeaders.Add(missingHeader);
             }
 

@@ -290,7 +290,7 @@ public partial class SpEffectParam
     public float atkEnemyDmgCorrectRate_Fire { get; set; }
     public float atkEnemyDmgCorrectRate_Thunder { get; set; }
     public float atkEnemyDmgCorrectRate_Dark { get; set; }
-    public float registFreezeChangeRate { get; set; }
+    public int registFreezeChangeRate { get; set; }
     public int invocationConditionsStateChange1 { get; set; }
     public int invocationConditionsStateChange2 { get; set; }
     public int invocationConditionsStateChange3 { get; set; }

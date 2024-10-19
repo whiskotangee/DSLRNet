@@ -54,20 +54,29 @@ public class DSLRNetBuilder(
         itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
         itemLotGenerator.CreateItemLots(mapItemLotsSetups);
 
-        string regulationFile = Path.Combine(this.configuration.Settings.OverrideModLocation, "regulation.bin");
+        string regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+        string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.working.bin");
+
         if (!File.Exists(regulationFile))
         {
             regulationFile = Path.Combine(this.configuration.Settings.GamePath, "regulation.bin");
         }
-
-        string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+        
         File.Copy(regulationFile, destinationFile, true);
         
         List<ParamEdit> generatedData = dataRepository.GetParamEdits(ParamOperation.MassEdit);
 
         IEnumerable<IGrouping<string, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
 
-        foreach(IGrouping<string, ParamEdit> group in groups)
+        var massEditFiles = Directory.GetFiles("DefaultData\\ER\\MassEdit\\", "*.massedit")
+            .ToList();
+
+        foreach (var massEdit in massEditFiles)
+        {
+            await this.ApplyMassEdit(massEdit, destinationFile);
+        }
+
+        foreach (IGrouping<string, ParamEdit> group in groups)
         {
             File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), group.Select(s => s.MassEditString));
             await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), destinationFile);
@@ -75,13 +84,8 @@ public class DSLRNetBuilder(
 
         await this.ApplyCreates(destinationFile, dataRepository);
 
-        Directory.GetFiles("DefaultData\\ER\\MassEdit\\", "*.massedit")
-            .ToList()
-            .ForEach(async d =>
-            {
-                File.Copy(d, Path.Combine(this.configuration.Settings.DeployPath, Path.GetFileName(d)), true);
-                await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, Path.GetFileName(d)), destinationFile);
-            });
+        File.Copy(destinationFile.Replace("working.", ""), destinationFile.Replace("working.", "pre-dslr."), true);
+        File.Copy(destinationFile, destinationFile.Replace(".working.bin", ".bin"), true);
 
         await UpdateMessages(dataRepository.GetParamEdits());
     }
@@ -123,33 +127,58 @@ public class DSLRNetBuilder(
 
     public async Task UpdateMessages(List<ParamEdit> paramEdits)
     {
-        List<string> gameMsgFiles = this.configuration.Settings.MessageFileNames.Select(s =>
-        {
-            string modDir = Path.Combine(this.configuration.Settings.OverrideModLocation, "msg", "engus", s);
-            string gameDir = Path.Combine(this.configuration.Settings.GamePath, "msg", "engus", s);
+        List<string> gameMsgFiles = [];
 
-            return File.Exists(modDir) ? modDir : gameDir;
-        }).ToList();
+        foreach (var fileName in this.configuration.Settings.MessageFileNames)
+        {
+            string existingPath = string.Empty;
+
+            foreach (var msgPath in this.configuration.Settings.MessageSourcePaths)
+            {
+                if (File.Exists(Path.Combine(msgPath, fileName)))
+                {
+                    existingPath = Path.Combine(msgPath, fileName);
+                    break;
+                }
+            }
+
+            if (string.IsNullOrEmpty(existingPath))
+            {
+                throw new Exception("plz");
+            }
+
+            gameMsgFiles.Add(existingPath);
+        }
+
+        Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus"));
 
         await Parallel.ForEachAsync(gameMsgFiles, (gameMsgFile, c) =>
         {
+            // delete working file
+            // copy msg file to a working file
+            // process using working file as base
             string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
-            Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus"));
+            string sourceFile = destinationFile.Replace(".dcx", "pre-dslr.dcx");
 
-            Log.Logger.Information($"Processing {Path.GetFileName(destinationFile)}");
-            BND4 bnd = BND4.Read(gameMsgFile);
+            if (!File.Exists(sourceFile))
+            {
+                File.Copy(gameMsgFile, sourceFile);
+            }
+
+            Log.Logger.Information($"Processing {Path.GetFileName(sourceFile)}");
+            BND4 bnd = BND4.Read(sourceFile);
 
             var categories = paramEdits.Where(d => d.MessageText != null).GroupBy(d => d.MessageText.Category).ToList();
 
             foreach ( var category in categories)
             {
-                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key}");
+                Log.Logger.Information($"Processing category {Path.GetFileName(sourceFile)}-{category.Key}");
                 var captionFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Caption")).ToList();
                 var infoFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Info")).ToList();
                 var nameFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Name")).ToList();
                 var effectFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Effect")).ToList();
 
-                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key} captions");
+                Log.Logger.Information($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} captions");
                 foreach (var captionFile in captionFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(captionFile.Bytes.ToArray());
@@ -157,7 +186,7 @@ public class DSLRNetBuilder(
                     captionFile.Bytes = fmg.Write();
                 }
 
-                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key} info");
+                Log.Logger.Information($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} info");
                 foreach (var infoFile in infoFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(infoFile.Bytes.ToArray());
@@ -165,7 +194,7 @@ public class DSLRNetBuilder(
                     infoFile.Bytes = fmg.Write();
                 }
 
-                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key} names");
+                Log.Logger.Information($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} names");
                 foreach (var nameFile in nameFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(nameFile.Bytes.ToArray());
@@ -173,7 +202,7 @@ public class DSLRNetBuilder(
                     nameFile.Bytes = fmg.Write();
                 }
 
-                Log.Logger.Information($"Processing category {Path.GetFileName(destinationFile)}-{category.Key} effects");
+                Log.Logger.Information($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} effects");
                 foreach (var effectFile in effectFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(effectFile.Bytes.ToArray());
@@ -181,12 +210,12 @@ public class DSLRNetBuilder(
                     effectFile.Bytes = fmg.Write();
                 }
 
-                Log.Logger.Information($"Finished Processing category {Path.GetFileName(destinationFile)}-{category.Key}");
+                Log.Logger.Information($"Finished Processing category {Path.GetFileName(sourceFile)}-{category.Key}");
             }
 
             bnd.Write(destinationFile);
 
-            Log.Logger.Information($"Finished Processing {Path.GetFileName(destinationFile)}");
+            Log.Logger.Information($"Finished Processing {Path.GetFileName(sourceFile)}");
 
             return ValueTask.CompletedTask;
 

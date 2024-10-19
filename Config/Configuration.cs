@@ -30,7 +30,9 @@ public class Settings
 
     public bool AllLootGauranteed { get; set; }
 
-    public string OverrideModLocation { get; set; }
+    public int RandomSeed { get; set; }
+
+    public List<string> MessageSourcePaths { get; set; } = [];
 
     public string GamePath { get; set; }
 

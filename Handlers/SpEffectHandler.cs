@@ -61,7 +61,7 @@ public class SpEffectHandler : BaseHandler
     {
         //PREPARE SPEFFECT CHANCE ARRAY BY GRABBING THE SPECIAL EFFECT CHANCES FROM CHOSEN RARITY
         int finalrarity = rarityHandler.GetNearestRarityId(rarityid);
-        List<bool> chancearray = this.rarityHandler.GetRarityEffectChanceArray(finalrarity, armortalisman, chancemult);
+        Queue<bool> chancearray = this.rarityHandler.GetRarityEffectChanceArray(desiredCount, finalrarity, armortalisman, chancemult);
         //SPEFFECT POWER RANGE AS DETERMINED BY RARITY
         List<int> speffectpowerrange = rarityHandler.GetRaritySpeffectPowerArray(rarityid);
         //CLAMP HOWMANY TO VALID VALUES
@@ -77,11 +77,11 @@ public class SpEffectHandler : BaseHandler
             List<SpEffectConfig_Default> spEffectChoices = this.GetAvailableSpEffectConfigs(speffectpowerrange[0], speffectpowerrange[1], allowedtypes).ToList();
             if (spEffectChoices.Count > 0)
             {
-                foreach (int x in Enumerable.Range(0, desiredCount))
-                {
-                    if (chancearray[x])
+                while(chancearray.TryDequeue(out bool result))
+                { 
+                    if (result)
                     {
-                        SpEffectConfig_Default newSpEffect = spEffectChoices[this.randomNumberGetter.NextInt(0, spEffectChoices.Count - 1)];
+                        SpEffectConfig_Default newSpEffect = this.randomNumberGetter.GetRandomItem(spEffectChoices);
 
                         string newdescription = GetSpeffectDescriptionWithValue(
                             newSpEffect.Description, 

@@ -279,7 +279,7 @@ public partial class SpEffectParam
     public float defEnemyDmgCorrectRate_Fire { get; set; }
     public float defEnemyDmgCorrectRate_Thunder { get; set; }
     public float defEnemyDmgCorrectRate_Dark { get; set; }
-    public int defObjDmgCorrectRate { get; set; }
+    public float defObjDmgCorrectRate { get; set; }
     public float atkPlayerDmgCorrectRate_Physics { get; set; }
     public float atkPlayerDmgCorrectRate_Magic { get; set; }
     public float atkPlayerDmgCorrectRate_Fire { get; set; }
@@ -290,7 +290,7 @@ public partial class SpEffectParam
     public float atkEnemyDmgCorrectRate_Fire { get; set; }
     public float atkEnemyDmgCorrectRate_Thunder { get; set; }
     public float atkEnemyDmgCorrectRate_Dark { get; set; }
-    public int registFreezeChangeRate { get; set; }
+    public float registFreezeChangeRate { get; set; }
     public int invocationConditionsStateChange1 { get; set; }
     public int invocationConditionsStateChange2 { get; set; }
     public int invocationConditionsStateChange3 { get; set; }

@@ -72,9 +72,9 @@ public class RarityHandler : BaseHandler
         return GetNearestRarityId(finalresult);
     }
 
-    public List<bool> GetRarityEffectChanceArray(int rarityid = 0, bool armortalisman = false, float chancemult = 1.0f)
+    public Queue<bool> GetRarityEffectChanceArray(int desiredCount, int rarityid = 0, bool armortalisman = false, float chancemult = 1.0f)
     {
-        List<bool> finalboolarray = [];
+        Queue<bool> finalboolarray = [];
         //FIRST, GET THE CLOSEST RARITY TO THE ID SPECIFIED
         int finalrarityid = GetNearestRarityId(rarityid);
         //NOW GENERATE FOUR RANDOM BOOL RESULTS (BECAUSE THE MAX SPEFFECTS POSSIBLE TO ASSIGN TO EQUIPMENT IS TALISMANS WITH FOUR)
@@ -83,18 +83,18 @@ public class RarityHandler : BaseHandler
         //1.0, THEN SHIFT THE ITERATION OFFSET BY 1 SO SPEFFECT0CHANCE BECOMES THE CHANCE FOR A SECOND SPEFFECT
         if (armortalisman)
         {
-            finalboolarray.Add(true);
+            finalboolarray.Enqueue(true);
         }
 
         int offset = armortalisman ? 1 : 0;
 
-        for(int i = 0; i < 4 - offset; i++)
+        for(int i = offset; i < desiredCount; i++)
         {
             String spefchance = $"SpEffect{i}Chance";
             RaritySetup item = RarityConfigs[finalrarityid];
 
             float speffectchance = (float)item.GetType().GetProperty(spefchance).GetValue(item);
-            finalboolarray.Add(this.randomNumberGetter.GetRandomBoolByPercent(speffectchance));
+            finalboolarray.Enqueue(this.randomNumberGetter.GetRandomBoolByPercent(speffectchance));
         }
 
         return finalboolarray;

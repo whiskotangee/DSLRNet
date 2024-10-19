@@ -87,11 +87,8 @@ public class TalismanLootGenerator : ParamLootGenerator
 
         newTalisman.SetValue<int>("iconId", this.RarityHandler.GetIconIdForRarity(newTalisman.GetValue<int>("iconId"), rarityId));
 
-        string talismanOriginalTitle = newTalisman.GetValue<string>("Name");
-        string rarityName = this.RarityHandler.GetRarityName(rarityId);
-
         string talismanFinalTitleColored = CreateLootTitle(
-         talismanOriginalTitle,
+         originalName,
          rarityId,
          string.Empty,
          spEffs.First(),

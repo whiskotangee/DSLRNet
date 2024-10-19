@@ -8,6 +8,7 @@ using DSLRNet.Handlers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Mods.Common;
 using Newtonsoft.Json;
 using Serilog;
@@ -16,19 +17,19 @@ using System.Diagnostics;
 
 // TODO: dynamically read itemlot_param and don't overwrite existing mapped drops
 
-//string[] csvFiles = Directory.GetFiles("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\DefaultData\\ER\\CSVs\\", "*.csv");
+string[] csvFiles = Directory.GetFiles("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\DefaultData\\ER\\CSVs\\", "*.csv");
 
-////foreach (var csvFile in csvFiles)
-////{
-////    CsvFixer.AddNewHeaders(csvFile);
-////}
+foreach (var csvFile in csvFiles)
+{
+    CsvFixer.AddNewHeaders(csvFile);
+}
 
-//foreach (string csvFile in csvFiles)
-//{
-//    CsvFixer.GenerateClassFromCsv(csvFile);
-//}
+foreach (string csvFile in csvFiles)
+{
+    CsvFixer.GenerateClassFromCsv(csvFile);
+}
 
-//CsvFixer.UpdateNamesInCSVs();
+CsvFixer.UpdateNamesInCSVs();
 
 //var ret = NpcParamFinder.GetNpcIdsByModelId();
 
@@ -69,7 +70,10 @@ services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)
         .Configure<WhiteListConfig>(configuration.GetSection(nameof(WhiteListConfig)))
         .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)));
 
-services.AddSingleton<RandomNumberGetter>()
+services.AddSingleton<RandomNumberGetter>((sp) =>
+        {
+            return new RandomNumberGetter(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
+        })
         .AddSingleton<ArmorLootGenerator>()
         .AddSingleton<WeaponLootGenerator>()
         .AddSingleton<TalismanLootGenerator>()

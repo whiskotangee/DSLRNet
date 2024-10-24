@@ -114,13 +114,13 @@ public class WeaponLootGenerator : ParamLootGenerator
             weaponOriginalTitle,
             rarityId,
             affinity,
-            DTAdditions.SpEffectTexts.FirstOrDefault());
+            DTAdditions.SpEffectTexts);
 
         string weaponFinalTitleColored = CreateLootTitle(
             weaponOriginalTitle,
             rarityId,
             affinity,
-            DTAdditions.SpEffectTexts.FirstOrDefault(),
+            DTAdditions.SpEffectTexts,
             true);
 
         if (uniqueWeapon)
@@ -301,7 +301,7 @@ public class WeaponLootGenerator : ParamLootGenerator
             effectStrings.Add(dT2.EffectDescription);
         }
 
-        dTAdditions.SpEffectDescription = "Effect: " + string.Join("\\n", effectStrings);
+        dTAdditions.SpEffectDescription = "Effect: " + string.Join(Environment.NewLine, effectStrings);
 
         string hitVfxParam = this.Configuration.LootParam.WeaponsHitVfx;
         int hitVfx = dT1.HitEffectCategory != 0 ? dT1.HitEffectCategory : dT2.HitEffectCategory;

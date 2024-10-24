@@ -27,7 +27,10 @@ public class TalismanLootGenerator : ParamLootGenerator
 
         this.TalismanConfigs = Csv.LoadCsv<TalismanConfig>("DefaultData\\ER\\CSVs\\TalismanConfig.csv");
 
-        this.LoadedLoot = Csv.LoadCsv<EquipParamAccessory>("DefaultData\\ER\\CSVs\\EquipParamAccessory.csv").Select(GenericDictionary.FromObject).ToList();
+        var accessoriesLoot = Csv.LoadCsv<EquipParamAccessory>("DefaultData\\ER\\CSVs\\EquipParamAccessory.csv");
+
+        this.LoadedLoot = accessoriesLoot.Select(GenericDictionary.FromObject).ToList();
+
         OutputParamName = "EquipParamAccessory";
     }
 
@@ -36,21 +39,11 @@ public class TalismanLootGenerator : ParamLootGenerator
         string accessoryGroupParam = this.Configuration.LootParam.TalismansAccessoryGroupParam;
 
         // INITIALISE TALISMAN DESCRIPTION AND SUMMARY
-        string talismanDesc = "";
-        string talismanSummary = "";
+        List<string> talismanDescriptions = [];
+        List<string> talismanSummaries = [];
 
         // CREATE OUR NEW TALISMAN
         GenericDictionary newTalisman = GetLootDictionaryFromId(this.WhiteListHandler.GetLootByWhiteList(wllIds, LootType.Talisman));
-
-        // GET OUR TALISMAN'S CONFIG
-        TalismanConfig newTalismanConfig = GetRandomTalismanConfig();
-
-        // ADD NEW TALISMAN'S DETAILS TO DESCRIPTION AND SUMMARY
-        string talismanEffectDesc = GetTalismanConfigEffectDescription(newTalismanConfig, newTalisman.GetValue<int>("ID"));
-        string talismanEffectSummary = !string.IsNullOrEmpty(newTalismanConfig.ShortEffect) ? newTalismanConfig.ShortEffect : newTalismanConfig.Effect;
-
-        talismanDesc += talismanEffectDesc;
-        talismanSummary += talismanEffectSummary + " - ";
 
         // CHOOSE A SET OF NEW SPEFFECTS BASED ON RARITY
         // STORE HOW MANY FREE SPEFFECT SLOTS OUR PARAM HAS
@@ -63,18 +56,40 @@ public class TalismanLootGenerator : ParamLootGenerator
             return -1;
         }
 
-        IEnumerable<SpEffectText> spEffs = ApplySpEffects(rarityId, [0], newTalisman, 1.0f, true, -1, true);
+        //// GET OUR TALISMAN'S CONFIG
+        TalismanConfig newTalismanConfig = GetRandomTalismanConfig();
+
+        this.ApplySetTalismanConfigSpEffect(newTalismanConfig, newTalisman);
+
+        List<SpEffectText> spEffs =
+        [
+            new SpEffectText()
+            {
+                ID = newTalismanConfig.RefSpEffect,
+                Description = GetTalismanConfigEffectDescription(newTalismanConfig),
+                Summary = !string.IsNullOrEmpty(newTalismanConfig.ShortEffect) ? newTalismanConfig.ShortEffect : newTalismanConfig.Effect,
+                NameParts = new NameParts()
+                {
+                    Prefix = newTalismanConfig.NamePrefix,
+                    Interfix = string.Empty,
+                    Suffix = string.Empty
+                }
+            },
+            .. ApplySpEffects(rarityId, [0], newTalisman, 1.0f, true, -1, false) ?? [],
+        ];
 
         // STORE ORIGINAL TALISMAN NAME
         string originalName = newTalisman.GetValue<string>("Name");
-        string finalNameNormal = CreateLootTitle(originalName, rarityId, "", spEffs.First(), true);
+        string finalNameNormal = CreateLootTitle(originalName, rarityId, "", spEffs, true);
 
         // SET NEW NAME
         newTalisman.SetValue("Name", finalNameNormal);
 
         // CREATE FINAL DESCRIPTION AND - IN THIS CASE - SUMMARY
-        talismanDesc += spEffs.First().Description;
-        talismanSummary += spEffs.First().Summary;
+        talismanDescriptions.AddRange(spEffs.Select(s => s.Description).Where(s => !string.IsNullOrWhiteSpace(s)));
+        talismanSummaries.AddRange(spEffs.Select(s => s.Summary).Where(s => !string.IsNullOrWhiteSpace(s)));
+
+        talismanDescriptions.Add(this.LoreGenerator.GenerateDescription(finalNameNormal, false));
 
         // ASSIGN NEW ID
         ApplyNextId(newTalisman);
@@ -91,13 +106,20 @@ public class TalismanLootGenerator : ParamLootGenerator
          originalName,
          rarityId,
          string.Empty,
-         spEffs.First(),
+         spEffs,
          true);
 
         // EXPORT PARAMETERS
-        ExportLootGenParamAndTextToOutputs(newTalisman, LootType.Talisman, talismanFinalTitleColored, talismanDesc, talismanSummary, [], []);
+        ExportLootGenParamAndTextToOutputs(newTalisman, LootType.Talisman, talismanFinalTitleColored, string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine,"")).ToList()), string.Join(Environment.NewLine, talismanSummaries), [], []);
 
         return newTalisman.GetValue<int>("ID");
+    }
+
+    private void ApplySetTalismanConfigSpEffect(TalismanConfig talismanConfig, GenericDictionary talisman)
+    {
+        var availableSlot = this.GetAvailableSpEffectSlots(talisman).First();
+
+        talisman.SetValue<int>(availableSlot, talismanConfig.RefSpEffect);
     }
 
     private int GetAvailableSpeffectSlotCount(GenericDictionary newTalisman)
@@ -138,7 +160,7 @@ public class TalismanLootGenerator : ParamLootGenerator
         return this.Random.GetRandomItem<TalismanConfig>(this.TalismanConfigs);
     }
 
-    public string GetTalismanConfigEffectDescription(TalismanConfig config, int id)
+    public string GetTalismanConfigEffectDescription(TalismanConfig config)
     {
         string effectPrefixString = this.Configuration.DSLRDescText.Effect;
 

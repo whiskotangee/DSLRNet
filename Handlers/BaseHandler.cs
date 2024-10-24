@@ -17,7 +17,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
 
     public DataRepository GeneratedDataRepository { get; set; } = generatedDataRepository;
 
-    public string ConvertArrayToStringWithDelim(List<int> array, string delim = ",", string newline = "\n")
+    public string ConvertArrayToStringWithDelim(List<int> array, string delim = ",", string newline = "\r\n")
     {
         string finalString = "";
         for (int x = 0; x < array.Count; x++)

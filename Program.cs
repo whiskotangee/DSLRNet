@@ -17,19 +17,19 @@ using System.Diagnostics;
 
 // TODO: dynamically read itemlot_param and don't overwrite existing mapped drops
 
-string[] csvFiles = Directory.GetFiles("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\DefaultData\\ER\\CSVs\\", "*.csv");
+//string[] csvFiles = Directory.GetFiles("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\DefaultData\\ER\\CSVs\\", "*.csv");
 
-foreach (var csvFile in csvFiles)
-{
-    CsvFixer.AddNewHeaders(csvFile);
-}
+//foreach (var csvFile in csvFiles)
+//{
+//    CsvFixer.AddNewHeaders(csvFile);
+//}
 
-foreach (string csvFile in csvFiles)
-{
-    CsvFixer.GenerateClassFromCsv(csvFile);
-}
+//foreach (string csvFile in csvFiles)
+//{
+//    CsvFixer.GenerateClassFromCsv(csvFile);
+//}
 
-CsvFixer.UpdateNamesInCSVs();
+//CsvFixer.UpdateNamesInCSVs();
 
 //var ret = NpcParamFinder.GetNpcIdsByModelId();
 

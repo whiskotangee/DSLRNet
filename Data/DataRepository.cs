@@ -1,7 +1,4 @@
 ﻿using DSLRNet.Config;
-using Microsoft.Extensions.Options;
-using SoulsFormats;
-using System.Collections.Concurrent;
 
 namespace DSLRNet.Data;
 
@@ -25,8 +22,6 @@ public class DataRepository
 
     public void AddParamEdit(string name, ParamOperation operation, string massEditString, LootFMG text,  GenericDictionary? param)
     {
-        ParamEdit currentEdit = this.paramEdits.FirstOrDefault(d => d.ParamName.Equals(name) && d.Operation == operation) ?? new ParamEdit() { ParamName = name, Operation = operation };
-
         paramEdits.Add(new ParamEdit
         {
             Operation = operation,

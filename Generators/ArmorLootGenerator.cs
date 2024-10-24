@@ -32,6 +32,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         List<EquipParamProtector> armorLoots = Csv.LoadCsv<EquipParamProtector>("DefaultData\\ER\\CSVs\\EquipParamProtector.csv");
 
         this.LoadedLoot = armorLoots.Select(GenericDictionary.FromObject).ToList();
+
         OutputParamName = "EquipParamProtector";
     }
 
@@ -83,12 +84,12 @@ public class ArmorLootGenerator : ParamLootGenerator
 
         // CREATE NEW ARMOR TITLE
         string originalName = newArmor.GetValue<string>("Name");
-        string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs.First(), true);
+        string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs, true);
 
         // APPLY NEW ARMOR TITLE
         newArmor.SetValue("Name", finalTitle);
 
-        ExportLootGenParamAndTextToOutputs(newArmor, LootType.Armor, finalTitle, CreateArmorDescription(speffs.First().Description, armorStatDesc + GetParamLootLore(finalTitle, true)));
+        ExportLootGenParamAndTextToOutputs(newArmor, LootType.Armor, finalTitle, CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc + GetParamLootLore(finalTitle, true)));
 
         // RETURN NEW ARMOR'S ID FOR INSTANT ADDITION TO ITEMLOT
         return newArmor.GetValue<int>("ID");
@@ -151,17 +152,7 @@ public class ArmorLootGenerator : ParamLootGenerator
 
     public string CreateArmorDescription(string speffects = "", string extraProtection = "")
     {
-        // FIRST CREATE REQUIRED NEWLINES BASED ON WHETHER OR NOT ARGUMENTS ARE EMPTY
-        List<string> newLines = new List<string>();
-        List<string> additions = new List<string> { speffects, extraProtection };
-
-        // ITERATE OVER ALL ADDITIONS AND ADD A NEWLINE TO NEWLINES ARRAY IF THEY'RE NOT EMPTY
-        foreach (string addition in additions)
-        {
-            newLines.Add(string.IsNullOrEmpty(addition) ? "" : Environment.NewLine);
-        }
-
-        return speffects + newLines[0] + extraProtection + newLines[1];
+        return $"{speffects}{extraProtection}";
     }
 
     // ARMOR INFORMATION FUNCTIONS

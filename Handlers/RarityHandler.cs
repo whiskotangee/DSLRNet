@@ -81,12 +81,13 @@ public class RarityHandler : BaseHandler
         //BASED ON THE RARITY CONFIGURATION'S FOUR "SpEffect(x)Chance" VALUES
         //IF ARMORTALISMAN IS TRUE, THE FIRST SPEFFECT IS GUARANTEED, SO WE MANDATE THE FIRST ELEMENT IN THE ARRAY IS
         //1.0, THEN SHIFT THE ITERATION OFFSET BY 1 SO SPEFFECT0CHANCE BECOMES THE CHANCE FOR A SECOND SPEFFECT
-        if (armortalisman)
+        int offset = 0;
+
+        if (armortalisman || rarityid > 5)
         {
             finalboolarray.Enqueue(true);
+            offset = 1;
         }
-
-        int offset = armortalisman ? 1 : 0;
 
         for(int i = offset; i < desiredCount; i++)
         {

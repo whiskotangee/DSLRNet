@@ -5,6 +5,7 @@ using DSLRNet.Handlers;
 using Microsoft.Extensions.Options;
 using Mods.Common;
 using Serilog;
+using System.Diagnostics;
 
 namespace DSLRNet.Generators;
 
@@ -77,7 +78,8 @@ public class ParamLootGenerator(
 
     public void ApplyNextId(GenericDictionary outputDictionary)
     {
-        outputDictionary.SetValue("ID",this.CumulativeID.GetNext());
+        var id = this.CumulativeID.GetNext();
+        outputDictionary.SetValue("ID",id);
     }
 
     public IEnumerable<SpEffectText> ApplySpEffects(
@@ -89,10 +91,13 @@ public class ParamLootGenerator(
         int spefNumOverride = -1,
         bool overwriteExistingSpEffects = false)
     {
+        List<SpEffectText> spEffectTexts = new List<SpEffectText>();
+
         List<string> speffectParam = !overwriteExistingSpEffects ? GetAvailableSpEffectSlots(outputDictionary) : GetPassiveSpEffectSlotArrayFromOutputParamName();
         if (speffectParam.Count == 0)
         {
             Log.Logger.Warning($"{outputDictionary.GetValue<int>("ID")} HAS NO AVAILABLE SPEFFECT SLOTS APPARENTLY! RETURNING EMPTY DICTIONARY");
+            return [];
         }
 
         int finalNumber = spefNumOverride < 0 && spefNumOverride <= speffectParam.Count ? speffectParam.Count : spefNumOverride;
@@ -108,26 +113,28 @@ public class ParamLootGenerator(
             for (int x = 0; x < speffectsToApply.Count; x++)
             {
                 outputDictionary.SetValue<long>(speffectParam[x], speffectsToApply[x].ID);
-                
-                yield return speffectsToApply[x];
+
+                spEffectTexts.Add(speffectsToApply[x]);
             }
         }
-        else
+        else if(rarityId > 5)
         {
-            Log.Logger.Warning("APPLY SPEFFECTS CALL INVALID, RETURNING EMPTY DICTIONARY, CALLING FUNCTION SHOULD BE ABLE TO ACCOUNT FOR THIS!");
+            Log.Logger.Warning("APPLY SPEFFECTS CALL RESULTED IN NO SPEFFECTS WITH RARITY > 5");
         }
+
+        return spEffectTexts;
     }
 
-    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, SpEffectText? nameParts, bool colorCoded = false)
+    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, IEnumerable<SpEffectText>? namePartsCollection, bool colorCoded = false)
     {
         List<string> additions =
         [
             !colorCoded ? this.RarityHandler.GetRarityName(rarityId) : this.RarityHandler.GetColorTextForRarity(rarityId),
             damageType,
-            nameParts?.NameParts.Prefix ?? string.Empty,
+            namePartsCollection?.Where(d => d?.NameParts?.Prefix != null).FirstOrDefault()?.NameParts?.Prefix ?? string.Empty,
             //nameParts?.NameParts.Interfix ?? string.Empty,
             originalTitle,
-            nameParts?.NameParts.Suffix ?? string.Empty
+            namePartsCollection?.Where(d => d?.NameParts?.Suffix != null).FirstOrDefault()?.NameParts?.Suffix ?? string.Empty
         ];
 
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)).Distinct());

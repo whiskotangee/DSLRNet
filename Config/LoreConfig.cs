@@ -19,12 +19,14 @@ public class LoreTemplates
     {
         var ret = templateList.Where(d => !excludedIdentifiers.Any(s => d.Contains(s))).ToList();
 
+        var withPlaceholders = ret.Where(d => d.Contains("{")).ToList();
+
         if (ret.Count == 0)
         {
             ret = templateList;
         }
 
-        return random.GetRandomItem(ret);
+        return random.GetRandomItem(withPlaceholders.Count > 0 && random.NextInt(0,101) > 50 ? withPlaceholders : ret);
     }
 
     public List<string> FindPlaceholdersInString(string input, List<string> placeholders)

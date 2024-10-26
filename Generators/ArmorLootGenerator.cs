@@ -84,7 +84,7 @@ public class ArmorLootGenerator : ParamLootGenerator
 
         // CREATE NEW ARMOR TITLE
         string originalName = newArmor.GetValue<string>("Name");
-        string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs, true);
+        string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs, true, false);
 
         // APPLY NEW ARMOR TITLE
         newArmor.SetValue("Name", finalTitle);
@@ -152,7 +152,7 @@ public class ArmorLootGenerator : ParamLootGenerator
 
     public string CreateArmorDescription(string speffects = "", string extraProtection = "")
     {
-        return $"{speffects}{extraProtection}";
+        return $"{speffects}{Environment.NewLine}{extraProtection}";
     }
 
     // ARMOR INFORMATION FUNCTIONS

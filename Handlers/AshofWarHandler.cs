@@ -4,6 +4,7 @@ using DSLRNet.Config;
 using DSLRNet.Data;
 using Microsoft.Extensions.Options;
 using Mods.Common;
+using Serilog;
 using System;
 using System.Collections.Generic;
 
@@ -15,7 +16,7 @@ public enum AoWCategory
     Other
 }
 
-public class AshofWarHandler(RandomNumberGetter random, IOptions<Configuration> configuration, DataRepository generatedDataRepository) : BaseHandler(generatedDataRepository)
+public class AshofWarHandler(RandomNumberGetter random, IOptions<Configuration> configuration, IOptions<AshOfWarConfig> ashofWarConfig, DataRepository generatedDataRepository) : BaseHandler(generatedDataRepository)
 {
     private const string aowparam = "swordArtsParamId";
 
@@ -36,15 +37,33 @@ public class AshofWarHandler(RandomNumberGetter random, IOptions<Configuration> 
     };
 
     private readonly Configuration configuration = configuration.Value;
+    private List<EquipParamGem> equipParamGems = Csv.LoadCsv<EquipParamGem>("DefaultData\\ER\\CSVs\\EquipParamGem.csv");
+    private readonly AshOfWarConfig ashOfWarConfig = ashofWarConfig.Value;
 
     // AOW ASSIGN FUNCTIONS
 
     public void AssignAshOfWar(GenericDictionary weaponDict)
     {
         int weaponWmc = weaponDict.GetValue<int>(this.configuration.LootParam.WeaponsWepMotionCategory);
-        AoWCategory aowCat = GetAshOfWarCategoryFromWepMotionCategory(weaponWmc);
-        int finalId = random.GetRandomItem(compatibleSwordArtsParam[aowCat]);
-        weaponDict.SetValue(aowparam, finalId);
+
+        // get sword artsId from set of equip gems compatible with this weapon
+        var weaponType = weaponDict.GetValue<int>("wepType");
+        var boolFlagToCheck = ashOfWarConfig.WeaponTypeToCanMountWepFlags.Single(d => d.Id == weaponType).FlagName;
+
+        var validGems = equipParamGems.Where(d => Convert.ToInt64(d.GetType().GetProperty(boolFlagToCheck).GetValue(d)) == 1).ToList();
+
+        if (validGems.Any())
+        {
+            var chosenGem = random.GetRandomItem(validGems);
+            int finalId = chosenGem.swordArtsParamId;
+
+            weaponDict.SetValue(aowparam, finalId);
+            Log.Logger.Debug($"Assigning ash of war {chosenGem.ID} with SwordArtsParamID {chosenGem.swordArtsParamId} to weapon named {weaponDict.GetValue<string>("Name")} of type {weaponType}");
+        }
+        else
+        {
+            Log.Logger.Warning($"Weapon Base {weaponType} named {weaponDict.GetValue<string>("Name")} did not have any matching valid gems");
+        }
     }
 
     private AoWCategory GetAshOfWarCategoryFromWepMotionCategory(int wmc = -1)

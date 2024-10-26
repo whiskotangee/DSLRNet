@@ -68,7 +68,8 @@ services.AddLogging((builder) =>
 services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
         .Configure<WeaponGeneratorConfig>(configuration.GetSection(nameof(WeaponGeneratorConfig)))
         .Configure<WhiteListConfig>(configuration.GetSection(nameof(WhiteListConfig)))
-        .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)));
+        .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)))
+        .Configure<AshOfWarConfig>(configuration.GetSection(nameof(AshOfWarConfig)));
 
 services.AddSingleton<RandomNumberGetter>((sp) =>
         {

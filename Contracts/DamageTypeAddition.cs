@@ -24,7 +24,7 @@ public class DamageTypeAddition
                 Description = string.Empty,
                 Value = 0.0f
             },
-            SpEffectDescription = string.Empty,
+            SpEffectDescriptions = [],
             SpEffectTexts = []
         };
     }
@@ -33,7 +33,7 @@ public class DamageTypeAddition
 
     public DamageDetails SecondaryDamageType { get; set; }
 
-    public string SpEffectDescription { get; set; } = string.Empty;
+    public List<string> SpEffectDescriptions { get; set; } = [];
 
     public List<SpEffectText> SpEffectTexts { get; set; }
 }

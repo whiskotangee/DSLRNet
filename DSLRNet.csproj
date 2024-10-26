@@ -47,10 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="DefaultData\ER\ParamDefs.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Remove="appsettings.AshOfWarHandler.json" />
     <None Remove="DefaultData\ER\CSVs\EquipParamAccessory.csv" />
     <None Remove="DefaultData\ER\CSVs\EquipParamProtector.csv" />
     <None Remove="DefaultData\ER\CSVs\EquipParamWeapon.csv" />

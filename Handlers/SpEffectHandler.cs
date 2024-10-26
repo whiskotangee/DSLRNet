@@ -94,8 +94,7 @@ public class SpEffectHandler : BaseHandler
                                 : newSpEffect.ShortDescription, 
                             newSpEffect.Value.ToString(), 
                             newSpEffect.Stacks == 1, 
-                            true, 
-                            false);
+                            true);
 
                         effects.Add(new SpEffectText
                         {
@@ -116,13 +115,13 @@ public class SpEffectHandler : BaseHandler
         return effects;
     }
 
-    public string GetSpeffectDescriptionWithValue(string description, string value, bool stacks = false, bool noeffecttext = false, bool includeNewLine = true)
+    public string GetSpeffectDescriptionWithValue(string description, string value, bool stacks = false, bool noeffecttext = false)
     {
         string stacking = !stacks ? this.configuration.DSLRDescText.NoStacking : string.Empty;
         string effecttext = !noeffecttext ? this.configuration.DSLRDescText.Effect : string.Empty;
         string returnstring = description.Replace("{VALUE}", value);
 
-        return effecttext + returnstring + stacking + (includeNewLine ? Environment.NewLine : "");
+        return effecttext + returnstring + stacking;
     }
 
     public List<int> GetPossibleWeaponSpeffectTypes(GenericDictionary weapdict, bool allowstandardspeffects = true)

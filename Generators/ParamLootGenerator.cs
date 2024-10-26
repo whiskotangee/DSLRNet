@@ -125,7 +125,7 @@ public class ParamLootGenerator(
         return spEffectTexts;
     }
 
-    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, IEnumerable<SpEffectText>? namePartsCollection, bool colorCoded = false)
+    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, IEnumerable<SpEffectText>? namePartsCollection, bool colorCoded = false, bool includeSuffix = false)
     {
         List<string> additions =
         [
@@ -134,7 +134,7 @@ public class ParamLootGenerator(
             namePartsCollection?.Where(d => d?.NameParts?.Prefix != null).FirstOrDefault()?.NameParts?.Prefix ?? string.Empty,
             //nameParts?.NameParts.Interfix ?? string.Empty,
             originalTitle,
-            namePartsCollection?.Where(d => d?.NameParts?.Suffix != null).FirstOrDefault()?.NameParts?.Suffix ?? string.Empty
+            includeSuffix ? namePartsCollection?.Where(d => d?.NameParts?.Suffix != null).FirstOrDefault()?.NameParts?.Suffix ?? string.Empty : string.Empty
         ];
 
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)).Distinct());

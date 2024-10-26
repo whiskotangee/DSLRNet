@@ -78,7 +78,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         this.DamageTypeHandler.ApplyDamageTypeWeaponSpEffects(DT1, DT2, weaponDictionary);
 
-        string weaponDesc = DTAdditions.SpEffectDescription + Environment.NewLine;
+        string weaponDesc = string.Join(Environment.NewLine, DTAdditions.SpEffectDescriptions);
 
         if (generatedType == WeaponTypes.Normal)
         {
@@ -138,7 +138,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
 
-        ExportLootGenParamAndTextToOutputs(weaponDictionary, LootType.Weapon, weaponFinalTitleColored, weaponDesc + GetParamLootLore(weaponFinalTitle, false), "", [], []);
+        ExportLootGenParamAndTextToOutputs(weaponDictionary, LootType.Weapon, weaponFinalTitleColored, weaponDesc + Environment.NewLine + GetParamLootLore(weaponFinalTitle, false), "", [], []);
 
         return weaponDictionary.GetValue<int>("ID");
     }
@@ -301,7 +301,7 @@ public class WeaponLootGenerator : ParamLootGenerator
             effectStrings.Add(dT2.EffectDescription);
         }
 
-        dTAdditions.SpEffectDescription = "Effect: " + string.Join(Environment.NewLine, effectStrings);
+        dTAdditions.SpEffectDescriptions = effectStrings.Select(s => $"Effect: {s}").ToList();
 
         string hitVfxParam = this.Configuration.LootParam.WeaponsHitVfx;
         int hitVfx = dT1.HitEffectCategory != 0 ? dT1.HitEffectCategory : dT2.HitEffectCategory;

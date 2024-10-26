@@ -33,10 +33,6 @@ public class WhiteListHandler(
                     itemWeights.AddRange(weights);
                 }
             }
-            else
-            {
-                Log.Logger.Warning($"Id {id} was not found in loot whitelist config");
-            }
         }
 
         if (itemIds.Count == 0)

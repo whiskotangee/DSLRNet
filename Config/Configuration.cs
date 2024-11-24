@@ -22,6 +22,8 @@ public class Settings
     public string DeployPath { get; set; }
     public string DSMSPortablePath { get; set; }
 
+    public int ItemLotsPerBaseLot { get; set; }
+
     public int LootPerItemLot { get; set; }
 
     public bool ChaosLootEnabled { get; set; }

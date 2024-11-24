@@ -87,7 +87,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs, true, false);
 
         // APPLY NEW ARMOR TITLE
-        newArmor.SetValue("Name", finalTitle);
+        //newArmor.SetValue("Name", finalTitle);
 
         ExportLootGenParamAndTextToOutputs(newArmor, LootType.Armor, finalTitle, CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc + GetParamLootLore(finalTitle, true)));
 

@@ -15,13 +15,13 @@ using Serilog;
 using SoulsFormats;
 using System.Diagnostics;
 
-// TODO: dynamically read itemlot_param and don't overwrite existing mapped drops
+//TODO: dynamically read itemlot_param and don't overwrite existing mapped drops
 
 //string[] csvFiles = Directory.GetFiles("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\DefaultData\\ER\\CSVs\\", "*.csv");
 
 //foreach (var csvFile in csvFiles)
 //{
-//    CsvFixer.AddNewHeaders(csvFile);
+//    //CsvFixer.AddNewHeaders(csvFile);
 //}
 
 //foreach (string csvFile in csvFiles)
@@ -95,54 +95,3 @@ ServiceProvider sp = services.BuildServiceProvider();
 DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
 
 await dslrBuilder.BuildAndApply();
-
-
-public class NpcParamFinder
-{
-    public static Dictionary<int, List<int>> GetNpcIdsByModelId()
-    {
-        var gameDir = "O:\\Steam\\SteamApps\\Common\\Elden Ring\\Game\\map\\mapstudio";
-        var workDir = "O:\\EldenRingShitpostEdition\\work\\npcfinder";
-
-        Directory.CreateDirectory(workDir);
-
-        Directory.GetFiles(gameDir, "*.msb.dcx")
-            .ToList()
-            .ForEach(d => File.Copy(d, Path.Combine(workDir, Path.GetFileName(d)), true));
-
-        var returnDictionary = new Dictionary<int, List<int>>();
-
-        var mapStudioFiles = Directory.GetFiles(workDir, "*.msb.dcx");
-
-        foreach(var mapFile in mapStudioFiles)
-        {
-            var bnd = DCX.Decompress(mapFile);
-
-            MSBE msb = MSBE.Read(bnd.Span.ToArray());
-            if (msb.Parts.Enemies.Any())
-            {
-                foreach(var enemy in msb.Parts.Enemies)
-                {
-                    int modelNumber = int.Parse(enemy.ModelName.Substring(1));
-
-                    if (modelNumber >= 2000 && modelNumber <= 6000 && enemy.NPCParamID > 100)
-                    {
-                        if (!returnDictionary.TryGetValue(modelNumber, out List<int> ids))
-                        {
-                            returnDictionary[modelNumber] = [enemy.NPCParamID];
-                        }
-                        else
-                        {
-                            if (!ids.Contains(enemy.NPCParamID))
-                            {
-                                ids.Add(enemy.NPCParamID);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return returnDictionary;
-    }
-}

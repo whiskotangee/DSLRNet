@@ -18,16 +18,16 @@ public class ItemLotGenerator : BaseHandler
     public string[] ItemlotOutputRealName = ["ItemLotParam_enemy", "ItemLotParam_map"];
     public List<int> ItemCategories = [2, 3, 4];
 
-    private string npcItemLotAdditionMassEdit = "";
     private const int ItemLotParamMax = 8;
     private readonly ArmorLootGenerator armorLootGenerator;
     private readonly WeaponLootGenerator weaponLootGenerator;
     private readonly TalismanLootGenerator talismanLootGenerator;
     private readonly RarityHandler rarityHandler;
-    private readonly WhiteListHandler whitelistHandler;
     private readonly RandomNumberGetter random;
     private readonly Configuration configuration;
     private readonly CumulativeID itemAcquisitionCumulativeId;
+    private readonly List<ItemLotBase> itemLotParam_Map = [];
+    private readonly List<ItemLotBase> itemLotParam_Enemy = [];
 
     public ItemLotGenerator(
         ArmorLootGenerator armorLootGenerator,
@@ -43,11 +43,16 @@ public class ItemLotGenerator : BaseHandler
         this.weaponLootGenerator = weaponLootGenerator;
         this.talismanLootGenerator = talismanLootGenerator;
         this.rarityHandler = rarityHandler;
-        this.whitelistHandler = whitelistHandler;
         this.random = random;
         this.configuration = configuration.Value;
-        this.itemAcquisitionCumulativeId = new CumulativeID();
+        this.itemAcquisitionCumulativeId = new CumulativeID()
+        {
+            IsItemFlagAcquisitionCumulativeID = true,
+            UseWrapAround = true
+        };
         this.ItemLotTemplate = Data.Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\ItemLotBase.csv")[0];
+        this.itemLotParam_Enemy = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_enemy.csv");
+        this.itemLotParam_Map = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_map.csv");
     }
 
     private ItemLotBase ItemLotTemplate { get; set; }
@@ -58,6 +63,8 @@ public class ItemLotGenerator : BaseHandler
         {
             CreateItemLot(itemLotEntry);
         }
+
+        Log.Logger.Information($"Current edit count: {this.GeneratedDataRepository.ParamEditCount()}");
     }
 
     public void CreateItemLot(ItemLotQueueEntry queueEntry)
@@ -81,17 +88,18 @@ public class ItemLotGenerator : BaseHandler
 
                     // SET NEW ITEMLOT ID FROM WHICH OF THE QUEUEDICTIONARY ITEMLOT IDS ARRAY WE ARE CURRENTLY WORKING WITH
                     newItemLot.ID = itemLotIds[x];
+                    newItemLot.Name = string.Empty;
 
                     // ESTABLISH GUARANTEED DROP - EITHER FROM
                     bool dropGuaranteed = this.configuration.Settings.AllLootGauranteed || queueEntry.GuaranteedDrop;
 
                     // USE QUEUEDICTIONARY'S GUARANTEED DROP VARIABLE TO DECIDE IF WE NEED TO OFFSET BY ONE OR TWO FROM X(0)
-                    int offset = dropGuaranteed ? 2 : 3;
+                    int offset = dropGuaranteed ? 1 : 2;
 
                     // ITERATE OVER EACH POSSIBLE ITEMLOTID SLOT AND CREATE AN ITEMLOT ENTRY FOR IT
-                    for (int y = 0; y < this.configuration.Settings.LootPerItemLot - (offset - 1); y++)
+                    for (int y = offset; y < this.configuration.Settings.LootPerItemLot; y++)
                     {
-                        CreateItemLotEntry(queueEntry, newItemLot, y + offset, itemLotIds[x], (float)queueEntry.DropChanceMultiplier);
+                        CreateItemLotEntry(queueEntry, newItemLot, y, itemLotIds[x], (float)queueEntry.DropChanceMultiplier, dropGuaranteed);
                     }
 
                     // NOW WE'VE CREATED THE LOOT FOR THIS ITEMLOT, CALCULATE THE ITEMLOTBASEPOINT01 VALUE BASED ON 
@@ -104,16 +112,44 @@ public class ItemLotGenerator : BaseHandler
                     // IF WE'RE CREATING A ONE TIME PICKUP, SET THE ITEMLOTACQUISITIONID USING THE SHARED ILAID CUMULATIVE ID NODE
                     if (Convert.ToBoolean(queueEntry.OneTimePickup))
                     {
-                        newItemLot.SetPropertyByName(this.configuration.Itemlots.ItemlotEditingArray.ItemlotParams[4], this.itemAcquisitionCumulativeId.GetNext());
+                        var id = -1;
+                        if (queueEntry.Category == ItemLotCategory.ItemLot_Map)
+                        {
+                            if (itemLotIds[x] % 10 == 0)
+                            {
+                                var originalLot = this.itemLotParam_Map.SingleOrDefault(d => d.ID == itemLotIds[x]);
+                                if (originalLot != null && originalLot.getItemFlagId > 0)
+                                {
+                                    id = originalLot.getItemFlagId;
+                                }
+                            }
+                            else
+                            {
+                                var testId = itemLotIds[x] - (itemLotIds[x] % 10);
+                                var originalLot = this.itemLotParam_Map.SingleOrDefault(d => d.ID == testId);
+                                if (originalLot != null && originalLot.getItemFlagId > 0)
+                                {
+                                    id = originalLot.getItemFlagId;
+                                }
+                            }
+                            
+                        }
+
+                        if (id == -1)
+                        {
+                            id = this.itemAcquisitionCumulativeId.GetNext();
+                        }
+
+                        newItemLot.SetPropertyByName(this.configuration.Itemlots.ItemlotEditingArray.ItemlotParams[4], id);
                     }
 
                     // SET ITEMLOT ID NAME, IDENTIFYING WHICH OF THE ITEMLOT ITERATIONS IS BEING CREATED AND FROM WHICH 
-                    newItemLot.Name = $"DSLR {queueEntry.Realname} {x} {GetItemLotCategoriesForItemLotName(newItemLot)}";
+                    //newItemLot.Name = $"DSLR {queueEntry.Realname} {x} {GetItemLotCategoriesForItemLotName(newItemLot)}";
 
                     // FINALLY, EXPORT TO MASSEDITOUTPUT
                     GenericDictionary genericDict = GenericDictionary.FromObject(newItemLot);
-                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.Category ?? "", newItemLot.ID, [], ["0", "-1"], defaultValue: GenericDictionary.FromObject(CreateDefaultItemLotDictionary()));
-                    this.GeneratedDataRepository.AddParamEdit(queueEntry.Category, ParamOperation.MassEdit, itemLotMassEdit, null, genericDict);
+                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName ?? "", newItemLot.ID, [], [], defaultValue: GenericDictionary.FromObject(CreateDefaultItemLotDictionary()));
+                    this.GeneratedDataRepository.AddParamEdit(queueEntry.ParamName, ParamOperation.Create, itemLotMassEdit, null, genericDict);
                 }
                 else
                 {
@@ -124,10 +160,10 @@ public class ItemLotGenerator : BaseHandler
             // EXPORT NPC ADJUSTMENTS TO MASSEDITOUTPUT
 
             this.GeneratedDataRepository.AddParamEdit(
-                this.configuration.ParamNames.NpcParam, 
-                ParamOperation.MassEdit, 
-                CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids), 
-                null, 
+                this.configuration.ParamNames.NpcParam,
+                ParamOperation.MassEdit,
+                CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids),
+                null,
                 null);
         }
     }
@@ -163,7 +199,7 @@ public class ItemLotGenerator : BaseHandler
         return JsonConvert.DeserializeObject<ItemLotBase>(JsonConvert.SerializeObject(ItemLotTemplate));
     }
 
-    public void CreateItemLotEntry(ItemLotQueueEntry queueEntry, ItemLotBase itemLotDict, int whichOne = 1, int itemLotId = 0, float dropMult = 1.0f)
+    public void CreateItemLotEntry(ItemLotQueueEntry queueEntry, ItemLotBase itemLotDict, int whichOne = 1, int itemLotId = 0, float dropMult = 1.0f, bool dropGauranteed = false)
     {
         // THIS WILL HANDLE PROPERLY FILLING IN EACH ENTRY IN AN ITEMLOT'S PARAMETERS, FROM LOTID01-LOTID08
         // USE QUEUE DICTIONARY LOOTTYPE WEIGHTS TO DECIDE WHICH KIND OF LOOT TO MAKE IF WE CAN'T FIND A SET OVERRIDETYPE
@@ -178,7 +214,7 @@ public class ItemLotGenerator : BaseHandler
         (int FinalId, int FinalCategory) genResult = TaskLootGeneratorBasedOnLootType(queueEntry, rarity, lootType);
 
         // NOW APPLY THE GENRESULT DICTIONARY TO OUR ITEMLOTPARAMS
-        ApplyItemLotEditingArray(itemLotDict, whichOne, genResult.FinalId, genResult.FinalCategory, (int)(GetGlobalDropChance() * dropMult));
+        ApplyItemLotEditingArray(itemLotDict, whichOne, genResult.FinalId, genResult.FinalCategory, (int)(GetGlobalDropChance() * dropMult), 1, dropGauranteed);
     }
 
     private float GetGlobalDropChance()
@@ -186,50 +222,19 @@ public class ItemLotGenerator : BaseHandler
         return Math.Clamp(this.configuration.Settings.GlobalDropChance + (Math.Max(0, 6 - this.configuration.Settings.LootPerItemLot) * 9), 0, 1000);
     }
 
-    public int ChooseItemLotLootType(List<int> lootWeights)
-    {
-        return this.random.NextWeightedValue(new List<int> { 2, 3, 4 }, lootWeights, maxMult: 1.0f);
-    }
-
-    public void SetAllUsedItemLotNumbersTo1(ItemLotBase itemLotDict)
-    {
-        // THIS FUNCTION SHOULD BE RUN TOWARDS THE END OF THE ITEMLOT CREATION PROCESS - IT WILL ITERATE OVER ALL EIGHT POSSIBLE ITEMLOTID ENTRIES,
-        // AND SET ITS ITEMLOTNUMBER TO 1 IF IT'S ABOVE 0 OR 0 OTHERWISE
-        for (int x = 0; x < 8; x++)
-        {
-            // SET A QUICK REFERENCE TO THE ITEMLOTDICT KEY WE'RE QUERYING 
-            string itemLotIdToCheck = GetItemLotItemParamName(ILEA.ItemId) + (x + 1).ToString();
-            if (itemLotDict.GetValue<int>(itemLotIdToCheck) > 0)
-            {
-                itemLotDict.SetPropertyByName(itemLotIdToCheck, 1);
-            }
-            else
-            {
-                itemLotDict.SetPropertyByName(itemLotIdToCheck, 0);
-            }
-        }
-    }
-
     public List<int> GetAllItemLotIdsFromAllTiers(ItemLotQueueEntry itemLotEntry)
     {
-        // THIS FUNCTION ITERATES OVER ALL "itemlotids_(x)" ARRAYS AND COMPILES THEM TOGETHER. THIS IS TO BE USED
-        // TO GET THE FULL NUMBER OF ITEMLOT IDS DSLR WILL BE CREATING ITEMLOTS FOR - THEIR INDIVIDUAL ALLOWED RARITIES
-        // WILL BE DETERMINED BY CHECKING THE QUEUEDICTIONARY THEY CAME FROM THROUGH ANOTHER FUNCTION
-        // COMPILED ARRAY OF TIERS WE'LL BE CHECKING TO MAKE A FOR LOOP EASIER
-
-        // CREATE FINAL ARRAY, WHICH WE WILL FILL WITH ITEMLOTIDS AS WE FIND THEM
-        List<int> finalArray = [];
-
+        var result = new List<int>();
         foreach (GameStage tier in Enum.GetValues(typeof(GameStage)))
         {
             IEnumerable<GameStageConfig> potentialAdds = itemLotEntry.GameStageConfigs.Where(d => d.Stage == tier && d.ItemLotIds.Count > 0);
             if (potentialAdds.Any())
             {
-                finalArray.AddRange(potentialAdds.SelectMany(s => s.ItemLotIds));
+                result.AddRange(potentialAdds.SelectMany(s => s.ItemLotIds));
             }
         }
 
-        return finalArray;
+        return [.. result];
     }
 
     public GameStageConfig GetItemLotIdTier(ItemLotQueueEntry queueEntry, int itemLotId = 0)
@@ -257,17 +262,6 @@ public class ItemLotGenerator : BaseHandler
         List<int> rarities = GetItemLotIdTierAllowedRarities(queueEntry, itemLotId);
         // INCREASE THE CHANCE OF DROPPING THE LOWEST TIER IN THE CURRENT RANGE BY 20%
         return this.rarityHandler.ChooseRarityFromIdSetWithBuiltInWeights(rarities, 1.2f);
-    }
-
-    public string CreateItemLotName(ItemLotBase itemLotDict, string realName = "")
-    {
-        // ITERATE OVER EACH ITEMLOT0x ENTRY AND ADD IT TO A STRING
-        string finalString = "";
-        for (int x = 0; x < 8; x++)
-        {
-            // FINISH
-        }
-        return finalString;
     }
 
     // ITEMDROP CHANCE FUNCTIONS
@@ -340,23 +334,7 @@ public class ItemLotGenerator : BaseHandler
         return finalString;
     }
 
-
-    public List<string> GetItemLotItemParamNameArray()
-    {
-        return this.configuration.Itemlots.ItemlotEditingArray.ItemlotParams;
-    }
-
-    public string GetItemLotItemFlagAcquisitionIdFromGameType()
-    {
-        return GetItemLotItemParamNameArray()[4];
-    }
-
-    public string GetItemLotItemParamName(int which = 0)
-    {
-        return GetItemLotItemParamNameArray()[which];
-    }
-
-    public void ApplyItemLotEditingArray(ItemLotBase dictionary, int itemNumber = 1, int itemId = 1000000, int itemCategory = 2, int itemChance = 50, int itemAmount = 1)
+    public void ApplyItemLotEditingArray(ItemLotBase dictionary, int itemNumber = 1, int itemId = 1000000, int itemCategory = 2, int itemChance = 50, int itemAmount = 1, bool guaranteedDrop = false)
     {
         ItemlotEditingArrayConfig editingArray = this.configuration.Itemlots.ItemlotEditingArray;
         dictionary.SetPropertyByName(editingArray.ItemlotParams[(int)ILEA.ItemId] + itemNumber.ToString(), itemId);

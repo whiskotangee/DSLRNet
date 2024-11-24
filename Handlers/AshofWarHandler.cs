@@ -58,7 +58,7 @@ public class AshofWarHandler(RandomNumberGetter random, IOptions<Configuration> 
             int finalId = chosenGem.swordArtsParamId;
 
             weaponDict.SetValue(aowparam, finalId);
-            Log.Logger.Debug($"Assigning ash of war {chosenGem.ID} with SwordArtsParamID {chosenGem.swordArtsParamId} to weapon named {weaponDict.GetValue<string>("Name")} of type {weaponType}");
+            //Log.Logger.Debug($"Assigning ash of war {chosenGem.ID} with SwordArtsParamID {chosenGem.swordArtsParamId} to weapon named {weaponDict.GetValue<string>("Name")} of type {weaponType}");
         }
         else
         {

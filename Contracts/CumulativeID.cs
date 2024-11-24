@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Contracts;
 
+using Serilog;
 using System;
 using System.Collections.Generic;
 
@@ -18,9 +19,10 @@ public class CumulativeID
     public bool IsItemFlagAcquisitionCumulativeID { get; set; } = false;
     private Dictionary<string, object> IFA { get; set; } = new Dictionary<string, object>
     {
-        { "offsets", new List<int> { 0 } },
+        { "offsets", new List<int> { 0, 4, 7, 8, 9 } },
         { "starting", 1024260000 }
     };
+
     private int IFA_CurrentOffset { get; set; } = 0;
 
     public event Action WrappingAround;
@@ -49,7 +51,9 @@ public class CumulativeID
         // Split off depending on if we're getting an ItemFlagAcquisitionID or not
         if (IsItemFlagAcquisitionCumulativeID)
         {
-            return (int)IFA["starting"] + ((List<int>)IFA["offsets"])[IFA_CurrentOffset] * 1000 + cumulativeId;
+            var flagId = (int)IFA["starting"] + (((List<int>)IFA["offsets"])[IFA_CurrentOffset] * 1000) + cumulativeId;
+            Log.Logger.Debug($"Assigning acquisition flag {flagId}");
+            return flagId;
         }
         else
         {
@@ -60,7 +64,7 @@ public class CumulativeID
     public void ResetCumulativeID()
     {
         cumulativeId = CumulativeIDStartingPoint;
-        Console.WriteLine($"{this.GetType().Name} CUMULATIVE ID RESETTING!");
+        Log.Logger.Debug($"{this.GetType().Name} CUMULATIVE ID RESETTING!");
         IFA_CurrentOffset = 0;
     }
 

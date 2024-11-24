@@ -16,6 +16,7 @@ using System.Xml.Linq;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Primitives;
 using Serilog;
+using DotNext.Collections.Generic;
 
 namespace DSLRNet;
 
@@ -28,18 +29,38 @@ public class DSLRNetBuilder(
     private readonly Configuration configuration = configuration.Value;
     private readonly ILogger<DSLRNetBuilder> logger = logger;
     private readonly ProcessRunner processRunner = new(logger);
+    private List<ItemLotBase> itemLotParam_Map = [];
+    private List<ItemLotBase> itemLotParam_Enemy = [];
 
     public async Task BuildAndApply()
     {
         Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
+        this.itemLotParam_Enemy = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_enemy.csv");
+        this.itemLotParam_Map = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_map.csv");
+
         // get all queue entries
 
-        IEnumerable<ItemLotQueueEntry> enemyItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
-            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[0]));
+        List<ItemLotQueueEntry> enemyItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
+            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[0]))
+            .ToList();
 
-        IEnumerable<ItemLotQueueEntry> mapItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
-            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[1]));
+        List<ItemLotQueueEntry> mapItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
+            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[1]))
+            .ToList();
+
+        var takenIds = new Dictionary<ItemLotCategory, HashSet<int>>();
+
+        takenIds[ItemLotCategory.ItemLot_Enemy] = enemyItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
+        takenIds[ItemLotCategory.ItemLot_Map] = mapItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
+
+        var remainingIds = GetRemainingIds(takenIds);
+
+        var remainingMapLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Map.ini", this.configuration.Itemlots.Categories[1]);
+        remainingMapLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Map].ToList();
+
+        var remainingEnemyLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
+        remainingEnemyLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Enemy].ToList();
 
         // ItemLotGenerator
         // do enemies
@@ -53,13 +74,19 @@ public class DSLRNetBuilder(
 
         itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
         itemLotGenerator.CreateItemLots(mapItemLotsSetups);
+        itemLotGenerator.CreateItemLots([remainingMapLots]);
+        itemLotGenerator.CreateItemLots([remainingEnemyLots]);
 
-        string regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+        string regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
         string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.working.bin");
 
         if (!File.Exists(regulationFile))
         {
-            regulationFile = Path.Combine(this.configuration.Settings.GamePath, "regulation.bin");
+            regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+            if (!File.Exists(regulationFile))
+            {
+                regulationFile = Path.Combine(this.configuration.Settings.GamePath, "regulation.bin");
+            }
         }
         
         File.Copy(regulationFile, destinationFile, true);
@@ -84,7 +111,11 @@ public class DSLRNetBuilder(
 
         await this.ApplyCreates(destinationFile, dataRepository);
 
-        File.Copy(destinationFile.Replace("working.", ""), destinationFile.Replace("working.", "pre-dslr."), true);
+        if (!File.Exists(destinationFile.Replace("working.", "pre-dslr.")))
+        {
+            File.Copy(destinationFile.Replace("working.", ""), destinationFile.Replace("working.", "pre-dslr."), true);
+        }
+
         File.Copy(destinationFile, destinationFile.Replace(".working.bin", ".bin"), true);
 
         await UpdateMessages(dataRepository.GetParamEdits());
@@ -103,7 +134,13 @@ public class DSLRNetBuilder(
             string csvFile = Path.Combine(this.configuration.Settings.DeployPath, $"{paramName}.csv");
 
             List<GenericDictionary> parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.GetValue<int>("ID")).Select(d => d.ParamObject).ToList();
-            Csv.WriteCsv(csvFile, parms);
+
+            Csv.WriteCsv(csvFile, parms.Select(d =>
+            {
+                var ret = d.Clone() as GenericDictionary;
+                ret.SetValue<string>("Name", string.Empty);
+                return ret;
+            }).ToList());
 
             // dsms csv
             await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
@@ -182,7 +219,7 @@ public class DSLRNetBuilder(
                 foreach (var captionFile in captionFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(captionFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Caption != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Caption != null).Select(d => new FMG.Entry(fmg, (int)d.ParamObject.Properties["ID"], d.MessageText.Caption)));
                     captionFile.Bytes = fmg.Write();
                 }
 
@@ -190,7 +227,7 @@ public class DSLRNetBuilder(
                 foreach (var infoFile in infoFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(infoFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Info != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Info != null).Select(d => new FMG.Entry(fmg, (int)d.ParamObject.Properties["ID"], d.MessageText.Info)));
                     infoFile.Bytes = fmg.Write();
                 }
 
@@ -198,7 +235,7 @@ public class DSLRNetBuilder(
                 foreach (var nameFile in nameFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(nameFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Name != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Name != null).Select(d => new FMG.Entry(fmg, (int)d.ParamObject.Properties["ID"], d.MessageText.Name)));
                     nameFile.Bytes = fmg.Write();
                 }
 
@@ -206,7 +243,7 @@ public class DSLRNetBuilder(
                 foreach (var effectFile in effectFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(effectFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Effect != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Effect)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Effect != null).Select(d => new FMG.Entry(fmg, (int)d.ParamObject.Properties["ID"], d.MessageText.Effect)));
                     effectFile.Bytes = fmg.Write();
                 }
 
@@ -253,5 +290,119 @@ public class DSLRNetBuilder(
             }
             */
         });
+    }
+
+    public List<int> GenerateItemSequentialItemLotIds(List<int> baseLotIds, ItemLotCategory itemLotCategory)
+    {
+        List<int> finalArray = [];
+        List<int> allTakenIds = [];
+
+        // Get the original IDs based on the category
+        if (itemLotCategory == ItemLotCategory.ItemLot_Map)
+        {
+            finalArray = this.itemLotParam_Map
+                .Where(d => baseLotIds.Contains(d.ID))
+                .Where(d => d.ID % 10 == 0 && d.lotItemId01 > 0)
+                .Where(d => d.ID > 100)
+                .Where(d => d.lotItemCategory01 > 1
+                            || d.lotItemCategory02 > 1
+                            || d.lotItemCategory03 > 1
+                            || d.lotItemCategory04 > 1
+                            || d.lotItemCategory05 > 1
+                            || d.lotItemCategory06 > 1
+                            || d.lotItemCategory07 > 1
+                            || d.lotItemCategory08 > 1)
+                .Select(d => d.ID)
+                .ToList();
+
+            allTakenIds = this.itemLotParam_Map.Select(s => s.ID).ToList();
+        }
+        else
+        {
+            finalArray = this.itemLotParam_Enemy
+                .Where(d => baseLotIds.Contains(d.ID))
+                .Where(d => d.ID % 100 == 0)
+                .Select(d => d.ID)
+                .ToList();
+
+            allTakenIds = this.itemLotParam_Enemy.Select(s => s.ID).ToList();
+        }
+
+        // List to store the result
+        List<int> result = [];
+
+        // Iterate over each original ID
+        foreach (var id in finalArray)
+        {
+            for (int i = 1; i <= this.configuration.Settings.ItemLotsPerBaseLot; i++)
+            {
+                int newId = id + i;
+                if (newId % 10 != 0 &&
+                    !allTakenIds.Contains(newId) &&
+                    !finalArray.Contains(newId))
+                {
+                    result.Add(newId);
+                }
+            }
+        }
+
+        return result.ToList();
+    }
+
+    public Dictionary<ItemLotCategory, HashSet<int>> GetRemainingIds(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
+    {
+        var gameDir = "O:\\Steam\\SteamApps\\Common\\Elden Ring\\Game\\map\\mapstudio";
+        var workDir = "O:\\EldenRingShitpostEdition\\work\\npcfinder";
+
+        var npcParams = Csv.LoadCsv<NpcParam>("DefaultData\\ER\\CSVs\\LatestParams\\NpcParam.csv");
+
+        Directory.CreateDirectory(workDir);
+
+        Directory.GetFiles(gameDir, "*.msb.dcx")
+            .ToList()
+            .ForEach(d => File.Copy(d, Path.Combine(workDir, Path.GetFileName(d)), true));
+
+        var returnDictionary = new Dictionary<ItemLotCategory, HashSet<int>>()
+        {
+            { ItemLotCategory.ItemLot_Enemy, [] },
+            { ItemLotCategory.ItemLot_Map, [] }
+        };
+
+        var mapStudioFiles = Directory.GetFiles(workDir, "*.msb.dcx");
+
+        foreach (var mapFile in mapStudioFiles)
+        {
+            var bnd = DCX.Decompress(mapFile);
+
+            MSBE msb = MSBE.Read(bnd.Span.ToArray());
+
+            var npcIds = new HashSet<int>();
+            foreach (var enemy in msb.Parts.Enemies)
+            {
+                int modelNumber = int.Parse(enemy.ModelName.Substring(1));
+
+                if (modelNumber >= 2000 && modelNumber <= 6000)
+                {
+                    npcIds.Add(enemy.NPCParamID);
+                }
+            }
+
+            var candidateEnemyBaseLotIds = npcParams
+                .Where(d => npcIds.Contains(d.ID) && d.itemLotId_enemy > 100 && !claimedIds[ItemLotCategory.ItemLot_Enemy].Contains(d.itemLotId_enemy))
+                .Select(d => d.itemLotId_enemy)
+                .Distinct()
+                .ToList();
+
+            var candidateMapBaseLotIds = msb.Events.Treasures
+                .Where(d => d.ItemLotID > 0 && !claimedIds[ItemLotCategory.ItemLot_Map].Contains(d.ItemLotID))
+                .Select(d => d.ItemLotID)
+                .Distinct()
+                .ToList();
+
+            returnDictionary[ItemLotCategory.ItemLot_Enemy].AddAll<int>(this.GenerateItemSequentialItemLotIds(candidateEnemyBaseLotIds, ItemLotCategory.ItemLot_Enemy));
+            returnDictionary[ItemLotCategory.ItemLot_Map].AddAll<int>(this.GenerateItemSequentialItemLotIds(candidateMapBaseLotIds, ItemLotCategory.ItemLot_Map));
+        }
+
+        return returnDictionary;
     }
 }

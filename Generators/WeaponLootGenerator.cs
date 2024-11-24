@@ -136,7 +136,7 @@ public class WeaponLootGenerator : ParamLootGenerator
             }
         }
 
-        weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
+        //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
 
         ExportLootGenParamAndTextToOutputs(weaponDictionary, LootType.Weapon, weaponFinalTitleColored, weaponDesc + Environment.NewLine + GetParamLootLore(weaponFinalTitle, false), "", [], []);
 

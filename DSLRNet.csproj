@@ -51,7 +51,10 @@
     <None Remove="DefaultData\ER\CSVs\EquipParamAccessory.csv" />
     <None Remove="DefaultData\ER\CSVs\EquipParamProtector.csv" />
     <None Remove="DefaultData\ER\CSVs\EquipParamWeapon.csv" />
+    <None Remove="DefaultData\ER\CSVs\NpcParam.csv" />
     <None Remove="DefaultData\ER\iconmappings.json" />
+    <None Remove="DefaultData\ER\ItemLots\Default_Enemy.ini" />
+    <None Remove="DefaultData\ER\ItemLots\Default_Map.ini" />
     <None Remove="DefaultData\ER\ItemLots\Enemies\sote_all_golems.ini" />
     <None Remove="DefaultData\ER\ItemLots\Enemies\sote_bloodfiends.ini" />
     <None Remove="DefaultData\ER\ItemLots\Enemies\sote_commoners.ini" />

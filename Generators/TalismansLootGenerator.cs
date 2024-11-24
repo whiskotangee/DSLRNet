@@ -83,7 +83,7 @@ public class TalismanLootGenerator : ParamLootGenerator
         string finalNameNormal = CreateLootTitle(originalName, rarityId, "", spEffs, true);
 
         // SET NEW NAME
-        newTalisman.SetValue("Name", finalNameNormal);
+        //newTalisman.SetValue("Name", finalNameNormal);
 
         // CREATE FINAL DESCRIPTION AND - IN THIS CASE - SUMMARY
         talismanDescriptions.AddRange(spEffs.Select(s => s.Description).Where(s => !string.IsNullOrWhiteSpace(s)));

@@ -26,7 +26,7 @@ public class GameStageConfig
 
 public class ItemLotQueueEntry
 {
-    public static ItemLotQueueEntry Create(string file, Category category )
+    public static ItemLotQueueEntry Create(string file, Category category)
     {
         DslItemLotSetup setup = DslItemLotSetup.Create(file);
 
@@ -64,20 +64,24 @@ public class ItemLotQueueEntry
             OverrideType = setup.OverrideTypeEnd,
         });
 
-        obj.BlackListIds = File.ReadAllLines($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt").Where(d => !string.IsNullOrWhiteSpace(d)).Select(long.Parse).ToList();
-        obj.Category = category.ParamCategory;
+        obj.BlackListIds = File.Exists($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt") ? File.ReadAllLines($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt").Where(d => !string.IsNullOrWhiteSpace(d)).Select(long.Parse).ToList() : [];
+        obj.Category = category.ParamCategory.Equals("ItemLotParam_Map", StringComparison.OrdinalIgnoreCase) ? ItemLotCategory.ItemLot_Map : ItemLotCategory.ItemLot_Enemy;
+        obj.ParamName = category.ParamCategory;
         obj.NpcParamCategory = category.NpcParamCategory;
 
         return obj;
     }
 
-    protected ItemLotQueueEntry()
+    public ItemLotQueueEntry()
     {
-           
+
     }
 
     public List<long> BlackListIds { get; set; }
-    public string Category { get; set; }
+
+    public ItemLotCategory Category { get; set; }
+
+    public string ParamName { get; set; }
 
     public string NpcParamCategory { get; set; }
 
@@ -96,6 +100,11 @@ public class ItemLotQueueEntry
     public List<int> ClearItemlotids { get; set; }
 }
 
+public enum ItemLotCategory
+{
+    ItemLot_Map,
+    ItemLot_Enemy
+}
 class DslItemLotSetup
 {
     public static DslItemLotSetup Create(string file)

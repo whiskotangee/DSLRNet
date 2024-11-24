@@ -20,6 +20,11 @@ public class DataRepository
 {
     private List<ParamEdit> paramEdits = [];
 
+    public int ParamEditCount()
+    {
+        return paramEdits.Count;
+    }
+
     public void AddParamEdit(string name, ParamOperation operation, string massEditString, LootFMG text,  GenericDictionary? param)
     {
         paramEdits.Add(new ParamEdit

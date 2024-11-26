@@ -49,7 +49,11 @@ public class DSLRNetBuilder(
             .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[1]))
             .ToList();
 
-        var takenIds = new Dictionary<ItemLotCategory, HashSet<int>>();
+        var takenIds = new Dictionary<ItemLotCategory, HashSet<int>>()
+        {
+            { ItemLotCategory.ItemLot_Map, new HashSet<int>() },
+            { ItemLotCategory.ItemLot_Enemy, new HashSet<int>() }
+        };
 
         takenIds[ItemLotCategory.ItemLot_Enemy] = enemyItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
         takenIds[ItemLotCategory.ItemLot_Map] = mapItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
@@ -57,10 +61,10 @@ public class DSLRNetBuilder(
         var remainingIds = GetRemainingIds(takenIds);
 
         var remainingMapLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Map.ini", this.configuration.Itemlots.Categories[1]);
-        remainingMapLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Map].ToList();
+        remainingMapLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Map].OrderBy(d => d).ToList();
 
         var remainingEnemyLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
-        remainingEnemyLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Enemy].ToList();
+        remainingEnemyLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Enemy].OrderBy(d => d).ToList();
 
         // ItemLotGenerator
         // do enemies
@@ -76,6 +80,11 @@ public class DSLRNetBuilder(
         itemLotGenerator.CreateItemLots(mapItemLotsSetups);
         itemLotGenerator.CreateItemLots([remainingMapLots]);
         itemLotGenerator.CreateItemLots([remainingEnemyLots]);
+
+        if (!dataRepository.VerifyItemLots())
+        {
+            throw new Exception("Ids referenced not found");
+        }
 
         string regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
         string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.working.bin");
@@ -292,7 +301,7 @@ public class DSLRNetBuilder(
         });
     }
 
-    public List<int> GenerateItemSequentialItemLotIds(List<int> baseLotIds, ItemLotCategory itemLotCategory)
+    public List<int> GenerateSequentialItemLotIds(List<int> baseLotIds, ItemLotCategory itemLotCategory)
     {
         List<int> finalArray = [];
         List<int> allTakenIds = [];
@@ -302,65 +311,60 @@ public class DSLRNetBuilder(
         {
             finalArray = this.itemLotParam_Map
                 .Where(d => baseLotIds.Contains(d.ID))
-                .Where(d => d.ID % 10 == 0 && d.lotItemId01 > 0)
-                .Where(d => d.ID > 100)
-                .Where(d => d.lotItemCategory01 > 1
-                            || d.lotItemCategory02 > 1
-                            || d.lotItemCategory03 > 1
-                            || d.lotItemCategory04 > 1
-                            || d.lotItemCategory05 > 1
-                            || d.lotItemCategory06 > 1
-                            || d.lotItemCategory07 > 1
-                            || d.lotItemCategory08 > 1)
-                .Select(d => d.ID)
+                .Where(d => d.getItemFlagId > 0)
+                .Where(d => d.lotItemCategory01 >= 1
+                            || d.lotItemCategory02 >= 1
+                            || d.lotItemCategory03 >= 1
+                            || d.lotItemCategory04 >= 1
+                            || d.lotItemCategory05 >= 1
+                            || d.lotItemCategory06 >= 1
+                            || d.lotItemCategory07 >= 1
+                            || d.lotItemCategory08 >= 1)
+                .GroupBy(d => d.getItemFlagId)
+                .Select(g => g.First().ID)
                 .ToList();
 
-            allTakenIds = this.itemLotParam_Map.Select(s => s.ID).ToList();
+            return finalArray;
         }
         else
         {
-            finalArray = this.itemLotParam_Enemy
-                .Where(d => baseLotIds.Contains(d.ID))
-                .Where(d => d.ID % 100 == 0)
-                .Select(d => d.ID)
-                .ToList();
+            return baseLotIds;
+            //finalArray = this.itemLotParam_Enemy
+            //    .Where(d => baseLotIds.Contains(d.ID))
+            //    .Select(d => d.ID)
+            //    .ToList();
 
-            allTakenIds = this.itemLotParam_Enemy.Select(s => s.ID).ToList();
+            //allTakenIds = this.itemLotParam_Enemy.Select(s => s.ID).ToList();
+
+            //// List to store the result
+            //List<int> result = [];
+
+            //// Iterate over each original ID
+            //foreach (var id in finalArray)
+            //{
+            //    for (int i = 1; i <= this.configuration.Settings.ItemLotsPerBaseLot; i++)
+            //    {
+            //        int newId = id + i;
+            //        if (newId % 10 != 0 &&
+            //            !allTakenIds.Contains(newId) &&
+            //            !finalArray.Contains(newId))
+            //        {
+            //            result.Add(newId);
+            //        }
+            //    }
+            //}
+            //return baseLotIds.Union(result).ToList();
         }
-
-        // List to store the result
-        List<int> result = [];
-
-        // Iterate over each original ID
-        foreach (var id in finalArray)
-        {
-            for (int i = 1; i <= this.configuration.Settings.ItemLotsPerBaseLot; i++)
-            {
-                int newId = id + i;
-                if (newId % 10 != 0 &&
-                    !allTakenIds.Contains(newId) &&
-                    !finalArray.Contains(newId))
-                {
-                    result.Add(newId);
-                }
-            }
-        }
-
-        return result.ToList();
     }
 
     public Dictionary<ItemLotCategory, HashSet<int>> GetRemainingIds(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
-        var gameDir = "O:\\Steam\\SteamApps\\Common\\Elden Ring\\Game\\map\\mapstudio";
-        var workDir = "O:\\EldenRingShitpostEdition\\work\\npcfinder";
+        var modDir = $"{this.configuration.Settings.DeployPath}\\map\\mapstudio";
 
         var npcParams = Csv.LoadCsv<NpcParam>("DefaultData\\ER\\CSVs\\LatestParams\\NpcParam.csv");
 
-        Directory.CreateDirectory(workDir);
-
-        Directory.GetFiles(gameDir, "*.msb.dcx")
-            .ToList()
-            .ForEach(d => File.Copy(d, Path.Combine(workDir, Path.GetFileName(d)), true));
+        var mapStudioFiles = Directory.GetFiles(modDir, "*.msb.dcx")
+            .ToList();
 
         var returnDictionary = new Dictionary<ItemLotCategory, HashSet<int>>()
         {
@@ -368,13 +372,11 @@ public class DSLRNetBuilder(
             { ItemLotCategory.ItemLot_Map, [] }
         };
 
-        var mapStudioFiles = Directory.GetFiles(workDir, "*.msb.dcx");
-
         foreach (var mapFile in mapStudioFiles)
         {
-            var bnd = DCX.Decompress(mapFile);
+            MSBE msb = MSBE.Read(mapFile);
 
-            MSBE msb = MSBE.Read(bnd.Span.ToArray());
+            var searchString = JsonConvert.SerializeObject(msb, Formatting.Indented);
 
             var npcIds = new HashSet<int>();
             foreach (var enemy in msb.Parts.Enemies)
@@ -397,10 +399,21 @@ public class DSLRNetBuilder(
                 .Where(d => d.ItemLotID > 0 && !claimedIds[ItemLotCategory.ItemLot_Map].Contains(d.ItemLotID))
                 .Select(d => d.ItemLotID)
                 .Distinct()
+                .ToList()
+                .Union(npcParams
+                        .Where(d => npcIds.Contains(d.ID) && d.itemLotId_map > 0 && !claimedIds[ItemLotCategory.ItemLot_Map].Contains(d.itemLotId_map))
+                        .Select(d => d.itemLotId_map)
+                        .Distinct())
+                .Distinct()
                 .ToList();
 
-            returnDictionary[ItemLotCategory.ItemLot_Enemy].AddAll<int>(this.GenerateItemSequentialItemLotIds(candidateEnemyBaseLotIds, ItemLotCategory.ItemLot_Enemy));
-            returnDictionary[ItemLotCategory.ItemLot_Map].AddAll<int>(this.GenerateItemSequentialItemLotIds(candidateMapBaseLotIds, ItemLotCategory.ItemLot_Map));
+            var enemyIds = this.GenerateSequentialItemLotIds(candidateEnemyBaseLotIds, ItemLotCategory.ItemLot_Enemy);
+            var mapIds = this.GenerateSequentialItemLotIds(candidateMapBaseLotIds, ItemLotCategory.ItemLot_Map);
+
+            returnDictionary[ItemLotCategory.ItemLot_Enemy].AddAll<int>(enemyIds.Distinct());
+            returnDictionary[ItemLotCategory.ItemLot_Map].AddAll<int>(mapIds.Distinct());
+
+            Log.Logger.Debug($"Found {enemyIds.Count} enemy itemLot Ids and {mapIds.Count} treasure Ids from {Path.GetFileName(mapFile)}");
         }
 
         return returnDictionary;

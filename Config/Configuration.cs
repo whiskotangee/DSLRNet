@@ -24,7 +24,9 @@ public class Settings
 
     public int ItemLotsPerBaseLot { get; set; }
 
-    public int LootPerItemLot { get; set; }
+    public int LootPerItemLot_Enemy { get; set; }
+
+    public int LootPerItemLot_Map { get; set; }
 
     public bool ChaosLootEnabled { get; set; }
 

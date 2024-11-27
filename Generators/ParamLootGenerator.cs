@@ -14,7 +14,7 @@ public enum MEOutput { PARAM, TEXT }
 
 public class ParamLootGenerator(
     RarityHandler rarityHandler,
-    WhiteListHandler whiteListHandler,
+    AllowListHandler whiteListHandler,
     SpEffectHandler spEffectHandler,
     DamageTypeHandler damageTypeHandler,
     LoreGenerator loreGenerator,
@@ -26,7 +26,7 @@ public class ParamLootGenerator(
     public RarityHandler RarityHandler { get; set; } = rarityHandler;
 
     // WHITELIST ID HANDLER - FOR ENEMY SPECIFIC LOOT
-    public WhiteListHandler WhiteListHandler { get; set; } = whiteListHandler;
+    public AllowListHandler WhiteListHandler { get; set; } = whiteListHandler;
 
     public SpEffectHandler SpEffectHandler { get; set; } = spEffectHandler;
 

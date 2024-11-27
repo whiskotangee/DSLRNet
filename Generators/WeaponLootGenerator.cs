@@ -21,7 +21,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         IOptions<WeaponGeneratorConfig> weaponGeneratorConfig,
         AshofWarHandler ashofWarHandler,
         RarityHandler rarityHandler,
-        WhiteListHandler whitelistHandler,
+        AllowListHandler whitelistHandler,
         SpEffectHandler spEffectHandler,
         RandomNumberGetter random,
         LoreGenerator loreGenerator,
@@ -125,7 +125,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         if (uniqueWeapon)
         {
-            string uniqueName = this.LoreGenerator.CreateRandomUniqueName("", generatedType == WeaponTypes.Shields);
+            string uniqueName = this.LoreGenerator.CreateRandomUniqueName(generatedType == WeaponTypes.Shields);
             if (!string.IsNullOrEmpty(uniqueName))
             {
                 weaponFinalTitleColored = $"<font color=\"#ffa3c5\">{uniqueName}</font>";

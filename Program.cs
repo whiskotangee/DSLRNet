@@ -67,7 +67,7 @@ services.AddLogging((builder) =>
 
 services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
         .Configure<WeaponGeneratorConfig>(configuration.GetSection(nameof(WeaponGeneratorConfig)))
-        .Configure<WhiteListConfig>(configuration.GetSection(nameof(WhiteListConfig)))
+        .Configure<AllowListConfig>(configuration.GetSection(nameof(AllowListConfig)))
         .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)))
         .Configure<AshOfWarConfig>(configuration.GetSection(nameof(AshOfWarConfig)));
 
@@ -80,12 +80,11 @@ services.AddSingleton<RandomNumberGetter>((sp) =>
         .AddSingleton<TalismanLootGenerator>()
         .AddSingleton<ItemLotGenerator>()
         .AddSingleton<LoreGenerator>()
-        .AddSingleton<AcquisitionFlagHandler>()
         .AddSingleton<AshofWarHandler>()
         .AddSingleton<DamageTypeHandler>()
         .AddSingleton<RarityHandler>()
         .AddSingleton<SpEffectHandler>()
-        .AddSingleton<WhiteListHandler>()
+        .AddSingleton<AllowListHandler>()
         .AddSingleton<DataRepository>()
         .AddSingleton<DSLRNetBuilder>()
         .AddSingleton<ProcessRunner>();

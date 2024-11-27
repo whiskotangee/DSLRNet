@@ -36,7 +36,7 @@ public class ItemLotGenerator : BaseHandler
         WeaponLootGenerator weaponLootGenerator,
         TalismanLootGenerator talismanLootGenerator,
         RarityHandler rarityHandler,
-        WhiteListHandler whitelistHandler,
+        AllowListHandler whitelistHandler,
         DataRepository dataRepository,
         RandomNumberGetter random,
         IOptions<Configuration> configuration) : base(dataRepository)
@@ -108,7 +108,13 @@ public class ItemLotGenerator : BaseHandler
                     newItemLot.Name = string.Empty;
 
                     bool dropGuaranteed = this.configuration.Settings.AllLootGauranteed || queueEntry.GuaranteedDrop;
-                    int offset = newItemLot.GetIndexOfFirstOpenLotItemId();
+                    if (!dropGuaranteed)
+                    {
+                        newItemLot.lotItemBasePoint01 = 1000;
+                        newItemLot.lotItemId01 = 0;
+                    }
+
+                    int offset = Math.Max(newItemLot.GetIndexOfFirstOpenLotItemId(), dropGuaranteed ? 1 : 2);
 
                     if (offset < 0)
                     {
@@ -419,7 +425,7 @@ public class ItemLotGenerator : BaseHandler
         string itemLotParamName = GetItemLotItemParamName(ILEA.Chance) + "1";
 
         // GET THE SUM OF THE OTHER ITEMLOTS AFTER 1
-        int otherBasePointTotal = GetItemLotChanceSum(itemLot, true);
+        int otherBasePointTotal = GetItemLotChanceSum(itemLot, false);
 
         // REMOVE THAT SUM FROM FINALBASECHANCE, THEN CLAMP FBC TO THE FALLBACK VALUE AT MINIMUM AND BASECHANCE AT MAXIMUM
         // TO STOP US GETTING ANY NEGATIVE CHANCE VALUES

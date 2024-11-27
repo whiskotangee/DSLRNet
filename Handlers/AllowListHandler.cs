@@ -8,12 +8,12 @@ namespace DSLRNet.Config;
 
 public enum LootType { Weapon, Armor, Talisman }
 
-public class WhiteListHandler(
-    IOptions<WhiteListConfig> whitelistConfig, 
+public class AllowListHandler(
+    IOptions<AllowListConfig> allowListConfig, 
     RandomNumberGetter random,
     DataRepository dataRepository) : BaseHandler(dataRepository)
 {
-    private readonly WhiteListConfig whitelistConfig = whitelistConfig.Value;
+    private readonly AllowListConfig whitelistConfig = allowListConfig.Value;
     private readonly RandomNumberGetter random = random;
 
     public int GetLootByWhiteList(List<int> ids, LootType type)

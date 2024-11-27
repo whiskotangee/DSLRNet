@@ -15,7 +15,7 @@ public class TalismanLootGenerator : ParamLootGenerator
     public TalismanLootGenerator(
         IOptions<Configuration> configuration,
         RarityHandler rarityHandler,
-        WhiteListHandler whitelistHandler,
+        AllowListHandler whitelistHandler,
         SpEffectHandler spEffectHandler,
         RandomNumberGetter random,
         LoreGenerator loreGenerator,

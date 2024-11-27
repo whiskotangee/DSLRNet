@@ -12,8 +12,6 @@ public class DamageTypeHandler : BaseHandler
 
     public List<DamageTypeSetup> DamageTypes { get; set; }
 
-    private const int ShieldParamOffset = 6;
-
     private readonly RandomNumberGetter random;
 
     public DamageTypeHandler(IOptions<Configuration> configuration, RandomNumberGetter random, DataRepository dataRepository) : base(dataRepository)
@@ -68,21 +66,6 @@ public class DamageTypeHandler : BaseHandler
         return DamageTypes.Single(d => d.ID == finalDtId);
     }
 
-    public bool DamageTypesAffectSameParam(DamageTypeSetup dt1, DamageTypeSetup dt2)
-    {
-        if (string.IsNullOrEmpty(dt1.Param))
-        {
-            // Console.WriteLine("DT1 DOESN'T HAVE 'PARAM'! RETURNING FALSE!");
-            return false;
-        }
-        if (string.IsNullOrEmpty(dt2.Param))
-        {
-            Log.Logger.Debug("DT2 DOESN'T HAVE 'PARAM'! RETURNING FALSE!");
-            return false;
-        }
-        return dt1.Param.Equals(dt2.Param);
-    }
-
     public void ApplyDamageTypeWeaponSpEffects(DamageTypeSetup dt1, DamageTypeSetup dt2, GenericDictionary weaponDict)
     {
         List<string> speffParam = this.configuration.LootParam.Speffects.EquipParamWeapon;
@@ -134,17 +117,6 @@ public class DamageTypeHandler : BaseHandler
                 }
             }
         }
-    }
-
-    public float GetTotalThrowDamageModifier(DamageTypeSetup dt1, DamageTypeSetup dt2)
-    {
-        if (dt1.CriticalMultAddition < 0 || dt2.CriticalMultAddition < 0)
-        {
-            return 1.0f;
-        }
-
-        float finalThrowDamage = dt1.CriticalMultAddition + dt2.CriticalMultAddition;
-        return (float)MathFunctions.RoundToXDecimalPlaces(1.0f + finalThrowDamage, 2);
     }
 
     public void ApplyWeaponVfxFromDamageTypes(GenericDictionary weapDict, DamageTypeSetup dt1, DamageTypeSetup dt2)

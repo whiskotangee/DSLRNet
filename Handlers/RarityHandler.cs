@@ -25,13 +25,6 @@ public class RarityHandler : BaseHandler
         this.RarityConfigs = Csv.LoadCsv<RaritySetup>("DefaultData\\ER\\CSVs\\RaritySetup.csv").ToDictionary(d => d.ID);
     }
 
-    //RARITY MAINTENANCE FUNCTIONS
-
-    public int ChooseRarityFromIdSetWithBuiltInWeights()
-    {
-        return ChooseRarityFromIdSetWithBuiltInWeights([0, 1, 2], 1.0f);
-    }
-
     public int ChooseRarityFromIdSetWithBuiltInWeights(List<int> idset, float highmult)
     {
         List<int> valididset = [];
@@ -57,19 +50,6 @@ public class RarityHandler : BaseHandler
         //#print_debug("Final selected rarity from ID set: "+str(finalid))
         return finalid;
 
-    }
-
-    public int GetRarityIdInRange(int minrange = -1, int maxrange = -1)
-    {
-        int finalmin = minrange == -1 ? GetLowestRarityId() : minrange;
-
-        int finalmax = maxrange == -1 ? GetHighestRarityId() : maxrange;
-
-        //CATCH FINALMIN BEING MORE THAN FINALMAX
-        finalmin = Math.Clamp(finalmin, GetLowestRarityId(), finalmax);
-
-        int finalresult = this.randomNumberGetter.NextInt(finalmin, finalmax);
-        return GetNearestRarityId(finalresult);
     }
 
     public Queue<bool> GetRarityEffectChanceArray(int desiredCount, int rarityid = 0, bool armortalisman = false, float chancemult = 1.0f)
@@ -99,15 +79,6 @@ public class RarityHandler : BaseHandler
         }
 
         return finalboolarray;
-    }
-
-    public int GetRarityWeaponDamage(int rarityid = 0)
-    {
-        //GET CLOSEST RARITY
-        int finalrarity = GetNearestRarityId(rarityid);
-        int weapondamageresult = this.randomNumberGetter.NextInt(RarityConfigs[rarityid].WeaponDmgAddMin, RarityConfigs[rarityid].WeaponDmgAddMax);
-        return weapondamageresult;
-
     }
 
     public List<int> GetRarityDamageAdditionRange(int rarityid = 0)
@@ -180,37 +151,9 @@ public class RarityHandler : BaseHandler
         return (float)this.randomNumberGetter.NextDouble(range[0], range[1]);
     }
 
-    public List<float> GetRarityGuardcutrateMultRange(int rarityid = 0)
-    {
-        int finalrarity = GetNearestRarityId(rarityid);
-        return [RarityConfigs[finalrarity].ShieldGuardRateMultMin, RarityConfigs[finalrarity].ShieldGuardRateMultMax];
-    }
-
-    public List<int> GetRarityStatRequirementRange(int rarityid = 0)
-    {
-        int finalrarity = GetNearestRarityId(rarityid);
-        return [RarityConfigs[finalrarity].StatReqAddMin, RarityConfigs[finalrarity].StatReqAddMax];
-    }
-
     public int GetRarityParamInt(int rarityid = 0)
     {
         return RarityConfigs[GetNearestRarityId(rarityid)].RarityParamValue;
-    }
-
-    public List<int> GetRaritySpeffectChanceArray(int rarityid = 0)
-    {
-        int finalrarity = GetNearestRarityId(rarityid);
-        //CREATE ARRAY VARIABLE AND ITERATE OVER ALL POSSIBLE SpEffect(x)Chance ENTRIES TO GET FINAL ARRAY VARIABLE
-        List<int> finalarray = [];
-        foreach (int x in Enumerable.Range(0,4))
-        {
-            String spefchance = $"SpEffect{x}Chance";
-            RaritySetup item = RarityConfigs[finalrarity];
-            
-            finalarray.Add((int)item.GetType().GetProperty(spefchance).GetValue(item));
-        }
-
-        return finalarray;
     }
 
     public List<int> GetRaritySpeffectPowerArray(int rarityid = 0)
@@ -218,12 +161,6 @@ public class RarityHandler : BaseHandler
         int finalrarity = GetNearestRarityId(rarityid);
         //NOW WE HAVE A LESS RIGID WAY OF GETTING SPEFFECTS, SLIGHTLY WIDEN THE RANGE 
         return [Math.Clamp(RarityConfigs[finalrarity].SpEffectPowerMin - 10, 0, RarityConfigs[finalrarity].SpEffectPowerMax), RarityConfigs[finalrarity].SpEffectPowerMax];
-    }
-
-    public List<int> getRarityScalingAdditionArray(int rarityid = 0)
-    {
-        int finalrarity = GetNearestRarityId(rarityid);
-        return [RarityConfigs[finalrarity].ScalingMin, RarityConfigs[finalrarity].ScalingMax];
     }
 
     public String GetRarityName(int rarityid = 0)
@@ -245,45 +182,10 @@ public class RarityHandler : BaseHandler
         return $"<font color=\"#{this.RarityConfigs[matchedRarity].ColorHex}\">{name}</font>";
     }
 
-    public int GetRarityDropChance(int rarityid = 0)
-    {
-        int finalrarity = GetNearestRarityId(rarityid);
-        return RarityConfigs[finalrarity].LootDropChance;
-    }
-
     public List<float> GetRarityWeightMultipliers(int rarityid = 0)
     {
         int finalrarity = GetNearestRarityId(rarityid);
         return [RarityConfigs[finalrarity].WeightMultMin, RarityConfigs[finalrarity].WeightMultMax];
-    }
-
-    public float GetRarityMultipliedWeight(int rarityid = 0)
-    {
-        int finalrarity = GetNearestRarityId(rarityid);
-        return (float)this.randomNumberGetter.NextDouble(RarityConfigs[finalrarity].WeightMultMin, RarityConfigs[finalrarity].WeightMultMax);
-    }
-
-    //LOAD RARITY FUNCTIONS
-    public void LoadRarityConfigs()
-    {
-        using StreamReader reader = new StreamReader("DefaultData\\ER\\RaritySetup.csv");
-        using CsvReader csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
-        this.RarityConfigs = csv.GetRecords<RaritySetup>().ToDictionary((k) => k.ID);
-    }
-
-    public (List<int> Rarities, List<float> Weights) GetAllRaritiesAndWeights()
-    {
-        List<int> rarities = [];
-        List<float> weights = [];
-
-        foreach (int x in RarityConfigs.Keys)
-        {
-            rarities.Add(x);
-            weights.Add(this.RarityConfigs[x].SelectionWeight);
-        }
-
-        return (rarities, weights);
     }
 
     public int GetLowestRarityId()

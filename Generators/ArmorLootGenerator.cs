@@ -19,7 +19,7 @@ public class ArmorLootGenerator : ParamLootGenerator
 
     public ArmorLootGenerator(
         RarityHandler rarityHandler,
-        WhiteListHandler whiteListHandler,
+        AllowListHandler whiteListHandler,
         SpEffectHandler spEffectHandler,
         DamageTypeHandler damageTypeHandler,
         LoreGenerator loreGenerator,

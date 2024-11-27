@@ -29,7 +29,7 @@ public class LootIds
     public List<int> Talisman { get; set; } = [];
 }
 
-public class WhiteListConfig
+public class AllowListConfig
 {
     public List<WhiteListConfigItem> Configs { get; set; }
 }

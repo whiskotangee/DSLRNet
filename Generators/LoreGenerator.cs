@@ -24,7 +24,7 @@ public class LoreGenerator(IOptions<LoreConfig> config, RandomNumberGetter rando
             .Replace("{location}", locationName);
     }
 
-    public string CreateRandomUniqueName(string originalName, bool isShield)
+    public string CreateRandomUniqueName(bool isShield)
     {
         return $"{this.random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameFirstWord)} " +
             $"{this.random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameFirstHalf)} " +

@@ -5,7 +5,6 @@ using DSLRNet.Handlers;
 using Microsoft.Extensions.Options;
 using Mods.Common;
 using Serilog;
-using System.Diagnostics;
 
 namespace DSLRNet.Generators;
 
@@ -20,7 +19,8 @@ public class ParamLootGenerator(
     LoreGenerator loreGenerator,
     RandomNumberGetter random,
     IOptions<Configuration> configuration,
-    DataRepository dataRepository) : BaseHandler(dataRepository)
+    DataRepository dataRepository,
+    ParamNames outputParamName) : BaseHandler(dataRepository)
 {
     // RARITY HANDLER - ALL LOOT IS HANDLED BY RARITY
     public RarityHandler RarityHandler { get; set; } = rarityHandler;
@@ -55,7 +55,7 @@ public class ParamLootGenerator(
     // CUSTOMIZABLE OUTPUTLOOTTYPE AND PARAMS NAMED SO WE CAN QUICKLY 
     // PUT TOGETHER THE CORRECT FILENAMES ON THE FLY
 
-    public string OutputParamName = "EquipParamWeapon";
+    public ParamNames OutputParamName = outputParamName;
 
     public Dictionary<LootType, string> OutputLootRealNames = new()
     {
@@ -234,7 +234,7 @@ public class ParamLootGenerator(
 
     public List<string> GetPassiveSpEffectSlotArrayFromOutputParamName()
     {
-        return this.Configuration.LootParam.Speffects.GetType().GetProperty(OutputParamName).GetValue(this.Configuration.LootParam.Speffects) as List<string>;
+        return this.Configuration.LootParam.Speffects.GetType().GetProperty(OutputParamName.ToString()).GetValue(this.Configuration.LootParam.Speffects) as List<string>;
     }
 
     public List<string> GetAvailableSpEffectSlots(GenericDictionary lootDict)

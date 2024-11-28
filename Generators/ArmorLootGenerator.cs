@@ -25,15 +25,14 @@ public class ArmorLootGenerator : ParamLootGenerator
         LoreGenerator loreGenerator,
         RandomNumberGetter random,
         DataRepository dataRepository,
-        IOptions<Configuration> configuration) : base(rarityHandler, whiteListHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository)
+        IOptions<Configuration> configuration) 
+        : base(rarityHandler, whiteListHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector)
     {
         this.CumulativeID = new CumulativeID();
 
         List<EquipParamProtector> armorLoots = Csv.LoadCsv<EquipParamProtector>("DefaultData\\ER\\CSVs\\EquipParamProtector.csv");
 
         this.LoadedLoot = armorLoots.Select(GenericDictionary.FromObject).ToList();
-
-        OutputParamName = "EquipParamProtector";
     }
 
     public enum CutRates

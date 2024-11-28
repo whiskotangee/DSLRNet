@@ -1,7 +1,5 @@
-﻿using DotNext.Collections.Generic;
-using DSLRNet;
+﻿using DSLRNet;
 using DSLRNet.Config;
-using DSLRNet.Contracts;
 using DSLRNet.Data;
 using DSLRNet.Generators;
 using DSLRNet.Handlers;
@@ -10,9 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Mods.Common;
-using Newtonsoft.Json;
 using Serilog;
-using SoulsFormats;
 using System.Diagnostics;
 
 //TODO: dynamically read itemlot_param and don't overwrite existing mapped drops

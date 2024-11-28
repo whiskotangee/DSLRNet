@@ -5,10 +5,7 @@ using DSLRNet.Generators;
 using Microsoft.Extensions.Options;
 using Mods.Common;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Bcpg;
 using Serilog;
-using System;
-using System.Linq;
 
 namespace DSLRNet.Handlers;
 
@@ -36,7 +33,7 @@ public class ItemLotGenerator : BaseHandler
         WeaponLootGenerator weaponLootGenerator,
         TalismanLootGenerator talismanLootGenerator,
         RarityHandler rarityHandler,
-        AllowListHandler whitelistHandler,
+        AllowListHandler allowlistHandler,
         DataRepository dataRepository,
         RandomNumberGetter random,
         IOptions<Configuration> configuration) : base(dataRepository)
@@ -129,7 +126,7 @@ public class ItemLotGenerator : BaseHandler
                     CalculateNoItemChance(newItemLot);                   
 
                     GenericDictionary genericDict = GenericDictionary.FromObject(newItemLot);
-                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName ?? "", newItemLot.ID, [], [], defaultValue: GenericDictionary.FromObject(CreateDefaultItemLotDictionary()));
+                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericDictionary.FromObject(CreateDefaultItemLotDictionary()));
                     this.GeneratedDataRepository.AddParamEdit(queueEntry.ParamName, ParamOperation.Create, itemLotMassEdit, null, genericDict);
                 }
                 else
@@ -139,7 +136,7 @@ public class ItemLotGenerator : BaseHandler
             }
 
             this.GeneratedDataRepository.AddParamEdit(
-                this.configuration.ParamNames.NpcParam,
+                ParamNames.NpcParam,
                 ParamOperation.MassEdit,
                 CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids),
                 null,
@@ -223,7 +220,7 @@ public class ItemLotGenerator : BaseHandler
                     }
 
                     GenericDictionary genericDict = GenericDictionary.FromObject(newItemLot);
-                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName ?? "", newItemLot.ID, [], [], defaultValue: GenericDictionary.FromObject(CreateDefaultItemLotDictionary()));
+                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericDictionary.FromObject(CreateDefaultItemLotDictionary()));
                     this.GeneratedDataRepository.AddParamEdit(queueEntry.ParamName, ParamOperation.Create, itemLotMassEdit, null, genericDict);
                 }
                 else
@@ -233,7 +230,7 @@ public class ItemLotGenerator : BaseHandler
             }
 
             this.GeneratedDataRepository.AddParamEdit(
-                this.configuration.ParamNames.NpcParam,
+                ParamNames.NpcParam,
                 ParamOperation.MassEdit,
                 CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids),
                 null,
@@ -485,7 +482,6 @@ public class ItemLotGenerator : BaseHandler
         }
 
         string finalString = string.Empty;
-        string npcParamName = GetNpcParam();
 
         for (int x = 0; x < npcIds.Count - 1; x++)
         {
@@ -497,17 +493,12 @@ public class ItemLotGenerator : BaseHandler
             for (int y = 0; y < currentIds.Count; y++)
             {
                 int assignedLot = currentItemLots[new Random().Next(0, maxItemLots + 1)];
-                finalString += CreateMassEditLine(npcParamName, currentIds[y], queueEntry.NpcParamCategory, assignedLot.ToString());
+                finalString += CreateMassEditLine(ParamNames.NpcParam, currentIds[y], queueEntry.NpcParamCategory, assignedLot.ToString());
             }
         }
 
         // Log.Logger.Debug(finalString);
         return finalString;
-    }
-
-    private string GetNpcParam()
-    {
-        return this.configuration.ParamNames.NpcParam;
     }
 }
 

@@ -26,7 +26,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         RandomNumberGetter random,
         LoreGenerator loreGenerator,
         DamageTypeHandler damageTypeHandler,
-        DataRepository dataRepository) : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository)
+        DataRepository dataRepository) : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamWeapon)
     {
         this.CumulativeID = new CumulativeID();
         this.weaponGeneratorConfig = weaponGeneratorConfig.Value;

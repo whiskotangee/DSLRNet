@@ -1,7 +1,4 @@
 ﻿namespace DSLRNet.Config;
-
-using Newtonsoft.Json;
-
 public class Configuration
 {
     public Settings Settings { get; set; }

@@ -1,20 +1,12 @@
-﻿using CsvHelper.Configuration;
-using CsvHelper;
-using DSLRNet.Config;
+﻿using DSLRNet.Config;
 using DSLRNet.Contracts;
 using DSLRNet.Data;
-using DSLRNet.Generators;
 using DSLRNet.Handlers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Mods.Common;
 using SoulsFormats;
-using System.Data.SqlTypes;
-using System.Globalization;
-using System.Security.Cryptography;
-using System.Xml.Linq;
 using Newtonsoft.Json;
-using Microsoft.Extensions.Primitives;
 using Serilog;
 using DotNext.Collections.Generic;
 
@@ -66,16 +58,6 @@ public class DSLRNetBuilder(
         var remainingEnemyLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
         remainingEnemyLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Enemy].OrderBy(d => d).ToList();
 
-        // ItemLotGenerator
-        // do enemies
-        // do map finds?
-        // generate itemlots for each type
-        // armor
-        // weapon
-        // talismans
-        // Get/Generator massedit
-        // dsms apply
-
         itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
         itemLotGenerator.CreateItemLots(mapItemLotsSetups);
         itemLotGenerator.CreateItemLots([remainingMapLots]);
@@ -102,7 +84,7 @@ public class DSLRNetBuilder(
         
         List<ParamEdit> generatedData = dataRepository.GetParamEdits(ParamOperation.MassEdit);
 
-        IEnumerable<IGrouping<string, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
+        IEnumerable<IGrouping<ParamNames, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
 
         var massEditFiles = Directory.GetFiles("DefaultData\\ER\\MassEdit\\", "*.massedit")
             .ToList();
@@ -112,7 +94,7 @@ public class DSLRNetBuilder(
             await this.ApplyMassEdit(massEdit, destinationFile);
         }
 
-        foreach (IGrouping<string, ParamEdit> group in groups)
+        foreach (IGrouping<ParamNames, ParamEdit> group in groups)
         {
             File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), group.Select(s => s.MassEditString));
             await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), destinationFile);
@@ -135,9 +117,9 @@ public class DSLRNetBuilder(
         // write csv file with headers, but only for new things, aka none of the 
         List<ParamEdit> edits = repository.GetParamEdits(ParamOperation.Create);
 
-        IEnumerable<string> paramNames = edits.Select(d => d.ParamName).Distinct();
+        IEnumerable<ParamNames> paramNames = edits.Select(d => d.ParamName).Distinct();
 
-        foreach(string? paramName in paramNames)
+        foreach(ParamNames paramName in paramNames)
         {
             // write csv
             string csvFile = Path.Combine(this.configuration.Settings.DeployPath, $"{paramName}.csv");
@@ -264,40 +246,6 @@ public class DSLRNetBuilder(
             Log.Logger.Information($"Finished Processing {Path.GetFileName(sourceFile)}");
 
             return ValueTask.CompletedTask;
-
-
-            /*
-            string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
-            Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus"));
-
-            File.Copy(gameMsgFile, destinationFile, true);
-
-            // Note 07/05/23 - We need to split this up into separate calls!! CMD calls can be 8191 characters at most, let's have
-            // it so that we have a "currentLine" we'll keep adding to until strArray[x].Length + currentLine.Length is over 7600 (to give us some leeway), then split things off into 
-            // a new call
-            string currentLine = "";
-            int maxInt = 0;
-            for (int x = 0; x < strArray.Count; x++)
-            {
-                maxInt = x;
-                if (currentLine.Length + strArray[x].Length > splitThreshold)
-                {
-                    await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
-                    {
-                        ExePath = this.configuration.Settings.DSMSPortablePath,
-                        Arguments = $"--fmgentry \"{destinationFile}\" {currentLine}"
-                    });
-                    currentLine = "";
-                }
-
-                currentLine += strArray[x];
-                // Add a space after this if we're not dealing with the last entry in the array
-                if (x != strArray.Count - 1)
-                {
-                    currentLine += " ";
-                }
-            }
-            */
         });
     }
 

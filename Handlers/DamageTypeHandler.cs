@@ -1,8 +1,8 @@
 ﻿using DSLRNet.Config;
+using DSLRNet.Contracts;
 using DSLRNet.Data;
 using Microsoft.Extensions.Options;
 using Mods.Common;
-using Serilog;
 
 namespace DSLRNet.Handlers;
 
@@ -26,7 +26,7 @@ public class DamageTypeHandler : BaseHandler
             .ForEach(d =>
             {
                 this.GeneratedDataRepository.AddParamEdit(
-                    "WeaponEffectText",
+                    ParamNames.TextOnly,
                     ParamOperation.TextOnly,
                     string.Empty,
                     new LootFMG()

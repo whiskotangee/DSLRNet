@@ -1,18 +1,11 @@
 ﻿using DSLRNet.Config;
+using DSLRNet.Contracts;
 using IniParser;
 using Newtonsoft.Json;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 
 namespace DSLRNet.Data;
 
 public enum GameStage { Early, Mid, Late, End }
-
-public class ItemLotIdCollection
-{
-    public GameStage Stage { get; set; }
-    public List<int> Ids { get; set; }
-}
 
 public class GameStageConfig
 {
@@ -66,7 +59,7 @@ public class ItemLotQueueEntry
 
         obj.BlackListIds = File.Exists($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt") ? File.ReadAllLines($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt").Where(d => !string.IsNullOrWhiteSpace(d)).Select(long.Parse).ToList() : [];
         obj.Category = category.ParamCategory.Equals("ItemLotParam_Map", StringComparison.OrdinalIgnoreCase) ? ItemLotCategory.ItemLot_Map : ItemLotCategory.ItemLot_Enemy;
-        obj.ParamName = category.ParamCategory;
+        obj.ParamName = Enum.Parse<ParamNames>(category.ParamCategory, true);
         obj.NpcParamCategory = category.NpcParamCategory;
 
         return obj;
@@ -81,7 +74,7 @@ public class ItemLotQueueEntry
 
     public ItemLotCategory Category { get; set; }
 
-    public string ParamName { get; set; }
+    public ParamNames ParamName { get; set; }
 
     public string NpcParamCategory { get; set; }
 
@@ -105,6 +98,7 @@ public enum ItemLotCategory
     ItemLot_Map,
     ItemLot_Enemy
 }
+
 class DslItemLotSetup
 {
     public static DslItemLotSetup Create(string file)

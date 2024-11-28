@@ -8,7 +8,6 @@ using Microsoft.Extensions.Options;
 using Mods.Common;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 
 public class TalismanLootGenerator : ParamLootGenerator
 {
@@ -21,7 +20,7 @@ public class TalismanLootGenerator : ParamLootGenerator
         LoreGenerator loreGenerator,
         DamageTypeHandler damageTypeHandler,
         DataRepository dataRepository)
-        : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository)
+        : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory)
     {
         this.CumulativeID = new CumulativeID() { IDMultiplier = 10 };
 
@@ -30,8 +29,6 @@ public class TalismanLootGenerator : ParamLootGenerator
         var accessoriesLoot = Csv.LoadCsv<EquipParamAccessory>("DefaultData\\ER\\CSVs\\EquipParamAccessory.csv");
 
         this.LoadedLoot = accessoriesLoot.Select(GenericDictionary.FromObject).ToList();
-
-        OutputParamName = "EquipParamAccessory";
     }
 
     public int CreateTalisman(int rarityId = 0, List<int> wllIds = null)

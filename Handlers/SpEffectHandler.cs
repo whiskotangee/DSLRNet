@@ -3,8 +3,6 @@ using DSLRNet.Contracts;
 using DSLRNet.Data;
 using Microsoft.Extensions.Options;
 using Mods.Common;
-using Serilog;
-using System.Reflection.Metadata.Ecma335;
 
 namespace DSLRNet.Handlers;
 
@@ -41,11 +39,11 @@ public class SpEffectHandler : BaseHandler
         foreach (GenericDictionary? spEffectParam in loadedSpEffectParams)
         {
             this.GeneratedDataRepository.AddParamEdit(
-                "SpEffectParam", 
+                ParamNames.SpEffectParam, 
                 ParamOperation.MassEdit, 
                 this.CreateMassEditParamFromParamDictionary(
                     spEffectParam,
-                    "SpEffectParam",
+                    ParamNames.SpEffectParam,
                     spEffectParam.GetValue<int>("ID"),
                     [],
                     ["0", "-1"],

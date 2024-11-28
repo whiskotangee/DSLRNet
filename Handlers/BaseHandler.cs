@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Handlers;
 
+using DSLRNet.Contracts;
 using DSLRNet.Data;
 
 public class BaseHandler(DataRepository generatedDataRepository)
@@ -19,12 +20,12 @@ public class BaseHandler(DataRepository generatedDataRepository)
         };
     }
 
-    public static string CreateMassEditLine(string paramName = "EquipParamWeapon", int id = 0, string propName = "Name", string value = "DSLR", string newLine = "\n")
+    public static string CreateMassEditLine(ParamNames paramName, int id = 0, string propName = "Name", string value = "DSLR", string newLine = "\n")
     {
         return $"param {paramName}: id {id}: {propName}: = {value};{newLine}";
     }
 
-    public string CreateMassEditParamFromParamDictionary(GenericDictionary dict, string paramName = "EquipParamWeapon", int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null, GenericDictionary? defaultValue = null)
+    public string CreateMassEditParamFromParamDictionary(GenericDictionary dict, ParamNames paramName, int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null, GenericDictionary? defaultValue = null)
     {
         string finalMassEdit = "";
         List<string> banned = ["[", "]", "|"];

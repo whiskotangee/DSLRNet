@@ -277,31 +277,6 @@ public class DSLRNetBuilder(
         else
         {
             return baseLotIds;
-            //finalArray = this.itemLotParam_Enemy
-            //    .Where(d => baseLotIds.Contains(d.ID))
-            //    .Select(d => d.ID)
-            //    .ToList();
-
-            //allTakenIds = this.itemLotParam_Enemy.Select(s => s.ID).ToList();
-
-            //// List to store the result
-            //List<int> result = [];
-
-            //// Iterate over each original ID
-            //foreach (var id in finalArray)
-            //{
-            //    for (int i = 1; i <= this.configuration.Settings.ItemLotsPerBaseLot; i++)
-            //    {
-            //        int newId = id + i;
-            //        if (newId % 10 != 0 &&
-            //            !allTakenIds.Contains(newId) &&
-            //            !finalArray.Contains(newId))
-            //        {
-            //            result.Add(newId);
-            //        }
-            //    }
-            //}
-            //return baseLotIds.Union(result).ToList();
         }
     }
 

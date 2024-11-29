@@ -24,6 +24,14 @@ public class DSLRNetBuilder(
 
     public async Task BuildAndApply()
     {
+        // ensure oo2core file is there
+        var existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
+        if (existingFile == null)
+        {
+            var oo2GameCore = Directory.GetFiles(this.configuration.Settings.GamePath, "oo2core*dll").FirstOrDefault();
+            File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
+        }
+
         Directory.CreateDirectory(configuration.Settings.DeployPath);
 
         itemLotParam_Enemy = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_enemy.csv");

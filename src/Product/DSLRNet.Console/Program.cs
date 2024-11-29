@@ -36,7 +36,7 @@ Stopwatch overallTimer = Stopwatch.StartNew();
 
 ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
 
-string[] jsonFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "appsettings.Default.*.json");
+string[] jsonFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "appsettings.Default*.json");
 
 // Add each JSON file to the configuration builder
 foreach (string jsonFile in jsonFiles)

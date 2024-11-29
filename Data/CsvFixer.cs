@@ -3,6 +3,7 @@ using CsvHelper;
 using Newtonsoft.Json;
 using System.Globalization;
 using Serilog;
+using DSLRNet.Data.Generated;
 
 namespace DSLRNet.Data;
 
@@ -59,7 +60,7 @@ public partial class {Path.GetFileNameWithoutExtension(csvFilePath)}
     {string.Join(Environment.NewLine + "    ", properties)}
 }}";
 
-        string path = $"{Path.Combine("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\Data", Path.GetFileNameWithoutExtension(csvFilePath))}.cs";
+        string path = $"{Path.Combine("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\Data\\Generated", Path.GetFileNameWithoutExtension(csvFilePath))}.cs";
 
         File.WriteAllText(path, classDefinition);
 

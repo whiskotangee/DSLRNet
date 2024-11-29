@@ -1,6 +1,7 @@
 ﻿using DSLRNet.Config;
 using DSLRNet.Contracts;
 using DSLRNet.Data;
+using DSLRNet.Data.Generated;
 using DSLRNet.Generators;
 using Microsoft.Extensions.Options;
 using Mods.Common;
@@ -75,7 +76,7 @@ public class ItemLotGenerator : BaseHandler
 
     public void CreateItemLotForOthers(ItemLotQueueEntry queueEntry)
     {
-        List<int> itemLotIds = GetAllItemLotIdsFromAllTiers(queueEntry);
+        List<int> itemLotIds = queueEntry.GetAllItemLotIdsFromAllTiers();
 
         if (itemLotIds.Count > 0)
         {
@@ -146,7 +147,7 @@ public class ItemLotGenerator : BaseHandler
 
     public void CreateItemLotForMap(ItemLotQueueEntry queueEntry)
     {
-        List<int> baseItemLotIds = GetAllItemLotIdsFromAllTiers(queueEntry);
+        List<int> baseItemLotIds = queueEntry.GetAllItemLotIdsFromAllTiers();
 
         // take itemLotId and if it already exists find first empty itemLot
         if (baseItemLotIds.Count > 0)
@@ -322,23 +323,6 @@ public class ItemLotGenerator : BaseHandler
         return Math.Clamp(this.configuration.Settings.GlobalDropChance + (Math.Max(0, 6 - this.configuration.Settings.LootPerItemLot_Enemy) * 9), 0, 1000);
     }
 
-    public List<int> GetAllItemLotIdsFromAllTiers(ItemLotQueueEntry itemLotEntry)
-    {
-        return Enum.GetValues(typeof(GameStage))
-            .Cast<GameStage>()
-            .SelectMany(tier => itemLotEntry.GameStageConfigs
-                .Where(d => d.Stage == tier && d.ItemLotIds.Count > 0)
-                .SelectMany(s => s.ItemLotIds))
-            .Distinct()
-            .OrderBy(id => id)
-            .ToList();
-    }
-
-    public GameStageConfig GetItemLotIdTier(ItemLotQueueEntry queueEntry, int itemLotId = 0)
-    {
-        return queueEntry.GameStageConfigs.FirstOrDefault(d => d.ItemLotIds.Contains(itemLotId)) ?? queueEntry.GameStageConfigs.First();
-    }
-
     public List<int> GetItemLotIdTierAllowedRarities(ItemLotQueueEntry queueEntry, int itemLotId = 0)
     {
         // IF RARITYCHAOS RETURN ALL AVAILABLE RARITIES
@@ -347,8 +331,7 @@ public class ItemLotGenerator : BaseHandler
             return this.rarityHandler.GetRaritiesWithinRange(this.random.NextInt(1, 11), 0);
         }
 
-        // FIRST, WE NEED TO FIND WHICH TIER THE ITEMLOT WE'RE DEALING WITH IS IN
-        GameStageConfig tier = GetItemLotIdTier(queueEntry, itemLotId);
+        GameStageConfig tier = queueEntry.GetItemLotIdTier(itemLotId);
 
         // OTHERWISE ASSUME IT'S TWO IN THE FORMAT ABOVE
         return this.rarityHandler.GetRaritiesWithinRange(tier.AllowedRarities.Min(), tier.AllowedRarities.Max());

@@ -2,6 +2,7 @@
 
 using DSLRNet.Config;
 using DSLRNet.Data;
+using DSLRNet.Data.Generated;
 using Microsoft.Extensions.Options;
 using Mods.Common;
 using Serilog;

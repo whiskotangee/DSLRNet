@@ -1,6 +1,7 @@
 ﻿using DSLRNet.Config;
 using DSLRNet.Contracts;
 using DSLRNet.Data;
+using DSLRNet.Data.Generated;
 using Microsoft.Extensions.Options;
 using Mods.Common;
 

@@ -3,6 +3,7 @@
 using DSLRNet.Config;
 using DSLRNet.Contracts;
 using DSLRNet.Data;
+using DSLRNet.Data.Generated;
 using DSLRNet.Handlers;
 using Microsoft.Extensions.Options;
 using Mods.Common;
@@ -54,9 +55,11 @@ public class TalismanLootGenerator : ParamLootGenerator
         }
 
         //// GET OUR TALISMAN'S CONFIG
-        TalismanConfig newTalismanConfig = GetRandomTalismanConfig();
+        TalismanConfig newTalismanConfig = this.Random.GetRandomItem(this.TalismanConfigs);
 
-        this.ApplySetTalismanConfigSpEffect(newTalismanConfig, newTalisman);
+        var availableSlot = this.GetAvailableSpEffectSlots(newTalisman).First();
+
+        newTalisman.SetValue<int>(availableSlot, newTalismanConfig.RefSpEffect);
 
         List<SpEffectText> spEffs =
         [
@@ -112,13 +115,6 @@ public class TalismanLootGenerator : ParamLootGenerator
         return newTalisman.GetValue<int>("ID");
     }
 
-    private void ApplySetTalismanConfigSpEffect(TalismanConfig talismanConfig, GenericDictionary talisman)
-    {
-        var availableSlot = this.GetAvailableSpEffectSlots(talisman).First();
-
-        talisman.SetValue<int>(availableSlot, talismanConfig.RefSpEffect);
-    }
-
     private int GetAvailableSpeffectSlotCount(GenericDictionary newTalisman)
     {
         List<string> parms = this.GetPassiveSpEffectSlotArrayFromOutputParamName();
@@ -150,11 +146,6 @@ public class TalismanLootGenerator : ParamLootGenerator
         }
 
         return talisConfig.NoStackingGroupID <= 0;
-    }
-
-    public TalismanConfig GetRandomTalismanConfig()
-    {
-        return this.Random.GetRandomItem<TalismanConfig>(this.TalismanConfigs);
     }
 
     public string GetTalismanConfigEffectDescription(TalismanConfig config)

@@ -9,6 +9,7 @@ using SoulsFormats;
 using Newtonsoft.Json;
 using Serilog;
 using DotNext.Collections.Generic;
+using DSLRNet.Data.Generated;
 
 namespace DSLRNet;
 

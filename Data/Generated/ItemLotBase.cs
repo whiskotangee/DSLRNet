@@ -1,5 +1,5 @@
 
-namespace DSLRNet.Data;
+namespace DSLRNet.Data.Generated;
 
 public partial class ItemLotBase
 {

@@ -55,7 +55,7 @@ public class ParamLootGenerator(
     // CUSTOMIZABLE OUTPUTLOOTTYPE AND PARAMS NAMED SO WE CAN QUICKLY 
     // PUT TOGETHER THE CORRECT FILENAMES ON THE FLY
 
-    public ParamNames OutputParamName = outputParamName;
+    public ParamNames OutputParamName { get; } = outputParamName;
 
     public Dictionary<LootType, string> OutputLootRealNames = new()
     {

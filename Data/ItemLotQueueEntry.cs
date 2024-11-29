@@ -70,6 +70,23 @@ public class ItemLotQueueEntry
 
     }
 
+    public List<int> GetAllItemLotIdsFromAllTiers()
+    {
+        return Enum.GetValues(typeof(GameStage))
+            .Cast<GameStage>()
+            .SelectMany(tier => this.GameStageConfigs
+                .Where(d => d.Stage == tier && d.ItemLotIds.Count > 0)
+                .SelectMany(s => s.ItemLotIds))
+            .Distinct()
+            .OrderBy(id => id)
+            .ToList();
+    }
+
+    public GameStageConfig GetItemLotIdTier(int itemLotId = 0)
+    {
+        return this.GameStageConfigs.FirstOrDefault(d => d.ItemLotIds.Contains(itemLotId)) ?? this.GameStageConfigs.First();
+    }
+
     public List<long> BlackListIds { get; set; }
 
     public ItemLotCategory Category { get; set; }

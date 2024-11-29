@@ -1,0 +1,720 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.Default.AllowedConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Default.AshOfWarHandler.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Default.BlockList.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Default.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Default.LoreConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Default.WeaponConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\DamageTypeSetup.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\EquipParamAccessory.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\EquipParamGem.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\EquipParamProtector.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\EquipParamWeapon.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\ItemLotBase.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\LatestParams\EquipParamAccessory.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\LatestParams\EquipParamProtector.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\LatestParams\EquipParamWeapon.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\LatestParams\EquipParamWeapon_DLC.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\LatestParams\ItemLotParam_enemy.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\LatestParams\ItemLotParam_map.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\LatestParams\NpcParam.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\LatestParams\SpEffectParam.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\NpcParam.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\RaritySetup.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\SpEffectConfig_Default.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\SpEffectParam.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\SpEffectParam_ERR_Pre_SOTE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\CSVs\TalismanConfig.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ActionButtonText_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ActionButtonText_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\BloodMsg.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\BloodMsg_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\BloodMsg_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionArmor.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionArmor_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionArmor_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionGem.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionGem_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionGem_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionGoods.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionGoods_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionGoods_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionRings.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionRings_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionRings_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionSpells.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionSpells_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionSpells_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionWeapons.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionWeapons_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\DescriptionWeapons_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ERUnk45.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ERUnk45_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ERUnk45_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\EventTextForMap.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\EventTextForMap_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\EventTextForMap_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\EventTextForTalk.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\EventTextForTalk_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\EventTextForTalk_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\GoodsDialog.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\GoodsDialog_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\GoodsInfo2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\GoodsInfo2_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\GoodsInfo2_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\LoadingText_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\LoadingText_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\LoadingTitle_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\LoadingTitle_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_Dialogues.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_Dialogues_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_Dialogues_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_KeyGuide.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_KeyGuide_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_KeyGuide_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_LineHelp.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_LineHelp_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_LineHelp_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_MenuText.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_MenuText_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_MenuText_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_SystemMessage_win64.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_SystemMessage_win64_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\Modern_SystemMessage_win64_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\MovieSubtitle.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\MovieSubtitle_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\MovieSubtitle_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\NetworkMessage.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\NetworkMessage_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\NetworkMessage_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ReusedFMG_205.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ReusedFMG_206.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ReusedFMG_210.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ReusedFMG_32.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ReusedFMG_35.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ReusedFMG_36.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ReusedFMG_41.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\ReusedFMG_42.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryArmor.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryArmor_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryArmor_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryGem_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryGem_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryGoods.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryGoods_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryGoods_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryRings.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryRings_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryRings_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummarySpells.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummarySpells_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummarySpells_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummarySwordArts.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummarySwordArts_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummarySwordArts_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryWeapons.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryWeapons_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\SummaryWeapons_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TalkMsg.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TalkMsg_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TalkMsg_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TextEmbedImageName_win64.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleArmor.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleArmor_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleArmor_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleCharacters.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleCharacters_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleCharacters_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleGem_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleGem_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleGoods.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleGoods_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleGoods_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleLocations.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleLocations_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleLocations_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleRings.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleRings_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleRings_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleSpells.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleSpells_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleSpells_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleSwordArts_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleSwordArts_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleWeapons.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleWeapons_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TitleWeapons_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TutorialBody.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TutorialBody_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TutorialBody_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TutorialTitle.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TutorialTitle_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\TutorialTitle_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\WeaponEffect.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\WeaponEffect_SOTE.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\FMGBase\WeaponEffect_SOTE_DLC2.fmgmerge.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\iconmappings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Default_Enemy.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Default_Map.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\banishedknights.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\caelid_dogscrows.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\castleexiles.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\crabsandlobstersdropanything.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\crucibleknights.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\dogsdroparmor.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\godrick_soldiers_and_knights.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\highwaymen.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\imps.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\ItemlotIDBlacklist.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\kaidans.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\kindredofrot.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\manserpents.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\misbegotten.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\runebears.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\skeletons.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_all_golems.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_bloodfiends.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_commoners.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_dogs.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_fingers.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_furnace_golems.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_gravebirds.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_horned_warriors.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_jar_innards.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_messmer_foot_soldiers_and_shadow_soldiers.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_reused_lesser.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\sote_scorpions.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Enemies\treesentinels_field.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\altusplateau.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\caelid.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\caelid_mountaintops_commander.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\castlemorne_armor.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\caverewardsgeneral.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\cookbookdrops.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\dragon_heart_drops.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\dungeonrewardsgeneral.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\goldenrunes_generic.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\ItemlotIDBlacklist.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\landofreeds_mapstory.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\leyndell.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\limgrave.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\limgrave_beastmanboss_farumazula_beasts.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\limgrave_bloodhoundknight.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\liurnia.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\map_armor.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\map_talismans.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\map_weapons.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\naturedrops_followers_mistwood.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\rangedweapons.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_astel.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_eldenbeast.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_firegiant.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_godrick.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_hoarahloux.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_lichfortisaxx.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_malenia.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_maliketh.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_mohg.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_morgott.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_placidusax.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_radahn.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_regalancestor.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_rennala.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\remembrance_rykard.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\starting_equipment.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\treesentinel_draconic_mapdrops.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\treesentinel_mapdrops.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\ItemLots\Map\weepingpeninsula.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\MassEdit\SpEffect_NewDamageTypes.massedit">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\MassEdit\WeaponVFX.massedit">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\npcmappings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DefaultData\ER\QuickStart\QuickStart.massedit">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.0.1" />
+    <PackageReference Include="ini-parser" Version="2.5.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Polly" Version="8.5.0" />
+    <PackageReference Include="Serilog" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SoulsFormatsNEXT\SoulsFormats\SoulsFormats.csproj" />
+  </ItemGroup>
+
+</Project>

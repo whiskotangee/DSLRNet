@@ -1,26 +1,29 @@
-﻿using Newtonsoft.Json;
-using System.Reflection;
+﻿using System.Reflection;
 
-namespace DSLRNet.Core;
+namespace DSLRNet.Core.Common;
 
-public class GenericDictionary : ICloneable
+public class GenericParam : ICloneable
 {
-    public static GenericDictionary FromObject(object obj)
+    public static GenericParam FromObject(object obj)
     {
-        Dictionary<string, object> dictionary = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+        Dictionary<string, object?> dictionary = new(StringComparer.OrdinalIgnoreCase);
 
         foreach (PropertyInfo property in obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
         {
             dictionary[property.Name] = property.GetValue(obj, null);
         }
 
-        return new GenericDictionary()
+        return new GenericParam()
         {
             Properties = dictionary
         };
     }
 
     public Dictionary<string, object?> Properties { get; set; } = [];
+
+    public int ID { get => this.GetValue<int>("ID"); set => this.SetValue("ID", value); }
+
+    public string Name { get => this.GetValue<string>("Name"); set => this.SetValue("Name", value); }
 
     public T GetValue<T>(string name)
     {
@@ -52,9 +55,9 @@ public class GenericDictionary : ICloneable
 
     public object Clone()
     {
-        GenericDictionary newDictionary = new GenericDictionary();
+        GenericParam newDictionary = new();
 
-        Dictionary<string, object?> clonedDictionary = new Dictionary<string, object?>(StringComparer.OrdinalIgnoreCase);
+        Dictionary<string, object?> clonedDictionary = new(StringComparer.OrdinalIgnoreCase);
 
         foreach (KeyValuePair<string, object?> keyValue in Properties)
         {

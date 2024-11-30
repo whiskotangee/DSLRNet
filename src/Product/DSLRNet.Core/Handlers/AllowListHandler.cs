@@ -1,9 +1,4 @@
-﻿using DSLRNet.Core.Common;
-using DSLRNet.Core.Config;
-using DSLRNet.Core.Data;
-using Microsoft.Extensions.Options;
-
-namespace DSLRNet.Core.Handlers;
+﻿namespace DSLRNet.Core.Handlers;
 
 public enum LootType { Weapon, Armor, Talisman }
 

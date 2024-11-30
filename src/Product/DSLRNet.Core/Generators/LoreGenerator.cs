@@ -1,8 +1,4 @@
-﻿using DSLRNet.Core.Common;
-using DSLRNet.Core.Config;
-using Microsoft.Extensions.Options;
-
-namespace DSLRNet.Core.Generators;
+﻿namespace DSLRNet.Core.Generators;
 
 public class LoreGenerator(IOptions<LoreConfig> config, RandomNumberGetter random)
 {

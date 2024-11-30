@@ -1,6 +1,4 @@
-﻿using DSLRNet.Core.Config;
-using DSLRNet.Core.Contracts;
-using IniParser;
+﻿using IniParser;
 
 namespace DSLRNet.Core.Data;
 

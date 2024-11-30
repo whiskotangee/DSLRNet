@@ -1,11 +1,4 @@
-﻿using DSLRNet.Core.Common;
-using DSLRNet.Core.Config;
-using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Contracts.Params;
-using DSLRNet.Core.Data;
-using Microsoft.Extensions.Options;
-
-namespace DSLRNet.Core.Handlers;
+﻿namespace DSLRNet.Core.Handlers;
 
 public class SpEffectHandler : BaseHandler
 {
@@ -24,11 +17,11 @@ public class SpEffectHandler : BaseHandler
 
         LoadedSpEffectConfigs = Csv.LoadCsv<SpEffectConfig_Default>("DefaultData\\ER\\CSVs\\SpEffectConfig_Default.csv");
 
-        List<GenericDictionary> loadedSpEffectParams = Csv.LoadCsv<SpEffectParam>("DefaultData\\ER\\CSVs\\SpEffectParam.csv")
-            .Select(GenericDictionary.FromObject)
+        List<GenericParam> loadedSpEffectParams = Csv.LoadCsv<SpEffectParam>("DefaultData\\ER\\CSVs\\SpEffectParam.csv")
+            .Select(GenericParam.FromObject)
             .ToList();
 
-        foreach (GenericDictionary? spEffectParam in loadedSpEffectParams)
+        foreach (GenericParam? spEffectParam in loadedSpEffectParams)
         {
             GeneratedDataRepository.AddParamEdit(
                 ParamNames.SpEffectParam,
@@ -36,7 +29,7 @@ public class SpEffectHandler : BaseHandler
                 CreateMassEditParamFromParamDictionary(
                     spEffectParam,
                     ParamNames.SpEffectParam,
-                    spEffectParam.GetValue<int>("ID"),
+                    spEffectParam.ID,
                     [],
                     ["0", "-1"],
                     ["conditionHp", "effectEndurance", "conditionHpRate"]),
@@ -108,7 +101,7 @@ public class SpEffectHandler : BaseHandler
         return effecttext + returnstring + stacking;
     }
 
-    public List<int> GetPossibleWeaponSpeffectTypes(GenericDictionary weapdict, bool allowstandardspeffects = true)
+    public List<int> GetPossibleWeaponSpeffectTypes(GenericParam weapdict, bool allowstandardspeffects = true)
     {
         List<int> speffecttypes = [];
         WeaponsCanCastParamConfig weaponsCanCastConfig = configuration.LootParam.WeaponsCanCastParam;

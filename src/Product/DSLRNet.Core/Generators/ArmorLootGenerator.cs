@@ -16,7 +16,7 @@ public class ArmorLootGenerator : ParamLootGenerator
 
         List<EquipParamProtector> armorLoots = Csv.LoadCsv<EquipParamProtector>("DefaultData\\ER\\CSVs\\EquipParamProtector.csv");
 
-        LoadedLoot = armorLoots.Select(GenericDictionary.FromObject).ToList();
+        LoadedLoot = armorLoots.Select(GenericParam.FromObject).ToList();
     }
 
     public enum CutRates
@@ -33,7 +33,7 @@ public class ArmorLootGenerator : ParamLootGenerator
 
     public int CreateArmor(int rarityId, List<int> wllIds)
     {
-        GenericDictionary newArmor = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
+        GenericParam newArmor = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
 
         string armorStatDesc = "";
 
@@ -54,17 +54,17 @@ public class ArmorLootGenerator : ParamLootGenerator
         newArmor.SetValue("iconIdM", RarityHandler.GetIconIdForRarity(newArmor.GetValue<int>("iconIdM"), rarityId));
         newArmor.SetValue("iconIdF", RarityHandler.GetIconIdForRarity(newArmor.GetValue<int>("iconIdF"), rarityId));
 
-        string originalName = newArmor.GetValue<string>("Name");
+        string originalName = newArmor.Name;
         string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs, true, false);
 
-        //newArmor.SetValue("Name", finalTitle);
+        //newArmor.Name = finalTitle;
 
         ExportLootGenParamAndTextToOutputs(newArmor, LootType.Armor, finalTitle, CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc + GetParamLootLore(finalTitle, true)));
 
-        return newArmor.GetValue<int>("ID");
+        return newArmor.ID;
     }
 
-    public string ApplyCutRateAdditionsFromRarity(int rarityId, GenericDictionary outputDictionary)
+    public string ApplyCutRateAdditionsFromRarity(int rarityId, GenericParam outputDictionary)
     {
         string descriptionString = "";
 
@@ -97,7 +97,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         return descriptionString;
     }
 
-    public void ApplyArmorResistanceAdditions(GenericDictionary newArmor, int rarity)
+    public void ApplyArmorResistanceAdditions(GenericParam newArmor, int rarity)
     {
         List<string> resistances = Configuration.LootParam.ArmorResistParams;
 
@@ -108,7 +108,7 @@ public class ArmorLootGenerator : ParamLootGenerator
                 if (newArmor.ContainsKey(param))
                 {
                     int oldValue = newArmor.GetValue<int>(param);
-                    newArmor.SetValue(param, (int)(oldValue * RarityHandler.GetRarityArmorresistmultMultiplier(rarity)));
+                    newArmor.SetValue(param, (int)(oldValue * RarityHandler.GetRarityArmorResistMultiplier(rarity)));
                 }
             }
         }

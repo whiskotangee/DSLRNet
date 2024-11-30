@@ -24,7 +24,7 @@ public class ParamLootGenerator(
 
     public CumulativeID CumulativeID { get; set; }
 
-    public List<GenericDictionary> LoadedLoot { get; set; } = [];
+    public List<GenericParam> LoadedLoot { get; set; } = [];
 
     private List<int> PriorityIDs_Current { get; set; } = [];
 
@@ -39,28 +39,22 @@ public class ParamLootGenerator(
         { LootType.Talisman, "Accessory" }
     };
 
-    public void ExportLootGenParamAndTextToOutputs(GenericDictionary massEditDict, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null)
+    public void ExportLootGenParamAndTextToOutputs(GenericParam massEditDict, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null)
     {
-        string finalMassEditOutput = CreateMassEditParamFromParamDictionary(massEditDict, OutputParamName, massEditDict.ContainsKey("ID") ? massEditDict.GetValue<int>("ID") : 0, extraFilters, extraBannedValues, ParamMandatoryKeys);
+        string finalMassEditOutput = CreateMassEditParamFromParamDictionary(massEditDict, OutputParamName, massEditDict.ID, extraFilters, extraBannedValues, ParamMandatoryKeys);
 
         GeneratedDataRepository.AddParamEdit(
             OutputParamName,
             ParamOperation.Create,
             finalMassEditOutput,
-            CreateFmgLootEntrySet(OutputLootRealNames[lootType], massEditDict.GetValue<int>("ID"), title, description, summary),
+            CreateFmgLootEntrySet(OutputLootRealNames[lootType], massEditDict.ID, title, description, summary),
             massEditDict);
-    }
-
-    public void ApplyNextId(GenericDictionary outputDictionary)
-    {
-        var id = CumulativeID.GetNext();
-        outputDictionary.SetValue("ID", id);
     }
 
     public IEnumerable<SpEffectText> ApplySpEffects(
         int rarityId,
         List<int> allowedSpefTypes,
-        GenericDictionary outputDictionary,
+        GenericParam outputDictionary,
         float spefChanceMult = 1.0f,
         bool armorTalisman = false,
         int spefNumOverride = -1,
@@ -71,17 +65,12 @@ public class ParamLootGenerator(
         List<string> speffectParam = !overwriteExistingSpEffects ? GetAvailableSpEffectSlots(outputDictionary) : GetPassiveSpEffectSlotArrayFromOutputParamName();
         if (speffectParam.Count == 0)
         {
-            Log.Logger.Warning($"{outputDictionary.GetValue<int>("ID")} HAS NO AVAILABLE SPEFFECT SLOTS APPARENTLY! RETURNING EMPTY DICTIONARY");
+            Log.Logger.Warning($"{outputDictionary.ID} has no available spEffect slots, not applying any");
             return [];
         }
 
         int finalNumber = spefNumOverride < 0 && spefNumOverride <= speffectParam.Count ? speffectParam.Count : spefNumOverride;
         List<SpEffectText> speffectsToApply = SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, armorTalisman, spefChanceMult);
-
-        if (armorTalisman)
-        {
-            // Additional logic for armorTalisman if needed
-        }
 
         if (speffectsToApply.Count != 0)
         {
@@ -115,11 +104,11 @@ public class ParamLootGenerator(
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)).Distinct());
     }
 
-    public GenericDictionary GetLootDictionaryFromId(int baseId = -1)
+    public GenericParam GetLootDictionaryFromId(int baseId = -1)
     {
         if (Configuration.Settings.ChaosLootEnabled)
         {
-            return ChooseLootDictionaryAtRandom().Clone() as GenericDictionary;
+            return ChooseLootDictionaryAtRandom().Clone() as GenericParam;
         }
 
         if (baseId == -1 && PriorityIDs_Current.Count > 0)
@@ -127,13 +116,13 @@ public class ParamLootGenerator(
             baseId = ChoosePriorityIdAtRandom();
         }
 
-        return LoadedLoot.First(d => d.GetValue<int>("ID") == baseId).Clone() as GenericDictionary;
+        return LoadedLoot.First(d => d.ID == baseId).Clone() as GenericParam;
     }
 
-    public GenericDictionary ChooseLootDictionaryAtRandom()
+    public GenericParam ChooseLootDictionaryAtRandom()
     {
         int randomIndex = Random.NextInt(0, LoadedLoot.Count - 1);
-        return LoadedLoot[randomIndex].Clone() as GenericDictionary;
+        return LoadedLoot[randomIndex].Clone() as GenericParam;
     }
 
     public string CreateAffinityTitle(WeaponModifications modifications)
@@ -165,7 +154,7 @@ public class ParamLootGenerator(
         return firstName + space + secondName;
     }
 
-    public void RandomizeLootWeight(GenericDictionary lootDict, float minMult = 0.95f, float maxMult = 1.05f, float absoluteMax = 30.0f)
+    public void RandomizeLootWeight(GenericParam lootDict, float minMult = 0.95f, float maxMult = 1.05f, float absoluteMax = 30.0f)
     {
         if (lootDict.ContainsKey("weight"))
         {
@@ -175,23 +164,23 @@ public class ParamLootGenerator(
         }
     }
 
-    public void RandomizeLootWeightBasedOnRarity(GenericDictionary lootDict, int rarityId = 0)
+    public void RandomizeLootWeightBasedOnRarity(GenericParam lootDict, int rarityId = 0)
     {
         List<float> rarityWeight = RarityHandler.GetRarityWeightMultipliers(rarityId);
         RandomizeLootWeight(lootDict, (float)rarityWeight[0], (float)rarityWeight[1]);
     }
 
-    public void SetLootSellValue(GenericDictionary lootDict, int rarityId, float mult = 1.0f)
+    public void SetLootSellValue(GenericParam lootDict, int rarityId, float mult = 1.0f)
     {
         lootDict.SetValue(this.Configuration.LootParam.SellValueParam, (int)(RarityHandler.GetRaritySellValue(rarityId) * mult));
     }
 
-    public void SetLootRarityParamValue(GenericDictionary lootDict, int rarityId)
+    public void SetLootRarityParamValue(GenericParam lootDict, int rarityId)
     {
         string rarityParamName = Configuration.LootParam.RarityParam;
         if (lootDict.ContainsKey(rarityParamName))
         {
-            lootDict.SetValue(rarityParamName, RarityHandler.GetRarityParamInt(rarityId));
+            lootDict.SetValue(rarityParamName, RarityHandler.GetRarityParamValue(rarityId));
         }
     }
 
@@ -212,7 +201,7 @@ public class ParamLootGenerator(
         return Configuration.LootParam.Speffects.GetType().GetProperty(OutputParamName.ToString()).GetValue(Configuration.LootParam.Speffects) as List<string>;
     }
 
-    public List<string> GetAvailableSpEffectSlots(GenericDictionary lootDict)
+    public List<string> GetAvailableSpEffectSlots(GenericParam lootDict)
     {
         List<string> baseParams = GetPassiveSpEffectSlotArrayFromOutputParamName();
         List<string> finalArray = [];

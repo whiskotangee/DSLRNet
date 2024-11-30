@@ -17,7 +17,7 @@ public class Csv
         return new List<T>(records);
     }
 
-    public static void WriteCsv(string fileName, List<GenericDictionary> dictionaries)
+    public static void WriteCsv(string fileName, List<GenericParam> dictionaries)
     {
         Log.Logger.Information($"CSV Writing {fileName}");
 
@@ -26,7 +26,7 @@ public class Csv
         using StreamWriter writer = new StreamWriter(fileName);
         writer.WriteLine(string.Join(",", headers));
 
-        foreach (GenericDictionary obj in dictionaries)
+        foreach (GenericParam obj in dictionaries)
         {
             List<string> values = [];
             foreach (string header in headers)

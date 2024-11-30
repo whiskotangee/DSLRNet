@@ -1,10 +1,4 @@
-﻿using DSLRNet.Core.Common;
-using DSLRNet.Core.Config;
-using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Data;
-using Microsoft.Extensions.Options;
-
-namespace DSLRNet.Core.Handlers;
+﻿namespace DSLRNet.Core.Handlers;
 
 public class DamageTypeHandler : BaseHandler
 {
@@ -34,7 +28,7 @@ public class DamageTypeHandler : BaseHandler
                         Category = "Weapon",
                         Effect = d.EffectDescription
                     },
-                    new GenericDictionary() { Properties = new Dictionary<string, object?>() { { "ID", d.Message } } });
+                    new GenericParam() { Properties = new Dictionary<string, object?>() { { "ID", d.Message } } });
             });
     }
 
@@ -64,7 +58,7 @@ public class DamageTypeHandler : BaseHandler
         return DamageTypes.Single(d => d.ID == finalDtId);
     }
 
-    public void ApplyDamageTypeWeaponSpEffects(WeaponModifications mods, GenericDictionary weaponDict)
+    public void ApplyDamageTypeWeaponSpEffects(WeaponModifications mods, GenericParam weaponDict)
     {
         List<string> speffParam = configuration.LootParam.Speffects.EquipParamWeapon;
         List<string> behSpeffParam = configuration.LootParam.WeaponBehSpeffects;
@@ -117,7 +111,7 @@ public class DamageTypeHandler : BaseHandler
         }
     }
 
-    public void ApplyWeaponVfxFromDamageTypes(GenericDictionary weapon, WeaponModifications mods)
+    public void ApplyWeaponVfxFromDamageTypes(GenericParam weapon, WeaponModifications mods)
     {
         List<string> vfxParams = configuration.LootParam.WeaponsVfxParam;
         List<string> vfxDummyParams = configuration.LootParam.WeaponsVfxDummyParam;

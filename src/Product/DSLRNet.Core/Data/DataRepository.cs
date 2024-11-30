@@ -1,6 +1,4 @@
-﻿using DSLRNet.Core.Contracts;
-
-namespace DSLRNet.Core.Data;
+﻿namespace DSLRNet.Core.Data;
 
 public class DataRepository
 {
@@ -17,13 +15,13 @@ public class DataRepository
 
         var lotItemIds = paramEdits
             .Where(d => d.ParamName == ParamNames.EquipParamWeapon || d.ParamName == ParamNames.EquipParamProtector || d.ParamName == ParamNames.EquipParamAccessory)
-            .Select(d => d.ParamObject.GetValue<long>("ID"))
+            .Select(d => d.ParamObject.ID)
             .Distinct()
             .ToList();
 
         var expectedIds = enemyLots
             .Concat(mapLots)
-            .SelectMany(d => Enumerable.Range(1, 8).Select(s => d.ParamObject.GetValue<long>($"lotItemId0{s}")))
+            .SelectMany(d => Enumerable.Range(1, 8).Select(s => d.ParamObject.GetValue<int>($"lotItemId0{s}")))
             .Where(d => d > 0)
             .ToList();
 
@@ -41,7 +39,7 @@ public class DataRepository
         }
 
         var duplicatedEnemyLotIds = enemyLots
-            .GroupBy(d => d.ParamObject.GetValue<long>("ID"))
+            .GroupBy(d => d.ParamObject.ID)
             .Where(g => g.Count() > 1)
             .Select(g => g.Key)
             .ToList();
@@ -52,7 +50,7 @@ public class DataRepository
         }
 
         var duplicatedMapLotIds = mapLots
-            .GroupBy(d => d.ParamObject.GetValue<long>("ID"))
+            .GroupBy(d => d.ParamObject.ID)
             .Where(g => g.Count() > 1)
             .Select(g => g.Key)
             .ToList();
@@ -64,7 +62,7 @@ public class DataRepository
 
         var mapLotsWithoutFlagIds = mapLots
             .Where(d => d.ParamObject.GetValue<int>("getItemFlagId") <= 0)
-            .Select(d => d.ParamObject.GetValue<int>("ID"))
+            .Select(d => d.ParamObject.ID)
             .ToList();
 
         if (mapLotsWithoutFlagIds.Any())
@@ -78,21 +76,21 @@ public class DataRepository
 
     public bool ContainsParamEdit(ParamNames paramName, long Id)
     {
-        return paramEdits.SingleOrDefault(d => d.ParamName == paramName && d.ParamObject.GetValue<long>("ID") == Id) != null;
+        return paramEdits.SingleOrDefault(d => d.ParamName == paramName && d.ParamObject.ID == Id) != null;
     }
 
     public bool TryGetParamEdit(ParamNames paramName, long Id, out ParamEdit? paramEdit)
     {
-        paramEdit = paramEdits.SingleOrDefault(d => d.ParamName == paramName && d.ParamObject.GetValue<long>("ID") == Id);
+        paramEdit = paramEdits.SingleOrDefault(d => d.ParamName == paramName && d.ParamObject.ID == Id);
 
         return paramEdit != null;
     }
 
-    public void AddParamEdit(ParamNames name, ParamOperation operation, string massEditString, LootFMG text, GenericDictionary? param)
+    public void AddParamEdit(ParamNames name, ParamOperation operation, string massEditString, LootFMG text, GenericParam? param)
     {
         if (param != null)
         {
-            if (ContainsParamEdit(name, param.GetValue<long>("ID")))
+            if (ContainsParamEdit(name, param.ID))
             {
                 Log.Logger.Error($"Attempting to add param {name} edit with Id {param.GetValue<long>("ID")} that already exists");
             }
@@ -104,7 +102,7 @@ public class DataRepository
             ParamName = name,
             MassEditString = massEditString,
             MessageText = text,
-            ParamObject = param ?? new GenericDictionary()
+            ParamObject = param ?? new GenericParam()
         });
     }
 

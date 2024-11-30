@@ -1,6 +1,6 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
-using DSLRNet.Core;
+using DSLRNet.Core.Common;
 using DSLRNet.Core.Contracts;
 using DSLRNet.Core.Data;
 
@@ -26,7 +26,7 @@ public class BaseHandler(DataRepository generatedDataRepository)
         return $"param {paramName}: id {id}: {propName}: = {value};{newLine}";
     }
 
-    public string CreateMassEditParamFromParamDictionary(GenericDictionary dict, ParamNames paramName, int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null, GenericDictionary? defaultValue = null)
+    public string CreateMassEditParamFromParamDictionary(GenericParam dict, ParamNames paramName, int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null, GenericParam? defaultValue = null)
     {
         string finalMassEdit = "";
         List<string> banned = ["[", "]", "|"];

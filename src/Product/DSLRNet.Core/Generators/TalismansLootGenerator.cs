@@ -1,6 +1,5 @@
 ﻿namespace DSLRNet.Core.Generators;
 
-using DSLRNet.Core;
 using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts;
@@ -29,17 +28,17 @@ public class TalismanLootGenerator : ParamLootGenerator
 
         var accessoriesLoot = Csv.LoadCsv<EquipParamAccessory>("DefaultData\\ER\\CSVs\\EquipParamAccessory.csv");
 
-        LoadedLoot = accessoriesLoot.Select(GenericDictionary.FromObject).ToList();
+        LoadedLoot = accessoriesLoot.Select(GenericParam.FromObject).ToList();
     }
 
-    public int CreateTalisman(int rarityId = 0, List<int> wllIds = null)
+    public int CreateTalisman(int rarityId = 0, List<int> allowListIds = null)
     {
         string accessoryGroupParam = Configuration.LootParam.TalismansAccessoryGroupParam;
 
         List<string> talismanDescriptions = [];
         List<string> talismanSummaries = [];
 
-        GenericDictionary newTalisman = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Talisman));
+        GenericParam newTalisman = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(allowListIds, LootType.Talisman));
 
         int freeSlotCount = GetAvailableSpeffectSlotCount(newTalisman);
 
@@ -48,7 +47,6 @@ public class TalismanLootGenerator : ParamLootGenerator
             return -1;
         }
 
-        //// GET OUR TALISMAN'S CONFIG
         TalismanConfig newTalismanConfig = Random.GetRandomItem(TalismanConfigs);
 
         var availableSlot = GetAvailableSpEffectSlots(newTalisman).First();
@@ -72,26 +70,20 @@ public class TalismanLootGenerator : ParamLootGenerator
             .. ApplySpEffects(rarityId, [0], newTalisman, 1.0f, true, -1, false) ?? [],
         ];
 
-        // STORE ORIGINAL TALISMAN NAME
-        string originalName = newTalisman.GetValue<string>("Name");
+        string originalName = newTalisman.Name;
         string finalNameNormal = CreateLootTitle(originalName, rarityId, "", spEffs, true);
 
-        // SET NEW NAME
-        //newTalisman.SetValue("Name", finalNameNormal);
+        //newTalisman.Name = finalNameNormal;
 
-        // CREATE FINAL DESCRIPTION AND - IN THIS CASE - SUMMARY
         talismanDescriptions.AddRange(spEffs.Select(s => s.Description).Where(s => !string.IsNullOrWhiteSpace(s)));
         talismanSummaries.AddRange(spEffs.Select(s => s.Summary).Where(s => !string.IsNullOrWhiteSpace(s)));
 
         talismanDescriptions.Add(LoreGenerator.GenerateDescription(finalNameNormal, false));
 
-        // ASSIGN NEW ID
-        ApplyNextId(newTalisman);
+        newTalisman.ID = CumulativeID.GetNext();
 
-        // SET ACCESSORY GROUP
         SetTalismanGroupVariables(newTalismanConfig, newTalisman, accessoryGroupParam);
 
-        // SET TALISMAN RARITY
         SetLootRarityParamValue(newTalisman, rarityId);
 
         newTalisman.SetValue("iconId", RarityHandler.GetIconIdForRarity(newTalisman.GetValue<int>("iconId"), rarityId));
@@ -103,43 +95,28 @@ public class TalismanLootGenerator : ParamLootGenerator
          spEffs,
          true);
 
-        // EXPORT PARAMETERS
         ExportLootGenParamAndTextToOutputs(newTalisman, LootType.Talisman, talismanFinalTitleColored, string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()), string.Join(Environment.NewLine, talismanSummaries), [], []);
 
-        return newTalisman.GetValue<int>("ID");
+        return newTalisman.ID;
     }
 
-    private int GetAvailableSpeffectSlotCount(GenericDictionary newTalisman)
+    private int GetAvailableSpeffectSlotCount(GenericParam newTalisman)
     {
         List<string> parms = GetPassiveSpEffectSlotArrayFromOutputParamName();
 
         return parms.Where(d => new List<int>() { 0, -1 }.Contains(newTalisman.GetValue<int>(d))).ToList().Count;
     }
 
-    // WE NEED AN EXTRA CUMULATIVE ID FOR "CATEGORY" SO TALISMANS CAN BE STACKED TOGETHER
     public static CumulativeID AccessoryGroupCumulativeID { get; set; }
 
-    // IN ORDER FOR A TALISMAN TO BE USED, WE'LL NEED A CONFIG FOR IT SO WE CAN GET THE ORIGINAL TALISMAN'S EFFECT DESCRIPTION
     public List<TalismanConfig> TalismanConfigs { get; set; } = [];
 
-    public void SetTalismanGroupVariables(TalismanConfig talisConfig, GenericDictionary newTalisman, string accGroupName)
+    public void SetTalismanGroupVariables(TalismanConfig talisConfig, GenericParam newTalisman, string accGroupName)
     {
-        int accGroup = TalismanCanBeStacked(talisConfig)
+        int accGroup = talisConfig.NoStackingGroupID != 0
             ? AccessoryGroupCumulativeID.GetNext()
             : talisConfig.NoStackingGroupID;
         newTalisman.SetValue(accGroupName, accGroup);
-    }
-
-    // TALISMAN INFORMATION FUNCTIONS
-
-    public bool TalismanCanBeStacked(TalismanConfig talisConfig)
-    {
-        if (talisConfig.NoStackingGroupID == 0)
-        {
-            return false;
-        }
-
-        return talisConfig.NoStackingGroupID <= 0;
     }
 
     public string GetTalismanConfigEffectDescription(TalismanConfig config)
@@ -152,7 +129,7 @@ public class TalismanLootGenerator : ParamLootGenerator
         }
 
         string effectString = config.Effect;
-        string stackString = TalismanCanBeStacked(config) ? Configuration.DSLRDescText.NoStacking : string.Empty;
+        string stackString = config.NoStackingGroupID != 0 ? Configuration.DSLRDescText.NoStacking : string.Empty;
         return effectPrefixString + effectString + stackString + Environment.NewLine;
     }
 }

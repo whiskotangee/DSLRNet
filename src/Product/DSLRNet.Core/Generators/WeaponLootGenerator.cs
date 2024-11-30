@@ -1,6 +1,5 @@
 ﻿namespace DSLRNet.Core.Generators;
 
-using DSLRNet.Core;
 using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts;
@@ -36,7 +35,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         this.damageTypeHandler = damageTypeHandler;
         List<EquipParamWeapon> weaponLoots = Csv.LoadCsv<EquipParamWeapon>("DefaultData\\ER\\CSVs\\EquipParamWeapon.csv");
 
-        LoadedLoot = weaponLoots.Select(GenericDictionary.FromObject).ToList();
+        LoadedLoot = weaponLoots.Select(GenericParam.FromObject).ToList();
     }
 
     public int CreateWeapon(int rarityId, List<int> whitelistLootIds = null)
@@ -53,7 +52,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         WeaponTypes goalWeaponType = Random.NextWeightedValue(weaponGeneratorConfig.Types, weaponGeneratorConfig.Weights);
 
-        GenericDictionary weaponDictionary = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(whitelistLootIds, LootType.Weapon));
+        GenericParam weaponDictionary = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(whitelistLootIds, LootType.Weapon));
 
         string affinity = "";
 
@@ -84,17 +83,21 @@ public class WeaponLootGenerator : ParamLootGenerator
         weaponDictionary.SetValue("iconId", RarityHandler.GetIconIdForRarity(weaponDictionary.GetValue<int>("iconId"), rarityId, isUnique: uniqueWeapon));
 
         RandomizeLootWeightBasedOnRarity(weaponDictionary, rarityId);
-        ApplyNextId(weaponDictionary);
+        weaponDictionary.ID = CumulativeID.GetNext();
 
         // 42300 LETS WEAPONS TAKE DAMAGE SCALING FROM ALL POSSIBLE SOURCES (STR,DEX,INT,FTH) 
-        weaponDictionary.SetValue("attackElementCorrectId", 42300);
+        if (generatedType != WeaponTypes.StaffsSeals)
+        {
+            weaponDictionary.SetValue("attackElementCorrectId", 42300);
+        }
+
         weaponDictionary.SetValue("gemMountType", generatedType == WeaponTypes.StaffsSeals ? 0 : 2);
         weaponDictionary.SetValue(Configuration.LootParam.NoAffinityChange, 1);
 
         ApplyWeaponScalingRange(weaponDictionary, rarityId);
-        SetWeaponOriginParam(weaponDictionary, weaponDictionary.GetValue<int>("ID"), replace: true);
+        SetWeaponOriginParam(weaponDictionary, weaponDictionary.ID, replace: true);
 
-        string weaponOriginalTitle = weaponDictionary.GetValue<string>("Name");
+        string weaponOriginalTitle = weaponDictionary.Name;
 
         string weaponFinalTitle = CreateLootTitle(
             weaponOriginalTitle,
@@ -129,7 +132,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         return weaponDictionary.GetValue<int>("ID");
     }
 
-    private void SetWeaponOriginParam(GenericDictionary weaponDictionary, int id, int upgradeCap = 25, bool replace = true)
+    private void SetWeaponOriginParam(GenericParam weaponDictionary, int id, int upgradeCap = 25, bool replace = true)
     {
         List<string> originParams =
             Enumerable.Range(1, upgradeCap)
@@ -158,7 +161,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         }
     }
 
-    private void ApplyWeaponScalingRange(GenericDictionary weaponDictionary, int rarityId)
+    private void ApplyWeaponScalingRange(GenericParam weaponDictionary, int rarityId)
     {
         var currentScalings = Configuration.LootParam.WeaponsScaling.Select(d => new { ParamName = d, Value = weaponDictionary.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
         var scalingRange = RarityHandler.GetRarityDamageAdditionRange(rarityId);
@@ -186,7 +189,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         weaponDictionary.SetValue(randomScaling.ParamName, Math.Clamp(Random.NextInt(scalingRange) * .5f, 0, 130));
     }
 
-    private WeaponModifications ApplyShieldCutRateChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, GenericDictionary weaponDictionary, int rarityId)
+    private WeaponModifications ApplyShieldCutRateChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, GenericParam weaponDictionary, int rarityId)
     {
         WeaponModifications mods = new(dT1, dT2);
 
@@ -203,7 +206,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         if (existingSecondaryValue != null
             && mods.PrimaryDamageType.ShieldParam != mods.SecondaryDamageType.ShieldParam)
         {
-            float secondaryValue = Math.Clamp((float)(existingSecondaryValue + this.Random.Next(new Range<float>() { Min = .1f, Max = 5.0f })), 0, 100);
+            float secondaryValue = Math.Clamp((float)(existingSecondaryValue + this.Random.Next(new Range<float>(.1f, 5.0f))), 0, 100);
             weaponDictionary.SetValue(mods.SecondaryDamageType.ShieldParam, secondaryValue);
             mods.SecondaryDamageValue = secondaryValue;
             
@@ -222,7 +225,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         return mods;
     }
 
-    private WeaponModifications ApplyStaffDamageChanges(GenericDictionary weaponDictionary, int rarityId)
+    private WeaponModifications ApplyStaffDamageChanges(GenericParam weaponDictionary, int rarityId)
     {
         //TODO : randomize sorcery/incantation scaling?
         WeaponModifications modifications = new(new DamageTypeSetup(), null);
@@ -236,7 +239,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         return modifications;
     }
 
-    private WeaponModifications ApplyNormalDamageChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, GenericDictionary weaponDictionary, int rarityId)
+    private WeaponModifications ApplyNormalDamageChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, GenericParam weaponDictionary, int rarityId)
     {
         WeaponModifications mods = new(dT1, dT2);
 
@@ -246,7 +249,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         long maxValue = 0;
 
-        GenericDictionary originalValues = weaponDictionary.Clone() as GenericDictionary;
+        GenericParam originalValues = weaponDictionary.Clone() as GenericParam;
 
         // reset all damage
         foreach (string dmgParam in dmgParams)
@@ -352,7 +355,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         return mods;
     }
 
-    private WeaponModifications ApplyWeaponModifications(GenericDictionary weaponDictionary, int rarityId, WeaponTypes weaponType)
+    private WeaponModifications ApplyWeaponModifications(GenericParam weaponDictionary, int rarityId, WeaponTypes weaponType)
     {
         // randomize damage type
         DamageTypeSetup primary = this.damageTypeHandler.ChooseDamageTypeAtRandom(Configuration.Settings.ChaosLootEnabled, false);

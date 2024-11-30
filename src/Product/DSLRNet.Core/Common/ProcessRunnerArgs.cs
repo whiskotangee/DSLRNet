@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace DSLRNet.Core.Common;
+﻿namespace DSLRNet.Core.Common;
 
 public class ProcessRunnerArgs<T>
 {

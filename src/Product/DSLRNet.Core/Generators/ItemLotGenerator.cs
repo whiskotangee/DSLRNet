@@ -1,12 +1,4 @@
-﻿using DSLRNet.Core.Common;
-using DSLRNet.Core.Config;
-using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Contracts.Params;
-using DSLRNet.Core.Data;
-using DSLRNet.Core.Handlers;
-using Microsoft.Extensions.Options;
-
-namespace DSLRNet.Core.Generators;
+﻿namespace DSLRNet.Core.Generators;
 
 enum ILEA { ItemId, Category, NumberOf, Chance, ItemAcquisitionFlag }
 
@@ -121,8 +113,8 @@ public class ItemLotGenerator : BaseHandler
 
                     CalculateNoItemChance(newItemLot);
 
-                    GenericDictionary genericDict = GenericDictionary.FromObject(newItemLot);
-                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericDictionary.FromObject(CreateDefaultItemLotDictionary()));
+                    GenericParam genericDict = GenericParam.FromObject(newItemLot);
+                    string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(CreateDefaultItemLotDictionary()));
                     GeneratedDataRepository.AddParamEdit(queueEntry.ParamName, ParamOperation.Create, itemLotMassEdit, null, genericDict);
                 }
                 else
@@ -173,8 +165,8 @@ public class ItemLotGenerator : BaseHandler
                             CreateItemLotEntry(queueEntry, newItemLot, offset + y, newItemLot.ID, (float)queueEntry.DropChanceMultiplier, true);
                         }
 
-                        GenericDictionary genericDict = GenericDictionary.FromObject(newItemLot);
-                        string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericDictionary.FromObject(CreateDefaultItemLotDictionary()));
+                        GenericParam genericDict = GenericParam.FromObject(newItemLot);
+                        string itemLotMassEdit = CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(CreateDefaultItemLotDictionary()));
                         GeneratedDataRepository.AddParamEdit(queueEntry.ParamName, ParamOperation.Create, itemLotMassEdit, null, genericDict);
                     }
                 }

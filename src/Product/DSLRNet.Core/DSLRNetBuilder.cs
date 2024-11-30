@@ -1,12 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using DSLRNet.Core.Config;
-using DSLRNet.Core.Data;
 using DSLRNet.Core.Generators;
-using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Common;
-using Serilog;
-using DSLRNet.Core.Contracts.Params;
 
 namespace DSLRNet.Core;
 
@@ -128,12 +121,12 @@ public class DSLRNetBuilder(
             // write csv
             string csvFile = Path.Combine(configuration.Settings.DeployPath, $"{paramName}.csv");
 
-            List<GenericDictionary> parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.GetValue<int>("ID")).Select(d => d.ParamObject).ToList();
+            List<GenericParam> parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.ID).Select(d => d.ParamObject).ToList();
 
             Csv.WriteCsv(csvFile, parms.Select(d =>
             {
-                var ret = d.Clone() as GenericDictionary;
-                ret.SetValue("Name", string.Empty);
+                var ret = d.Clone() as GenericParam;
+                ret.Name = string.Empty;
                 return ret;
             }).ToList());
 

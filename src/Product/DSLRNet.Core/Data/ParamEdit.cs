@@ -1,7 +1,7 @@
 ﻿
 namespace DSLRNet.Core.Data;
 
-using DSLRNet.Core;
+using DSLRNet.Core.Common;
 using DSLRNet.Core.Contracts;
 
 public enum ParamOperation { Create, MassEdit, TextOnly }
@@ -16,5 +16,5 @@ public class ParamEdit
 
     public string MassEditString { get; set; }
 
-    public GenericDictionary ParamObject { get; set; }
+    public GenericParam ParamObject { get; set; }
 }

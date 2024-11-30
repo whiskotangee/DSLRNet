@@ -1,7 +1,4 @@
-﻿
-using DSLRNet.Core.Contracts.Params;
-
-namespace DSLRNet.Core.Data;
+﻿namespace DSLRNet.Core.Data;
 
 public class CsvFixer
 {

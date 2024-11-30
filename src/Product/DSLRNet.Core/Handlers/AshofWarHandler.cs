@@ -1,6 +1,5 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
-using DSLRNet.Core;
 using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts.Params;
@@ -27,7 +26,7 @@ public class AshofWarHandler(RandomNumberGetter random, IOptions<Configuration> 
 
     // AOW ASSIGN FUNCTIONS
 
-    public void AssignAshOfWar(GenericDictionary weaponDict)
+    public void AssignAshOfWar(GenericParam weaponDict)
     {
         int weaponWmc = weaponDict.GetValue<int>(configuration.LootParam.WeaponsWepMotionCategory);
 

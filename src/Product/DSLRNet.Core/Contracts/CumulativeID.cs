@@ -11,8 +11,8 @@ public class CumulativeID
     public int WrapAroundLimit { get; set; } = 998;
     private int cumulativeId { get; set; } = -1;
 
-    // ITEMFLAGACQUISITION VARIABLES
     public bool IsItemFlagAcquisitionCumulativeID { get; set; } = false;
+
     private Dictionary<string, object> IFA { get; set; } = new Dictionary<string, object>
     {
         { "offsets", new List<int> { 0, 4, 7, 8, 9 } },
@@ -26,7 +26,6 @@ public class CumulativeID
         cumulativeId += 1;
         int IDBeforeWrap = cumulativeId;
 
-        // Emit signal if we've gone over the wrap around limit
         if (IDBeforeWrap > WrapAroundLimit)
         {
             if (IsItemFlagAcquisitionCumulativeID)

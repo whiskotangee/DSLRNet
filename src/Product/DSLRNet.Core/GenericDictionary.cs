@@ -50,12 +50,6 @@ public class GenericDictionary : ICloneable
         return Properties.ContainsKey(name);
     }
 
-    public T ToClassObject<T>()
-        where T : class
-    {
-        return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(Properties));
-    }
-
     public object Clone()
     {
         GenericDictionary newDictionary = new GenericDictionary();

@@ -53,7 +53,7 @@ public class AllowListHandler(
             }
         }
 
-        return (int)random.NextWeightedValue(itemIds, itemWeights, 1.0f);
+        return random.NextWeightedValue(itemIds, itemWeights);
     }
 
     private static (List<int> lootIds, List<int> weights) GetRandomLootAndWeightsFromConfig(AllowListConfigItem config, LootType lootType)

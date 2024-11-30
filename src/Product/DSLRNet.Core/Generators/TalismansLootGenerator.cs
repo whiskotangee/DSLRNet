@@ -20,9 +20,8 @@ public class TalismanLootGenerator : ParamLootGenerator
         SpEffectHandler spEffectHandler,
         RandomNumberGetter random,
         LoreGenerator loreGenerator,
-        DamageTypeHandler damageTypeHandler,
         DataRepository dataRepository)
-        : base(rarityHandler, whitelistHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory)
+        : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory)
     {
         CumulativeID = new CumulativeID() { IDMultiplier = 10 };
 
@@ -37,19 +36,13 @@ public class TalismanLootGenerator : ParamLootGenerator
     {
         string accessoryGroupParam = Configuration.LootParam.TalismansAccessoryGroupParam;
 
-        // INITIALISE TALISMAN DESCRIPTION AND SUMMARY
         List<string> talismanDescriptions = [];
         List<string> talismanSummaries = [];
 
-        // CREATE OUR NEW TALISMAN
         GenericDictionary newTalisman = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Talisman));
 
-        // CHOOSE A SET OF NEW SPEFFECTS BASED ON RARITY
-        // STORE HOW MANY FREE SPEFFECT SLOTS OUR PARAM HAS
         int freeSlotCount = GetAvailableSpeffectSlotCount(newTalisman);
 
-        // DON'T CONTINUE IF THERE'S NO FREE SLOTS - IF THEY'RE FULL BY DEFAULT THEY'RE PROBABLY NECESSARY FOR THE TALISMAN TO WORK,
-        // AND THERE'S NO POINT USING IT AS A BASE IF WE CAN'T REALLY ADD ANYTHING TO IT
         if (freeSlotCount <= 0)
         {
             return -1;

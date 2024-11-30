@@ -64,7 +64,7 @@ public class DamageTypeHandler : BaseHandler
         return DamageTypes.Single(d => d.ID == finalDtId);
     }
 
-    public void ApplyDamageTypeWeaponSpEffects(DamageTypeSetup dt1, DamageTypeSetup dt2, GenericDictionary weaponDict)
+    public void ApplyDamageTypeWeaponSpEffects(WeaponModifications mods, GenericDictionary weaponDict)
     {
         List<string> speffParam = configuration.LootParam.Speffects.EquipParamWeapon;
         List<string> behSpeffParam = configuration.LootParam.WeaponBehSpeffects;
@@ -80,15 +80,15 @@ public class DamageTypeHandler : BaseHandler
 
             if (weaponDict.ContainsKey(speffParam1))
             {
-                weaponDict.SetValue(speffParam1, dt1.SpEffect);
+                weaponDict.SetValue(speffParam1, mods.PrimaryDamageType.SpEffect);
             }
 
-            if (weaponDict.ContainsKey(speffParam2))
+            if (weaponDict.ContainsKey(speffParam2) && mods.SecondaryDamageType != null)
             {
-                if (!dt2.SpEffect.Equals(dt1.SpEffect) ||
-                    dt2.SpEffect.Equals(dt1.SpEffect) && dt2.NoSecondEffect == 0)
+                if (!mods.SecondaryDamageType.SpEffect.Equals(mods.PrimaryDamageType.SpEffect) ||
+                    mods.SecondaryDamageType.SpEffect.Equals(mods.PrimaryDamageType.SpEffect) && mods.SecondaryDamageType.NoSecondEffect == 0)
                 {
-                    weaponDict.SetValue(speffParam2, dt2.SpEffect);
+                    weaponDict.SetValue(speffParam2, mods.SecondaryDamageType.SpEffect);
                 }
             }
         }
@@ -103,46 +103,40 @@ public class DamageTypeHandler : BaseHandler
 
             if (weaponDict.ContainsKey(behSpeffParam1))
             {
-                weaponDict.SetValue(behSpeffParam1, dt1.OnHitSpEffect);
+                weaponDict.SetValue(behSpeffParam1, mods.PrimaryDamageType.OnHitSpEffect);
             }
-            if (weaponDict.ContainsKey(behSpeffParam2))
+
+            if (weaponDict.ContainsKey(behSpeffParam2) && mods.SecondaryDamageType != null)
             {
-                if (!dt2.OnHitSpEffect.Equals(dt1.OnHitSpEffect) ||
-                    dt2.OnHitSpEffect.Equals(dt1.OnHitSpEffect) && dt2.NoSecondEffect == 0)
+                if (!mods.SecondaryDamageType.OnHitSpEffect.Equals(mods.PrimaryDamageType.OnHitSpEffect) ||
+                    mods.SecondaryDamageType.OnHitSpEffect.Equals(mods.PrimaryDamageType.OnHitSpEffect) && mods.PrimaryDamageType.NoSecondEffect == 0)
                 {
-                    weaponDict.SetValue(behSpeffParam2, dt2.OnHitSpEffect);
+                    weaponDict.SetValue(behSpeffParam2, mods.SecondaryDamageType.OnHitSpEffect);
                 }
             }
         }
     }
 
-    public void ApplyWeaponVfxFromDamageTypes(GenericDictionary weapDict, DamageTypeSetup dt1, DamageTypeSetup dt2)
+    public void ApplyWeaponVfxFromDamageTypes(GenericDictionary weapon, WeaponModifications mods)
     {
         List<string> vfxParams = configuration.LootParam.WeaponsVfxParam;
         List<string> vfxDummyParams = configuration.LootParam.WeaponsVfxDummyParam;
         List<int> vfxDummies = configuration.LootParam.WeaponsVfxDummies;
-        int dt1Vfx = dt1.VFXSpEffectID;
-        int dt2Vfx = dt2.VFXSpEffectID;
-        int[] dtArray = new int[] { dt1Vfx, dt2Vfx };
+        
+        int dt1Vfx = mods.PrimaryDamageType.VFXSpEffectID; 
+        int? dt2Vfx = mods.SecondaryDamageType?.VFXSpEffectID; 
+        
+        int primaryVfx = Math.Max(dt1Vfx, dt2Vfx ?? dt1Vfx); 
+        int secondaryVfx = dt2Vfx ?? dt1Vfx;
 
-        if (dt1Vfx != dt2Vfx)
-        {
-            if (dt1Vfx == -1 && dt2Vfx != -1)
-            {
-                dtArray = [dt2Vfx, dt2Vfx];
-            }
-            else if (dt1Vfx != -1 && dt2Vfx == -1)
-            {
-                dtArray = [dt1Vfx, dt1Vfx];
-            }
-        }
+        List<int> damageTypeVfx = [primaryVfx, secondaryVfx];
 
         for (int x = 0; x < vfxParams.Count; x++)
         {
-            if (weapDict.ContainsKey(vfxParams[x]) && weapDict.ContainsKey(vfxDummyParams[x]))
+            if (weapon.ContainsKey(vfxParams[x]) && weapon.ContainsKey(vfxDummyParams[x]))
             {
-                weapDict.SetValue(vfxParams[x], dtArray[x]);
-                weapDict.SetValue(vfxDummyParams[x], vfxDummies[x]);
+                weapon.SetValue(vfxParams[x], damageTypeVfx[x]);
+                weapon.SetValue(vfxDummyParams[x], vfxDummies[x]);
             }
         }
     }
@@ -155,7 +149,7 @@ public class DamageTypeHandler : BaseHandler
             totalWeight += weight;
         }
 
-        int randomValue = random.NextWeightedValue(ids, weights, 1.0f);
+        int randomValue = random.NextWeightedValue(ids, weights);
         for (int i = 0; i < weights.Count; i++)
         {
             if (randomValue < weights[i])

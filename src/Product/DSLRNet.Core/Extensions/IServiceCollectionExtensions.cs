@@ -17,12 +17,7 @@ public static class IServiceCollectionExtensions
                 .Configure<WeaponGeneratorConfig>(configuration.GetSection(nameof(WeaponGeneratorConfig)))
                 .Configure<AllowListConfig>(configuration.GetSection(nameof(AllowListConfig)))
                 .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)))
-                .Configure<AshOfWarConfig>(configuration.GetSection(nameof(AshOfWarConfig)));
-
-        services.AddSingleton<RandomNumberGetter>((sp) =>
-        {
-            return new RandomNumberGetter(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
-        })
+                .Configure<AshOfWarConfig>(configuration.GetSection(nameof(AshOfWarConfig)))
                 .AddSingleton<ArmorLootGenerator>()
                 .AddSingleton<WeaponLootGenerator>()
                 .AddSingleton<TalismanLootGenerator>()
@@ -35,7 +30,11 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<AllowListHandler>()
                 .AddSingleton<DataRepository>()
                 .AddSingleton<DSLRNetBuilder>()
-                .AddSingleton<ProcessRunner>();
+                .AddSingleton<ProcessRunner>()
+                .AddSingleton((sp) =>
+                {
+                    return new RandomNumberGetter(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
+                });
 
         return services;
     }

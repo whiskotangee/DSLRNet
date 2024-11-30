@@ -1,18 +1,9 @@
-﻿using DSLRNet.Core.Common;
-using DSLRNet.Core.Config;
-using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Data;
-using DSLRNet.Core.Handlers;
-using Microsoft.Extensions.Options;
-using Serilog;
-
-namespace DSLRNet.Core.Generators;
+﻿namespace DSLRNet.Core.Generators;
 
 public class ParamLootGenerator(
     RarityHandler rarityHandler,
     AllowListHandler whiteListHandler,
     SpEffectHandler spEffectHandler,
-    DamageTypeHandler damageTypeHandler,
     LoreGenerator loreGenerator,
     RandomNumberGetter random,
     IOptions<Configuration> configuration,
@@ -24,8 +15,6 @@ public class ParamLootGenerator(
     public AllowListHandler WhiteListHandler { get; set; } = whiteListHandler;
 
     public SpEffectHandler SpEffectHandler { get; set; } = spEffectHandler;
-
-    public DamageTypeHandler DamageTypeHandler { get; set; } = damageTypeHandler;
 
     public LoreGenerator LoreGenerator { get; set; } = loreGenerator;
 
@@ -147,17 +136,17 @@ public class ParamLootGenerator(
         return LoadedLoot[randomIndex].Clone() as GenericDictionary;
     }
 
-    public string CreateAffinityTitle(DamageTypeSetup dt1, DamageTypeSetup dt2)
+    public string CreateAffinityTitle(WeaponModifications modifications)
     {
-        string firstName = dt1.PriName;
-        string secondName = dt2.SecName;
+        string firstName = modifications.PrimaryDamageType.PriName;
+        string secondName = modifications.SecondaryDamageType?.SecName ?? string.Empty;
         string space = " ";
 
         if (string.IsNullOrEmpty(firstName))
         {
-            if (dt1.SecName != dt2.SecName)
+            if (modifications.PrimaryDamageType.SecName != modifications.SecondaryDamageType?.SecName)
             {
-                firstName = dt1.SecName;
+                firstName = modifications.PrimaryDamageType.SecName;
             }
             else
             {
@@ -167,7 +156,7 @@ public class ParamLootGenerator(
             }
         }
 
-        if (dt1.SecName == dt2.SecName)
+        if (modifications.PrimaryDamageType.SecName == modifications.SecondaryDamageType?.SecName)
         {
             secondName = "";
             space = "";

@@ -22,7 +22,7 @@ public class RarityHandler : BaseHandler
         RarityConfigs = Csv.LoadCsv<RaritySetup>("DefaultData\\ER\\CSVs\\RaritySetup.csv").ToDictionary(d => d.ID);
     }
 
-    public int ChooseRarityFromIdSetWithBuiltInWeights(List<int> idset, float highmult)
+    public int ChooseRarityFromIdSetWithBuiltInWeights(List<int> idset)
     {
         List<int> valididset = [];
         List<int> valididweights = [];
@@ -37,7 +37,7 @@ public class RarityHandler : BaseHandler
             valididweights.Add(RarityConfigs[valididset.First(d => d == x)].SelectionWeight);
         }
 
-        int finalid = (int)randomNumberGetter.NextWeightedValue(valididset, valididweights, highmult);
+        int finalid = (int)randomNumberGetter.NextWeightedValue(valididset, valididweights);
 
         return finalid;
     }
@@ -67,23 +67,29 @@ public class RarityHandler : BaseHandler
         return finalboolarray;
     }
 
-    public List<int> GetRarityDamageAdditionRange(int rarityid = 0)
+    public Range<int> GetRarityDamageAdditionRange(int rarityid = 0)
     {
         int finalrarity = GetNearestRarityId(rarityid);
-        return [RarityConfigs[finalrarity].WeaponDmgAddMin, RarityConfigs[finalrarity].WeaponDmgAddMax];
+        return new Range<int>() { Min = RarityConfigs[finalrarity].WeaponDmgAddMin, Max = RarityConfigs[finalrarity].WeaponDmgAddMax };
     }
 
-    public List<float> GetRarityArmorCutRateRange(int rarityid = 0)
+    public Range<float> GetRarityArmorCutRateRange(int rarityid = 0)
     {
         int finalrarity = GetNearestRarityId(rarityid);
-        return [RarityConfigs[finalrarity].ArmorCutRateAddMin, RarityConfigs[finalrarity].ArmorCutRateAddMax];
+        return new Range<float>() { Min = RarityConfigs[finalrarity].ArmorCutRateAddMin, Max = RarityConfigs[finalrarity].ArmorCutRateAddMax };
+    }
+
+    public Range<float> GetRarityShieldGuardRateRange(int rarityid = 0)
+    {
+        int finalrarity = GetNearestRarityId(rarityid);
+        return new Range<float>() { Min = RarityConfigs[finalrarity].ShieldGuardRateMultMin, Max = RarityConfigs[finalrarity].ShieldGuardRateMultMax };
     }
 
     public float GetRarityArmorCutRateAddition(int rarityid = 0)
     {
         int finalrarity = GetNearestRarityId(rarityid);
-        List<float> range = GetRarityArmorCutRateRange(finalrarity);
-        return (float)Math.Round(randomNumberGetter.NextDouble(range[0], range[1]), 4);
+        var range = GetRarityArmorCutRateRange(finalrarity);
+        return (float)Math.Round(randomNumberGetter.Next(range), 4);
     }
 
     public List<int> GetRaritiesWithinRange(int highest = 10, int lowerrange = 0)

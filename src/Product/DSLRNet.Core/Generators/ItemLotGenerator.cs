@@ -5,8 +5,6 @@ using DSLRNet.Core.Contracts.Params;
 using DSLRNet.Core.Data;
 using DSLRNet.Core.Handlers;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using Serilog;
 
 namespace DSLRNet.Core.Generators;
 
@@ -26,7 +24,6 @@ public class ItemLotGenerator : BaseHandler
     private readonly Configuration configuration;
     private readonly CumulativeID itemAcquisitionCumulativeId;
     private readonly List<ItemLotBase> itemLotParam_Map = [];
-    private readonly List<ItemLotBase> itemLotParam_Enemy = [];
 
     public ItemLotGenerator(
         ArmorLootGenerator armorLootGenerator,
@@ -50,7 +47,6 @@ public class ItemLotGenerator : BaseHandler
             UseWrapAround = true
         };
         ItemLotTemplate = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\ItemLotBase.csv")[0];
-        itemLotParam_Enemy = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_enemy.csv");
         itemLotParam_Map = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_map.csv");
     }
 
@@ -268,9 +264,9 @@ public class ItemLotGenerator : BaseHandler
         return flagId;
     }
 
-    public (int FinalId, int FinalCategory) TaskLootGeneratorBasedOnLootType(ItemLotQueueEntry queueEntry, int rarityId = 0, int lootType = 0)
+    public (int FinalId, int FinalCategory) TaskLootGeneratorBasedOnLootType(ItemLotQueueEntry queueEntry, int rarityId = 0)
     {
-        LootType itemType = random.NextWeightedValue([LootType.Weapon, LootType.Armor, LootType.Talisman], queueEntry.LootTypeWeights, 1.0);
+        LootType itemType = random.NextWeightedValue([LootType.Weapon, LootType.Armor, LootType.Talisman], queueEntry.LootTypeWeights);
 
         int finalCategory;
         int finalId;
@@ -301,19 +297,10 @@ public class ItemLotGenerator : BaseHandler
 
     public void CreateItemLotEntry(ItemLotQueueEntry queueEntry, ItemLotBase itemLotDict, int whichOne = 1, int itemLotId = 0, float dropMult = 1.0f, bool dropGauranteed = false)
     {
-        // THIS WILL HANDLE PROPERLY FILLING IN EACH ENTRY IN AN ITEMLOT'S PARAMETERS, FROM LOTID01-LOTID08
-        // USE QUEUE DICTIONARY LOOTTYPE WEIGHTS TO DECIDE WHICH KIND OF LOOT TO MAKE IF WE CAN'T FIND A SET OVERRIDETYPE
-        // FIND OVERRIDETYPE FROM ID
-        int lootType = random.NextWeightedValue(ItemCategories, queueEntry.LootTypeWeights, 1.0f);
-
-        // USE ITEMLOTID TO FIND THE PERMITTED RARITIES BASED ON THE TIER OF THE ITEMLOTID WITHIN QUEUEDICTIONARY WE'RE WORKING WITH
         int rarity = ChooseRarityFromItemLotIdTierAllowedRarities(queueEntry, itemLotId);
 
-        // NOW WE'VE GOT THE VALUES WE NEED, TASK THE APPROPRIATE LOOT GENERATOR AND GET A DICTIONARY BACK
-        // WE'LL USE TO FILL OUT THE ITEMLOT'S PARAMS - THE GENERATOR SHOULD TAKE CARE OF THE REST, I.E. WEAPON/ARMOR PARAM CREATION AND TEXT EXPORT
-        (int FinalId, int FinalCategory) genResult = TaskLootGeneratorBasedOnLootType(queueEntry, rarity, lootType);
+        (int FinalId, int FinalCategory) genResult = TaskLootGeneratorBasedOnLootType(queueEntry, rarity);
 
-        // NOW APPLY THE GENRESULT DICTIONARY TO OUR ITEMLOTPARAMS
         ApplyItemLotEditingArray(itemLotDict, whichOne, genResult.FinalId, genResult.FinalCategory, (int)(GetGlobalDropChance() * dropMult), 1, dropGauranteed);
     }
 
@@ -324,7 +311,6 @@ public class ItemLotGenerator : BaseHandler
 
     public List<int> GetItemLotIdTierAllowedRarities(ItemLotQueueEntry queueEntry, int itemLotId = 0)
     {
-        // IF RARITYCHAOS RETURN ALL AVAILABLE RARITIES
         if (configuration.Settings.ChaosLootEnabled)
         {
             return rarityHandler.GetRaritiesWithinRange(random.NextInt(1, 11), 0);
@@ -332,85 +318,46 @@ public class ItemLotGenerator : BaseHandler
 
         GameStageConfig tier = queueEntry.GetItemLotIdTier(itemLotId);
 
-        // OTHERWISE ASSUME IT'S TWO IN THE FORMAT ABOVE
         return rarityHandler.GetRaritiesWithinRange(tier.AllowedRarities.Min(), tier.AllowedRarities.Max());
     }
 
     public int ChooseRarityFromItemLotIdTierAllowedRarities(ItemLotQueueEntry queueEntry, int itemLotId = 0)
     {
         List<int> rarities = GetItemLotIdTierAllowedRarities(queueEntry, itemLotId);
-        // INCREASE THE CHANCE OF DROPPING THE LOWEST TIER IN THE CURRENT RANGE BY 20%
-        return rarityHandler.ChooseRarityFromIdSetWithBuiltInWeights(rarities, 1.2f);
+        return rarityHandler.ChooseRarityFromIdSetWithBuiltInWeights(rarities);
     }
-
-    // ITEMDROP CHANCE FUNCTIONS
 
     public int GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)
     {
-        // INITIALISE THE SUM, GET ITEMLOT CHANCE PARAM'S NAME FROM GAMETYPE, AND SETUP AN OFFSET TO X TO DETERMINE HOW MANY
-        // OF THE ITEMLOTDICT'S CHANCE VALUES WE'LL BE CHECKING BASED ON WHETHER OR NOT WE'RE INCLUDING lotItemBasePoint01 IN THE SUM
         int itemLotChanceSum = 0;
         string itemLotParamName = GetItemLotItemParamName(ILEA.Chance);
         int offset = includeFirst ? 1 : 2;
 
-        // REMOVE 1 FROM OFFSET TO GET FOR LOOP COUNT - WE WANT TO CHECK ALL EIGHT ITEMLOTBASEPOINTS IF WE'RE INCLUDING THE FIRST
-        // AND ONLY SEVEN OF THEM IF WE'RE NOT
         for (int x = 0; x < ItemLotParamMax - (offset - 1); x++)
         {
-            // MAKE SURE TO CONVERT WHATEVER WE GET FROM ITEMLOTDICT'S lotItemBasePoint0x VALUE TO INT JUST IN CASE
             itemLotChanceSum += itemLotDict.GetValue<int>(itemLotParamName + (x + offset).ToString());
         }
+
         return itemLotChanceSum;
     }
 
     public void CalculateNoItemChance(ItemLotBase itemLot, int baseChance = 1000, int fallback = 25)
     {
-        // ASSUMING WE'RE MAKING A NON GUARANTEED ENEMY DROP, START BY STORING BASECHANCE IN A SEPARATE VARIABLE TO EDIT
         int finalBaseChance = baseChance;
 
-        // GET ITEMLOTPARAMNAME FROM GAMETYPE AND ADD "1" TO THE END, AS WE'RE ASSUMING THIS WILL BE THE FIRST ITEMLOTBASEPOINT VALUE
         string itemLotParamName = GetItemLotItemParamName(ILEA.Chance) + "1";
 
-        // GET THE SUM OF THE OTHER ITEMLOTS AFTER 1
         int otherBasePointTotal = GetItemLotChanceSum(itemLot, false);
 
-        // REMOVE THAT SUM FROM FINALBASECHANCE, THEN CLAMP FBC TO THE FALLBACK VALUE AT MINIMUM AND BASECHANCE AT MAXIMUM
-        // TO STOP US GETTING ANY NEGATIVE CHANCE VALUES
         finalBaseChance -= otherBasePointTotal;
         finalBaseChance = Math.Clamp(finalBaseChance, fallback, baseChance);
 
-        // FINALLY, SET THE RESULT AS lotItemBasePoint01 OR ITS EQUIVALENT
         itemLot.SetPropertyByName(itemLotParamName, finalBaseChance);
     }
 
     private string GetItemLotItemParamName(ILEA ilea)
     {
         return configuration.Itemlots.ItemlotEditingArray.ItemlotParams[(int)ilea];
-    }
-
-    public string GetItemLotCategoriesForItemLotName(ItemLotBase itemLot)
-    {
-        // GRAB THE ITEMLOT CATEGORY PARAM STRING FROM ITEMLOTPARAMS[GAMETYPE]
-        string itemLotCatParam = configuration.Itemlots.ItemlotEditingArray.ItemlotParams[0];
-        string finalString = "";
-        for (int x = 0; x < 8; x++)
-        {
-            string curParam = itemLotCatParam + (x + 1).ToString();
-            // IIRC 1 = GOOD, 2 = WEAPON, 3 = ARMOR, 4 = TALISMAN/OTHER - CHECK ON WINDOWS
-            switch (itemLot.GetValue<int>(curParam))
-            {
-                case 2:
-                    finalString += "W ";
-                    break;
-                case 3:
-                    finalString += "A ";
-                    break;
-                case 4:
-                    finalString += "T ";
-                    break;
-            }
-        }
-        return finalString;
     }
 
     public void ApplyItemLotEditingArray(ItemLotBase dictionary, int itemNumber = 1, int itemId = 1000000, int itemCategory = 2, int itemChance = 50, int itemAmount = 1, bool guaranteedDrop = false)
@@ -423,10 +370,9 @@ public class ItemLotGenerator : BaseHandler
         dictionary.SetPropertyByName(editingArray.Luck + itemNumber.ToString(), 1);
     }
 
-    public string CreateNpcMassEditString(ItemLotQueueEntry queueEntry, List<List<int>> npcIds = null, List<List<int>> npcItemLots = null)
+    public string CreateNpcMassEditString(ItemLotQueueEntry queueEntry, List<List<int>> npcIds, List<List<int>> npcItemLots)
     {
-        // MAKE SURE WE HAVE EVERYTHING WE NEED TO WORK WITH
-        if (npcIds == null || npcIds.Count == 0 || npcIds[0].Count == 0 || npcItemLots == null || npcItemLots.Count == 0 || npcItemLots[0].Count == 0)
+        if (npcIds.Count == 0 || npcIds.Any(d => d.Count == 0) || npcItemLots.Count == 0 || npcItemLots.Any(d => d.Count == 0))
         {
             return string.Empty;
         }
@@ -439,15 +385,13 @@ public class ItemLotGenerator : BaseHandler
             List<int> currentItemLots = npcItemLots[x];
             int maxItemLots = currentItemLots.Count - 1;
 
-            // CHOOSE ONE OF THE CURRENTITEMLOTS FOR EACH NPCID
             for (int y = 0; y < currentIds.Count; y++)
             {
-                int assignedLot = currentItemLots[new Random().Next(0, maxItemLots + 1)];
+                int assignedLot = currentItemLots[this.random.NextInt(0, maxItemLots + 1)];
                 finalString += CreateMassEditLine(ParamNames.NpcParam, currentIds[y], queueEntry.NpcParamCategory, assignedLot.ToString());
             }
         }
 
-        // Log.Logger.Debug(finalString);
         return finalString;
     }
 }

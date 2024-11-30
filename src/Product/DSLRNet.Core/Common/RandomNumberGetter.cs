@@ -18,6 +18,11 @@ public class RandomNumberGetter
         random = new(seed);
     }
 
+    public int NextInt(Range<int> range)
+    {
+        return this.NextInt(range.Min, range.Max);
+    }
+
     public int NextInt(int minimum, int maximum)
     {
         double scale = (maximum - minimum - 1) / 100.0;
@@ -25,6 +30,11 @@ public class RandomNumberGetter
         double returnValue = minimum + (value - 0) * scale;
 
         return (int)Math.Ceiling(returnValue);
+    }
+    
+    public float Next(Range<float> range)
+    {
+        return (float)this.NextDouble(range.Min, range.Max);
     }
 
     public double NextDouble(double minimum = 0, double maximum = 1)
@@ -34,14 +44,8 @@ public class RandomNumberGetter
         return Math.Max(Math.Min(value / 100.0 * (maximum - minimum) + minimum, maximum), minimum);
     }
 
-    public T NextWeightedValue<T>(List<T> valueList, List<int> weightList, double maxMult)
+    public T NextWeightedValue<T>(List<T> valueList, List<int> weightList)
     {
-        // MULTIPLY MAXIMUM WEIGHT BY MAXMULT - USED WITH RARITIES TO MAKE THE WEAKEST OPTION (HIGHEST WEIGHT) MORE LIKELY
-        double secondMaxMult = Math.Clamp(maxMult * 0.92f, 1.0f, 999.0f);
-        int maxIndex = weightList.Count - 1;
-        weightList[maxIndex] = (int)(Convert.ToInt32(weightList[maxIndex]) * maxMult);
-
-        // CATCH IF VALUE AND WEIGHT ARRAYS DO NOT HAVE THE SAME SIZE AND RETURN THE FIRST ENTRY IN VALUE ARRAY
         if (valueList.Count != weightList.Count)
         {
             //Log.Logger("Value array and Weight array have different sizes! Returning valuearray[0], " + valueList[0].ToString());
@@ -49,22 +53,19 @@ public class RandomNumberGetter
         }
         else
         {
-            // GET SUM OF WEIGHTS, AND STORE EACH STEP WHILE WE DO SO
             int weightTotal = 0;
             List<int> weightTotalStepsArray = [];
             for (int x = 0; x < weightList.Count; x++)
             {
-                weightTotal += Convert.ToInt32(weightList[x]);
+                weightTotal += weightList[x];
                 weightTotalStepsArray.Add(weightTotal);
             }
 
-            // CREATE RNG RESULT
-            int weightedResult = NextInt(0, weightTotal);
+            int weightedResult = this.NextInt(0, weightTotal);
 
-            // NOW ITERATE OVER THE VALUES IN WEIGHTTOTALSTEPSARRAY, IF WEIGHTEDRESULT IS LESS THAN OR EQUAL TO WTSA[x], RETURN valuearray[x]
             for (int x = 0; x < weightTotalStepsArray.Count; x++)
             {
-                if (weightedResult <= Convert.ToInt32(weightTotalStepsArray[x]))
+                if (weightedResult <= weightTotalStepsArray[x])
                 {
                     return valueList[x];
                 }
@@ -72,21 +73,6 @@ public class RandomNumberGetter
         }
 
         throw new Exception("Failure");
-    }
-
-    public double NextWeightedValue(double maxMult)
-    {
-        return NextWeightedValue([0, 1, 2], [50, 20, 30], maxMult);
-    }
-
-    public List<int> GetRandomList(int minint = 0, int maxint = 5, int numberofints = 2)
-    {
-        List<int> final = [];
-        for (int x = 0; x < numberofints; x++)
-        {
-            final.Add(NextInt(minint, maxint));
-        }
-        return final;
     }
 
     public T GetRandomItem<T>(List<T> values)

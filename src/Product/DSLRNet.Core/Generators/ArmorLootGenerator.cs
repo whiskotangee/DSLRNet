@@ -1,28 +1,16 @@
 ﻿namespace DSLRNet.Core.Generators;
 
-using DSLRNet.Core;
-using DSLRNet.Core.Common;
-using DSLRNet.Core.Config;
-using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Contracts.Params;
-using DSLRNet.Core.Data;
-using DSLRNet.Core.Handlers;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-
 public class ArmorLootGenerator : ParamLootGenerator
 {
     public ArmorLootGenerator(
         RarityHandler rarityHandler,
         AllowListHandler whiteListHandler,
         SpEffectHandler spEffectHandler,
-        DamageTypeHandler damageTypeHandler,
         LoreGenerator loreGenerator,
         RandomNumberGetter random,
         DataRepository dataRepository,
         IOptions<Configuration> configuration)
-        : base(rarityHandler, whiteListHandler, spEffectHandler, damageTypeHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector)
+        : base(rarityHandler, whiteListHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector)
     {
         CumulativeID = new CumulativeID();
 

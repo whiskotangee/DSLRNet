@@ -4,9 +4,9 @@ using DSLRNet.Core.Config;
 using DSLRNet.Core.Data;
 using DSLRNet.Core.Generators;
 using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Data.Generated;
 using DSLRNet.Core.Common;
 using Serilog;
+using DSLRNet.Core.Contracts.Params;
 
 namespace DSLRNet.Core;
 
@@ -20,7 +20,6 @@ public class DSLRNetBuilder(
     private readonly ILogger<DSLRNetBuilder> logger = logger;
     private readonly ProcessRunner processRunner = new(logger);
     private List<ItemLotBase> itemLotParam_Map = [];
-    private List<ItemLotBase> itemLotParam_Enemy = [];
 
     public async Task BuildAndApply()
     {
@@ -34,7 +33,6 @@ public class DSLRNetBuilder(
 
         Directory.CreateDirectory(configuration.Settings.DeployPath);
 
-        itemLotParam_Enemy = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_enemy.csv");
         itemLotParam_Map = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_map.csv");
 
         // get all queue entries

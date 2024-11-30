@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="33.0.1" />
-    <PackageReference Include="ini-parser-netstandard" Version="2.5.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -40,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DSLRNet.Core\DSLRNet.Core\DSLRNet.Core.csproj" />
+    <ProjectReference Include="..\DSLRNet.Core\DSLRNet.Core.csproj" />
   </ItemGroup>
 
 </Project>

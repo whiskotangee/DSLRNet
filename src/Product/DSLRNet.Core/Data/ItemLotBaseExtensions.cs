@@ -1,4 +1,4 @@
-﻿using DSLRNet.Core.Data.Generated;
+﻿using DSLRNet.Core.Contracts.Params;
 
 namespace DSLRNet.Core.Data
 {

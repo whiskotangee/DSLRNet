@@ -1,4 +1,4 @@
-namespace DSLRNet.Core.Data.Generated;
+namespace DSLRNet.Core.Contracts.Params;
 
 public partial class EquipParamGem
 {

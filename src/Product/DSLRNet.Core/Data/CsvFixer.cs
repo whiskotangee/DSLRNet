@@ -1,5 +1,5 @@
 ﻿
-using DSLRNet.Core.Data.Generated;
+using DSLRNet.Core.Contracts.Params;
 
 namespace DSLRNet.Core.Data;
 
@@ -49,9 +49,9 @@ public class CsvFixer
         }
 
         string classDefinition = $@"
-namespace DSLRNet.Data;
+namespace DSLRNet.Core.Contracts.Params;
 
-public partial class {Path.GetFileNameWithoutExtension(csvFilePath)}
+public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase
 {{
     {string.Join(Environment.NewLine + "    ", properties)}
 }}";

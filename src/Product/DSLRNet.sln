@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSLRNet.Console", "DSLRNet.Console\DSLRNet.Console.csproj", "{ED349573-DD67-4EDD-AD3C-E8872C0C28AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSLRNet.Core", "DSLRNet.Core\DSLRNet.Core\DSLRNet.Core.csproj", "{EFC140C0-3496-4103-9682-D72BDD945D17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSLRNet.Core", "DSLRNet.Core\DSLRNet.Core.csproj", "{EFC140C0-3496-4103-9682-D72BDD945D17}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoulsFormats", "..\..\SoulsFormatsNEXT\SoulsFormats\SoulsFormats.csproj", "{6D4B5A7E-CDCA-49F7-A95F-A1E51CF69A00}"
 EndProject

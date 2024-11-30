@@ -1,8 +1,8 @@
 ﻿using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts;
+using DSLRNet.Core.Contracts.Params;
 using DSLRNet.Core.Data;
-using DSLRNet.Core.Data.Generated;
 using Microsoft.Extensions.Options;
 
 namespace DSLRNet.Core.Handlers;

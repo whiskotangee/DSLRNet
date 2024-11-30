@@ -3,8 +3,8 @@
 using DSLRNet.Core;
 using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
+using DSLRNet.Core.Contracts.Params;
 using DSLRNet.Core.Data;
-using DSLRNet.Core.Data.Generated;
 using Microsoft.Extensions.Options;
 using Serilog;
 using System;

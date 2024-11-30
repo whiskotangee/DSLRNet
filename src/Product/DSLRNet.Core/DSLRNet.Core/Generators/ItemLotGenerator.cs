@@ -11,7 +11,6 @@ using Serilog;
 namespace DSLRNet.Core.Generators;
 
 enum ILEA { ItemId, Category, NumberOf, Chance, ItemAcquisitionFlag }
-enum LootCategory { Weapon, Armor, Talisman }
 
 public class ItemLotGenerator : BaseHandler
 {

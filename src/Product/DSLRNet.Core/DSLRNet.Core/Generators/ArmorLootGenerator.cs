@@ -13,12 +13,6 @@ using System.Collections.Generic;
 
 public class ArmorLootGenerator : ParamLootGenerator
 {
-
-    public List<string> ArmorCutRateParamNames { get; set; } = [];
-    public List<string> ArmorCutRateParamRealNames { get; set; } = [];
-
-    private const string CutRateDescString = "+{amt} Extra {type} Damage Cut Rate";
-
     public ArmorLootGenerator(
         RarityHandler rarityHandler,
         AllowListHandler whiteListHandler,
@@ -95,6 +89,7 @@ public class ArmorLootGenerator : ParamLootGenerator
         // RETURN NEW ARMOR'S ID FOR INSTANT ADDITION TO ITEMLOT
         return newArmor.GetValue<int>("ID");
     }
+
     public string ApplyCutRateAdditionsFromRarity(int rarityId, GenericDictionary outputDictionary)
     {
         // CREATE STRING TO RETURN A PRECOMPILED DESCRIPTION FOR EASY ADDITION
@@ -154,28 +149,5 @@ public class ArmorLootGenerator : ParamLootGenerator
     public string CreateArmorDescription(string speffects = "", string extraProtection = "")
     {
         return $"{speffects}{Environment.NewLine}{extraProtection}";
-    }
-
-    // ARMOR INFORMATION FUNCTIONS
-
-    public void UpdateCutRateParamNames()
-    {
-        ArmorCutRateParamNames = GetCutRateParamNameArray();
-        ArmorCutRateParamRealNames = GetCutRateParamRealNameArray();
-    }
-
-    public List<string> GetCutRateParamNameArray()
-    {
-        return Configuration.LootParam.ArmorParam;
-    }
-
-    public List<string> GetCutRateParamRealNameArray()
-    {
-        return Configuration.LootParam.ArmorRealName;
-    }
-
-    public string GetDescriptionCutRateStringWithFormatting(string amount = "0", string dmgType = "")
-    {
-        return CutRateDescString.Replace("{amt}", amount).Replace("{type}", dmgType);
     }
 }

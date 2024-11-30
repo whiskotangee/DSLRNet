@@ -8,9 +8,6 @@ using Serilog;
 
 namespace DSLRNet.Core.Generators;
 
-public enum OutputText { Param, Title, Summary, Description }
-public enum MEOutput { PARAM, TEXT }
-
 public class ParamLootGenerator(
     RarityHandler rarityHandler,
     AllowListHandler whiteListHandler,
@@ -22,42 +19,31 @@ public class ParamLootGenerator(
     DataRepository dataRepository,
     ParamNames outputParamName) : BaseHandler(dataRepository)
 {
-    // RARITY HANDLER - ALL LOOT IS HANDLED BY RARITY
     public RarityHandler RarityHandler { get; set; } = rarityHandler;
 
-    // WHITELIST ID HANDLER - FOR ENEMY SPECIFIC LOOT
     public AllowListHandler WhiteListHandler { get; set; } = whiteListHandler;
 
     public SpEffectHandler SpEffectHandler { get; set; } = spEffectHandler;
 
-    // DAMAGETYPE HANDLER
     public DamageTypeHandler DamageTypeHandler { get; set; } = damageTypeHandler;
 
-    // LORE HANDLER
     public LoreGenerator LoreGenerator { get; set; } = loreGenerator;
 
     public RandomNumberGetter Random { get; set; } = random;
 
     public Configuration Configuration { get; set; } = configuration.Value;
 
-    // CUMULATIVE ID TO HANDLE ID ASSIGNMENTS
     public CumulativeID CumulativeID { get; set; }
 
-    public List<GenericDictionary> LoadedLoot = [];
+    public List<GenericDictionary> LoadedLoot { get; set; } = [];
 
-    // THE CURRENT POOL OF PRIORITY IDS FOR THIS GENERATION - WHEN WE CHOOSE LOOT AT RANDOM, WE SHOULD PICK ONE OF THESE AT SOME POINT AND REMOVE THAT ID FROM THE SET
-    private List<int> PriorityIDs_Current = [];
+    private List<int> PriorityIDs_Current { get; set; } = [];
 
-    // HEADERS ARRAY STORAGE - THIS WILL BE GRABBED FROM GLOBALVARIABLES BASED ON THE CURRENT GAMETYPES ONCE MODSREADY SIGNAL IS RECEIVED
-    private List<string> ParamMandatoryKeys = [];
-
-    // ALL DSL GENERATORS TEXT FUNCTIONS
-    // CUSTOMIZABLE OUTPUTLOOTTYPE AND PARAMS NAMED SO WE CAN QUICKLY 
-    // PUT TOGETHER THE CORRECT FILENAMES ON THE FLY
+    private List<string> ParamMandatoryKeys { get; set; } = [];
 
     public ParamNames OutputParamName { get; } = outputParamName;
 
-    public Dictionary<LootType, string> OutputLootRealNames = new()
+    public Dictionary<LootType, string> OutputLootRealNames { get; } = new()
     {
         { LootType.Weapon, "Weapon" },
         { LootType.Armor, "Protector" },
@@ -91,7 +77,7 @@ public class ParamLootGenerator(
         int spefNumOverride = -1,
         bool overwriteExistingSpEffects = false)
     {
-        List<SpEffectText> spEffectTexts = new List<SpEffectText>();
+        List<SpEffectText> spEffectTexts = [];
 
         List<string> speffectParam = !overwriteExistingSpEffects ? GetAvailableSpEffectSlots(outputDictionary) : GetPassiveSpEffectSlotArrayFromOutputParamName();
         if (speffectParam.Count == 0)
@@ -208,7 +194,7 @@ public class ParamLootGenerator(
 
     public void SetLootSellValue(GenericDictionary lootDict, int rarityId, float mult = 1.0f)
     {
-        lootDict.SetValue(GetSellValueParam(), (int)(RarityHandler.GetRaritySellValue(rarityId) * mult));
+        lootDict.SetValue(this.Configuration.LootParam.SellValueParam, (int)(RarityHandler.GetRaritySellValue(rarityId) * mult));
     }
 
     public void SetLootRarityParamValue(GenericDictionary lootDict, int rarityId)
@@ -254,11 +240,6 @@ public class ParamLootGenerator(
     public string GetParamLootLore(string lootName = "Dagger", bool armorIfTrue = false)
     {
         return LoreGenerator.GenerateDescription(lootName, armorIfTrue);
-    }
-
-    public string GetSellValueParam()
-    {
-        return Configuration.LootParam.SellValueParam;
     }
 
     public bool HasNoLootTemplates()

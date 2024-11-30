@@ -2,15 +2,11 @@
 public class Configuration
 {
     public Settings Settings { get; set; }
-    public AreaScalingConfig AreaScaling { get; set; }
     public ItemlotsConfig Itemlots { get; set; }
-    public ParamNamesConfig ParamNames { get; set; }
-    public UpgradesConfig Upgrades { get; set; }
     public DSLRDescTextConfig DSLRDescText { get; set; }
     public LootParamConfig LootParam { get; set; }
     public FlagsConfig Flags { get; set; }
     public Dictionary<string, List<string>> ItemlotParams { get; set; }
-    public Dictionary<string, ItemlotBaseConfig> ItemlotBase { get; set; }
     public Dictionary<string, List<int>> FMGTypes { get; set; }
 }
 
@@ -40,15 +36,6 @@ public class Settings
     public List<string> MessageFileNames { get; set; }
 }
 
-public class AreaScalingConfig
-{
-    public List<int> SpeffectIds { get; set; }
-    public string SpeffectParamName { get; set; }
-    public List<string> ParamHp { get; set; }
-    public List<string> ParamAttack { get; set; }
-    public List<string> ParamDefence { get; set; }
-}
-
 public class ItemlotsConfig
 {
     public List<Category> Categories { get; set; }
@@ -67,23 +54,6 @@ public class ItemlotEditingArrayConfig
 {
     public List<string> ItemlotParams { get; set; }
     public string Luck { get; set; }
-}
-
-public class ParamNamesConfig
-{
-    public string NpcParam { get; set; }
-    public string EquipMaterialSet { get; set; }
-    public string ReinforceWeapon { get; set; }
-}
-
-public class UpgradesConfig
-{
-    public List<List<int>> IdStartEnd { get; set; }
-    public string QuantityParam { get; set; }
-    public string WeaponReinforceType { get; set; }
-    public List<string> WeaponDamageRateParams { get; set; }
-    public string WeaponBaseDamageParam { get; set; }
-    public float WeaponBaseDamageMultiplier { get; set; }
 }
 
 public class DSLRDescTextConfig

@@ -38,8 +38,6 @@ public class DamageTypeHandler : BaseHandler
             });
     }
 
-    // DTH SELECTION FUNCTIONS
-
     public DamageTypeSetup ChooseDamageTypeAtRandom(bool totallyRandom = false, bool secondaryDamage = false)
     {
         // Choose weight to get from DamageType dictionary based on secondary damage
@@ -95,7 +93,6 @@ public class DamageTypeHandler : BaseHandler
             }
         }
 
-        // Now apply behSpeffects
         if (behSpeffParam.Count > 0)
         {
             int dt1BehSpeffOffset = Math.Clamp(behSpeffParam.Count - 1, 0, 99);

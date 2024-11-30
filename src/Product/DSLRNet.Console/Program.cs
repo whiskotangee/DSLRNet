@@ -1,20 +1,14 @@
 ﻿using DSLRNet.Core;
-using DSLRNet.Core.Common;
-using DSLRNet.Core.Config;
-using DSLRNet.Core.Data;
 using DSLRNet.Core.Extensions;
-using DSLRNet.Core.Generators;
-using DSLRNet.Core.Handlers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Serilog;
 using System.Diagnostics;
 
 // TODO console progress like shitpost edition builder
 
-//string[] csvFiles = Directory.GetFiles("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\DefaultData\\ER\\CSVs\\", "*.csv");
+//string[] csvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\", "*.csv");
 
 //foreach (var csvFile in csvFiles)
 //{
@@ -27,10 +21,6 @@ using System.Diagnostics;
 //}
 
 //CsvFixer.UpdateNamesInCSVs();
-
-//var ret = NpcParamFinder.GetNpcIdsByModelId();
-
-//File.WriteAllText("npcmappings.json", JsonConvert.SerializeObject(ret));
 
 Stopwatch overallTimer = Stopwatch.StartNew();
 

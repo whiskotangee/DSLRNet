@@ -80,9 +80,6 @@
     <Content Include="DefaultData\ER\CSVs\SpEffectParam.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\SpEffectParam_ERR_Pre_SOTE.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="DefaultData\ER\CSVs\TalismanConfig.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -690,9 +687,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DefaultData\ER\MassEdit\WeaponVFX.massedit">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DefaultData\ER\npcmappings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DefaultData\ER\QuickStart\QuickStart.massedit">

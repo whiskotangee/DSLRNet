@@ -42,7 +42,7 @@ public class TalismanLootGenerator : ParamLootGenerator
         List<string> talismanSummaries = [];
 
         // CREATE OUR NEW TALISMAN
-        GenericDictionary newTalisman = GetLootDictionaryFromId(WhiteListHandler.GetLootByWhiteList(wllIds, LootType.Talisman));
+        GenericDictionary newTalisman = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Talisman));
 
         // CHOOSE A SET OF NEW SPEFFECTS BASED ON RARITY
         // STORE HOW MANY FREE SPEFFECT SLOTS OUR PARAM HAS

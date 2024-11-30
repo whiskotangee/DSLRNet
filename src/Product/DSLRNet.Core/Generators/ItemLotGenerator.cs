@@ -277,17 +277,17 @@ public class ItemLotGenerator : BaseHandler
 
         if (LootType.Armor == itemType && !armorLootGenerator.HasNoLootTemplates())
         {
-            finalId = armorLootGenerator.CreateArmor(rarityId, queueEntry.Whitelistedlootids);
+            finalId = armorLootGenerator.CreateArmor(rarityId, queueEntry.AllowedLootIds);
             finalCategory = 3;
         }
         else if (LootType.Talisman == itemType && !talismanLootGenerator.HasNoLootTemplates())
         {
-            finalId = talismanLootGenerator.CreateTalisman(rarityId, queueEntry.Whitelistedlootids);
+            finalId = talismanLootGenerator.CreateTalisman(rarityId, queueEntry.AllowedLootIds);
             finalCategory = 4;
         }
         else
         {
-            finalId = weaponLootGenerator.CreateWeapon(rarityId, queueEntry.Whitelistedlootids);
+            finalId = weaponLootGenerator.CreateWeapon(rarityId, queueEntry.AllowedLootIds);
             finalCategory = 2;
         }
 

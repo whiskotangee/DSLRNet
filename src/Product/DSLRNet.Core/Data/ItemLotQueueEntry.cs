@@ -97,7 +97,7 @@ public class ItemLotQueueEntry
     public int Id { get; set; }
     public string Realname { get; set; }
     public int Enabled { get; set; }
-    public List<int> Whitelistedlootids { get; set; }
+    public List<int> AllowedLootIds { get; set; }
     public bool GuaranteedDrop { get; set; }
     public int OneTimePickup { get; set; }
     public float DropChanceMultiplier { get; set; }
@@ -121,12 +121,13 @@ class DslItemLotSetup
     {
         FileIniDataParser iniParser = new FileIniDataParser();
         IniParser.Model.IniData data = iniParser.ReadFile(file);
+
         return new DslItemLotSetup
         {
             Id = int.Parse(data["dslitemlotsetup"]["id"]),
             Realname = data["dslitemlotsetup"]["realname"],
             Enabled = int.Parse(data["dslitemlotsetup"]["enabled"]),
-            WhitelistedLootIds = ParseList(data["dslitemlotsetup"]["whitelistedlootids"]),
+            AllowedLootIds = ParseList(data["dslitemlotsetup"]["allowedlootids"]),
             ItemLotIdsEarly = ParseList(data["dslitemlotsetup"]["itemlotids_early"]),
             ItemLotIdsMid = ParseList(data["dslitemlotsetup"]["itemlotids_mid"]),
             ItemLotIdsLate = ParseList(data["dslitemlotsetup"]["itemlotids_late"]),
@@ -158,7 +159,7 @@ class DslItemLotSetup
     public int Id { get; set; }
     public string Realname { get; set; }
     public int Enabled { get; set; }
-    public List<int> WhitelistedLootIds { get; set; }
+    public List<int> AllowedLootIds { get; set; }
     public List<int> ItemLotIdsEarly { get; set; }
     public List<int> ItemLotIdsMid { get; set; }
     public List<int> ItemLotIdsLate { get; set; }

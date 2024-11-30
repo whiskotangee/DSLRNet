@@ -23,9 +23,6 @@
     <Content Include="appsettings.Default.LoreConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="appsettings.Default.WeaponConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="DefaultData\ER\CSVs\DamageTypeSetup.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

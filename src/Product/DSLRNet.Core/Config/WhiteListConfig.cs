@@ -1,6 +1,6 @@
 ﻿namespace DSLRNet.Core.Config;
 
-public class WhiteListConfigItem
+public class AllowListConfigItem
 {
     public int Id { get; set; }
 
@@ -31,5 +31,5 @@ public class LootIds
 
 public class AllowListConfig
 {
-    public List<WhiteListConfigItem> Configs { get; set; }
+    public List<AllowListConfigItem> Configs { get; set; }
 }

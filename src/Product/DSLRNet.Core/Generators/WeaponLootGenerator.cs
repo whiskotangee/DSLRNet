@@ -52,7 +52,7 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         WeaponTypes goalWeaponType = Random.NextWeightedValue(weaponGeneratorConfig.Types, weaponGeneratorConfig.Weights, 1.0f);
 
-        GenericDictionary weaponDictionary = GetLootDictionaryFromId(WhiteListHandler.GetLootByWhiteList(whitelistLootIds, LootType.Weapon));
+        GenericDictionary weaponDictionary = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(whitelistLootIds, LootType.Weapon));
 
         string affinity = "";
 

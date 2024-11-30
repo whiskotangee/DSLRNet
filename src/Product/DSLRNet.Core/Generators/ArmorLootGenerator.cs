@@ -43,63 +43,46 @@ public class ArmorLootGenerator : ParamLootGenerator
         Holy
     }
 
-    // MAIN ARMOR GENERATION FUNCTION
     public int CreateArmor(int rarityId, List<int> wllIds)
     {
-        // TRY TO GRAB A WHITELISTED LOOT ARMOR DICTIONARY FOR OUR NEW ARMOR PIECE OR CHOOSE ONE AT RANDOM IF WE DON'T FIND IT
+        GenericDictionary newArmor = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
 
-        GenericDictionary newArmor = GetLootDictionaryFromId(WhiteListHandler.GetLootByWhiteList(wllIds, LootType.Armor));
-
-        // INITIALISE ARMOR DESCRIPTION
         string armorStatDesc = "";
 
-        // APPLY NEW ID
         newArmor.SetValue("ID", CumulativeID.GetNext());
 
-        // SET ARMOR SELL PRICE
         SetLootSellValue(newArmor, rarityId);
 
-        // SET ARMOR DROP RARITY EFFECT
         SetLootRarityParamValue(newArmor, rarityId);
 
-        // CREATE AND APPLY RANDOM CUTRATE ADDITIONS FOR EACH AVAILABLE CUTRATE PARAM IF WE'RE MAKING RARITY AFFECT ARMOR CUTRATES
         armorStatDesc += ApplyCutRateAdditionsFromRarity(rarityId, newArmor);
 
-        // APPLY RESISTANCE MULTIPLIERS
         ApplyArmorResistanceAdditions(newArmor, rarityId);
 
-        // RANDOMIZE ARMOR'S WEIGHT
         RandomizeLootWeightBasedOnRarity(newArmor, rarityId);
 
-        // STORE AND APPLY SPEFFECTS
         IEnumerable<SpEffectText> speffs = ApplySpEffects(rarityId, [0], newArmor, 1.0f, true, -1, true);
 
         newArmor.SetValue("iconIdM", RarityHandler.GetIconIdForRarity(newArmor.GetValue<int>("iconIdM"), rarityId));
         newArmor.SetValue("iconIdF", RarityHandler.GetIconIdForRarity(newArmor.GetValue<int>("iconIdF"), rarityId));
 
-        // CREATE NEW ARMOR TITLE
         string originalName = newArmor.GetValue<string>("Name");
         string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs, true, false);
 
-        // APPLY NEW ARMOR TITLE
         //newArmor.SetValue("Name", finalTitle);
 
         ExportLootGenParamAndTextToOutputs(newArmor, LootType.Armor, finalTitle, CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc + GetParamLootLore(finalTitle, true)));
 
-        // RETURN NEW ARMOR'S ID FOR INSTANT ADDITION TO ITEMLOT
         return newArmor.GetValue<int>("ID");
     }
 
     public string ApplyCutRateAdditionsFromRarity(int rarityId, GenericDictionary outputDictionary)
     {
-        // CREATE STRING TO RETURN A PRECOMPILED DESCRIPTION FOR EASY ADDITION
         string descriptionString = "";
 
-        // GET THE PARAMS WE'LL BE WORKING WITH
         List<string> cutRateParams = Configuration.LootParam.ArmorParam;
         List<string> defenseParams = Configuration.LootParam.ArmorDefenseParams;
 
-        // ITERATE OVER ALL PARAMS HERE, IF THE DICTIONARY HAS THAT PARAM, SUBTRACT A RARITY-DEFINED EXTRA CUTRATE FROM THE ORIGINAL VALUE
         if (cutRateParams.Count > 0)
         {
             foreach (string param in cutRateParams)
@@ -112,7 +95,6 @@ public class ArmorLootGenerator : ParamLootGenerator
             }
         }
 
-        // INITIALISE ALL DEFENCE PARAMS JUST TO BE SURE
         if (defenseParams.Count > 0)
         {
             foreach (string param in defenseParams)
@@ -129,10 +111,8 @@ public class ArmorLootGenerator : ParamLootGenerator
 
     public void ApplyArmorResistanceAdditions(GenericDictionary newArmor, int rarity)
     {
-        // GET OUR RESISTANCE ADDITIONS
         List<string> resistances = Configuration.LootParam.ArmorResistParams;
 
-        // IF WE FOUND ANY PARAMS, MULTIPLY THEM BY A VALUE BETWEEN A RARITY DEFINED MIN AND MAX MULTIPLIER
         if (resistances.Count > 0)
         {
             foreach (string param in resistances)

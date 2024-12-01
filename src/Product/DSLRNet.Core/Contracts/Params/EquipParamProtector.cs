@@ -1,257 +1,258 @@
+
 namespace DSLRNet.Core.Contracts.Params;
 
-public partial class EquipParamProtector
+public partial class EquipParamProtector : ParamBase<EquipParamProtector>
 {
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public int disableParam_NT { get; set; }
-    public int disableParamReserve1 { get; set; }
-    public string disableParamReserve2 { get; set; }
-    public int sortId { get; set; }
-    public int wanderingEquipId { get; set; }
-    public int resistSleep { get; set; }
-    public int resistMadness { get; set; }
-    public int saDurability { get; set; }
-    public float toughnessCorrectRate { get; set; }
-    public int fixPrice { get; set; }
-    public int basicPrice { get; set; }
-    public int sellValue { get; set; }
-    public float weight { get; set; }
-    public int residentSpEffectId { get; set; }
-    public int residentSpEffectId2 { get; set; }
-    public int residentSpEffectId3 { get; set; }
-    public int materialSetId { get; set; }
-    public float partsDamageRate { get; set; }
-    public float corectSARecover { get; set; }
-    public int originEquipPro { get; set; }
-    public int originEquipPro1 { get; set; }
-    public int originEquipPro2 { get; set; }
-    public int originEquipPro3 { get; set; }
-    public int originEquipPro4 { get; set; }
-    public int originEquipPro5 { get; set; }
-    public int originEquipPro6 { get; set; }
-    public int originEquipPro7 { get; set; }
-    public int originEquipPro8 { get; set; }
-    public int originEquipPro9 { get; set; }
-    public int originEquipPro10 { get; set; }
-    public int originEquipPro11 { get; set; }
-    public int originEquipPro12 { get; set; }
-    public int originEquipPro13 { get; set; }
-    public int originEquipPro14 { get; set; }
-    public int originEquipPro15 { get; set; }
-    public int faceScaleM_ScaleX { get; set; }
-    public int faceScaleM_ScaleZ { get; set; }
-    public int faceScaleM_MaxX { get; set; }
-    public int faceScaleM_MaxZ { get; set; }
-    public int faceScaleF_ScaleX { get; set; }
-    public int faceScaleF_ScaleZ { get; set; }
-    public int faceScaleF_MaxX { get; set; }
-    public int faceScaleF_MaxZ { get; set; }
-    public int qwcId { get; set; }
-    public int equipModelId { get; set; }
-    public int iconIdM { get; set; }
-    public int iconIdF { get; set; }
-    public int knockBack { get; set; }
-    public int knockbackBounceRate { get; set; }
-    public int durability { get; set; }
-    public int durabilityMax { get; set; }
-    public string pad03 { get; set; }
-    public int defFlickPower { get; set; }
-    public int defensePhysics { get; set; }
-    public int defenseMagic { get; set; }
-    public int defenseFire { get; set; }
-    public int defenseThunder { get; set; }
-    public int defenseSlash { get; set; }
-    public int defenseBlow { get; set; }
-    public int defenseThrust { get; set; }
-    public int resistPoison { get; set; }
-    public int resistDisease { get; set; }
-    public int resistBlood { get; set; }
-    public int resistCurse { get; set; }
-    public int reinforceTypeId { get; set; }
-    public int trophySGradeId { get; set; }
-    public int shopLv { get; set; }
-    public int knockbackParamId { get; set; }
-    public int flickDamageCutRate { get; set; }
-    public int equipModelCategory { get; set; }
-    public int equipModelGender { get; set; }
-    public int protectorCategory { get; set; }
-    public int rarity { get; set; }
-    public int sortGroupId { get; set; }
-    public int partsDmgType { get; set; }
-    public string pad04 { get; set; }
-    public int isDeposit { get; set; }
-    public int headEquip { get; set; }
-    public int bodyEquip { get; set; }
-    public int armEquip { get; set; }
-    public int legEquip { get; set; }
-    public int useFaceScale { get; set; }
-    public int isSkipWeakDamageAnim { get; set; }
-    public int pad06 { get; set; }
-    public int defenseMaterialVariationValue_Weak { get; set; }
-    public int autoFootEffectDecalBaseId2 { get; set; }
-    public int autoFootEffectDecalBaseId3 { get; set; }
-    public int defenseMaterialVariationValue { get; set; }
-    public int isDiscard { get; set; }
-    public int isDrop { get; set; }
-    public int disableMultiDropShare { get; set; }
-    public int simpleModelForDlc { get; set; }
-    public int showLogCondType { get; set; }
-    public int showDialogCondType { get; set; }
-    public int pad { get; set; }
-    public float neutralDamageCutRate { get; set; }
-    public float slashDamageCutRate { get; set; }
-    public float blowDamageCutRate { get; set; }
-    public float thrustDamageCutRate { get; set; }
-    public float magicDamageCutRate { get; set; }
-    public float fireDamageCutRate { get; set; }
-    public float thunderDamageCutRate { get; set; }
-    public int defenseMaterialSfx1 { get; set; }
-    public int defenseMaterialSfx_Weak1 { get; set; }
-    public int defenseMaterial1 { get; set; }
-    public int defenseMaterial_Weak1 { get; set; }
-    public int defenseMaterialSfx2 { get; set; }
-    public int defenseMaterialSfx_Weak2 { get; set; }
-    public int footMaterialSe { get; set; }
-    public int defenseMaterial_Weak2 { get; set; }
-    public int autoFootEffectDecalBaseId1 { get; set; }
-    public int toughnessDamageCutRate { get; set; }
-    public int toughnessRecoverCorrection { get; set; }
-    public float darkDamageCutRate { get; set; }
-    public int defenseDark { get; set; }
-    public int invisibleFlag48 { get; set; }
-    public int invisibleFlag49 { get; set; }
-    public int invisibleFlag50 { get; set; }
-    public int invisibleFlag51 { get; set; }
-    public int invisibleFlag52 { get; set; }
-    public int invisibleFlag53 { get; set; }
-    public int invisibleFlag54 { get; set; }
-    public int invisibleFlag55 { get; set; }
-    public int invisibleFlag56 { get; set; }
-    public int invisibleFlag57 { get; set; }
-    public int invisibleFlag58 { get; set; }
-    public int invisibleFlag59 { get; set; }
-    public int invisibleFlag60 { get; set; }
-    public int invisibleFlag61 { get; set; }
-    public int invisibleFlag62 { get; set; }
-    public int invisibleFlag63 { get; set; }
-    public int invisibleFlag64 { get; set; }
-    public int invisibleFlag65 { get; set; }
-    public int invisibleFlag66 { get; set; }
-    public int invisibleFlag67 { get; set; }
-    public int invisibleFlag68 { get; set; }
-    public int invisibleFlag69 { get; set; }
-    public int invisibleFlag70 { get; set; }
-    public int invisibleFlag71 { get; set; }
-    public int invisibleFlag72 { get; set; }
-    public int invisibleFlag73 { get; set; }
-    public int invisibleFlag74 { get; set; }
-    public int invisibleFlag75 { get; set; }
-    public int invisibleFlag76 { get; set; }
-    public int invisibleFlag77 { get; set; }
-    public int invisibleFlag78 { get; set; }
-    public int invisibleFlag79 { get; set; }
-    public int invisibleFlag80 { get; set; }
-    public int padbit { get; set; }
-    public int postureControlId { get; set; }
-    public string pad2 { get; set; }
-    public int saleValue { get; set; }
-    public int resistFreeze { get; set; }
-    public int invisibleFlag_SexVer00 { get; set; }
-    public int invisibleFlag_SexVer01 { get; set; }
-    public int invisibleFlag_SexVer02 { get; set; }
-    public int invisibleFlag_SexVer03 { get; set; }
-    public int invisibleFlag_SexVer04 { get; set; }
-    public int invisibleFlag_SexVer05 { get; set; }
-    public int invisibleFlag_SexVer06 { get; set; }
-    public int invisibleFlag_SexVer07 { get; set; }
-    public int invisibleFlag_SexVer08 { get; set; }
-    public int invisibleFlag_SexVer09 { get; set; }
-    public int invisibleFlag_SexVer10 { get; set; }
-    public int invisibleFlag_SexVer11 { get; set; }
-    public int invisibleFlag_SexVer12 { get; set; }
-    public int invisibleFlag_SexVer13 { get; set; }
-    public int invisibleFlag_SexVer14 { get; set; }
-    public int invisibleFlag_SexVer15 { get; set; }
-    public int invisibleFlag_SexVer16 { get; set; }
-    public int invisibleFlag_SexVer17 { get; set; }
-    public int invisibleFlag_SexVer18 { get; set; }
-    public int invisibleFlag_SexVer19 { get; set; }
-    public int invisibleFlag_SexVer20 { get; set; }
-    public int invisibleFlag_SexVer21 { get; set; }
-    public int invisibleFlag_SexVer22 { get; set; }
-    public int invisibleFlag_SexVer23 { get; set; }
-    public int invisibleFlag_SexVer24 { get; set; }
-    public int invisibleFlag_SexVer25 { get; set; }
-    public int invisibleFlag_SexVer26 { get; set; }
-    public int invisibleFlag_SexVer27 { get; set; }
-    public int invisibleFlag_SexVer28 { get; set; }
-    public int invisibleFlag_SexVer29 { get; set; }
-    public int invisibleFlag_SexVer30 { get; set; }
-    public int invisibleFlag_SexVer31 { get; set; }
-    public int invisibleFlag_SexVer32 { get; set; }
-    public int invisibleFlag_SexVer33 { get; set; }
-    public int invisibleFlag_SexVer34 { get; set; }
-    public int invisibleFlag_SexVer35 { get; set; }
-    public int invisibleFlag_SexVer36 { get; set; }
-    public int invisibleFlag_SexVer37 { get; set; }
-    public int invisibleFlag_SexVer38 { get; set; }
-    public int invisibleFlag_SexVer39 { get; set; }
-    public int invisibleFlag_SexVer40 { get; set; }
-    public int invisibleFlag_SexVer41 { get; set; }
-    public int invisibleFlag_SexVer42 { get; set; }
-    public int invisibleFlag_SexVer43 { get; set; }
-    public int invisibleFlag_SexVer44 { get; set; }
-    public int invisibleFlag_SexVer45 { get; set; }
-    public int invisibleFlag_SexVer46 { get; set; }
-    public int invisibleFlag_SexVer47 { get; set; }
-    public int invisibleFlag_SexVer48 { get; set; }
-    public int invisibleFlag_SexVer49 { get; set; }
-    public int invisibleFlag_SexVer50 { get; set; }
-    public int invisibleFlag_SexVer51 { get; set; }
-    public int invisibleFlag_SexVer52 { get; set; }
-    public int invisibleFlag_SexVer53 { get; set; }
-    public int invisibleFlag_SexVer54 { get; set; }
-    public int invisibleFlag_SexVer55 { get; set; }
-    public int invisibleFlag_SexVer56 { get; set; }
-    public int invisibleFlag_SexVer57 { get; set; }
-    public int invisibleFlag_SexVer58 { get; set; }
-    public int invisibleFlag_SexVer59 { get; set; }
-    public int invisibleFlag_SexVer60 { get; set; }
-    public int invisibleFlag_SexVer61 { get; set; }
-    public int invisibleFlag_SexVer62 { get; set; }
-    public int invisibleFlag_SexVer63 { get; set; }
-    public int invisibleFlag_SexVer64 { get; set; }
-    public int invisibleFlag_SexVer65 { get; set; }
-    public int invisibleFlag_SexVer66 { get; set; }
-    public int invisibleFlag_SexVer67 { get; set; }
-    public int invisibleFlag_SexVer68 { get; set; }
-    public int invisibleFlag_SexVer69 { get; set; }
-    public int invisibleFlag_SexVer70 { get; set; }
-    public int invisibleFlag_SexVer71 { get; set; }
-    public int invisibleFlag_SexVer72 { get; set; }
-    public int invisibleFlag_SexVer73 { get; set; }
-    public int invisibleFlag_SexVer74 { get; set; }
-    public int invisibleFlag_SexVer75 { get; set; }
-    public int invisibleFlag_SexVer76 { get; set; }
-    public int invisibleFlag_SexVer77 { get; set; }
-    public int invisibleFlag_SexVer78 { get; set; }
-    public int invisibleFlag_SexVer79 { get; set; }
-    public int invisibleFlag_SexVer80 { get; set; }
-    public int invisibleFlag_SexVer81 { get; set; }
-    public int invisibleFlag_SexVer82 { get; set; }
-    public int invisibleFlag_SexVer83 { get; set; }
-    public int invisibleFlag_SexVer84 { get; set; }
-    public int invisibleFlag_SexVer85 { get; set; }
-    public int invisibleFlag_SexVer86 { get; set; }
-    public int invisibleFlag_SexVer87 { get; set; }
-    public int invisibleFlag_SexVer88 { get; set; }
-    public int invisibleFlag_SexVer89 { get; set; }
-    public int invisibleFlag_SexVer90 { get; set; }
-    public int invisibleFlag_SexVer91 { get; set; }
-    public int invisibleFlag_SexVer92 { get; set; }
-    public int invisibleFlag_SexVer93 { get; set; }
-    public int invisibleFlag_SexVer94 { get; set; }
-    public int invisibleFlag_SexVer95 { get; set; }
-    public string pad404 { get; set; }
+    public int ID { get { return this.GenericParam.GetValue<int>("ID"); } set { this.GenericParam.SetValue("ID", value); } }
+    public string Name { get { return this.GenericParam.GetValue<string>("Name"); } set { this.GenericParam.SetValue("Name", value); } }
+    public int disableParam_NT { get { return this.GenericParam.GetValue<int>("disableParam_NT"); } set { this.GenericParam.SetValue("disableParam_NT", value); } }
+    public int disableParamReserve1 { get { return this.GenericParam.GetValue<int>("disableParamReserve1"); } set { this.GenericParam.SetValue("disableParamReserve1", value); } }
+    public string disableParamReserve2 { get { return this.GenericParam.GetValue<string>("disableParamReserve2"); } set { this.GenericParam.SetValue("disableParamReserve2", value); } }
+    public int sortId { get { return this.GenericParam.GetValue<int>("sortId"); } set { this.GenericParam.SetValue("sortId", value); } }
+    public int wanderingEquipId { get { return this.GenericParam.GetValue<int>("wanderingEquipId"); } set { this.GenericParam.SetValue("wanderingEquipId", value); } }
+    public int resistSleep { get { return this.GenericParam.GetValue<int>("resistSleep"); } set { this.GenericParam.SetValue("resistSleep", value); } }
+    public int resistMadness { get { return this.GenericParam.GetValue<int>("resistMadness"); } set { this.GenericParam.SetValue("resistMadness", value); } }
+    public int saDurability { get { return this.GenericParam.GetValue<int>("saDurability"); } set { this.GenericParam.SetValue("saDurability", value); } }
+    public float toughnessCorrectRate { get { return this.GenericParam.GetValue<float>("toughnessCorrectRate"); } set { this.GenericParam.SetValue("toughnessCorrectRate", value); } }
+    public int fixPrice { get { return this.GenericParam.GetValue<int>("fixPrice"); } set { this.GenericParam.SetValue("fixPrice", value); } }
+    public int basicPrice { get { return this.GenericParam.GetValue<int>("basicPrice"); } set { this.GenericParam.SetValue("basicPrice", value); } }
+    public int sellValue { get { return this.GenericParam.GetValue<int>("sellValue"); } set { this.GenericParam.SetValue("sellValue", value); } }
+    public float weight { get { return this.GenericParam.GetValue<float>("weight"); } set { this.GenericParam.SetValue("weight", value); } }
+    public int residentSpEffectId { get { return this.GenericParam.GetValue<int>("residentSpEffectId"); } set { this.GenericParam.SetValue("residentSpEffectId", value); } }
+    public int residentSpEffectId2 { get { return this.GenericParam.GetValue<int>("residentSpEffectId2"); } set { this.GenericParam.SetValue("residentSpEffectId2", value); } }
+    public int residentSpEffectId3 { get { return this.GenericParam.GetValue<int>("residentSpEffectId3"); } set { this.GenericParam.SetValue("residentSpEffectId3", value); } }
+    public int materialSetId { get { return this.GenericParam.GetValue<int>("materialSetId"); } set { this.GenericParam.SetValue("materialSetId", value); } }
+    public float partsDamageRate { get { return this.GenericParam.GetValue<float>("partsDamageRate"); } set { this.GenericParam.SetValue("partsDamageRate", value); } }
+    public float corectSARecover { get { return this.GenericParam.GetValue<float>("corectSARecover"); } set { this.GenericParam.SetValue("corectSARecover", value); } }
+    public int originEquipPro { get { return this.GenericParam.GetValue<int>("originEquipPro"); } set { this.GenericParam.SetValue("originEquipPro", value); } }
+    public int originEquipPro1 { get { return this.GenericParam.GetValue<int>("originEquipPro1"); } set { this.GenericParam.SetValue("originEquipPro1", value); } }
+    public int originEquipPro2 { get { return this.GenericParam.GetValue<int>("originEquipPro2"); } set { this.GenericParam.SetValue("originEquipPro2", value); } }
+    public int originEquipPro3 { get { return this.GenericParam.GetValue<int>("originEquipPro3"); } set { this.GenericParam.SetValue("originEquipPro3", value); } }
+    public int originEquipPro4 { get { return this.GenericParam.GetValue<int>("originEquipPro4"); } set { this.GenericParam.SetValue("originEquipPro4", value); } }
+    public int originEquipPro5 { get { return this.GenericParam.GetValue<int>("originEquipPro5"); } set { this.GenericParam.SetValue("originEquipPro5", value); } }
+    public int originEquipPro6 { get { return this.GenericParam.GetValue<int>("originEquipPro6"); } set { this.GenericParam.SetValue("originEquipPro6", value); } }
+    public int originEquipPro7 { get { return this.GenericParam.GetValue<int>("originEquipPro7"); } set { this.GenericParam.SetValue("originEquipPro7", value); } }
+    public int originEquipPro8 { get { return this.GenericParam.GetValue<int>("originEquipPro8"); } set { this.GenericParam.SetValue("originEquipPro8", value); } }
+    public int originEquipPro9 { get { return this.GenericParam.GetValue<int>("originEquipPro9"); } set { this.GenericParam.SetValue("originEquipPro9", value); } }
+    public int originEquipPro10 { get { return this.GenericParam.GetValue<int>("originEquipPro10"); } set { this.GenericParam.SetValue("originEquipPro10", value); } }
+    public int originEquipPro11 { get { return this.GenericParam.GetValue<int>("originEquipPro11"); } set { this.GenericParam.SetValue("originEquipPro11", value); } }
+    public int originEquipPro12 { get { return this.GenericParam.GetValue<int>("originEquipPro12"); } set { this.GenericParam.SetValue("originEquipPro12", value); } }
+    public int originEquipPro13 { get { return this.GenericParam.GetValue<int>("originEquipPro13"); } set { this.GenericParam.SetValue("originEquipPro13", value); } }
+    public int originEquipPro14 { get { return this.GenericParam.GetValue<int>("originEquipPro14"); } set { this.GenericParam.SetValue("originEquipPro14", value); } }
+    public int originEquipPro15 { get { return this.GenericParam.GetValue<int>("originEquipPro15"); } set { this.GenericParam.SetValue("originEquipPro15", value); } }
+    public int faceScaleM_ScaleX { get { return this.GenericParam.GetValue<int>("faceScaleM_ScaleX"); } set { this.GenericParam.SetValue("faceScaleM_ScaleX", value); } }
+    public int faceScaleM_ScaleZ { get { return this.GenericParam.GetValue<int>("faceScaleM_ScaleZ"); } set { this.GenericParam.SetValue("faceScaleM_ScaleZ", value); } }
+    public int faceScaleM_MaxX { get { return this.GenericParam.GetValue<int>("faceScaleM_MaxX"); } set { this.GenericParam.SetValue("faceScaleM_MaxX", value); } }
+    public int faceScaleM_MaxZ { get { return this.GenericParam.GetValue<int>("faceScaleM_MaxZ"); } set { this.GenericParam.SetValue("faceScaleM_MaxZ", value); } }
+    public int faceScaleF_ScaleX { get { return this.GenericParam.GetValue<int>("faceScaleF_ScaleX"); } set { this.GenericParam.SetValue("faceScaleF_ScaleX", value); } }
+    public int faceScaleF_ScaleZ { get { return this.GenericParam.GetValue<int>("faceScaleF_ScaleZ"); } set { this.GenericParam.SetValue("faceScaleF_ScaleZ", value); } }
+    public int faceScaleF_MaxX { get { return this.GenericParam.GetValue<int>("faceScaleF_MaxX"); } set { this.GenericParam.SetValue("faceScaleF_MaxX", value); } }
+    public int faceScaleF_MaxZ { get { return this.GenericParam.GetValue<int>("faceScaleF_MaxZ"); } set { this.GenericParam.SetValue("faceScaleF_MaxZ", value); } }
+    public int qwcId { get { return this.GenericParam.GetValue<int>("qwcId"); } set { this.GenericParam.SetValue("qwcId", value); } }
+    public int equipModelId { get { return this.GenericParam.GetValue<int>("equipModelId"); } set { this.GenericParam.SetValue("equipModelId", value); } }
+    public int iconIdM { get { return this.GenericParam.GetValue<int>("iconIdM"); } set { this.GenericParam.SetValue("iconIdM", value); } }
+    public int iconIdF { get { return this.GenericParam.GetValue<int>("iconIdF"); } set { this.GenericParam.SetValue("iconIdF", value); } }
+    public int knockBack { get { return this.GenericParam.GetValue<int>("knockBack"); } set { this.GenericParam.SetValue("knockBack", value); } }
+    public int knockbackBounceRate { get { return this.GenericParam.GetValue<int>("knockbackBounceRate"); } set { this.GenericParam.SetValue("knockbackBounceRate", value); } }
+    public int durability { get { return this.GenericParam.GetValue<int>("durability"); } set { this.GenericParam.SetValue("durability", value); } }
+    public int durabilityMax { get { return this.GenericParam.GetValue<int>("durabilityMax"); } set { this.GenericParam.SetValue("durabilityMax", value); } }
+    public string pad03 { get { return this.GenericParam.GetValue<string>("pad03"); } set { this.GenericParam.SetValue("pad03", value); } }
+    public int defFlickPower { get { return this.GenericParam.GetValue<int>("defFlickPower"); } set { this.GenericParam.SetValue("defFlickPower", value); } }
+    public int defensePhysics { get { return this.GenericParam.GetValue<int>("defensePhysics"); } set { this.GenericParam.SetValue("defensePhysics", value); } }
+    public int defenseMagic { get { return this.GenericParam.GetValue<int>("defenseMagic"); } set { this.GenericParam.SetValue("defenseMagic", value); } }
+    public int defenseFire { get { return this.GenericParam.GetValue<int>("defenseFire"); } set { this.GenericParam.SetValue("defenseFire", value); } }
+    public int defenseThunder { get { return this.GenericParam.GetValue<int>("defenseThunder"); } set { this.GenericParam.SetValue("defenseThunder", value); } }
+    public int defenseSlash { get { return this.GenericParam.GetValue<int>("defenseSlash"); } set { this.GenericParam.SetValue("defenseSlash", value); } }
+    public int defenseBlow { get { return this.GenericParam.GetValue<int>("defenseBlow"); } set { this.GenericParam.SetValue("defenseBlow", value); } }
+    public int defenseThrust { get { return this.GenericParam.GetValue<int>("defenseThrust"); } set { this.GenericParam.SetValue("defenseThrust", value); } }
+    public int resistPoison { get { return this.GenericParam.GetValue<int>("resistPoison"); } set { this.GenericParam.SetValue("resistPoison", value); } }
+    public int resistDisease { get { return this.GenericParam.GetValue<int>("resistDisease"); } set { this.GenericParam.SetValue("resistDisease", value); } }
+    public int resistBlood { get { return this.GenericParam.GetValue<int>("resistBlood"); } set { this.GenericParam.SetValue("resistBlood", value); } }
+    public int resistCurse { get { return this.GenericParam.GetValue<int>("resistCurse"); } set { this.GenericParam.SetValue("resistCurse", value); } }
+    public int reinforceTypeId { get { return this.GenericParam.GetValue<int>("reinforceTypeId"); } set { this.GenericParam.SetValue("reinforceTypeId", value); } }
+    public int trophySGradeId { get { return this.GenericParam.GetValue<int>("trophySGradeId"); } set { this.GenericParam.SetValue("trophySGradeId", value); } }
+    public int shopLv { get { return this.GenericParam.GetValue<int>("shopLv"); } set { this.GenericParam.SetValue("shopLv", value); } }
+    public int knockbackParamId { get { return this.GenericParam.GetValue<int>("knockbackParamId"); } set { this.GenericParam.SetValue("knockbackParamId", value); } }
+    public int flickDamageCutRate { get { return this.GenericParam.GetValue<int>("flickDamageCutRate"); } set { this.GenericParam.SetValue("flickDamageCutRate", value); } }
+    public int equipModelCategory { get { return this.GenericParam.GetValue<int>("equipModelCategory"); } set { this.GenericParam.SetValue("equipModelCategory", value); } }
+    public int equipModelGender { get { return this.GenericParam.GetValue<int>("equipModelGender"); } set { this.GenericParam.SetValue("equipModelGender", value); } }
+    public int protectorCategory { get { return this.GenericParam.GetValue<int>("protectorCategory"); } set { this.GenericParam.SetValue("protectorCategory", value); } }
+    public int rarity { get { return this.GenericParam.GetValue<int>("rarity"); } set { this.GenericParam.SetValue("rarity", value); } }
+    public int sortGroupId { get { return this.GenericParam.GetValue<int>("sortGroupId"); } set { this.GenericParam.SetValue("sortGroupId", value); } }
+    public int partsDmgType { get { return this.GenericParam.GetValue<int>("partsDmgType"); } set { this.GenericParam.SetValue("partsDmgType", value); } }
+    public string pad04 { get { return this.GenericParam.GetValue<string>("pad04"); } set { this.GenericParam.SetValue("pad04", value); } }
+    public int isDeposit { get { return this.GenericParam.GetValue<int>("isDeposit"); } set { this.GenericParam.SetValue("isDeposit", value); } }
+    public int headEquip { get { return this.GenericParam.GetValue<int>("headEquip"); } set { this.GenericParam.SetValue("headEquip", value); } }
+    public int bodyEquip { get { return this.GenericParam.GetValue<int>("bodyEquip"); } set { this.GenericParam.SetValue("bodyEquip", value); } }
+    public int armEquip { get { return this.GenericParam.GetValue<int>("armEquip"); } set { this.GenericParam.SetValue("armEquip", value); } }
+    public int legEquip { get { return this.GenericParam.GetValue<int>("legEquip"); } set { this.GenericParam.SetValue("legEquip", value); } }
+    public int useFaceScale { get { return this.GenericParam.GetValue<int>("useFaceScale"); } set { this.GenericParam.SetValue("useFaceScale", value); } }
+    public int isSkipWeakDamageAnim { get { return this.GenericParam.GetValue<int>("isSkipWeakDamageAnim"); } set { this.GenericParam.SetValue("isSkipWeakDamageAnim", value); } }
+    public int pad06 { get { return this.GenericParam.GetValue<int>("pad06"); } set { this.GenericParam.SetValue("pad06", value); } }
+    public int defenseMaterialVariationValue_Weak { get { return this.GenericParam.GetValue<int>("defenseMaterialVariationValue_Weak"); } set { this.GenericParam.SetValue("defenseMaterialVariationValue_Weak", value); } }
+    public int autoFootEffectDecalBaseId2 { get { return this.GenericParam.GetValue<int>("autoFootEffectDecalBaseId2"); } set { this.GenericParam.SetValue("autoFootEffectDecalBaseId2", value); } }
+    public int autoFootEffectDecalBaseId3 { get { return this.GenericParam.GetValue<int>("autoFootEffectDecalBaseId3"); } set { this.GenericParam.SetValue("autoFootEffectDecalBaseId3", value); } }
+    public int defenseMaterialVariationValue { get { return this.GenericParam.GetValue<int>("defenseMaterialVariationValue"); } set { this.GenericParam.SetValue("defenseMaterialVariationValue", value); } }
+    public int isDiscard { get { return this.GenericParam.GetValue<int>("isDiscard"); } set { this.GenericParam.SetValue("isDiscard", value); } }
+    public int isDrop { get { return this.GenericParam.GetValue<int>("isDrop"); } set { this.GenericParam.SetValue("isDrop", value); } }
+    public int disableMultiDropShare { get { return this.GenericParam.GetValue<int>("disableMultiDropShare"); } set { this.GenericParam.SetValue("disableMultiDropShare", value); } }
+    public int simpleModelForDlc { get { return this.GenericParam.GetValue<int>("simpleModelForDlc"); } set { this.GenericParam.SetValue("simpleModelForDlc", value); } }
+    public int showLogCondType { get { return this.GenericParam.GetValue<int>("showLogCondType"); } set { this.GenericParam.SetValue("showLogCondType", value); } }
+    public int showDialogCondType { get { return this.GenericParam.GetValue<int>("showDialogCondType"); } set { this.GenericParam.SetValue("showDialogCondType", value); } }
+    public int pad { get { return this.GenericParam.GetValue<int>("pad"); } set { this.GenericParam.SetValue("pad", value); } }
+    public float neutralDamageCutRate { get { return this.GenericParam.GetValue<float>("neutralDamageCutRate"); } set { this.GenericParam.SetValue("neutralDamageCutRate", value); } }
+    public float slashDamageCutRate { get { return this.GenericParam.GetValue<float>("slashDamageCutRate"); } set { this.GenericParam.SetValue("slashDamageCutRate", value); } }
+    public float blowDamageCutRate { get { return this.GenericParam.GetValue<float>("blowDamageCutRate"); } set { this.GenericParam.SetValue("blowDamageCutRate", value); } }
+    public float thrustDamageCutRate { get { return this.GenericParam.GetValue<float>("thrustDamageCutRate"); } set { this.GenericParam.SetValue("thrustDamageCutRate", value); } }
+    public float magicDamageCutRate { get { return this.GenericParam.GetValue<float>("magicDamageCutRate"); } set { this.GenericParam.SetValue("magicDamageCutRate", value); } }
+    public float fireDamageCutRate { get { return this.GenericParam.GetValue<float>("fireDamageCutRate"); } set { this.GenericParam.SetValue("fireDamageCutRate", value); } }
+    public float thunderDamageCutRate { get { return this.GenericParam.GetValue<float>("thunderDamageCutRate"); } set { this.GenericParam.SetValue("thunderDamageCutRate", value); } }
+    public int defenseMaterialSfx1 { get { return this.GenericParam.GetValue<int>("defenseMaterialSfx1"); } set { this.GenericParam.SetValue("defenseMaterialSfx1", value); } }
+    public int defenseMaterialSfx_Weak1 { get { return this.GenericParam.GetValue<int>("defenseMaterialSfx_Weak1"); } set { this.GenericParam.SetValue("defenseMaterialSfx_Weak1", value); } }
+    public int defenseMaterial1 { get { return this.GenericParam.GetValue<int>("defenseMaterial1"); } set { this.GenericParam.SetValue("defenseMaterial1", value); } }
+    public int defenseMaterial_Weak1 { get { return this.GenericParam.GetValue<int>("defenseMaterial_Weak1"); } set { this.GenericParam.SetValue("defenseMaterial_Weak1", value); } }
+    public int defenseMaterialSfx2 { get { return this.GenericParam.GetValue<int>("defenseMaterialSfx2"); } set { this.GenericParam.SetValue("defenseMaterialSfx2", value); } }
+    public int defenseMaterialSfx_Weak2 { get { return this.GenericParam.GetValue<int>("defenseMaterialSfx_Weak2"); } set { this.GenericParam.SetValue("defenseMaterialSfx_Weak2", value); } }
+    public int footMaterialSe { get { return this.GenericParam.GetValue<int>("footMaterialSe"); } set { this.GenericParam.SetValue("footMaterialSe", value); } }
+    public int defenseMaterial_Weak2 { get { return this.GenericParam.GetValue<int>("defenseMaterial_Weak2"); } set { this.GenericParam.SetValue("defenseMaterial_Weak2", value); } }
+    public int autoFootEffectDecalBaseId1 { get { return this.GenericParam.GetValue<int>("autoFootEffectDecalBaseId1"); } set { this.GenericParam.SetValue("autoFootEffectDecalBaseId1", value); } }
+    public int toughnessDamageCutRate { get { return this.GenericParam.GetValue<int>("toughnessDamageCutRate"); } set { this.GenericParam.SetValue("toughnessDamageCutRate", value); } }
+    public int toughnessRecoverCorrection { get { return this.GenericParam.GetValue<int>("toughnessRecoverCorrection"); } set { this.GenericParam.SetValue("toughnessRecoverCorrection", value); } }
+    public float darkDamageCutRate { get { return this.GenericParam.GetValue<float>("darkDamageCutRate"); } set { this.GenericParam.SetValue("darkDamageCutRate", value); } }
+    public int defenseDark { get { return this.GenericParam.GetValue<int>("defenseDark"); } set { this.GenericParam.SetValue("defenseDark", value); } }
+    public int invisibleFlag48 { get { return this.GenericParam.GetValue<int>("invisibleFlag48"); } set { this.GenericParam.SetValue("invisibleFlag48", value); } }
+    public int invisibleFlag49 { get { return this.GenericParam.GetValue<int>("invisibleFlag49"); } set { this.GenericParam.SetValue("invisibleFlag49", value); } }
+    public int invisibleFlag50 { get { return this.GenericParam.GetValue<int>("invisibleFlag50"); } set { this.GenericParam.SetValue("invisibleFlag50", value); } }
+    public int invisibleFlag51 { get { return this.GenericParam.GetValue<int>("invisibleFlag51"); } set { this.GenericParam.SetValue("invisibleFlag51", value); } }
+    public int invisibleFlag52 { get { return this.GenericParam.GetValue<int>("invisibleFlag52"); } set { this.GenericParam.SetValue("invisibleFlag52", value); } }
+    public int invisibleFlag53 { get { return this.GenericParam.GetValue<int>("invisibleFlag53"); } set { this.GenericParam.SetValue("invisibleFlag53", value); } }
+    public int invisibleFlag54 { get { return this.GenericParam.GetValue<int>("invisibleFlag54"); } set { this.GenericParam.SetValue("invisibleFlag54", value); } }
+    public int invisibleFlag55 { get { return this.GenericParam.GetValue<int>("invisibleFlag55"); } set { this.GenericParam.SetValue("invisibleFlag55", value); } }
+    public int invisibleFlag56 { get { return this.GenericParam.GetValue<int>("invisibleFlag56"); } set { this.GenericParam.SetValue("invisibleFlag56", value); } }
+    public int invisibleFlag57 { get { return this.GenericParam.GetValue<int>("invisibleFlag57"); } set { this.GenericParam.SetValue("invisibleFlag57", value); } }
+    public int invisibleFlag58 { get { return this.GenericParam.GetValue<int>("invisibleFlag58"); } set { this.GenericParam.SetValue("invisibleFlag58", value); } }
+    public int invisibleFlag59 { get { return this.GenericParam.GetValue<int>("invisibleFlag59"); } set { this.GenericParam.SetValue("invisibleFlag59", value); } }
+    public int invisibleFlag60 { get { return this.GenericParam.GetValue<int>("invisibleFlag60"); } set { this.GenericParam.SetValue("invisibleFlag60", value); } }
+    public int invisibleFlag61 { get { return this.GenericParam.GetValue<int>("invisibleFlag61"); } set { this.GenericParam.SetValue("invisibleFlag61", value); } }
+    public int invisibleFlag62 { get { return this.GenericParam.GetValue<int>("invisibleFlag62"); } set { this.GenericParam.SetValue("invisibleFlag62", value); } }
+    public int invisibleFlag63 { get { return this.GenericParam.GetValue<int>("invisibleFlag63"); } set { this.GenericParam.SetValue("invisibleFlag63", value); } }
+    public int invisibleFlag64 { get { return this.GenericParam.GetValue<int>("invisibleFlag64"); } set { this.GenericParam.SetValue("invisibleFlag64", value); } }
+    public int invisibleFlag65 { get { return this.GenericParam.GetValue<int>("invisibleFlag65"); } set { this.GenericParam.SetValue("invisibleFlag65", value); } }
+    public int invisibleFlag66 { get { return this.GenericParam.GetValue<int>("invisibleFlag66"); } set { this.GenericParam.SetValue("invisibleFlag66", value); } }
+    public int invisibleFlag67 { get { return this.GenericParam.GetValue<int>("invisibleFlag67"); } set { this.GenericParam.SetValue("invisibleFlag67", value); } }
+    public int invisibleFlag68 { get { return this.GenericParam.GetValue<int>("invisibleFlag68"); } set { this.GenericParam.SetValue("invisibleFlag68", value); } }
+    public int invisibleFlag69 { get { return this.GenericParam.GetValue<int>("invisibleFlag69"); } set { this.GenericParam.SetValue("invisibleFlag69", value); } }
+    public int invisibleFlag70 { get { return this.GenericParam.GetValue<int>("invisibleFlag70"); } set { this.GenericParam.SetValue("invisibleFlag70", value); } }
+    public int invisibleFlag71 { get { return this.GenericParam.GetValue<int>("invisibleFlag71"); } set { this.GenericParam.SetValue("invisibleFlag71", value); } }
+    public int invisibleFlag72 { get { return this.GenericParam.GetValue<int>("invisibleFlag72"); } set { this.GenericParam.SetValue("invisibleFlag72", value); } }
+    public int invisibleFlag73 { get { return this.GenericParam.GetValue<int>("invisibleFlag73"); } set { this.GenericParam.SetValue("invisibleFlag73", value); } }
+    public int invisibleFlag74 { get { return this.GenericParam.GetValue<int>("invisibleFlag74"); } set { this.GenericParam.SetValue("invisibleFlag74", value); } }
+    public int invisibleFlag75 { get { return this.GenericParam.GetValue<int>("invisibleFlag75"); } set { this.GenericParam.SetValue("invisibleFlag75", value); } }
+    public int invisibleFlag76 { get { return this.GenericParam.GetValue<int>("invisibleFlag76"); } set { this.GenericParam.SetValue("invisibleFlag76", value); } }
+    public int invisibleFlag77 { get { return this.GenericParam.GetValue<int>("invisibleFlag77"); } set { this.GenericParam.SetValue("invisibleFlag77", value); } }
+    public int invisibleFlag78 { get { return this.GenericParam.GetValue<int>("invisibleFlag78"); } set { this.GenericParam.SetValue("invisibleFlag78", value); } }
+    public int invisibleFlag79 { get { return this.GenericParam.GetValue<int>("invisibleFlag79"); } set { this.GenericParam.SetValue("invisibleFlag79", value); } }
+    public int invisibleFlag80 { get { return this.GenericParam.GetValue<int>("invisibleFlag80"); } set { this.GenericParam.SetValue("invisibleFlag80", value); } }
+    public int padbit { get { return this.GenericParam.GetValue<int>("padbit"); } set { this.GenericParam.SetValue("padbit", value); } }
+    public int postureControlId { get { return this.GenericParam.GetValue<int>("postureControlId"); } set { this.GenericParam.SetValue("postureControlId", value); } }
+    public string pad2 { get { return this.GenericParam.GetValue<string>("pad2"); } set { this.GenericParam.SetValue("pad2", value); } }
+    public int saleValue { get { return this.GenericParam.GetValue<int>("saleValue"); } set { this.GenericParam.SetValue("saleValue", value); } }
+    public int resistFreeze { get { return this.GenericParam.GetValue<int>("resistFreeze"); } set { this.GenericParam.SetValue("resistFreeze", value); } }
+    public int invisibleFlag_SexVer00 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer00"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer00", value); } }
+    public int invisibleFlag_SexVer01 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer01"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer01", value); } }
+    public int invisibleFlag_SexVer02 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer02"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer02", value); } }
+    public int invisibleFlag_SexVer03 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer03"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer03", value); } }
+    public int invisibleFlag_SexVer04 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer04"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer04", value); } }
+    public int invisibleFlag_SexVer05 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer05"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer05", value); } }
+    public int invisibleFlag_SexVer06 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer06"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer06", value); } }
+    public int invisibleFlag_SexVer07 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer07"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer07", value); } }
+    public int invisibleFlag_SexVer08 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer08"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer08", value); } }
+    public int invisibleFlag_SexVer09 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer09"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer09", value); } }
+    public int invisibleFlag_SexVer10 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer10"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer10", value); } }
+    public int invisibleFlag_SexVer11 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer11"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer11", value); } }
+    public int invisibleFlag_SexVer12 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer12"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer12", value); } }
+    public int invisibleFlag_SexVer13 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer13"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer13", value); } }
+    public int invisibleFlag_SexVer14 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer14"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer14", value); } }
+    public int invisibleFlag_SexVer15 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer15"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer15", value); } }
+    public int invisibleFlag_SexVer16 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer16"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer16", value); } }
+    public int invisibleFlag_SexVer17 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer17"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer17", value); } }
+    public int invisibleFlag_SexVer18 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer18"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer18", value); } }
+    public int invisibleFlag_SexVer19 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer19"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer19", value); } }
+    public int invisibleFlag_SexVer20 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer20"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer20", value); } }
+    public int invisibleFlag_SexVer21 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer21"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer21", value); } }
+    public int invisibleFlag_SexVer22 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer22"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer22", value); } }
+    public int invisibleFlag_SexVer23 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer23"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer23", value); } }
+    public int invisibleFlag_SexVer24 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer24"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer24", value); } }
+    public int invisibleFlag_SexVer25 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer25"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer25", value); } }
+    public int invisibleFlag_SexVer26 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer26"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer26", value); } }
+    public int invisibleFlag_SexVer27 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer27"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer27", value); } }
+    public int invisibleFlag_SexVer28 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer28"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer28", value); } }
+    public int invisibleFlag_SexVer29 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer29"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer29", value); } }
+    public int invisibleFlag_SexVer30 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer30"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer30", value); } }
+    public int invisibleFlag_SexVer31 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer31"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer31", value); } }
+    public int invisibleFlag_SexVer32 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer32"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer32", value); } }
+    public int invisibleFlag_SexVer33 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer33"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer33", value); } }
+    public int invisibleFlag_SexVer34 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer34"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer34", value); } }
+    public int invisibleFlag_SexVer35 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer35"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer35", value); } }
+    public int invisibleFlag_SexVer36 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer36"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer36", value); } }
+    public int invisibleFlag_SexVer37 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer37"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer37", value); } }
+    public int invisibleFlag_SexVer38 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer38"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer38", value); } }
+    public int invisibleFlag_SexVer39 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer39"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer39", value); } }
+    public int invisibleFlag_SexVer40 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer40"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer40", value); } }
+    public int invisibleFlag_SexVer41 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer41"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer41", value); } }
+    public int invisibleFlag_SexVer42 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer42"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer42", value); } }
+    public int invisibleFlag_SexVer43 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer43"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer43", value); } }
+    public int invisibleFlag_SexVer44 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer44"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer44", value); } }
+    public int invisibleFlag_SexVer45 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer45"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer45", value); } }
+    public int invisibleFlag_SexVer46 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer46"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer46", value); } }
+    public int invisibleFlag_SexVer47 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer47"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer47", value); } }
+    public int invisibleFlag_SexVer48 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer48"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer48", value); } }
+    public int invisibleFlag_SexVer49 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer49"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer49", value); } }
+    public int invisibleFlag_SexVer50 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer50"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer50", value); } }
+    public int invisibleFlag_SexVer51 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer51"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer51", value); } }
+    public int invisibleFlag_SexVer52 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer52"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer52", value); } }
+    public int invisibleFlag_SexVer53 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer53"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer53", value); } }
+    public int invisibleFlag_SexVer54 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer54"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer54", value); } }
+    public int invisibleFlag_SexVer55 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer55"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer55", value); } }
+    public int invisibleFlag_SexVer56 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer56"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer56", value); } }
+    public int invisibleFlag_SexVer57 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer57"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer57", value); } }
+    public int invisibleFlag_SexVer58 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer58"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer58", value); } }
+    public int invisibleFlag_SexVer59 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer59"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer59", value); } }
+    public int invisibleFlag_SexVer60 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer60"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer60", value); } }
+    public int invisibleFlag_SexVer61 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer61"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer61", value); } }
+    public int invisibleFlag_SexVer62 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer62"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer62", value); } }
+    public int invisibleFlag_SexVer63 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer63"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer63", value); } }
+    public int invisibleFlag_SexVer64 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer64"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer64", value); } }
+    public int invisibleFlag_SexVer65 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer65"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer65", value); } }
+    public int invisibleFlag_SexVer66 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer66"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer66", value); } }
+    public int invisibleFlag_SexVer67 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer67"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer67", value); } }
+    public int invisibleFlag_SexVer68 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer68"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer68", value); } }
+    public int invisibleFlag_SexVer69 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer69"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer69", value); } }
+    public int invisibleFlag_SexVer70 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer70"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer70", value); } }
+    public int invisibleFlag_SexVer71 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer71"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer71", value); } }
+    public int invisibleFlag_SexVer72 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer72"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer72", value); } }
+    public int invisibleFlag_SexVer73 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer73"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer73", value); } }
+    public int invisibleFlag_SexVer74 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer74"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer74", value); } }
+    public int invisibleFlag_SexVer75 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer75"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer75", value); } }
+    public int invisibleFlag_SexVer76 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer76"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer76", value); } }
+    public int invisibleFlag_SexVer77 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer77"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer77", value); } }
+    public int invisibleFlag_SexVer78 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer78"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer78", value); } }
+    public int invisibleFlag_SexVer79 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer79"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer79", value); } }
+    public int invisibleFlag_SexVer80 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer80"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer80", value); } }
+    public int invisibleFlag_SexVer81 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer81"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer81", value); } }
+    public int invisibleFlag_SexVer82 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer82"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer82", value); } }
+    public int invisibleFlag_SexVer83 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer83"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer83", value); } }
+    public int invisibleFlag_SexVer84 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer84"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer84", value); } }
+    public int invisibleFlag_SexVer85 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer85"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer85", value); } }
+    public int invisibleFlag_SexVer86 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer86"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer86", value); } }
+    public int invisibleFlag_SexVer87 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer87"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer87", value); } }
+    public int invisibleFlag_SexVer88 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer88"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer88", value); } }
+    public int invisibleFlag_SexVer89 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer89"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer89", value); } }
+    public int invisibleFlag_SexVer90 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer90"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer90", value); } }
+    public int invisibleFlag_SexVer91 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer91"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer91", value); } }
+    public int invisibleFlag_SexVer92 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer92"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer92", value); } }
+    public int invisibleFlag_SexVer93 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer93"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer93", value); } }
+    public int invisibleFlag_SexVer94 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer94"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer94", value); } }
+    public int invisibleFlag_SexVer95 { get { return this.GenericParam.GetValue<int>("invisibleFlag_SexVer95"); } set { this.GenericParam.SetValue("invisibleFlag_SexVer95", value); } }
+    public string pad404 { get { return this.GenericParam.GetValue<string>("pad404"); } set { this.GenericParam.SetValue("pad404", value); } }
 }

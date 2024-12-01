@@ -1,6 +1,6 @@
 ﻿namespace DSLRNet.Core.Generators;
 
-public class ParamLootGenerator(
+public class ParamLootGenerator<TParamType>(
     RarityHandler rarityHandler,
     AllowListHandler whiteListHandler,
     SpEffectHandler spEffectHandler,
@@ -24,7 +24,7 @@ public class ParamLootGenerator(
 
     public CumulativeID CumulativeID { get; set; }
 
-    public List<GenericParam> LoadedLoot { get; set; } = [];
+    public IDataSource<TParamType> DataSource { get; set; }
 
     private List<int> PriorityIDs_Current { get; set; } = [];
 
@@ -104,11 +104,11 @@ public class ParamLootGenerator(
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)).Distinct());
     }
 
-    public GenericParam GetLootDictionaryFromId(int baseId = -1)
+    public TParamType GetLootDictionaryFromId(int baseId = -1)
     {
         if (Configuration.Settings.ChaosLootEnabled)
         {
-            return ChooseLootDictionaryAtRandom().Clone() as GenericParam;
+            return this.DataSource.GetRandomItem();
         }
 
         if (baseId == -1 && PriorityIDs_Current.Count > 0)
@@ -116,13 +116,7 @@ public class ParamLootGenerator(
             baseId = ChoosePriorityIdAtRandom();
         }
 
-        return LoadedLoot.First(d => d.ID == baseId).Clone() as GenericParam;
-    }
-
-    public GenericParam ChooseLootDictionaryAtRandom()
-    {
-        int randomIndex = Random.NextInt(0, LoadedLoot.Count - 1);
-        return LoadedLoot[randomIndex].Clone() as GenericParam;
+        return DataSource.GetItemById(baseId);
     }
 
     public string CreateAffinityTitle(WeaponModifications modifications)
@@ -220,13 +214,8 @@ public class ParamLootGenerator(
         return LoreGenerator.GenerateDescription(lootName, armorIfTrue);
     }
 
-    public bool HasNoLootTemplates()
+    public bool HasLootTemplates()
     {
-        bool result = LoadedLoot.Count == 0;
-        if (result)
-        {
-            Log.Logger.Debug($"{Name} has no LootTemplateLibrary entries!");
-        }
-        return result;
+        return this.DataSource.Count() > 0;
     }
 }

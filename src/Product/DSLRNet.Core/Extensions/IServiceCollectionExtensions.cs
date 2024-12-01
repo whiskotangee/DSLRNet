@@ -48,12 +48,12 @@ public static class IServiceCollectionExtensions
     }
 
     public static IDataSource<T> CreateDataSource<T>(IServiceProvider provider, DataSourceNames configName)
-        where T : class, new()
+        where T : class, ICloneable, new()
     {
         var configSettings = provider.GetRequiredService<IOptions<Configuration>>().Value.Settings;
 
         var config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
 
-        return DataSourceFactory.CreateDataSource<T>(config);
+        return DataSourceFactory.CreateDataSource<T>(config, provider.GetRequiredService<RandomNumberGetter>());
     }
 }

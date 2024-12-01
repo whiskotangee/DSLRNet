@@ -21,5 +21,5 @@ ID,Name,DamageElement,PriName,SecName,Param,ShieldParam,SpEffect,OnHitSpEffect,H
 19,FP Regen,Magic,All-Knowing,Wise,attackBaseMagic,magGuardCutRate,140810,140815,10,10,8,0.9,1035,Grants Passive FP Regen in Combat,0,0,303071
 20,Blackflame,Fire,Godskin,Blackflame,attackBaseFire,fireGuardCutRate,145410,468700,11,10,8,0.9,1032,Applies Blackflame,1,0,303161
 21,Ghostflame,Magic,Ritual,Ghostflame,attackBaseMagic,magGuardCutRate,145910,107495,23,10,8,1,6601,Applies Frostbite,1,0,303121
-22,Bloodflame,Fire,Mohg's,Bloodflame,attackBaseFire,fireGuardCutRate,468926,468900,11,10,8,0.9,1032,Applies Bloodflame,1,0,303171
+22,Bloodflame,Fire,Mohg's,Bloodflame,attackBaseFire,fireGuardCutRate,468926,468900,11,10,8,0.9,1033,Applies Bloodflame,1,0,303171
 23,Ice Lightning,Lightning,Dragonkin,Frostbolt,attackBaseThunder,thunGuardCutRate,145910,107497,12,10,8,0.9,6601,Applies Frostbite,1,0,450311

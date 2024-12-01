@@ -1,326 +1,327 @@
+
 namespace DSLRNet.Core.Contracts.Params;
 
-public partial class NpcParam
+public partial class NpcParam : ParamBase<NpcParam>
 {
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public int disableParam_NT { get; set; }
-    public int disableParamReserve1 { get; set; }
-    public string disableParamReserve2 { get; set; }
-    public int behaviorVariationId { get; set; }
-    public int resistCorrectId_poison { get; set; }
-    public int nameId { get; set; }
-    public float turnVellocity { get; set; }
-    public float hitHeight { get; set; }
-    public float hitRadius { get; set; }
-    public int weight { get; set; }
-    public float hitYOffset { get; set; }
-    public int hp { get; set; }
-    public int mp { get; set; }
-    public int getSoul { get; set; }
-    public int itemLotId_enemy { get; set; }
-    public int itemLotId_map { get; set; }
-    public int maxAnkleRollAngle { get; set; }
-    public int chrHitGroupAndNavimesh { get; set; }
-    public int faceIconId { get; set; }
-    public int deactivateDist { get; set; }
-    public int chrActivateConditionParamId { get; set; }
-    public float footIkErrorHeightLimit { get; set; }
-    public int humanityLotId { get; set; }
-    public int spEffectID0 { get; set; }
-    public int spEffectID1 { get; set; }
-    public int spEffectID2 { get; set; }
-    public int spEffectID3 { get; set; }
-    public int spEffectID4 { get; set; }
-    public int spEffectID5 { get; set; }
-    public int spEffectID6 { get; set; }
-    public int spEffectID7 { get; set; }
-    public int GameClearSpEffectID { get; set; }
-    public int physGuardCutRate { get; set; }
-    public int magGuardCutRate { get; set; }
-    public int fireGuardCutRate { get; set; }
-    public int thunGuardCutRate { get; set; }
-    public int animIdOffset { get; set; }
-    public int lockGazePoint0 { get; set; }
-    public int lockGazePoint1 { get; set; }
-    public int lockGazePoint2 { get; set; }
-    public int lockGazePoint3 { get; set; }
-    public int lockGazePoint4 { get; set; }
-    public int lockGazePoint5 { get; set; }
-    public int networkWarpDist { get; set; }
-    public int dbgBehaviorR1 { get; set; }
-    public int dbgBehaviorL1 { get; set; }
-    public int dbgBehaviorR2 { get; set; }
-    public int dbgBehaviorL2 { get; set; }
-    public int dbgBehaviorRL { get; set; }
-    public int dbgBehaviorRR { get; set; }
-    public int dbgBehaviorRD { get; set; }
-    public int dbgBehaviorRU { get; set; }
-    public int dbgBehaviorLL { get; set; }
-    public int dbgBehaviorLR { get; set; }
-    public int dbgBehaviorLD { get; set; }
-    public int dbgBehaviorLU { get; set; }
-    public int animIdOffset2 { get; set; }
-    public float partsDamageRate1 { get; set; }
-    public float partsDamageRate2 { get; set; }
-    public float partsDamageRate3 { get; set; }
-    public float partsDamageRate4 { get; set; }
-    public float partsDamageRate5 { get; set; }
-    public float partsDamageRate6 { get; set; }
-    public float partsDamageRate7 { get; set; }
-    public float partsDamageRate8 { get; set; }
-    public float weakPartsDamageRate { get; set; }
-    public float superArmorRecoverCorrection { get; set; }
-    public int superArmorBrakeKnockbackDist { get; set; }
-    public int stamina { get; set; }
-    public int staminaRecoverBaseVel { get; set; }
-    public int def_phys { get; set; }
-    public int def_slash { get; set; }
-    public int def_blow { get; set; }
-    public int def_thrust { get; set; }
-    public int def_mag { get; set; }
-    public int def_fire { get; set; }
-    public int def_thunder { get; set; }
-    public int defFlickPower { get; set; }
-    public int resist_poison { get; set; }
-    public int resist_desease { get; set; }
-    public int resist_blood { get; set; }
-    public int resist_curse { get; set; }
-    public int ghostModelId { get; set; }
-    public int normalChangeResouceId { get; set; }
-    public int guardAngle { get; set; }
-    public int slashGuardCutRate { get; set; }
-    public int blowGuardCutRate { get; set; }
-    public int thrustGuardCutRate { get; set; }
-    public int lockGazePoint6 { get; set; }
-    public int normalChangeTexChrId { get; set; }
-    public int dropType { get; set; }
-    public int knockbackRate { get; set; }
-    public int knockbackParamId { get; set; }
-    public int fallDamageDump { get; set; }
-    public int staminaGuardDef { get; set; }
-    public int resist_sleep { get; set; }
-    public int resist_madness { get; set; }
-    public int sleepGuardResist { get; set; }
-    public int madnessGuardResist { get; set; }
-    public int lockGazePoint7 { get; set; }
-    public int mpRecoverBaseVel { get; set; }
-    public int flickDamageCutRate { get; set; }
-    public int defaultLodParamId { get; set; }
-    public int drawType { get; set; }
-    public int npcType { get; set; }
-    public int teamType { get; set; }
-    public int moveType { get; set; }
-    public int lockDist { get; set; }
-    public int materialSe_Weak1 { get; set; }
-    public int materialSfx_Weak1 { get; set; }
-    public int partsDamageType { get; set; }
-    public int vowType { get; set; }
-    public int guardLevel { get; set; }
-    public int burnSfxType { get; set; }
-    public int poisonGuardResist { get; set; }
-    public int diseaseGuardResist { get; set; }
-    public int bloodGuardResist { get; set; }
-    public int curseGuardResist { get; set; }
-    public int parryAttack { get; set; }
-    public int parryDefence { get; set; }
-    public int sfxSize { get; set; }
-    public int pushOutCamRegionRadius { get; set; }
-    public int hitStopType { get; set; }
-    public int ladderEndChkOffsetTop { get; set; }
-    public int ladderEndChkOffsetLow { get; set; }
-    public int useRagdollCamHit { get; set; }
-    public int disableClothRigidHit { get; set; }
-    public int useUndulationAddAnimFB { get; set; }
-    public int isWeakA { get; set; }
-    public int isGhost { get; set; }
-    public int isNoDamageMotion { get; set; }
-    public int isUnduration { get; set; }
-    public int isChangeWanderGhost { get; set; }
-    public int modelDispMask0 { get; set; }
-    public int modelDispMask1 { get; set; }
-    public int modelDispMask2 { get; set; }
-    public int modelDispMask3 { get; set; }
-    public int modelDispMask4 { get; set; }
-    public int modelDispMask5 { get; set; }
-    public int modelDispMask6 { get; set; }
-    public int modelDispMask7 { get; set; }
-    public int modelDispMask8 { get; set; }
-    public int modelDispMask9 { get; set; }
-    public int modelDispMask10 { get; set; }
-    public int modelDispMask11 { get; set; }
-    public int modelDispMask12 { get; set; }
-    public int modelDispMask13 { get; set; }
-    public int modelDispMask14 { get; set; }
-    public int modelDispMask15 { get; set; }
-    public int isEnableNeckTurn { get; set; }
-    public int disableRespawn { get; set; }
-    public int isMoveAnimWait { get; set; }
-    public int isCrowd { get; set; }
-    public int isWeakB { get; set; }
-    public int isWeakC { get; set; }
-    public int isWeakD { get; set; }
-    public int doesAlwaysUseSpecialTurn { get; set; }
-    public int isRideAtkTarget { get; set; }
-    public int isEnableStepDispInterpolate { get; set; }
-    public int isStealthTarget { get; set; }
-    public int disableInitializeDead { get; set; }
-    public int isHitRumble { get; set; }
-    public int isSmoothTurn { get; set; }
-    public int isWeakE { get; set; }
-    public int isWeakF { get; set; }
-    public int modelDispMask16 { get; set; }
-    public int modelDispMask17 { get; set; }
-    public int modelDispMask18 { get; set; }
-    public int modelDispMask19 { get; set; }
-    public int modelDispMask20 { get; set; }
-    public int modelDispMask21 { get; set; }
-    public int modelDispMask22 { get; set; }
-    public int modelDispMask23 { get; set; }
-    public int modelDispMask24 { get; set; }
-    public int modelDispMask25 { get; set; }
-    public int modelDispMask26 { get; set; }
-    public int modelDispMask27 { get; set; }
-    public int modelDispMask28 { get; set; }
-    public int modelDispMask29 { get; set; }
-    public int modelDispMask30 { get; set; }
-    public int modelDispMask31 { get; set; }
-    public int itemSearchRadius { get; set; }
-    public float chrHitHeight { get; set; }
-    public float chrHitRadius { get; set; }
-    public int specialTurnType { get; set; }
-    public int isSoulGetByBoss { get; set; }
-    public int isBulletOwner_byObject { get; set; }
-    public int isUseLowHitFootIk { get; set; }
-    public int isCalculatePvPDamage { get; set; }
-    public int isHostSyncChr { get; set; }
-    public int isSkipWeakDamageAnim { get; set; }
-    public int isKeepHitOnRide { get; set; }
-    public int isSpCollide { get; set; }
-    public int def_dark { get; set; }
-    public int threatLv { get; set; }
-    public int specialTurnDistanceThreshold { get; set; }
-    public int autoFootEffectSfxId { get; set; }
-    public int materialSe1 { get; set; }
-    public int materialSfx1 { get; set; }
-    public int materialSe_Weak2 { get; set; }
-    public int materialSfx_Weak2 { get; set; }
-    public int materialSe2 { get; set; }
-    public int materialSfx2 { get; set; }
-    public int spEffectID8 { get; set; }
-    public int spEffectID9 { get; set; }
-    public int spEffectID10 { get; set; }
-    public int spEffectID11 { get; set; }
-    public int spEffectID12 { get; set; }
-    public int spEffectID13 { get; set; }
-    public int spEffectID14 { get; set; }
-    public int spEffectID15 { get; set; }
-    public int autoFootEffectDecalBaseId1 { get; set; }
-    public int toughness { get; set; }
-    public float toughnessRecoverCorrection { get; set; }
-    public float neutralDamageCutRate { get; set; }
-    public float slashDamageCutRate { get; set; }
-    public float blowDamageCutRate { get; set; }
-    public float thrustDamageCutRate { get; set; }
-    public float magicDamageCutRate { get; set; }
-    public float fireDamageCutRate { get; set; }
-    public float thunderDamageCutRate { get; set; }
-    public float darkDamageCutRate { get; set; }
-    public int darkGuardCutRate { get; set; }
-    public int clothUpdateOffset { get; set; }
-    public int npcPlayerWeightType { get; set; }
-    public int normalChangeModelId { get; set; }
-    public int normalChangeAnimChrId { get; set; }
-    public int paintRenderTargetSize { get; set; }
-    public int resistCorrectId_disease { get; set; }
-    public int phantomShaderId { get; set; }
-    public int multiPlayCorrectionParamId { get; set; }
-    public int maxAnklePitchAngle { get; set; }
-    public int resist_freeze { get; set; }
-    public int freezeGuardResist { get; set; }
-    public int hpBurnDamageRate { get; set; }
-    public int lockCameraParamId { get; set; }
-    public int spEffectID16 { get; set; }
-    public int spEffectID17 { get; set; }
-    public int spEffectID18 { get; set; }
-    public int spEffectID19 { get; set; }
-    public int spEffectID20 { get; set; }
-    public int spEffectID21 { get; set; }
-    public int spEffectID22 { get; set; }
-    public int spEffectID23 { get; set; }
-    public int spEffectID24 { get; set; }
-    public int spEffectID25 { get; set; }
-    public int spEffectID26 { get; set; }
-    public int spEffectID27 { get; set; }
-    public int spEffectID28 { get; set; }
-    public int spEffectID29 { get; set; }
-    public int spEffectID30 { get; set; }
-    public int spEffectID31 { get; set; }
-    public int disableLockOnAng { get; set; }
-    public int clothOffLodLevel { get; set; }
-    public int isUseFootIKNormalByUnduration { get; set; }
-    public int attachHitInitializeDead { get; set; }
-    public int excludeGroupRewardCheck { get; set; }
-    public int enableAILockDmyPoly_212 { get; set; }
-    public int enableAILockDmyPoly_213 { get; set; }
-    public int enableAILockDmyPoly_214 { get; set; }
-    public int disableActivateOpen_xb1 { get; set; }
-    public int disableActivateLegacy_xb1 { get; set; }
-    public int estusFlaskRecoveryParamId { get; set; }
-    public int roleNameId { get; set; }
-    public int estusFlaskLotPoint { get; set; }
-    public int hpEstusFlaskLotPoint { get; set; }
-    public int mpEstusFlaskLotPoint { get; set; }
-    public int estusFlaskRecovery_failedLotPointAdd { get; set; }
-    public int hpEstusFlaskRecovery_failedLotPointAdd { get; set; }
-    public int mpEstusFlaskRecovery_failedLotPointAdd { get; set; }
-    public int WanderGhostPhantomId { get; set; }
-    public int hearingHeadSize { get; set; }
-    public int SoundBankId { get; set; }
-    public int forwardUndulationLimit { get; set; }
-    public int sideUndulationLimit { get; set; }
-    public int deactiveMoveSpeed { get; set; }
-    public int deactiveMoveDist { get; set; }
-    public int enableSoundObjDist { get; set; }
-    public float undulationCorrectGain { get; set; }
-    public int autoFootEffectDecalBaseId2 { get; set; }
-    public int autoFootEffectDecalBaseId3 { get; set; }
-    public int RetargetReferenceChrId { get; set; }
-    public int SfxResBankId { get; set; }
-    public float updateActivatePriolity { get; set; }
-    public int chrNavimeshFlag_Alive { get; set; }
-    public int chrNavimeshFlag_Dead { get; set; }
-    public int isConsideredUndead { get; set; }
-    public int wheelRotType { get; set; }
-    public float wheelRotRadius { get; set; }
-    public float retargetMoveRate { get; set; }
-    public float ladderWarpOffset { get; set; }
-    public int loadAssetId { get; set; }
-    public int overlapCameraDmypolyId { get; set; }
-    public int residentMaterialExParamId00 { get; set; }
-    public int residentMaterialExParamId01 { get; set; }
-    public int residentMaterialExParamId02 { get; set; }
-    public int residentMaterialExParamId03 { get; set; }
-    public int residentMaterialExParamId04 { get; set; }
-    public int sleepCollectorItemLotId_enemy { get; set; }
-    public int sleepCollectorItemLotId_map { get; set; }
-    public float footIkErrorOnGain { get; set; }
-    public float footIkErrorOffGain { get; set; }
-    public int SoundAddBankId { get; set; }
-    public int materialVariationValue { get; set; }
-    public int materialVariationValue_Weak { get; set; }
-    public int superArmorDurability { get; set; }
-    public float saRecoveryRate { get; set; }
-    public int saGuardCutRate { get; set; }
-    public int resistCorrectId_blood { get; set; }
-    public int resistCorrectId_curse { get; set; }
-    public int resistCorrectId_freeze { get; set; }
-    public int resistCorrectId_sleep { get; set; }
-    public int resistCorrectId_madness { get; set; }
-    public int chrDeadTutorialFlagId { get; set; }
-    public float stepDispInterpolateTime { get; set; }
-    public float stepDispInterpolateTriggerValue { get; set; }
-    public int lockScoreOffset { get; set; }
-    public int dlcGameClearSpEffectID { get; set; }
-    public string pad12 { get; set; }
+    public int ID { get { return this.GenericParam.GetValue<int>("ID"); } set { this.GenericParam.SetValue("ID", value); } }
+    public string Name { get { return this.GenericParam.GetValue<string>("Name"); } set { this.GenericParam.SetValue("Name", value); } }
+    public int disableParam_NT { get { return this.GenericParam.GetValue<int>("disableParam_NT"); } set { this.GenericParam.SetValue("disableParam_NT", value); } }
+    public int disableParamReserve1 { get { return this.GenericParam.GetValue<int>("disableParamReserve1"); } set { this.GenericParam.SetValue("disableParamReserve1", value); } }
+    public string disableParamReserve2 { get { return this.GenericParam.GetValue<string>("disableParamReserve2"); } set { this.GenericParam.SetValue("disableParamReserve2", value); } }
+    public int behaviorVariationId { get { return this.GenericParam.GetValue<int>("behaviorVariationId"); } set { this.GenericParam.SetValue("behaviorVariationId", value); } }
+    public int resistCorrectId_poison { get { return this.GenericParam.GetValue<int>("resistCorrectId_poison"); } set { this.GenericParam.SetValue("resistCorrectId_poison", value); } }
+    public int nameId { get { return this.GenericParam.GetValue<int>("nameId"); } set { this.GenericParam.SetValue("nameId", value); } }
+    public float turnVellocity { get { return this.GenericParam.GetValue<float>("turnVellocity"); } set { this.GenericParam.SetValue("turnVellocity", value); } }
+    public float hitHeight { get { return this.GenericParam.GetValue<float>("hitHeight"); } set { this.GenericParam.SetValue("hitHeight", value); } }
+    public float hitRadius { get { return this.GenericParam.GetValue<float>("hitRadius"); } set { this.GenericParam.SetValue("hitRadius", value); } }
+    public int weight { get { return this.GenericParam.GetValue<int>("weight"); } set { this.GenericParam.SetValue("weight", value); } }
+    public float hitYOffset { get { return this.GenericParam.GetValue<float>("hitYOffset"); } set { this.GenericParam.SetValue("hitYOffset", value); } }
+    public int hp { get { return this.GenericParam.GetValue<int>("hp"); } set { this.GenericParam.SetValue("hp", value); } }
+    public int mp { get { return this.GenericParam.GetValue<int>("mp"); } set { this.GenericParam.SetValue("mp", value); } }
+    public int getSoul { get { return this.GenericParam.GetValue<int>("getSoul"); } set { this.GenericParam.SetValue("getSoul", value); } }
+    public int itemLotId_enemy { get { return this.GenericParam.GetValue<int>("itemLotId_enemy"); } set { this.GenericParam.SetValue("itemLotId_enemy", value); } }
+    public int itemLotId_map { get { return this.GenericParam.GetValue<int>("itemLotId_map"); } set { this.GenericParam.SetValue("itemLotId_map", value); } }
+    public int maxAnkleRollAngle { get { return this.GenericParam.GetValue<int>("maxAnkleRollAngle"); } set { this.GenericParam.SetValue("maxAnkleRollAngle", value); } }
+    public int chrHitGroupAndNavimesh { get { return this.GenericParam.GetValue<int>("chrHitGroupAndNavimesh"); } set { this.GenericParam.SetValue("chrHitGroupAndNavimesh", value); } }
+    public int faceIconId { get { return this.GenericParam.GetValue<int>("faceIconId"); } set { this.GenericParam.SetValue("faceIconId", value); } }
+    public int deactivateDist { get { return this.GenericParam.GetValue<int>("deactivateDist"); } set { this.GenericParam.SetValue("deactivateDist", value); } }
+    public int chrActivateConditionParamId { get { return this.GenericParam.GetValue<int>("chrActivateConditionParamId"); } set { this.GenericParam.SetValue("chrActivateConditionParamId", value); } }
+    public float footIkErrorHeightLimit { get { return this.GenericParam.GetValue<float>("footIkErrorHeightLimit"); } set { this.GenericParam.SetValue("footIkErrorHeightLimit", value); } }
+    public int humanityLotId { get { return this.GenericParam.GetValue<int>("humanityLotId"); } set { this.GenericParam.SetValue("humanityLotId", value); } }
+    public int spEffectID0 { get { return this.GenericParam.GetValue<int>("spEffectID0"); } set { this.GenericParam.SetValue("spEffectID0", value); } }
+    public int spEffectID1 { get { return this.GenericParam.GetValue<int>("spEffectID1"); } set { this.GenericParam.SetValue("spEffectID1", value); } }
+    public int spEffectID2 { get { return this.GenericParam.GetValue<int>("spEffectID2"); } set { this.GenericParam.SetValue("spEffectID2", value); } }
+    public int spEffectID3 { get { return this.GenericParam.GetValue<int>("spEffectID3"); } set { this.GenericParam.SetValue("spEffectID3", value); } }
+    public int spEffectID4 { get { return this.GenericParam.GetValue<int>("spEffectID4"); } set { this.GenericParam.SetValue("spEffectID4", value); } }
+    public int spEffectID5 { get { return this.GenericParam.GetValue<int>("spEffectID5"); } set { this.GenericParam.SetValue("spEffectID5", value); } }
+    public int spEffectID6 { get { return this.GenericParam.GetValue<int>("spEffectID6"); } set { this.GenericParam.SetValue("spEffectID6", value); } }
+    public int spEffectID7 { get { return this.GenericParam.GetValue<int>("spEffectID7"); } set { this.GenericParam.SetValue("spEffectID7", value); } }
+    public int GameClearSpEffectID { get { return this.GenericParam.GetValue<int>("GameClearSpEffectID"); } set { this.GenericParam.SetValue("GameClearSpEffectID", value); } }
+    public int physGuardCutRate { get { return this.GenericParam.GetValue<int>("physGuardCutRate"); } set { this.GenericParam.SetValue("physGuardCutRate", value); } }
+    public int magGuardCutRate { get { return this.GenericParam.GetValue<int>("magGuardCutRate"); } set { this.GenericParam.SetValue("magGuardCutRate", value); } }
+    public int fireGuardCutRate { get { return this.GenericParam.GetValue<int>("fireGuardCutRate"); } set { this.GenericParam.SetValue("fireGuardCutRate", value); } }
+    public int thunGuardCutRate { get { return this.GenericParam.GetValue<int>("thunGuardCutRate"); } set { this.GenericParam.SetValue("thunGuardCutRate", value); } }
+    public int animIdOffset { get { return this.GenericParam.GetValue<int>("animIdOffset"); } set { this.GenericParam.SetValue("animIdOffset", value); } }
+    public int lockGazePoint0 { get { return this.GenericParam.GetValue<int>("lockGazePoint0"); } set { this.GenericParam.SetValue("lockGazePoint0", value); } }
+    public int lockGazePoint1 { get { return this.GenericParam.GetValue<int>("lockGazePoint1"); } set { this.GenericParam.SetValue("lockGazePoint1", value); } }
+    public int lockGazePoint2 { get { return this.GenericParam.GetValue<int>("lockGazePoint2"); } set { this.GenericParam.SetValue("lockGazePoint2", value); } }
+    public int lockGazePoint3 { get { return this.GenericParam.GetValue<int>("lockGazePoint3"); } set { this.GenericParam.SetValue("lockGazePoint3", value); } }
+    public int lockGazePoint4 { get { return this.GenericParam.GetValue<int>("lockGazePoint4"); } set { this.GenericParam.SetValue("lockGazePoint4", value); } }
+    public int lockGazePoint5 { get { return this.GenericParam.GetValue<int>("lockGazePoint5"); } set { this.GenericParam.SetValue("lockGazePoint5", value); } }
+    public int networkWarpDist { get { return this.GenericParam.GetValue<int>("networkWarpDist"); } set { this.GenericParam.SetValue("networkWarpDist", value); } }
+    public int dbgBehaviorR1 { get { return this.GenericParam.GetValue<int>("dbgBehaviorR1"); } set { this.GenericParam.SetValue("dbgBehaviorR1", value); } }
+    public int dbgBehaviorL1 { get { return this.GenericParam.GetValue<int>("dbgBehaviorL1"); } set { this.GenericParam.SetValue("dbgBehaviorL1", value); } }
+    public int dbgBehaviorR2 { get { return this.GenericParam.GetValue<int>("dbgBehaviorR2"); } set { this.GenericParam.SetValue("dbgBehaviorR2", value); } }
+    public int dbgBehaviorL2 { get { return this.GenericParam.GetValue<int>("dbgBehaviorL2"); } set { this.GenericParam.SetValue("dbgBehaviorL2", value); } }
+    public int dbgBehaviorRL { get { return this.GenericParam.GetValue<int>("dbgBehaviorRL"); } set { this.GenericParam.SetValue("dbgBehaviorRL", value); } }
+    public int dbgBehaviorRR { get { return this.GenericParam.GetValue<int>("dbgBehaviorRR"); } set { this.GenericParam.SetValue("dbgBehaviorRR", value); } }
+    public int dbgBehaviorRD { get { return this.GenericParam.GetValue<int>("dbgBehaviorRD"); } set { this.GenericParam.SetValue("dbgBehaviorRD", value); } }
+    public int dbgBehaviorRU { get { return this.GenericParam.GetValue<int>("dbgBehaviorRU"); } set { this.GenericParam.SetValue("dbgBehaviorRU", value); } }
+    public int dbgBehaviorLL { get { return this.GenericParam.GetValue<int>("dbgBehaviorLL"); } set { this.GenericParam.SetValue("dbgBehaviorLL", value); } }
+    public int dbgBehaviorLR { get { return this.GenericParam.GetValue<int>("dbgBehaviorLR"); } set { this.GenericParam.SetValue("dbgBehaviorLR", value); } }
+    public int dbgBehaviorLD { get { return this.GenericParam.GetValue<int>("dbgBehaviorLD"); } set { this.GenericParam.SetValue("dbgBehaviorLD", value); } }
+    public int dbgBehaviorLU { get { return this.GenericParam.GetValue<int>("dbgBehaviorLU"); } set { this.GenericParam.SetValue("dbgBehaviorLU", value); } }
+    public int animIdOffset2 { get { return this.GenericParam.GetValue<int>("animIdOffset2"); } set { this.GenericParam.SetValue("animIdOffset2", value); } }
+    public float partsDamageRate1 { get { return this.GenericParam.GetValue<float>("partsDamageRate1"); } set { this.GenericParam.SetValue("partsDamageRate1", value); } }
+    public float partsDamageRate2 { get { return this.GenericParam.GetValue<float>("partsDamageRate2"); } set { this.GenericParam.SetValue("partsDamageRate2", value); } }
+    public float partsDamageRate3 { get { return this.GenericParam.GetValue<float>("partsDamageRate3"); } set { this.GenericParam.SetValue("partsDamageRate3", value); } }
+    public float partsDamageRate4 { get { return this.GenericParam.GetValue<float>("partsDamageRate4"); } set { this.GenericParam.SetValue("partsDamageRate4", value); } }
+    public float partsDamageRate5 { get { return this.GenericParam.GetValue<float>("partsDamageRate5"); } set { this.GenericParam.SetValue("partsDamageRate5", value); } }
+    public float partsDamageRate6 { get { return this.GenericParam.GetValue<float>("partsDamageRate6"); } set { this.GenericParam.SetValue("partsDamageRate6", value); } }
+    public float partsDamageRate7 { get { return this.GenericParam.GetValue<float>("partsDamageRate7"); } set { this.GenericParam.SetValue("partsDamageRate7", value); } }
+    public float partsDamageRate8 { get { return this.GenericParam.GetValue<float>("partsDamageRate8"); } set { this.GenericParam.SetValue("partsDamageRate8", value); } }
+    public float weakPartsDamageRate { get { return this.GenericParam.GetValue<float>("weakPartsDamageRate"); } set { this.GenericParam.SetValue("weakPartsDamageRate", value); } }
+    public float superArmorRecoverCorrection { get { return this.GenericParam.GetValue<float>("superArmorRecoverCorrection"); } set { this.GenericParam.SetValue("superArmorRecoverCorrection", value); } }
+    public int superArmorBrakeKnockbackDist { get { return this.GenericParam.GetValue<int>("superArmorBrakeKnockbackDist"); } set { this.GenericParam.SetValue("superArmorBrakeKnockbackDist", value); } }
+    public int stamina { get { return this.GenericParam.GetValue<int>("stamina"); } set { this.GenericParam.SetValue("stamina", value); } }
+    public int staminaRecoverBaseVel { get { return this.GenericParam.GetValue<int>("staminaRecoverBaseVel"); } set { this.GenericParam.SetValue("staminaRecoverBaseVel", value); } }
+    public int def_phys { get { return this.GenericParam.GetValue<int>("def_phys"); } set { this.GenericParam.SetValue("def_phys", value); } }
+    public int def_slash { get { return this.GenericParam.GetValue<int>("def_slash"); } set { this.GenericParam.SetValue("def_slash", value); } }
+    public int def_blow { get { return this.GenericParam.GetValue<int>("def_blow"); } set { this.GenericParam.SetValue("def_blow", value); } }
+    public int def_thrust { get { return this.GenericParam.GetValue<int>("def_thrust"); } set { this.GenericParam.SetValue("def_thrust", value); } }
+    public int def_mag { get { return this.GenericParam.GetValue<int>("def_mag"); } set { this.GenericParam.SetValue("def_mag", value); } }
+    public int def_fire { get { return this.GenericParam.GetValue<int>("def_fire"); } set { this.GenericParam.SetValue("def_fire", value); } }
+    public int def_thunder { get { return this.GenericParam.GetValue<int>("def_thunder"); } set { this.GenericParam.SetValue("def_thunder", value); } }
+    public int defFlickPower { get { return this.GenericParam.GetValue<int>("defFlickPower"); } set { this.GenericParam.SetValue("defFlickPower", value); } }
+    public int resist_poison { get { return this.GenericParam.GetValue<int>("resist_poison"); } set { this.GenericParam.SetValue("resist_poison", value); } }
+    public int resist_desease { get { return this.GenericParam.GetValue<int>("resist_desease"); } set { this.GenericParam.SetValue("resist_desease", value); } }
+    public int resist_blood { get { return this.GenericParam.GetValue<int>("resist_blood"); } set { this.GenericParam.SetValue("resist_blood", value); } }
+    public int resist_curse { get { return this.GenericParam.GetValue<int>("resist_curse"); } set { this.GenericParam.SetValue("resist_curse", value); } }
+    public int ghostModelId { get { return this.GenericParam.GetValue<int>("ghostModelId"); } set { this.GenericParam.SetValue("ghostModelId", value); } }
+    public int normalChangeResouceId { get { return this.GenericParam.GetValue<int>("normalChangeResouceId"); } set { this.GenericParam.SetValue("normalChangeResouceId", value); } }
+    public int guardAngle { get { return this.GenericParam.GetValue<int>("guardAngle"); } set { this.GenericParam.SetValue("guardAngle", value); } }
+    public int slashGuardCutRate { get { return this.GenericParam.GetValue<int>("slashGuardCutRate"); } set { this.GenericParam.SetValue("slashGuardCutRate", value); } }
+    public int blowGuardCutRate { get { return this.GenericParam.GetValue<int>("blowGuardCutRate"); } set { this.GenericParam.SetValue("blowGuardCutRate", value); } }
+    public int thrustGuardCutRate { get { return this.GenericParam.GetValue<int>("thrustGuardCutRate"); } set { this.GenericParam.SetValue("thrustGuardCutRate", value); } }
+    public int lockGazePoint6 { get { return this.GenericParam.GetValue<int>("lockGazePoint6"); } set { this.GenericParam.SetValue("lockGazePoint6", value); } }
+    public int normalChangeTexChrId { get { return this.GenericParam.GetValue<int>("normalChangeTexChrId"); } set { this.GenericParam.SetValue("normalChangeTexChrId", value); } }
+    public int dropType { get { return this.GenericParam.GetValue<int>("dropType"); } set { this.GenericParam.SetValue("dropType", value); } }
+    public int knockbackRate { get { return this.GenericParam.GetValue<int>("knockbackRate"); } set { this.GenericParam.SetValue("knockbackRate", value); } }
+    public int knockbackParamId { get { return this.GenericParam.GetValue<int>("knockbackParamId"); } set { this.GenericParam.SetValue("knockbackParamId", value); } }
+    public int fallDamageDump { get { return this.GenericParam.GetValue<int>("fallDamageDump"); } set { this.GenericParam.SetValue("fallDamageDump", value); } }
+    public int staminaGuardDef { get { return this.GenericParam.GetValue<int>("staminaGuardDef"); } set { this.GenericParam.SetValue("staminaGuardDef", value); } }
+    public int resist_sleep { get { return this.GenericParam.GetValue<int>("resist_sleep"); } set { this.GenericParam.SetValue("resist_sleep", value); } }
+    public int resist_madness { get { return this.GenericParam.GetValue<int>("resist_madness"); } set { this.GenericParam.SetValue("resist_madness", value); } }
+    public int sleepGuardResist { get { return this.GenericParam.GetValue<int>("sleepGuardResist"); } set { this.GenericParam.SetValue("sleepGuardResist", value); } }
+    public int madnessGuardResist { get { return this.GenericParam.GetValue<int>("madnessGuardResist"); } set { this.GenericParam.SetValue("madnessGuardResist", value); } }
+    public int lockGazePoint7 { get { return this.GenericParam.GetValue<int>("lockGazePoint7"); } set { this.GenericParam.SetValue("lockGazePoint7", value); } }
+    public int mpRecoverBaseVel { get { return this.GenericParam.GetValue<int>("mpRecoverBaseVel"); } set { this.GenericParam.SetValue("mpRecoverBaseVel", value); } }
+    public int flickDamageCutRate { get { return this.GenericParam.GetValue<int>("flickDamageCutRate"); } set { this.GenericParam.SetValue("flickDamageCutRate", value); } }
+    public int defaultLodParamId { get { return this.GenericParam.GetValue<int>("defaultLodParamId"); } set { this.GenericParam.SetValue("defaultLodParamId", value); } }
+    public int drawType { get { return this.GenericParam.GetValue<int>("drawType"); } set { this.GenericParam.SetValue("drawType", value); } }
+    public int npcType { get { return this.GenericParam.GetValue<int>("npcType"); } set { this.GenericParam.SetValue("npcType", value); } }
+    public int teamType { get { return this.GenericParam.GetValue<int>("teamType"); } set { this.GenericParam.SetValue("teamType", value); } }
+    public int moveType { get { return this.GenericParam.GetValue<int>("moveType"); } set { this.GenericParam.SetValue("moveType", value); } }
+    public int lockDist { get { return this.GenericParam.GetValue<int>("lockDist"); } set { this.GenericParam.SetValue("lockDist", value); } }
+    public int materialSe_Weak1 { get { return this.GenericParam.GetValue<int>("materialSe_Weak1"); } set { this.GenericParam.SetValue("materialSe_Weak1", value); } }
+    public int materialSfx_Weak1 { get { return this.GenericParam.GetValue<int>("materialSfx_Weak1"); } set { this.GenericParam.SetValue("materialSfx_Weak1", value); } }
+    public int partsDamageType { get { return this.GenericParam.GetValue<int>("partsDamageType"); } set { this.GenericParam.SetValue("partsDamageType", value); } }
+    public int vowType { get { return this.GenericParam.GetValue<int>("vowType"); } set { this.GenericParam.SetValue("vowType", value); } }
+    public int guardLevel { get { return this.GenericParam.GetValue<int>("guardLevel"); } set { this.GenericParam.SetValue("guardLevel", value); } }
+    public int burnSfxType { get { return this.GenericParam.GetValue<int>("burnSfxType"); } set { this.GenericParam.SetValue("burnSfxType", value); } }
+    public int poisonGuardResist { get { return this.GenericParam.GetValue<int>("poisonGuardResist"); } set { this.GenericParam.SetValue("poisonGuardResist", value); } }
+    public int diseaseGuardResist { get { return this.GenericParam.GetValue<int>("diseaseGuardResist"); } set { this.GenericParam.SetValue("diseaseGuardResist", value); } }
+    public int bloodGuardResist { get { return this.GenericParam.GetValue<int>("bloodGuardResist"); } set { this.GenericParam.SetValue("bloodGuardResist", value); } }
+    public int curseGuardResist { get { return this.GenericParam.GetValue<int>("curseGuardResist"); } set { this.GenericParam.SetValue("curseGuardResist", value); } }
+    public int parryAttack { get { return this.GenericParam.GetValue<int>("parryAttack"); } set { this.GenericParam.SetValue("parryAttack", value); } }
+    public int parryDefence { get { return this.GenericParam.GetValue<int>("parryDefence"); } set { this.GenericParam.SetValue("parryDefence", value); } }
+    public int sfxSize { get { return this.GenericParam.GetValue<int>("sfxSize"); } set { this.GenericParam.SetValue("sfxSize", value); } }
+    public int pushOutCamRegionRadius { get { return this.GenericParam.GetValue<int>("pushOutCamRegionRadius"); } set { this.GenericParam.SetValue("pushOutCamRegionRadius", value); } }
+    public int hitStopType { get { return this.GenericParam.GetValue<int>("hitStopType"); } set { this.GenericParam.SetValue("hitStopType", value); } }
+    public int ladderEndChkOffsetTop { get { return this.GenericParam.GetValue<int>("ladderEndChkOffsetTop"); } set { this.GenericParam.SetValue("ladderEndChkOffsetTop", value); } }
+    public int ladderEndChkOffsetLow { get { return this.GenericParam.GetValue<int>("ladderEndChkOffsetLow"); } set { this.GenericParam.SetValue("ladderEndChkOffsetLow", value); } }
+    public int useRagdollCamHit { get { return this.GenericParam.GetValue<int>("useRagdollCamHit"); } set { this.GenericParam.SetValue("useRagdollCamHit", value); } }
+    public int disableClothRigidHit { get { return this.GenericParam.GetValue<int>("disableClothRigidHit"); } set { this.GenericParam.SetValue("disableClothRigidHit", value); } }
+    public int useUndulationAddAnimFB { get { return this.GenericParam.GetValue<int>("useUndulationAddAnimFB"); } set { this.GenericParam.SetValue("useUndulationAddAnimFB", value); } }
+    public int isWeakA { get { return this.GenericParam.GetValue<int>("isWeakA"); } set { this.GenericParam.SetValue("isWeakA", value); } }
+    public int isGhost { get { return this.GenericParam.GetValue<int>("isGhost"); } set { this.GenericParam.SetValue("isGhost", value); } }
+    public int isNoDamageMotion { get { return this.GenericParam.GetValue<int>("isNoDamageMotion"); } set { this.GenericParam.SetValue("isNoDamageMotion", value); } }
+    public int isUnduration { get { return this.GenericParam.GetValue<int>("isUnduration"); } set { this.GenericParam.SetValue("isUnduration", value); } }
+    public int isChangeWanderGhost { get { return this.GenericParam.GetValue<int>("isChangeWanderGhost"); } set { this.GenericParam.SetValue("isChangeWanderGhost", value); } }
+    public int modelDispMask0 { get { return this.GenericParam.GetValue<int>("modelDispMask0"); } set { this.GenericParam.SetValue("modelDispMask0", value); } }
+    public int modelDispMask1 { get { return this.GenericParam.GetValue<int>("modelDispMask1"); } set { this.GenericParam.SetValue("modelDispMask1", value); } }
+    public int modelDispMask2 { get { return this.GenericParam.GetValue<int>("modelDispMask2"); } set { this.GenericParam.SetValue("modelDispMask2", value); } }
+    public int modelDispMask3 { get { return this.GenericParam.GetValue<int>("modelDispMask3"); } set { this.GenericParam.SetValue("modelDispMask3", value); } }
+    public int modelDispMask4 { get { return this.GenericParam.GetValue<int>("modelDispMask4"); } set { this.GenericParam.SetValue("modelDispMask4", value); } }
+    public int modelDispMask5 { get { return this.GenericParam.GetValue<int>("modelDispMask5"); } set { this.GenericParam.SetValue("modelDispMask5", value); } }
+    public int modelDispMask6 { get { return this.GenericParam.GetValue<int>("modelDispMask6"); } set { this.GenericParam.SetValue("modelDispMask6", value); } }
+    public int modelDispMask7 { get { return this.GenericParam.GetValue<int>("modelDispMask7"); } set { this.GenericParam.SetValue("modelDispMask7", value); } }
+    public int modelDispMask8 { get { return this.GenericParam.GetValue<int>("modelDispMask8"); } set { this.GenericParam.SetValue("modelDispMask8", value); } }
+    public int modelDispMask9 { get { return this.GenericParam.GetValue<int>("modelDispMask9"); } set { this.GenericParam.SetValue("modelDispMask9", value); } }
+    public int modelDispMask10 { get { return this.GenericParam.GetValue<int>("modelDispMask10"); } set { this.GenericParam.SetValue("modelDispMask10", value); } }
+    public int modelDispMask11 { get { return this.GenericParam.GetValue<int>("modelDispMask11"); } set { this.GenericParam.SetValue("modelDispMask11", value); } }
+    public int modelDispMask12 { get { return this.GenericParam.GetValue<int>("modelDispMask12"); } set { this.GenericParam.SetValue("modelDispMask12", value); } }
+    public int modelDispMask13 { get { return this.GenericParam.GetValue<int>("modelDispMask13"); } set { this.GenericParam.SetValue("modelDispMask13", value); } }
+    public int modelDispMask14 { get { return this.GenericParam.GetValue<int>("modelDispMask14"); } set { this.GenericParam.SetValue("modelDispMask14", value); } }
+    public int modelDispMask15 { get { return this.GenericParam.GetValue<int>("modelDispMask15"); } set { this.GenericParam.SetValue("modelDispMask15", value); } }
+    public int isEnableNeckTurn { get { return this.GenericParam.GetValue<int>("isEnableNeckTurn"); } set { this.GenericParam.SetValue("isEnableNeckTurn", value); } }
+    public int disableRespawn { get { return this.GenericParam.GetValue<int>("disableRespawn"); } set { this.GenericParam.SetValue("disableRespawn", value); } }
+    public int isMoveAnimWait { get { return this.GenericParam.GetValue<int>("isMoveAnimWait"); } set { this.GenericParam.SetValue("isMoveAnimWait", value); } }
+    public int isCrowd { get { return this.GenericParam.GetValue<int>("isCrowd"); } set { this.GenericParam.SetValue("isCrowd", value); } }
+    public int isWeakB { get { return this.GenericParam.GetValue<int>("isWeakB"); } set { this.GenericParam.SetValue("isWeakB", value); } }
+    public int isWeakC { get { return this.GenericParam.GetValue<int>("isWeakC"); } set { this.GenericParam.SetValue("isWeakC", value); } }
+    public int isWeakD { get { return this.GenericParam.GetValue<int>("isWeakD"); } set { this.GenericParam.SetValue("isWeakD", value); } }
+    public int doesAlwaysUseSpecialTurn { get { return this.GenericParam.GetValue<int>("doesAlwaysUseSpecialTurn"); } set { this.GenericParam.SetValue("doesAlwaysUseSpecialTurn", value); } }
+    public int isRideAtkTarget { get { return this.GenericParam.GetValue<int>("isRideAtkTarget"); } set { this.GenericParam.SetValue("isRideAtkTarget", value); } }
+    public int isEnableStepDispInterpolate { get { return this.GenericParam.GetValue<int>("isEnableStepDispInterpolate"); } set { this.GenericParam.SetValue("isEnableStepDispInterpolate", value); } }
+    public int isStealthTarget { get { return this.GenericParam.GetValue<int>("isStealthTarget"); } set { this.GenericParam.SetValue("isStealthTarget", value); } }
+    public int disableInitializeDead { get { return this.GenericParam.GetValue<int>("disableInitializeDead"); } set { this.GenericParam.SetValue("disableInitializeDead", value); } }
+    public int isHitRumble { get { return this.GenericParam.GetValue<int>("isHitRumble"); } set { this.GenericParam.SetValue("isHitRumble", value); } }
+    public int isSmoothTurn { get { return this.GenericParam.GetValue<int>("isSmoothTurn"); } set { this.GenericParam.SetValue("isSmoothTurn", value); } }
+    public int isWeakE { get { return this.GenericParam.GetValue<int>("isWeakE"); } set { this.GenericParam.SetValue("isWeakE", value); } }
+    public int isWeakF { get { return this.GenericParam.GetValue<int>("isWeakF"); } set { this.GenericParam.SetValue("isWeakF", value); } }
+    public int modelDispMask16 { get { return this.GenericParam.GetValue<int>("modelDispMask16"); } set { this.GenericParam.SetValue("modelDispMask16", value); } }
+    public int modelDispMask17 { get { return this.GenericParam.GetValue<int>("modelDispMask17"); } set { this.GenericParam.SetValue("modelDispMask17", value); } }
+    public int modelDispMask18 { get { return this.GenericParam.GetValue<int>("modelDispMask18"); } set { this.GenericParam.SetValue("modelDispMask18", value); } }
+    public int modelDispMask19 { get { return this.GenericParam.GetValue<int>("modelDispMask19"); } set { this.GenericParam.SetValue("modelDispMask19", value); } }
+    public int modelDispMask20 { get { return this.GenericParam.GetValue<int>("modelDispMask20"); } set { this.GenericParam.SetValue("modelDispMask20", value); } }
+    public int modelDispMask21 { get { return this.GenericParam.GetValue<int>("modelDispMask21"); } set { this.GenericParam.SetValue("modelDispMask21", value); } }
+    public int modelDispMask22 { get { return this.GenericParam.GetValue<int>("modelDispMask22"); } set { this.GenericParam.SetValue("modelDispMask22", value); } }
+    public int modelDispMask23 { get { return this.GenericParam.GetValue<int>("modelDispMask23"); } set { this.GenericParam.SetValue("modelDispMask23", value); } }
+    public int modelDispMask24 { get { return this.GenericParam.GetValue<int>("modelDispMask24"); } set { this.GenericParam.SetValue("modelDispMask24", value); } }
+    public int modelDispMask25 { get { return this.GenericParam.GetValue<int>("modelDispMask25"); } set { this.GenericParam.SetValue("modelDispMask25", value); } }
+    public int modelDispMask26 { get { return this.GenericParam.GetValue<int>("modelDispMask26"); } set { this.GenericParam.SetValue("modelDispMask26", value); } }
+    public int modelDispMask27 { get { return this.GenericParam.GetValue<int>("modelDispMask27"); } set { this.GenericParam.SetValue("modelDispMask27", value); } }
+    public int modelDispMask28 { get { return this.GenericParam.GetValue<int>("modelDispMask28"); } set { this.GenericParam.SetValue("modelDispMask28", value); } }
+    public int modelDispMask29 { get { return this.GenericParam.GetValue<int>("modelDispMask29"); } set { this.GenericParam.SetValue("modelDispMask29", value); } }
+    public int modelDispMask30 { get { return this.GenericParam.GetValue<int>("modelDispMask30"); } set { this.GenericParam.SetValue("modelDispMask30", value); } }
+    public int modelDispMask31 { get { return this.GenericParam.GetValue<int>("modelDispMask31"); } set { this.GenericParam.SetValue("modelDispMask31", value); } }
+    public int itemSearchRadius { get { return this.GenericParam.GetValue<int>("itemSearchRadius"); } set { this.GenericParam.SetValue("itemSearchRadius", value); } }
+    public float chrHitHeight { get { return this.GenericParam.GetValue<float>("chrHitHeight"); } set { this.GenericParam.SetValue("chrHitHeight", value); } }
+    public float chrHitRadius { get { return this.GenericParam.GetValue<float>("chrHitRadius"); } set { this.GenericParam.SetValue("chrHitRadius", value); } }
+    public int specialTurnType { get { return this.GenericParam.GetValue<int>("specialTurnType"); } set { this.GenericParam.SetValue("specialTurnType", value); } }
+    public int isSoulGetByBoss { get { return this.GenericParam.GetValue<int>("isSoulGetByBoss"); } set { this.GenericParam.SetValue("isSoulGetByBoss", value); } }
+    public int isBulletOwner_byObject { get { return this.GenericParam.GetValue<int>("isBulletOwner_byObject"); } set { this.GenericParam.SetValue("isBulletOwner_byObject", value); } }
+    public int isUseLowHitFootIk { get { return this.GenericParam.GetValue<int>("isUseLowHitFootIk"); } set { this.GenericParam.SetValue("isUseLowHitFootIk", value); } }
+    public int isCalculatePvPDamage { get { return this.GenericParam.GetValue<int>("isCalculatePvPDamage"); } set { this.GenericParam.SetValue("isCalculatePvPDamage", value); } }
+    public int isHostSyncChr { get { return this.GenericParam.GetValue<int>("isHostSyncChr"); } set { this.GenericParam.SetValue("isHostSyncChr", value); } }
+    public int isSkipWeakDamageAnim { get { return this.GenericParam.GetValue<int>("isSkipWeakDamageAnim"); } set { this.GenericParam.SetValue("isSkipWeakDamageAnim", value); } }
+    public int isKeepHitOnRide { get { return this.GenericParam.GetValue<int>("isKeepHitOnRide"); } set { this.GenericParam.SetValue("isKeepHitOnRide", value); } }
+    public int isSpCollide { get { return this.GenericParam.GetValue<int>("isSpCollide"); } set { this.GenericParam.SetValue("isSpCollide", value); } }
+    public int def_dark { get { return this.GenericParam.GetValue<int>("def_dark"); } set { this.GenericParam.SetValue("def_dark", value); } }
+    public int threatLv { get { return this.GenericParam.GetValue<int>("threatLv"); } set { this.GenericParam.SetValue("threatLv", value); } }
+    public int specialTurnDistanceThreshold { get { return this.GenericParam.GetValue<int>("specialTurnDistanceThreshold"); } set { this.GenericParam.SetValue("specialTurnDistanceThreshold", value); } }
+    public int autoFootEffectSfxId { get { return this.GenericParam.GetValue<int>("autoFootEffectSfxId"); } set { this.GenericParam.SetValue("autoFootEffectSfxId", value); } }
+    public int materialSe1 { get { return this.GenericParam.GetValue<int>("materialSe1"); } set { this.GenericParam.SetValue("materialSe1", value); } }
+    public int materialSfx1 { get { return this.GenericParam.GetValue<int>("materialSfx1"); } set { this.GenericParam.SetValue("materialSfx1", value); } }
+    public int materialSe_Weak2 { get { return this.GenericParam.GetValue<int>("materialSe_Weak2"); } set { this.GenericParam.SetValue("materialSe_Weak2", value); } }
+    public int materialSfx_Weak2 { get { return this.GenericParam.GetValue<int>("materialSfx_Weak2"); } set { this.GenericParam.SetValue("materialSfx_Weak2", value); } }
+    public int materialSe2 { get { return this.GenericParam.GetValue<int>("materialSe2"); } set { this.GenericParam.SetValue("materialSe2", value); } }
+    public int materialSfx2 { get { return this.GenericParam.GetValue<int>("materialSfx2"); } set { this.GenericParam.SetValue("materialSfx2", value); } }
+    public int spEffectID8 { get { return this.GenericParam.GetValue<int>("spEffectID8"); } set { this.GenericParam.SetValue("spEffectID8", value); } }
+    public int spEffectID9 { get { return this.GenericParam.GetValue<int>("spEffectID9"); } set { this.GenericParam.SetValue("spEffectID9", value); } }
+    public int spEffectID10 { get { return this.GenericParam.GetValue<int>("spEffectID10"); } set { this.GenericParam.SetValue("spEffectID10", value); } }
+    public int spEffectID11 { get { return this.GenericParam.GetValue<int>("spEffectID11"); } set { this.GenericParam.SetValue("spEffectID11", value); } }
+    public int spEffectID12 { get { return this.GenericParam.GetValue<int>("spEffectID12"); } set { this.GenericParam.SetValue("spEffectID12", value); } }
+    public int spEffectID13 { get { return this.GenericParam.GetValue<int>("spEffectID13"); } set { this.GenericParam.SetValue("spEffectID13", value); } }
+    public int spEffectID14 { get { return this.GenericParam.GetValue<int>("spEffectID14"); } set { this.GenericParam.SetValue("spEffectID14", value); } }
+    public int spEffectID15 { get { return this.GenericParam.GetValue<int>("spEffectID15"); } set { this.GenericParam.SetValue("spEffectID15", value); } }
+    public int autoFootEffectDecalBaseId1 { get { return this.GenericParam.GetValue<int>("autoFootEffectDecalBaseId1"); } set { this.GenericParam.SetValue("autoFootEffectDecalBaseId1", value); } }
+    public int toughness { get { return this.GenericParam.GetValue<int>("toughness"); } set { this.GenericParam.SetValue("toughness", value); } }
+    public float toughnessRecoverCorrection { get { return this.GenericParam.GetValue<float>("toughnessRecoverCorrection"); } set { this.GenericParam.SetValue("toughnessRecoverCorrection", value); } }
+    public float neutralDamageCutRate { get { return this.GenericParam.GetValue<float>("neutralDamageCutRate"); } set { this.GenericParam.SetValue("neutralDamageCutRate", value); } }
+    public float slashDamageCutRate { get { return this.GenericParam.GetValue<float>("slashDamageCutRate"); } set { this.GenericParam.SetValue("slashDamageCutRate", value); } }
+    public float blowDamageCutRate { get { return this.GenericParam.GetValue<float>("blowDamageCutRate"); } set { this.GenericParam.SetValue("blowDamageCutRate", value); } }
+    public float thrustDamageCutRate { get { return this.GenericParam.GetValue<float>("thrustDamageCutRate"); } set { this.GenericParam.SetValue("thrustDamageCutRate", value); } }
+    public float magicDamageCutRate { get { return this.GenericParam.GetValue<float>("magicDamageCutRate"); } set { this.GenericParam.SetValue("magicDamageCutRate", value); } }
+    public float fireDamageCutRate { get { return this.GenericParam.GetValue<float>("fireDamageCutRate"); } set { this.GenericParam.SetValue("fireDamageCutRate", value); } }
+    public float thunderDamageCutRate { get { return this.GenericParam.GetValue<float>("thunderDamageCutRate"); } set { this.GenericParam.SetValue("thunderDamageCutRate", value); } }
+    public float darkDamageCutRate { get { return this.GenericParam.GetValue<float>("darkDamageCutRate"); } set { this.GenericParam.SetValue("darkDamageCutRate", value); } }
+    public int darkGuardCutRate { get { return this.GenericParam.GetValue<int>("darkGuardCutRate"); } set { this.GenericParam.SetValue("darkGuardCutRate", value); } }
+    public int clothUpdateOffset { get { return this.GenericParam.GetValue<int>("clothUpdateOffset"); } set { this.GenericParam.SetValue("clothUpdateOffset", value); } }
+    public int npcPlayerWeightType { get { return this.GenericParam.GetValue<int>("npcPlayerWeightType"); } set { this.GenericParam.SetValue("npcPlayerWeightType", value); } }
+    public int normalChangeModelId { get { return this.GenericParam.GetValue<int>("normalChangeModelId"); } set { this.GenericParam.SetValue("normalChangeModelId", value); } }
+    public int normalChangeAnimChrId { get { return this.GenericParam.GetValue<int>("normalChangeAnimChrId"); } set { this.GenericParam.SetValue("normalChangeAnimChrId", value); } }
+    public int paintRenderTargetSize { get { return this.GenericParam.GetValue<int>("paintRenderTargetSize"); } set { this.GenericParam.SetValue("paintRenderTargetSize", value); } }
+    public int resistCorrectId_disease { get { return this.GenericParam.GetValue<int>("resistCorrectId_disease"); } set { this.GenericParam.SetValue("resistCorrectId_disease", value); } }
+    public int phantomShaderId { get { return this.GenericParam.GetValue<int>("phantomShaderId"); } set { this.GenericParam.SetValue("phantomShaderId", value); } }
+    public int multiPlayCorrectionParamId { get { return this.GenericParam.GetValue<int>("multiPlayCorrectionParamId"); } set { this.GenericParam.SetValue("multiPlayCorrectionParamId", value); } }
+    public int maxAnklePitchAngle { get { return this.GenericParam.GetValue<int>("maxAnklePitchAngle"); } set { this.GenericParam.SetValue("maxAnklePitchAngle", value); } }
+    public int resist_freeze { get { return this.GenericParam.GetValue<int>("resist_freeze"); } set { this.GenericParam.SetValue("resist_freeze", value); } }
+    public int freezeGuardResist { get { return this.GenericParam.GetValue<int>("freezeGuardResist"); } set { this.GenericParam.SetValue("freezeGuardResist", value); } }
+    public int hpBurnDamageRate { get { return this.GenericParam.GetValue<int>("hpBurnDamageRate"); } set { this.GenericParam.SetValue("hpBurnDamageRate", value); } }
+    public int lockCameraParamId { get { return this.GenericParam.GetValue<int>("lockCameraParamId"); } set { this.GenericParam.SetValue("lockCameraParamId", value); } }
+    public int spEffectID16 { get { return this.GenericParam.GetValue<int>("spEffectID16"); } set { this.GenericParam.SetValue("spEffectID16", value); } }
+    public int spEffectID17 { get { return this.GenericParam.GetValue<int>("spEffectID17"); } set { this.GenericParam.SetValue("spEffectID17", value); } }
+    public int spEffectID18 { get { return this.GenericParam.GetValue<int>("spEffectID18"); } set { this.GenericParam.SetValue("spEffectID18", value); } }
+    public int spEffectID19 { get { return this.GenericParam.GetValue<int>("spEffectID19"); } set { this.GenericParam.SetValue("spEffectID19", value); } }
+    public int spEffectID20 { get { return this.GenericParam.GetValue<int>("spEffectID20"); } set { this.GenericParam.SetValue("spEffectID20", value); } }
+    public int spEffectID21 { get { return this.GenericParam.GetValue<int>("spEffectID21"); } set { this.GenericParam.SetValue("spEffectID21", value); } }
+    public int spEffectID22 { get { return this.GenericParam.GetValue<int>("spEffectID22"); } set { this.GenericParam.SetValue("spEffectID22", value); } }
+    public int spEffectID23 { get { return this.GenericParam.GetValue<int>("spEffectID23"); } set { this.GenericParam.SetValue("spEffectID23", value); } }
+    public int spEffectID24 { get { return this.GenericParam.GetValue<int>("spEffectID24"); } set { this.GenericParam.SetValue("spEffectID24", value); } }
+    public int spEffectID25 { get { return this.GenericParam.GetValue<int>("spEffectID25"); } set { this.GenericParam.SetValue("spEffectID25", value); } }
+    public int spEffectID26 { get { return this.GenericParam.GetValue<int>("spEffectID26"); } set { this.GenericParam.SetValue("spEffectID26", value); } }
+    public int spEffectID27 { get { return this.GenericParam.GetValue<int>("spEffectID27"); } set { this.GenericParam.SetValue("spEffectID27", value); } }
+    public int spEffectID28 { get { return this.GenericParam.GetValue<int>("spEffectID28"); } set { this.GenericParam.SetValue("spEffectID28", value); } }
+    public int spEffectID29 { get { return this.GenericParam.GetValue<int>("spEffectID29"); } set { this.GenericParam.SetValue("spEffectID29", value); } }
+    public int spEffectID30 { get { return this.GenericParam.GetValue<int>("spEffectID30"); } set { this.GenericParam.SetValue("spEffectID30", value); } }
+    public int spEffectID31 { get { return this.GenericParam.GetValue<int>("spEffectID31"); } set { this.GenericParam.SetValue("spEffectID31", value); } }
+    public int disableLockOnAng { get { return this.GenericParam.GetValue<int>("disableLockOnAng"); } set { this.GenericParam.SetValue("disableLockOnAng", value); } }
+    public int clothOffLodLevel { get { return this.GenericParam.GetValue<int>("clothOffLodLevel"); } set { this.GenericParam.SetValue("clothOffLodLevel", value); } }
+    public int isUseFootIKNormalByUnduration { get { return this.GenericParam.GetValue<int>("isUseFootIKNormalByUnduration"); } set { this.GenericParam.SetValue("isUseFootIKNormalByUnduration", value); } }
+    public int attachHitInitializeDead { get { return this.GenericParam.GetValue<int>("attachHitInitializeDead"); } set { this.GenericParam.SetValue("attachHitInitializeDead", value); } }
+    public int excludeGroupRewardCheck { get { return this.GenericParam.GetValue<int>("excludeGroupRewardCheck"); } set { this.GenericParam.SetValue("excludeGroupRewardCheck", value); } }
+    public int enableAILockDmyPoly_212 { get { return this.GenericParam.GetValue<int>("enableAILockDmyPoly_212"); } set { this.GenericParam.SetValue("enableAILockDmyPoly_212", value); } }
+    public int enableAILockDmyPoly_213 { get { return this.GenericParam.GetValue<int>("enableAILockDmyPoly_213"); } set { this.GenericParam.SetValue("enableAILockDmyPoly_213", value); } }
+    public int enableAILockDmyPoly_214 { get { return this.GenericParam.GetValue<int>("enableAILockDmyPoly_214"); } set { this.GenericParam.SetValue("enableAILockDmyPoly_214", value); } }
+    public int disableActivateOpen_xb1 { get { return this.GenericParam.GetValue<int>("disableActivateOpen_xb1"); } set { this.GenericParam.SetValue("disableActivateOpen_xb1", value); } }
+    public int disableActivateLegacy_xb1 { get { return this.GenericParam.GetValue<int>("disableActivateLegacy_xb1"); } set { this.GenericParam.SetValue("disableActivateLegacy_xb1", value); } }
+    public int estusFlaskRecoveryParamId { get { return this.GenericParam.GetValue<int>("estusFlaskRecoveryParamId"); } set { this.GenericParam.SetValue("estusFlaskRecoveryParamId", value); } }
+    public int roleNameId { get { return this.GenericParam.GetValue<int>("roleNameId"); } set { this.GenericParam.SetValue("roleNameId", value); } }
+    public int estusFlaskLotPoint { get { return this.GenericParam.GetValue<int>("estusFlaskLotPoint"); } set { this.GenericParam.SetValue("estusFlaskLotPoint", value); } }
+    public int hpEstusFlaskLotPoint { get { return this.GenericParam.GetValue<int>("hpEstusFlaskLotPoint"); } set { this.GenericParam.SetValue("hpEstusFlaskLotPoint", value); } }
+    public int mpEstusFlaskLotPoint { get { return this.GenericParam.GetValue<int>("mpEstusFlaskLotPoint"); } set { this.GenericParam.SetValue("mpEstusFlaskLotPoint", value); } }
+    public int estusFlaskRecovery_failedLotPointAdd { get { return this.GenericParam.GetValue<int>("estusFlaskRecovery_failedLotPointAdd"); } set { this.GenericParam.SetValue("estusFlaskRecovery_failedLotPointAdd", value); } }
+    public int hpEstusFlaskRecovery_failedLotPointAdd { get { return this.GenericParam.GetValue<int>("hpEstusFlaskRecovery_failedLotPointAdd"); } set { this.GenericParam.SetValue("hpEstusFlaskRecovery_failedLotPointAdd", value); } }
+    public int mpEstusFlaskRecovery_failedLotPointAdd { get { return this.GenericParam.GetValue<int>("mpEstusFlaskRecovery_failedLotPointAdd"); } set { this.GenericParam.SetValue("mpEstusFlaskRecovery_failedLotPointAdd", value); } }
+    public int WanderGhostPhantomId { get { return this.GenericParam.GetValue<int>("WanderGhostPhantomId"); } set { this.GenericParam.SetValue("WanderGhostPhantomId", value); } }
+    public int hearingHeadSize { get { return this.GenericParam.GetValue<int>("hearingHeadSize"); } set { this.GenericParam.SetValue("hearingHeadSize", value); } }
+    public int SoundBankId { get { return this.GenericParam.GetValue<int>("SoundBankId"); } set { this.GenericParam.SetValue("SoundBankId", value); } }
+    public int forwardUndulationLimit { get { return this.GenericParam.GetValue<int>("forwardUndulationLimit"); } set { this.GenericParam.SetValue("forwardUndulationLimit", value); } }
+    public int sideUndulationLimit { get { return this.GenericParam.GetValue<int>("sideUndulationLimit"); } set { this.GenericParam.SetValue("sideUndulationLimit", value); } }
+    public int deactiveMoveSpeed { get { return this.GenericParam.GetValue<int>("deactiveMoveSpeed"); } set { this.GenericParam.SetValue("deactiveMoveSpeed", value); } }
+    public int deactiveMoveDist { get { return this.GenericParam.GetValue<int>("deactiveMoveDist"); } set { this.GenericParam.SetValue("deactiveMoveDist", value); } }
+    public int enableSoundObjDist { get { return this.GenericParam.GetValue<int>("enableSoundObjDist"); } set { this.GenericParam.SetValue("enableSoundObjDist", value); } }
+    public float undulationCorrectGain { get { return this.GenericParam.GetValue<float>("undulationCorrectGain"); } set { this.GenericParam.SetValue("undulationCorrectGain", value); } }
+    public int autoFootEffectDecalBaseId2 { get { return this.GenericParam.GetValue<int>("autoFootEffectDecalBaseId2"); } set { this.GenericParam.SetValue("autoFootEffectDecalBaseId2", value); } }
+    public int autoFootEffectDecalBaseId3 { get { return this.GenericParam.GetValue<int>("autoFootEffectDecalBaseId3"); } set { this.GenericParam.SetValue("autoFootEffectDecalBaseId3", value); } }
+    public int RetargetReferenceChrId { get { return this.GenericParam.GetValue<int>("RetargetReferenceChrId"); } set { this.GenericParam.SetValue("RetargetReferenceChrId", value); } }
+    public int SfxResBankId { get { return this.GenericParam.GetValue<int>("SfxResBankId"); } set { this.GenericParam.SetValue("SfxResBankId", value); } }
+    public float updateActivatePriolity { get { return this.GenericParam.GetValue<float>("updateActivatePriolity"); } set { this.GenericParam.SetValue("updateActivatePriolity", value); } }
+    public int chrNavimeshFlag_Alive { get { return this.GenericParam.GetValue<int>("chrNavimeshFlag_Alive"); } set { this.GenericParam.SetValue("chrNavimeshFlag_Alive", value); } }
+    public int chrNavimeshFlag_Dead { get { return this.GenericParam.GetValue<int>("chrNavimeshFlag_Dead"); } set { this.GenericParam.SetValue("chrNavimeshFlag_Dead", value); } }
+    public int isConsideredUndead { get { return this.GenericParam.GetValue<int>("isConsideredUndead"); } set { this.GenericParam.SetValue("isConsideredUndead", value); } }
+    public int wheelRotType { get { return this.GenericParam.GetValue<int>("wheelRotType"); } set { this.GenericParam.SetValue("wheelRotType", value); } }
+    public float wheelRotRadius { get { return this.GenericParam.GetValue<float>("wheelRotRadius"); } set { this.GenericParam.SetValue("wheelRotRadius", value); } }
+    public float retargetMoveRate { get { return this.GenericParam.GetValue<float>("retargetMoveRate"); } set { this.GenericParam.SetValue("retargetMoveRate", value); } }
+    public float ladderWarpOffset { get { return this.GenericParam.GetValue<float>("ladderWarpOffset"); } set { this.GenericParam.SetValue("ladderWarpOffset", value); } }
+    public int loadAssetId { get { return this.GenericParam.GetValue<int>("loadAssetId"); } set { this.GenericParam.SetValue("loadAssetId", value); } }
+    public int overlapCameraDmypolyId { get { return this.GenericParam.GetValue<int>("overlapCameraDmypolyId"); } set { this.GenericParam.SetValue("overlapCameraDmypolyId", value); } }
+    public int residentMaterialExParamId00 { get { return this.GenericParam.GetValue<int>("residentMaterialExParamId00"); } set { this.GenericParam.SetValue("residentMaterialExParamId00", value); } }
+    public int residentMaterialExParamId01 { get { return this.GenericParam.GetValue<int>("residentMaterialExParamId01"); } set { this.GenericParam.SetValue("residentMaterialExParamId01", value); } }
+    public int residentMaterialExParamId02 { get { return this.GenericParam.GetValue<int>("residentMaterialExParamId02"); } set { this.GenericParam.SetValue("residentMaterialExParamId02", value); } }
+    public int residentMaterialExParamId03 { get { return this.GenericParam.GetValue<int>("residentMaterialExParamId03"); } set { this.GenericParam.SetValue("residentMaterialExParamId03", value); } }
+    public int residentMaterialExParamId04 { get { return this.GenericParam.GetValue<int>("residentMaterialExParamId04"); } set { this.GenericParam.SetValue("residentMaterialExParamId04", value); } }
+    public int sleepCollectorItemLotId_enemy { get { return this.GenericParam.GetValue<int>("sleepCollectorItemLotId_enemy"); } set { this.GenericParam.SetValue("sleepCollectorItemLotId_enemy", value); } }
+    public int sleepCollectorItemLotId_map { get { return this.GenericParam.GetValue<int>("sleepCollectorItemLotId_map"); } set { this.GenericParam.SetValue("sleepCollectorItemLotId_map", value); } }
+    public float footIkErrorOnGain { get { return this.GenericParam.GetValue<float>("footIkErrorOnGain"); } set { this.GenericParam.SetValue("footIkErrorOnGain", value); } }
+    public float footIkErrorOffGain { get { return this.GenericParam.GetValue<float>("footIkErrorOffGain"); } set { this.GenericParam.SetValue("footIkErrorOffGain", value); } }
+    public int SoundAddBankId { get { return this.GenericParam.GetValue<int>("SoundAddBankId"); } set { this.GenericParam.SetValue("SoundAddBankId", value); } }
+    public int materialVariationValue { get { return this.GenericParam.GetValue<int>("materialVariationValue"); } set { this.GenericParam.SetValue("materialVariationValue", value); } }
+    public int materialVariationValue_Weak { get { return this.GenericParam.GetValue<int>("materialVariationValue_Weak"); } set { this.GenericParam.SetValue("materialVariationValue_Weak", value); } }
+    public int superArmorDurability { get { return this.GenericParam.GetValue<int>("superArmorDurability"); } set { this.GenericParam.SetValue("superArmorDurability", value); } }
+    public float saRecoveryRate { get { return this.GenericParam.GetValue<float>("saRecoveryRate"); } set { this.GenericParam.SetValue("saRecoveryRate", value); } }
+    public int saGuardCutRate { get { return this.GenericParam.GetValue<int>("saGuardCutRate"); } set { this.GenericParam.SetValue("saGuardCutRate", value); } }
+    public int resistCorrectId_blood { get { return this.GenericParam.GetValue<int>("resistCorrectId_blood"); } set { this.GenericParam.SetValue("resistCorrectId_blood", value); } }
+    public int resistCorrectId_curse { get { return this.GenericParam.GetValue<int>("resistCorrectId_curse"); } set { this.GenericParam.SetValue("resistCorrectId_curse", value); } }
+    public int resistCorrectId_freeze { get { return this.GenericParam.GetValue<int>("resistCorrectId_freeze"); } set { this.GenericParam.SetValue("resistCorrectId_freeze", value); } }
+    public int resistCorrectId_sleep { get { return this.GenericParam.GetValue<int>("resistCorrectId_sleep"); } set { this.GenericParam.SetValue("resistCorrectId_sleep", value); } }
+    public int resistCorrectId_madness { get { return this.GenericParam.GetValue<int>("resistCorrectId_madness"); } set { this.GenericParam.SetValue("resistCorrectId_madness", value); } }
+    public int chrDeadTutorialFlagId { get { return this.GenericParam.GetValue<int>("chrDeadTutorialFlagId"); } set { this.GenericParam.SetValue("chrDeadTutorialFlagId", value); } }
+    public float stepDispInterpolateTime { get { return this.GenericParam.GetValue<float>("stepDispInterpolateTime"); } set { this.GenericParam.SetValue("stepDispInterpolateTime", value); } }
+    public float stepDispInterpolateTriggerValue { get { return this.GenericParam.GetValue<float>("stepDispInterpolateTriggerValue"); } set { this.GenericParam.SetValue("stepDispInterpolateTriggerValue", value); } }
+    public int lockScoreOffset { get { return this.GenericParam.GetValue<int>("lockScoreOffset"); } set { this.GenericParam.SetValue("lockScoreOffset", value); } }
+    public int dlcGameClearSpEffectID { get { return this.GenericParam.GetValue<int>("dlcGameClearSpEffectID"); } set { this.GenericParam.SetValue("dlcGameClearSpEffectID", value); } }
+    public string pad12 { get { return this.GenericParam.GetValue<string>("pad12"); } set { this.GenericParam.SetValue("pad12", value); } }
 }

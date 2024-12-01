@@ -1,7 +1,7 @@
 
 namespace DSLRNet.Core.Contracts.Params;
 
-public partial class ItemLotBase : ParamBase<ItemLotBase>
+public partial class ItemLotParam_map : ParamBase<ItemLotParam_map>
 {
     public int ID { get { return this.GenericParam.GetValue<int>("ID"); } set { this.GenericParam.SetValue("ID", value); } }
     public string Name { get { return this.GenericParam.GetValue<string>("Name"); } set { this.GenericParam.SetValue("Name", value); } }

@@ -36,7 +36,7 @@
     <Content Include="DefaultData\ER\CSVs\Params\EquipParamGem.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\ItemLotBase.csv">
+    <Content Include="DefaultData\ER\CSVs\Params\ItemLotBase.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DefaultData\ER\CSVs\Params\EquipParamAccessory.csv">

@@ -30,7 +30,7 @@ public class DSLRNetBuilder(
 
         Directory.CreateDirectory(configuration.Settings.DeployPath);
 
-        itemLotParam_Map = mapItemLotDataSource.LoadAll().ToList();
+        itemLotParam_Map = mapItemLotDataSource.GetAll().ToList();
 
         // get all queue entries
 
@@ -285,7 +285,7 @@ public class DSLRNetBuilder(
     {
         var modDir = $"{configuration.Settings.DeployPath}\\map\\mapstudio";
 
-        var npcParams = npcDataSource.LoadAll();
+        var npcParams = npcDataSource.GetAll();
 
         var mapStudioFiles = Directory.GetFiles(modDir, "*.msb.dcx")
             .ToList();

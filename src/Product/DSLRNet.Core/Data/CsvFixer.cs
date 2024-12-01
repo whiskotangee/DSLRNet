@@ -14,7 +14,7 @@ public class CsvFixer
         public List<Entry> Entries { get; set; }
     }
 
-    public static void GenerateClassFromCsv(string csvFilePath)
+    public static void GenerateClassFromCsv(string csvFilePath, bool param)
     {
         string[] lines = File.ReadAllLines(csvFilePath);
         if (lines.Length < 2)
@@ -32,18 +32,26 @@ public class CsvFixer
             string header = headers[i];
             IEnumerable<string> columnValues = dataRows.Select(row => row[i]);
             string type = DetermineType(columnValues);
-            properties.Add($"public {type} {header} {{ get {{ return this.GenericParam.GetValue<{type}>(\"{header}\") }} set {{ this.GenericParam.SetValue(\"{header}\", value) }}; }}");
+            if (param)
+            {
+                properties.Add($"public {type} {header} {{ get {{ return this.GenericParam.GetValue<{type}>(\"{header}\"); }} set {{ this.GenericParam.SetValue(\"{header}\", value); }} }}");
+            }
+            else
+            {
+                properties.Add($"public {type} {header} {{ get; set; }}");
+            }
         }
 
         string classDefinition = $@"
-namespace DSLRNet.Core.Contracts.Params;
+namespace DSLRNet.Core.Contracts{(param ? ".Params" : string.Empty)};
 
-public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase
+public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase<{Path.GetFileNameWithoutExtension(csvFilePath)}>
 {{
     {string.Join(Environment.NewLine + "    ", properties)}
 }}";
 
-        string path = $"{Path.Combine("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\Contracts\\Params", Path.GetFileNameWithoutExtension(csvFilePath))}.cs";
+
+        string path = $"{Path.Combine($"O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\src\\Product\\DSLRNet.Core\\Contracts\\{(param ? "Params" : string.Empty)}", Path.GetFileNameWithoutExtension(csvFilePath))}.cs";
 
         File.WriteAllText(path, classDefinition);
 

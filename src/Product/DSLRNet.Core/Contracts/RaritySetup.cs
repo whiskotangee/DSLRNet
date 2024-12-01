@@ -1,6 +1,7 @@
+
 namespace DSLRNet.Core.Contracts;
 
-public partial class RaritySetup
+public partial class RaritySetup : ParamBase<RaritySetup>
 {
     public int ID { get; set; }
     public string Name { get; set; }

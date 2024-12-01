@@ -37,8 +37,10 @@ public class GenericParam : ICloneable
 
     public void SetValue<T>(string name, T? value)
     {
-        if (typeof(T).Name != Properties[name].GetType().Name
+        if (Properties.ContainsKey(name)
+            && typeof(T).Name != Properties[name].GetType().Name
             && !typeof(T).Name.Contains("Int32") && !Properties[name].GetType().Name.Contains("Int64")
+            && !typeof(T).Name.Contains("Int64") && !Properties[name].GetType().Name.Contains("Int32")
             && !typeof(T).Name.Contains("Single") && !Properties[name].GetType().Name.Contains("Double")
             && !typeof(T).Name.Contains("Double") && !Properties[name].GetType().Name.Contains("Single"))
         {

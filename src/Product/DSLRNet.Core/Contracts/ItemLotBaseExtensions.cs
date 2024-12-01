@@ -1,15 +1,5 @@
 ﻿namespace DSLRNet.Core.Contracts
-{
-    public class ItemLotParam_enemy : ItemLotBase
-    {
-
-    }
-
-    public class ItemLotParam_map : ItemLotBase
-    {
-
-    }
-
+{ 
     public static class ItemLotBaseExtensions
     {
         public static void SetPropertyByName(this ItemLotBase itemLot, string name, object value)

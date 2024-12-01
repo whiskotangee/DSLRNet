@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 
-public class WeaponLootGenerator : ParamLootGenerator
+public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 {
     // WEAPONTYPES
     private readonly WeaponGeneratorConfig weaponGeneratorConfig;
@@ -36,7 +36,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         this.ashofWarHandler = ashofWarHandler;
         this.damageTypeHandler = damageTypeHandler;
 
-        LoadedLoot = weaponDataSource.LoadAll().Select(GenericParam.FromObject).ToList();
+        DataSource = weaponDataSource;
     }
 
     public int CreateWeapon(int rarityId, List<int> whitelistLootIds = null)
@@ -53,18 +53,18 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         WeaponTypes goalWeaponType = Random.NextWeightedValue(weaponGeneratorConfig.Types, weaponGeneratorConfig.Weights);
 
-        GenericParam weaponDictionary = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(whitelistLootIds, LootType.Weapon));
+        EquipParamWeapon newWeapon = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(whitelistLootIds, LootType.Weapon));
 
         string affinity = "";
 
-        WeaponTypes generatedType = GetWeaponType(weaponDictionary.GetValue<int>(Configuration.LootParam.WeaponsWepMotionCategory));
+        WeaponTypes generatedType = GetWeaponType(newWeapon.GenericParam.GetValue<int>(Configuration.LootParam.WeaponsWepMotionCategory));
 
         WeaponModifications modifications = ApplyWeaponModifications(
-            weaponDictionary,
+            newWeapon.GenericParam,
             rarityId,
             generatedType);
 
-        this.damageTypeHandler.ApplyDamageTypeWeaponSpEffects(modifications, weaponDictionary);
+        this.damageTypeHandler.ApplyDamageTypeWeaponSpEffects(modifications, newWeapon.GenericParam);
 
         string weaponDesc = string.Join(Environment.NewLine, modifications.SpEffectDescriptions);
 
@@ -73,32 +73,32 @@ public class WeaponLootGenerator : ParamLootGenerator
             affinity = CreateAffinityTitle(modifications);
         }
 
-        if (weaponDictionary.GetValue<int>(Configuration.LootParam.WeaponReinforceTypeId) != 2200 && generatedType != WeaponTypes.StaffsSeals)
+        if (newWeapon.reinforceTypeId != 2200 && generatedType != WeaponTypes.StaffsSeals)
         {
-            this.ashofWarHandler.AssignAshOfWar(weaponDictionary);
+            this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
 
-        SetLootSellValue(weaponDictionary, rarityId, uniqueValueMultiplier);
-        SetLootRarityParamValue(weaponDictionary, rarityId);
+        SetLootSellValue(newWeapon.GenericParam, rarityId, uniqueValueMultiplier);
+        SetLootRarityParamValue(newWeapon.GenericParam, rarityId);
 
-        weaponDictionary.SetValue("iconId", RarityHandler.GetIconIdForRarity(weaponDictionary.GetValue<int>("iconId"), rarityId, isUnique: uniqueWeapon));
+        newWeapon.iconId = RarityHandler.GetIconIdForRarity(newWeapon.iconId, rarityId, isUnique: uniqueWeapon);
 
-        RandomizeLootWeightBasedOnRarity(weaponDictionary, rarityId);
-        weaponDictionary.ID = CumulativeID.GetNext();
+        RandomizeLootWeightBasedOnRarity(newWeapon.GenericParam, rarityId);
+        newWeapon.ID = CumulativeID.GetNext();
 
         // 42300 LETS WEAPONS TAKE DAMAGE SCALING FROM ALL POSSIBLE SOURCES (STR,DEX,INT,FTH) 
         if (generatedType != WeaponTypes.StaffsSeals)
         {
-            weaponDictionary.SetValue("attackElementCorrectId", 42300);
+            newWeapon.attackElementCorrectId = 42300;
         }
 
-        weaponDictionary.SetValue("gemMountType", generatedType == WeaponTypes.StaffsSeals ? 0 : 2);
-        weaponDictionary.SetValue(Configuration.LootParam.NoAffinityChange, 1);
+        newWeapon.gemMountType = generatedType == WeaponTypes.StaffsSeals ? 0 : 2;
+        newWeapon.disableGemAttr = 1;
 
-        ApplyWeaponScalingRange(weaponDictionary, rarityId);
-        SetWeaponOriginParam(weaponDictionary, weaponDictionary.ID, replace: true);
+        ApplyWeaponScalingRange(newWeapon.GenericParam, rarityId);
+        SetWeaponOriginParam(newWeapon.GenericParam, newWeapon.ID, replace: true);
 
-        string weaponOriginalTitle = weaponDictionary.Name;
+        string weaponOriginalTitle = newWeapon.Name;
 
         string weaponFinalTitle = CreateLootTitle(
             weaponOriginalTitle,
@@ -128,9 +128,9 @@ public class WeaponLootGenerator : ParamLootGenerator
 
         //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
 
-        ExportLootGenParamAndTextToOutputs(weaponDictionary, LootType.Weapon, weaponFinalTitleColored, weaponDesc + Environment.NewLine + GetParamLootLore(weaponFinalTitle, false), "", [], []);
+        ExportLootGenParamAndTextToOutputs(newWeapon.GenericParam, LootType.Weapon, weaponFinalTitleColored, weaponDesc + Environment.NewLine + GetParamLootLore(weaponFinalTitle, false), "", [], []);
 
-        return weaponDictionary.GetValue<int>("ID");
+        return newWeapon.ID;
     }
 
     private void SetWeaponOriginParam(GenericParam weaponDictionary, int id, int upgradeCap = 25, bool replace = true)
@@ -255,7 +255,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         // reset all damage
         foreach (string dmgParam in dmgParams)
         {
-            weaponDictionary.SetValue<long>(dmgParam, 0);
+            weaponDictionary.SetValue(dmgParam, 0f);
             maxValue = Math.Max(originalValues.GetValue<long>(dmgParam), maxValue);
         }
 
@@ -305,7 +305,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         {
             weaponDictionary.SetValue(passiveParams[1], mods.SecondaryDamageType.SpEffect);
             weaponDictionary.SetValue(behSpEffectSlots[1], mods.SecondaryDamageType.OnHitSpEffect);
-            weaponDictionary.SetValue<long>(weaponEffectTextParams[1], mods.SecondaryDamageType.Message);
+            weaponDictionary.SetValue(weaponEffectTextParams[1], mods.SecondaryDamageType.Message);
         }
 
         List<string> effectStrings = [];
@@ -329,7 +329,7 @@ public class WeaponLootGenerator : ParamLootGenerator
             hitVfx = mods.SecondaryDamageType.HitEffectCategory;
         }
 
-        weaponDictionary.SetValue<long>(hitVfxParam, hitVfx);
+        weaponDictionary.SetValue(hitVfxParam, hitVfx);
 
         string critParam = Configuration.LootParam.WeaponsThrowDamageParam;
         float critMultiplier = mods.PrimaryDamageType.CriticalMultAddition + mods.SecondaryDamageType?.CriticalMultAddition ?? 0;
@@ -344,7 +344,7 @@ public class WeaponLootGenerator : ParamLootGenerator
         weaponDictionary.SetValue(critParam, (int)(critValue * (1 + critMultiplier)));
 
         string staminaParam = Configuration.LootParam.WeaponsStaminaRate;
-        int maxDamage = Configuration.LootParam.WeaponsDamageParam.Max(par => weaponDictionary.GetValue<int>(par));
+        float maxDamage = Configuration.LootParam.WeaponsDamageParam.Max(par => weaponDictionary.GetValue<float>(par));
 
         if (weaponDictionary.ContainsKey(staminaParam) && maxDamage > 170)
         {

@@ -1,6 +1,7 @@
+
 namespace DSLRNet.Core.Contracts;
 
-public partial class SpEffectConfig
+public partial class SpEffectConfig : ParamBase<SpEffectConfig>
 {
     public int ID { get; set; }
     public float Value { get; set; }

@@ -90,9 +90,12 @@ public class ParamEditsRepository
     {
         if (param != null)
         {
-            if (ContainsParamEdit(name, param.ID))
+            var id = param.ID;
+
+            if (ContainsParamEdit(name, id))
             {
-                Log.Logger.Error($"Attempting to add param {name} edit with Id {param.GetValue<long>("ID")} that already exists");
+                Log.Logger.Error($"Attempting to add param {name} edit with Id {id} that already exists");
+                throw new Exception();
             }
         }
 

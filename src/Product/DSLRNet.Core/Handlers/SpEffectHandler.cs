@@ -21,26 +21,24 @@ public class SpEffectHandler : BaseHandler
         this.rarityHandler = rarityHandler;
         randomNumberGetter = random;
 
-        LoadedSpEffectConfigs = spEffectConfigDataSource.LoadAll();
+        LoadedSpEffectConfigs = spEffectConfigDataSource.GetAll();
 
-        IEnumerable<GenericParam> loadedSpEffectParams = spEffectDataSource.LoadAll()
-            .Select(GenericParam.FromObject)
-            .ToList();
+        IEnumerable<SpEffectParam> loadedSpEffectParams = spEffectDataSource.GetAll().ToList();
 
-        foreach (GenericParam? spEffectParam in loadedSpEffectParams)
+        foreach (SpEffectParam? spEffectParam in loadedSpEffectParams)
         {
             GeneratedDataRepository.AddParamEdit(
                 ParamNames.SpEffectParam,
                 ParamOperation.MassEdit,
                 CreateMassEditParamFromParamDictionary(
-                    spEffectParam,
+                    spEffectParam.GenericParam,
                     ParamNames.SpEffectParam,
                     spEffectParam.ID,
                     [],
                     ["0", "-1"],
                     ["conditionHp", "effectEndurance", "conditionHpRate"]),
                 null,
-                spEffectParam);
+                spEffectParam.GenericParam);
         }
     }
 

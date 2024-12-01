@@ -1,6 +1,7 @@
+
 namespace DSLRNet.Core.Contracts;
 
-public partial class TalismanConfig
+public partial class TalismanConfig : ParamBase<TalismanConfig>
 {
     public int ID { get; set; }
     public string Effect { get; set; }

@@ -39,8 +39,8 @@ public class ItemLotGenerator : BaseHandler
             IsItemFlagAcquisitionCumulativeID = true,
             UseWrapAround = true
         };
-        ItemLotTemplate = itemLotBaseDataSource.LoadAll().First();
-        itemLotParam_Map = mapDataSource.LoadAll();
+        ItemLotTemplate = itemLotBaseDataSource.GetAll().First();
+        itemLotParam_Map = mapDataSource.GetAll();
     }
 
     private ItemLotBase ItemLotTemplate { get; set; }
@@ -264,12 +264,12 @@ public class ItemLotGenerator : BaseHandler
         int finalCategory;
         int finalId;
 
-        if (LootType.Armor == itemType && !armorLootGenerator.HasNoLootTemplates())
+        if (LootType.Armor == itemType && armorLootGenerator.HasLootTemplates())
         {
             finalId = armorLootGenerator.CreateArmor(rarityId, queueEntry.AllowedLootIds);
             finalCategory = 3;
         }
-        else if (LootType.Talisman == itemType && !talismanLootGenerator.HasNoLootTemplates())
+        else if (LootType.Talisman == itemType && talismanLootGenerator.HasLootTemplates())
         {
             finalId = talismanLootGenerator.CreateTalisman(rarityId, queueEntry.AllowedLootIds);
             finalCategory = 4;

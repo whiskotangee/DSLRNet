@@ -2,13 +2,13 @@
 
 public class DataSourceFactory
 {
-    public static IDataSource<T> CreateDataSource<T>(DataSourceConfig paramSource) 
-        where T : new()
+    public static IDataSource<T> CreateDataSource<T>(DataSourceConfig paramSource, RandomNumberGetter random) 
+        where T : class, ICloneable, new()
     {
         return paramSource.SourceType switch
         {
-            DataSourceType.CSV => new CsvDataSource<T>(paramSource),
-            DataSourceType.RegulationBin => new RegulationBinDataSource<T>(paramSource),
+            DataSourceType.CSV => new CsvDataSource<T>(paramSource, random),
+            DataSourceType.RegulationBin => new RegulationBinDataSource<T>(paramSource, random),
             _ => throw new ArgumentException("Invalid source type"),
         };
     }

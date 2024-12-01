@@ -1,6 +1,6 @@
 ﻿namespace DSLRNet.Core.Generators;
 
-public class ArmorLootGenerator : ParamLootGenerator
+public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 {
     public ArmorLootGenerator(
         RarityHandler rarityHandler,
@@ -15,40 +15,38 @@ public class ArmorLootGenerator : ParamLootGenerator
     {
         CumulativeID = new CumulativeID();
 
-        IEnumerable<EquipParamProtector> armorLoots = paramDataSource.LoadAll();
-
-        LoadedLoot = armorLoots.Select(GenericParam.FromObject).ToList();
+        DataSource = paramDataSource;
     }
 
     public int CreateArmor(int rarityId, List<int> wllIds)
     {
-        GenericParam newArmor = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
+        EquipParamProtector newArmor = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
 
         string armorStatDesc = "";
 
-        newArmor.SetValue("ID", CumulativeID.GetNext());
+        newArmor.ID = CumulativeID.GetNext();
 
-        SetLootSellValue(newArmor, rarityId);
+        SetLootSellValue(newArmor.GenericParam, rarityId);
 
-        SetLootRarityParamValue(newArmor, rarityId);
+        SetLootRarityParamValue(newArmor.GenericParam, rarityId);
 
-        armorStatDesc += ApplyCutRateAdditionsFromRarity(rarityId, newArmor);
+        armorStatDesc += ApplyCutRateAdditionsFromRarity(rarityId, newArmor.GenericParam);
 
-        ApplyArmorResistanceAdditions(newArmor, rarityId);
+        ApplyArmorResistanceAdditions(newArmor.GenericParam, rarityId);
 
-        RandomizeLootWeightBasedOnRarity(newArmor, rarityId);
+        RandomizeLootWeightBasedOnRarity(newArmor.GenericParam, rarityId);
 
-        IEnumerable<SpEffectText> speffs = ApplySpEffects(rarityId, [0], newArmor, 1.0f, true, -1, true);
+        IEnumerable<SpEffectText> speffs = ApplySpEffects(rarityId, [0], newArmor.GenericParam, 1.0f, true, -1, true);
 
-        newArmor.SetValue("iconIdM", RarityHandler.GetIconIdForRarity(newArmor.GetValue<int>("iconIdM"), rarityId));
-        newArmor.SetValue("iconIdF", RarityHandler.GetIconIdForRarity(newArmor.GetValue<int>("iconIdF"), rarityId));
+        newArmor.iconIdM = RarityHandler.GetIconIdForRarity(newArmor.iconIdM, rarityId);
+        newArmor.iconIdF = RarityHandler.GetIconIdForRarity(newArmor.iconIdF, rarityId);
 
         string originalName = newArmor.Name;
         string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs, true, false);
 
         //newArmor.Name = finalTitle;
 
-        ExportLootGenParamAndTextToOutputs(newArmor, LootType.Armor, finalTitle, CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc + GetParamLootLore(finalTitle, true)));
+        ExportLootGenParamAndTextToOutputs(newArmor.GenericParam, LootType.Armor, finalTitle, CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc + GetParamLootLore(finalTitle, true)));
 
         return newArmor.ID;
     }

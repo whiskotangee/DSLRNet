@@ -1,24 +1,10 @@
 ﻿namespace DSLRNet.Core.Data;
 
-public class CsvDataSource<T>(DataSourceConfig paramSource) : IDataSource<T> 
-    where T : new()
+public class CsvDataSource<T>(DataSourceConfig paramSource, RandomNumberGetter random) : BaseDataSource<T>(random)
+    where T : class, ICloneable, new()
 {
-    private List<T>? cachedData;
-
-    public IEnumerable<T> LoadAll()
+    public override IEnumerable<T> LoadData()
     {
-        if (this.cachedData != null)
-        {
-            return this.cachedData;
-        }
-
-        ResetLoadedData();
-
-        return this.cachedData;
-    }
-
-    public void ResetLoadedData()
-    {
-        this.cachedData = Csv.LoadCsv<T>(paramSource.SourcePath);
+        return Csv.LoadCsv<T>(paramSource.SourcePath).ToList();
     }
 }

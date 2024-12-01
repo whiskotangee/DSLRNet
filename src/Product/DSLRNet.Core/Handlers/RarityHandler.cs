@@ -18,7 +18,7 @@ public class RarityHandler : BaseHandler
 
         iconMappingConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText("DefaultData\\ER\\iconmappings.json"));
 
-        RarityConfigs = raritySetupDataSource.LoadAll().ToDictionary(d => d.ID);
+        RarityConfigs = raritySetupDataSource.GetAll().ToDictionary(d => d.ID);
     }
 
     public int ChooseRarityFromIdSetWithBuiltInWeights(List<int> idset)

@@ -5,7 +5,6 @@ ID,Effect,ShortEffect,RefSpEffect,NoStackingGroupID,NamePrefix
 1050,Vigor/Endurance/Strength/Dexterity +2 & 10% More Damage Taken,Stats Up/Dmg Taken Up,310500,1050,Glassy
 1051,Vigor/Endurance/Strength/Dexterity +4 & 15% More Damage Taken,Stats Up/Dmg Taken Up,310510,1050,Glassy
 1100,+75 Item Discovery,Item Discovery Up,311000,7030,Finding
-1100,+50% Item Discovery,Item Discovery Up,311000,1100,Finding
 1110,+10% Rune Acquisition Rate,Rune Drop Rate Up,311100,1110,Grinding
 1140,+1 Memory Slot,Memory Slots Up,311400,1140,Memorable
 1150,+8 Perc Stamina Recovery Speed,Stamina Recovery Up,311500,7020,Fit

@@ -2,7 +2,13 @@
 
 public interface IDataSource<T>
 {
-    IEnumerable<T> LoadAll();
+    int Count();
 
-    void ResetLoadedData();
+    IEnumerable<T> GetAll();
+
+    T GetRandomItem();
+
+    T GetItemById(int id);
+
+    void ReloadData();
 }

@@ -1,6 +1,7 @@
+
 namespace DSLRNet.Core.Contracts;
 
-public partial class DamageTypeSetup
+public partial class DamageTypeSetup : ParamBase<DamageTypeSetup>
 {
     public int ID { get; set; }
     public string Name { get; set; }

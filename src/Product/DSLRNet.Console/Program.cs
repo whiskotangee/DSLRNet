@@ -8,16 +8,21 @@ using System.Diagnostics;
 
 // TODO console progress like shitpost edition builder
 
-string[] csvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\Params", "*.csv");
-
+string[] paramCsvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\Params", "*.csv");
+string[] otherCsvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs", "*.csv");
 //foreach (var csvFile in csvFiles)
 //{
 //    //CsvFixer.AddNewHeaders(csvFile);
 //}
 
-foreach (string csvFile in csvFiles)
+foreach (string paramCsvFile in paramCsvFiles)
 {
-    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(csvFile);
+    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(paramCsvFile, true);
+}
+
+foreach (string otherCsvFile in otherCsvFiles)
+{
+    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(otherCsvFile, false);
 }
 
 //CsvFixer.UpdateNamesInCSVs();

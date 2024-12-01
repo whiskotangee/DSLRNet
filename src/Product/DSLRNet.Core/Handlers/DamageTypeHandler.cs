@@ -17,7 +17,7 @@ public class DamageTypeHandler : BaseHandler
         this.configuration = configuration.Value;
         this.random = random;
 
-        DamageTypes = damageTypeDataSource.LoadAll().ToList();
+        DamageTypes = damageTypeDataSource.GetAll().ToList();
 
         DamageTypes.Where(d => d.Message >= 1022 && d.Message <= 1100)
             .ToList()

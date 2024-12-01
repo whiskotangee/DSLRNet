@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 
-public class TalismanLootGenerator : ParamLootGenerator
+public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
 {
     public TalismanLootGenerator(
         IOptions<Configuration> configuration,
@@ -26,11 +26,9 @@ public class TalismanLootGenerator : ParamLootGenerator
     {
         CumulativeID = new CumulativeID() { IDMultiplier = 10 };
 
-        TalismanConfigs = talismanConfigDataSource.LoadAll().ToList();
+        TalismanConfigs = talismanConfigDataSource.GetAll().ToList();
 
-        var accessoriesLoot = talismanParamDataSource.LoadAll();
-
-        LoadedLoot = accessoriesLoot.Select(GenericParam.FromObject).ToList();
+        DataSource = talismanParamDataSource;
     }
 
     public int CreateTalisman(int rarityId = 0, List<int> allowListIds = null)
@@ -40,9 +38,9 @@ public class TalismanLootGenerator : ParamLootGenerator
         List<string> talismanDescriptions = [];
         List<string> talismanSummaries = [];
 
-        GenericParam newTalisman = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(allowListIds, LootType.Talisman));
+        EquipParamAccessory newTalisman = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(allowListIds, LootType.Talisman));
 
-        int freeSlotCount = GetAvailableSpeffectSlotCount(newTalisman);
+        int freeSlotCount = GetAvailableSpeffectSlotCount(newTalisman.GenericParam);
 
         if (freeSlotCount <= 0)
         {
@@ -51,9 +49,9 @@ public class TalismanLootGenerator : ParamLootGenerator
 
         TalismanConfig newTalismanConfig = Random.GetRandomItem(TalismanConfigs);
 
-        var availableSlot = GetAvailableSpEffectSlots(newTalisman).First();
+        var availableSlot = GetAvailableSpEffectSlots(newTalisman.GenericParam).First();
 
-        newTalisman.SetValue(availableSlot, newTalismanConfig.RefSpEffect);
+        newTalisman.GenericParam.SetValue(availableSlot, newTalismanConfig.RefSpEffect);
 
         List<SpEffectText> spEffs =
         [
@@ -69,7 +67,7 @@ public class TalismanLootGenerator : ParamLootGenerator
                     Suffix = string.Empty
                 }
             },
-            .. ApplySpEffects(rarityId, [0], newTalisman, 1.0f, true, -1, false) ?? [],
+            .. ApplySpEffects(rarityId, [0], newTalisman.GenericParam, 1.0f, true, -1, false) ?? [],
         ];
 
         string originalName = newTalisman.Name;
@@ -84,11 +82,11 @@ public class TalismanLootGenerator : ParamLootGenerator
 
         newTalisman.ID = CumulativeID.GetNext();
 
-        SetTalismanGroupVariables(newTalismanConfig, newTalisman, accessoryGroupParam);
+        SetTalismanGroupVariables(newTalismanConfig, newTalisman.GenericParam, accessoryGroupParam);
 
-        SetLootRarityParamValue(newTalisman, rarityId);
+        SetLootRarityParamValue(newTalisman.GenericParam, rarityId);
 
-        newTalisman.SetValue("iconId", RarityHandler.GetIconIdForRarity(newTalisman.GetValue<int>("iconId"), rarityId));
+        newTalisman.iconId = RarityHandler.GetIconIdForRarity(newTalisman.iconId, rarityId);
 
         string talismanFinalTitleColored = CreateLootTitle(
          originalName,
@@ -97,7 +95,7 @@ public class TalismanLootGenerator : ParamLootGenerator
          spEffs,
          true);
 
-        ExportLootGenParamAndTextToOutputs(newTalisman, LootType.Talisman, talismanFinalTitleColored, string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()), string.Join(Environment.NewLine, talismanSummaries), [], []);
+        ExportLootGenParamAndTextToOutputs(newTalisman.GenericParam, LootType.Talisman, talismanFinalTitleColored, string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()), string.Join(Environment.NewLine, talismanSummaries), [], []);
 
         return newTalisman.ID;
     }

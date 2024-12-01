@@ -2,23 +2,20 @@
 
 public class AshofWarHandler(
     RandomNumberGetter random, 
-    IOptions<Configuration> configuration, 
     IOptions<AshOfWarConfig> ashofWarConfig, 
     ParamEditsRepository generatedDataRepository,
     IDataSource<EquipParamGem> gemParamDataSource) : BaseHandler(generatedDataRepository)
 {
-    private const string aowparam = "swordArtsParamId";
-    private readonly Configuration configuration = configuration.Value;
-    private IEnumerable<EquipParamGem> equipParamGems = gemParamDataSource.LoadAll();
+    private IEnumerable<EquipParamGem> equipParamGems = gemParamDataSource.GetAll();
     private readonly AshOfWarConfig ashOfWarConfig = ashofWarConfig.Value;
 
-    public void AssignAshOfWar(GenericParam weaponDict)
+    public void AssignAshOfWar(EquipParamWeapon weapon)
     {
-        int weaponWmc = weaponDict.GetValue<int>(configuration.LootParam.WeaponsWepMotionCategory);
+        int weaponWmc = weapon.wepmotionCategory;
 
         // get sword artsId from set of equip gems compatible with this weapon
-        var weaponType = weaponDict.GetValue<int>("wepType");
-        var boolFlagToCheck = ashOfWarConfig.WeaponTypeToCanMountWepFlags.Single(d => d.Id == weaponType).FlagName;
+        var weaponType = weapon.wepType;
+        string? boolFlagToCheck = ashOfWarConfig.WeaponTypeToCanMountWepFlags.FirstOrDefault(d => d.Id == weaponType)?.FlagName;
 
         var validGems = equipParamGems.Where(d => Convert.ToInt64(d.GetType().GetProperty(boolFlagToCheck).GetValue(d)) == 1).ToList();
 
@@ -27,11 +24,11 @@ public class AshofWarHandler(
             var chosenGem = random.GetRandomItem(validGems);
             int finalId = chosenGem.swordArtsParamId;
 
-            weaponDict.SetValue(aowparam, finalId);
+            weapon.swordArtsParamId = finalId;
         }
         else
         {
-            Log.Logger.Warning($"Weapon Base {weaponType} named {weaponDict.GetValue<string>("Name")} did not have any matching valid gems");
+            Log.Logger.Warning($"Weapon Base {weaponType} named {weapon.Name} did not have any matching valid gems");
         }
     }
 }

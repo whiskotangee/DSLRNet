@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using DSLRNet.Core.Generators;
+using DSLRNet.Core.Extensions;
 
 namespace DSLRNet.Core;
 
@@ -7,12 +8,15 @@ public class DSLRNetBuilder(
     ILogger<DSLRNetBuilder> logger,
     ItemLotGenerator itemLotGenerator,
     IOptions<Configuration> configuration,
-    DataRepository dataRepository)
+    ParamEditsRepository dataRepository,
+    IDataSource<ItemLotParam_map> mapItemLotDataSource,
+    IDataSource<NpcParam> npcDataSource)
 {
     private readonly Configuration configuration = configuration.Value;
     private readonly ILogger<DSLRNetBuilder> logger = logger;
+    private readonly IDataSource<ItemLotParam_map> mapItemLotDataSource = mapItemLotDataSource;
     private readonly ProcessRunner processRunner = new(logger);
-    private List<ItemLotBase> itemLotParam_Map = [];
+    private List<ItemLotParam_map> itemLotParam_Map = [];
 
     public async Task BuildAndApply()
     {
@@ -26,7 +30,7 @@ public class DSLRNetBuilder(
 
         Directory.CreateDirectory(configuration.Settings.DeployPath);
 
-        itemLotParam_Map = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_map.csv");
+        itemLotParam_Map = mapItemLotDataSource.LoadAll().ToList();
 
         // get all queue entries
 
@@ -109,7 +113,7 @@ public class DSLRNetBuilder(
         await UpdateMessages(dataRepository.GetParamEdits());
     }
 
-    public async Task ApplyCreates(string regulationFile, DataRepository repository)
+    public async Task ApplyCreates(string regulationFile, ParamEditsRepository repository)
     {
         // write csv file with headers, but only for new things, aka none of the 
         List<ParamEdit> edits = repository.GetParamEdits(ParamOperation.Create);
@@ -207,7 +211,7 @@ public class DSLRNetBuilder(
                 foreach (var captionFile in captionFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(captionFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Caption != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Caption != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption.WrapTextWithProperties(size: 24))));
                     captionFile.Bytes = fmg.Write();
                 }
 
@@ -215,7 +219,7 @@ public class DSLRNetBuilder(
                 foreach (var infoFile in infoFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(infoFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Info != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Info != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info.WrapTextWithProperties(size: 24))));
                     infoFile.Bytes = fmg.Write();
                 }
 
@@ -223,7 +227,7 @@ public class DSLRNetBuilder(
                 foreach (var nameFile in nameFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(nameFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Name != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Name != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name.WrapTextWithProperties(size: 24))));
                     nameFile.Bytes = fmg.Write();
                 }
 
@@ -231,7 +235,7 @@ public class DSLRNetBuilder(
                 foreach (var effectFile in effectFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(effectFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Effect != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Effect)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Effect != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Effect.WrapTextWithProperties(size: 24))));
                     effectFile.Bytes = fmg.Write();
                 }
 
@@ -281,7 +285,7 @@ public class DSLRNetBuilder(
     {
         var modDir = $"{configuration.Settings.DeployPath}\\map\\mapstudio";
 
-        var npcParams = Csv.LoadCsv<NpcParam>("DefaultData\\ER\\CSVs\\LatestParams\\NpcParam.csv");
+        var npcParams = npcDataSource.LoadAll();
 
         var mapStudioFiles = Directory.GetFiles(modDir, "*.msb.dcx")
             .ToList();

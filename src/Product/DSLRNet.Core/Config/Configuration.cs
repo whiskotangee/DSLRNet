@@ -5,9 +5,6 @@ public class Configuration
     public ItemlotsConfig Itemlots { get; set; }
     public DSLRDescTextConfig DSLRDescText { get; set; }
     public LootParamConfig LootParam { get; set; }
-    public FlagsConfig Flags { get; set; }
-    public Dictionary<string, List<string>> ItemlotParams { get; set; }
-    public Dictionary<string, List<int>> FMGTypes { get; set; }
 }
 
 public class Settings
@@ -34,6 +31,36 @@ public class Settings
     public string GamePath { get; set; }
 
     public List<string> MessageFileNames { get; set; }
+
+    public List<DataSourceConfig> DataSourceConfigs { get; set; }
+}
+
+public enum DataSourceType { CSV, RegulationBin }
+
+public enum DataSourceNames
+{
+    EquipParamWeapon,
+    EquipParamAccessory,
+    EquipParamProtector,
+    EquipParamGem,
+    NpcParam,
+    SpEffectParam,
+    ItemLotParam_enemy,
+    ItemLotParam_map,
+    RaritySetup,
+    ItemLotBase,
+    DamageTypeSetup,
+    TalismanConfig,
+    SpEffectConfig
+}
+
+public class DataSourceConfig
+{
+    public DataSourceNames Name { get; set; }
+
+    public DataSourceType SourceType { get; set; }
+
+    public string SourcePath { get; set; }
 }
 
 public class ItemlotsConfig
@@ -89,20 +116,15 @@ public class LootParamConfig
     public string WeaponsHitVfx { get; set; }
     public WeaponsCanCastParamConfig WeaponsCanCastParam { get; set; }
     public List<string> WeaponsScaling { get; set; }
-    public List<string> WeaponsVfxSlots { get; set; }
-    public List<string> WeaponsStatReq { get; set; }
     public string WeaponsStaminaRate { get; set; }
     public List<string> WeaponsVfxParam { get; set; }
     public List<string> WeaponsVfxDummyParam { get; set; }
     public List<int> WeaponsVfxDummies { get; set; }
-    public string WeaponReinforceMaterialId { get; set; }
     public string WeaponReinforceTypeId { get; set; }
     public List<string> ArmorParam { get; set; }
-    public List<string> ArmorRealName { get; set; }
     public List<string> ArmorDefenseParams { get; set; }
     public List<string> ArmorResistParams { get; set; }
     public string TalismansAccessoryGroupParam { get; set; }
-    public List<string> OtherMandatoryParams { get; set; }
 }
 
 public class SpeffectsConfig

@@ -19,14 +19,16 @@ public class TalismanLootGenerator : ParamLootGenerator
         SpEffectHandler spEffectHandler,
         RandomNumberGetter random,
         LoreGenerator loreGenerator,
-        DataRepository dataRepository)
+        ParamEditsRepository dataRepository,
+        IDataSource<TalismanConfig> talismanConfigDataSource,
+        IDataSource<EquipParamAccessory> talismanParamDataSource)
         : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory)
     {
         CumulativeID = new CumulativeID() { IDMultiplier = 10 };
 
-        TalismanConfigs = Csv.LoadCsv<TalismanConfig>("DefaultData\\ER\\CSVs\\TalismanConfig.csv");
+        TalismanConfigs = talismanConfigDataSource.LoadAll().ToList();
 
-        var accessoriesLoot = Csv.LoadCsv<EquipParamAccessory>("DefaultData\\ER\\CSVs\\EquipParamAccessory.csv");
+        var accessoriesLoot = talismanParamDataSource.LoadAll();
 
         LoadedLoot = accessoriesLoot.Select(GenericParam.FromObject).ToList();
     }
@@ -113,7 +115,7 @@ public class TalismanLootGenerator : ParamLootGenerator
 
     public void SetTalismanGroupVariables(TalismanConfig talisConfig, GenericParam newTalisman, string accGroupName)
     {
-        int accGroup = talisConfig.NoStackingGroupID != 0
+        int accGroup = talisConfig.NoStackingGroupID < 0
             ? AccessoryGroupCumulativeID.GetNext()
             : talisConfig.NoStackingGroupID;
         newTalisman.SetValue(accGroupName, accGroup);
@@ -129,7 +131,17 @@ public class TalismanLootGenerator : ParamLootGenerator
         }
 
         string effectString = config.Effect;
-        string stackString = config.NoStackingGroupID != 0 ? Configuration.DSLRDescText.NoStacking : string.Empty;
+        string stackString = config.NoStackingGroupID < 0 ? Configuration.DSLRDescText.NoStacking : string.Empty;
         return effectPrefixString + effectString + stackString + Environment.NewLine;
+    }
+
+    public bool TalismanCanBeStacked(TalismanConfig talisConfig)
+    {
+        if (talisConfig.NoStackingGroupID == 0)
+        {
+            return false;
+        }
+
+        return talisConfig.NoStackingGroupID <= 0;
     }
 }

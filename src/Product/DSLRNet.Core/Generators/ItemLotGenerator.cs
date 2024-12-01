@@ -15,17 +15,18 @@ public class ItemLotGenerator : BaseHandler
     private readonly RandomNumberGetter random;
     private readonly Configuration configuration;
     private readonly CumulativeID itemAcquisitionCumulativeId;
-    private readonly List<ItemLotBase> itemLotParam_Map = [];
+    private readonly IEnumerable<ItemLotParam_map> itemLotParam_Map = [];
 
     public ItemLotGenerator(
         ArmorLootGenerator armorLootGenerator,
         WeaponLootGenerator weaponLootGenerator,
         TalismanLootGenerator talismanLootGenerator,
         RarityHandler rarityHandler,
-        AllowListHandler allowlistHandler,
-        DataRepository dataRepository,
+        ParamEditsRepository dataRepository,
         RandomNumberGetter random,
-        IOptions<Configuration> configuration) : base(dataRepository)
+        IOptions<Configuration> configuration,
+        IDataSource<ItemLotParam_map> mapDataSource,
+        IDataSource<ItemLotBase> itemLotBaseDataSource) : base(dataRepository)
     {
         this.armorLootGenerator = armorLootGenerator;
         this.weaponLootGenerator = weaponLootGenerator;
@@ -38,8 +39,8 @@ public class ItemLotGenerator : BaseHandler
             IsItemFlagAcquisitionCumulativeID = true,
             UseWrapAround = true
         };
-        ItemLotTemplate = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\ItemLotBase.csv")[0];
-        itemLotParam_Map = Csv.LoadCsv<ItemLotBase>("DefaultData\\ER\\CSVs\\LatestParams\\ItemLotParam_map.csv");
+        ItemLotTemplate = itemLotBaseDataSource.LoadAll().First();
+        itemLotParam_Map = mapDataSource.LoadAll();
     }
 
     private ItemLotBase ItemLotTemplate { get; set; }
@@ -58,7 +59,7 @@ public class ItemLotGenerator : BaseHandler
             }
         }
 
-        Log.Logger.Information($"Current edit count: {JsonConvert.SerializeObject(GeneratedDataRepository.ParamEditCount())}");
+        Log.Logger.Information($"Current edit count: {JsonConvert.SerializeObject(GeneratedDataRepository.EditCountsByName())}");
     }
 
     public void CreateItemLotForOthers(ItemLotQueueEntry queueEntry)

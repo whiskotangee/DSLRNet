@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DefaultData\ER\CSVs\Params\EquipParamAccessory.csv" />
+    <None Remove="DefaultData\ER\CSVs\Params\EquipParamProtector.csv" />
+    <None Remove="DefaultData\ER\CSVs\Params\EquipParamWeapon.csv" />
+    <None Remove="DefaultData\ER\CSVs\Params\SpEffectParam.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="appsettings.Default.AllowedConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -26,55 +33,37 @@
     <Content Include="DefaultData\ER\CSVs\DamageTypeSetup.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\EquipParamAccessory.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DefaultData\ER\CSVs\EquipParamGem.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DefaultData\ER\CSVs\EquipParamProtector.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DefaultData\ER\CSVs\EquipParamWeapon.csv">
+    <Content Include="DefaultData\ER\CSVs\Params\EquipParamGem.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DefaultData\ER\CSVs\ItemLotBase.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\LatestParams\EquipParamAccessory.csv">
+    <Content Include="DefaultData\ER\CSVs\Params\EquipParamAccessory.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\LatestParams\EquipParamProtector.csv">
+    <Content Include="DefaultData\ER\CSVs\Params\EquipParamProtector.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\LatestParams\EquipParamWeapon.csv">
+    <Content Include="DefaultData\ER\CSVs\Params\EquipParamWeapon.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\LatestParams\EquipParamWeapon_DLC.csv">
+    <Content Include="DefaultData\ER\CSVs\Params\ItemLotParam_enemy.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\LatestParams\ItemLotParam_enemy.csv">
+    <Content Include="DefaultData\ER\CSVs\Params\ItemLotParam_map.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\LatestParams\ItemLotParam_map.csv">
+    <Content Include="DefaultData\ER\CSVs\Params\NpcParam.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\LatestParams\NpcParam.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DefaultData\ER\CSVs\LatestParams\SpEffectParam.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DefaultData\ER\CSVs\NpcParam.csv">
+    <Content Include="DefaultData\ER\CSVs\Params\SpEffectParam.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DefaultData\ER\CSVs\RaritySetup.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultData\ER\CSVs\SpEffectConfig_Default.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DefaultData\ER\CSVs\SpEffectParam.csv">
+    <Content Include="DefaultData\ER\CSVs\SpEffectConfig.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DefaultData\ER\CSVs\TalismanConfig.csv">

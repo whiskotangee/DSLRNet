@@ -23,14 +23,37 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<RarityHandler>()
                 .AddSingleton<SpEffectHandler>()
                 .AddSingleton<AllowListHandler>()
-                .AddSingleton<DataRepository>()
+                .AddSingleton<ParamEditsRepository>()
                 .AddSingleton<DSLRNetBuilder>()
                 .AddSingleton<ProcessRunner>()
+                .AddSingleton(sp => CreateDataSource<EquipParamWeapon>(sp, DataSourceNames.EquipParamWeapon))
+                .AddSingleton(sp => CreateDataSource<EquipParamAccessory>(sp, DataSourceNames.EquipParamAccessory))
+                .AddSingleton(sp => CreateDataSource<EquipParamGem>(sp, DataSourceNames.EquipParamGem))
+                .AddSingleton(sp => CreateDataSource<EquipParamProtector>(sp, DataSourceNames.EquipParamProtector))
+                .AddSingleton(sp => CreateDataSource<SpEffectParam>(sp, DataSourceNames.SpEffectParam))
+                .AddSingleton(sp => CreateDataSource<ItemLotParam_enemy>(sp, DataSourceNames.ItemLotParam_enemy))
+                .AddSingleton(sp => CreateDataSource<ItemLotParam_map>(sp, DataSourceNames.ItemLotParam_map))
+                .AddSingleton(sp => CreateDataSource<NpcParam>(sp, DataSourceNames.NpcParam))
+                .AddSingleton(sp => CreateDataSource<RaritySetup>(sp, DataSourceNames.RaritySetup))
+                .AddSingleton(sp => CreateDataSource<ItemLotBase>(sp, DataSourceNames.ItemLotBase))
+                .AddSingleton(sp => CreateDataSource<DamageTypeSetup>(sp, DataSourceNames.DamageTypeSetup))
+                .AddSingleton(sp => CreateDataSource<TalismanConfig>(sp, DataSourceNames.TalismanConfig))
+                .AddSingleton(sp => CreateDataSource<SpEffectConfig>(sp, DataSourceNames.SpEffectConfig))
                 .AddSingleton((sp) =>
                 {
                     return new RandomNumberGetter(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
                 });
 
         return services;
+    }
+
+    public static IDataSource<T> CreateDataSource<T>(IServiceProvider provider, DataSourceNames configName)
+        where T : class, new()
+    {
+        var configSettings = provider.GetRequiredService<IOptions<Configuration>>().Value.Settings;
+
+        var config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
+
+        return DataSourceFactory.CreateDataSource<T>(config);
     }
 }

@@ -7,7 +7,7 @@ public class ParamLootGenerator(
     LoreGenerator loreGenerator,
     RandomNumberGetter random,
     IOptions<Configuration> configuration,
-    DataRepository dataRepository,
+    ParamEditsRepository dataRepository,
     ParamNames outputParamName) : BaseHandler(dataRepository)
 {
     public RarityHandler RarityHandler { get; set; } = rarityHandler;

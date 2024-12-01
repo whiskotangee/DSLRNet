@@ -8,12 +8,16 @@ public class DamageTypeHandler : BaseHandler
 
     private readonly RandomNumberGetter random;
 
-    public DamageTypeHandler(IOptions<Configuration> configuration, RandomNumberGetter random, DataRepository dataRepository) : base(dataRepository)
+    public DamageTypeHandler(
+        IOptions<Configuration> configuration, 
+        RandomNumberGetter random, 
+        ParamEditsRepository dataRepository,
+        IDataSource<DamageTypeSetup> damageTypeDataSource) : base(dataRepository)
     {
         this.configuration = configuration.Value;
         this.random = random;
 
-        DamageTypes = Csv.LoadCsv<DamageTypeSetup>("DefaultData\\ER\\CSVs\\DamageTypeSetup.csv");
+        DamageTypes = damageTypeDataSource.LoadAll().ToList();
 
         DamageTypes.Where(d => d.Message >= 1022 && d.Message <= 1100)
             .ToList()

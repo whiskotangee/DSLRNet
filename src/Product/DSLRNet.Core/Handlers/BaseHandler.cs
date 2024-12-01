@@ -4,11 +4,11 @@ using DSLRNet.Core.Common;
 using DSLRNet.Core.Contracts;
 using DSLRNet.Core.Data;
 
-public class BaseHandler(DataRepository generatedDataRepository)
+public class BaseHandler(ParamEditsRepository generatedDataRepository)
 {
     public string Name { get; set; }
 
-    public DataRepository GeneratedDataRepository { get; set; } = generatedDataRepository;
+    public ParamEditsRepository GeneratedDataRepository { get; set; } = generatedDataRepository;
 
     public LootFMG CreateFmgLootEntrySet(string category = "Weapons", int id = 1000000, string title = "Dagger", string description = "This is a dagger!", string summary = "")
     {

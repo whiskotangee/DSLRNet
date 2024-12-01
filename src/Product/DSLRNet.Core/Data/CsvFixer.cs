@@ -14,16 +14,6 @@ public class CsvFixer
         public List<Entry> Entries { get; set; }
     }
 
-    public class CsvRecord
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        // Other fields can be added here
-        public string OtherField1 { get; set; }
-        public string OtherField2 { get; set; }
-        // Add as many fields as needed
-    }
-
     public static void GenerateClassFromCsv(string csvFilePath)
     {
         string[] lines = File.ReadAllLines(csvFilePath);
@@ -42,7 +32,7 @@ public class CsvFixer
             string header = headers[i];
             IEnumerable<string> columnValues = dataRows.Select(row => row[i]);
             string type = DetermineType(columnValues);
-            properties.Add($"public {type} {header} {{ get; set; }}");
+            properties.Add($"public {type} {header} {{ get {{ return this.GenericParam.GetValue<{type}>(\"{header}\") }} set {{ this.GenericParam.SetValue(\"{header}\", value) }}; }}");
         }
 
         string classDefinition = $@"
@@ -53,7 +43,7 @@ public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase
     {string.Join(Environment.NewLine + "    ", properties)}
 }}";
 
-        string path = $"{Path.Combine("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\Data\\Generated", Path.GetFileNameWithoutExtension(csvFilePath))}.cs";
+        string path = $"{Path.Combine("O:\\EldenRingShitpostEdition\\Tools\\DSLRNet\\Contracts\\Params", Path.GetFileNameWithoutExtension(csvFilePath))}.cs";
 
         File.WriteAllText(path, classDefinition);
 
@@ -110,6 +100,7 @@ public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase
         UpdateCsvNames<EquipParamWeapon>("DefaultData\\ER\\CSVs\\EquipParamWeapon.csv", Directory.GetFiles("DefaultData\\ER\\FMGBase\\", "TitleWeapons*.fmgmerge.json").ToList());
         UpdateCsvNames<EquipParamProtector>("DefaultData\\ER\\CSVs\\EquipParamProtector.csv", Directory.GetFiles("DefaultData\\ER\\FMGBase\\", "TitleArmor*.fmgmerge.json").ToList());
         UpdateCsvNames<EquipParamAccessory>("DefaultData\\ER\\CSVs\\EquipParamAccessory.csv", Directory.GetFiles("DefaultData\\ER\\FMGBase\\", "TitleRings*.fmgmerge.json").ToList());
+        UpdateCsvNames<SpEffectParam>("DefaultData\\ER\\CSVs\\SpEffectParams.csv", Directory.GetFiles("DefaultData\\ER\\FMGBase\\", "TitleRings*.fmgmerge.json").ToList());
     }
 
     private static string DetermineType(IEnumerable<string> values)

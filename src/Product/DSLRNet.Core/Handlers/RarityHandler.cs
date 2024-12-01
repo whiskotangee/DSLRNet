@@ -1,20 +1,24 @@
-﻿namespace DSLRNet.Core.Handlers;
+﻿using DSLRNet.Core.Extensions;
+
+namespace DSLRNet.Core.Handlers;
 
 public class RarityHandler : BaseHandler
 {
     private readonly RandomNumberGetter randomNumberGetter;
     private readonly RarityIconMappingConfig iconMappingConfig;
 
-    //DICTIONARY TO HOLD ALL OF THE RARITY CONFIGURATIONS AVAILABLE WHEN MODSREADY SIGNAL IS RECEIVED - KEY IS THE RARITY ID
     private Dictionary<int, RaritySetup> RarityConfigs = [];
 
-    public RarityHandler(RandomNumberGetter randomNumberGetter, DataRepository dataRepository) : base(dataRepository)
+    public RarityHandler(
+        RandomNumberGetter randomNumberGetter, 
+        ParamEditsRepository dataRepository,
+        IDataSource<RaritySetup> raritySetupDataSource) : base(dataRepository)
     {
         this.randomNumberGetter = randomNumberGetter;
 
         iconMappingConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText("DefaultData\\ER\\iconmappings.json"));
 
-        RarityConfigs = Csv.LoadCsv<RaritySetup>("DefaultData\\ER\\CSVs\\RaritySetup.csv").ToDictionary(d => d.ID);
+        RarityConfigs = raritySetupDataSource.LoadAll().ToDictionary(d => d.ID);
     }
 
     public int ChooseRarityFromIdSetWithBuiltInWeights(List<int> idset)
@@ -162,7 +166,7 @@ public class RarityHandler : BaseHandler
     {
         int matchedRarity = GetNearestRarityId(rarityId);
         string name = GetRarityName(matchedRarity);
-        return $"<font color=\"#{RarityConfigs[matchedRarity].ColorHex}\">{name}</font>";
+        return name.WrapTextWithProperties(color: RarityConfigs[matchedRarity].ColorHex);
     }
 
     public List<float> GetRarityWeightMultipliers(int rarityid)

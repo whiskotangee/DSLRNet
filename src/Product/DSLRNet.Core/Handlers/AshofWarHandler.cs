@@ -1,30 +1,16 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
-using DSLRNet.Core.Common;
-using DSLRNet.Core.Config;
-using DSLRNet.Core.Contracts.Params;
-using DSLRNet.Core.Data;
-using Microsoft.Extensions.Options;
-using Serilog;
-using System;
-using System.Collections.Generic;
-
-public enum AoWCategory
-{
-    BowCrossbow,
-    Shield,
-    StaffSeal,
-    Other
-}
-
-public class AshofWarHandler(RandomNumberGetter random, IOptions<Configuration> configuration, IOptions<AshOfWarConfig> ashofWarConfig, DataRepository generatedDataRepository) : BaseHandler(generatedDataRepository)
+public class AshofWarHandler(
+    RandomNumberGetter random, 
+    IOptions<Configuration> configuration, 
+    IOptions<AshOfWarConfig> ashofWarConfig, 
+    ParamEditsRepository generatedDataRepository,
+    IDataSource<EquipParamGem> gemParamDataSource) : BaseHandler(generatedDataRepository)
 {
     private const string aowparam = "swordArtsParamId";
     private readonly Configuration configuration = configuration.Value;
-    private List<EquipParamGem> equipParamGems = Csv.LoadCsv<EquipParamGem>("DefaultData\\ER\\CSVs\\EquipParamGem.csv");
+    private IEnumerable<EquipParamGem> equipParamGems = gemParamDataSource.LoadAll();
     private readonly AshOfWarConfig ashOfWarConfig = ashofWarConfig.Value;
-
-    // AOW ASSIGN FUNCTIONS
 
     public void AssignAshOfWar(GenericParam weaponDict)
     {

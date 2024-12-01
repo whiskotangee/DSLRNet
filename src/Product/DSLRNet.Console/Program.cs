@@ -8,17 +8,17 @@ using System.Diagnostics;
 
 // TODO console progress like shitpost edition builder
 
-//string[] csvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\", "*.csv");
+string[] csvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\Params", "*.csv");
 
 //foreach (var csvFile in csvFiles)
 //{
 //    //CsvFixer.AddNewHeaders(csvFile);
 //}
 
-//foreach (string csvFile in csvFiles)
-//{
-//    CsvFixer.GenerateClassFromCsv(csvFile);
-//}
+foreach (string csvFile in csvFiles)
+{
+    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(csvFile);
+}
 
 //CsvFixer.UpdateNamesInCSVs();
 

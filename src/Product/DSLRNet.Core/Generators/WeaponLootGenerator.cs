@@ -5,6 +5,7 @@ using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts;
 using DSLRNet.Core.Contracts.Params;
 using DSLRNet.Core.Data;
+using DSLRNet.Core.Extensions;
 using DSLRNet.Core.Handlers;
 using Microsoft.Extensions.Options;
 using System;
@@ -27,15 +28,15 @@ public class WeaponLootGenerator : ParamLootGenerator
         RandomNumberGetter random,
         LoreGenerator loreGenerator,
         DamageTypeHandler damageTypeHandler,
-        DataRepository dataRepository) : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamWeapon)
+        ParamEditsRepository dataRepository,
+        IDataSource<EquipParamWeapon> weaponDataSource) : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamWeapon)
     {
         CumulativeID = new CumulativeID();
         this.weaponGeneratorConfig = weaponGeneratorConfig.Value;
         this.ashofWarHandler = ashofWarHandler;
         this.damageTypeHandler = damageTypeHandler;
-        List<EquipParamWeapon> weaponLoots = Csv.LoadCsv<EquipParamWeapon>("DefaultData\\ER\\CSVs\\EquipParamWeapon.csv");
 
-        LoadedLoot = weaponLoots.Select(GenericParam.FromObject).ToList();
+        LoadedLoot = weaponDataSource.LoadAll().Select(GenericParam.FromObject).ToList();
     }
 
     public int CreateWeapon(int rarityId, List<int> whitelistLootIds = null)
@@ -117,7 +118,7 @@ public class WeaponLootGenerator : ParamLootGenerator
             string uniqueName = LoreGenerator.CreateRandomUniqueName(generatedType == WeaponTypes.Shields);
             if (!string.IsNullOrEmpty(uniqueName))
             {
-                weaponFinalTitleColored = $"<font color=\"#ffa3c5\">{uniqueName}</font>";
+                weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: "#ffa3c5", size: 24);
             }
             else
             {

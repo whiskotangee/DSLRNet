@@ -7,17 +7,23 @@ public class SpEffectHandler : BaseHandler
 
     private RandomNumberGetter randomNumberGetter;
 
-    public List<SpEffectConfig_Default> LoadedSpEffectConfigs { get; set; }
+    public IEnumerable<SpEffectConfig> LoadedSpEffectConfigs { get; set; }
 
-    public SpEffectHandler(IOptions<Configuration> configuration, RarityHandler rarityHandler, RandomNumberGetter random, DataRepository dataRepository) : base(dataRepository)
+    public SpEffectHandler(
+        IOptions<Configuration> configuration, 
+        RarityHandler rarityHandler, 
+        RandomNumberGetter random, 
+        ParamEditsRepository dataRepository,
+        IDataSource<SpEffectConfig> spEffectConfigDataSource,
+        IDataSource<SpEffectParam> spEffectDataSource) : base(dataRepository)
     {
         this.configuration = configuration.Value;
         this.rarityHandler = rarityHandler;
         randomNumberGetter = random;
 
-        LoadedSpEffectConfigs = Csv.LoadCsv<SpEffectConfig_Default>("DefaultData\\ER\\CSVs\\SpEffectConfig_Default.csv");
+        LoadedSpEffectConfigs = spEffectConfigDataSource.LoadAll();
 
-        List<GenericParam> loadedSpEffectParams = Csv.LoadCsv<SpEffectParam>("DefaultData\\ER\\CSVs\\SpEffectParam.csv")
+        IEnumerable<GenericParam> loadedSpEffectParams = spEffectDataSource.LoadAll()
             .Select(GenericParam.FromObject)
             .ToList();
 
@@ -51,14 +57,14 @@ public class SpEffectHandler : BaseHandler
 
         if (desiredCount > 0)
         {
-            List<SpEffectConfig_Default> spEffectChoices = GetAvailableSpEffectConfigs(speffectpowerrange[0], speffectpowerrange[1], allowedtypes).ToList();
+            List<SpEffectConfig> spEffectChoices = GetAvailableSpEffectConfigs(speffectpowerrange[0], speffectpowerrange[1], allowedtypes).ToList();
             if (spEffectChoices.Count > 0)
             {
                 while (chancearray.TryDequeue(out bool result))
                 {
                     if (result)
                     {
-                        SpEffectConfig_Default newSpEffect = randomNumberGetter.GetRandomItem(spEffectChoices);
+                        SpEffectConfig newSpEffect = randomNumberGetter.GetRandomItem(spEffectChoices);
 
                         string newdescription = GetSpeffectDescriptionWithValue(
                             newSpEffect.Description,
@@ -120,7 +126,6 @@ public class SpEffectHandler : BaseHandler
             }
         }
 
-        //ADD STANDARD SPEFFECTS [0] IF ALLOWSTANDARDSPEFFECTS
         if (allowstandardspeffects)
         {
             speffecttypes.Add(0);
@@ -129,9 +134,9 @@ public class SpEffectHandler : BaseHandler
         return speffecttypes;
     }
 
-    public IEnumerable<SpEffectConfig_Default> GetAvailableSpEffectConfigs(int powermin, int powermax, List<int> allowedtypes)
+    public IEnumerable<SpEffectConfig> GetAvailableSpEffectConfigs(int powermin, int powermax, List<int> allowedtypes)
     {
-        List<SpEffectConfig_Default> spEffects = [];
+        List<SpEffectConfig> spEffects = [];
 
         powermax = Math.Clamp(powermax, 0, 9999);
         powermin = Math.Clamp(powermin, 0, powermax);
@@ -139,18 +144,18 @@ public class SpEffectHandler : BaseHandler
 
         int superthreshold = Math.Clamp((int)(powermax * 0.9), 0, 9999);
 
-        if (LoadedSpEffectConfigs.Count == 0)
+        if (LoadedSpEffectConfigs.Count() == 0)
         {
             return [];
         }
 
         foreach (int x in allowedtypes)
         {
-            List<SpEffectConfig_Default> allOptions = LoadedSpEffectConfigs
+            List<SpEffectConfig> allOptions = LoadedSpEffectConfigs
                 .Where(d => d.SpEffectType == x)
                 .ToList();
 
-            IEnumerable<SpEffectConfig_Default> filteredOptions = allOptions
+            IEnumerable<SpEffectConfig> filteredOptions = allOptions
                 .Where(d => d.SpEffectPower >= powermin && d.SpEffectPower <= powermax);
 
             if (filteredOptions.Any())

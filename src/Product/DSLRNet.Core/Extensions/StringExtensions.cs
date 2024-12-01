@@ -9,9 +9,12 @@ public static class StringExtensions
             return text;
         }
 
-        var colorAttribute = color != null ? $" color=\"{color}\" " : string.Empty;
-        var sizeAttribute = size != null ? $" size=\"{size}\" " : string.Empty;
+        var colorAttribute = color != null ? $" color=\"{color}\"" : string.Empty;
+        var sizeAttribute = size != null ? $" size=\"{size}\"" : string.Empty;
 
-        return $"<font{colorAttribute}{sizeAttribute}>{text}</font>";
+        var combinedAttributes = $"{colorAttribute}{sizeAttribute}";
+
+        return $"<font{combinedAttributes}>{text}</font>";
     }
+
 }

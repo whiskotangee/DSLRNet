@@ -12,13 +12,15 @@ public class Settings
     public string DeployPath { get; set; }
     public string DSMSPortablePath { get; set; }
 
-    public int ItemLotsPerBaseLot { get; set; }
+    public int ItemLotsPerBaseMapLot { get; set; }
 
     public int LootPerItemLot_Enemy { get; set; }
 
     public int LootPerItemLot_Map { get; set; }
 
     public bool ChaosLootEnabled { get; set; }
+
+    public string UniqueItemColor { get; set; }
 
     public float GlobalDropChance { get; set; }
 

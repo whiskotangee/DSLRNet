@@ -64,10 +64,7 @@ public class DSLRNetBuilder(
         itemLotGenerator.CreateItemLots([remainingMapLots]);
         itemLotGenerator.CreateItemLots([remainingEnemyLots]);
 
-        if (!dataRepository.VerifyItemLots())
-        {
-            throw new Exception("Ids referenced not found");
-        }
+        dataRepository.VerifyItemLots();
 
         string regulationFile = Path.Combine(configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
         string destinationFile = Path.Combine(configuration.Settings.DeployPath, "regulation.working.bin");

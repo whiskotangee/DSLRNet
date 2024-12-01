@@ -21,7 +21,7 @@ public class GenericParam : ICloneable
 
     public Dictionary<string, object?> Properties { get; set; } = [];
 
-    public int ID { get => this.GetValue<int>("ID"); set => this.SetValue("ID", value); }
+    public int ID { get => this.GetValue<int>("ID"); set { this.SetValue("ID", value); } }
 
     public string Name { get => this.GetValue<string>("Name"); set => this.SetValue("Name", value); }
 
@@ -29,7 +29,7 @@ public class GenericParam : ICloneable
     {
         if (Properties.TryGetValue(name, out object? value))
         {
-            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(value));
+            return (T)Convert.ChangeType(value, typeof(T));
         }
 
         throw new Exception($"Param with name {name} not of type {typeof(T)} or not found in dictionary");

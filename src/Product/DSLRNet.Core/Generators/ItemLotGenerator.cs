@@ -16,6 +16,7 @@ public class ItemLotGenerator : BaseHandler
     private readonly Configuration configuration;
     private readonly CumulativeID itemAcquisitionCumulativeId;
     private readonly IEnumerable<ItemLotParam_map> itemLotParam_Map = [];
+    private readonly IEnumerable<ItemLotParam_enemy> itemLotParam_Enemy = [];
 
     public ItemLotGenerator(
         ArmorLootGenerator armorLootGenerator,
@@ -26,6 +27,7 @@ public class ItemLotGenerator : BaseHandler
         RandomNumberGetter random,
         IOptions<Configuration> configuration,
         IDataSource<ItemLotParam_map> mapDataSource,
+        IDataSource<ItemLotParam_enemy> enemyDataSource,
         IDataSource<ItemLotBase> itemLotBaseDataSource) : base(dataRepository)
     {
         this.armorLootGenerator = armorLootGenerator;
@@ -41,6 +43,7 @@ public class ItemLotGenerator : BaseHandler
         };
         ItemLotTemplate = itemLotBaseDataSource.GetAll().First();
         itemLotParam_Map = mapDataSource.GetAll();
+        itemLotParam_Enemy = enemyDataSource.GetAll();
     }
 
     private ItemLotBase ItemLotTemplate { get; set; }
@@ -51,20 +54,22 @@ public class ItemLotGenerator : BaseHandler
         {
             if (itemLotEntry.Category == ItemLotCategory.ItemLot_Map)
             {
-                CreateItemLotForMap(itemLotEntry);
+                CreateItemLot_Map(itemLotEntry);
             }
             else
             {
-                CreateItemLotForOthers(itemLotEntry);
+                CreateItemLot_Enemy(itemLotEntry);
             }
         }
 
         Log.Logger.Information($"Current edit count: {JsonConvert.SerializeObject(GeneratedDataRepository.EditCountsByName())}");
     }
 
-    public void CreateItemLotForOthers(ItemLotQueueEntry queueEntry)
+    public void CreateItemLot_Enemy(ItemLotQueueEntry queueEntry)
     {
         List<int> itemLotIds = queueEntry.GetAllItemLotIdsFromAllTiers();
+
+        bool dropGuaranteed = configuration.Settings.AllLootGauranteed || queueEntry.GuaranteedDrop;
 
         if (itemLotIds.Count > 0)
         {
@@ -73,11 +78,11 @@ public class ItemLotGenerator : BaseHandler
                 if (!queueEntry.BlackListIds.Contains(itemLotIds[x]))
                 {
                     ItemLotBase newItemLot;
-                    var existingItemLot = itemLotParam_Map.SingleOrDefault(d => d.ID == itemLotIds[x]);
+                    var existingItemLot = itemLotParam_Enemy.SingleOrDefault(d => d.ID == itemLotIds[x]);
 
                     if (existingItemLot != null)
                     {
-                        Log.Logger.Information($"ItemLot {itemLotIds[x]} already exists in CSV data for type {queueEntry.Category}, basing template on existing");
+                        Log.Logger.Debug($"ItemLot {itemLotIds[x]} already exists in CSV data for type {queueEntry.Category}, basing template on existing");
                         newItemLot = JsonConvert.DeserializeObject<ItemLotBase>(JsonConvert.SerializeObject(existingItemLot));
                     }
                     else if (GeneratedDataRepository.TryGetParamEdit(queueEntry.ParamName, itemLotIds[x], out var paramEdit))
@@ -89,16 +94,17 @@ public class ItemLotGenerator : BaseHandler
                     {
                         newItemLot = CreateDefaultItemLotDictionary();
                         newItemLot.ID = itemLotIds[x];
+
+                        if (!dropGuaranteed)
+                        {
+                            newItemLot.lotItemBasePoint01 = 1000;
+                            newItemLot.lotItemId01 = 0;
+                            newItemLot.lotItemNum01 = 0;
+                            newItemLot.lotItemCategory01 = 0;
+                        }
                     }
 
                     newItemLot.Name = string.Empty;
-
-                    bool dropGuaranteed = configuration.Settings.AllLootGauranteed || queueEntry.GuaranteedDrop;
-                    if (!dropGuaranteed)
-                    {
-                        newItemLot.lotItemBasePoint01 = 1000;
-                        newItemLot.lotItemId01 = 0;
-                    }
 
                     int offset = Math.Max(newItemLot.GetIndexOfFirstOpenLotItemId(), dropGuaranteed ? 1 : 2);
 
@@ -107,9 +113,9 @@ public class ItemLotGenerator : BaseHandler
                         throw new Exception("No open item spots in item lot");
                     }
 
-                    for (int y = offset; y < configuration.Settings.LootPerItemLot_Enemy; y++)
+                    for (int y = 0; y < configuration.Settings.LootPerItemLot_Enemy; y++)
                     {
-                        CreateItemLotEntry(queueEntry, newItemLot, y, itemLotIds[x], (float)queueEntry.DropChanceMultiplier, dropGuaranteed);
+                        CreateItemLotEntry(queueEntry, newItemLot, y + offset, itemLotIds[x], (float)queueEntry.DropChanceMultiplier, dropGuaranteed);
                     }
 
                     CalculateNoItemChance(newItemLot);
@@ -133,7 +139,7 @@ public class ItemLotGenerator : BaseHandler
         }
     }
 
-    public void CreateItemLotForMap(ItemLotQueueEntry queueEntry)
+    public void CreateItemLot_Map(ItemLotQueueEntry queueEntry)
     {
         List<int> baseItemLotIds = queueEntry.GetAllItemLotIdsFromAllTiers();
 
@@ -144,7 +150,7 @@ public class ItemLotGenerator : BaseHandler
             {
                 if (!queueEntry.BlackListIds.Contains(baseItemLotIds[x]))
                 {
-                    List<int> itemLotIds = FindSequentialItemLotIds(queueEntry, baseItemLotIds[x], configuration.Settings.ItemLotsPerBaseLot);
+                    List<int> itemLotIds = FindSequentialItemLotIds(queueEntry, baseItemLotIds[x], configuration.Settings.ItemLotsPerBaseMapLot);
 
                     for (int i = 0; i < itemLotIds.Count; i++)
                     {
@@ -204,7 +210,7 @@ public class ItemLotGenerator : BaseHandler
             if (itemLotParam_Map.SingleOrDefault(d => d.ID == currentId + 1) != null
                 || GeneratedDataRepository.ContainsParamEdit(queueEntry.ParamName, i + 1))
             {
-                Log.Logger.Warning($"Map item lot {startingId} could not find a sequential item lot, stopping at {currentId} but itemLot {currentId + 1} exists");
+                Log.Logger.Debug($"Map item lot {startingId} could not find a sequential item lot, stopping at {currentId} but itemLot {currentId + 1} exists");
                 continue;
             }
 

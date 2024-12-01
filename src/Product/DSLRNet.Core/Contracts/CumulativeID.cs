@@ -44,7 +44,7 @@ public class CumulativeID
         if (IsItemFlagAcquisitionCumulativeID)
         {
             var flagId = (int)IFA["starting"] + ((List<int>)IFA["offsets"])[IFA_CurrentOffset] * 1000 + cumulativeId;
-            Log.Logger.Debug($"Assigning acquisition flag {flagId}");
+            Log.Logger.Information($"Assigning acquisition flag {flagId}");
             return flagId;
         }
         else

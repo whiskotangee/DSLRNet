@@ -118,7 +118,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             string uniqueName = LoreGenerator.CreateRandomUniqueName(generatedType == WeaponTypes.Shields);
             if (!string.IsNullOrEmpty(uniqueName))
             {
-                weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: "#ffa3c5", size: 24);
+                weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Configuration.Settings.UniqueItemColor, size: 24);
             }
             else
             {

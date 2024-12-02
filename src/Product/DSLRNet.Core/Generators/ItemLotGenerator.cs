@@ -83,7 +83,7 @@ public class ItemLotGenerator : BaseHandler
                     if (existingItemLot != null)
                     {
                         Log.Logger.Debug($"ItemLot {itemLotIds[x]} already exists in CSV data for type {queueEntry.Category}, basing template on existing");
-                        newItemLot = JsonConvert.DeserializeObject<ItemLotBase>(JsonConvert.SerializeObject(existingItemLot));
+                        newItemLot = existingItemLot.CloneToBase();
                     }
                     else if (GeneratedDataRepository.TryGetParamEdit(queueEntry.ParamName, itemLotIds[x], out var paramEdit))
                     {

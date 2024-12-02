@@ -49,7 +49,7 @@ public static class IServiceCollectionExtensions
     }
 
     public static IDataSource<T> CreateDataSource<T>(IServiceProvider provider, DataSourceNames configName)
-        where T : class, ICloneable, new()
+        where T : class, ICloneable<T>, new()
     {
         var configSettings = provider.GetRequiredService<IOptions<Configuration>>().Value.Settings;
 

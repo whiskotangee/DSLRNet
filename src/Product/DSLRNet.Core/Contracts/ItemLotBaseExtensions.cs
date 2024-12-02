@@ -2,6 +2,16 @@
 { 
     public static class ItemLotBaseExtensions
     {
+        public static ItemLotBase CloneToBase(this ItemLotParam_enemy enemyItemLot)
+        {
+            return JsonConvert.DeserializeObject<ItemLotBase>(JsonConvert.SerializeObject(enemyItemLot));
+        }
+
+        public static ItemLotBase CloneToBase(this ItemLotParam_map mapItemLot)
+        {
+            return JsonConvert.DeserializeObject<ItemLotBase>(JsonConvert.SerializeObject(mapItemLot));
+        }
+
         public static void SetPropertyByName(this ItemLotBase itemLot, string name, object value)
         {
             itemLot.GetType().GetProperty(name).SetValue(itemLot, value);

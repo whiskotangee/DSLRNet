@@ -1,7 +1,7 @@
 ﻿namespace DSLRNet.Core.Data;
 
 public abstract class BaseDataSource<T> : IDataSource<T> 
-    where T : class, ICloneable, new()
+    where T : class, ICloneable<T>, new()
 {
     private readonly RandomProvider random;
 
@@ -17,7 +17,7 @@ public abstract class BaseDataSource<T> : IDataSource<T>
     {
         if (CachedData.TryGetValue(id, out T item))
         {
-            return (T)item.Clone();
+            return item.Clone();
         }
 
         return null;
@@ -30,7 +30,7 @@ public abstract class BaseDataSource<T> : IDataSource<T>
 
     public IEnumerable<T> GetAll()
     {
-        return CachedData.Values.Select(s => s.Clone()).Cast<T>().ToList();
+        return CachedData.Values.Select(s => s.Clone()).ToList();
     }
 
     public abstract IEnumerable<T> LoadData();

@@ -17,7 +17,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         RarityHandler rarityHandler,
         AllowListHandler whitelistHandler,
         SpEffectHandler spEffectHandler,
-        RandomNumberGetter random,
+        RandomProvider random,
         LoreGenerator loreGenerator,
         ParamEditsRepository dataRepository,
         IDataSource<TalismanConfig> talismanConfigDataSource,

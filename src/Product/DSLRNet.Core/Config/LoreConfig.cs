@@ -14,7 +14,7 @@ public class LoreConfig
 
 public class LoreTemplates
 {
-    private string GetTemplatePart(List<string> templateList, List<string> excludedIdentifiers, RandomNumberGetter random)
+    private string GetTemplatePart(List<string> templateList, List<string> excludedIdentifiers, RandomProvider random)
     {
         var ret = templateList.Where(d => !excludedIdentifiers.Any(s => d.Contains(s))).ToList();
 
@@ -25,7 +25,7 @@ public class LoreTemplates
             ret = templateList;
         }
 
-        return random.GetRandomItem(withPlaceholders.Count > 0 && random.NextInt(0, 101) > 50 ? withPlaceholders : ret);
+        return random.GetRandomItem(withPlaceholders.Count > 0 && random.GetBoolByPercent(50) ? withPlaceholders : ret);
     }
 
     public List<string> FindPlaceholdersInString(string input, List<string> placeholders)
@@ -43,7 +43,7 @@ public class LoreTemplates
         return matches;
     }
 
-    public (string Prefix, string Interfix, string Postfix) GetRandomDescription(RandomNumberGetter random, List<string> possibleSubtitutions)
+    public (string Prefix, string Interfix, string Postfix) GetRandomDescription(RandomProvider random, List<string> possibleSubtitutions)
     {
         var sources = new Dictionary<int, List<string>>()
         {
@@ -52,8 +52,13 @@ public class LoreTemplates
             { 2, PostFixes }
         };
 
+        var randomizedSources = random.GetRandomizedList(sources.Keys);
+
+        var firstKey = randomizedSources[0];
+        var secondKey = randomizedSources[1];
+        var thirdKey = randomizedSources[2];
+
         // Randomly pick the first item
-        var firstKey = random.NextInt(0, 3);
         string firstValue = random.GetRandomItem(sources[firstKey]);
         List<string> claimedSubstitutions = FindPlaceholdersInString(firstValue, possibleSubtitutions);
 
@@ -63,8 +68,6 @@ public class LoreTemplates
         // Randomly pick the remaining keys
         var remainingKeys = new List<int> { 0, 1, 2 };
         remainingKeys.Remove(firstKey);
-        var secondKey = remainingKeys[random.NextInt(0, remainingKeys.Count)];
-        var thirdKey = remainingKeys.First(key => key != secondKey);
 
         var secondValue = GetTemplatePart(sources[secondKey], claimedSubstitutions, random);
         claimedSubstitutions.AddRange(FindPlaceholdersInString(secondValue, possibleSubtitutions));

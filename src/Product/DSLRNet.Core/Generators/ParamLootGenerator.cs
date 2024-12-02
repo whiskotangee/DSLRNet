@@ -5,7 +5,7 @@ public class ParamLootGenerator<TParamType>(
     AllowListHandler whiteListHandler,
     SpEffectHandler spEffectHandler,
     LoreGenerator loreGenerator,
-    RandomNumberGetter random,
+    RandomProvider random,
     IOptions<Configuration> configuration,
     ParamEditsRepository dataRepository,
     ParamNames outputParamName) : BaseHandler(dataRepository)
@@ -18,7 +18,7 @@ public class ParamLootGenerator<TParamType>(
 
     public LoreGenerator LoreGenerator { get; set; } = loreGenerator;
 
-    public RandomNumberGetter Random { get; set; } = random;
+    public RandomProvider Random { get; set; } = random;
 
     public Configuration Configuration { get; set; } = configuration.Value;
 
@@ -106,7 +106,7 @@ public class ParamLootGenerator<TParamType>(
 
     public TParamType GetLootDictionaryFromId(int baseId = -1)
     {
-        if (Configuration.Settings.ChaosLootEnabled)
+        if (Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled)
         {
             return this.DataSource.GetRandomItem();
         }

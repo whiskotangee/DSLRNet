@@ -4,13 +4,13 @@ namespace DSLRNet.Core.Handlers;
 
 public class RarityHandler : BaseHandler
 {
-    private readonly RandomNumberGetter randomNumberGetter;
+    private readonly RandomProvider randomNumberGetter;
     private readonly RarityIconMappingConfig iconMappingConfig;
 
     private Dictionary<int, RaritySetup> RarityConfigs = [];
 
     public RarityHandler(
-        RandomNumberGetter randomNumberGetter, 
+        RandomProvider randomNumberGetter, 
         ParamEditsRepository dataRepository,
         IDataSource<RaritySetup> raritySetupDataSource) : base(dataRepository)
     {

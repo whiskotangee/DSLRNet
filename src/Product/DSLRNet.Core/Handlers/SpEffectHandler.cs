@@ -5,14 +5,14 @@ public class SpEffectHandler : BaseHandler
     private readonly Configuration configuration;
     private RarityHandler rarityHandler;
 
-    private RandomNumberGetter randomNumberGetter;
+    private RandomProvider randomNumberGetter;
 
     public IEnumerable<SpEffectConfig> LoadedSpEffectConfigs { get; set; }
 
     public SpEffectHandler(
         IOptions<Configuration> configuration, 
         RarityHandler rarityHandler, 
-        RandomNumberGetter random, 
+        RandomProvider random, 
         ParamEditsRepository dataRepository,
         IDataSource<SpEffectConfig> spEffectConfigDataSource,
         IDataSource<SpEffectParam> spEffectDataSource) : base(dataRepository)

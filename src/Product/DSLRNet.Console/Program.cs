@@ -6,24 +6,22 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System.Diagnostics;
 
-// TODO console progress like shitpost edition builder
+//string[] paramCsvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\Params", "*.csv");
+//string[] otherCsvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs", "*.csv");
+////foreach (var csvFile in csvFiles)
+////{
+////    //CsvFixer.AddNewHeaders(csvFile);
+////}
 
-string[] paramCsvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\Params", "*.csv");
-string[] otherCsvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs", "*.csv");
-//foreach (var csvFile in csvFiles)
+//foreach (string paramCsvFile in paramCsvFiles)
 //{
-//    //CsvFixer.AddNewHeaders(csvFile);
+//    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(paramCsvFile, true);
 //}
 
-foreach (string paramCsvFile in paramCsvFiles)
-{
-    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(paramCsvFile, true);
-}
-
-foreach (string otherCsvFile in otherCsvFiles)
-{
-    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(otherCsvFile, false);
-}
+//foreach (string otherCsvFile in otherCsvFiles)
+//{
+//    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(otherCsvFile, false);
+//}
 
 //CsvFixer.UpdateNamesInCSVs();
 

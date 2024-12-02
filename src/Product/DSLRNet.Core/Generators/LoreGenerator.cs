@@ -1,9 +1,9 @@
 ﻿namespace DSLRNet.Core.Generators;
 
-public class LoreGenerator(IOptions<LoreConfig> config, RandomNumberGetter random)
+public class LoreGenerator(IOptions<LoreConfig> config, RandomProvider random)
 {
     private readonly LoreConfig loreConfig = config.Value;
-    private readonly RandomNumberGetter random = random;
+    private readonly RandomProvider random = random;
 
     public string GenerateDescription(string itemName, bool isArmor)
     {

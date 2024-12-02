@@ -7,7 +7,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         AllowListHandler whiteListHandler,
         SpEffectHandler spEffectHandler,
         LoreGenerator loreGenerator,
-        RandomNumberGetter random,
+        RandomProvider random,
         ParamEditsRepository dataRepository,
         IOptions<Configuration> configuration,
         IDataSource<EquipParamProtector> paramDataSource)

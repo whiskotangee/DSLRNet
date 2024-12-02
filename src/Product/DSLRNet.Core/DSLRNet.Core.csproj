@@ -18,7 +18,7 @@
     <Content Include="appsettings.Default.AllowedConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="appsettings.Default.AshOfWarHandler.json">
+    <Content Include="appsettings.Default.AshOfWarConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="appsettings.Default.BlockList.json">

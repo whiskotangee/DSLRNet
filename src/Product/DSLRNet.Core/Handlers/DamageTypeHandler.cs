@@ -6,11 +6,11 @@ public class DamageTypeHandler : BaseHandler
 
     public List<DamageTypeSetup> DamageTypes { get; set; }
 
-    private readonly RandomNumberGetter random;
+    private readonly RandomProvider random;
 
     public DamageTypeHandler(
         IOptions<Configuration> configuration, 
-        RandomNumberGetter random, 
+        RandomProvider random, 
         ParamEditsRepository dataRepository,
         IDataSource<DamageTypeSetup> damageTypeDataSource) : base(dataRepository)
     {

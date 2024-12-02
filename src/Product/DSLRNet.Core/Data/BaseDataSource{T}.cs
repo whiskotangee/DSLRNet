@@ -3,9 +3,9 @@
 public abstract class BaseDataSource<T> : IDataSource<T> 
     where T : class, ICloneable, new()
 {
-    private readonly RandomNumberGetter random;
+    private readonly RandomProvider random;
 
-    public BaseDataSource(RandomNumberGetter random)
+    public BaseDataSource(RandomProvider random)
     {
         this.random = random;
         ReloadData();

@@ -21,10 +21,10 @@ public class WeaponGeneratorConfig
 
 public class AshOfWarConfig
 {
-    public List<WeaponTypeToCanMountWepFlag> WeaponTypeToCanMountWepFlags { get; set; }
+    public List<WeaponTypeCanMountWepFlag> WeaponTypeCanMountWepFlags { get; set; }
 }
 
-public class WeaponTypeToCanMountWepFlag
+public class WeaponTypeCanMountWepFlag
 {
     public long Id { get; set; }
 

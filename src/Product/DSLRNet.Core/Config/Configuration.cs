@@ -7,16 +7,26 @@ public class Configuration
     public LootParamConfig LootParam { get; set; }
 }
 
-public class Settings
+public class ScannerSettings
 {
-    public string DeployPath { get; set; }
-    public string DSMSPortablePath { get; set; }
+    public bool Enabled { get; set; }
 
+    public int ApplyPercent { get; set; }
+}
+
+public class ItemLotGeneratorSettings
+{
     public int ItemLotsPerBaseMapLot { get; set; }
 
     public int LootPerItemLot_Enemy { get; set; }
 
     public int LootPerItemLot_Map { get; set; }
+
+    public ScannerSettings ChestLootScannerSettings { get; set; }
+
+    public ScannerSettings MapLootScannerSettings { get; set; }
+
+    public ScannerSettings EnemyLootScannerSettings { get; set; }
 
     public bool ChaosLootEnabled { get; set; }
 
@@ -25,6 +35,14 @@ public class Settings
     public float GlobalDropChance { get; set; }
 
     public bool AllLootGauranteed { get; set; }
+}
+
+public class Settings
+{
+    public string DeployPath { get; set; }
+    public string DSMSPortablePath { get; set; }
+
+    public ItemLotGeneratorSettings ItemLotGeneratorSettings { get; set; }
 
     public int RandomSeed { get; set; }
 

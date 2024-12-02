@@ -4,11 +4,11 @@ public enum LootType { Weapon, Armor, Talisman }
 
 public class AllowListHandler(
     IOptions<AllowListConfig> allowListConfig,
-    RandomNumberGetter random,
+    RandomProvider random,
     ParamEditsRepository dataRepository) : BaseHandler(dataRepository)
 {
     private readonly AllowListConfig whitelistConfig = allowListConfig.Value;
-    private readonly RandomNumberGetter random = random;
+    private readonly RandomProvider random = random;
 
     public int GetLootByAllowList(List<int> ids, LootType type)
     {

@@ -26,6 +26,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<ParamEditsRepository>()
                 .AddSingleton<DSLRNetBuilder>()
                 .AddSingleton<ProcessRunner>()
+                .AddSingleton<ItemLotScanner>()
                 .AddSingleton(sp => CreateDataSource<EquipParamWeapon>(sp, DataSourceNames.EquipParamWeapon))
                 .AddSingleton(sp => CreateDataSource<EquipParamAccessory>(sp, DataSourceNames.EquipParamAccessory))
                 .AddSingleton(sp => CreateDataSource<EquipParamGem>(sp, DataSourceNames.EquipParamGem))
@@ -41,7 +42,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton(sp => CreateDataSource<SpEffectConfig>(sp, DataSourceNames.SpEffectConfig))
                 .AddSingleton((sp) =>
                 {
-                    return new RandomNumberGetter(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
+                    return new RandomProvider(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
                 });
 
         return services;
@@ -54,6 +55,6 @@ public static class IServiceCollectionExtensions
 
         var config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
 
-        return DataSourceFactory.CreateDataSource<T>(config, provider.GetRequiredService<RandomNumberGetter>());
+        return DataSourceFactory.CreateDataSource<T>(config, provider.GetRequiredService<RandomProvider>());
     }
 }

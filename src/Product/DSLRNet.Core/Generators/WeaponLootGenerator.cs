@@ -25,7 +25,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         RarityHandler rarityHandler,
         AllowListHandler whitelistHandler,
         SpEffectHandler spEffectHandler,
-        RandomNumberGetter random,
+        RandomProvider random,
         LoreGenerator loreGenerator,
         DamageTypeHandler damageTypeHandler,
         ParamEditsRepository dataRepository,
@@ -118,7 +118,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             string uniqueName = LoreGenerator.CreateRandomUniqueName(generatedType == WeaponTypes.Shields);
             if (!string.IsNullOrEmpty(uniqueName))
             {
-                weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Configuration.Settings.UniqueItemColor, size: 24);
+                weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Configuration.Settings.ItemLotGeneratorSettings.UniqueItemColor, size: 24);
             }
             else
             {
@@ -359,12 +359,12 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
     private WeaponModifications ApplyWeaponModifications(GenericParam weaponDictionary, int rarityId, WeaponTypes weaponType)
     {
         // randomize damage type
-        DamageTypeSetup primary = this.damageTypeHandler.ChooseDamageTypeAtRandom(Configuration.Settings.ChaosLootEnabled, false);
+        DamageTypeSetup primary = this.damageTypeHandler.ChooseDamageTypeAtRandom(Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled, false);
         DamageTypeSetup? secondary = null;
 
         if (Random.GetRandomBoolByPercent(weaponGeneratorConfig.SplitDamageTypeChance))
         {
-            secondary = this.damageTypeHandler.ChooseDamageTypeAtRandom(Configuration.Settings.ChaosLootEnabled, true);
+            secondary = this.damageTypeHandler.ChooseDamageTypeAtRandom(Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled, true);
         }
 
         return weaponType switch

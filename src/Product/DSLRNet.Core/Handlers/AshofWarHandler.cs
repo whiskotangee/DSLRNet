@@ -1,7 +1,7 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
 public class AshofWarHandler(
-    RandomNumberGetter random, 
+    RandomProvider random, 
     IOptions<AshOfWarConfig> ashofWarConfig, 
     ParamEditsRepository generatedDataRepository,
     IDataSource<EquipParamGem> gemParamDataSource) : BaseHandler(generatedDataRepository)
@@ -15,9 +15,9 @@ public class AshofWarHandler(
 
         // get sword artsId from set of equip gems compatible with this weapon
         var weaponType = weapon.wepType;
-        string? boolFlagToCheck = ashOfWarConfig.WeaponTypeToCanMountWepFlags.FirstOrDefault(d => d.Id == weaponType)?.FlagName;
+        string? boolFlagToCheck = ashOfWarConfig.WeaponTypeCanMountWepFlags.FirstOrDefault(d => d.Id == weaponType)?.FlagName;
 
-        var validGems = equipParamGems.Where(d => Convert.ToInt64(d.GetType().GetProperty(boolFlagToCheck).GetValue(d)) == 1).ToList();
+        var validGems = equipParamGems.Where(d => d.GenericParam.GetValue<int>(boolFlagToCheck) == 1).ToList();
 
         if (validGems.Any())
         {

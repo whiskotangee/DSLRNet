@@ -25,7 +25,7 @@ public abstract class BaseDataSource<T> : IDataSource<T>
 
     public T GetRandomItem()
     {
-        return (T)random.GetRandomItem(CachedData.Values.ToList()).Clone();
+        return random.GetRandomItem(CachedData.Values.ToList()).Clone();
     }
 
     public IEnumerable<T> GetAll()

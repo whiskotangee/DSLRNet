@@ -150,10 +150,16 @@ public class RarityHandler : BaseHandler
         return [Math.Clamp(RarityConfigs[finalrarity].SpEffectPowerMin - 10, 0, RarityConfigs[finalrarity].SpEffectPowerMax), RarityConfigs[finalrarity].SpEffectPowerMax];
     }
 
-    public string GetRarityName(int rarityid)
+    public string GetRarityName(int rarityid, bool withColor)
     {
-        int finalrarity = GetNearestRarityId(rarityid);
-        return RarityConfigs[finalrarity].Name;
+        int matchedRarityId = GetNearestRarityId(rarityid);
+
+        if (withColor)
+        {
+            return RarityConfigs[matchedRarityId].Name.WrapTextWithProperties(color: RarityConfigs[matchedRarityId].ColorHex);
+        }
+
+        return RarityConfigs[matchedRarityId].Name;
     }
 
     public int GetRaritySellValue(int rarityid)
@@ -162,17 +168,10 @@ public class RarityHandler : BaseHandler
         return randomNumberGetter.NextInt(RarityConfigs[finalrarity].SellValueMin, RarityConfigs[finalrarity].SellValueMax);
     }
 
-    public string GetColorTextForRarity(int rarityId)
+    public float GetRandomizedWeightForRarity(int rarityId)
     {
-        int matchedRarity = GetNearestRarityId(rarityId);
-        string name = GetRarityName(matchedRarity);
-        return name.WrapTextWithProperties(color: RarityConfigs[matchedRarity].ColorHex);
-    }
-
-    public List<float> GetRarityWeightMultipliers(int rarityid)
-    {
-        int finalrarity = GetNearestRarityId(rarityid);
-        return [RarityConfigs[finalrarity].WeightMultMin, RarityConfigs[finalrarity].WeightMultMax];
+        int finalrarity = GetNearestRarityId(rarityId);
+        return (float)this.randomNumberGetter.NextDouble(RarityConfigs[finalrarity].WeightMultMin, RarityConfigs[finalrarity].WeightMultMax);
     }
 
     public int GetLowestRarityId()

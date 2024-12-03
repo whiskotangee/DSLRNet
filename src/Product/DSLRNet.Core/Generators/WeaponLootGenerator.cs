@@ -53,11 +53,26 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         WeaponTypes goalWeaponType = Random.NextWeightedValue(weaponGeneratorConfig.Types, weaponGeneratorConfig.Weights);
 
-        EquipParamWeapon newWeapon = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(whitelistLootIds, LootType.Weapon));
+        EquipParamWeapon newWeapon = GetNewLootItem(WhiteListHandler.GetLootByAllowList(whitelistLootIds, LootType.Weapon));
+
+        WeaponTypes generatedType = GetWeaponType(newWeapon.wepmotionCategory);
+
+        newWeapon.ID = CumulativeID.GetNext();
+        newWeapon.sellValue = RarityHandler.GetRaritySellValue(rarityId);
+        newWeapon.rarity = RarityHandler.GetRarityParamValue(rarityId);
+        newWeapon.iconId = RarityHandler.GetIconIdForRarity(newWeapon.iconId, rarityId, isUnique: uniqueWeapon);
+
+        // 42300 allows scaling from all sources (STR,DEX,INT,FTH)
+        if (generatedType != WeaponTypes.StaffsSeals)
+        {
+            newWeapon.attackElementCorrectId = 42300;
+        }
+
+        newWeapon.gemMountType = generatedType == WeaponTypes.StaffsSeals ? 0 : 2;
+        newWeapon.disableGemAttr = 1;
+        newWeapon.weight = this.RarityHandler.GetRandomizedWeightForRarity(rarityId);
 
         string affinity = "";
-
-        WeaponTypes generatedType = GetWeaponType(newWeapon.GenericParam.GetValue<int>(Configuration.LootParam.WeaponsWepMotionCategory));
 
         WeaponModifications modifications = ApplyWeaponModifications(
             newWeapon.GenericParam,
@@ -77,23 +92,6 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
-
-        SetLootSellValue(newWeapon.GenericParam, rarityId, uniqueValueMultiplier);
-        SetLootRarityParamValue(newWeapon.GenericParam, rarityId);
-
-        newWeapon.iconId = RarityHandler.GetIconIdForRarity(newWeapon.iconId, rarityId, isUnique: uniqueWeapon);
-
-        RandomizeLootWeightBasedOnRarity(newWeapon.GenericParam, rarityId);
-        newWeapon.ID = CumulativeID.GetNext();
-
-        // 42300 LETS WEAPONS TAKE DAMAGE SCALING FROM ALL POSSIBLE SOURCES (STR,DEX,INT,FTH) 
-        if (generatedType != WeaponTypes.StaffsSeals)
-        {
-            newWeapon.attackElementCorrectId = 42300;
-        }
-
-        newWeapon.gemMountType = generatedType == WeaponTypes.StaffsSeals ? 0 : 2;
-        newWeapon.disableGemAttr = 1;
 
         ApplyWeaponScalingRange(newWeapon.GenericParam, rarityId);
         SetWeaponOriginParam(newWeapon.GenericParam, newWeapon.ID, replace: true);
@@ -128,7 +126,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
 
-        ExportLootGenParamAndTextToOutputs(newWeapon.GenericParam, LootType.Weapon, weaponFinalTitleColored, weaponDesc + Environment.NewLine + GetParamLootLore(weaponFinalTitle, false), "", [], []);
+        ExportLootDetails(newWeapon.GenericParam, LootType.Weapon, weaponFinalTitleColored, weaponDesc + Environment.NewLine + LoreGenerator.GenerateDescription(weaponFinalTitle, false), "", [], []);
 
         return newWeapon.ID;
     }
@@ -171,6 +169,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             var currentScaling = currentScalings[scaling];
 
+            // TODO: more configuration about number of scaling values per rarity Id?
             float newValue = (float)Math.Max(currentScaling.Value, Random.NextDouble(15.0, 25.0));
 
             weaponDictionary.SetValue(currentScaling.ParamName, newValue);

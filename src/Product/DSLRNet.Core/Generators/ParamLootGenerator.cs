@@ -39,7 +39,7 @@ public class ParamLootGenerator<TParamType>(
         { LootType.Talisman, "Accessory" }
     };
 
-    public void ExportLootGenParamAndTextToOutputs(GenericParam massEditDict, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null)
+    public void ExportLootDetails(GenericParam massEditDict, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null)
     {
         string finalMassEditOutput = CreateMassEditParamFromParamDictionary(massEditDict, OutputParamName, massEditDict.ID, extraFilters, extraBannedValues, ParamMandatoryKeys);
 
@@ -47,7 +47,7 @@ public class ParamLootGenerator<TParamType>(
             OutputParamName,
             ParamOperation.Create,
             finalMassEditOutput,
-            CreateFmgLootEntrySet(OutputLootRealNames[lootType], massEditDict.ID, title, description, summary),
+            CreateFmgLootEntrySet(OutputLootRealNames[lootType], title, description, summary),
             massEditDict);
     }
 
@@ -89,11 +89,11 @@ public class ParamLootGenerator<TParamType>(
         return spEffectTexts;
     }
 
-    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, IEnumerable<SpEffectText>? namePartsCollection, bool colorCoded = false, bool includeSuffix = false)
+    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, IEnumerable<SpEffectText>? namePartsCollection, bool colorCoded = true, bool includeSuffix = false)
     {
         List<string> additions =
         [
-            !colorCoded ? RarityHandler.GetRarityName(rarityId) : RarityHandler.GetColorTextForRarity(rarityId),
+            RarityHandler.GetRarityName(rarityId, colorCoded),
             damageType,
             namePartsCollection?.Where(d => d?.NameParts?.Prefix != null).FirstOrDefault()?.NameParts?.Prefix ?? string.Empty,
             //nameParts?.NameParts.Interfix ?? string.Empty,
@@ -104,7 +104,7 @@ public class ParamLootGenerator<TParamType>(
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)).Distinct());
     }
 
-    public TParamType GetLootDictionaryFromId(int baseId = -1)
+    public TParamType GetNewLootItem(int baseId = -1)
     {
         if (Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled)
         {
@@ -121,61 +121,25 @@ public class ParamLootGenerator<TParamType>(
 
     public string CreateAffinityTitle(WeaponModifications modifications)
     {
-        string firstName = modifications.PrimaryDamageType.PriName;
-        string secondName = modifications.SecondaryDamageType?.SecName ?? string.Empty;
-        string space = " ";
-
-        if (string.IsNullOrEmpty(firstName))
+        var names = new List<string>
         {
-            if (modifications.PrimaryDamageType.SecName != modifications.SecondaryDamageType?.SecName)
-            {
-                firstName = modifications.PrimaryDamageType.SecName;
-            }
-            else
-            {
-                firstName = "";
-                secondName = "";
-                space = "";
-            }
+            modifications.PrimaryDamageType.PriName,
+            modifications.SecondaryDamageType?.SecName
+        };
+
+        if (string.IsNullOrEmpty(names[0]))
+        {
+            names[0] = modifications.PrimaryDamageType.SecName != modifications.SecondaryDamageType?.SecName
+                        ? modifications.PrimaryDamageType.SecName
+                        : string.Empty;
         }
 
         if (modifications.PrimaryDamageType.SecName == modifications.SecondaryDamageType?.SecName)
         {
-            secondName = "";
-            space = "";
+            names[1] = string.Empty;
         }
 
-        return firstName + space + secondName;
-    }
-
-    public void RandomizeLootWeight(GenericParam lootDict, float minMult = 0.95f, float maxMult = 1.05f, float absoluteMax = 30.0f)
-    {
-        if (lootDict.ContainsKey("weight"))
-        {
-            float originalWeight = lootDict.GetValue<float>("weight");
-            float newWeight = (float)Math.Round(originalWeight * Random.NextDouble(minMult, maxMult), 2);
-            lootDict.SetValue("weight", (float)Math.Clamp(newWeight, 0.0f, absoluteMax));
-        }
-    }
-
-    public void RandomizeLootWeightBasedOnRarity(GenericParam lootDict, int rarityId = 0)
-    {
-        List<float> rarityWeight = RarityHandler.GetRarityWeightMultipliers(rarityId);
-        RandomizeLootWeight(lootDict, (float)rarityWeight[0], (float)rarityWeight[1]);
-    }
-
-    public void SetLootSellValue(GenericParam lootDict, int rarityId, float mult = 1.0f)
-    {
-        lootDict.SetValue(this.Configuration.LootParam.SellValueParam, (int)(RarityHandler.GetRaritySellValue(rarityId) * mult));
-    }
-
-    public void SetLootRarityParamValue(GenericParam lootDict, int rarityId)
-    {
-        string rarityParamName = Configuration.LootParam.RarityParam;
-        if (lootDict.ContainsKey(rarityParamName))
-        {
-            lootDict.SetValue(rarityParamName, RarityHandler.GetRarityParamValue(rarityId));
-        }
+        return string.Join(' ', names.Where(s => !string.IsNullOrWhiteSpace(s)));
     }
 
     public int ChoosePriorityIdAtRandom()
@@ -195,23 +159,18 @@ public class ParamLootGenerator<TParamType>(
         return Configuration.LootParam.Speffects.GetType().GetProperty(OutputParamName.ToString()).GetValue(Configuration.LootParam.Speffects) as List<string>;
     }
 
-    public List<string> GetAvailableSpEffectSlots(GenericParam lootDict)
+    public List<string> GetAvailableSpEffectSlots(GenericParam itemParam)
     {
         List<string> baseParams = GetPassiveSpEffectSlotArrayFromOutputParamName();
         List<string> finalArray = [];
         foreach (string param in baseParams)
         {
-            if (lootDict.ContainsKey(param) && lootDict.GetValue<int>(param) <= 0)
+            if (itemParam.ContainsKey(param) && itemParam.GetValue<int>(param) <= 0)
             {
                 finalArray.Add(param);
             }
         }
         return finalArray;
-    }
-
-    public string GetParamLootLore(string lootName = "Dagger", bool armorIfTrue = false)
-    {
-        return LoreGenerator.GenerateDescription(lootName, armorIfTrue);
     }
 
     public bool HasLootTemplates()

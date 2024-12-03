@@ -38,7 +38,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         List<string> talismanDescriptions = [];
         List<string> talismanSummaries = [];
 
-        EquipParamAccessory newTalisman = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(allowListIds, LootType.Talisman));
+        EquipParamAccessory newTalisman = GetNewLootItem(WhiteListHandler.GetLootByAllowList(allowListIds, LootType.Talisman));
 
         int freeSlotCount = GetAvailableSpeffectSlotCount(newTalisman.GenericParam);
 
@@ -51,6 +51,13 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
 
         var availableSlot = GetAvailableSpEffectSlots(newTalisman.GenericParam).First();
 
+        newTalisman.ID = CumulativeID.GetNext();
+        newTalisman.rarity = RarityHandler.GetRarityParamValue(rarityId);
+        newTalisman.accessoryGroup = newTalismanConfig.NoStackingGroupID < 0
+            ? AccessoryGroupCumulativeID.GetNext()
+            : newTalismanConfig.NoStackingGroupID;
+
+        newTalisman.iconId = RarityHandler.GetIconIdForRarity(newTalisman.iconId, rarityId);
         newTalisman.GenericParam.SetValue(availableSlot, newTalismanConfig.RefSpEffect);
 
         List<SpEffectText> spEffs =
@@ -80,14 +87,6 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
 
         talismanDescriptions.Add(LoreGenerator.GenerateDescription(finalNameNormal, false));
 
-        newTalisman.ID = CumulativeID.GetNext();
-
-        SetTalismanGroupVariables(newTalismanConfig, newTalisman.GenericParam, accessoryGroupParam);
-
-        SetLootRarityParamValue(newTalisman.GenericParam, rarityId);
-
-        newTalisman.iconId = RarityHandler.GetIconIdForRarity(newTalisman.iconId, rarityId);
-
         string talismanFinalTitleColored = CreateLootTitle(
          originalName,
          rarityId,
@@ -95,7 +94,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
          spEffs,
          true);
 
-        ExportLootGenParamAndTextToOutputs(newTalisman.GenericParam, LootType.Talisman, talismanFinalTitleColored, string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()), string.Join(Environment.NewLine, talismanSummaries), [], []);
+        ExportLootDetails(newTalisman.GenericParam, LootType.Talisman, talismanFinalTitleColored, string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()), string.Join(Environment.NewLine, talismanSummaries), [], []);
 
         return newTalisman.ID;
     }
@@ -111,14 +110,6 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
 
     public List<TalismanConfig> TalismanConfigs { get; set; } = [];
 
-    public void SetTalismanGroupVariables(TalismanConfig talisConfig, GenericParam newTalisman, string accGroupName)
-    {
-        int accGroup = talisConfig.NoStackingGroupID < 0
-            ? AccessoryGroupCumulativeID.GetNext()
-            : talisConfig.NoStackingGroupID;
-        newTalisman.SetValue(accGroupName, accGroup);
-    }
-
     public string GetTalismanConfigEffectDescription(TalismanConfig config)
     {
         string effectPrefixString = Configuration.DSLRDescText.Effect;
@@ -131,15 +122,5 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         string effectString = config.Effect;
         string stackString = config.NoStackingGroupID < 0 ? Configuration.DSLRDescText.NoStacking : string.Empty;
         return effectPrefixString + effectString + stackString + Environment.NewLine;
-    }
-
-    public bool TalismanCanBeStacked(TalismanConfig talisConfig)
-    {
-        if (talisConfig.NoStackingGroupID == 0)
-        {
-            return false;
-        }
-
-        return talisConfig.NoStackingGroupID <= 0;
     }
 }

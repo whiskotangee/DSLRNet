@@ -20,33 +20,30 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
     public int CreateArmor(int rarityId, List<int> wllIds)
     {
-        EquipParamProtector newArmor = GetLootDictionaryFromId(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
+        EquipParamProtector newArmor = GetNewLootItem(WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
 
         string armorStatDesc = "";
 
         newArmor.ID = CumulativeID.GetNext();
-
-        SetLootSellValue(newArmor.GenericParam, rarityId);
-
-        SetLootRarityParamValue(newArmor.GenericParam, rarityId);
+        newArmor.sellValue = RarityHandler.GetRaritySellValue(rarityId);
+        newArmor.rarity = RarityHandler.GetRarityParamValue(rarityId);
+        newArmor.iconIdM = RarityHandler.GetIconIdForRarity(newArmor.iconIdM, rarityId);
+        newArmor.iconIdF = RarityHandler.GetIconIdForRarity(newArmor.iconIdF, rarityId);
 
         armorStatDesc += ApplyCutRateAdditionsFromRarity(rarityId, newArmor.GenericParam);
 
         ApplyArmorResistanceAdditions(newArmor.GenericParam, rarityId);
 
-        RandomizeLootWeightBasedOnRarity(newArmor.GenericParam, rarityId);
+        newArmor.weight = this.RarityHandler.GetRandomizedWeightForRarity(rarityId);
 
         IEnumerable<SpEffectText> speffs = ApplySpEffects(rarityId, [0], newArmor.GenericParam, 1.0f, true, -1, true);
-
-        newArmor.iconIdM = RarityHandler.GetIconIdForRarity(newArmor.iconIdM, rarityId);
-        newArmor.iconIdF = RarityHandler.GetIconIdForRarity(newArmor.iconIdF, rarityId);
 
         string originalName = newArmor.Name;
         string finalTitle = CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs, true, false);
 
         //newArmor.Name = finalTitle;
 
-        ExportLootGenParamAndTextToOutputs(newArmor.GenericParam, LootType.Armor, finalTitle, CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc + GetParamLootLore(finalTitle, true)));
+        ExportLootDetails(newArmor.GenericParam, LootType.Armor, finalTitle, CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc + LoreGenerator.GenerateDescription(finalTitle, true)));
 
         return newArmor.ID;
     }

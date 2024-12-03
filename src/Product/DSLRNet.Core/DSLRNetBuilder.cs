@@ -205,7 +205,7 @@ public class DSLRNetBuilder(
                 foreach (var captionFile in captionFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(captionFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Caption != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption.WrapTextWithProperties(size: 24))));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Caption != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption)));
                     captionFile.Bytes = fmg.Write();
                 }
 
@@ -213,7 +213,7 @@ public class DSLRNetBuilder(
                 foreach (var infoFile in infoFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(infoFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Info != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info.WrapTextWithProperties(size: 24))));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Info != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info)));
                     infoFile.Bytes = fmg.Write();
                 }
 
@@ -221,7 +221,7 @@ public class DSLRNetBuilder(
                 foreach (var nameFile in nameFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(nameFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Name != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name.WrapTextWithProperties(size: 24))));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Name != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name)));
                     nameFile.Bytes = fmg.Write();
                 }
 
@@ -229,7 +229,7 @@ public class DSLRNetBuilder(
                 foreach (var effectFile in effectFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(effectFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Effect != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Effect.WrapTextWithProperties(size: 24))));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Effect != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Effect)));
                     effectFile.Bytes = fmg.Write();
                 }
 

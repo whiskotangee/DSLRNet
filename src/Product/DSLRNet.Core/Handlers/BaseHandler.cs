@@ -10,7 +10,7 @@ public class BaseHandler(ParamEditsRepository generatedDataRepository)
 
     public ParamEditsRepository GeneratedDataRepository { get; set; } = generatedDataRepository;
 
-    public LootFMG CreateFmgLootEntrySet(string category = "Weapons", int id = 1000000, string title = "Dagger", string description = "This is a dagger!", string summary = "")
+    public LootFMG CreateFmgLootEntrySet(string category = "Weapons", string title = "Dagger", string description = "This is a dagger!", string summary = "")
     {
         return new LootFMG()
         {

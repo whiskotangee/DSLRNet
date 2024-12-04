@@ -1,6 +1,5 @@
-﻿using System.Reflection;
-
-namespace DSLRNet.Core.Common;
+﻿namespace DSLRNet.Core.Common;
+using System.Reflection;
 
 public class GenericParam : ICloneable
 {
@@ -27,7 +26,7 @@ public class GenericParam : ICloneable
 
     public T GetValue<T>(string name)
     {
-        if (Properties.TryGetValue(name, out object? value))
+        if (this.Properties.TryGetValue(name, out object? value))
         {
             return (T)Convert.ChangeType(value, typeof(T));
         }
@@ -37,22 +36,22 @@ public class GenericParam : ICloneable
 
     public void SetValue<T>(string name, T? value)
     {
-        if (Properties.ContainsKey(name)
-            && typeof(T).Name != Properties[name].GetType().Name
-            && !typeof(T).Name.Contains("Int32") && !Properties[name].GetType().Name.Contains("Int64")
-            && !typeof(T).Name.Contains("Int64") && !Properties[name].GetType().Name.Contains("Int32")
-            && !typeof(T).Name.Contains("Single") && !Properties[name].GetType().Name.Contains("Double")
-            && !typeof(T).Name.Contains("Double") && !Properties[name].GetType().Name.Contains("Single"))
+        if (this.Properties.ContainsKey(name)
+            && typeof(T).Name != this.Properties[name].GetType().Name
+            && !typeof(T).Name.Contains("Int32") && !this.Properties[name].GetType().Name.Contains("Int64")
+            && !typeof(T).Name.Contains("Int64") && !this.Properties[name].GetType().Name.Contains("Int32")
+            && !typeof(T).Name.Contains("Single") && !this.Properties[name].GetType().Name.Contains("Double")
+            && !typeof(T).Name.Contains("Double") && !this.Properties[name].GetType().Name.Contains("Single"))
         {
             throw new Exception("Mismatched type being set");
         }
 
-        Properties[name] = value;
+        this.Properties[name] = value;
     }
 
     public bool ContainsKey(string name)
     {
-        return Properties.ContainsKey(name);
+        return this.Properties.ContainsKey(name);
     }
 
     public object Clone()
@@ -61,7 +60,7 @@ public class GenericParam : ICloneable
 
         Dictionary<string, object?> clonedDictionary = new(StringComparer.OrdinalIgnoreCase);
 
-        foreach (KeyValuePair<string, object?> keyValue in Properties)
+        foreach (KeyValuePair<string, object?> keyValue in this.Properties)
         {
             clonedDictionary[keyValue.Key] = JsonConvert.DeserializeObject<object?>(JsonConvert.SerializeObject(keyValue.Value));
         }

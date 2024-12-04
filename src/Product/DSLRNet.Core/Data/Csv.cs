@@ -5,8 +5,8 @@ public class Csv
     public static List<T> LoadCsv<T>(string filename)
     {
         Log.Logger.Information($"CSV Loading {filename}");
-        using StreamReader reader = new StreamReader(filename);
-        using CsvReader csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
+        using StreamReader reader = new(filename);
+        using CsvReader csv = new(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             PrepareHeaderForMatch = (PrepareHeaderForMatchArgs args) => args.Header.ToLower(),
             MissingFieldFound = (MissingFieldFoundArgs args) => Log.Logger.Error($"{filename} missing field at index {args.Index}"),
@@ -23,7 +23,7 @@ public class Csv
 
         Dictionary<string, object?>.KeyCollection headers = dictionaries.First().Properties.Keys;
 
-        using StreamWriter writer = new StreamWriter(fileName);
+        using StreamWriter writer = new(fileName);
         writer.WriteLine(string.Join(",", headers));
 
         foreach (GenericParam obj in dictionaries)

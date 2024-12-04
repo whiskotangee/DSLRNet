@@ -60,20 +60,20 @@ public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase
 
     private static void UpdateCsvNames<T>(string csvFilePath, List<string> jsonFilePaths)
     {
-        foreach (var jsonFilePath in jsonFilePaths)
+        foreach (string jsonFilePath in jsonFilePaths)
         {
             // Read JSON file
             JsonData? jsonData = JsonConvert.DeserializeObject<JsonData>(File.ReadAllText(jsonFilePath));
 
             // Read CSV file
-            CsvConfiguration csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+            CsvConfiguration csvConfig = new(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = true,
             };
 
             List<T> csvRecords;
-            using (StreamReader reader = new StreamReader(csvFilePath))
-            using (CsvReader csv = new CsvReader(reader, csvConfig))
+            using (StreamReader reader = new(csvFilePath))
+            using (CsvReader csv = new(reader, csvConfig))
             {
                 csvRecords = csv.GetRecords<T>().ToList();
             }
@@ -92,8 +92,8 @@ public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase
             }
 
             // Write updated records back to CSV file
-            using (StreamWriter writer = new StreamWriter(csvFilePath))
-            using (CsvWriter csv = new CsvWriter(writer, csvConfig))
+            using (StreamWriter writer = new(csvFilePath))
+            using (CsvWriter csv = new(writer, csvConfig))
             {
                 csv.WriteRecords(csvRecords);
             }
@@ -135,15 +135,15 @@ public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase
             return;
         }
 
-        CsvConfiguration csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+        CsvConfiguration csvConfig = new(CultureInfo.InvariantCulture)
         {
             HasHeaderRecord = true,
         };
 
-        using StreamReader reader = new StreamReader(csvFile);
-        using CsvReader oldCsv = new CsvReader(reader, csvConfig);
-        using StreamReader newReader = new StreamReader(latestFile);
-        using CsvReader newCsv = new CsvReader(newReader, csvConfig);
+        using StreamReader reader = new(csvFile);
+        using CsvReader oldCsv = new(reader, csvConfig);
+        using StreamReader newReader = new(latestFile);
+        using CsvReader newCsv = new(newReader, csvConfig);
 
         oldCsv.Read();
         oldCsv.ReadHeader();
@@ -167,7 +167,7 @@ public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase
                 oldHeaders.Add(missingHeader);
             }
 
-            List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> records = [];
 
             while (oldCsv.Read())
             {
@@ -179,8 +179,8 @@ public partial class {Path.GetFileNameWithoutExtension(csvFilePath)} : ParamBase
             reader.Dispose();
 
             // Write the updated headers and records back to the file
-            using StreamWriter writer = new StreamWriter(csvFile);
-            using CsvWriter csvWriter = new CsvWriter(writer, csvConfig);
+            using StreamWriter writer = new(csvFile);
+            using CsvWriter csvWriter = new(writer, csvConfig);
 
             csvWriter.WriteField(newHeaders);
             csvWriter.NextRecord();

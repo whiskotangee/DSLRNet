@@ -7,17 +7,17 @@ using System.Text;
 
 public class ProcessRunner(ILogger logger)
 {
-    private SemaphoreSlim semaphoreSlim = new(100);
+    private readonly SemaphoreSlim semaphoreSlim = new(100);
     private readonly ILogger logger = logger;
 
     public async Task<List<(T Context, string Output)>> RunProcessesAsync<T>(IEnumerable<ProcessRunnerArgs<T>> args)
     {
         try
         {
-            var tasks = new List<Task<(T Context, string Output)>>();
-            foreach (var process in args)
+            List<Task<(T Context, string Output)>> tasks = [];
+            foreach (ProcessRunnerArgs<T> process in args)
             {
-                tasks.Add(RunProcessAsync(process));
+                tasks.Add(this.RunProcessAsync(process));
             }
 
             await Task.WhenAll(tasks);
@@ -26,40 +26,40 @@ public class ProcessRunner(ILogger logger)
         }
         catch (Exception ex)
         {
-            logger.Log(LogLevel.Error, ex.ToString());
+            this.logger.Log(LogLevel.Error, ex.ToString());
             throw;
         }
     }
 
     public async Task<(T Context, string Output)> RunProcessAsync<T>(ProcessRunnerArgs<T> args)
     {
-        await semaphoreSlim.WaitAsync();
+        await this.semaphoreSlim.WaitAsync();
 
         try
         {
             if (args.RetryCount > 0)
             {
-                return await Policy<(T Context, string Output)>.Handle<Exception>().RetryAsync(args.RetryCount).ExecuteAsync(() => RunProcess(args));
+                return await Policy<(T Context, string Output)>.Handle<Exception>().RetryAsync(args.RetryCount).ExecuteAsync(() => this.RunProcess(args));
             }
             else
             {
-                return await RunProcess(args);
+                return await this.RunProcess(args);
             }
         }
         finally
         {
-            semaphoreSlim.Release();
+            this.semaphoreSlim.Release();
         }
 
     }
 
     private async Task<(T Context, string Output)> RunProcess<T>(ProcessRunnerArgs<T> args)
     {
-        ILogger activeLogger = args.LoggerOverride ?? logger;
+        ILogger activeLogger = args.LoggerOverride ?? this.logger;
 
         activeLogger.Log(LogLevel.Information, $"Launching process {args.ExePath} {args.Arguments}");
 
-        var processStartInfo = new ProcessStartInfo
+        ProcessStartInfo processStartInfo = new()
         {
             FileName = args.ExePath,
             Arguments = args.Arguments,
@@ -69,14 +69,14 @@ public class ProcessRunner(ILogger logger)
             CreateNoWindow = true
         };
 
-        using var process = new Process
+        using Process process = new()
         {
             StartInfo = processStartInfo,
             EnableRaisingEvents = true
         };
 
-        var outputBuilder = new StringBuilder();
-        var errorBuilder = new StringBuilder();
+        StringBuilder outputBuilder = new();
+        StringBuilder errorBuilder = new();
 
         process.OutputDataReceived += (_, e) =>
         {

@@ -86,8 +86,6 @@ public class DataSourceConfig
 public class ItemlotsConfig
 {
     public List<Category> Categories { get; set; }
-
-    public ItemlotEditingArrayConfig ItemlotEditingArray { get; set; }
 }
 
 public class Category
@@ -97,41 +95,21 @@ public class Category
     public string NpcParamCategory { get; set; }
 }
 
-public class ItemlotEditingArrayConfig
-{
-    public List<string> ItemlotParams { get; set; }
-    public string Luck { get; set; }
-}
-
 public class DSLRDescTextConfig
 {
     public string Effect { get; set; }
     public string NoStacking { get; set; }
 }
 
-public class OriginParamCount
-{
-    public string Name { get; set; }
-
-    public int Count { get; set; }
-}
-
 public class LootParamConfig
 {
-    public string SellValueParam { get; set; }
-    public string RarityParam { get; set; }
     public string WeaponOriginParamBase { get; set; }
-    public string NoAffinityChange { get; set; }
     public List<string> WeaponBehSpeffects { get; set; }
     public SpeffectsConfig Speffects { get; set; }
     public string SpeffectsStackCategory { get; set; }
     public List<string> SpeffectMsg { get; set; }
     public WeaponSpecialMotionCategoriesConfig WeaponSpecialMotionCategories { get; set; }
     public List<string> WeaponsDamageParam { get; set; }
-    public List<string> WeaponsGuardRateParam { get; set; }
-    public List<string> WeaponsRealName { get; set; }
-    public List<string> WeaponsTitleName { get; set; }
-    public string WeaponsWepMotionCategory { get; set; }
     public string WeaponsThrowDamageParam { get; set; }
     public string WeaponsHitVfx { get; set; }
     public WeaponsCanCastParamConfig WeaponsCanCastParam { get; set; }
@@ -140,11 +118,9 @@ public class LootParamConfig
     public List<string> WeaponsVfxParam { get; set; }
     public List<string> WeaponsVfxDummyParam { get; set; }
     public List<int> WeaponsVfxDummies { get; set; }
-    public string WeaponReinforceTypeId { get; set; }
     public List<string> ArmorParam { get; set; }
     public List<string> ArmorDefenseParams { get; set; }
     public List<string> ArmorResistParams { get; set; }
-    public string TalismansAccessoryGroupParam { get; set; }
 }
 
 public class SpeffectsConfig
@@ -165,25 +141,13 @@ public class WeaponsCanCastParamConfig
 {
     public string Sorcery { get; set; }
     public string Miracles { get; set; }
-    public string Pyromancies { get; set; }
-}
-
-public class FlagsConfig
-{
-    public List<int> SaveableAcquisitionFlags { get; set; }
-    public int ItemAcquisitionOffset { get; set; }
-}
-
-public class ItemlotBaseConfig
-{
-    public List<string> Header { get; set; }
-    public List<object> Default { get; set; }
 }
 
 public class RarityIconMappingConfig
 {
     public List<IconSheetParameters> IconSheets { get; set; }
 }
+
 public class IconSheetParameters
 {
     public RarityIconMapping IconMappings { get; set; }

@@ -2,7 +2,7 @@
 
 public class DataSourceFactory
 {
-    public static IDataSource<T> CreateDataSource<T>(DataSourceConfig paramSource, RandomProvider random) 
+    public static IDataSource<T> CreateDataSource<T>(DataSourceConfig paramSource, RandomProvider random)
         where T : class, ICloneable<T>, new()
     {
         return paramSource.SourceType switch

@@ -1,6 +1,6 @@
 ﻿namespace DSLRNet.Core.Data;
 
-public abstract class BaseDataSource<T> : IDataSource<T> 
+public abstract class BaseDataSource<T> : IDataSource<T>
     where T : class, ICloneable<T>, new()
 {
     private readonly RandomProvider random;
@@ -8,14 +8,14 @@ public abstract class BaseDataSource<T> : IDataSource<T>
     public BaseDataSource(RandomProvider random)
     {
         this.random = random;
-        ReloadData();
+        this.ReloadData();
     }
 
     protected Dictionary<int, T> CachedData { get; set; }
 
     public T? GetItemById(int id)
     {
-        if (CachedData.TryGetValue(id, out T item))
+        if (this.CachedData.TryGetValue(id, out T item))
         {
             return item.Clone();
         }
@@ -25,19 +25,19 @@ public abstract class BaseDataSource<T> : IDataSource<T>
 
     public T GetRandomItem()
     {
-        return random.GetRandomItem(CachedData.Values.ToList()).Clone();
+        return this.random.GetRandomItem(this.CachedData.Values.ToList()).Clone();
     }
 
     public IEnumerable<T> GetAll()
     {
-        return CachedData.Values.Select(s => s.Clone()).ToList();
+        return this.CachedData.Values.Select(s => s.Clone()).ToList();
     }
 
     public abstract IEnumerable<T> LoadData();
 
     public void ReloadData()
     {
-        this.CachedData = LoadData().ToDictionary(GetId);
+        this.CachedData = this.LoadData().ToDictionary(this.GetId);
     }
 
     private int GetId(T value)

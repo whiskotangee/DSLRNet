@@ -1,5 +1,4 @@
-﻿using System.Collections.Concurrent;
-namespace DSLRNet.Core.Common;
+﻿namespace DSLRNet.Core.Common;
 
 public class RandomProvider(int seed)
 {
@@ -14,7 +13,7 @@ public class RandomProvider(int seed)
     {
         return this.random.Next(minimum, maximum + 1);
     }
-    
+
     public float Next(Range<float> range)
     {
         return (float)this.NextDouble(range.Min, range.Max);
@@ -59,12 +58,12 @@ public class RandomProvider(int seed)
 
     public T GetRandomItem<T>(List<T> values)
     {
-        return values[random.Next(values.Count)];
+        return values[this.random.Next(values.Count)];
     }
 
     public List<T> GetRandomizedList<T>(IEnumerable<T> source)
     {
-        return [.. source.OrderBy(d => NextInt(0, 1000))];
+        return [.. source.OrderBy(d => this.NextInt(0, 1000))];
     }
 
     public bool GetBoolByPercent(int percent)
@@ -74,6 +73,6 @@ public class RandomProvider(int seed)
 
     public bool GetRandomBoolByPercent(double percent)
     {
-        return random.NextDouble() < percent;
+        return this.random.NextDouble() < percent;
     }
 }

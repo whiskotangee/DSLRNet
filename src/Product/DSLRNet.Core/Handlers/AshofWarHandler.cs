@@ -1,12 +1,12 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
 public class AshofWarHandler(
-    RandomProvider random, 
-    IOptions<AshOfWarConfig> ashofWarConfig, 
+    RandomProvider random,
+    IOptions<AshOfWarConfig> ashofWarConfig,
     ParamEditsRepository generatedDataRepository,
     IDataSource<EquipParamGem> gemParamDataSource) : BaseHandler(generatedDataRepository)
 {
-    private IEnumerable<EquipParamGem> equipParamGems = gemParamDataSource.GetAll();
+    private readonly IEnumerable<EquipParamGem> equipParamGems = gemParamDataSource.GetAll();
     private readonly AshOfWarConfig ashOfWarConfig = ashofWarConfig.Value;
 
     public void AssignAshOfWar(EquipParamWeapon weapon)
@@ -14,14 +14,14 @@ public class AshofWarHandler(
         int weaponWmc = weapon.wepmotionCategory;
 
         // get sword artsId from set of equip gems compatible with this weapon
-        var weaponType = weapon.wepType;
-        string? boolFlagToCheck = ashOfWarConfig.WeaponTypeCanMountWepFlags.FirstOrDefault(d => d.Id == weaponType)?.FlagName;
+        int weaponType = weapon.wepType;
+        string? boolFlagToCheck = this.ashOfWarConfig.WeaponTypeCanMountWepFlags.FirstOrDefault(d => d.Id == weaponType)?.FlagName;
 
-        var validGems = equipParamGems.Where(d => d.GenericParam.GetValue<int>(boolFlagToCheck) == 1).ToList();
+        List<EquipParamGem> validGems = this.equipParamGems.Where(d => d.GenericParam.GetValue<int>(boolFlagToCheck) == 1).ToList();
 
         if (validGems.Any())
         {
-            var chosenGem = random.GetRandomItem(validGems);
+            EquipParamGem chosenGem = random.GetRandomItem(validGems);
             int finalId = chosenGem.swordArtsParamId;
 
             weapon.swordArtsParamId = finalId;

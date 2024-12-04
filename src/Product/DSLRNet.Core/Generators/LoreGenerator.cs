@@ -7,11 +7,11 @@ public class LoreGenerator(IOptions<LoreConfig> config, RandomProvider random)
 
     public string GenerateDescription(string itemName, bool isArmor)
     {
-        string friendName = loreConfig.Names[random.NextInt(0, loreConfig.Names.Count - 1)];
-        string enemyName = loreConfig.Names[random.NextInt(0, loreConfig.Names.Count - 1)];
-        string locationName = loreConfig.Locations[random.NextInt(0, loreConfig.Locations.Count - 1)];
+        string friendName = this.loreConfig.Names[this.random.NextInt(0, this.loreConfig.Names.Count - 1)];
+        string enemyName = this.loreConfig.Names[this.random.NextInt(0, this.loreConfig.Names.Count - 1)];
+        string locationName = this.loreConfig.Locations[this.random.NextInt(0, this.loreConfig.Locations.Count - 1)];
 
-        (string Prefix, string Interfix, string Postfix) = loreConfig.MadLibsConfig.GetRandomDescription(random, ["name1", "name2", "location", "item"]);
+        (string Prefix, string Interfix, string Postfix) = this.loreConfig.MadLibsConfig.GetRandomDescription(this.random, ["name1", "name2", "location", "item"]);
 
         return (Prefix + " " + Interfix + " " + Postfix)
             .Replace("{name1}", friendName)
@@ -22,9 +22,9 @@ public class LoreGenerator(IOptions<LoreConfig> config, RandomProvider random)
 
     public string CreateRandomUniqueName(bool isShield)
     {
-        return $"{random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameFirstWord)} " +
-            $"{random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameFirstHalf)} " +
-            $"{random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameSecondWord)} " +
-            $"{(isShield ? random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameSecondHalfShield) : random.GetRandomItem(loreConfig.UniqueNamesConfig.UniqueNameSecondHalf))} ";
+        return $"{this.random.GetRandomItem(this.loreConfig.UniqueNamesConfig.UniqueNameFirstWord)} " +
+            $"{this.random.GetRandomItem(this.loreConfig.UniqueNamesConfig.UniqueNameFirstHalf)} " +
+            $"{this.random.GetRandomItem(this.loreConfig.UniqueNamesConfig.UniqueNameSecondWord)} " +
+            $"{(isShield ? this.random.GetRandomItem(this.loreConfig.UniqueNamesConfig.UniqueNameSecondHalfShield) : this.random.GetRandomItem(this.loreConfig.UniqueNamesConfig.UniqueNameSecondHalf))} ";
     }
 }

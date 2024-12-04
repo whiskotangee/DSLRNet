@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace DSLRNet.Core.Contracts;
+﻿namespace DSLRNet.Core.Contracts;
 
 public class ParamBase<T> : ICloneable<T> where T : class
 {

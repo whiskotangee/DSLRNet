@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
-using DSLRNet.Core.Generators;
-using DSLRNet.Core.Extensions;
+﻿namespace DSLRNet.Core;
 
-namespace DSLRNet.Core;
+using DSLRNet.Core.Generators;
+using Microsoft.Extensions.Logging;
+using SoulsFormats;
+using SoulsFormats.Formats;
 
 public class DSLRNetBuilder(
     ILogger<DSLRNetBuilder> logger,
@@ -18,24 +19,24 @@ public class DSLRNetBuilder(
     public async Task BuildAndApply()
     {
         // ensure oo2core file is there
-        var existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
+        string? existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
         if (existingFile == null)
         {
-            var oo2GameCore = Directory.GetFiles(this.configuration.Settings.GamePath, "oo2core*dll").FirstOrDefault();
+            string? oo2GameCore = Directory.GetFiles(this.configuration.Settings.GamePath, "oo2core*dll").FirstOrDefault();
             File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
         }
 
-        Directory.CreateDirectory(configuration.Settings.DeployPath);
+        Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
         List<ItemLotQueueEntry> enemyItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
-            .Select(s => ItemLotQueueEntry.Create(s, configuration.Itemlots.Categories[0]))
+            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[0]))
             .ToList();
 
         List<ItemLotQueueEntry> mapItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
-            .Select(s => ItemLotQueueEntry.Create(s, configuration.Itemlots.Categories[1]))
+            .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[1]))
             .ToList();
 
-        var takenIds = new Dictionary<ItemLotCategory, HashSet<int>>()
+        Dictionary<ItemLotCategory, HashSet<int>> takenIds = new()
         {
             { ItemLotCategory.ItemLot_Map, new HashSet<int>() },
             { ItemLotCategory.ItemLot_Enemy, new HashSet<int>() }
@@ -47,14 +48,14 @@ public class DSLRNetBuilder(
         itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
         itemLotGenerator.CreateItemLots(mapItemLotsSetups);
 
-        var remainingIds = itemLotScanner.ScanForItemLotIds(takenIds);
+        Dictionary<ItemLotCategory, HashSet<int>> remainingIds = itemLotScanner.ScanForItemLotIds(takenIds);
 
         if (remainingIds.Any())
         {
-            var remainingMapLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Map.ini", configuration.Itemlots.Categories[1]);
+            ItemLotQueueEntry remainingMapLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Map.ini", this.configuration.Itemlots.Categories[1]);
             remainingMapLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Map].OrderBy(d => d).ToList();
 
-            var remainingEnemyLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]);
+            ItemLotQueueEntry remainingEnemyLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
             remainingEnemyLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Enemy].OrderBy(d => d).ToList();
 
             itemLotGenerator.CreateItemLots([remainingMapLots]);
@@ -63,15 +64,15 @@ public class DSLRNetBuilder(
 
         dataRepository.VerifyItemLots();
 
-        string regulationFile = Path.Combine(configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
-        string destinationFile = Path.Combine(configuration.Settings.DeployPath, "regulation.working.bin");
+        string regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
+        string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.working.bin");
 
         if (!File.Exists(regulationFile))
         {
-            regulationFile = Path.Combine(configuration.Settings.DeployPath, "regulation.bin");
+            regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
             if (!File.Exists(regulationFile))
             {
-                regulationFile = Path.Combine(configuration.Settings.GamePath, "regulation.bin");
+                regulationFile = Path.Combine(this.configuration.Settings.GamePath, "regulation.bin");
             }
         }
 
@@ -81,21 +82,21 @@ public class DSLRNetBuilder(
 
         IEnumerable<IGrouping<ParamNames, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
 
-        var massEditFiles = Directory.GetFiles("DefaultData\\ER\\MassEdit\\", "*.massedit")
+        List<string> massEditFiles = Directory.GetFiles("DefaultData\\ER\\MassEdit\\", "*.massedit")
             .ToList();
 
-        foreach (var massEdit in massEditFiles)
+        foreach (string? massEdit in massEditFiles)
         {
-            await ApplyMassEdit(massEdit, destinationFile);
+            await this.ApplyMassEdit(massEdit, destinationFile);
         }
 
         foreach (IGrouping<ParamNames, ParamEdit> group in groups)
         {
-            File.WriteAllLines(Path.Combine(configuration.Settings.DeployPath, $"{group.Key}.massedit"), group.Select(s => s.MassEditString));
-            await ApplyMassEdit(Path.Combine(configuration.Settings.DeployPath, $"{group.Key}.massedit"), destinationFile);
+            File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), group.Select(s => s.MassEditString));
+            await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), destinationFile);
         }
 
-        await ApplyCreates(destinationFile, dataRepository);
+        await this.ApplyCreates(destinationFile, dataRepository);
 
         if (!File.Exists(destinationFile.Replace("working.", "pre-dslr.")))
         {
@@ -104,7 +105,7 @@ public class DSLRNetBuilder(
 
         File.Copy(destinationFile, destinationFile.Replace(".working.bin", ".bin"), true);
 
-        await UpdateMessages(dataRepository.GetParamEdits());
+        await this.UpdateMessages(dataRepository.GetParamEdits());
     }
 
     public async Task ApplyCreates(string regulationFile, ParamEditsRepository repository)
@@ -117,22 +118,22 @@ public class DSLRNetBuilder(
         foreach (ParamNames paramName in paramNames)
         {
             // write csv
-            string csvFile = Path.Combine(configuration.Settings.DeployPath, $"{paramName}.csv");
+            string csvFile = Path.Combine(this.configuration.Settings.DeployPath, $"{paramName}.csv");
 
             List<GenericParam> parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.ID).Select(d => d.ParamObject).ToList();
 
             Csv.WriteCsv(csvFile, parms.Select(d =>
             {
-                var ret = d.Clone() as GenericParam;
+                GenericParam? ret = d.Clone() as GenericParam;
                 ret.Name = string.Empty;
                 return ret;
             }).ToList());
 
             // dsms csv
-            await processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
+            await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
             {
-                ExePath = configuration.Settings.DSMSPortablePath,
-                Arguments = $"\"{regulationFile}\" -G ER -P \"{configuration.Settings.GamePath}\" -C \"{csvFile}\"",
+                ExePath = this.configuration.Settings.DSMSPortablePath,
+                Arguments = $"\"{regulationFile}\" -G ER -P \"{this.configuration.Settings.GamePath}\" -C \"{csvFile}\"",
                 RetryCount = 0
             });
         }
@@ -140,10 +141,10 @@ public class DSLRNetBuilder(
 
     private async Task ApplyMassEdit(string massEditFile, string destinationFile)
     {
-        await processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
+        await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
         {
-            ExePath = configuration.Settings.DSMSPortablePath,
-            Arguments = $"\"{destinationFile}\" -G ER -P \"{configuration.Settings.GamePath}\" -M+ \"{massEditFile}\"",
+            ExePath = this.configuration.Settings.DSMSPortablePath,
+            Arguments = $"\"{destinationFile}\" -G ER -P \"{this.configuration.Settings.GamePath}\" -M+ \"{massEditFile}\"",
             RetryCount = 0
         });
     }
@@ -152,11 +153,11 @@ public class DSLRNetBuilder(
     {
         List<string> gameMsgFiles = [];
 
-        foreach (var fileName in configuration.Settings.MessageFileNames)
+        foreach (string fileName in this.configuration.Settings.MessageFileNames)
         {
             string existingPath = string.Empty;
 
-            foreach (var msgPath in configuration.Settings.MessageSourcePaths)
+            foreach (string msgPath in this.configuration.Settings.MessageSourcePaths)
             {
                 if (File.Exists(Path.Combine(msgPath, fileName)))
                 {
@@ -173,14 +174,14 @@ public class DSLRNetBuilder(
             gameMsgFiles.Add(existingPath);
         }
 
-        Directory.CreateDirectory(Path.Combine(configuration.Settings.DeployPath, "msg", "engus"));
+        Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus"));
 
         await Parallel.ForEachAsync(gameMsgFiles, (gameMsgFile, c) =>
         {
             // delete working file
             // copy msg file to a working file
             // process using working file as base
-            string destinationFile = Path.Combine(configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
+            string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
             string sourceFile = destinationFile.Replace(".dcx", "pre-dslr.dcx");
 
             if (!File.Exists(sourceFile))
@@ -188,57 +189,57 @@ public class DSLRNetBuilder(
                 File.Copy(gameMsgFile, sourceFile);
             }
 
-            logger.LogInformation($"Processing {Path.GetFileName(sourceFile)}");
+            this.logger.LogInformation($"Processing {Path.GetFileName(sourceFile)}");
             BND4 bnd = BND4.Read(sourceFile);
 
-            var categories = paramEdits.Where(d => d.MessageText != null).GroupBy(d => d.MessageText.Category).ToList();
+            List<IGrouping<string, ParamEdit>> categories = paramEdits.Where(d => d.MessageText != null).GroupBy(d => d.MessageText.Category).ToList();
 
-            foreach (var category in categories)
+            foreach (IGrouping<string, ParamEdit>? category in categories)
             {
-                logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key}");
-                var captionFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Caption")).ToList();
-                var infoFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Info")).ToList();
-                var nameFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Name")).ToList();
-                var effectFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Effect")).ToList();
+                this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key}");
+                List<BinderFile> captionFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Caption")).ToList();
+                List<BinderFile> infoFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Info")).ToList();
+                List<BinderFile> nameFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Name")).ToList();
+                List<BinderFile> effectFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Effect")).ToList();
 
-                logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} captions");
-                foreach (var captionFile in captionFilesToUpdate)
+                this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} captions");
+                foreach (BinderFile? captionFile in captionFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(captionFile.Bytes.ToArray());
                     fmg.Entries.AddRange(category.Where(d => d.MessageText.Caption != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption)));
                     captionFile.Bytes = fmg.Write();
                 }
 
-                logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} info");
-                foreach (var infoFile in infoFilesToUpdate)
+                this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} info");
+                foreach (BinderFile? infoFile in infoFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(infoFile.Bytes.ToArray());
                     fmg.Entries.AddRange(category.Where(d => d.MessageText.Info != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info)));
                     infoFile.Bytes = fmg.Write();
                 }
 
-                logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} names");
-                foreach (var nameFile in nameFilesToUpdate)
+                this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} names");
+                foreach (BinderFile? nameFile in nameFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(nameFile.Bytes.ToArray());
                     fmg.Entries.AddRange(category.Where(d => d.MessageText.Name != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name)));
                     nameFile.Bytes = fmg.Write();
                 }
 
-                logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} effects");
-                foreach (var effectFile in effectFilesToUpdate)
+                this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} effects");
+                foreach (BinderFile? effectFile in effectFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(effectFile.Bytes.ToArray());
                     fmg.Entries.AddRange(category.Where(d => d.MessageText.Effect != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Effect)));
                     effectFile.Bytes = fmg.Write();
                 }
 
-                logger.LogInformation($"Finished Processing category {Path.GetFileName(sourceFile)}-{category.Key}");
+                this.logger.LogInformation($"Finished Processing category {Path.GetFileName(sourceFile)}-{category.Key}");
             }
 
             bnd.Write(destinationFile);
 
-            logger.LogInformation($"Finished Processing {Path.GetFileName(sourceFile)}");
+            this.logger.LogInformation($"Finished Processing {Path.GetFileName(sourceFile)}");
 
             return ValueTask.CompletedTask;
         });

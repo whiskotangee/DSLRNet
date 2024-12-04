@@ -4,8 +4,8 @@ public class WeaponModifications
 {
     public WeaponModifications(DamageTypeSetup primaryDamage, DamageTypeSetup? secondaryDamage)
     {
-        PrimaryDamageType = primaryDamage;
-        SecondaryDamageType = secondaryDamage;
+        this.PrimaryDamageType = primaryDamage;
+        this.SecondaryDamageType = secondaryDamage;
     }
 
     public DamageTypeSetup PrimaryDamageType { get; set; }

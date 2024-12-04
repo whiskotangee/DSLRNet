@@ -17,9 +17,9 @@ public class AllowListHandler(
 
         foreach (int id in ids)
         {
-            if (whitelistConfig.Configs.Any(d => d.Id == id))
+            if (this.whitelistConfig.Configs.Any(d => d.Id == id))
             {
-                (List<int> lootIds, List<int> weights) = GetRandomLootAndWeightsFromConfig(whitelistConfig.Configs.Single(d => d.Id == id), type);
+                (List<int> lootIds, List<int> weights) = GetRandomLootAndWeightsFromConfig(this.whitelistConfig.Configs.Single(d => d.Id == id), type);
 
                 if (lootIds.Count != 0)
                 {
@@ -31,13 +31,13 @@ public class AllowListHandler(
 
         if (itemIds.Count == 0)
         {
-            List<AllowListConfigItem> validConfigs = whitelistConfig.Configs.Where(d =>
+            List<AllowListConfigItem> validConfigs = this.whitelistConfig.Configs.Where(d =>
             {
                 (List<int> lootIds, List<int> weights) = GetRandomLootAndWeightsFromConfig(d, type);
                 return lootIds.Count > 0;
             }).ToList();
 
-            AllowListConfigItem randomConfig = random.GetRandomItem(validConfigs);
+            AllowListConfigItem randomConfig = this.random.GetRandomItem(validConfigs);
 
             (List<int> lootIds, List<int> weights) = GetRandomLootAndWeightsFromConfig(randomConfig, type);
 
@@ -48,7 +48,7 @@ public class AllowListHandler(
             }
         }
 
-        return random.NextWeightedValue(itemIds, itemWeights);
+        return this.random.NextWeightedValue(itemIds, itemWeights);
     }
 
     private static (List<int> lootIds, List<int> weights) GetRandomLootAndWeightsFromConfig(AllowListConfigItem config, LootType lootType)

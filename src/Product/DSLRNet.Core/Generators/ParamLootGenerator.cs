@@ -41,13 +41,13 @@ public class ParamLootGenerator<TParamType>(
 
     public void ExportLootDetails(GenericParam massEditDict, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null)
     {
-        string finalMassEditOutput = CreateMassEditParamFromParamDictionary(massEditDict, OutputParamName, massEditDict.ID, extraFilters, extraBannedValues, ParamMandatoryKeys);
+        string finalMassEditOutput = this.CreateMassEditParamFromParamDictionary(massEditDict, this.OutputParamName, massEditDict.ID, extraFilters, extraBannedValues, this.ParamMandatoryKeys);
 
-        GeneratedDataRepository.AddParamEdit(
-            OutputParamName,
+        this.GeneratedDataRepository.AddParamEdit(
+            this.OutputParamName,
             ParamOperation.Create,
             finalMassEditOutput,
-            CreateFmgLootEntrySet(OutputLootRealNames[lootType], title, description, summary),
+            this.CreateFmgLootEntrySet(this.OutputLootRealNames[lootType], title, description, summary),
             massEditDict);
     }
 
@@ -62,7 +62,7 @@ public class ParamLootGenerator<TParamType>(
     {
         List<SpEffectText> spEffectTexts = [];
 
-        List<string> speffectParam = !overwriteExistingSpEffects ? GetAvailableSpEffectSlots(outputDictionary) : GetPassiveSpEffectSlotArrayFromOutputParamName();
+        List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailableSpEffectSlots(outputDictionary) : this.GetPassiveSpEffectSlotArrayFromOutputParamName();
         if (speffectParam.Count == 0)
         {
             Log.Logger.Warning($"{outputDictionary.ID} has no available spEffect slots, not applying any");
@@ -70,7 +70,7 @@ public class ParamLootGenerator<TParamType>(
         }
 
         int finalNumber = spefNumOverride < 0 && spefNumOverride <= speffectParam.Count ? speffectParam.Count : spefNumOverride;
-        List<SpEffectText> speffectsToApply = SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, armorTalisman, spefChanceMult);
+        List<SpEffectText> speffectsToApply = this.SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, armorTalisman, spefChanceMult);
 
         if (speffectsToApply.Count != 0)
         {
@@ -93,7 +93,7 @@ public class ParamLootGenerator<TParamType>(
     {
         List<string> additions =
         [
-            RarityHandler.GetRarityName(rarityId, colorCoded),
+            this.RarityHandler.GetRarityName(rarityId, colorCoded),
             damageType,
             namePartsCollection?.Where(d => d?.NameParts?.Prefix != null).FirstOrDefault()?.NameParts?.Prefix ?? string.Empty,
             //nameParts?.NameParts.Interfix ?? string.Empty,
@@ -106,26 +106,26 @@ public class ParamLootGenerator<TParamType>(
 
     public TParamType GetNewLootItem(int baseId = -1)
     {
-        if (Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled)
+        if (this.Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled)
         {
             return this.DataSource.GetRandomItem();
         }
 
-        if (baseId == -1 && PriorityIDs_Current.Count > 0)
+        if (baseId == -1 && this.PriorityIDs_Current.Count > 0)
         {
-            baseId = ChoosePriorityIdAtRandom();
+            baseId = this.ChoosePriorityIdAtRandom();
         }
 
-        return DataSource.GetItemById(baseId);
+        return this.DataSource.GetItemById(baseId);
     }
 
     public string CreateAffinityTitle(WeaponModifications modifications)
     {
-        var names = new List<string>
-        {
+        List<string> names =
+        [
             modifications.PrimaryDamageType.PriName,
             modifications.SecondaryDamageType?.SecName
-        };
+        ];
 
         if (string.IsNullOrEmpty(names[0]))
         {
@@ -144,24 +144,24 @@ public class ParamLootGenerator<TParamType>(
 
     public int ChoosePriorityIdAtRandom()
     {
-        int chosenIndex = Random.NextInt(0, PriorityIDs_Current.Count - 1);
-        int chosenId = PriorityIDs_Current[chosenIndex];
+        int chosenIndex = this.Random.NextInt(0, this.PriorityIDs_Current.Count - 1);
+        int chosenId = this.PriorityIDs_Current[chosenIndex];
         if (chosenId != -1)
         {
-            Log.Logger.Debug($"PRIORITY ID {chosenId} SELECTED! REMAINING PRIORITY IDS: {string.Join(", ", PriorityIDs_Current)}");
+            Log.Logger.Debug($"PRIORITY ID {chosenId} SELECTED! REMAINING PRIORITY IDS: {string.Join(", ", this.PriorityIDs_Current)}");
         }
-        PriorityIDs_Current.RemoveAt(chosenIndex);
+        this.PriorityIDs_Current.RemoveAt(chosenIndex);
         return chosenId;
     }
 
     public List<string> GetPassiveSpEffectSlotArrayFromOutputParamName()
     {
-        return Configuration.LootParam.Speffects.GetType().GetProperty(OutputParamName.ToString()).GetValue(Configuration.LootParam.Speffects) as List<string>;
+        return this.Configuration.LootParam.Speffects.GetType().GetProperty(this.OutputParamName.ToString()).GetValue(this.Configuration.LootParam.Speffects) as List<string>;
     }
 
     public List<string> GetAvailableSpEffectSlots(GenericParam itemParam)
     {
-        List<string> baseParams = GetPassiveSpEffectSlotArrayFromOutputParamName();
+        List<string> baseParams = this.GetPassiveSpEffectSlotArrayFromOutputParamName();
         List<string> finalArray = [];
         foreach (string param in baseParams)
         {

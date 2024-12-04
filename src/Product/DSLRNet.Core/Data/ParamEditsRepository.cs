@@ -1,43 +1,42 @@
-﻿using System.Text;
-
-namespace DSLRNet.Core.Data;
+﻿namespace DSLRNet.Core.Data;
+using System.Text;
 
 public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, IDataSource<ItemLotParam_enemy> enemyDataSource)
 {
-    private Dictionary<ParamNames, List<ParamEdit>> paramEdits { get; set; } = 
-        Enum.GetValues(typeof(ParamNames)) 
+    private Dictionary<ParamNames, List<ParamEdit>> paramEdits { get; set; } =
+        Enum.GetValues(typeof(ParamNames))
             .Cast<ParamNames>()
             .ToDictionary(paramName => paramName, paramName => new List<ParamEdit>());
 
     public Dictionary<ParamNames, int> EditCountsByName()
     {
-        return paramEdits.ToDictionary(t => t.Key, t => t.Value.Count);
+        return this.paramEdits.ToDictionary(t => t.Key, t => t.Value.Count);
     }
 
     public bool VerifyItemLots()
     {
-        var enemyLots = paramEdits[ParamNames.ItemLotParam_enemy].ToList();
-        var mapLots = paramEdits[ParamNames.ItemLotParam_map].ToList();
+        List<ParamEdit> enemyLots = this.paramEdits[ParamNames.ItemLotParam_enemy].ToList();
+        List<ParamEdit> mapLots = this.paramEdits[ParamNames.ItemLotParam_map].ToList();
 
-        var preExistingIds = mapDataSource.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 })
+        HashSet<int> preExistingIds = mapDataSource.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 })
             .Concat(enemyDataSource.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 }))
             .ToHashSet();
 
-        var lotItemIds = paramEdits
+        HashSet<int> lotItemIds = this.paramEdits
             .Where(d => d.Key == ParamNames.EquipParamWeapon || d.Key == ParamNames.EquipParamProtector || d.Key == ParamNames.EquipParamAccessory)
             .SelectMany(d => d.Value.Select(d => d.ParamObject.ID))
             .ToHashSet();
 
-        var expectedIds = enemyLots
+        HashSet<int> expectedIds = enemyLots
             .Concat(mapLots)
             .SelectMany(d => Enumerable.Range(1, 8).Select(s => d.ParamObject.GetValue<int>($"lotItemId0{s}")))
             .Where(d => d > 0)
             .ToHashSet();
 
-        var itemIdsNotGeneratedForItemLots = lotItemIds.Where(d => !expectedIds.Contains(d) && !preExistingIds.Contains(d)).ToList();
-        var itemIdsNotInItemLots = expectedIds.Where(d => !lotItemIds.Contains(d) && !preExistingIds.Contains(d)).ToList();
+        List<int> itemIdsNotGeneratedForItemLots = lotItemIds.Where(d => !expectedIds.Contains(d) && !preExistingIds.Contains(d)).ToList();
+        List<int> itemIdsNotInItemLots = expectedIds.Where(d => !lotItemIds.Contains(d) && !preExistingIds.Contains(d)).ToList();
 
-        var errorMessages = new StringBuilder();
+        StringBuilder errorMessages = new();
 
         if (itemIdsNotInItemLots.Any())
         {
@@ -49,7 +48,7 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
             errorMessages.AppendLine($"Item lots referencing Ids ({string.Join(",", itemIdsNotGeneratedForItemLots)}) that were not generated");
         }
 
-        var duplicatedEnemyLotIds = enemyLots
+        List<int> duplicatedEnemyLotIds = enemyLots
             .GroupBy(d => d.ParamObject.ID)
             .Where(g => g.Count() > 1)
             .Select(g => g.Key)
@@ -60,7 +59,7 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
             errorMessages.AppendLine($"Enemy Item lots are duplicated: {string.Join(",", duplicatedEnemyLotIds)}");
         }
 
-        var duplicatedMapLotIds = mapLots
+        List<int> duplicatedMapLotIds = mapLots
             .GroupBy(d => d.ParamObject.ID)
             .Where(g => g.Count() > 1)
             .Select(g => g.Key)
@@ -71,7 +70,7 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
             errorMessages.AppendLine($"Map Item lots are duplicated: {string.Join(",", duplicatedMapLotIds)}");
         }
 
-        var mapLotsWithoutFlagIds = mapLots
+        List<int> mapLotsWithoutFlagIds = mapLots
             .Where(d => d.ParamObject.GetValue<int>("getItemFlagId") <= 0)
             .Select(d => d.ParamObject.ID)
             .ToList();
@@ -92,7 +91,7 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
 
     public bool ContainsParamEdit(ParamNames paramName, long Id)
     {
-        var existing = paramEdits[paramName]
+        ParamEdit? existing = this.paramEdits[paramName]
             .SingleOrDefault(d => d.ParamObject.ID == Id);
 
         return existing != null;
@@ -100,7 +99,7 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
 
     public bool TryGetParamEdit(ParamNames paramName, long Id, out ParamEdit? paramEdit)
     {
-        paramEdit = paramEdits[paramName]
+        paramEdit = this.paramEdits[paramName]
             .SingleOrDefault(d => d.ParamObject.ID == Id);
 
         return paramEdit != null;
@@ -108,13 +107,13 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
 
     public void AddParamEdit(ParamNames name, ParamOperation operation, string massEditString, LootFMG text, GenericParam? param)
     {
-        if (param != null && ContainsParamEdit(name, param.ID))
+        if (param != null && this.ContainsParamEdit(name, param.ID))
         {
             Log.Logger.Error($"Attempting to add param {name} edit with Id {param.ID} that already exists");
-            throw new Exception($"Attempting to add param {name} edit with Id {param.ID} that already exists");            
+            throw new Exception($"Attempting to add param {name} edit with Id {param.ID} that already exists");
         }
 
-        paramEdits[name].Add(new ParamEdit
+        this.paramEdits[name].Add(new ParamEdit
         {
             Operation = operation,
             ParamName = name,
@@ -126,7 +125,7 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
 
     public List<ParamEdit> GetParamEdits(ParamOperation? operation = null, string? paramName = null)
     {
-        IEnumerable<ParamEdit> edits = [.. paramEdits.Values.SelectMany(d => d)];
+        IEnumerable<ParamEdit> edits = [.. this.paramEdits.Values.SelectMany(d => d)];
 
         if (operation != null)
         {

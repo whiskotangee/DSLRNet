@@ -1,6 +1,5 @@
-﻿using IniParser;
-
-namespace DSLRNet.Core.Data;
+﻿namespace DSLRNet.Core.Data;
+using IniParser;
 
 public enum GameStage { Early, Mid, Late, End }
 
@@ -71,7 +70,7 @@ public class ItemLotQueueEntry
     {
         return Enum.GetValues(typeof(GameStage))
             .Cast<GameStage>()
-            .SelectMany(tier => GameStageConfigs
+            .SelectMany(tier => this.GameStageConfigs
                 .Where(d => d.Stage == tier && d.ItemLotIds.Count > 0)
                 .SelectMany(s => s.ItemLotIds))
             .Distinct()
@@ -81,7 +80,7 @@ public class ItemLotQueueEntry
 
     public GameStageConfig GetItemLotIdTier(int itemLotId = 0)
     {
-        return GameStageConfigs.FirstOrDefault(d => d.ItemLotIds.Contains(itemLotId)) ?? GameStageConfigs.First();
+        return this.GameStageConfigs.FirstOrDefault(d => d.ItemLotIds.Contains(itemLotId)) ?? this.GameStageConfigs.First();
     }
 
     public List<long> BlackListIds { get; set; }
@@ -117,7 +116,7 @@ class DslItemLotSetup
 {
     public static DslItemLotSetup Create(string file)
     {
-        FileIniDataParser iniParser = new FileIniDataParser();
+        FileIniDataParser iniParser = new();
         IniParser.Model.IniData data = iniParser.ReadFile(file);
 
         return new DslItemLotSetup

@@ -1,8 +1,7 @@
-﻿using DSLRNet.Core.Generators;
+﻿namespace DSLRNet.Core.Extensions;
+using DSLRNet.Core.Generators;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-namespace DSLRNet.Core.Extensions;
 
 public static class IServiceCollectionExtensions
 {
@@ -51,9 +50,9 @@ public static class IServiceCollectionExtensions
     public static IDataSource<T> CreateDataSource<T>(IServiceProvider provider, DataSourceNames configName)
         where T : class, ICloneable<T>, new()
     {
-        var configSettings = provider.GetRequiredService<IOptions<Configuration>>().Value.Settings;
+        Settings configSettings = provider.GetRequiredService<IOptions<Configuration>>().Value.Settings;
 
-        var config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
+        DataSourceConfig config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
 
         return DataSourceFactory.CreateDataSource<T>(config, provider.GetRequiredService<RandomProvider>());
     }

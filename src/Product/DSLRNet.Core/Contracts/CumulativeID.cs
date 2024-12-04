@@ -23,33 +23,33 @@ public class CumulativeID
 
     public int GetNext()
     {
-        cumulativeId += 1;
-        int IDBeforeWrap = cumulativeId;
+        this.cumulativeId += 1;
+        int IDBeforeWrap = this.cumulativeId;
 
-        if (IDBeforeWrap > WrapAroundLimit)
+        if (IDBeforeWrap > this.WrapAroundLimit)
         {
-            if (IsItemFlagAcquisitionCumulativeID)
+            if (this.IsItemFlagAcquisitionCumulativeID)
             {
-                IFA_CurrentOffset += 1;
-                IFA_CurrentOffset = Wrap(IFA_CurrentOffset, 0, ((List<int>)IFA["offsets"]).Count - 1);
+                this.IFA_CurrentOffset += 1;
+                this.IFA_CurrentOffset = this.Wrap(this.IFA_CurrentOffset, 0, ((List<int>)this.IFA["offsets"]).Count - 1);
             }
         }
 
-        if (UseWrapAround)
+        if (this.UseWrapAround)
         {
-            cumulativeId = Wrap(cumulativeId, 0, WrapAroundLimit);
+            this.cumulativeId = this.Wrap(this.cumulativeId, 0, this.WrapAroundLimit);
         }
 
         // Split off depending on if we're getting an ItemFlagAcquisitionID or not
-        if (IsItemFlagAcquisitionCumulativeID)
+        if (this.IsItemFlagAcquisitionCumulativeID)
         {
-            var flagId = (int)IFA["starting"] + ((List<int>)IFA["offsets"])[IFA_CurrentOffset] * 1000 + cumulativeId;
+            int flagId = (int)this.IFA["starting"] + ((List<int>)this.IFA["offsets"])[this.IFA_CurrentOffset] * 1000 + this.cumulativeId;
             Log.Logger.Information($"Assigning acquisition flag {flagId}");
             return flagId;
         }
         else
         {
-            return (int)((StartingID + cumulativeId) * IDMultiplier);
+            return (int)((this.StartingID + this.cumulativeId) * this.IDMultiplier);
         }
     }
 

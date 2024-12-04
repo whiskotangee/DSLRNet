@@ -1,6 +1,5 @@
-﻿using System.Text.RegularExpressions;
-
-namespace DSLRNet.Core.Config;
+﻿namespace DSLRNet.Core.Config;
+using System.Text.RegularExpressions;
 
 public class LoreConfig
 {
@@ -16,9 +15,9 @@ public class LoreTemplates
 {
     private string GetTemplatePart(List<string> templateList, List<string> excludedIdentifiers, RandomProvider random)
     {
-        var ret = templateList.Where(d => !excludedIdentifiers.Any(s => d.Contains(s))).ToList();
+        List<string> ret = templateList.Where(d => !excludedIdentifiers.Any(s => d.Contains(s))).ToList();
 
-        var withPlaceholders = ret.Where(d => d.Contains("{")).ToList();
+        List<string> withPlaceholders = ret.Where(d => d.Contains("{")).ToList();
 
         if (ret.Count == 0)
         {
@@ -30,11 +29,11 @@ public class LoreTemplates
 
     public List<string> FindPlaceholdersInString(string input, List<string> placeholders)
     {
-        var matches = new List<string>();
-        foreach (var placeholder in placeholders)
+        List<string> matches = [];
+        foreach (string placeholder in placeholders)
         {
-            var pattern = @"\{" + Regex.Escape(placeholder) + @"\}";
-            var regex = new Regex(pattern);
+            string pattern = @"\{" + Regex.Escape(placeholder) + @"\}";
+            Regex regex = new(pattern);
             if (regex.IsMatch(input))
             {
                 matches.Add("{" + placeholder + "}");
@@ -45,34 +44,34 @@ public class LoreTemplates
 
     public (string Prefix, string Interfix, string Postfix) GetRandomDescription(RandomProvider random, List<string> possibleSubtitutions)
     {
-        var sources = new Dictionary<int, List<string>>()
+        Dictionary<int, List<string>> sources = new()
         {
-            { 0, Prefixes },
-            { 1, Interfixes },
-            { 2, PostFixes }
+            { 0, this.Prefixes },
+            { 1, this.Interfixes },
+            { 2, this.PostFixes }
         };
 
-        var randomizedSources = random.GetRandomizedList(sources.Keys);
+        List<int> randomizedSources = random.GetRandomizedList(sources.Keys);
 
-        var firstKey = randomizedSources[0];
-        var secondKey = randomizedSources[1];
-        var thirdKey = randomizedSources[2];
+        int firstKey = randomizedSources[0];
+        int secondKey = randomizedSources[1];
+        int thirdKey = randomizedSources[2];
 
         // Randomly pick the first item
         string firstValue = random.GetRandomItem(sources[firstKey]);
-        List<string> claimedSubstitutions = FindPlaceholdersInString(firstValue, possibleSubtitutions);
+        List<string> claimedSubstitutions = this.FindPlaceholdersInString(firstValue, possibleSubtitutions);
 
         // Assign the first value based on the key
         string prefix = string.Empty, interfix = string.Empty, postfix = string.Empty;
 
         // Randomly pick the remaining keys
-        var remainingKeys = new List<int> { 0, 1, 2 };
+        List<int> remainingKeys = [0, 1, 2];
         remainingKeys.Remove(firstKey);
 
-        var secondValue = GetTemplatePart(sources[secondKey], claimedSubstitutions, random);
-        claimedSubstitutions.AddRange(FindPlaceholdersInString(secondValue, possibleSubtitutions));
+        string secondValue = this.GetTemplatePart(sources[secondKey], claimedSubstitutions, random);
+        claimedSubstitutions.AddRange(this.FindPlaceholdersInString(secondValue, possibleSubtitutions));
 
-        var thirdValue = GetTemplatePart(sources[thirdKey], claimedSubstitutions, random);
+        string thirdValue = this.GetTemplatePart(sources[thirdKey], claimedSubstitutions, random);
 
         switch (firstKey)
         {

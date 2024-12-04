@@ -27,7 +27,7 @@ using System.Diagnostics;
 
 Stopwatch overallTimer = Stopwatch.StartNew();
 
-ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+ConfigurationBuilder configurationBuilder = new();
 
 string[] jsonFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "appsettings.Default*.json");
 

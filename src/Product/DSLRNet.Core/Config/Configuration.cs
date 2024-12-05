@@ -150,7 +150,10 @@ public class RarityIconMappingConfig
 
 public class IconSheetParameters
 {
+    public byte[] GeneratedBytes { get; set; }
+
     public RarityIconMapping IconMappings { get; set; }
+
     public string Name { get; set; }
 }
 
@@ -164,5 +167,12 @@ public class RarityIconMapping
 public class IconMapping
 {
     public int OriginalIconId { get; set; }
+
     public int NewIconId { get; set; }
+
+    public string SourceIconPath { get; set; }
+
+    public int TileX { get; set; }
+
+    public int TileY { get; set; }
 }

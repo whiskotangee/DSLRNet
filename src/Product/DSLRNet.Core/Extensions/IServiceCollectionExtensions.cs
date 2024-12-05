@@ -7,12 +7,16 @@ public static class IServiceCollectionExtensions
 {
     public static IServiceCollection InitializeDSLR(this IServiceCollection services, IConfiguration configuration)
     {
+        // configurations
         services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
                 .Configure<WeaponGeneratorConfig>(configuration.GetSection(nameof(WeaponGeneratorConfig)))
                 .Configure<AllowListConfig>(configuration.GetSection(nameof(AllowListConfig)))
                 .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)))
                 .Configure<AshOfWarConfig>(configuration.GetSection(nameof(AshOfWarConfig)))
-                .AddSingleton<ArmorLootGenerator>()
+                .Configure<IconBuilderSettings>(configuration.GetSection(nameof(IconBuilderSettings)));
+
+        // Services
+        services.AddSingleton<ArmorLootGenerator>()
                 .AddSingleton<WeaponLootGenerator>()
                 .AddSingleton<TalismanLootGenerator>()
                 .AddSingleton<ItemLotGenerator>()
@@ -26,7 +30,14 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<DSLRNetBuilder>()
                 .AddSingleton<ProcessRunner>()
                 .AddSingleton<ItemLotScanner>()
-                .AddSingleton(sp => CreateDataSource<EquipParamWeapon>(sp, DataSourceNames.EquipParamWeapon))
+                .AddSingleton<IconBuilder>()
+                .AddSingleton((sp) =>
+                {
+                    return new RandomProvider(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
+                });
+
+        // Data Sources
+        services.AddSingleton(sp => CreateDataSource<EquipParamWeapon>(sp, DataSourceNames.EquipParamWeapon))
                 .AddSingleton(sp => CreateDataSource<EquipParamAccessory>(sp, DataSourceNames.EquipParamAccessory))
                 .AddSingleton(sp => CreateDataSource<EquipParamGem>(sp, DataSourceNames.EquipParamGem))
                 .AddSingleton(sp => CreateDataSource<EquipParamProtector>(sp, DataSourceNames.EquipParamProtector))
@@ -38,11 +49,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton(sp => CreateDataSource<ItemLotBase>(sp, DataSourceNames.ItemLotBase))
                 .AddSingleton(sp => CreateDataSource<DamageTypeSetup>(sp, DataSourceNames.DamageTypeSetup))
                 .AddSingleton(sp => CreateDataSource<TalismanConfig>(sp, DataSourceNames.TalismanConfig))
-                .AddSingleton(sp => CreateDataSource<SpEffectConfig>(sp, DataSourceNames.SpEffectConfig))
-                .AddSingleton((sp) =>
-                {
-                    return new RandomProvider(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
-                });
+                .AddSingleton(sp => CreateDataSource<SpEffectConfig>(sp, DataSourceNames.SpEffectConfig));
 
         return services;
     }

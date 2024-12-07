@@ -4,8 +4,6 @@ public enum WeaponTypes { Normal, Shields, StaffsSeals, BowsCrossbows }
 
 public class WeaponGeneratorConfig
 {
-    public string DamageDescription { get; set; }
-
     public float UniqueNameChance { get; set; }
 
     public float UniqueWeaponMultiplier { get; set; }
@@ -15,8 +13,6 @@ public class WeaponGeneratorConfig
     public List<WeaponTypes> Types { get; set; }
 
     public List<int> Weights { get; set; }
-
-    public AshOfWarConfig AshOfWarConfig { get; set; }
 }
 
 public class AshOfWarConfig

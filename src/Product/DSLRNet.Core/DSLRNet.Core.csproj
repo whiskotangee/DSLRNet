@@ -723,10 +723,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>DdsFileTypePlusIO_x64.dll</TargetPath>
     </None>
-    <None Update="LootIcons\Epic_Gradient.png">
+    <None Update="LootIcons\Epic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\Legendary_Gradient.png">
+    <None Update="LootIcons\Legendary.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_11.dds">
@@ -807,13 +807,13 @@
     <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_10.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\Rare_Gradient.png">
+    <None Update="LootIcons\Rare.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\Uncommon_Gradient.png">
+    <None Update="LootIcons\Uncommon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\Unique_Gradient.png">
+    <None Update="LootIcons\Unique.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

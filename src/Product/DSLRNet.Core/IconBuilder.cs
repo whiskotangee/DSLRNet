@@ -35,6 +35,7 @@ public partial class IconBuilder(
         string workPath = Path.Combine(configuration.Settings.DeployPath, "work");
         string bakedSheetsSource = $"{iconSettings.IconSourcePath}\\BakedSheets";
         string preBakedSheetsSource = $"{iconSettings.IconSourcePath}\\PreBakedSheets";
+        string iconMappingsFile = Path.Combine(bakedSheetsSource, "iconmappings.json");
 
         Directory.CreateDirectory(workPath);
         Directory.CreateDirectory(bakedSheetsSource);
@@ -51,7 +52,12 @@ public partial class IconBuilder(
             }
         }
 
-        RarityIconMappingConfig sheetConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText(Path.Combine(bakedSheetsSource, "iconmappings.json")));
+        if (!File.Exists(iconMappingsFile))
+        {
+            File.Copy(Path.Combine(preBakedSheetsSource, Path.GetFileName(iconMappingsFile)), iconMappingsFile);
+        }
+
+        RarityIconMappingConfig sheetConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText(iconMappingsFile));
 
         // Step 1: Regenerate if needed
         if (iconSettings.RegenerateIconSheets)
@@ -68,7 +74,7 @@ public partial class IconBuilder(
             });
 
             // Save the updated icon mappings configuration
-            File.WriteAllText(Path.Combine(bakedSheetsSource, "iconmappings.json"), JsonConvert.SerializeObject(sheetConfig, Formatting.Indented));
+            File.WriteAllText(iconMappingsFile, JsonConvert.SerializeObject(sheetConfig, Formatting.Indented));
 
             Directory.Delete(workPath, true);
         }
@@ -194,12 +200,6 @@ public partial class IconBuilder(
         await Parallel.ForEachAsync(iconsToDuplicate.Keys, (lootType, c) =>
         {
             int overallSheetCounter = 1;
-            foreach (var image in loadedImageCache.Values)
-            {
-                image.Dispose();
-            }
-
-            loadedImageCache = [];
 
             foreach (var rarity in settings.IconSheetSettings.Rarities)
             {
@@ -249,7 +249,7 @@ public partial class IconBuilder(
 
                     logger.LogInformation($"Creating montage image for {newItem.Name} with {newItem.IconMappings.IconReplacements.Count} icons");
 
-                    newItem.GeneratedBytes = CreateMontage(settings.IconSheetSettings, newItem.IconMappings.IconReplacements.Select(s => s.ConvertedIcon));
+                    newItem.GeneratedBytes = CreateMontage(settings.IconSheetSettings, newItem.IconMappings.IconReplacements);
 
                     logger.LogInformation($"Completed creating montage image for {newItem.Name}");
 
@@ -262,6 +262,13 @@ public partial class IconBuilder(
 
         sheetConfig.IconSheets.AddRange(generatedSheets);
 
+        foreach (var image in loadedImageCache.Values)
+        {
+            image.Dispose();
+        }
+
+        loadedImageCache = [];
+
         return sheetConfig;
     }
 
@@ -270,8 +277,7 @@ public partial class IconBuilder(
         Image<Bgra32> image = this.loadedImageCache.GetOrAdd(baseIconFile, (name) =>
         {
             using var ddsImage = Pfim.Pfimage.FromFile(name);
-            var image = Image.LoadPixelData<Bgra32>(ddsImage.Data, ddsImage.Width, ddsImage.Height);
-            return image;
+            return Image.LoadPixelData<Bgra32>(ddsImage.Data, ddsImage.Width, ddsImage.Height);
         });
 
         // Create a transparent image for compositing
@@ -290,7 +296,7 @@ public partial class IconBuilder(
         return result;
     }
 
-    public byte[] CreateMontage(IconSheetSettings sheetSettings, IEnumerable<Image<Rgba32>> images)
+    public byte[] CreateMontage(IconSheetSettings sheetSettings, List<IconMapping> iconMappings)
     {
         // Create a blank canvas
         using var canvas = new Image<Rgba32>(sheetSettings.IconSheetSize.Width, sheetSettings.IconSheetSize.Height);
@@ -301,17 +307,16 @@ public partial class IconBuilder(
         int y = sheetSettings.IconDimensions.Padding;
         int count = 0;
 
-        foreach (var image in images)
+        foreach (var iconMapping in iconMappings)
         {
-            // Place the image on the canvas
-            canvas.Mutate(d => d.DrawImage(image, new Point(x, y), 1f));
+            x = iconMapping.TileX; y = iconMapping.TileY;
+
+            canvas.Mutate(d => d.DrawImage(iconMapping.ConvertedIcon, new Point(x, y), 1f));
 
             count += 1;
-            var coordinates = GetImageCoordinates(count, sheetSettings);
 
-            x = coordinates.x; y = coordinates.y;
-
-            image.Dispose();
+            iconMapping.ConvertedIcon.Dispose();
+            iconMapping.ConvertedIcon = null;
         }
 
         using MemoryStream pngStream = new();
@@ -335,7 +340,7 @@ public partial class IconBuilder(
     {
         return Image.Load<Rgba32>(Path.Combine(settings.IconSourcePath, $"{rarity.BackgroundImageName}.png"));
     }
-
+    
     private static (int x, int y) GetImageCoordinates(int index, IconSheetSettings settings)
     {
         var columns = settings.IconsPerRow;

@@ -186,5 +186,5 @@ public class IconMapping
     public int TileY { get; set; }
 
     [JsonIgnore]
-    public Image<Rgba32> ConvertedIcon { get; set; }
+    public Image<Rgba32>? ConvertedIcon { get; set; }
 }

@@ -98,7 +98,5 @@ public class RarityIconDetails
 {
     public List<int> RarityIds { get; set; }
 
-    public string ColorHex { get; set; }
-
     public string BackgroundImageName { get; set; }
 }

@@ -7,45 +7,90 @@ using System.Text.RegularExpressions;
 using System.Text;
 using SixLabors.ImageSharp.Processing;
 using Configuration = Configuration;
+using System.Collections.Concurrent;
+using System.Linq;
+using DSLRNet.Core.Extensions;
+using DdsFileTypePlus;
+using PaintDotNet;
+using ImageMagick;
 
 public partial class IconBuilder(
     IOptionsMonitor<Configuration> configOptions, 
     IOptionsMonitor<IconBuilderSettings> iconSettingsOptions,
-    RarityHandler rarityHandler)
+    ILogger<IconBuilder> logger,
+    RarityHandler rarityHandler,
+    ProcessRunner processRunner)
 {
-    private string NameBase = "SB_Icon_DSLR_";
+    private readonly string nameBase = "SB_Icon_DSLR_";
+    private ConcurrentDictionary<string, Image<Bgra32>> loadedImageCache = [];
 
     public async Task ApplyIcons()
     {
+        logger.LogInformation($"Beginning apply icons");
+
         Configuration configuration = configOptions.CurrentValue;
         IconBuilderSettings iconSettings = iconSettingsOptions.CurrentValue;
 
         string sourcePathBase = iconSettings.ModSourcePath ?? configuration.Settings.GamePath;
-        string workPath = Path.Combine(iconSettings.ModSourcePath, "work");
+        string workPath = Path.Combine(configuration.Settings.DeployPath, "work");
+        string bakedSheetsSource = $"{iconSettings.IconSourcePath}\\BakedSheets";
+        string preBakedSheetsSource = $"{iconSettings.IconSourcePath}\\PreBakedSheets";
 
         Directory.CreateDirectory(workPath);
+        Directory.CreateDirectory(bakedSheetsSource);
 
-        RarityIconMappingConfig sheetConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText(Path.Combine("LootIcons", "BakedSheets", "iconmappings.json")));
-
-        // regenerate if needed
-        if (iconSettings.RegenerateIconSheets)
+        // Check if there are no DDS files in bakedSheetsSource
+        if (Directory.GetFiles(bakedSheetsSource, "*.dds").Length == 0)
         {
-            sheetConfig = await RegenerateRaritySheets();
-        }
-        else
-        {
-            var preBakedFiles = Directory.GetFiles("LootIcons\\BakedSheets", $"{NameBase}*.dds");
+            // Copy everything from PreBakedSheets to BakedSheets
+            var preBakedFiles = Directory.GetFiles(preBakedSheetsSource, "*.dds");
             foreach (var preBakedFile in preBakedFiles)
             {
-                var existing = sheetConfig.IconSheets
-                    .Single(d => Path.GetFileNameWithoutExtension(d.Name).Equals(Path.GetFileNameWithoutExtension(preBakedFile), StringComparison.OrdinalIgnoreCase));
+                string destinationFile = Path.Combine(bakedSheetsSource, Path.GetFileName(preBakedFile));
+                File.Copy(preBakedFile, destinationFile, overwrite: true);
+            }
+        }
 
-                existing.GeneratedBytes = File.ReadAllBytes(preBakedFile);
+        RarityIconMappingConfig sheetConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText(Path.Combine(bakedSheetsSource, "iconmappings.json")));
+
+        // Step 1: Regenerate if needed
+        if (iconSettings.RegenerateIconSheets)
+        {
+            logger.LogInformation($"Regenerating icon sheets for each rarity as configured");
+
+            sheetConfig = await RegenerateRaritySheets(configuration, iconSettings, sourcePathBase, workPath);
+
+            // Save the images to BakedSheets directory
+            sheetConfig.IconSheets.ForEach(d =>
+            {
+                File.WriteAllBytes(Path.Combine(bakedSheetsSource, Path.ChangeExtension(d.Name, "dds")), d.GeneratedBytes);
+                d.GeneratedBytes = [];
+            });
+
+            // Save the updated icon mappings configuration
+            File.WriteAllText(Path.Combine(bakedSheetsSource, "iconmappings.json"), JsonConvert.SerializeObject(sheetConfig, Formatting.Indented));
+
+            Directory.Delete(workPath, true);
+        }
+
+        // Step 2: Use the icon sheets from BakedSheets
+        logger.LogInformation($"Using baked icon sheet files from {bakedSheetsSource}");
+
+        var bakedFiles = Directory.GetFiles(bakedSheetsSource, "*.dds");
+
+        foreach (var bakedFile in bakedFiles)
+        {
+            var existing = sheetConfig.IconSheets
+                .SingleOrDefault(d => Path.GetFileNameWithoutExtension(d.Name).Equals(Path.GetFileNameWithoutExtension(bakedFile), StringComparison.OrdinalIgnoreCase));
+
+            if (existing != null)
+            {
+                existing.GeneratedBytes = File.ReadAllBytes(bakedFile);
             }
         }
 
         TPF commonIcons = TPF.Read(Path.Combine(sourcePathBase, "menu", "hi", "01_common.tpf.dcx"));
-        var removeIcons = commonIcons.Textures.Where(d => d.Name.Contains(NameBase)).ToList();
+        var removeIcons = commonIcons.Textures.Where(d => d.Name.Contains(nameBase)).ToList();
 
         foreach (var item in removeIcons)
         {
@@ -56,8 +101,9 @@ public partial class IconBuilder(
 
         foreach (var iconSheet in sheetConfig.IconSheets)
         {
-            TPF.Texture tex = new TPF.Texture(Path.GetFileNameWithoutExtension(iconSheet.Name).Trim(), 102, 0, iconSheet.GeneratedBytes, TPF.TPFPlatform.PC);
+            TPF.Texture tex = new(Path.GetFileNameWithoutExtension(iconSheet.Name).Trim(), 102, 0, iconSheet.GeneratedBytes, TPF.TPFPlatform.PC);
             commonIcons.Textures.Add(tex);
+            iconSheet.GeneratedBytes = [];
         }
 
         commonIcons.Write(Path.Combine(configuration.Settings.DeployPath, "menu", "hi", "01_common.tpf.dcx"));
@@ -66,17 +112,17 @@ public partial class IconBuilder(
         SaveLayoutFile(sourcePathBase, configuration.Settings.DeployPath, sheetConfig.IconSheets, iconSettings.IconSheetSettings.IconDimensions);
 
         rarityHandler.UpdateIconMapping(sheetConfig);
-
-        Directory.Delete(workPath, true);
     }
 
     private void SaveLayoutFile(string sourcePath, string destinationPath, List<IconSheetParameters> sheets, IconDimensions iconDimensions)
     {
+        logger.LogInformation($"Saving layout file for new icon sheets at {destinationPath}");
+
         var fileSource = Path.Combine(sourcePath, "menu", "hi", "01_common.sblytbnd.dcx");
 
         BND4 bnd = BND4.Read(fileSource);
 
-        var dslrAtlases = bnd.Files.Where(d => d.Name.Contains(NameBase)).ToList();
+        var dslrAtlases = bnd.Files.Where(d => d.Name.Contains(nameBase)).ToList();
         foreach(var atlas in dslrAtlases)
         {
             bnd.Files.Remove(atlas);
@@ -102,81 +148,71 @@ public partial class IconBuilder(
         bnd.Write(Path.Combine(destinationPath, "menu", "hi", "01_common.sblytbnd.dcx"));
     }
 
-    public Task<RarityIconMappingConfig> RegenerateRaritySheets()
+    public async Task<RarityIconMappingConfig> RegenerateRaritySheets(Configuration config, IconBuilderSettings settings, string sourcePath, string workPath)
     {
-        return Task.FromResult(new RarityIconMappingConfig());
+        var sourceFile = Path.Combine(sourcePath, "menu", "hi", "00_solo.tpfbdt");
+        var headerFile = Path.Combine(sourcePath, "menu", "hi", "00_solo.tpfbhd");
 
-        /*
-        // verify withcy path is defined and work path is defined
+        File.Copy(sourceFile, Path.Combine(workPath, Path.GetFileName(sourceFile)), true);
+        File.Copy(headerFile, Path.Combine(workPath, Path.GetFileName(headerFile)), true);
 
-        // witchy expand 00_solo
+        var workFile = Path.Combine(workPath, Path.GetFileName(sourceFile));
+        var expandedDirectory = workFile.Replace(".", "-");
 
-        RarityIconMappingConfig sheetConfig = new();
+        await processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
+        {
+            ExePath = config.Settings.WitchyBNDPath,
+            Arguments = $"{workFile} --silent --recursive"
+        });
+
+        RarityIconMappingConfig sheetConfig = new()
+        { 
+            IconSheets = []
+        };
 
         Regex regex = MyRegex();
 
         Dictionary<LootType, List<string>> iconsToDuplicate = [];
 
-        iconsToDuplicate[LootType.Weapon] = Directory.GetFiles(hdIconsUiItem.PackageItem.ExpandedDirectory, "MENU_Knowledge_*.dds", SearchOption.AllDirectories)
-            .Where(file => sheetConfig.WeaponIcons.Contains(int.Parse(Path.GetFileNameWithoutExtension(file).Replace("MENU_Knowledge_", ""))))
+        iconsToDuplicate[LootType.Weapon] = Directory.GetFiles(expandedDirectory, "MENU_Knowledge_*.dds", SearchOption.AllDirectories)
+            .Where(file => settings.IconSheetSettings.WeaponIcons.Contains(int.Parse(Path.GetFileNameWithoutExtension(file).Replace("MENU_Knowledge_", ""))))
             .ToList();
-        iconsToDuplicate[LootType.Armor] = Directory.GetFiles(hdIconsUiItem.PackageItem.ExpandedDirectory, "MENU_Knowledge_*.dds", SearchOption.AllDirectories)
-            .Where(file => sheetConfig.ArmorIcons.Contains(int.Parse(Path.GetFileNameWithoutExtension(file).Replace("MENU_Knowledge_", ""))))
+        iconsToDuplicate[LootType.Armor] = Directory.GetFiles(expandedDirectory, "MENU_Knowledge_*.dds", SearchOption.AllDirectories)
+            .Where(file => settings.IconSheetSettings.ArmorIcons.Contains(int.Parse(Path.GetFileNameWithoutExtension(file).Replace("MENU_Knowledge_", ""))))
             .ToList();
-        iconsToDuplicate[LootType.Talisman] = Directory.GetFiles(hdIconsUiItem.PackageItem.ExpandedDirectory, "MENU_Knowledge_*.dds", SearchOption.AllDirectories)
-            .Where(file => sheetConfig.TalismanIcons.Contains(int.Parse(Path.GetFileNameWithoutExtension(file).Replace("MENU_Knowledge_", ""))))
+        iconsToDuplicate[LootType.Talisman] = Directory.GetFiles(expandedDirectory, "MENU_Knowledge_*.dds", SearchOption.AllDirectories)
+            .Where(file => settings.IconSheetSettings.TalismanIcons.Contains(int.Parse(Path.GetFileNameWithoutExtension(file).Replace("MENU_Knowledge_", ""))))
             .ToList();
-
-        await this.ConvertToPNG(iconsToDuplicate.Values.SelectMany(s => s).Distinct().Where(d => !File.Exists(Path.ChangeExtension(d, "png"))), hdIconsUiItem.PackageItem.ExpandedDirectory);
-
-        IconMappingConfig iconMappingConfig = new()
-        {
-            IconSheets = []
-        };
-
-        int padding = 2;
-        int iconsPerRow = 23;
-        int numRows = 12;
-        int iconsPerSheet = iconsPerRow * numRows;
-        int fullIconWidth = 160;
-        int sheetWidth = fullIconWidth * iconsPerRow;
-        int sheetHeight = sheetWidth;
-
-        if (File.Exists(Path.Combine(this.WorkDirectory, "iconmappings.json")))
-        {
-            SaveLayoutFile(JsonConvert.DeserializeObject<IconMappingConfig>(File.ReadAllText(Path.Combine(this.WorkDirectory, "iconmappings.json"))).IconSheets, fullIconWidth, padding);
-            return;
-        }
-
-        string[] witchyXml = Directory.GetFiles(hdIconsUiItem.PackageItem.ExpandedDirectory, "*witchy*xml");
-        string[] lowWitchyXml = Directory.GetFiles(lowIconsUiItem.PackageItem.ExpandedDirectory, "*witchy*xml");
-
-        XDocument xmlDoc = XDocument.Load(witchyXml.First());
-        XDocument lowXmlDoc = XDocument.Load(lowWitchyXml.First());
-
-        // Example: Add a new <file> element
-        XElement filesElement = xmlDoc.Descendants("files").FirstOrDefault();
-        XElement lowFilesElement = lowXmlDoc.Descendants("textures").FirstOrDefault();
-
-        ConcurrentBag<string> ddsConverts = [];
-
         ConcurrentBag<string> iconSheetFileNames = [];
 
-        List<IconSheetParameters> sheets = new();
+        int overallIdCounter = settings.IconSheetSettings.StartAt;
+        var iconsPerSheet = settings.IconSheetSettings.RowsPerSheet * settings.IconSheetSettings.IconsPerRow;
 
-        int overallSheetCounter = 1;
-        int overallIdCounter = sheetConfig.StartAt;
+        ConcurrentBag<IconSheetParameters> generatedSheets = [];
 
-        foreach (var LootType in iconsToDuplicate.Keys)
+        logger.LogInformation($"Generating icon sheets for {iconsToDuplicate[LootType.Weapon].Count} weapons, {iconsToDuplicate[LootType.Armor].Count} armors, and {iconsToDuplicate[LootType.Talisman].Count} talismans");
+        await Parallel.ForEachAsync(iconsToDuplicate.Keys, (lootType, c) =>
         {
-            foreach (Rarity rarity in sheetConfig.Rarities)
+            int overallSheetCounter = 1;
+            foreach (var image in loadedImageCache.Values)
             {
-                IEnumerable<List<string>> splitIcons = iconsToDuplicate[LootType].Split(iconsPerSheet);
+                image.Dispose();
+            }
 
-                if (rarity.RarityIds.First() == -1 && LootType != LootType.Weapon)
+            loadedImageCache = [];
+
+            foreach (var rarity in settings.IconSheetSettings.Rarities)
+            {
+                logger.LogInformation($"Generating icon sheets for loot type {lootType} and icon background{rarity.BackgroundImageName}");
+
+                IEnumerable<List<string>> splitIcons = iconsToDuplicate[lootType].Split(iconsPerSheet).ToList();
+
+                if (rarity.RarityIds.First() == -1 && lootType != LootType.Weapon)
                 {
                     continue;
                 }
+
+                using Image<Rgba32> iconBackgroundImage = GetItemBackgroundImage(settings, rarity);
 
                 int iconCounter = 0;
 
@@ -184,147 +220,77 @@ public partial class IconBuilder(
                 {
                     IconSheetParameters newItem = new()
                     {
-                        Rarity = rarity,
-                        Name = $"SB_Icon_DSLR_{LootType}_{overallSheetCounter:D2}.png",
-                        IconMappings = new IconMappings()
+                        Name = $"{nameBase}{lootType}_{overallSheetCounter:D2}.png",
+                        IconMappings = new RarityIconMapping()
                         {
                             RarityIds = rarity.RarityIds,
                             IconReplacements = splitItem.Select(s =>
                             {
-                                (int x, int y) imageCoordinates = GetImageCoordinates(iconCounter % iconsPerSheet, iconsPerRow, fullIconWidth, fullIconWidth, padding);
+                                (int x, int y) = GetImageCoordinates(iconCounter % iconsPerSheet, settings.IconSheetSettings);
                                 IconMapping ret = new()
                                 {
                                     OriginalIconId = int.Parse(regex.Match(s).Groups[1].Value),
                                     NewIconId = overallIdCounter,
                                     SourceIconPath = Path.GetFileName(s),
-                                    TileX = imageCoordinates.x,
-                                    TileY = imageCoordinates.y,
+                                    TileX = x,
+                                    TileY = y,
+                                    ConvertedIcon = CreateIcon(settings.IconSheetSettings, iconBackgroundImage, s)
                                 };
 
-                                overallIdCounter++;
+                                Interlocked.Increment(ref overallIdCounter);
                                 iconCounter++;
                                 return ret;
                             }).ToList()
                         }
                     };
-                    lowFilesElement.Add(new XElement("texture",
-                                    new XElement("flags1", "0x00"),
-                                    new XElement("format", "102"),
-                                    new XElement("name", $"{Path.GetFileNameWithoutExtension(newItem.Name)}.dds")
-                                ));
+
+                    // create montage, keep loaded bytes in return value
                     overallSheetCounter++;
 
-                    iconMappingConfig.IconSheets.Add(newItem);
+                    logger.LogInformation($"Creating montage image for {newItem.Name} with {newItem.IconMappings.IconReplacements.Count} icons");
+
+                    newItem.GeneratedBytes = CreateMontage(settings.IconSheetSettings, newItem.IconMappings.IconReplacements.Select(s => s.ConvertedIcon));
+
+                    logger.LogInformation($"Completed creating montage image for {newItem.Name}");
+
+                    generatedSheets.Add(newItem);
                 }
-            }
-        }
-        lowXmlDoc.Save(lowWitchyXml.First());
-
-        ConcurrentBag<string> reCompressDirectories = [];
-
-        foreach (var sheetParams in iconMappingConfig.IconSheets)
-        {
-            var gradient = GetItemGradient(sheetParams.Rarity);
-
-            List<string> iconsNamesForSheet = [];
-
-            foreach (IconMapping icon in sheetParams.IconMappings.IconReplacements)
-            {
-                string destinationFolder = Path.Combine(hdIconsUiItem.PackageItem.ExpandedDirectory, $"MENU_Knowledge_{icon.NewIconId:D5}.tpf.dcx".ToExpandedDirectoryName());
-
-                Directory.CreateDirectory(destinationFolder);
-                string destinationName = Path.Combine(destinationFolder, $"MENU_Knowledge_{icon.NewIconId:D5}.png");
-                string sourceDds = Path.Combine(hdIconsUiItem.PackageItem.ExpandedDirectory, $"MENU_Knowledge_{icon.OriginalIconId:D5}.tpf.dcx".ToExpandedDirectoryName(), Path.GetFileName(icon.SourceIconPath));
-                string sourcePng = Path.Combine(hdIconsUiItem.PackageItem.ExpandedDirectory, Path.ChangeExtension(Path.GetFileName(icon.SourceIconPath), "png"));
-                string generatedPng = Path.Combine(destinationFolder, Path.GetFileName(sourceDds.Replace(".dds", "gradient.png")));
-                string destinationPng = generatedPng.Replace("gradient.png", ".png");
-
-                reCompressDirectories.Add(destinationFolder);
-                string preBaked = Path.Combine(this.BuildContext.References.UIReplacementsSourceDirectory, "ItemIcons", "PreBaked", $"MENU_Knowledge_{icon.NewIconId:D5}.dds");
-                if (File.Exists(preBaked))
-                {
-                    File.Copy(preBaked, Path.ChangeExtension(destinationName, "dds"), true);
-                }
-                else
-                {
-                    // Load the DDS image
-                    using (var image = Image.Load<Rgba32>(sourcePng))
-                    {
-                        // Create a transparent image for compositing
-                        using var result = new Image<Rgba32>(image.Width, image.Height);
-                        result.Mutate(x => x.BackgroundColor(Color.Transparent));
-
-                        // Composite the gradient onto the result
-                        result.Mutate(x => x.DrawImage(gradient, new Point(0, 0), 1f));
-
-                        // Composite the original image onto the result
-                        result.Mutate(x => x.DrawImage(image, 1f));
-
-                        // Save the result before resizing
-                        result.Save(generatedPng);
-
-                        // Resize and sharpen the result
-                        result.Mutate(x => x.Resize(fullIconWidth, fullIconWidth));
-
-                        // Save the final image
-                        var lowVersion = destinationName.Replace(".png", ".low.png");
-                        result.Save(lowVersion);
-
-                        // Add to the collection
-                        iconsNamesForSheet.Add(lowVersion);
-                    }
-
-                    File.Copy(generatedPng, destinationName, true);
-                }
-            }
-
-            string sheetDestination = Path.Combine(lowIconsUiItem.PackageItem.ExpandedDirectory, sheetParams.Name);
-            string preBakedSheet = Path.Combine(this.BuildContext.References.UIReplacementsSourceDirectory, "ItemIcons", "PreBaked", sheetParams.Name);
-            preBakedSheet = Path.ChangeExtension(preBakedSheet, "dds");
-
-            if (File.Exists(preBakedSheet))
-            {
-                File.Copy(preBakedSheet, Path.ChangeExtension(sheetDestination, "dds"), true);
-            }
-            else
-            {
-                this.CreateMontage(iconsNamesForSheet, sheetDestination, fullIconWidth, iconsPerRow, padding);
-                iconSheetFileNames.Add(sheetDestination);
             }
 
             return ValueTask.CompletedTask;
-        }, "Generating icon sheets", maxParallelism: 15);
-
-        await this.ConvertToDDS(ddsConverts, hdIconsUiItem.PackageItem.ExpandedDirectory, "BC7_UNORM");
-
-        foreach (var ddsFile in ddsConverts)
-        {
-            File.Copy(ddsFile, Path.Combine(this.BuildContext.References.UIReplacementsSourceDirectory, "ItemIcons", "PreBaked", Path.GetFileName(ddsFile)));
-        }
-
-        await this.ConvertToDDS(iconSheetFileNames, lowIconsUiItem.PackageItem.ExpandedDirectory, "BC7_UNORM");
-        foreach (var iconSheetFileName in iconSheetFileNames)
-        {
-            File.Copy(iconSheetFileName, Path.Combine(this.BuildContext.References.UIReplacementsSourceDirectory, "ItemIcons", "PreBaked", Path.ChangeExtension(Path.GetFileName(iconSheetFileName), "dds")));
-        }
-
-        ddsConverts.ToList().ForEach(d =>
-        {
-            File.Copy(Path.Combine(hdIconsUiItem.PackageItem.ExpandedDirectory, Path.ChangeExtension(Path.GetFileName(d), "dds")), Path.ChangeExtension(d, "dds"), true);
         });
 
-        await this.ExecuteWitchyBND(reCompressDirectories, "Re-compressing menu icon dcx");
+        sheetConfig.IconSheets.AddRange(generatedSheets);
 
-        File.WriteAllText(Path.Combine(this.WorkDirectory, "iconmappings.json"), JsonConvert.SerializeObject(iconMappingConfig));
-
-        // Save the changes back to the XML file
-        xmlDoc.Save(witchyXml.First());
-
-        SaveLayoutFile(iconMappingConfig.IconSheets, fullIconWidth, padding);
-        */
+        return sheetConfig;
     }
 
-    public Image<Rgba32> CreateMontage(IconSheetSettings sheetSettings, IEnumerable<Image<Rgba32>> images)
+    public Image<Rgba32> CreateIcon(IconSheetSettings settings, Image<Rgba32> gradient, string baseIconFile)
+    {
+        Image<Bgra32> image = this.loadedImageCache.GetOrAdd(baseIconFile, (name) =>
+        {
+            using var ddsImage = Pfim.Pfimage.FromFile(name);
+            var image = Image.LoadPixelData<Bgra32>(ddsImage.Data, ddsImage.Width, ddsImage.Height);
+            return image;
+        });
+
+        // Create a transparent image for compositing
+        var result = new Image<Rgba32>(image.Width, image.Height);
+        result.Mutate(x => x.BackgroundColor(Color.Transparent));
+
+        // Composite the background image onto the result
+        result.Mutate(x => x.DrawImage(gradient, new Point(0, 0), 1f));
+
+        // Composite the original image onto the result
+        result.Mutate(x => x.DrawImage(image, 1f));
+
+        // Resize and sharpen the result
+        result.Mutate(x => x.Resize(settings.IconDimensions.IconSize, settings.IconDimensions.IconSize));
+
+        return result;
+    }
+
+    public byte[] CreateMontage(IconSheetSettings sheetSettings, IEnumerable<Image<Rgba32>> images)
     {
         // Create a blank canvas
         using var canvas = new Image<Rgba32>(sheetSettings.IconSheetSize.Width, sheetSettings.IconSheetSize.Height);
@@ -341,36 +307,44 @@ public partial class IconBuilder(
             canvas.Mutate(d => d.DrawImage(image, new Point(x, y), 1f));
 
             count += 1;
-            var coordinates = GetImageCoordinates(
-                count, 
-                sheetSettings.IconsPerRow, 
-                sheetSettings.IconDimensions.IconSize, 
-                sheetSettings.IconDimensions.IconSize, 
-                sheetSettings.IconDimensions.Padding);
+            var coordinates = GetImageCoordinates(count, sheetSettings);
 
             x = coordinates.x; y = coordinates.y;
+
+            image.Dispose();
         }
 
-        return canvas;
+        using MemoryStream pngStream = new();
+        canvas.SaveAsPng(pngStream);
+        pngStream.Position = 0;
+        
+        MagickImage pngConverter = new(pngStream, MagickFormat.Png);
+        using MemoryStream magickDDSStream = new();
+        pngConverter.Write(magickDDSStream, MagickFormat.Dds);
+
+        using Surface ddsSurface = DdsFile.Load(magickDDSStream.ToArray());
+        using MemoryStream ddsStream = new();
+
+        DdsFile.Save(ddsStream, DdsFileFormat.BC7, DdsErrorMetric.Perceptual, BC7CompressionSpeed.Fast,
+            false, false, ResamplingAlgorithm.Bicubic, ddsSurface, null);
+
+        return ddsStream.ToArray();
     }
 
-    //private Image GetItemGradient(Rarity rarity)
-    //{
-    //    return Image.Load<Rgba32>(Path.Combine(this.BuildContext.References.UIReplacementsSourceDirectory, "ItemIcons", $"{rarity.GradientName}.png"));
-    //}
-
-    //public static string ColorToFileNameSafe(System.Drawing.Color color)
-    //{
-    //    return $"Color_{color.R:X2}{color.G:X2}{color.B:X2}{color.A:X2}";
-    //}
-
-    static (int x, int y) GetImageCoordinates(int index, int columns, int imageWidth, int imageHeight, int padding)
+    private Image<Rgba32> GetItemBackgroundImage(IconBuilderSettings settings, RarityIconDetails rarity)
     {
+        return Image.Load<Rgba32>(Path.Combine(settings.IconSourcePath, $"{rarity.BackgroundImageName}.png"));
+    }
+
+    private static (int x, int y) GetImageCoordinates(int index, IconSheetSettings settings)
+    {
+        var columns = settings.IconsPerRow;
+
         int row = index / columns;
         int col = index % columns;
 
-        int x = col * (imageWidth + padding) + padding;
-        int y = row * (imageHeight + padding) + padding;
+        int x = col * (settings.IconDimensions.IconSize + settings.IconDimensions.Padding) + settings.IconDimensions.Padding;
+        int y = row * (settings.IconDimensions.IconSize + settings.IconDimensions.Padding) + settings.IconDimensions.Padding;
 
         return (x, y);
     }

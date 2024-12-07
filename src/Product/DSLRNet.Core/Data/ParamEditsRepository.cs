@@ -1,7 +1,7 @@
 ﻿namespace DSLRNet.Core.Data;
 using System.Text;
 
-public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, IDataSource<ItemLotParam_enemy> enemyDataSource)
+public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, IDataSource<ItemLotParam_enemy> enemyDataSource, ILogger<ParamEditsRepository> logger)
 {
     private Dictionary<ParamNames, List<ParamEdit>> paramEdits { get; set; } =
         Enum.GetValues(typeof(ParamNames))
@@ -82,7 +82,7 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
 
         if (errorMessages.Length > 0)
         {
-            Log.Logger.Error(errorMessages.ToString());
+            logger.LogError(errorMessages.ToString());
             throw new Exception($"Item lot verification failed with the following errors:\n{errorMessages}");
         }
 
@@ -109,7 +109,7 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
     {
         if (param != null && this.ContainsParamEdit(name, param.ID))
         {
-            Log.Logger.Error($"Attempting to add param {name} edit with Id {param.ID} that already exists");
+            logger.LogError($"Attempting to add param {name} edit with Id {param.ID} that already exists");
             throw new Exception($"Attempting to add param {name} edit with Id {param.ID} that already exists");
         }
 

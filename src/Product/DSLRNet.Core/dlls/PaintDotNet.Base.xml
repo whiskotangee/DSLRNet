@@ -1,0 +1,380 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PaintDotNet.Base</name>
+    </assembly>
+    <members>
+        <member name="M:PaintDotNet.Clipboard.IClipboardReader.IsDataMaybeAvailable">
+            <summary>
+            Gets a flag indicating whether data might be available on the clipboard, or if it definitely isn't.
+            </summary>
+            <returns>
+            true if data might be available, or false if it definitely isn't
+            </returns>
+        </member>
+        <member name="M:PaintDotNet.Clipboard.IClipboardReader.MaybeGetData">
+            <summary>
+            Attempts to get data from the clipboard.
+            </summary>
+            <returns>
+            The data if it can be retrieved. Otherwise, either null is returned or an exception is thrown.
+            </returns>
+        </member>
+        <member name="M:PaintDotNet.Collections.ConcurrentQueueExtensions.EnqueueRange``2(System.Collections.Concurrent.ConcurrentQueue{``0},``1)">
+            <summary>
+            Enqueues a list of items to the queue.
+            </summary>
+            <returns>The number of items that were enqueued.</returns>
+            <remarks>
+            The items will be enqueued in-order, but they may be interspersed with items being
+            enqueued from other threads.
+            </remarks>
+        </member>
+        <member name="M:PaintDotNet.Collections.EnumerableExtensions.TryToArrayEfficiently``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Converts the list to an array. Returns null if this cannot be done efficiently (e.g. if it would fallback on Enumerable.ToArray()).
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Collections.ISegmentedCollection`1">
+            <summary>
+            Denotes a collection whose data is allocated in segments.
+            </summary>
+            <remarks>
+            Segments sizes are always a power of 2. This makes computing offsets very
+            efficient, as they can be implemented using shifts and logical masks instead 
+            of division and modulus.
+            </remarks>
+        </member>
+        <member name="P:PaintDotNet.Collections.ISegmentedCollection`1.SegmentLengthLog2">
+            <summary>
+            The log2 of the segment length.
+            </summary>
+        </member>
+        <member name="P:PaintDotNet.Collections.ISegmentedCollection`1.Capacity">
+            <summary>
+            Gets the capacity of the collection. This will always be a multiple of SegmentLength.
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.Collections.ISegmentedCollection`1.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that enough capacity is allocated to hold the requested number of elements.
+            </summary>
+            <remarks>
+            The capacity value will be rounded up to a segment length boundary.
+            </remarks>
+        </member>
+        <member name="M:PaintDotNet.Collections.ISegmentedCollection`1.TrimExcess">
+            <summary>
+            Trims any extra allocated memory that is not currently needed.
+            </summary>
+            <remarks>
+            If Capacity is much larger than Count, this can reduce memory usage.
+            Usually segments are not released immediately, in case the size of
+            the collection is fluctuating across segment length boundaries.
+            </remarks>
+        </member>
+        <member name="T:PaintDotNet.Collections.RefCountingSet`1">
+            <summary>
+            Similar to Set&lt;T&gt;, but with the added ability to increment/decrement an items reference count.
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.Collections.RefCountingSet`1.Add(`0)">
+            <summary>
+            Adds the item to the set, or increments its reference count if it is already present.
+            </summary>
+            <param name="item"></param>
+            <returns>
+            true if the item was added to the set, or false if the item was already 
+            in the set and therefore its reference count was incremented.
+            </returns>
+        </member>
+        <member name="M:PaintDotNet.Collections.RefCountingSet`1.Release(`0)">
+            <summary>
+            Decrements an item's reference count, and removes it from the set if it reaches 0.
+            </summary>
+            <param name="item"></param>
+            <returns>
+            true if the item was in the set and removed. false if item was not in the set, 
+            or if its reference count is not yet zero.
+            </returns>
+        </member>
+        <member name="M:PaintDotNet.Collections.SegmentedList`1.GetSegmentEndListIndex(System.Int32)">
+            <summary>
+            Returns an exclusive endpoint index for the requested segment index,
+            clamped to the count of this list.
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.Collections.SegmentedList`1.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that adding items up to the requested capacity will not require memory allocations.
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.Collections.SegmentedList`1.SetRange(System.Int32,`0[],System.Int32,System.Int32)">
+            <summary>
+            Starting at dstIndex, writes items into the list. The list will be expanded if necessary.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Collections.SortedKeyValueList`3">
+            <summary>
+            Maintains a sorted list of key-value pairs. There are no restrictions on key or value uniqueness.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Collections.SortedList`1">
+            <summary>
+            Maintains a sorted list of items. A given item may be in the collection more than once.
+            </summary>
+        </member>
+        <member name="P:PaintDotNet.Collections.SparseList`1.Capacity">
+            <summary>
+            Gets the number of segment slots that are allocated, multiplied times SegmentLength.
+            </summary>
+        </member>
+        <member name="P:PaintDotNet.Collections.SparseQueue`1.Capacity">
+            <summary>
+            Gets the capacity of the queue. This will always be a multiple of SegmentLength.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Collections.WorkStealingQueue`1">
+            <summary>A work-stealing queue.</summary>
+            <typeparam name="T">Specifies the type of data stored in the queue.</typeparam>
+        </member>
+        <member name="M:PaintDotNet.ComparableUtil.CompareTo``1(``0,System.Object)">
+            <summary>
+            This is a utility method you can call from your implementation of IComparable.CompareTo(object) when you
+            have already implemented IComparable&lt;TThis&gt;.Equals(TThis other).
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.Concurrency.IAsyncSource.SetResult(PaintDotNet.Functional.Result)">
+            <summary>
+            Sets the result of this async, which is then delivered to any registered handlers.
+            </summary>
+            <returns>true if the result was accepted. false if the result has already been set.</returns>
+        </member>
+        <member name="M:PaintDotNet.Concurrency.IAsyncSource`1.SetResult(PaintDotNet.Functional.Result{`0})">
+            <summary>
+            Sets the result of this async, which is then delivered to any registered handlers.
+            </summary>
+            <returns>true if the result was accepted. false if the result has already been set.</returns>
+        </member>
+        <member name="M:PaintDotNet.Concurrency.IAsyncWorkDeque.Enqueue(PaintDotNet.Collections.QueueSide,System.Action)">
+            <summary>
+            Queues a work item to the front or end of the queue.
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.Concurrency.IAsyncWorkQueue.BeginTry(System.Action)">
+            <summary>
+            Queues a work item to the end of the work queue.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Diagnostics.FinalizerBomb">
+            <summary>
+            Instances of this class must be disposed, otherwise they will throw an exception
+            when they are finalized. Useful for implementing "scope" structs. 
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.Drawing.GdipBitmapUtil.CreateAlias(System.Drawing.Bitmap)">
+            <summary>
+            Creates an alias for the given bitmap. This helps to avoid "already in use" types of errors. The input
+            and output bitmaps share the same memory. Changes in one will be reflected in the other, and vice versa.
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.Drawing.RectangleExtensions.PixelsIntersectWith(System.Drawing.Rectangle,System.Drawing.Rectangle)">
+            <summary>
+            Determines if the two rectangles intersect, and if that intersection has a positive
+            pixel coverage area.
+            </summary>
+            <param name="rect1"></param>
+            <param name="rect2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PaintDotNet.Drawing.RectangleFExtensions.RoundBound(System.Drawing.RectangleF)">
+            <summary>
+            Converts a RectangleF to RectangleF by rounding down the Location and rounding
+            up the Size.
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.Dynamic.DynamicInvokeUtil.TryGetOrWrap(System.Object)">
+            <summary>
+            Returns an object that implements IDynamicInvoke which can be used for dynamic method invocation on the given target.
+            </summary>
+            <param name="target">The object to return or wrap.</param>
+            <returns>
+            If the target implements IDynamicInvoke, then it is returned directly. Otherwise, a wrapper is returned:
+            If the target has a private method, OnInvokeDynamicMethod(string name, object[] args), then the wrapper will delegate to that method.
+            Otherwise, null will be returned. This latter mechanism is provided so that classes compiled for an older version of this assembly,
+            which lacks IDynamicInvoke, may still essentially implement IDynamicInvoke.
+            </returns>
+        </member>
+        <member name="M:PaintDotNet.Dynamic.IDynamicInvoke.InvokeDynamicMethod(System.String,System.Object[])">
+            <summary>
+            Invokes a method with the given name and arguments.
+            </summary>
+            <param name="name">The name of the method to invoke.</param>
+            <param name="args">The arguments to pass to the method. If there are no arguments, this should be null or 0-length.</param>
+            <returns>The return value of the method. If the method's return type is void, then this will be null.</returns>
+            <remarks>If elements of the args array correspond to ref or out parameters, then they may have been modified upon return.</remarks>
+            <exception cref="T:System.Reflection.TargetInvocationException">The invoked method threw an exception.</exception>
+            <exception cref="T:System.MissingMethodException">A method with the given name doesn't exist.</exception>
+        </member>
+        <member name="T:PaintDotNet.Functional.Maybe`1">
+            <summary>
+            Mostly the same as Nullable, except without special CLR support which means it allows nesting/recursion.
+            e.g., Maybe&lt;Maybe&lt;T&gt;&gt; works fine, as does Maybe&lt;Nullable&lt;T&gt;&gt; and
+            Nullable&lt;Maybe&lt;T&gt;&gt;. You also don't get some of the sometimes-confusing-but-sometimes-not
+            semantics around boxing and unboxing of Nullable types.
+            
+            Reference types are also supported, although you don't get extra semantics: 'null' will always result in 
+            HasValue being false. So for that case it serves the same purpose as Java's Maybe&lt;T&gt; class, that
+            of allowing you to be more verbose about whether something can be null or not.
+            
+            Nullable&lt;*&gt; is also supported, and works similarly to reference types in that HasValue will be
+            false when a null value is used.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.IO.GuardedStream">
+            <summary>
+            This class exists so that we can record exceptions thrown during any call into the source Stream.
+            This is needed because if you use Bitmap.Save() on Win7, GDI+ uses WIC but it doesn't pay attention
+            to things like IOExceptions and you otherwise cannot detect the error state.
+            </summary>
+        </member>
+        <member name="F:PaintDotNet.IO.IOEventArgs.ioOperationType">
+            <summary>
+            Whether we are reporting a Read or Write operation.
+            </summary>
+        </member>
+        <member name="F:PaintDotNet.IO.IOEventArgs.position">
+            <summary>
+            The offset within the file that the operation is to begin, or has finished, at.
+            </summary>
+        </member>
+        <member name="F:PaintDotNet.IO.IOEventArgs.count">
+            <summary>
+            The number of bytes that were read or written.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.IO.SiphonStream">
+             <summary>
+             This was written as a workaround for a bug in SharpZipLib that prevents it
+             from working right with huge Write() commands. So we split the incoming
+             requests into smaller requests, like 4KB each or so.
+            
+             However, this didn't work around the bug. But now I use this class so that
+             I can keep tabs on a serialization or deserialization operation and have a
+             dialog box with a progress bar.
+             </summary>
+        </member>
+        <member name="M:PaintDotNet.IO.SiphonStream.Abort(System.Exception)">
+            <summary>
+            Causes the next call to Read() or Write() to throw an IOException instead. The
+            exception passed to this method will be used as the InnerException.
+            </summary>
+            <param name="newThrowMe"></param>
+        </member>
+        <member name="P:PaintDotNet.MemoryManagement.IBuffer.Access">
+            <summary>
+            Gets the maximum access that this buffer allows for a lock.
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.MemoryManagement.IBuffer.Lock(System.Int64,System.Int64,PaintDotNet.MemoryManagement.BufferAccess)">
+            <summary>
+            Pins the buffer in memory and provides access to the requested region.
+            Locks are not exclusive and are used solely to pin the buffer in memory,
+            and ensure that the buffer will not be freed for the duration of the
+            operation.
+            The access granted to the buffer will be at least the requested access
+            level. If multiple locks are active then the least restrictive access level
+            will be in effect.
+            </summary>
+        </member>
+        <member name="P:PaintDotNet.MemoryManagement.IVirtualMemory.Protection">
+            <summary>
+            Gets or sets the protection applied to this virtual memory allocation.
+            </summary>
+            <remarks>
+            The value of this property limits the access level that a lock will be
+            granted for. However, it is also possible to set this property to a
+            more restrictive protection mode while a lock is active (e.g. a ReadWrite
+            lock is active and you set Protection to ReadOnly), which will
+            effectively break the lock.
+            To use a buffer which automatically manages the Protection property to
+            the lowest level required by any active locks, see the ProtectedBuffer
+            class.
+            </remarks>
+        </member>
+        <member name="M:PaintDotNet.MemoryManagement.IVirtualMemory.DisregardContents">
+            <summary>
+            Indicates that the current contents of the buffer are no longer of interest, and are
+            not required to be maintained if pages must be read from or written to the pagefile.
+            </summary>
+            <remarks>
+            This is useful for implementing object pools that require large allocations, e.g.
+            bitmaps. When a bitmap is returned to the pool, calling Disregard() means that the 
+            contents will not be written to disk if memory pressure requires that it be evicted 
+            from physical memory.
+            This is also useful for heap managers. Any heap section that is completely free may
+            have its contents disregarded, while still maintaining the committed state.
+            See also: MEM_RESET as used by the VirtualAlloc API, http://msdn.microsoft.com/en-us/library/windows/desktop/aa366887(v=vs.85).aspx
+            This method is not required to do anything; it may be implemented as a no-op, as a real
+            VirtualAlloc(MEM_RESET) call, or as a ZeroMemory() call.
+            This method has no effect if there are any active locks, or if the object is already
+            disposed or finalized.
+            </remarks>
+        </member>
+        <member name="T:PaintDotNet.MemoryManagement.MemoryProtection">
+            <summary>
+            Indicates the level of protection that is applied to a block of memory.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Serialization.SerializationFallbackBinder">
+            <summary>
+            This is an implementation of SerializationBinder that tries to find a match
+            for a type even if a direct match doesn't exist. This gets around versioning
+            mismatches, and allows you to move data types between assemblies.
+            </summary>
+            <remarks>
+            This class is in SystemLayer because there is code in this assembly that must
+            make use of it. This class does not otherwise need to be here, and can be
+            ignored by implementors.
+            </remarks>
+        </member>
+        <member name="P:PaintDotNet.SizingEventArgs.ScreenWindowRectangle">
+            <summary>
+            Gets or sets the screen coordinates of the window, including the non-client region.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Threading.IDispatcher">
+            <summary>
+            An interface for a thread-affinitized queue of work.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Threading.IDispatcherObject">
+            <summary>
+            Represents an object that is associated with a dispatcher, and that
+            does its work on the thread that the dispatcher is affinitized to.
+            All calls into this object must be on the dispatcher's thread.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Threading.ThreadAffinitizedObjectBase">
+            <summary>
+            Helper base class for IThreadAffinitizedObject imlementations. At instantiation,
+            the current thread is recognized into being the RequiredManagedThreadID for this
+            object.
+            </summary>
+        </member>
+        <member name="T:PaintDotNet.Threading.ThreadDispatcher">
+            <summary>
+            One thread for queueing work items into. The work items will always be executed in the
+            order they are queued, and there will never be more than 1 of them executing at any
+            given time.
+            </summary>
+        </member>
+        <member name="M:PaintDotNet.VersionUtil.GetVersionNumberString(System.Version,System.Int32)">
+            <summary>
+            Returns a string for just the version number, i.e. "3.01"
+            </summary>
+            <remarks>2 and 4 are special cases. If you specify 4, then the version is returned as-is. If you specify 2, then
+            it is actually "prettied" up to 3 fields, e.g. 3.51 -> 3.5.1</remarks>
+        </member>
+    </members>
+</doc>

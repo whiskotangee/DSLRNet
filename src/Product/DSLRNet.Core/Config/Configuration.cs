@@ -1,4 +1,10 @@
 ﻿namespace DSLRNet.Core.Config;
+
+using Org.BouncyCastle.Utilities;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using System.Drawing;
+
 public class Configuration
 {
     public Settings Settings { get; set; }
@@ -41,6 +47,8 @@ public class Settings
 {
     public string DeployPath { get; set; }
     public string DSMSPortablePath { get; set; }
+
+    public string WitchyBNDPath { get; set; }
 
     public ItemLotGeneratorSettings ItemLotGeneratorSettings { get; set; }
 
@@ -150,6 +158,7 @@ public class RarityIconMappingConfig
 
 public class IconSheetParameters
 {
+    [JsonIgnore]
     public byte[] GeneratedBytes { get; set; }
 
     public RarityIconMapping IconMappings { get; set; }
@@ -175,4 +184,7 @@ public class IconMapping
     public int TileX { get; set; }
 
     public int TileY { get; set; }
+
+    [JsonIgnore]
+    public Image<Rgba32> ConvertedIcon { get; set; }
 }

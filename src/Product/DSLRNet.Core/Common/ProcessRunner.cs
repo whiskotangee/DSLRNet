@@ -5,7 +5,7 @@ using Polly;
 using System.Diagnostics;
 using System.Text;
 
-public class ProcessRunner(ILogger logger)
+public class ProcessRunner(ILogger<ProcessRunner> logger)
 {
     private readonly SemaphoreSlim semaphoreSlim = new(100);
     private readonly ILogger logger = logger;

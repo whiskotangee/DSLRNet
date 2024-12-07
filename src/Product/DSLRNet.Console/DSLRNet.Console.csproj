@@ -30,6 +30,10 @@
     <Content Include="appsettings*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Update="dlls\DdsFileTypePlusIO_x64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>$(OutDir)\DdsFileTypePlusIO_x64.dll</TargetPath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

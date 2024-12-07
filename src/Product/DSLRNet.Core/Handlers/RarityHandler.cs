@@ -4,7 +4,7 @@ using DSLRNet.Core.Extensions;
 public class RarityHandler : BaseHandler
 {
     private readonly RandomProvider randomNumberGetter;
-    private RarityIconMappingConfig iconMappingConfig;
+    private RarityIconMappingConfig iconMappingConfig = new();
 
     private readonly Dictionary<int, RaritySetup> RarityConfigs = [];
 
@@ -14,9 +14,6 @@ public class RarityHandler : BaseHandler
         IDataSource<RaritySetup> raritySetupDataSource) : base(dataRepository)
     {
         this.randomNumberGetter = randomNumberGetter;
-
-        this.iconMappingConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText("LootIcons\\BakedSheets\\iconmappings.json"));
-
         this.RarityConfigs = raritySetupDataSource.GetAll().ToDictionary(d => d.ID);
     }
 

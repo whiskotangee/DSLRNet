@@ -52,7 +52,6 @@ Log.Logger = new LoggerConfiguration()
 services.AddLogging((builder) =>
 {
     builder.AddSerilog();
-    builder.AddConsole();
 });
 
 services.InitializeDSLR(configuration);

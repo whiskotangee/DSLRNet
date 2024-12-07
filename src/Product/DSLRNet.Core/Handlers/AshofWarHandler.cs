@@ -4,10 +4,12 @@ public class AshofWarHandler(
     RandomProvider random,
     IOptions<AshOfWarConfig> ashofWarConfig,
     ParamEditsRepository generatedDataRepository,
-    IDataSource<EquipParamGem> gemParamDataSource) : BaseHandler(generatedDataRepository)
+    IDataSource<EquipParamGem> gemParamDataSource,
+    ILogger<AshofWarHandler> logger) : BaseHandler(generatedDataRepository)
 {
     private readonly IEnumerable<EquipParamGem> equipParamGems = gemParamDataSource.GetAll();
     private readonly AshOfWarConfig ashOfWarConfig = ashofWarConfig.Value;
+    private readonly ILogger<AshofWarHandler> logger = logger;
 
     public void AssignAshOfWar(EquipParamWeapon weapon)
     {
@@ -28,7 +30,7 @@ public class AshofWarHandler(
         }
         else
         {
-            Log.Logger.Warning($"Weapon Base {weaponType} named {weapon.Name} did not have any matching valid gems");
+            this.logger.LogWarning($"Weapon Base {weaponType} named {weapon.Name} did not have any matching valid gems");
         }
     }
 }

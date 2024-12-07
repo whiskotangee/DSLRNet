@@ -10,10 +10,11 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         RandomProvider random,
         ParamEditsRepository dataRepository,
         IOptions<Configuration> configuration,
-        IDataSource<EquipParamProtector> paramDataSource)
-        : base(rarityHandler, whiteListHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector)
+        IDataSource<EquipParamProtector> paramDataSource,
+        ILogger<ParamLootGenerator<EquipParamProtector>> logger)
+        : base(rarityHandler, whiteListHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector, logger)
     {
-        this.CumulativeID = new CumulativeID();
+        this.CumulativeID = new CumulativeID(logger);
 
         this.DataSource = paramDataSource;
     }

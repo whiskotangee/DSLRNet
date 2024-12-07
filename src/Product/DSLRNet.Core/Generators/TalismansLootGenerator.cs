@@ -21,10 +21,11 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         LoreGenerator loreGenerator,
         ParamEditsRepository dataRepository,
         IDataSource<TalismanConfig> talismanConfigDataSource,
-        IDataSource<EquipParamAccessory> talismanParamDataSource)
-        : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory)
+        IDataSource<EquipParamAccessory> talismanParamDataSource,
+        ILogger<ParamLootGenerator<EquipParamAccessory>> logger)
+        : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory, logger)
     {
-        this.CumulativeID = new CumulativeID() { IDMultiplier = 10 };
+        this.CumulativeID = new CumulativeID(logger) { IDMultiplier = 10 };
 
         this.TalismanConfigs = talismanConfigDataSource.GetAll().ToList();
 

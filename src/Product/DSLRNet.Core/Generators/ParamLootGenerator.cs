@@ -8,7 +8,8 @@ public class ParamLootGenerator<TParamType>(
     RandomProvider random,
     IOptions<Configuration> configuration,
     ParamEditsRepository dataRepository,
-    ParamNames outputParamName) : BaseHandler(dataRepository)
+    ParamNames outputParamName,
+    ILogger<ParamLootGenerator<TParamType>> logger) : BaseHandler(dataRepository)
 {
     public RarityHandler RarityHandler { get; set; } = rarityHandler;
 
@@ -65,7 +66,7 @@ public class ParamLootGenerator<TParamType>(
         List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailableSpEffectSlots(outputDictionary) : this.GetPassiveSpEffectSlotArrayFromOutputParamName();
         if (speffectParam.Count == 0)
         {
-            Log.Logger.Warning($"{outputDictionary.ID} has no available spEffect slots, not applying any");
+            logger.LogWarning($"{outputDictionary.ID} has no available spEffect slots, not applying any");
             return [];
         }
 
@@ -83,7 +84,7 @@ public class ParamLootGenerator<TParamType>(
         }
         else if (rarityId > 5)
         {
-            Log.Logger.Warning("APPLY SPEFFECTS CALL RESULTED IN NO SPEFFECTS WITH RARITY > 5");
+            logger.LogWarning("APPLY SPEFFECTS CALL RESULTED IN NO SPEFFECTS WITH RARITY > 5");
         }
 
         return spEffectTexts;
@@ -144,13 +145,13 @@ public class ParamLootGenerator<TParamType>(
 
     public int ChoosePriorityIdAtRandom()
     {
-        int chosenIndex = this.Random.NextInt(0, this.PriorityIDs_Current.Count - 1);
-        int chosenId = this.PriorityIDs_Current[chosenIndex];
+        int chosenId = this.Random.GetRandomItem(this.PriorityIDs_Current);
         if (chosenId != -1)
         {
-            Log.Logger.Debug($"PRIORITY ID {chosenId} SELECTED! REMAINING PRIORITY IDS: {string.Join(", ", this.PriorityIDs_Current)}");
+            logger.LogDebug($"Priority ID {chosenId} Chosen, remaining Ids: {string.Join(", ", this.PriorityIDs_Current)}");
         }
-        this.PriorityIDs_Current.RemoveAt(chosenIndex);
+
+        this.PriorityIDs_Current.Remove(chosenId);
         return chosenId;
     }
 

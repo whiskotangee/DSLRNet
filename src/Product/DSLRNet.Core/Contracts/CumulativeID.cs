@@ -1,10 +1,12 @@
 ﻿namespace DSLRNet.Core.Contracts;
 
-using Serilog;
 using System.Collections.Generic;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
-public class CumulativeID
+public class CumulativeID(ILogger logger)
 {
+    private readonly ILogger logger = logger;
+
     public int StartingID { get; set; } = 8000;
     public float IDMultiplier { get; set; } = 10000;
     public bool UseWrapAround { get; set; } = false;
@@ -44,7 +46,7 @@ public class CumulativeID
         if (this.IsItemFlagAcquisitionCumulativeID)
         {
             int flagId = (int)this.IFA["starting"] + ((List<int>)this.IFA["offsets"])[this.IFA_CurrentOffset] * 1000 + this.cumulativeId;
-            Log.Logger.Information($"Assigning acquisition flag {flagId}");
+            this.logger.LogInformation($"Assigning acquisition flag {flagId}");
             return flagId;
         }
         else

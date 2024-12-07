@@ -1,10 +1,10 @@
 ﻿namespace DSLRNet.Core.Data;
 
-public class CsvDataSource<T>(DataSourceConfig paramSource, RandomProvider random) : BaseDataSource<T>(random)
+public class CsvDataSource<T>(DataSourceConfig paramSource, RandomProvider random, Csv csv) : BaseDataSource<T>(random)
     where T : class, ICloneable<T>, new()
 {
     public override IEnumerable<T> LoadData()
     {
-        return Csv.LoadCsv<T>(paramSource.SourcePath).ToList();
+        return csv.LoadCsv<T>(paramSource.SourcePath).ToList();
     }
 }

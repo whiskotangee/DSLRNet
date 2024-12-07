@@ -1,15 +1,15 @@
 ﻿namespace DSLRNet.Core.Data;
 
-public class Csv
+public class Csv(ILogger<Csv> logger)
 {
-    public static List<T> LoadCsv<T>(string filename)
+    public List<T> LoadCsv<T>(string filename)
     {
-        Log.Logger.Information($"CSV Loading {filename}");
+        logger.LogInformation($"CSV Loading {filename}");
         using StreamReader reader = new(filename);
         using CsvReader csv = new(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             PrepareHeaderForMatch = (PrepareHeaderForMatchArgs args) => args.Header.ToLower(),
-            MissingFieldFound = (MissingFieldFoundArgs args) => Log.Logger.Error($"{filename} missing field at index {args.Index}"),
+            MissingFieldFound = (MissingFieldFoundArgs args) => logger.LogError($"{filename} missing field at index {args.Index}"),
             HasHeaderRecord = true
         });
 
@@ -17,9 +17,9 @@ public class Csv
         return new List<T>(records);
     }
 
-    public static void WriteCsv(string fileName, List<GenericParam> dictionaries)
+    public void WriteCsv(string fileName, List<GenericParam> dictionaries)
     {
-        Log.Logger.Information($"CSV Writing {fileName}");
+        logger.LogInformation($"CSV Writing {fileName}");
 
         Dictionary<string, object?>.KeyCollection headers = dictionaries.First().Properties.Keys;
 
@@ -37,7 +37,7 @@ public class Csv
                 }
                 else
                 {
-                    Log.Logger.Error($"Param file {Path.GetFileName(fileName)} had header {header} but dictionary doesn't have it?");
+                    logger.LogError($"Param file {Path.GetFileName(fileName)} had header {header} but dictionary doesn't have it?");
                 }
             }
 

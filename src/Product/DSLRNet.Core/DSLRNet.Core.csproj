@@ -457,7 +457,7 @@
     <Content Include="DefaultData\ER\FMGBase\WeaponEffect_SOTE_DLC2.fmgmerge.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="LootIcons\BakedSheets\iconmappings.json">
+    <Content Include="LootIcons\PreBakedSheets\iconmappings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DefaultData\ER\ItemLots\Default_Enemy.ini">
@@ -686,8 +686,9 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="33.0.1" />
-    <PackageReference Include="DdsFileTypePlusHack" Version="1.2.1" />
     <PackageReference Include="ini-parser-netstandard" Version="2.5.2" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="14.2.0" />
+    <PackageReference Include="Magick.NET.Core" Version="14.2.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -698,6 +699,7 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Pfim" Version="0.11.3" />
     <PackageReference Include="Polly" Version="8.5.0" />
     <PackageReference Include="Serilog" Version="4.0.1" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.6" />
@@ -708,88 +710,101 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="DdsFileTypePlus">
+      <HintPath>dlls\DdsFileTypePlus.dll</HintPath>
+    </Reference>
+    <Reference Include="PaintDotNet.Base">
+      <HintPath>dlls\PaintDotNet.Base.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="dlls\DdsFileTypePlusIO_x64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>DdsFileTypePlusIO_x64.dll</TargetPath>
+    </None>
     <None Update="LootIcons\Epic_Gradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="LootIcons\Legendary_Gradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_11.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_11.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_12.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_12.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_13.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_13.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_14.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_14.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_15.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_15.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_16.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_16.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_17.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_17.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_18.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_18.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_19.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_19.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_20.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_20.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_21.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_21.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Armor_22.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_22.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Talisman_23.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Talisman_23.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Talisman_24.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Talisman_24.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Talisman_25.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Talisman_25.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Talisman_26.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Talisman_26.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_01.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_01.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_02.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_02.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_03.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_03.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_04.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_04.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_05.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_05.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_06.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_06.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_07.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_07.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_08.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_08.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_09.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_09.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LootIcons\BakedSheets\SB_Icon_DSLR_Weapon_10.dds">
+    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_10.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="LootIcons\Rare_Gradient.png">

@@ -11,6 +11,7 @@ public class ItemLotGenerator : BaseHandler
     private readonly TalismanLootGenerator talismanLootGenerator;
     private readonly RarityHandler rarityHandler;
     private readonly RandomProvider random;
+    private readonly ILogger<ItemLotGenerator> logger;
     private readonly Configuration configuration;
     private readonly CumulativeID itemAcquisitionCumulativeId;
     private readonly IEnumerable<ItemLotParam_map> itemLotParam_Map = [];
@@ -26,15 +27,17 @@ public class ItemLotGenerator : BaseHandler
         IOptions<Configuration> configuration,
         IDataSource<ItemLotParam_map> mapDataSource,
         IDataSource<ItemLotParam_enemy> enemyDataSource,
-        IDataSource<ItemLotBase> itemLotBaseDataSource) : base(dataRepository)
+        IDataSource<ItemLotBase> itemLotBaseDataSource,
+        ILogger<ItemLotGenerator> logger) : base(dataRepository)
     {
         this.armorLootGenerator = armorLootGenerator;
         this.weaponLootGenerator = weaponLootGenerator;
         this.talismanLootGenerator = talismanLootGenerator;
         this.rarityHandler = rarityHandler;
         this.random = random;
+        this.logger = logger;
         this.configuration = configuration.Value;
-        this.itemAcquisitionCumulativeId = new CumulativeID()
+        this.itemAcquisitionCumulativeId = new CumulativeID(logger as Microsoft.Extensions.Logging.ILogger)
         {
             IsItemFlagAcquisitionCumulativeID = true,
             UseWrapAround = true
@@ -60,7 +63,7 @@ public class ItemLotGenerator : BaseHandler
             }
         }
 
-        Log.Logger.Information($"Current edit count: {JsonConvert.SerializeObject(this.GeneratedDataRepository.EditCountsByName())}");
+        this.logger.LogInformation($"Current edit count: {JsonConvert.SerializeObject(this.GeneratedDataRepository.EditCountsByName())}");
     }
 
     public void CreateItemLot_Enemy(ItemLotQueueEntry queueEntry)
@@ -80,12 +83,12 @@ public class ItemLotGenerator : BaseHandler
 
                     if (existingItemLot != null)
                     {
-                        Log.Logger.Debug($"ItemLot {itemLotIds[x]} already exists in CSV data for type {queueEntry.Category}, basing template on existing");
+                        this.logger.LogDebug($"ItemLot {itemLotIds[x]} already exists in CSV data for type {queueEntry.Category}, basing template on existing");
                         newItemLot = existingItemLot.CloneToBase();
                     }
                     else if (this.GeneratedDataRepository.TryGetParamEdit(queueEntry.ParamName, itemLotIds[x], out ParamEdit? paramEdit))
                     {
-                        Log.Logger.Warning($"ItemLot {itemLotIds[x]} already modified for type {queueEntry.Category}, ignoring entry");
+                        this.logger.LogWarning($"ItemLot {itemLotIds[x]} already modified for type {queueEntry.Category}, ignoring entry");
                         continue;
                     }
                     else
@@ -124,7 +127,7 @@ public class ItemLotGenerator : BaseHandler
                 }
                 else
                 {
-                    Log.Logger.Debug($"Itemlot ID {itemLotIds[x]} is blacklisted, skipping...");
+                    this.logger.LogDebug($"Itemlot ID {itemLotIds[x]} is blacklisted, skipping...");
                 }
             }
 
@@ -177,7 +180,7 @@ public class ItemLotGenerator : BaseHandler
                 }
                 else
                 {
-                    Log.Logger.Debug($"Itemlot ID {baseItemLotIds[x]} is blacklisted, skipping...");
+                    this.logger.LogDebug($"Itemlot ID {baseItemLotIds[x]} is blacklisted, skipping...");
                 }
             }
 
@@ -208,7 +211,7 @@ public class ItemLotGenerator : BaseHandler
             if (this.itemLotParam_Map.SingleOrDefault(d => d.ID == currentId + 1) != null
                 || this.GeneratedDataRepository.ContainsParamEdit(queueEntry.ParamName, i + 1))
             {
-                Log.Logger.Debug($"Map item lot {startingId} could not find a sequential item lot, stopping at {currentId} but itemLot {currentId + 1} exists");
+                this.logger.LogDebug($"Map item lot {startingId} could not find a sequential item lot, stopping at {currentId} but itemLot {currentId + 1} exists");
                 continue;
             }
 
@@ -234,18 +237,18 @@ public class ItemLotGenerator : BaseHandler
             bool editExists = this.GeneratedDataRepository.TryGetParamEdit(queueEntry.ParamName, currentItemLotId, out ParamEdit? paramLot);
             if (itemLot == null && !editExists)
             {
-                Log.Logger.Debug($"No entry exists for {currentItemLotId}, giving up search for previous flagId to use with {baseItem.ID} by returning {flagId}");
+                this.logger.LogDebug($"No entry exists for {currentItemLotId}, giving up search for previous flagId to use with {baseItem.ID} by returning {flagId}");
                 break;
             }
 
             if (itemLot != null && itemLot.getItemFlagId > 0)
             {
-                Log.Logger.Debug($"Reusing item flag {itemLot.getItemFlagId} from existing {currentItemLotId} for item lot {baseItem.ID}");
+                this.logger.LogDebug($"Reusing item flag {itemLot.getItemFlagId} from existing {currentItemLotId} for item lot {baseItem.ID}");
                 flagId = itemLot.getItemFlagId;
             }
             else if (editExists && paramLot.ParamObject.GetValue<long>("getItemFlagId") > 0)
             {
-                Log.Logger.Debug($"Reusing item flag {paramLot.ParamObject.GetValue<long>("getItemFlagId")} from param edit {currentItemLotId} for item lot {paramLot.ParamObject.GetValue<long>("ID")}");
+                this.logger.LogDebug($"Reusing item flag {paramLot.ParamObject.GetValue<long>("getItemFlagId")} from param edit {currentItemLotId} for item lot {paramLot.ParamObject.GetValue<long>("ID")}");
                 flagId = paramLot.ParamObject.GetValue<int>("getItemFlagId");
             }
 
@@ -255,7 +258,7 @@ public class ItemLotGenerator : BaseHandler
 
         if (flagId <= 0)
         {
-            Log.Logger.Warning($"Could not find flag id for item lot base Id {baseItem.ID}");
+            this.logger.LogWarning($"Could not find flag id for item lot base Id {baseItem.ID}");
         }
 
         return flagId;

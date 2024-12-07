@@ -10,11 +10,13 @@ public class DSLRNetBuilder(
     ItemLotGenerator itemLotGenerator,
     IOptions<Configuration> configuration,
     ParamEditsRepository dataRepository,
-    ItemLotScanner itemLotScanner)
+    ItemLotScanner itemLotScanner,
+    ProcessRunner processRunner,
+    Csv csv)
 {
     private readonly Configuration configuration = configuration.Value;
     private readonly ILogger<DSLRNetBuilder> logger = logger;
-    private readonly ProcessRunner processRunner = new(logger);
+    private readonly ProcessRunner processRunner = processRunner;
 
     public async Task BuildAndApply()
     {
@@ -122,7 +124,7 @@ public class DSLRNetBuilder(
 
             List<GenericParam> parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.ID).Select(d => d.ParamObject).ToList();
 
-            Csv.WriteCsv(csvFile, parms.Select(d =>
+            csv.WriteCsv(csvFile, parms.Select(d =>
             {
                 GenericParam? ret = d.Clone() as GenericParam;
                 ret.Name = string.Empty;

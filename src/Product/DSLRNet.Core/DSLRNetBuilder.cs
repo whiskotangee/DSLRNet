@@ -30,11 +30,11 @@ public class DSLRNetBuilder(
 
         Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
-        List<ItemLotQueueEntry> enemyItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
+        List<ItemLotQueueEntry> enemyItemLotsSetups = Directory.GetFiles("Data\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[0]))
             .ToList();
 
-        List<ItemLotQueueEntry> mapItemLotsSetups = Directory.GetFiles("DefaultData\\ER\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
+        List<ItemLotQueueEntry> mapItemLotsSetups = Directory.GetFiles("Data\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[1]))
             .ToList();
 
@@ -54,10 +54,10 @@ public class DSLRNetBuilder(
 
         if (remainingIds.Any())
         {
-            ItemLotQueueEntry remainingMapLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Map.ini", this.configuration.Itemlots.Categories[1]);
+            ItemLotQueueEntry remainingMapLots = ItemLotQueueEntry.Create("Data\\ItemLots\\Default_Map.ini", this.configuration.Itemlots.Categories[1]);
             remainingMapLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Map].OrderBy(d => d).ToList();
 
-            ItemLotQueueEntry remainingEnemyLots = ItemLotQueueEntry.Create("DefaultData\\ER\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
+            ItemLotQueueEntry remainingEnemyLots = ItemLotQueueEntry.Create("Data\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
             remainingEnemyLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Enemy].OrderBy(d => d).ToList();
 
             itemLotGenerator.CreateItemLots([remainingMapLots]);
@@ -84,7 +84,7 @@ public class DSLRNetBuilder(
 
         IEnumerable<IGrouping<ParamNames, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
 
-        List<string> massEditFiles = Directory.GetFiles("DefaultData\\ER\\MassEdit\\", "*.massedit")
+        List<string> massEditFiles = Directory.GetFiles("Data\\MassEdit\\", "*.massedit")
             .ToList();
 
         foreach (string? massEdit in massEditFiles)

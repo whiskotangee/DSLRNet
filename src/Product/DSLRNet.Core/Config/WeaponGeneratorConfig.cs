@@ -14,6 +14,10 @@ public class WeaponGeneratorConfig
 
     public List<int> Weights { get; set; }
 
+    public int DamageIncreasesStaminaThreshold { get; set; }
+
+    public IntValueRange CritChanceRange { get; set; }
+
     public IntValueRange PrimaryBaseScalingRange { get; set; }
 
     public IntValueRange SecondaryBaseScalingRange { get; set; }

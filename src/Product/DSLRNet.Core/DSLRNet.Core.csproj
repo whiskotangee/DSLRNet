@@ -12,6 +12,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="LootIcons\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.Default.IconBuilder.json">
@@ -75,99 +80,6 @@
     <None Update="dlls\DdsFileTypePlusIO_x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>DdsFileTypePlusIO_x64.dll</TargetPath>
-    </None>
-    <None Update="LootIcons\Epic.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\Legendary.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_11.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_12.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_13.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_14.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_15.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_16.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_17.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_18.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_19.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_20.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_21.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Armor_22.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Talisman_23.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Talisman_24.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Talisman_25.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Talisman_26.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_01.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_02.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_03.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_04.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_05.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_06.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_07.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_08.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_09.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\PreBakedSheets\SB_Icon_DSLR_Weapon_10.dds">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\Rare.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\Uncommon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="LootIcons\Unique.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

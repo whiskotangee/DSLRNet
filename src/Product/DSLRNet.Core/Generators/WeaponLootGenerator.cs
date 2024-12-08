@@ -115,14 +115,8 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         if (isUniqueWeapon)
         {
             string uniqueName = this.LoreGenerator.CreateRandomUniqueName(generatedType == WeaponTypes.Shields);
-            if (!string.IsNullOrEmpty(uniqueName))
-            {
-                weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Configuration.Settings.ItemLotGeneratorSettings.UniqueItemColor, size: 24);
-            }
-            else
-            {
-                this.logger.LogError("GENERATED UNIQUENAME WAS EMPTY!");
-            }
+
+            weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Configuration.Settings.ItemLotGeneratorSettings.UniqueItemColor);
         }
 
         //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
@@ -366,7 +360,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         if (critMultiplier > 0.0)
         {
-            critValue = this.Random.NextInt(5, 20);
+            critValue = this.Random.NextInt(weaponGeneratorConfig.CritChanceRange);
         }
 
         weapon.throwAtkRate = (int)(critValue * (1 + critMultiplier));
@@ -374,7 +368,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         string staminaParam = this.Configuration.LootParam.WeaponsStaminaRate;
         float maxDamage = this.Configuration.LootParam.WeaponsDamageParam.Max(par => weapon.GenericParam.GetValue<float>(par));
 
-        if (maxDamage > 170)
+        if (maxDamage > weaponGeneratorConfig.DamageIncreasesStaminaThreshold)
         {
             weapon.staminaConsumptionRate = (float)MathFunctions.RoundToXDecimalPlaces((float)(weapon.staminaConsumptionRate + this.Random.Next(0.05, 0.3)), 3);
         }

@@ -13,6 +13,12 @@ public class WeaponGeneratorConfig
     public List<WeaponTypes> Types { get; set; }
 
     public List<int> Weights { get; set; }
+
+    public IntValueRange PrimaryBaseScalingRange { get; set; }
+
+    public IntValueRange SecondaryBaseScalingRange { get; set; }
+
+    public IntValueRange OtherBaseScalingRange { get; set; }
 }
 
 public class AshOfWarConfig

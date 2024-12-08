@@ -1,10 +1,12 @@
 ﻿namespace DSLRNet.Core.Common;
 
+using Org.BouncyCastle.Crypto.Modes.Gcm;
+
 public class RandomProvider(int seed)
 {
     private readonly Random random = new(seed);
 
-    public int NextInt(Range<int> range)
+    public int NextInt(IntValueRange range)
     {
         return this.NextInt(range.Min, range.Max);
     }
@@ -14,12 +16,12 @@ public class RandomProvider(int seed)
         return this.random.Next(minimum, maximum + 1);
     }
 
-    public float Next(Range<float> range)
+    public float Next(FloatValueRange range)
     {
-        return (float)this.NextDouble(range.Min, range.Max);
+        return (float)this.Next(range.Min, range.Max);
     }
 
-    public double NextDouble(double minimum = 0, double maximum = 1)
+    public double Next(double minimum = 0, double maximum = 1)
     {
         double value = this.random.NextDouble();
 
@@ -66,12 +68,13 @@ public class RandomProvider(int seed)
         return [.. source.OrderBy(d => this.NextInt(0, 1000))];
     }
 
-    public bool GetBoolByPercent(int percent)
+
+    public bool PassesPercentCheck(int percent)
     {
-        return this.NextInt(Range<int>.PercentRange) < percent;
+        return this.NextInt(IntValueRange.PercentRange) < percent;
     }
 
-    public bool GetRandomBoolByPercent(double percent)
+    public bool PassesPercentCheck(double percent)
     {
         return this.random.NextDouble() < percent;
     }

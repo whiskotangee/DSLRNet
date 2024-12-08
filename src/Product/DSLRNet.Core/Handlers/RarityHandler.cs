@@ -37,7 +37,7 @@ public class RarityHandler : BaseHandler
         return finalid;
     }
 
-    public Queue<bool> GetRarityEffectChanceArray(int desiredCount, int rarityid, bool armortalisman = false)
+    public Queue<bool> GetRarityEffectChances(int desiredCount, int rarityid, bool armortalisman = false)
     {
         Queue<bool> finalboolarray = [];
 
@@ -56,34 +56,40 @@ public class RarityHandler : BaseHandler
             RaritySetup item = this.RarityConfigs[finalrarityid];
 
             float speffectchance = (float)item.GetType().GetProperty(spefchance).GetValue(item);
-            finalboolarray.Enqueue(this.randomNumberGetter.GetRandomBoolByPercent(speffectchance));
+            finalboolarray.Enqueue(this.randomNumberGetter.PassesPercentCheck(speffectchance));
         }
 
         return finalboolarray;
     }
 
-    public Range<int> GetRarityDamageAdditionRange(int rarityid)
+    public IntValueRange GetDamageAdditionRange(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
-        return new Range<int>(this.RarityConfigs[finalrarity].WeaponDmgAddMin, this.RarityConfigs[finalrarity].WeaponDmgAddMax);
+        return new IntValueRange(this.RarityConfigs[finalrarity].WeaponDmgAddMin, this.RarityConfigs[finalrarity].WeaponDmgAddMax);
     }
 
-    public Range<float> GetRarityArmorCutRateRange(int rarityid)
+    public IntValueRange GetWeaponScalingRange(int rarityId)
     {
-        int finalrarity = this.GetNearestRarityId(rarityid);
-        return new Range<float>(this.RarityConfigs[finalrarity].ArmorCutRateAddMin, this.RarityConfigs[finalrarity].ArmorCutRateAddMax);
+        int finalrarity = this.GetNearestRarityId(rarityId);
+        return new IntValueRange(this.RarityConfigs[finalrarity].ScalingMin, this.RarityConfigs[finalrarity].ScalingMax);
     }
 
-    public Range<float> GetRarityShieldGuardRateRange(int rarityid)
+    public FloatValueRange GetArmorCutRateRange(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
-        return new Range<float>(this.RarityConfigs[finalrarity].ShieldGuardRateMultMin, this.RarityConfigs[finalrarity].ShieldGuardRateMultMax);
+        return new FloatValueRange(this.RarityConfigs[finalrarity].ArmorCutRateAddMin, this.RarityConfigs[finalrarity].ArmorCutRateAddMax);
+    }
+
+    public FloatValueRange GetRarityShieldGuardRateRange(int rarityid)
+    {
+        int finalrarity = this.GetNearestRarityId(rarityid);
+        return new FloatValueRange(this.RarityConfigs[finalrarity].ShieldGuardRateMultMin, this.RarityConfigs[finalrarity].ShieldGuardRateMultMax);
     }
 
     public float GetRarityArmorCutRateAddition(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
-        Range<float> range = this.GetRarityArmorCutRateRange(finalrarity);
+        FloatValueRange range = this.GetArmorCutRateRange(finalrarity);
         return (float)Math.Round(this.randomNumberGetter.Next(range), 4);
     }
 
@@ -120,16 +126,16 @@ public class RarityHandler : BaseHandler
         return finalrarities;
     }
 
-    public Range<float> GetRarityArmorResistMultRange(int rarityid)
+    public FloatValueRange GetRarityArmorResistMultRange(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
-        return new Range<float>(this.RarityConfigs[finalrarity].ArmorResistMinMult, this.RarityConfigs[finalrarity].ArmorResistMaxMult);
+        return new FloatValueRange(this.RarityConfigs[finalrarity].ArmorResistMinMult, this.RarityConfigs[finalrarity].ArmorResistMaxMult);
     }
 
     public float GetRarityArmorResistMultiplier(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
-        Range<float> range = this.GetRarityArmorResistMultRange(finalrarity);
+        FloatValueRange range = this.GetRarityArmorResistMultRange(finalrarity);
 
         return (float)this.randomNumberGetter.Next(range);
     }
@@ -164,10 +170,10 @@ public class RarityHandler : BaseHandler
         return this.randomNumberGetter.NextInt(this.RarityConfigs[finalrarity].SellValueMin, this.RarityConfigs[finalrarity].SellValueMax);
     }
 
-    public float GetRandomizedWeightForRarity(int rarityId)
+    public float GetRandomizedWeight(float originalWeight, int rarityId)
     {
         int finalrarity = this.GetNearestRarityId(rarityId);
-        return (float)this.randomNumberGetter.NextDouble(this.RarityConfigs[finalrarity].WeightMultMin, this.RarityConfigs[finalrarity].WeightMultMax);
+        return originalWeight * (float)this.randomNumberGetter.Next(this.RarityConfigs[finalrarity].WeightMultMin, this.RarityConfigs[finalrarity].WeightMultMax);
     }
 
     public int GetLowestRarityId()

@@ -48,8 +48,6 @@ public class Settings
     public string DeployPath { get; set; }
     public string DSMSPortablePath { get; set; }
 
-    public string WitchyBNDPath { get; set; }
-
     public ItemLotGeneratorSettings ItemLotGeneratorSettings { get; set; }
 
     public int RandomSeed { get; set; }

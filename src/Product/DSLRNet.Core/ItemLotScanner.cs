@@ -68,7 +68,7 @@ public class ItemLotScanner(
                 {
                     candidateTreasures.AddRange(baseFilteredMapTreasures
                         .Where(d => d.InChest == 1)
-                        .Where(d => this.random.GetBoolByPercent(this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.ApplyPercent))
+                        .Where(d => this.random.PassesPercentCheck(this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.ApplyPercent))
                         .Select(s => s.ItemLotID));
                 }
 
@@ -76,7 +76,7 @@ public class ItemLotScanner(
                 {
                     candidateTreasures.AddRange(baseFilteredMapTreasures
                         .Where(d => d.InChest != 1)
-                        .Where(d => this.random.GetBoolByPercent(this.configuration.Settings.ItemLotGeneratorSettings.MapLootScannerSettings.ApplyPercent))
+                        .Where(d => this.random.PassesPercentCheck(this.configuration.Settings.ItemLotGeneratorSettings.MapLootScannerSettings.ApplyPercent))
                         .Select(s => s.ItemLotID));
                 }
 

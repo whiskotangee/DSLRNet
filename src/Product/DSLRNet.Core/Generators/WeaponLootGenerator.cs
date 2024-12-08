@@ -50,8 +50,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             whitelistLootIds.Add(100);
         }
 
-        bool uniqueWeapon = this.Random.GetRandomBoolByPercent(this.weaponGeneratorConfig.UniqueNameChance);
-        float uniqueValueMultiplier = uniqueWeapon ? this.weaponGeneratorConfig.UniqueWeaponMultiplier : 1.0f;
+        bool isUniqueWeapon = this.Random.PassesPercentCheck(this.weaponGeneratorConfig.UniqueNameChance);
 
         WeaponTypes goalWeaponType = this.Random.NextWeightedValue(this.weaponGeneratorConfig.Types, this.weaponGeneratorConfig.Weights);
 
@@ -62,9 +61,9 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         newWeapon.ID = this.CumulativeID.GetNext();
         newWeapon.sellValue = this.RarityHandler.GetRaritySellValue(rarityId);
         newWeapon.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
-        newWeapon.iconId = this.RarityHandler.GetIconIdForRarity(newWeapon.iconId, rarityId, isUnique: uniqueWeapon);
+        newWeapon.iconId = this.RarityHandler.GetIconIdForRarity(newWeapon.iconId, rarityId, isUnique: isUniqueWeapon);
 
-        // 42300 allows scaling from all sources (STR,DEX,INT,FTH)
+        // 42300 allows scaling from all sources (STR,DEX,INT,FTH,ARC)
         if (generatedType != WeaponTypes.StaffsSeals)
         {
             newWeapon.attackElementCorrectId = 42300;
@@ -72,7 +71,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         newWeapon.gemMountType = generatedType == WeaponTypes.StaffsSeals ? 0 : 2;
         newWeapon.disableGemAttr = 1;
-        newWeapon.weight = this.RarityHandler.GetRandomizedWeightForRarity(rarityId);
+        newWeapon.weight = this.RarityHandler.GetRandomizedWeight(newWeapon.weight, rarityId);
 
         string affinity = "";
 
@@ -95,7 +94,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
 
-        this.ApplyWeaponScalingRange(newWeapon.GenericParam, rarityId);
+        this.ApplyWeaponScalingRange(newWeapon.GenericParam, modifications, rarityId);
         this.SetWeaponOriginParam(newWeapon.GenericParam, newWeapon.ID, replace: true);
 
         string weaponOriginalTitle = newWeapon.Name;
@@ -113,7 +112,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             modifications.SpEffectTexts,
             true);
 
-        if (uniqueWeapon)
+        if (isUniqueWeapon)
         {
             string uniqueName = this.LoreGenerator.CreateRandomUniqueName(generatedType == WeaponTypes.Shields);
             if (!string.IsNullOrEmpty(uniqueName))
@@ -162,33 +161,50 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         }
     }
 
-    private void ApplyWeaponScalingRange(GenericParam weaponDictionary, int rarityId)
+    private void ApplyWeaponScalingRange(GenericParam weaponDictionary, WeaponModifications modifications, int rarityId)
     {
-        var currentScalings = this.Configuration.LootParam.WeaponsScaling.Select(d => new { ParamName = d, Value = weaponDictionary.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
-        Range<int> scalingRange = this.RarityHandler.GetRarityDamageAdditionRange(rarityId);
+        var damageParams = this.Configuration.LootParam.WeaponsScaling.Select(d => new { ParamName = d, Value = weaponDictionary.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
 
-        foreach (string scaling in currentScalings.Keys)
+        List<string> takenParams = [];
+
+        // reset the scalings
+        foreach(var scaleParam in damageParams.Keys)
         {
-            var currentScaling = currentScalings[scaling];
+            weaponDictionary.SetValue(scaleParam, 0);
+        }
 
-            // TODO: more configuration about number of scaling values per rarity Id?
-            float newValue = (float)Math.Max(currentScaling.Value, this.Random.NextDouble(15.0, 25.0));
+        var statScalingRange = this.RarityHandler.GetWeaponScalingRange(rarityId);
+
+        // set primary scaling 
+        var primaryScalingParam = this.Random.GetRandomItem(damageParams.Keys.ToList());
+
+        takenParams.Add(primaryScalingParam);
+
+        weaponDictionary.SetValue(primaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(weaponGeneratorConfig.PrimaryBaseScalingRange));
+
+        // set secondary scaling if applicable
+        string? secondaryScalingParam = null;
+
+        if (modifications.SecondaryDamageType != null)
+        {
+            secondaryScalingParam = this.Random.GetRandomItem(damageParams.Keys.Except([primaryScalingParam]).ToList());
+
+            takenParams.Add(secondaryScalingParam);
+
+            weaponDictionary.SetValue(secondaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(weaponGeneratorConfig.SecondaryBaseScalingRange));
+        }
+
+        // set other stat scalings
+        var otherDamageParams = damageParams.Keys.Except(takenParams).ToList();
+
+        foreach (string otherScalingParam in otherDamageParams)
+        {
+            var currentScaling = damageParams[otherScalingParam];
+
+            float newValue = this.Random.NextInt(weaponGeneratorConfig.OtherBaseScalingRange);
 
             weaponDictionary.SetValue(currentScaling.ParamName, newValue);
         }
-
-        double primaryAddition = MathFunctions.RoundToXDecimalPlaces(this.Random.NextInt(scalingRange) * 0.6f, 2);
-
-        var maxParam = currentScalings.MaxBy(d => d.Value.Value).Value;
-
-        weaponDictionary.SetValue(maxParam.ParamName, maxParam.Value + primaryAddition);
-
-        // randomly choose secondary stat and apply
-        string randomScalingKey = this.Random.GetRandomItem(currentScalings.Keys.Except([maxParam.ParamName]).ToList());
-
-        var randomScaling = currentScalings[randomScalingKey];
-
-        weaponDictionary.SetValue(randomScaling.ParamName, Math.Clamp(this.Random.NextInt(scalingRange) * .5f, 0, 130));
     }
 
     private WeaponModifications ApplyShieldCutRateChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, EquipParamWeapon weapon, int rarityId)
@@ -208,7 +224,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         if (existingSecondaryValue != null
             && mods.PrimaryDamageType.ShieldParam != mods.SecondaryDamageType.ShieldParam)
         {
-            float secondaryValue = Math.Clamp((float)(existingSecondaryValue + this.Random.Next(new Range<float>(.1f, 5.0f))), 0, 100);
+            float secondaryValue = Math.Clamp((float)(existingSecondaryValue + this.Random.Next(new FloatValueRange(.1f, 5.0f))), 0, 100);
             weapon.GenericParam.SetValue(mods.SecondaryDamageType.ShieldParam, secondaryValue);
             mods.SecondaryDamageValue = secondaryValue;
 
@@ -241,15 +257,17 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         return modifications;
     }
 
-    private WeaponModifications ApplyNormalDamageChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, EquipParamWeapon weapon, int rarityId)
+    private WeaponModifications ApplyNormalDamageChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, EquipParamWeapon weapon, int rarityId, bool isUniqueWeapon)
     {
         WeaponModifications mods = new(dT1, dT2);
 
-        Range<int> dmgRange = this.RarityHandler.GetRarityDamageAdditionRange(rarityId);
+        float uniqueValueMultiplier = isUniqueWeapon ? this.weaponGeneratorConfig.UniqueWeaponMultiplier : 1.0f;
+
+        IntValueRange dmgRange = this.RarityHandler.GetDamageAdditionRange(rarityId);
 
         List<string> dmgParams = this.Configuration.LootParam.WeaponsDamageParam;
 
-        long maxValue = 0;
+        long maxOriginalValue = 0;
 
         GenericParam originalValues = weapon.GenericParam.Clone() as GenericParam;
 
@@ -257,13 +275,23 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         foreach (string dmgParam in dmgParams)
         {
             weapon.GenericParam.SetValue(dmgParam, 0f);
-            maxValue = Math.Max(originalValues.GetValue<long>(dmgParam), maxValue);
+            maxOriginalValue = Math.Max(originalValues.GetValue<long>(dmgParam), maxOriginalValue);
         }
 
         float overallMultiplier = mods.PrimaryDamageType.OverallMultiplier;
         if (mods.SecondaryDamageType != null)
         {
             overallMultiplier = Math.Min(mods.PrimaryDamageType.OverallMultiplier, mods.SecondaryDamageType.OverallMultiplier);
+        }
+        else
+        {
+            // no secondary damage type, let's amp up the primary damage a bit
+            overallMultiplier += .1f;
+        }
+
+        if (isUniqueWeapon)
+        {
+            overallMultiplier *= uniqueValueMultiplier;
         }
 
         int primaryDamage = (int)(this.Random.NextInt(dmgRange) * overallMultiplier);
@@ -272,17 +300,17 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         if (mods.SecondaryDamageType != null)
         {
-            weapon.GenericParam.SetValue(mods.SecondaryDamageType.Param, (maxValue / 2) + secondaryDamage);
+            weapon.GenericParam.SetValue(mods.SecondaryDamageType.Param, (maxOriginalValue / 4) + secondaryDamage);
         }
 
         if (mods.SecondaryDamageType == null ||
             mods.PrimaryDamageType.Param == mods.SecondaryDamageType?.Param)
         {
-            weapon.GenericParam.SetValue(mods.PrimaryDamageType.Param, (long)1.2 * maxValue + primaryDamage);
+            weapon.GenericParam.SetValue(mods.PrimaryDamageType.Param, maxOriginalValue + primaryDamage);
         }
         else
         {
-            weapon.GenericParam.SetValue(mods.PrimaryDamageType.Param, maxValue + primaryDamage);
+            weapon.GenericParam.SetValue(mods.PrimaryDamageType.Param, maxOriginalValue + primaryDamage);
         }
 
         mods.PrimaryDamageValue = primaryDamage;
@@ -348,7 +376,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         if (maxDamage > 170)
         {
-            weapon.staminaConsumptionRate = (float)MathFunctions.RoundToXDecimalPlaces((float)(weapon.staminaConsumptionRate + this.Random.NextDouble(0.05, 0.3)), 3);
+            weapon.staminaConsumptionRate = (float)MathFunctions.RoundToXDecimalPlaces((float)(weapon.staminaConsumptionRate + this.Random.Next(0.05, 0.3)), 3);
         }
 
         this.damageTypeHandler.ApplyWeaponVfxFromDamageTypes(weapon.GenericParam, mods);
@@ -356,13 +384,13 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         return mods;
     }
 
-    private WeaponModifications ApplyWeaponModifications(EquipParamWeapon weapon, int rarityId, WeaponTypes weaponType)
+    private WeaponModifications ApplyWeaponModifications(EquipParamWeapon weapon, int rarityId, WeaponTypes weaponType, bool isUniqueWeapon = false)
     {
         // randomize damage type
         DamageTypeSetup primary = this.damageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled, false);
         DamageTypeSetup? secondary = null;
 
-        if (this.Random.GetRandomBoolByPercent(this.weaponGeneratorConfig.SplitDamageTypeChance))
+        if (this.Random.PassesPercentCheck(this.weaponGeneratorConfig.SplitDamageTypeChance))
         {
             secondary = this.damageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled, true);
         }
@@ -371,7 +399,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             WeaponTypes.StaffsSeals => this.ApplyStaffDamageChanges(weapon, rarityId),
             WeaponTypes.Shields => this.ApplyShieldCutRateChanges(primary, secondary, weapon, rarityId),
-            _ => this.ApplyNormalDamageChanges(primary, secondary, weapon, rarityId),
+            _ => this.ApplyNormalDamageChanges(primary, secondary, weapon, rarityId, isUniqueWeapon),
         };
     }
 

@@ -24,7 +24,7 @@ public class LoreTemplates
             ret = templateList;
         }
 
-        return random.GetRandomItem(withPlaceholders.Count > 0 && random.GetBoolByPercent(50) ? withPlaceholders : ret);
+        return random.GetRandomItem(withPlaceholders.Count > 0 && random.PassesPercentCheck(50) ? withPlaceholders : ret);
     }
 
     public List<string> FindPlaceholdersInString(string input, List<string> placeholders)

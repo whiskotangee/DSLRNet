@@ -35,7 +35,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
         this.ApplyArmorResistanceAdditions(newArmor.GenericParam, rarityId);
 
-        newArmor.weight = this.RarityHandler.GetRandomizedWeightForRarity(rarityId);
+        newArmor.weight = this.RarityHandler.GetRandomizedWeight(newArmor.weight, rarityId);
 
         IEnumerable<SpEffectText> speffs = this.ApplySpEffects(rarityId, [0], newArmor.GenericParam, 1.0f, true, -1, true);
 

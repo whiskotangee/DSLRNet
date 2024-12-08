@@ -13,13 +13,13 @@ public class GameStageConfig
     public int OverrideType { get; set; }
 }
 
-public class ItemLotQueueEntry
+public class ItemLotSettings
 {
-    public static ItemLotQueueEntry Create(string file, Category category)
+    public static ItemLotSettings Create(string file, Category category)
     {
         DslItemLotSetup setup = DslItemLotSetup.Create(file);
 
-        ItemLotQueueEntry? obj = JsonConvert.DeserializeObject<ItemLotQueueEntry>(JsonConvert.SerializeObject(setup));
+        ItemLotSettings? obj = JsonConvert.DeserializeObject<ItemLotSettings>(JsonConvert.SerializeObject(setup));
         obj.GameStageConfigs = [];
         obj.GameStageConfigs.Add(new GameStageConfig
         {
@@ -58,10 +58,24 @@ public class ItemLotQueueEntry
         obj.ParamName = Enum.Parse<ParamNames>(category.ParamCategory, true);
         obj.NpcParamCategory = category.NpcParamCategory;
 
+        obj.LootWeightsByType =
+            [
+                new() { Value = LootType.Weapon, Weight = setup.LootTypeWeights[0] },
+                new() { Value = LootType.Armor, Weight = setup.LootTypeWeights[1] },
+                new() { Value = LootType.Talisman, Weight = setup.LootTypeWeights[2] }
+            ];
+
+        obj.WeaponWeightsByType =
+            [
+                new() {Value = WeaponTypes.Normal, Weight = setup.WeaponTypeWeights[0] },
+                new() {Value = WeaponTypes.Shields, Weight = setup.WeaponTypeWeights[1] },
+                new() {Value = WeaponTypes.StaffsSeals, Weight = setup.WeaponTypeWeights[2] },
+                new() {Value = WeaponTypes.BowsCrossbows, Weight = setup.WeaponTypeWeights[3] }
+            ];
         return obj;
     }
 
-    public ItemLotQueueEntry()
+    public ItemLotSettings()
     {
 
     }
@@ -99,8 +113,8 @@ public class ItemLotQueueEntry
     public int OneTimePickup { get; set; }
     public float DropChanceMultiplier { get; set; }
     public List<GameStageConfig> GameStageConfigs { get; set; }
-    public List<int> LootTypeWeights { get; set; }
-    public List<int> WeaponTypeWeights { get; set; }
+    public List<WeightedValue<LootType>> LootWeightsByType { get; set; }
+    public List<WeightedValue<WeaponTypes>> WeaponWeightsByType { get; set; }
     public List<List<int>> NpcIds { get; set; }
     public List<List<int>> NpcItemlotids { get; set; }
     public List<int> ClearItemlotids { get; set; }

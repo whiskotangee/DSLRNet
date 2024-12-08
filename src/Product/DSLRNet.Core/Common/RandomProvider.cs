@@ -28,34 +28,21 @@ public class RandomProvider(int seed)
         return value * (maximum - minimum) + minimum;
     }
 
-    public T NextWeightedValue<T>(List<T> valueList, List<int> weightList)
+    public T NextWeightedValue<T>(List<WeightedValue<T>> values)
     {
-        if (valueList.Count != weightList.Count)
-        {
-            return valueList[0];
-        }
-        else
-        {
-            int weightTotal = 0;
-            List<int> weightTotalStepsArray = [];
-            for (int x = 0; x < weightList.Count; x++)
-            {
-                weightTotal += weightList[x];
-                weightTotalStepsArray.Add(weightTotal);
-            }
+        var weightTotal = values.Sum(d => d.Weight);
 
-            int weightedResult = this.NextInt(0, weightTotal);
+        int weightedResult = this.NextInt(0, weightTotal);
 
-            for (int x = 0; x < weightTotalStepsArray.Count; x++)
+        foreach (var val in values)
+        {
+            if (weightedResult <= val.Weight)
             {
-                if (weightedResult <= weightTotalStepsArray[x])
-                {
-                    return valueList[x];
-                }
+                return val.Value;
             }
         }
 
-        throw new Exception("Failure");
+        return values.FirstOrDefault().Value;
     }
 
     public T GetRandomItem<T>(IEnumerable<T> values)

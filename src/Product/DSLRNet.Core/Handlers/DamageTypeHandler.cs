@@ -43,19 +43,19 @@ public class DamageTypeHandler : BaseHandler
             return this.random.GetRandomItem(this.DamageTypes);
         }
 
-        List<int> weights = [];
-        List<int> ids = [];
+        List<WeightedValue<int>> weightedValues = [];
 
         // Iterate over all DamageType keys, add their weightsToGet and ID to relevant arrays
         foreach (DamageTypeSetup damageType in this.DamageTypes)
         {
-            weights.Add(secondaryDamage ? damageType.SecWeight : damageType.PriWeight);
-            ids.Add(damageType.ID);
+            weightedValues.Add(new WeightedValue<int>
+            {
+                Weight = secondaryDamage ? damageType.SecWeight : damageType.PriWeight,
+                Value = damageType.ID
+            });
         }
 
-        int finalDtId = this.RngRandomWeighted(ids, weights);
-
-        return this.DamageTypes.Single(d => d.ID == finalDtId);
+        return this.DamageTypes.Single(d => d.ID == this.random.NextWeightedValue(weightedValues));
     }
 
     public void ApplyDamageTypeWeaponSpEffects(WeaponModifications mods, GenericParam weaponDict)
@@ -63,7 +63,6 @@ public class DamageTypeHandler : BaseHandler
         List<string> speffParam = this.configuration.LootParam.Speffects.EquipParamWeapon;
         List<string> behSpeffParam = this.configuration.LootParam.WeaponBehSpeffects;
 
-        // For weapons, we'll leave the first speff slot free, but the latter ones (slots 2 and 3 in ER) should be used to apply damage type effects
         if (speffParam.Count > 0)
         {
             int dt1SpeffOffset = Math.Clamp(speffParam.Count - 1, 0, 99);
@@ -133,26 +132,5 @@ public class DamageTypeHandler : BaseHandler
                 weapon.SetValue(vfxDummyParams[x], vfxDummies[x]);
             }
         }
-    }
-
-    private int RngRandomWeighted(List<int> ids, List<int> weights)
-    {
-        int totalWeight = 0;
-        foreach (int weight in weights)
-        {
-            totalWeight += weight;
-        }
-
-        int randomValue = this.random.NextWeightedValue(ids, weights);
-        for (int i = 0; i < weights.Count; i++)
-        {
-            if (randomValue < weights[i])
-            {
-                return ids[i];
-            }
-            randomValue -= weights[i];
-        }
-
-        return ids[0]; // Fallback in case of an error
     }
 }

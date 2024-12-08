@@ -12,71 +12,49 @@ public class AllowListHandler(
 
     public int GetLootByAllowList(List<int> ids, LootType type)
     {
-        List<int> itemIds = [];
-        List<int> itemWeights = [];
+        List<WeightedValue<int>> weightedValues = [];
 
         foreach (int id in ids)
         {
             if (this.whitelistConfig.Configs.Any(d => d.Id == id))
             {
-                (List<int> lootIds, List<int> weights) = GetRandomLootAndWeights(this.whitelistConfig.Configs.Single(d => d.Id == id), type);
-
-                if (lootIds.Count != 0)
-                {
-                    itemIds.AddRange(lootIds);
-                    itemWeights.AddRange(weights);
-                }
+                weightedValues.AddRange(GetRandomLootAndWeights(this.whitelistConfig.Configs.Single(d => d.Id == id), type));
             }
         }
 
-        if (itemIds.Count == 0)
+        if (weightedValues.Count == 0)
         {
             List<AllowListConfigItem> validConfigs = this.whitelistConfig.Configs.Where(d =>
             {
-                (List<int> lootIds, List<int> weights) = GetRandomLootAndWeights(d, type);
-                return lootIds.Count > 0;
+                var weights = GetRandomLootAndWeights(d, type);
+                return weights.Count > 0;
             }).ToList();
-
+            
             AllowListConfigItem randomConfig = this.random.GetRandomItem(validConfigs);
 
-            (List<int> lootIds, List<int> weights) = GetRandomLootAndWeights(randomConfig, type);
-
-            if (lootIds.Count != 0)
-            {
-                itemIds.AddRange(lootIds);
-                itemWeights.AddRange(weights);
-            }
+            weightedValues.AddRange(GetRandomLootAndWeights(randomConfig, type));
         }
 
-        return this.random.NextWeightedValue(itemIds, itemWeights);
+        return this.random.NextWeightedValue(weightedValues);
     }
 
-    private static (List<int> lootIds, List<int> weights) GetRandomLootAndWeights(AllowListConfigItem config, LootType lootType)
+    private static List<WeightedValue<int>> GetRandomLootAndWeights(AllowListConfigItem config, LootType lootType)
     {
-        List<int> itemIds = [];
-        List<int> itemWeights = [];
+        List<WeightedValue<int>> weightedValues = [];
 
         switch (lootType)
         {
             case LootType.Weapon:
-                itemIds.AddRange(config.LootIds.Weapon);
-                itemWeights.AddRange(config.LootWeights.Weapon);
+                weightedValues = WeightedValue<int>.CreateFromLists(config.LootIds.Weapon, config.LootWeights.Weapon);
                 break;
             case LootType.Armor:
-                itemIds.AddRange(config.LootIds.Armor);
-                itemWeights.AddRange(config.LootWeights.Armor);
+                weightedValues = WeightedValue<int>.CreateFromLists(config.LootIds.Armor, config.LootWeights.Armor);
                 break;
             case LootType.Talisman:
-                itemIds.AddRange(config.LootIds.Talisman);
-                itemWeights.AddRange(config.LootWeights.Talisman);
+                weightedValues = WeightedValue<int>.CreateFromLists(config.LootIds.Talisman, config.LootWeights.Talisman);
                 break;
         }
 
-        if (itemIds.Count > itemWeights.Count)
-        {
-            itemWeights.AddRange(Enumerable.Range(0, itemIds.Count - itemWeights.Count).Select(s => 10));
-        }
-
-        return (itemIds, itemWeights);
+        return weightedValues;
     }
 }

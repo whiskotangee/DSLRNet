@@ -19,20 +19,14 @@ public class RarityHandler : BaseHandler
 
     public int ChooseRarityFromIdSet(List<int> idset)
     {
-        List<int> valididset = [];
-        List<int> valididweights = [];
+        List<WeightedValue<int>> weightedValues = [];
 
         foreach (int x in idset)
         {
-            valididset.Add(this.GetNearestRarityId(x));
+            weightedValues.Add(new WeightedValue<int> { Value = this.GetNearestRarityId(x), Weight = this.RarityConfigs[x].SelectionWeight });
         }
 
-        foreach (int x in idset)
-        {
-            valididweights.Add(this.RarityConfigs[valididset.First(d => d == x)].SelectionWeight);
-        }
-
-        int finalid = this.randomNumberGetter.NextWeightedValue(valididset, valididweights);
+        int finalid = this.randomNumberGetter.NextWeightedValue(weightedValues);
 
         return finalid;
     }

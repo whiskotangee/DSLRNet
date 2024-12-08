@@ -10,10 +10,6 @@ public class WeaponGeneratorConfig
 
     public float SplitDamageTypeChance { get; set; }
 
-    public List<WeaponTypes> Types { get; set; }
-
-    public List<int> Weights { get; set; }
-
     public int DamageIncreasesStaminaThreshold { get; set; }
 
     public IntValueRange CritChanceRange { get; set; }

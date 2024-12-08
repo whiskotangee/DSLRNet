@@ -52,8 +52,6 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         bool isUniqueWeapon = this.Random.PassesPercentCheck(this.weaponGeneratorConfig.UniqueNameChance);
 
-        WeaponTypes goalWeaponType = this.Random.NextWeightedValue(this.weaponGeneratorConfig.Types, this.weaponGeneratorConfig.Weights);
-
         EquipParamWeapon newWeapon = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(whitelistLootIds, LootType.Weapon));
 
         WeaponTypes generatedType = this.GetWeaponType(newWeapon.wepmotionCategory);

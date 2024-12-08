@@ -112,21 +112,12 @@ public class LootParamConfig
     public string WeaponOriginParamBase { get; set; }
     public List<string> WeaponBehSpeffects { get; set; }
     public SpeffectsConfig Speffects { get; set; }
-    public string SpeffectsStackCategory { get; set; }
     public List<string> SpeffectMsg { get; set; }
     public WeaponSpecialMotionCategoriesConfig WeaponSpecialMotionCategories { get; set; }
-    public List<string> WeaponsDamageParam { get; set; }
-    public string WeaponsThrowDamageParam { get; set; }
-    public string WeaponsHitVfx { get; set; }
     public WeaponsCanCastParamConfig WeaponsCanCastParam { get; set; }
-    public List<string> WeaponsScaling { get; set; }
-    public string WeaponsStaminaRate { get; set; }
     public List<string> WeaponsVfxParam { get; set; }
     public List<string> WeaponsVfxDummyParam { get; set; }
     public List<int> WeaponsVfxDummies { get; set; }
-    public List<string> ArmorParam { get; set; }
-    public List<string> ArmorDefenseParams { get; set; }
-    public List<string> ArmorResistParams { get; set; }
 }
 
 public class SpeffectsConfig

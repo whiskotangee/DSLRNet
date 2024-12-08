@@ -1,0 +1,432 @@
+{
+  "FMG_ID": 205,
+  "Entries": [
+    {
+      "Text": "Crouching",
+      "IDList": [
+        1
+      ]
+    },
+    {
+      "Text": "Guarding",
+      "IDList": [
+        2
+      ]
+    },
+    {
+      "Text": "Guard Counters",
+      "IDList": [
+        3
+      ]
+    },
+    {
+      "Text": "Two-Handing Armaments",
+      "IDList": [
+        4
+      ]
+    },
+    {
+      "Text": "Charge and Jump Attacks",
+      "IDList": [
+        5
+      ]
+    },
+    {
+      "Text": "Skill",
+      "IDList": [
+        6
+      ]
+    },
+    {
+      "Text": "Parrying",
+      "IDList": [
+        7
+      ]
+    },
+    {
+      "Text": "Setting a Target",
+      "IDList": [
+        8
+      ]
+    },
+    {
+      "Text": "Precision Aiming",
+      "IDList": [
+        9
+      ]
+    },
+    {
+      "Text": "Equipping Armaments",
+      "IDList": [
+        10
+      ]
+    },
+    {
+      "Text": "Using Items",
+      "IDList": [
+        11
+      ]
+    },
+    {
+      "Text": "Using Torches",
+      "IDList": [
+        12
+      ]
+    },
+    {
+      "Text": "Critical Hits",
+      "IDList": [
+        13
+      ]
+    },
+    {
+      "Text": "Gestures",
+      "IDList": [
+        14
+      ]
+    },
+    {
+      "Text": "The Map",
+      "IDList": [
+        15
+      ]
+    },
+    {
+      "Text": "Spiritspring Jumping",
+      "IDList": [
+        16
+      ]
+    },
+    {
+      "Text": "Item Shortcut",
+      "IDList": [
+        17
+      ]
+    },
+    {
+      "Text": "Dying and Dropping Runes",
+      "IDList": [
+        50
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        51,
+        63,
+        69,
+        154,
+        250,
+        251,
+        252,
+        253
+      ]
+    },
+    {
+      "Text": "Summoning Spirits",
+      "IDList": [
+        52
+      ]
+    },
+    {
+      "Text": "Resting at Sites of Grace",
+      "IDList": [
+        53
+      ]
+    },
+    {
+      "Text": "Finding Sites of Grace",
+      "IDList": [
+        54
+      ]
+    },
+    {
+      "Text": "Guidance of Grace",
+      "IDList": [
+        55
+      ]
+    },
+    {
+      "Text": "Sacred Flasks",
+      "IDList": [
+        56
+      ]
+    },
+    {
+      "Text": "Fast Travel to Sites of Grace",
+      "IDList": [
+        57
+      ]
+    },
+    {
+      "Text": "Mounted Attacks",
+      "IDList": [
+        58
+      ]
+    },
+    {
+      "Text": "No-Riding Areas",
+      "IDList": [
+        59
+      ]
+    },
+    {
+      "Text": "Item Crafting",
+      "IDList": [
+        60
+      ]
+    },
+    {
+      "Text": "Container Items",
+      "IDList": [
+        61
+      ]
+    },
+    {
+      "Text": "Armament Customization",
+      "IDList": [
+        62
+      ]
+    },
+    {
+      "Text": "Reviving After Dying",
+      "IDList": [
+        64
+      ]
+    },
+    {
+      "Text": "Equip Load",
+      "IDList": [
+        65
+      ]
+    },
+    {
+      "Text": "While in Combat",
+      "IDList": [
+        66
+      ]
+    },
+    {
+      "Text": "Strengthening Spirits",
+      "IDList": [
+        67
+      ]
+    },
+    {
+      "Text": "Leveling Up",
+      "IDList": [
+        68
+      ]
+    },
+    {
+      "Text": "Status: Poison",
+      "IDList": [
+        70
+      ]
+    },
+    {
+      "Text": "Status: Scarlet Rot",
+      "IDList": [
+        71
+      ]
+    },
+    {
+      "Text": "Status: Blood Loss",
+      "IDList": [
+        72
+      ]
+    },
+    {
+      "Text": "Status: Frost/Frostbite",
+      "IDList": [
+        73
+      ]
+    },
+    {
+      "Text": "Status: Sleep",
+      "IDList": [
+        74
+      ]
+    },
+    {
+      "Text": "Status: Madness",
+      "IDList": [
+        75
+      ]
+    },
+    {
+      "Text": "Status: Death",
+      "IDList": [
+        76
+      ]
+    },
+    {
+      "Text": "Poise",
+      "IDList": [
+        77
+      ]
+    },
+    {
+      "Text": "Cooperator\u0027s Objective (Furled Finger)",
+      "IDList": [
+        100
+      ]
+    },
+    {
+      "Text": "Adversary\u0027s Objective (Duelist)",
+      "IDList": [
+        101
+      ]
+    },
+    {
+      "Text": "Multiplayer Maximums",
+      "IDList": [
+        102
+      ]
+    },
+    {
+      "Text": "Seeing Summon Signs",
+      "IDList": [
+        103
+      ]
+    },
+    {
+      "Text": "Leaving Co-op Signs",
+      "IDList": [
+        104
+      ]
+    },
+    {
+      "Text": "Leaving Hostile Signs",
+      "IDList": [
+        105
+      ]
+    },
+    {
+      "Text": "Invasion",
+      "IDList": [
+        106
+      ]
+    },
+    {
+      "Text": "Requesting Support",
+      "IDList": [
+        107
+      ]
+    },
+    {
+      "Text": "Supporting",
+      "IDList": [
+        108
+      ]
+    },
+    {
+      "Text": "Summoning Pools",
+      "IDList": [
+        109
+      ]
+    },
+    {
+      "Text": "Group Passwords",
+      "IDList": [
+        110
+      ]
+    },
+    {
+      "Text": "Multiplayer Passwords",
+      "IDList": [
+        111
+      ]
+    },
+    {
+      "Text": "Messages",
+      "IDList": [
+        112
+      ]
+    },
+    {
+      "Text": "Multiplayer Movement Limits",
+      "IDList": [
+        113
+      ]
+    },
+    {
+      "Text": "Phantoms",
+      "IDList": [
+        114
+      ]
+    },
+    {
+      "Text": "Bloodstains",
+      "IDList": [
+        115
+      ]
+    },
+    {
+      "Text": "Support Objective (Hunter)",
+      "IDList": [
+        116
+      ]
+    },
+    {
+      "Text": "Summon Signs",
+      "IDList": [
+        117
+      ]
+    },
+    {
+      "Text": "Advanced Messages",
+      "IDList": [
+        118
+      ]
+    },
+    {
+      "Text": "Invader Objective",
+      "IDList": [
+        119
+      ]
+    },
+    {
+      "Text": "Colosseums",
+      "IDList": [
+        120
+      ]
+    },
+    {
+      "Text": "Colosseum Rankings",
+      "IDList": [
+        121
+      ]
+    },
+    {
+      "Text": "Limits of Guarding",
+      "IDList": [
+        150
+      ]
+    },
+    {
+      "Text": "Stance-Breaking",
+      "IDList": [
+        151
+      ]
+    },
+    {
+      "Text": "Knocking Down Mounted Enemies",
+      "IDList": [
+        152
+      ]
+    },
+    {
+      "Text": "Hardened Foes",
+      "IDList": [
+        153
+      ]
+    },
+    {
+      "Text": "Teardrop Scarabs",
+      "IDList": [
+        200
+      ]
+    }
+  ]
+}

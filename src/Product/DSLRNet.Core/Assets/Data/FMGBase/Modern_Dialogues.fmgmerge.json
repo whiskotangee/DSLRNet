@@ -1,0 +1,1795 @@
+{
+  "FMG_ID": 204,
+  "Entries": [
+    {
+      "Text": "OK",
+      "IDList": [
+        1
+      ]
+    },
+    {
+      "Text": "CANCEL",
+      "IDList": [
+        2
+      ]
+    },
+    {
+      "Text": "YES",
+      "IDList": [
+        3
+      ]
+    },
+    {
+      "Text": "NO",
+      "IDList": [
+        4
+      ]
+    },
+    {
+      "Text": "RETRY",
+      "IDList": [
+        15
+      ]
+    },
+    {
+      "Text": "CONTINUE",
+      "IDList": [
+        16
+      ]
+    },
+    {
+      "Text": "RETURN TO TITLE",
+      "IDList": [
+        17
+      ]
+    },
+    {
+      "Text": "Insufficient runes",
+      "IDList": [
+        40200
+      ]
+    },
+    {
+      "Text": "Additional items required",
+      "IDList": [
+        40201
+      ]
+    },
+    {
+      "Text": "Insufficient items/runes",
+      "IDList": [
+        40202
+      ]
+    },
+    {
+      "Text": "Returning to default settings.\nIs that okay?",
+      "IDList": [
+        40300
+      ]
+    },
+    {
+      "Text": "Restoring all default settings.\nIs that okay?",
+      "IDList": [
+        40500,
+        280001
+      ]
+    },
+    {
+      "Text": "Leaving \u003C?itemName?\u003E.\nIs that okay?",
+      "IDList": [
+        102000
+      ]
+    },
+    {
+      "Text": "Discarding \u003C?itemName?\u003E.\nIs that okay?",
+      "IDList": [
+        102001
+      ]
+    },
+    {
+      "Text": "Leaving all selected items.\nIs that okay?",
+      "IDList": [
+        102002
+      ]
+    },
+    {
+      "Text": "Discarding all selected items.\nIs that okay?",
+      "IDList": [
+        102003
+      ]
+    },
+    {
+      "Text": "Only eight items can be left at once. If you leave any more items,\nthe items you left earlier will be lost, starting with the oldest.\nIs that okay?",
+      "IDList": [
+        102004
+      ]
+    },
+    {
+      "Text": "Ashes of War are applied to \u003C?itemName?\u003E.\nIf this item is lost, its Ashes of War will be lost as well.\nIs that okay?",
+      "IDList": [
+        102005
+      ]
+    },
+    {
+      "Text": "Ashes of War are applied to \u003C?itemName?\u003E.\nIf you discard this item, its Ashes of War will be lost.\nIs that okay?",
+      "IDList": [
+        102006
+      ]
+    },
+    {
+      "Text": "Ashes of War are applied to an item you\u0027ve selected.\nIf that item is lost, its Ashes of War will be lost as well.\nIs that okay?",
+      "IDList": [
+        102007
+      ]
+    },
+    {
+      "Text": "Ashes of War are applied to an item you\u0027ve selected.\nIf you discard that item, its Ashes of War will be lost.\nIs that okay?",
+      "IDList": [
+        102008
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        102009,
+        102011,
+        102012,
+        102013,
+        102014,
+        102015,
+        102016,
+        102017,
+        102018,
+        102019,
+        103002,
+        103003,
+        103004,
+        103131,
+        103132,
+        103133,
+        103134,
+        103135,
+        103136,
+        103137,
+        103138,
+        103139,
+        104006,
+        104007,
+        104008,
+        104009,
+        104011,
+        104012,
+        104013,
+        104014,
+        104015,
+        104016,
+        104017,
+        104018,
+        104019,
+        110001,
+        110002,
+        110003,
+        110004,
+        110005,
+        110006,
+        110007,
+        110008,
+        110009,
+        111108,
+        111109,
+        211008,
+        211009,
+        212003,
+        212004,
+        212005,
+        212006,
+        212007,
+        212008,
+        212009,
+        212753,
+        212754,
+        212755,
+        212756,
+        212757,
+        212758,
+        212759,
+        216001,
+        216002,
+        216003,
+        216004,
+        216005,
+        216006,
+        216007,
+        216008,
+        216009,
+        230001,
+        230002,
+        230003,
+        230004,
+        230005,
+        230006,
+        230007,
+        230008,
+        230009,
+        230011,
+        230012,
+        230013,
+        230014,
+        230015,
+        230016,
+        230017,
+        230018,
+        230019,
+        230101,
+        230102,
+        230103,
+        230104,
+        230105,
+        230106,
+        230107,
+        230108,
+        230109,
+        230111,
+        230112,
+        230113,
+        230114,
+        230115,
+        230116,
+        230117,
+        230118,
+        230119,
+        231001,
+        231002,
+        231003,
+        231004,
+        231005,
+        231006,
+        231007,
+        231008,
+        231009,
+        231011,
+        231012,
+        231013,
+        231014,
+        231015,
+        231016,
+        231017,
+        231018,
+        231019,
+        231501,
+        231502,
+        231503,
+        231504,
+        231505,
+        231506,
+        231507,
+        231508,
+        231509,
+        231511,
+        231512,
+        231513,
+        231514,
+        231515,
+        231516,
+        231517,
+        231518,
+        231519,
+        232001,
+        236002,
+        236003,
+        236004,
+        236005,
+        236006,
+        236007,
+        236008,
+        236009,
+        236012,
+        236013,
+        236014,
+        236015,
+        236016,
+        236017,
+        236018,
+        236019,
+        236022,
+        236023,
+        236024,
+        236025,
+        236026,
+        236027,
+        236028,
+        236029,
+        236051,
+        236052,
+        236053,
+        236054,
+        236056,
+        236057,
+        236058,
+        236059,
+        236203,
+        236204,
+        236205,
+        236206,
+        236207,
+        236208,
+        236209,
+        236212,
+        236213,
+        236214,
+        236215,
+        236216,
+        236217,
+        236218,
+        236219,
+        236403,
+        236404,
+        236405,
+        236406,
+        236407,
+        236408,
+        236409,
+        236412,
+        236413,
+        236414,
+        236415,
+        236416,
+        236417,
+        236418,
+        236419,
+        251022,
+        251023,
+        251024,
+        251025,
+        251026,
+        251027,
+        251028,
+        251029,
+        290005,
+        290006,
+        290007,
+        290008,
+        290009,
+        290010,
+        290012,
+        290013,
+        290014,
+        290015,
+        290016,
+        290017,
+        290018,
+        290019,
+        290021,
+        290022,
+        290023,
+        290024,
+        290025,
+        290026,
+        290027,
+        290028,
+        290029,
+        290031,
+        290032,
+        290033,
+        290034,
+        290035,
+        290036,
+        290037,
+        290038,
+        290039,
+        290205,
+        290206,
+        290207,
+        290208,
+        290209,
+        334512,
+        334513,
+        334514,
+        334515,
+        334516,
+        334517,
+        334518,
+        334519,
+        404011,
+        404012,
+        404013,
+        404014,
+        404015,
+        404016,
+        404017,
+        404018,
+        404019,
+        506001,
+        506002,
+        506003,
+        506004,
+        506005,
+        506006,
+        506007,
+        506008,
+        506009,
+        506016,
+        506017,
+        506018,
+        506019,
+        506102,
+        506103,
+        507002,
+        507003,
+        507004,
+        507005,
+        507006,
+        507007,
+        507008,
+        507009,
+        507012,
+        507013,
+        507014,
+        507015,
+        507016,
+        507017,
+        507018,
+        507019,
+        507022,
+        507023,
+        507024,
+        507025,
+        507026,
+        507027,
+        507028,
+        507029,
+        507102,
+        507103,
+        507104,
+        507105,
+        507106,
+        507107,
+        507108,
+        507109,
+        507112,
+        507113,
+        507114,
+        507115,
+        507116,
+        507117,
+        507118,
+        507119,
+        507122,
+        507123,
+        507124,
+        507125,
+        507126,
+        507127,
+        507128,
+        507129,
+        507202,
+        507203,
+        507204,
+        507205,
+        507206,
+        507207,
+        507208,
+        507209,
+        507212,
+        507213,
+        507214,
+        507215,
+        507216,
+        507217,
+        507218,
+        507219,
+        507222,
+        507223,
+        507224,
+        507225,
+        507226,
+        507227,
+        507228,
+        507229,
+        620002,
+        620003,
+        620004,
+        620005,
+        620006,
+        620007,
+        620008,
+        620009,
+        620101,
+        620102,
+        620103,
+        620104,
+        620105,
+        620106,
+        620107,
+        620108,
+        620109
+      ]
+    },
+    {
+      "Text": "This action will exceed maximum runes.\nRunes exceeding maximum will be lost.\nUse regardless?",
+      "IDList": [
+        102010
+      ]
+    },
+    {
+      "Text": "Cannot remove these Ashes of War as the maximum\namount that you can hold has been reached",
+      "IDList": [
+        102020
+      ]
+    },
+    {
+      "Text": "Currently applied Ashes of War cannot be removed as the\nmaximum amount that you can hold has been reached",
+      "IDList": [
+        102021
+      ]
+    },
+    {
+      "Text": "Unable to use this item effectively with present attributes",
+      "IDList": [
+        103000
+      ]
+    },
+    {
+      "Text": "Unable to use this item effectively with present attributes,\nunless wielded with both hands",
+      "IDList": [
+        103001
+      ]
+    },
+    {
+      "Text": "Cannot summon this spirit at present level",
+      "IDList": [
+        103005
+      ]
+    },
+    {
+      "Text": "Cannot equip talisman as an incompatible talisman is currently equipped",
+      "IDList": [
+        103110
+      ]
+    },
+    {
+      "Text": "Cannot change equipment at this time",
+      "IDList": [
+        103130
+      ]
+    },
+    {
+      "Text": "Loss of memory slots will result in removal of any excess sorceries or incantations.\nIs that okay?",
+      "IDList": [
+        103140
+      ]
+    },
+    {
+      "Text": "Sorceries and incantations exceeding the number of memory slots have been removed",
+      "IDList": [
+        103141
+      ]
+    },
+    {
+      "Text": "Multiplayer password history",
+      "IDList": [
+        104000
+      ]
+    },
+    {
+      "Text": "Select password",
+      "IDList": [
+        104001,
+        104003
+      ]
+    },
+    {
+      "Text": "Group password history",
+      "IDList": [
+        104002
+      ]
+    },
+    {
+      "Text": "No multiplayer password history",
+      "IDList": [
+        104004
+      ]
+    },
+    {
+      "Text": "No group password history",
+      "IDList": [
+        104005
+      ]
+    },
+    {
+      "Text": "Using a Finger Remedy will send summoned spirits home.\nIs that okay?",
+      "IDList": [
+        104010
+      ]
+    },
+    {
+      "Text": "Using a Finger Remedy will retract your summon sign.\nIs that okay?",
+      "IDList": [
+        104020
+      ]
+    },
+    {
+      "Text": "Save the game and return to title menu?",
+      "IDList": [
+        110000
+      ]
+    },
+    {
+      "Text": "Save the game and return to the desktop?",
+      "IDList": [
+        110010
+      ]
+    },
+    {
+      "Text": "Enabling ray tracing will lock performance settings\nto prioritize quality.",
+      "IDList": [
+        110100
+      ]
+    },
+    {
+      "Text": "Return to the title menu to change language settings",
+      "IDList": [
+        110316
+      ]
+    },
+    {
+      "Text": "Settings have been changed.\nThis will revert to the previous setting in \u003C?remainingSec?\u003E seconds.\nKeep current settings?",
+      "IDList": [
+        111100,
+        111104
+      ]
+    },
+    {
+      "Text": "Keep current settings?",
+      "IDList": [
+        111101
+      ]
+    },
+    {
+      "Text": "Some settings will only be applied after returning to title menu",
+      "IDList": [
+        111102,
+        111105
+      ]
+    },
+    {
+      "Text": "This setting will be applied after restarting the game",
+      "IDList": [
+        111103
+      ]
+    },
+    {
+      "Text": "HDR turned off",
+      "IDList": [
+        111106
+      ]
+    },
+    {
+      "Text": "HDR turned on",
+      "IDList": [
+        111107
+      ]
+    },
+    {
+      "Text": "Some setting changes have not been applied.\nTo apply these changes, return to the title menu.",
+      "IDList": [
+        111110
+      ]
+    },
+    {
+      "Text": "Traveling to \u003C?placeName?\u003E.\nIs that okay?",
+      "IDList": [
+        211001
+      ]
+    },
+    {
+      "Text": "Cannot travel to a site of grace from this location",
+      "IDList": [
+        211002
+      ]
+    },
+    {
+      "Text": "Cannot travel to a site of grace during multiplayer",
+      "IDList": [
+        211003
+      ]
+    },
+    {
+      "Text": "You cannot travel to a site of grace now",
+      "IDList": [
+        211004
+      ]
+    },
+    {
+      "Text": "You have been trapped.\nYou cannot travel to sites of grace until you rest at one.",
+      "IDList": [
+        211005
+      ]
+    },
+    {
+      "Text": "Cannot travel to a site of grace right now",
+      "IDList": [
+        211006,
+        211010
+      ]
+    },
+    {
+      "Text": "Cannot travel to a site of grace while queued for combat.",
+      "IDList": [
+        211007
+      ]
+    },
+    {
+      "Text": "Removing all markers placed.\nIs that okay?",
+      "IDList": [
+        211100
+      ]
+    },
+    {
+      "Text": "You have placed the maximum number of markers and cannot place any more",
+      "IDList": [
+        211101
+      ]
+    },
+    {
+      "Text": "Cannot focus on your current location",
+      "IDList": [
+        211200
+      ]
+    },
+    {
+      "Text": "You have marked the maximum number of\nsites of grace and cannot mark any more",
+      "IDList": [
+        211300
+      ]
+    },
+    {
+      "Text": "Removing the marker from this site of grace.\nIs that okay?",
+      "IDList": [
+        211400
+      ]
+    },
+    {
+      "Text": "Spend \u003C?demandSoul?\u003E runes and level up?",
+      "IDList": [
+        212000
+      ]
+    },
+    {
+      "Text": "Canceling level up.\nIs that okay?",
+      "IDList": [
+        212001
+      ]
+    },
+    {
+      "Text": "Select at least one attribute to level up",
+      "IDList": [
+        212002
+      ]
+    },
+    {
+      "Text": "Level at maximum.\nCannot raise level any further.",
+      "IDList": [
+        212010
+      ]
+    },
+    {
+      "Text": "Undergo rebirth?",
+      "IDList": [
+        212750
+      ]
+    },
+    {
+      "Text": "Canceling rebirth",
+      "IDList": [
+        212751
+      ]
+    },
+    {
+      "Text": "Reallocate attributes until you reach your original level",
+      "IDList": [
+        212752
+      ]
+    },
+    {
+      "Text": "This will reduce your memory slots.\nLoss of memory slots will result in removal\nof any excess sorceries or incantations.\nUndergo rebirth?",
+      "IDList": [
+        212760
+      ]
+    },
+    {
+      "Text": "Sorceries/incantations exceeding the number of memory slots\nhave been removed",
+      "IDList": [
+        212761
+      ]
+    },
+    {
+      "Text": "Remove these Ashes of War from \u003C?itemNameBeforeForge?\u003E and\napply them to \u003C?itemNameAfterForge?\u003E?",
+      "IDList": [
+        214000
+      ]
+    },
+    {
+      "Text": "If you change the equipped Great Rune, the\ncurrent Great Rune\u0027s effects will be removed.\nIs that okay?",
+      "IDList": [
+        215000
+      ]
+    },
+    {
+      "Text": "Strengthen \u003C?itemNameBeforeForge?\u003E into\n\u003C?itemNameAfterForge?\u003E?",
+      "IDList": [
+        216000
+      ]
+    },
+    {
+      "Text": "This cannot be strengthened, as you already have\n\u003C?itemNameAfterForge?\u003E",
+      "IDList": [
+        216010
+      ]
+    },
+    {
+      "Text": "Strengthen \u003C?itemNameBeforeForge?\u003E\nto make \u003C?itemNameAfterForge?\u003E?",
+      "IDList": [
+        221000
+      ]
+    },
+    {
+      "Text": "Armament cannot be strengthened any further at the smithing table",
+      "IDList": [
+        221011
+      ]
+    },
+    {
+      "Text": "Offer \u003C?demandSoul?\u003E Dragon Heart(s)\nto make \u003C?itemName?\u003E thine own",
+      "IDList": [
+        225000
+      ]
+    },
+    {
+      "Text": "Cannot receive.\nYou have reached the maximum capacity of your inventory and storage.",
+      "IDList": [
+        225020,
+        226020,
+        231520
+      ]
+    },
+    {
+      "Text": "This strength is already thine own",
+      "IDList": [
+        225100
+      ]
+    },
+    {
+      "Text": "Give \u003C?demandSoul?\u003E starlight shards\nto receive \u003C?itemName?\u003E",
+      "IDList": [
+        226000
+      ]
+    },
+    {
+      "Text": "This puppet is already yours",
+      "IDList": [
+        226100
+      ]
+    },
+    {
+      "Text": "Duplicate \u003C?itemName?\u003E",
+      "IDList": [
+        227000,
+        230100
+      ]
+    },
+    {
+      "Text": "Cannot duplicate.\nYou have reached the maximum capacity of your inventory and storage.",
+      "IDList": [
+        227020
+      ]
+    },
+    {
+      "Text": "Cannot further duplicate this Ash of War",
+      "IDList": [
+        227100
+      ]
+    },
+    {
+      "Text": "Receive \u003C?itemName?\u003E",
+      "IDList": [
+        230000
+      ]
+    },
+    {
+      "Text": "Items exceeding maximum have been placed in chest",
+      "IDList": [
+        230010,
+        230110,
+        231010,
+        231510,
+        236210
+      ]
+    },
+    {
+      "Text": "Cannot receive.\nThe number you would receive would exceed the maximum\nable to be held in inventory and storage.",
+      "IDList": [
+        230020
+      ]
+    },
+    {
+      "Text": "Cannot duplicate.\nThe number you would receive would exceed the maximum\nable to be held in inventory and storage.",
+      "IDList": [
+        230120
+      ]
+    },
+    {
+      "Text": "Cannot further duplicate this remembrance ",
+      "IDList": [
+        230150
+      ]
+    },
+    {
+      "Text": "Purchase \u003C?itemName?\u003E\nfor \u003C?demandSoul?\u003E runes",
+      "IDList": [
+        231000
+      ]
+    },
+    {
+      "Text": "Cannot purchase.\nThe number you wish to buy would exceed the maximum\nable to be held in inventory and storage.",
+      "IDList": [
+        231020
+      ]
+    },
+    {
+      "Text": "Out of stock.\nCannot purchase anymore.",
+      "IDList": [
+        231100
+      ]
+    },
+    {
+      "Text": "Receive \u003C?itemName?\u003E\nfor \u003C?demandSoul?\u003E runes",
+      "IDList": [
+        231500
+      ]
+    },
+    {
+      "Text": "You cannot receive duplicates of champion\u0027s equipment",
+      "IDList": [
+        231550
+      ]
+    },
+    {
+      "Text": "Sell \u003C?itemName?\u003E\nfor \u003C?sellSouls?\u003E runes",
+      "IDList": [
+        232000
+      ]
+    },
+    {
+      "Text": "Cannot sell currently equipped items",
+      "IDList": [
+        232002
+      ]
+    },
+    {
+      "Text": "Cannot sell this item",
+      "IDList": [
+        232003
+      ]
+    },
+    {
+      "Text": "Ashes of War are applied to \u003C?itemName?\u003E .\nIf you sell this item, its Ashes of War will be lost.\nIs that okay?",
+      "IDList": [
+        232004
+      ]
+    },
+    {
+      "Text": "Allocate?",
+      "IDList": [
+        235000
+      ]
+    },
+    {
+      "Text": "Canceling allocation.\nIs that okay?",
+      "IDList": [
+        235001
+      ]
+    },
+    {
+      "Text": "Craft \u003C?itemName?\u003E",
+      "IDList": [
+        236001
+      ]
+    },
+    {
+      "Text": "Crafted items exceeding maximum have been placed in chest",
+      "IDList": [
+        236010
+      ]
+    },
+    {
+      "Text": "Cannot craft this item.\nThe number you wish to craft would exceed the maximum\nable to be held in inventory and storage.",
+      "IDList": [
+        236011
+      ]
+    },
+    {
+      "Text": "Cannot craft this item as you do not have enough cracked pots",
+      "IDList": [
+        236020
+      ]
+    },
+    {
+      "Text": "Cannot craft this item as you do not have enough perfume bottles",
+      "IDList": [
+        236021
+      ]
+    },
+    {
+      "Text": "Cannot craft this item as you do not have enough ritual pots",
+      "IDList": [
+        236030
+      ]
+    },
+    {
+      "Text": "Cannot craft this item as you do not have any cracked pots",
+      "IDList": [
+        236050
+      ]
+    },
+    {
+      "Text": "Cannot craft this item as you do not have any ritual pots",
+      "IDList": [
+        236055
+      ]
+    },
+    {
+      "Text": "Cannot craft this item as you do not have any perfume bottles",
+      "IDList": [
+        236060
+      ]
+    },
+    {
+      "Text": "Spend remembrance and \u003C?demandSoul?\u003E runes\nto receive \u003C?itemName?\u003E",
+      "IDList": [
+        236201
+      ]
+    },
+    {
+      "Text": "Acquire \u003C?itemName?\u003E in exchange for remembrance",
+      "IDList": [
+        236202
+      ]
+    },
+    {
+      "Text": "You cannot receive this power.\nThe number you would receive would exceed the maximum\nable to be held in inventory and storage.",
+      "IDList": [
+        236211
+      ]
+    },
+    {
+      "Text": "You cannot receive any more power from this remembrance,\nas you have reached its maximum",
+      "IDList": [
+        236220
+      ]
+    },
+    {
+      "Text": "Alter to \u003C?itemName?\u003E",
+      "IDList": [
+        236401
+      ]
+    },
+    {
+      "Text": "Use \u003C?demandSoul?\u003E runes to alter to \u003C?itemName?\u003E",
+      "IDList": [
+        236402
+      ]
+    },
+    {
+      "Text": "Altered items exceeding maximum have been placed in chest",
+      "IDList": [
+        236410
+      ]
+    },
+    {
+      "Text": "You cannot alter these items.\nThe number you would receive would exceed the maximum\nable to be held in inventory and storage.",
+      "IDList": [
+        236411
+      ]
+    },
+    {
+      "Text": "You cannot alter any more of these items,\nas you have reached the maximum",
+      "IDList": [
+        236420
+      ]
+    },
+    {
+      "Text": "Flask of Crimson Tears",
+      "IDList": [
+        237000
+      ]
+    },
+    {
+      "Text": "Flask of Cerulean Tears",
+      "IDList": [
+        237001
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Limgrave, West)",
+      "IDList": [
+        241000
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Weeping Peninsula)",
+      "IDList": [
+        241001
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Limgrave, East)",
+      "IDList": [
+        241002
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Liurnia, East)",
+      "IDList": [
+        241003
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Liurnia, North)",
+      "IDList": [
+        241004
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Liurnia, West)",
+      "IDList": [
+        241005
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Altus Plateau)",
+      "IDList": [
+        241006
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Leyndell, Royal Capital)",
+      "IDList": [
+        241007
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Mt. Gelmir)",
+      "IDList": [
+        241008
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Caelid)",
+      "IDList": [
+        241009
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Dragonbarrow)",
+      "IDList": [
+        241010
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Mountaintops of the Giants, West)",
+      "IDList": [
+        241011
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Mountaintops of the Giants, East)",
+      "IDList": [
+        241012
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Consecrated Snowfield)",
+      "IDList": [
+        241013
+      ]
+    },
+    {
+      "Text": "A new map has been found",
+      "IDList": [
+        241014,
+        241105
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Ainsel River)",
+      "IDList": [
+        241100
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Lake of Rot)",
+      "IDList": [
+        241101
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Mohgwyn Palace)",
+      "IDList": [
+        241102
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Siofra River)",
+      "IDList": [
+        241103
+      ]
+    },
+    {
+      "Text": "A new map has been found.\n(Deeproot Depths)",
+      "IDList": [
+        241104
+      ]
+    },
+    {
+      "Text": "Cannot store currently equipped items",
+      "IDList": [
+        251020
+      ]
+    },
+    {
+      "Text": "Selected item cannot be placed in storage",
+      "IDList": [
+        251021
+      ]
+    },
+    {
+      "Text": "Cannot store item.\nStorage is full.",
+      "IDList": [
+        251030
+      ]
+    },
+    {
+      "Text": "Cannot retrieve item.\nInventory is full.",
+      "IDList": [
+        251031
+      ]
+    },
+    {
+      "Text": "Insufficient memory slots",
+      "IDList": [
+        261000
+      ]
+    },
+    {
+      "Text": "Insufficient free slots",
+      "IDList": [
+        261001
+      ]
+    },
+    {
+      "Text": "No memory slots",
+      "IDList": [
+        261002
+      ]
+    },
+    {
+      "Text": "Cannot memorize duplicate sorceries or incantations",
+      "IDList": [
+        261003
+      ]
+    },
+    {
+      "Text": "Cannot use this sorcery or incantation with present attributes",
+      "IDList": [
+        261004
+      ]
+    },
+    {
+      "Text": "Cannot set duplicate items",
+      "IDList": [
+        281000
+      ]
+    },
+    {
+      "Text": "Abandon this character and return to character base selection?",
+      "IDList": [
+        290001
+      ]
+    },
+    {
+      "Text": "Starting game with this character.\nIs that okay?",
+      "IDList": [
+        290002
+      ]
+    },
+    {
+      "Text": "A name is required.\n\nEnter a name to finish creating this character.",
+      "IDList": [
+        290003
+      ]
+    },
+    {
+      "Text": "Failed to save character information",
+      "IDList": [
+        290004
+      ]
+    },
+    {
+      "Text": "Changes will be discarded.\nIs that okay?",
+      "IDList": [
+        290011
+      ]
+    },
+    {
+      "Text": "Selected spelling contained inappropriate language\nand could not be used as a character name.\n\nEnter another name.",
+      "IDList": [
+        290020
+      ]
+    },
+    {
+      "Text": "Changing gender will reset certain changes.\n\nOkay?",
+      "IDList": [
+        290030
+      ]
+    },
+    {
+      "Text": "Changing appearance will mean losing any unsaved changes.\n\nIs that okay?",
+      "IDList": [
+        290040
+      ]
+    },
+    {
+      "Text": "Discard changes and stop applying cosmetics?",
+      "IDList": [
+        290101,
+        290121
+      ]
+    },
+    {
+      "Text": "Finish applying cosmetics and proceed with this character?",
+      "IDList": [
+        290102,
+        290122
+      ]
+    },
+    {
+      "Text": "A name is required.\nEnter a name to finish applying cosmetics.",
+      "IDList": [
+        290103,
+        290123
+      ]
+    },
+    {
+      "Text": "Save present appearance as a favorite?",
+      "IDList": [
+        290200
+      ]
+    },
+    {
+      "Text": "Overwrite favorite slot and save present appearance?",
+      "IDList": [
+        290201
+      ]
+    },
+    {
+      "Text": "Discard present changes and load favorite?",
+      "IDList": [
+        290202
+      ]
+    },
+    {
+      "Text": "Cannot load appearances corresponding to a different body type",
+      "IDList": [
+        290203
+      ]
+    },
+    {
+      "Text": "Deleting selected favorite.\nIs that okay?",
+      "IDList": [
+        290204
+      ]
+    },
+    {
+      "Text": "No favorites saved",
+      "IDList": [
+        290210
+      ]
+    },
+    {
+      "Text": "Cannot be edited at this time.\nPlease set \u0022Eye Alteration\u0022 to OFF to edit this.",
+      "IDList": [
+        290300
+      ]
+    },
+    {
+      "Text": "Deleting this message.\nIs that okay?",
+      "IDList": [
+        311000
+      ]
+    },
+    {
+      "Text": "Applaud this message?",
+      "IDList": [
+        311001
+      ]
+    },
+    {
+      "Text": "Disparage this message?",
+      "IDList": [
+        311002
+      ]
+    },
+    {
+      "Text": "Create this message",
+      "IDList": [
+        321000
+      ]
+    },
+    {
+      "Text": "This will delete message in progress.\nIs that okay?",
+      "IDList": [
+        321001
+      ]
+    },
+    {
+      "Text": "Delete this message from list?",
+      "IDList": [
+        322000
+      ]
+    },
+    {
+      "Text": "Unable to acquire \u003C?itemName?\u003E.\nThis would exceed the maximum able to be held\nin inventory and storage.",
+      "IDList": [
+        334510
+      ]
+    },
+    {
+      "Text": "Unable to acquire every \u003C?itemName?\u003E.\nThis would exceed the maximum able to be held\nin inventory and storage.",
+      "IDList": [
+        334511
+      ]
+    },
+    {
+      "Text": "Some items could not be acquired as they would\nexceed the maximum able to be held in inventory\nand storage",
+      "IDList": [
+        334520
+      ]
+    },
+    {
+      "Text": "Online connection is required to play\nELDEN RING Network Test Version.\nReturning to title menu.",
+      "IDList": [
+        401172
+      ]
+    },
+    {
+      "Text": "\u003C?sysmsg@401701?\u003E",
+      "IDList": [
+        401701
+      ]
+    },
+    {
+      "Text": "Discard present changes and return to previous page?",
+      "IDList": [
+        404010
+      ]
+    },
+    {
+      "Text": "With HDR setting ON:\nPicture can be adjusted from the in-game system menu",
+      "IDList": [
+        404020
+      ]
+    },
+    {
+      "Text": "Starting with selected profile",
+      "IDList": [
+        406011
+      ]
+    },
+    {
+      "Text": "Delete selected profile and begin a new game?",
+      "IDList": [
+        406012
+      ]
+    },
+    {
+      "Text": "Deleting selected profile.\nIs that okay?",
+      "IDList": [
+        406013
+      ]
+    },
+    {
+      "Text": "Begin Journey \u003C?nextLoopCount?\u003E?\nIf you do not start over now, you can choose to begin\nJourney \u003C?nextLoopCount?\u003E later at the Table of Lost Grace\nin the Roundtable Hold.",
+      "IDList": [
+        450000
+      ]
+    },
+    {
+      "Text": "If you begin Journey \u003C?nextLoopCount?\u003E, you will not be able\nto return to the present world of Journey \u003C?loopCount?\u003E.\nBegin Journey \u003C?nextLoopCount?\u003E?",
+      "IDList": [
+        450001
+      ]
+    },
+    {
+      "Text": "Send chosen player back to their world?",
+      "IDList": [
+        502000
+      ]
+    },
+    {
+      "Text": "No player to send back",
+      "IDList": [
+        502001
+      ]
+    },
+    {
+      "Text": "Enter Colosseum combat with these settings?",
+      "IDList": [
+        506000
+      ]
+    },
+    {
+      "Text": "Matchmaking canceled",
+      "IDList": [
+        506010
+      ]
+    },
+    {
+      "Text": "Matchmaking has been canceled",
+      "IDList": [
+        506011
+      ]
+    },
+    {
+      "Text": "Cancel matchmaking?",
+      "IDList": [
+        506012
+      ]
+    },
+    {
+      "Text": "Matchmaking canceled: Allied team could not gather enough combatants in time",
+      "IDList": [
+        506013
+      ]
+    },
+    {
+      "Text": "Colosseum Password settings must be set to \u0027all players\u0027 to select this option when entering a United Combat match.",
+      "IDList": [
+        506014
+      ]
+    },
+    {
+      "Text": "Colosseum Password settings must be set to select this option when entering a United Combat match.",
+      "IDList": [
+        506015
+      ]
+    },
+    {
+      "Text": "Matchmaking failed",
+      "IDList": [
+        506020
+      ]
+    },
+    {
+      "Text": "Matchmaking failed.\nUnable to create session.",
+      "IDList": [
+        506021
+      ]
+    },
+    {
+      "Text": "Matchmaking failed.\nUnable to join session.",
+      "IDList": [
+        506022
+      ]
+    },
+    {
+      "Text": "Combat results were not reflected in rank.\n\nSelect YES to make another attempt to reflect combat results in rank.\n\nSelect NO to discard results.",
+      "IDList": [
+        506023
+      ]
+    },
+    {
+      "Text": "Colosseum Password history",
+      "IDList": [
+        506100
+      ]
+    },
+    {
+      "Text": "Select password to apply",
+      "IDList": [
+        506101
+      ]
+    },
+    {
+      "Text": "No Colosseum Password history",
+      "IDList": [
+        506104
+      ]
+    },
+    {
+      "Text": "Players fight one on one for a limited time (180 secs)\nuntil a player is defeated.\nUse of the Flask of Crimson Tears is prohibited.\nUse of the Flask of Cerulean Tears is permitted,\nbut limited in number.\nThe use of spirit ashes is prohibited.",
+      "IDList": [
+        507000
+      ]
+    },
+    {
+      "Text": "Players fight one on one for a limited time (180 secs)\nuntil a player is defeated.\nUse of the Flask of Crimson Tears is prohibited.\nUse of the Flask of Cerulean Tears is permitted,\nbut limited in number.\nThe use of spirit ashes is permitted.",
+      "IDList": [
+        507001
+      ]
+    },
+    {
+      "Text": "The maximum number of players for a Duel is 2",
+      "IDList": [
+        507010,
+        507011,
+        507020,
+        507021,
+        507030,
+        507031
+      ]
+    },
+    {
+      "Text": "Both players are enemies and have a limited time (300 seconds)\nto down their opponent as many times as possible.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is prohibited.",
+      "IDList": [
+        507100
+      ]
+    },
+    {
+      "Text": "Both players are enemies and have a limited time (300 seconds)\nto down their opponent as many times as possible.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is permitted.",
+      "IDList": [
+        507101
+      ]
+    },
+    {
+      "Text": "All four players are enemies and have a limited time (300 seconds)\nto compete for the highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is prohibited.",
+      "IDList": [
+        507110
+      ]
+    },
+    {
+      "Text": "All four players are enemies and have a limited time (300 seconds)\nto compete for the highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is permitted.",
+      "IDList": [
+        507111
+      ]
+    },
+    {
+      "Text": "All six players are enemies and have a limited time (300 seconds)\nto compete for the highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is prohibited.",
+      "IDList": [
+        507120
+      ]
+    },
+    {
+      "Text": "All six players are enemies and have a limited time (300 seconds)\nto compete for the highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is permitted.",
+      "IDList": [
+        507121
+      ]
+    },
+    {
+      "Text": "All four or six players are enemies and have a limited time\n(300 seconds) to compete for the highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is prohibited.",
+      "IDList": [
+        507130
+      ]
+    },
+    {
+      "Text": "All four or six players are enemies and have a limited time\n(300 seconds) to compete for the highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is permitted.",
+      "IDList": [
+        507131
+      ]
+    },
+    {
+      "Text": "Both players are divided into two teams and given a limited time\n(300 seconds) to compete for the highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is prohibited.",
+      "IDList": [
+        507200
+      ]
+    },
+    {
+      "Text": "Both players are divided into two teams and given a limited time\n(300 seconds) to compete for the highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is permitted.",
+      "IDList": [
+        507201
+      ]
+    },
+    {
+      "Text": "All four players are divided into two teams and\ngiven a limited time (300 seconds) to compete for\nthe highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is prohibited.",
+      "IDList": [
+        507210
+      ]
+    },
+    {
+      "Text": "All four players are divided into two teams and\ngiven a limited time (300 seconds) to compete for\nthe highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is permitted.",
+      "IDList": [
+        507211
+      ]
+    },
+    {
+      "Text": "All six players are divided into two teams and\ngiven a limited time (300 seconds) to compete for\nthe highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is prohibited.",
+      "IDList": [
+        507220
+      ]
+    },
+    {
+      "Text": "All six players are divided into two teams and\ngiven a limited time (300 seconds) to compete for\nthe highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is permitted.",
+      "IDList": [
+        507221
+      ]
+    },
+    {
+      "Text": "All four or six players are divided into two teams and\ngiven a limited time (300 seconds) to compete for\nthe highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is prohibited.",
+      "IDList": [
+        507230
+      ]
+    },
+    {
+      "Text": "All four or six players are divided into two teams and\ngiven a limited time (300 seconds) to compete for\nthe highest number of downed enemies.\nUsage of the Flasks of Crimson and Cerulean Tears is permitted\nbut limited in number.\nThe use of spirit ashes is permitted.",
+      "IDList": [
+        507231
+      ]
+    },
+    {
+      "Text": "(This rule cannot be applied at present)",
+      "IDList": [
+        507999
+      ]
+    },
+    {
+      "Text": "Multiplayer is temporarily disabled due to repeated irregular termination\nof multiplayer sessions",
+      "IDList": [
+        550000
+      ]
+    },
+    {
+      "Text": "You were returned to your world due to inactivity",
+      "IDList": [
+        550100
+      ]
+    },
+    {
+      "Text": "The name of this character has been replaced with\nan underscore as it was previously left blank",
+      "IDList": [
+        550200
+      ]
+    },
+    {
+      "Text": "Invalid Ashes of War have been removed\nfrom equipped weapons",
+      "IDList": [
+        550300
+      ]
+    },
+    {
+      "Text": "Invalid Ashes of War have been removed from equipped weapons.\nExcess Ashes of War have been placed in chest.",
+      "IDList": [
+        550301
+      ]
+    },
+    {
+      "Text": "Invalid Ashes of War have been removed from equipped weapons.\nExcess Ashes of War have been placed in chest, with any that\nexceeded the storage limit placed on the ground.",
+      "IDList": [
+        550302
+      ]
+    },
+    {
+      "Text": "Return to title menu?",
+      "IDList": [
+        620001
+      ]
+    },
+    {
+      "Text": "Close control guide and begin game?",
+      "IDList": [
+        620010
+      ]
+    },
+    {
+      "Text": "As this product is still in development, some functionality\n(including features that use the Xbox network) may not\nbe working as intended, and may result in shutdown",
+      "IDList": [
+        620100
+      ]
+    },
+    {
+      "Text": "Unlike the final release, this product cannot be played\nwithout a network connection",
+      "IDList": [
+        620110
+      ]
+    }
+  ]
+}

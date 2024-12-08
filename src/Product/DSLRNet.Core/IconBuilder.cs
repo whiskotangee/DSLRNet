@@ -36,12 +36,10 @@ public partial class IconBuilder(
         IconBuilderSettings iconSettings = iconSettingsOptions.CurrentValue;
 
         string sourcePathBase = iconSettings.ModSourcePath ?? configuration.Settings.GamePath;
-        string workPath = Path.Combine(configuration.Settings.DeployPath, "work");
         string bakedSheetsSource = $"{iconSettings.IconSourcePath}\\BakedSheets";
         string preBakedSheetsSource = $"{iconSettings.IconSourcePath}\\PreBakedSheets";
         string iconMappingsFile = Path.Combine(bakedSheetsSource, "iconmappings.json");
 
-        Directory.CreateDirectory(workPath);
         Directory.CreateDirectory(bakedSheetsSource);
 
         // Check if there are no DDS files in bakedSheetsSource
@@ -71,7 +69,7 @@ public partial class IconBuilder(
 
             logger.LogInformation($"Regenerating icon sheets for each rarity as configured");
 
-            sheetConfig = await RegenerateIconSheets(iconSettings, sourcePathBase, workPath);
+            sheetConfig = await RegenerateIconSheets(iconSettings, sourcePathBase);
 
             // Save the images to BakedSheets directory
             sheetConfig.IconSheets.ForEach(d =>
@@ -82,8 +80,6 @@ public partial class IconBuilder(
 
             // Save the updated icon mappings configuration
             File.WriteAllText(iconMappingsFile, JsonConvert.SerializeObject(sheetConfig, Formatting.Indented));
-
-            Directory.Delete(workPath, true);
         }
 
         // Step 2: Use the icon sheets from BakedSheets
@@ -127,7 +123,7 @@ public partial class IconBuilder(
         rarityHandler.UpdateIconMapping(sheetConfig);
     }
 
-    private async Task<RarityIconMappingConfig> RegenerateIconSheets(IconBuilderSettings settings, string sourcePath, string workPath)
+    private async Task<RarityIconMappingConfig> RegenerateIconSheets(IconBuilderSettings settings, string sourcePath)
     {
         var layoutAtlases = ReadLayoutFiles(sourcePath);
 
@@ -333,6 +329,15 @@ public partial class IconBuilder(
         logger.LogInformation($"Saving layout file for new icon sheets at {destinationPath}");
 
         var fileSource = Path.Combine(sourcePath, "menu", "hi", "01_common.sblytbnd.dcx");
+        var fileDestination = Path.Combine(destinationPath, "menu", "hi", "01_common.sblytbnd.dcx");
+        var preDSLRFile = fileDestination.Replace(".dcx", "pre-dslr.dcx");
+
+        if (!File.Exists(preDSLRFile))
+        {
+            File.Copy(fileSource, preDSLRFile);
+        }
+
+        fileSource = preDSLRFile;
 
         BND4 bnd = BND4.Read(fileSource);
 
@@ -370,7 +375,7 @@ public partial class IconBuilder(
             id++;
         }
 
-        bnd.Write(Path.Combine(destinationPath, "menu", "hi", "01_common.sblytbnd.dcx"));
+        bnd.Write(fileDestination);
     }
 
     private (Size size, int iconsPerRow, int totalRows) CalculateIconSheetSize(IconSheetSettings settings, int iconCount)

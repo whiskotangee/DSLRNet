@@ -324,7 +324,7 @@ public class ItemLotGenerator : BaseHandler
     public int ChooseRarityFromItemLotIdTierAllowedRarities(ItemLotQueueEntry queueEntry, int itemLotId = 0)
     {
         List<int> rarities = this.GetItemLotIdTierAllowedRarities(queueEntry, itemLotId);
-        return this.rarityHandler.ChooseRarityFromIdSetWithBuiltInWeights(rarities);
+        return this.rarityHandler.ChooseRarityFromIdSet(rarities);
     }
 
     public int GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)

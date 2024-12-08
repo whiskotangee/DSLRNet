@@ -1,0 +1,29 @@
+{
+  "FMG_ID": 371,
+  "Entries": [
+    {
+      "Text": "Please check your settings. Keys bound to dedicated menu functionality cannot be used.",
+      "IDList": [
+        280004
+      ]
+    },
+    {
+      "Text": "The following DLC cannot be found:\n\n\u003C?requiredDlcList?\u003E\n\nThis profile cannot be loaded until the required DLC is reinstalled.",
+      "IDList": [
+        401130
+      ]
+    },
+    {
+      "Text": "Shadow of the Erdtree",
+      "IDList": [
+        401131
+      ]
+    },
+    {
+      "Text": "Connection to Steamworks failed: \u003C?errcodeSteam?\u003E\nReturning to title menu.",
+      "IDList": [
+        401406
+      ]
+    }
+  ]
+}

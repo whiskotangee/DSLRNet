@@ -1,0 +1,3023 @@
+{
+  "FMG_ID": 310,
+  "Entries": [
+    {
+      "Text": "Main-gauche",
+      "IDList": [
+        1500000
+      ]
+    },
+    {
+      "Text": "Heavy Main-gauche",
+      "IDList": [
+        1500100
+      ]
+    },
+    {
+      "Text": "Keen Main-gauche",
+      "IDList": [
+        1500200
+      ]
+    },
+    {
+      "Text": "Quality Main-gauche",
+      "IDList": [
+        1500300
+      ]
+    },
+    {
+      "Text": "Fire Main-gauche",
+      "IDList": [
+        1500400
+      ]
+    },
+    {
+      "Text": "Flame Art Main-gauche",
+      "IDList": [
+        1500500
+      ]
+    },
+    {
+      "Text": "Lightning Main-gauche",
+      "IDList": [
+        1500600
+      ]
+    },
+    {
+      "Text": "Sacred Main-gauche",
+      "IDList": [
+        1500700
+      ]
+    },
+    {
+      "Text": "Magic Main-gauche",
+      "IDList": [
+        1500800
+      ]
+    },
+    {
+      "Text": "Cold Main-gauche",
+      "IDList": [
+        1500900
+      ]
+    },
+    {
+      "Text": "Poison Main-gauche",
+      "IDList": [
+        1501000
+      ]
+    },
+    {
+      "Text": "Blood Main-gauche",
+      "IDList": [
+        1501100
+      ]
+    },
+    {
+      "Text": "Occult Main-gauche",
+      "IDList": [
+        1501200
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Shortsword",
+      "IDList": [
+        1510000
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Heavy Shortsword",
+      "IDList": [
+        1510100
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Keen Shortsword",
+      "IDList": [
+        1510200
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Quality Shortsword",
+      "IDList": [
+        1510300
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Fire Shortsword",
+      "IDList": [
+        1510400
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Flame Art Shortsword",
+      "IDList": [
+        1510500
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Lightning Shortsword",
+      "IDList": [
+        1510600
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Sacred Shortsword",
+      "IDList": [
+        1510700
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Magic Shortsword",
+      "IDList": [
+        1510800
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Cold Shortsword",
+      "IDList": [
+        1510900
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Poison Shortsword",
+      "IDList": [
+        1511000
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Blood Shortsword",
+      "IDList": [
+        1511100
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Occult Shortsword",
+      "IDList": [
+        1511200
+      ]
+    },
+    {
+      "Text": "Velvet Sword of St. Trina",
+      "IDList": [
+        2510000
+      ]
+    },
+    {
+      "Text": "Star-Lined Sword",
+      "IDList": [
+        2520000
+      ]
+    },
+    {
+      "Text": "Carian Sorcery Sword",
+      "IDList": [
+        2530000
+      ]
+    },
+    {
+      "Text": "Stone-Sheathed Sword",
+      "IDList": [
+        2540000
+      ]
+    },
+    {
+      "Text": "Sword of Light",
+      "IDList": [
+        2550000
+      ]
+    },
+    {
+      "Text": "Sword of Darkness",
+      "IDList": [
+        2560000
+      ]
+    },
+    {
+      "Text": "Sword Lance",
+      "IDList": [
+        3500000
+      ]
+    },
+    {
+      "Text": "Heavy Sword Lance",
+      "IDList": [
+        3500100
+      ]
+    },
+    {
+      "Text": "Keen Sword Lance",
+      "IDList": [
+        3500200
+      ]
+    },
+    {
+      "Text": "Quality Sword Lance",
+      "IDList": [
+        3500300
+      ]
+    },
+    {
+      "Text": "Fire Sword Lance",
+      "IDList": [
+        3500400
+      ]
+    },
+    {
+      "Text": "Flame Art Sword Lance",
+      "IDList": [
+        3500500
+      ]
+    },
+    {
+      "Text": "Lightning Sword Lance",
+      "IDList": [
+        3500600
+      ]
+    },
+    {
+      "Text": "Sacred Sword Lance",
+      "IDList": [
+        3500700
+      ]
+    },
+    {
+      "Text": "Magic Sword Lance",
+      "IDList": [
+        3500800
+      ]
+    },
+    {
+      "Text": "Cold Sword Lance",
+      "IDList": [
+        3500900
+      ]
+    },
+    {
+      "Text": "Poison Sword Lance",
+      "IDList": [
+        3501000
+      ]
+    },
+    {
+      "Text": "Blood Sword Lance",
+      "IDList": [
+        3501100
+      ]
+    },
+    {
+      "Text": "Occult Sword Lance",
+      "IDList": [
+        3501200
+      ]
+    },
+    {
+      "Text": "Greatsword of Damnation",
+      "IDList": [
+        3510000
+      ]
+    },
+    {
+      "Text": "Lizard Greatsword",
+      "IDList": [
+        3520000
+      ]
+    },
+    {
+      "Text": "Heavy Lizard Greatsword",
+      "IDList": [
+        3520100
+      ]
+    },
+    {
+      "Text": "Keen Lizard Greatsword",
+      "IDList": [
+        3520200
+      ]
+    },
+    {
+      "Text": "Quality Lizard Greatsword",
+      "IDList": [
+        3520300
+      ]
+    },
+    {
+      "Text": "Fire Lizard Greatsword",
+      "IDList": [
+        3520400
+      ]
+    },
+    {
+      "Text": "Flame Art Lizard Greatsword",
+      "IDList": [
+        3520500
+      ]
+    },
+    {
+      "Text": "Lightning Lizard Greatsword",
+      "IDList": [
+        3520600
+      ]
+    },
+    {
+      "Text": "Sacred Lizard Greatsword",
+      "IDList": [
+        3520700
+      ]
+    },
+    {
+      "Text": "Magic Lizard Greatsword",
+      "IDList": [
+        3520800
+      ]
+    },
+    {
+      "Text": "Cold Lizard Greatsword",
+      "IDList": [
+        3520900
+      ]
+    },
+    {
+      "Text": "Poison Lizard Greatsword",
+      "IDList": [
+        3521000
+      ]
+    },
+    {
+      "Text": "Blood Lizard Greatsword",
+      "IDList": [
+        3521100
+      ]
+    },
+    {
+      "Text": "Occult Lizard Greatsword",
+      "IDList": [
+        3521200
+      ]
+    },
+    {
+      "Text": "Greatsword of Solitude",
+      "IDList": [
+        3550000
+      ]
+    },
+    {
+      "Text": "Ancient Meteoric Ore Greatsword",
+      "IDList": [
+        4500000
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Greatsword",
+      "IDList": [
+        4520000
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Heavy Greatsword",
+      "IDList": [
+        4520100
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Keen Greatsword",
+      "IDList": [
+        4520200
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Quality Greatsword",
+      "IDList": [
+        4520300
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Fire Greatsword",
+      "IDList": [
+        4520400
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Flame Art Greatsword",
+      "IDList": [
+        4520500
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Lightning Greatsword",
+      "IDList": [
+        4520600
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Sacred Greatsword",
+      "IDList": [
+        4520700
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Magic Greatsword",
+      "IDList": [
+        4520800
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Cold Greatsword",
+      "IDList": [
+        4520900
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Poison Greatsword",
+      "IDList": [
+        4521000
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Blood Greatsword",
+      "IDList": [
+        4521100
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Occult Greatsword",
+      "IDList": [
+        4521200
+      ]
+    },
+    {
+      "Text": "Greatsword of Radahn (Lord)",
+      "IDList": [
+        4530000
+      ]
+    },
+    {
+      "Text": "Moonrithyll\u0027s Knight Sword",
+      "IDList": [
+        4540000
+      ]
+    },
+    {
+      "Text": "Greatsword of Radahn (Light)",
+      "IDList": [
+        4550000
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Greatsword",
+      "IDList": [
+        6500000
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Heavy Greatsword",
+      "IDList": [
+        6500100
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Keen Greatsword",
+      "IDList": [
+        6500200
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Quality Greatsword",
+      "IDList": [
+        6500300
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Fire Greatsword",
+      "IDList": [
+        6500400
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Flame Art Greatsword",
+      "IDList": [
+        6500500
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Lightning Greatsword",
+      "IDList": [
+        6500600
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Sacred Greatsword",
+      "IDList": [
+        6500700
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Magic Greatsword",
+      "IDList": [
+        6500800
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Cold Greatsword",
+      "IDList": [
+        6500900
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Poison Greatsword",
+      "IDList": [
+        6501000
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Blood Greatsword",
+      "IDList": [
+        6501100
+      ]
+    },
+    {
+      "Text": "Queelign\u0027s Occult Greatsword",
+      "IDList": [
+        6501200
+      ]
+    },
+    {
+      "Text": "Spirit Sword",
+      "IDList": [
+        7500000
+      ]
+    },
+    {
+      "Text": "Falx",
+      "IDList": [
+        7510000
+      ]
+    },
+    {
+      "Text": "Dancing Blade of Ranah",
+      "IDList": [
+        7520000
+      ]
+    },
+    {
+      "Text": "Horned Warrior\u0027s Sword",
+      "IDList": [
+        7530000
+      ]
+    },
+    {
+      "Text": "Putrescence Cleaver",
+      "IDList": [
+        8500000
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Greatsword",
+      "IDList": [
+        8510000
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Heavy Greatsword",
+      "IDList": [
+        8510100
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Keen Greatsword",
+      "IDList": [
+        8510200
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Quality Greatsword",
+      "IDList": [
+        8510300
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Fire Greatsword",
+      "IDList": [
+        8510400
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Flame Art Greatsword",
+      "IDList": [
+        8510500
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Lightning Greatsword",
+      "IDList": [
+        8510600
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Sacred Greatsword",
+      "IDList": [
+        8510700
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Magic Greatsword",
+      "IDList": [
+        8510800
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Cold Greatsword",
+      "IDList": [
+        8510900
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Poison Greatsword",
+      "IDList": [
+        8511000
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Blood Greatsword",
+      "IDList": [
+        8511100
+      ]
+    },
+    {
+      "Text": "Freyja\u0027s Occult Greatsword",
+      "IDList": [
+        8511200
+      ]
+    },
+    {
+      "Text": "Horned Warrior\u0027s Greatsword",
+      "IDList": [
+        8520000
+      ]
+    },
+    {
+      "Text": "Sword of Night",
+      "IDList": [
+        9500000
+      ]
+    },
+    {
+      "Text": "Euporia",
+      "IDList": [
+        10500000
+      ]
+    },
+    {
+      "Text": "Black Steel Twinblade",
+      "IDList": [
+        10510000
+      ]
+    },
+    {
+      "Text": "Heavy Black Steel Twinblade",
+      "IDList": [
+        10510100
+      ]
+    },
+    {
+      "Text": "Keen Black Steel Twinblade",
+      "IDList": [
+        10510200
+      ]
+    },
+    {
+      "Text": "Quality Black Steel Twinblade",
+      "IDList": [
+        10510300
+      ]
+    },
+    {
+      "Text": "Fire Black Steel Twinblade",
+      "IDList": [
+        10510400
+      ]
+    },
+    {
+      "Text": "Flame Art Black Steel Twinblade",
+      "IDList": [
+        10510500
+      ]
+    },
+    {
+      "Text": "Lightning Black Steel Twinblade",
+      "IDList": [
+        10510600
+      ]
+    },
+    {
+      "Text": "Sacred Black Steel Twinblade",
+      "IDList": [
+        10510700
+      ]
+    },
+    {
+      "Text": "Magic Black Steel Twinblade",
+      "IDList": [
+        10510800
+      ]
+    },
+    {
+      "Text": "Cold Black Steel Twinblade",
+      "IDList": [
+        10510900
+      ]
+    },
+    {
+      "Text": "Poison Black Steel Twinblade",
+      "IDList": [
+        10511000
+      ]
+    },
+    {
+      "Text": "Blood Black Steel Twinblade",
+      "IDList": [
+        10511100
+      ]
+    },
+    {
+      "Text": "Occult Black Steel Twinblade",
+      "IDList": [
+        10511200
+      ]
+    },
+    {
+      "Text": "Flowerstone Gavel",
+      "IDList": [
+        11500000
+      ]
+    },
+    {
+      "Text": "Smithscript Greathammer",
+      "IDList": [
+        12500000
+      ]
+    },
+    {
+      "Text": "Heavy Smithscript Greathammer",
+      "IDList": [
+        12500100
+      ]
+    },
+    {
+      "Text": "Keen Smithscript Greathammer",
+      "IDList": [
+        12500200
+      ]
+    },
+    {
+      "Text": "Quality Smithscript Greathammer",
+      "IDList": [
+        12500300
+      ]
+    },
+    {
+      "Text": "Fire Smithscript Greathammer",
+      "IDList": [
+        12500400
+      ]
+    },
+    {
+      "Text": "Flame Art Smithscript Greathammer",
+      "IDList": [
+        12500500
+      ]
+    },
+    {
+      "Text": "Lightning Smithscript Greathammer",
+      "IDList": [
+        12500600
+      ]
+    },
+    {
+      "Text": "Sacred Smithscript Greathammer",
+      "IDList": [
+        12500700
+      ]
+    },
+    {
+      "Text": "Magic Smithscript Greathammer",
+      "IDList": [
+        12500800
+      ]
+    },
+    {
+      "Text": "Cold Smithscript Greathammer",
+      "IDList": [
+        12500900
+      ]
+    },
+    {
+      "Text": "Poison Smithscript Greathammer",
+      "IDList": [
+        12501000
+      ]
+    },
+    {
+      "Text": "Blood Smithscript Greathammer",
+      "IDList": [
+        12501100
+      ]
+    },
+    {
+      "Text": "Occult Smithscript Greathammer",
+      "IDList": [
+        12501200
+      ]
+    },
+    {
+      "Text": "Anvil Hammer",
+      "IDList": [
+        12510000
+      ]
+    },
+    {
+      "Text": "Black Steel Greathammer",
+      "IDList": [
+        12520000
+      ]
+    },
+    {
+      "Text": "Heavy Black Steel Greathammer",
+      "IDList": [
+        12520100
+      ]
+    },
+    {
+      "Text": "Keen Black Steel Greathammer",
+      "IDList": [
+        12520200
+      ]
+    },
+    {
+      "Text": "Quality Black Steel Greathammer",
+      "IDList": [
+        12520300
+      ]
+    },
+    {
+      "Text": "Fire Black Steel Greathammer",
+      "IDList": [
+        12520400
+      ]
+    },
+    {
+      "Text": "Flame Art Black Steel Greathammer",
+      "IDList": [
+        12520500
+      ]
+    },
+    {
+      "Text": "Lightning Black Steel Greathammer",
+      "IDList": [
+        12520600
+      ]
+    },
+    {
+      "Text": "Sacred Black Steel Greathammer",
+      "IDList": [
+        12520700
+      ]
+    },
+    {
+      "Text": "Magic Black Steel Greathammer",
+      "IDList": [
+        12520800
+      ]
+    },
+    {
+      "Text": "Cold Black Steel Greathammer",
+      "IDList": [
+        12520900
+      ]
+    },
+    {
+      "Text": "Poison Black Steel Greathammer",
+      "IDList": [
+        12521000
+      ]
+    },
+    {
+      "Text": "Blood Black Steel Greathammer",
+      "IDList": [
+        12521100
+      ]
+    },
+    {
+      "Text": "Occult Black Steel Greathammer",
+      "IDList": [
+        12521200
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Arm",
+      "IDList": [
+        12530000
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Heavy Arm",
+      "IDList": [
+        12530100
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Keen Arm",
+      "IDList": [
+        12530200
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Quality Arm",
+      "IDList": [
+        12530300
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Fire Arm",
+      "IDList": [
+        12530400
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Flame Art Arm",
+      "IDList": [
+        12530500
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Lightning Arm",
+      "IDList": [
+        12530600
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Sacred Arm",
+      "IDList": [
+        12530700
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Magic Arm",
+      "IDList": [
+        12530800
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Cold Arm",
+      "IDList": [
+        12530900
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Poison Arm",
+      "IDList": [
+        12531000
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Blood Arm",
+      "IDList": [
+        12531100
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Occult Arm",
+      "IDList": [
+        12531200
+      ]
+    },
+    {
+      "Text": "Serpent Flail",
+      "IDList": [
+        13500000
+      ]
+    },
+    {
+      "Text": "Smithscript Axe",
+      "IDList": [
+        14500000
+      ]
+    },
+    {
+      "Text": "Heavy Smithscript Axe",
+      "IDList": [
+        14500100
+      ]
+    },
+    {
+      "Text": "Keen Smithscript Axe",
+      "IDList": [
+        14500200
+      ]
+    },
+    {
+      "Text": "Quality Smithscript Axe",
+      "IDList": [
+        14500300
+      ]
+    },
+    {
+      "Text": "Fire Smithscript Axe",
+      "IDList": [
+        14500400
+      ]
+    },
+    {
+      "Text": "Flame Art Smithscript Axe",
+      "IDList": [
+        14500500
+      ]
+    },
+    {
+      "Text": "Lightning Smithscript Axe",
+      "IDList": [
+        14500600
+      ]
+    },
+    {
+      "Text": "Sacred Smithscript Axe",
+      "IDList": [
+        14500700
+      ]
+    },
+    {
+      "Text": "Magic Smithscript Axe",
+      "IDList": [
+        14500800
+      ]
+    },
+    {
+      "Text": "Cold Smithscript Axe",
+      "IDList": [
+        14500900
+      ]
+    },
+    {
+      "Text": "Poison Smithscript Axe",
+      "IDList": [
+        14501000
+      ]
+    },
+    {
+      "Text": "Blood Smithscript Axe",
+      "IDList": [
+        14501100
+      ]
+    },
+    {
+      "Text": "Occult Smithscript Axe",
+      "IDList": [
+        14501200
+      ]
+    },
+    {
+      "Text": "Death Knight\u0027s Twin Axes",
+      "IDList": [
+        14510000
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Axe",
+      "IDList": [
+        14520000
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Heavy Axe",
+      "IDList": [
+        14520100
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Keen Axe",
+      "IDList": [
+        14520200
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Quality Axe",
+      "IDList": [
+        14520300
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Fire Axe",
+      "IDList": [
+        14520400
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Flame Art Axe",
+      "IDList": [
+        14520500
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Lightning Axe",
+      "IDList": [
+        14520600
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Sacred Axe",
+      "IDList": [
+        14520700
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Magic Axe",
+      "IDList": [
+        14520800
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Cold Axe",
+      "IDList": [
+        14520900
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Poison Axe",
+      "IDList": [
+        14521000
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Blood Axe",
+      "IDList": [
+        14521100
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Occult Axe",
+      "IDList": [
+        14521200
+      ]
+    },
+    {
+      "Text": "Forked-Tongue Hatchet",
+      "IDList": [
+        14540000
+      ]
+    },
+    {
+      "Text": "Death Knight\u0027s Longhaft Axe",
+      "IDList": [
+        15500000
+      ]
+    },
+    {
+      "Text": "Bonny Butchering Knife",
+      "IDList": [
+        15510000
+      ]
+    },
+    {
+      "Text": "Smithscript Spear",
+      "IDList": [
+        16500000
+      ]
+    },
+    {
+      "Text": "Heavy Smithscript Spear",
+      "IDList": [
+        16500100
+      ]
+    },
+    {
+      "Text": "Keen Smithscript Spear",
+      "IDList": [
+        16500200
+      ]
+    },
+    {
+      "Text": "Quality Smithscript Spear",
+      "IDList": [
+        16500300
+      ]
+    },
+    {
+      "Text": "Fire Smithscript Spear",
+      "IDList": [
+        16500400
+      ]
+    },
+    {
+      "Text": "Flame Art Smithscript Spear",
+      "IDList": [
+        16500500
+      ]
+    },
+    {
+      "Text": "Lightning Smithscript Spear",
+      "IDList": [
+        16500600
+      ]
+    },
+    {
+      "Text": "Sacred Smithscript Spear",
+      "IDList": [
+        16500700
+      ]
+    },
+    {
+      "Text": "Magic Smithscript Spear",
+      "IDList": [
+        16500800
+      ]
+    },
+    {
+      "Text": "Cold Smithscript Spear",
+      "IDList": [
+        16500900
+      ]
+    },
+    {
+      "Text": "Poison Smithscript Spear",
+      "IDList": [
+        16501000
+      ]
+    },
+    {
+      "Text": "Blood Smithscript Spear",
+      "IDList": [
+        16501100
+      ]
+    },
+    {
+      "Text": "Occult Smithscript Spear",
+      "IDList": [
+        16501200
+      ]
+    },
+    {
+      "Text": "Swift Spear",
+      "IDList": [
+        16520000
+      ]
+    },
+    {
+      "Text": "Heavy Swift Spear",
+      "IDList": [
+        16520100
+      ]
+    },
+    {
+      "Text": "Keen Swift Spear",
+      "IDList": [
+        16520200
+      ]
+    },
+    {
+      "Text": "Quality Swift Spear",
+      "IDList": [
+        16520300
+      ]
+    },
+    {
+      "Text": "Fire Swift Spear",
+      "IDList": [
+        16520400
+      ]
+    },
+    {
+      "Text": "Flame Art Swift Spear",
+      "IDList": [
+        16520500
+      ]
+    },
+    {
+      "Text": "Lightning Swift Spear",
+      "IDList": [
+        16520600
+      ]
+    },
+    {
+      "Text": "Sacred Swift Spear",
+      "IDList": [
+        16520700
+      ]
+    },
+    {
+      "Text": "Magic Swift Spear",
+      "IDList": [
+        16520800
+      ]
+    },
+    {
+      "Text": "Cold Swift Spear",
+      "IDList": [
+        16520900
+      ]
+    },
+    {
+      "Text": "Poison Swift Spear",
+      "IDList": [
+        16521000
+      ]
+    },
+    {
+      "Text": "Blood Swift Spear",
+      "IDList": [
+        16521100
+      ]
+    },
+    {
+      "Text": "Occult Swift Spear",
+      "IDList": [
+        16521200
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Fork",
+      "IDList": [
+        16540000
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Heavy Fork",
+      "IDList": [
+        16540100
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Keen Fork",
+      "IDList": [
+        16540200
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Quality Fork",
+      "IDList": [
+        16540300
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Fire Fork",
+      "IDList": [
+        16540400
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Flame Art Fork",
+      "IDList": [
+        16540500
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Lightning Fork",
+      "IDList": [
+        16540600
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Sacred Fork",
+      "IDList": [
+        16540700
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Magic Fork",
+      "IDList": [
+        16540800
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Cold Fork",
+      "IDList": [
+        16540900
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Poison Fork",
+      "IDList": [
+        16541000
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Blood Fork",
+      "IDList": [
+        16541100
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Occult Fork",
+      "IDList": [
+        16541200
+      ]
+    },
+    {
+      "Text": "Bloodfiend\u0027s Sacred Spear",
+      "IDList": [
+        16550000
+      ]
+    },
+    {
+      "Text": "Spear of the Impaler",
+      "IDList": [
+        17500000
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Spear",
+      "IDList": [
+        17510000
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Heavy Spear",
+      "IDList": [
+        17510100
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Keen Spear",
+      "IDList": [
+        17510200
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Quality Spear",
+      "IDList": [
+        17510300
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Fire Spear",
+      "IDList": [
+        17510400
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Flame Art Spear",
+      "IDList": [
+        17510500
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Lightning Spear",
+      "IDList": [
+        17510600
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Sacred Spear",
+      "IDList": [
+        17510700
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Magic Spear",
+      "IDList": [
+        17510800
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Cold Spear",
+      "IDList": [
+        17510900
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Poison Spear",
+      "IDList": [
+        17511000
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Blood Spear",
+      "IDList": [
+        17511100
+      ]
+    },
+    {
+      "Text": "Messmer Soldier\u0027s Occult Spear",
+      "IDList": [
+        17511200
+      ]
+    },
+    {
+      "Text": "Barbed Staff-Spear",
+      "IDList": [
+        17520000
+      ]
+    },
+    {
+      "Text": "Spirit Glaive",
+      "IDList": [
+        18500000
+      ]
+    },
+    {
+      "Text": "Poleblade of the Bud",
+      "IDList": [
+        18510000
+      ]
+    },
+    {
+      "Text": "Obsidian Lamina",
+      "IDList": [
+        19500000
+      ]
+    },
+    {
+      "Text": "Tooth Whip",
+      "IDList": [
+        20500000
+      ]
+    },
+    {
+      "Text": "Thiollier\u0027s Hidden Needle",
+      "IDList": [
+        21500000
+      ]
+    },
+    {
+      "Text": "Pata",
+      "IDList": [
+        21510000
+      ]
+    },
+    {
+      "Text": "Heavy Pata",
+      "IDList": [
+        21510100
+      ]
+    },
+    {
+      "Text": "Keen Pata",
+      "IDList": [
+        21510200
+      ]
+    },
+    {
+      "Text": "Quality Pata",
+      "IDList": [
+        21510300
+      ]
+    },
+    {
+      "Text": "Fire Pata",
+      "IDList": [
+        21510400
+      ]
+    },
+    {
+      "Text": "Flame Art Pata",
+      "IDList": [
+        21510500
+      ]
+    },
+    {
+      "Text": "Lightning Pata",
+      "IDList": [
+        21510600
+      ]
+    },
+    {
+      "Text": "Sacred Pata",
+      "IDList": [
+        21510700
+      ]
+    },
+    {
+      "Text": "Magic Pata",
+      "IDList": [
+        21510800
+      ]
+    },
+    {
+      "Text": "Cold Pata",
+      "IDList": [
+        21510900
+      ]
+    },
+    {
+      "Text": "Poison Pata",
+      "IDList": [
+        21511000
+      ]
+    },
+    {
+      "Text": "Blood Pata",
+      "IDList": [
+        21511100
+      ]
+    },
+    {
+      "Text": "Occult Pata",
+      "IDList": [
+        21511200
+      ]
+    },
+    {
+      "Text": "Poisoned Hand",
+      "IDList": [
+        21520000
+      ]
+    },
+    {
+      "Text": "Madding Hand",
+      "IDList": [
+        21530000
+      ]
+    },
+    {
+      "Text": "Golem Fist",
+      "IDList": [
+        21540000
+      ]
+    },
+    {
+      "Text": "Heavy Golem Fist",
+      "IDList": [
+        21540100
+      ]
+    },
+    {
+      "Text": "Keen Golem Fist",
+      "IDList": [
+        21540200
+      ]
+    },
+    {
+      "Text": "Quality Golem Fist",
+      "IDList": [
+        21540300
+      ]
+    },
+    {
+      "Text": "Fire Golem Fist",
+      "IDList": [
+        21540400
+      ]
+    },
+    {
+      "Text": "Flame Art Golem Fist",
+      "IDList": [
+        21540500
+      ]
+    },
+    {
+      "Text": "Lightning Golem Fist",
+      "IDList": [
+        21540600
+      ]
+    },
+    {
+      "Text": "Sacred Golem Fist",
+      "IDList": [
+        21540700
+      ]
+    },
+    {
+      "Text": "Magic Golem Fist",
+      "IDList": [
+        21540800
+      ]
+    },
+    {
+      "Text": "Cold Golem Fist",
+      "IDList": [
+        21540900
+      ]
+    },
+    {
+      "Text": "Poison Golem Fist",
+      "IDList": [
+        21541000
+      ]
+    },
+    {
+      "Text": "Blood Golem Fist",
+      "IDList": [
+        21541100
+      ]
+    },
+    {
+      "Text": "Occult Golem Fist",
+      "IDList": [
+        21541200
+      ]
+    },
+    {
+      "Text": "Shield of Night",
+      "IDList": [
+        21550000
+      ]
+    },
+    {
+      "Text": "Claws of Night",
+      "IDList": [
+        22500000
+      ]
+    },
+    {
+      "Text": "Devonia\u0027s Hammer",
+      "IDList": [
+        23500000
+      ]
+    },
+    {
+      "Text": "Shadow Sunflower Blossom",
+      "IDList": [
+        23510000
+      ]
+    },
+    {
+      "Text": "Gazing Finger",
+      "IDList": [
+        23520000
+      ]
+    },
+    {
+      "Text": "Nanaya\u0027s Torch",
+      "IDList": [
+        24500000
+      ]
+    },
+    {
+      "Text": "Lamenting Visage",
+      "IDList": [
+        24510000
+      ]
+    },
+    {
+      "Text": "Smithscript Shield",
+      "IDList": [
+        30510000
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Shield",
+      "IDList": [
+        31500000
+      ]
+    },
+    {
+      "Text": "Heavy Messmer Soldier Shield",
+      "IDList": [
+        31500100
+      ]
+    },
+    {
+      "Text": "Keen Messmer Soldier Shield",
+      "IDList": [
+        31500200
+      ]
+    },
+    {
+      "Text": "Quality Messmer Soldier Shield",
+      "IDList": [
+        31500300
+      ]
+    },
+    {
+      "Text": "Fire Messmer Soldier Shield",
+      "IDList": [
+        31500400
+      ]
+    },
+    {
+      "Text": "Flame Art Messmer Soldier Shield",
+      "IDList": [
+        31500500
+      ]
+    },
+    {
+      "Text": "Lightning Messmer Soldier Shield",
+      "IDList": [
+        31500600
+      ]
+    },
+    {
+      "Text": "Sacred Messmer Soldier Shield",
+      "IDList": [
+        31500700
+      ]
+    },
+    {
+      "Text": "Magic Messmer Soldier Shield",
+      "IDList": [
+        31500800
+      ]
+    },
+    {
+      "Text": "Cold Messmer Soldier Shield",
+      "IDList": [
+        31500900
+      ]
+    },
+    {
+      "Text": "Poison Messmer Soldier Shield",
+      "IDList": [
+        31501000
+      ]
+    },
+    {
+      "Text": "Blood Messmer Soldier Shield",
+      "IDList": [
+        31501100
+      ]
+    },
+    {
+      "Text": "Occult Messmer Soldier Shield",
+      "IDList": [
+        31501200
+      ]
+    },
+    {
+      "Text": "Wolf Crest Shield",
+      "IDList": [
+        31510000
+      ]
+    },
+    {
+      "Text": "Heavy Wolf Crest Shield",
+      "IDList": [
+        31510100
+      ]
+    },
+    {
+      "Text": "Keen Wolf Crest Shield",
+      "IDList": [
+        31510200
+      ]
+    },
+    {
+      "Text": "Quality Wolf Crest Shield",
+      "IDList": [
+        31510300
+      ]
+    },
+    {
+      "Text": "Fire Wolf Crest Shield",
+      "IDList": [
+        31510400
+      ]
+    },
+    {
+      "Text": "Flame Art Wolf Crest Shield",
+      "IDList": [
+        31510500
+      ]
+    },
+    {
+      "Text": "Lightning Wolf Crest Shield",
+      "IDList": [
+        31510600
+      ]
+    },
+    {
+      "Text": "Sacred Wolf Crest Shield",
+      "IDList": [
+        31510700
+      ]
+    },
+    {
+      "Text": "Magic Wolf Crest Shield",
+      "IDList": [
+        31510800
+      ]
+    },
+    {
+      "Text": "Cold Wolf Crest Shield",
+      "IDList": [
+        31510900
+      ]
+    },
+    {
+      "Text": "Poison Wolf Crest Shield",
+      "IDList": [
+        31511000
+      ]
+    },
+    {
+      "Text": "Blood Wolf Crest Shield",
+      "IDList": [
+        31511100
+      ]
+    },
+    {
+      "Text": "Occult Wolf Crest Shield",
+      "IDList": [
+        31511200
+      ]
+    },
+    {
+      "Text": "Serpent Crest Shield",
+      "IDList": [
+        31520000
+      ]
+    },
+    {
+      "Text": "Heavy Serpent Crest Shield",
+      "IDList": [
+        31520100
+      ]
+    },
+    {
+      "Text": "Keen Serpent Crest Shield",
+      "IDList": [
+        31520200
+      ]
+    },
+    {
+      "Text": "Quality Serpent Crest Shield",
+      "IDList": [
+        31520300
+      ]
+    },
+    {
+      "Text": "Fire Serpent Crest Shield",
+      "IDList": [
+        31520400
+      ]
+    },
+    {
+      "Text": "Flame Art Serpent Crest Shield",
+      "IDList": [
+        31520500
+      ]
+    },
+    {
+      "Text": "Lightning Serpent Crest Shield",
+      "IDList": [
+        31520600
+      ]
+    },
+    {
+      "Text": "Sacred Serpent Crest Shield",
+      "IDList": [
+        31520700
+      ]
+    },
+    {
+      "Text": "Magic Serpent Crest Shield",
+      "IDList": [
+        31520800
+      ]
+    },
+    {
+      "Text": "Cold Serpent Crest Shield",
+      "IDList": [
+        31520900
+      ]
+    },
+    {
+      "Text": "Poison Serpent Crest Shield",
+      "IDList": [
+        31521000
+      ]
+    },
+    {
+      "Text": "Blood Serpent Crest Shield",
+      "IDList": [
+        31521100
+      ]
+    },
+    {
+      "Text": "Occult Serpent Crest Shield",
+      "IDList": [
+        31521200
+      ]
+    },
+    {
+      "Text": "Golden Lion Shield",
+      "IDList": [
+        31530000
+      ]
+    },
+    {
+      "Text": "Black Steel Greatshield",
+      "IDList": [
+        32500000
+      ]
+    },
+    {
+      "Text": "Heavy Black Steel Greatshield",
+      "IDList": [
+        32500100
+      ]
+    },
+    {
+      "Text": "Keen Black Steel Greatshield",
+      "IDList": [
+        32500200
+      ]
+    },
+    {
+      "Text": "Quality Black Steel Greatshield",
+      "IDList": [
+        32500300
+      ]
+    },
+    {
+      "Text": "Fire Black Steel Greatshield",
+      "IDList": [
+        32500400
+      ]
+    },
+    {
+      "Text": "Flame Art Black Steel Greatshield",
+      "IDList": [
+        32500500
+      ]
+    },
+    {
+      "Text": "Lightning Black Steel Greatshield",
+      "IDList": [
+        32500600
+      ]
+    },
+    {
+      "Text": "Sacred Black Steel Greatshield",
+      "IDList": [
+        32500700
+      ]
+    },
+    {
+      "Text": "Magic Black Steel Greatshield",
+      "IDList": [
+        32500800
+      ]
+    },
+    {
+      "Text": "Cold Black Steel Greatshield",
+      "IDList": [
+        32500900
+      ]
+    },
+    {
+      "Text": "Poison Black Steel Greatshield",
+      "IDList": [
+        32501000
+      ]
+    },
+    {
+      "Text": "Blood Black Steel Greatshield",
+      "IDList": [
+        32501100
+      ]
+    },
+    {
+      "Text": "Occult Black Steel Greatshield",
+      "IDList": [
+        32501200
+      ]
+    },
+    {
+      "Text": "Verdigris Greatshield",
+      "IDList": [
+        32520000
+      ]
+    },
+    {
+      "Text": "Staff of the Great Beyond",
+      "IDList": [
+        33510000
+      ]
+    },
+    {
+      "Text": "Maternal Staff",
+      "IDList": [
+        33520000
+      ]
+    },
+    {
+      "Text": "Dryleaf Seal",
+      "IDList": [
+        34500000
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Seal",
+      "IDList": [
+        34510000
+      ]
+    },
+    {
+      "Text": "Spiraltree Seal",
+      "IDList": [
+        34520000
+      ]
+    },
+    {
+      "Text": "Bone Bow",
+      "IDList": [
+        40500000
+      ]
+    },
+    {
+      "Text": "Ansbach\u0027s Longbow",
+      "IDList": [
+        41510000
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Greatbow",
+      "IDList": [
+        42500000
+      ]
+    },
+    {
+      "Text": "Repeating Crossbow",
+      "IDList": [
+        43500000
+      ]
+    },
+    {
+      "Text": "Spread Crossbow",
+      "IDList": [
+        43510000
+      ]
+    },
+    {
+      "Text": "Rabbath\u0027s Cannon",
+      "IDList": [
+        44500000
+      ]
+    },
+    {
+      "Text": "Piquebone Arrow (Fletched)",
+      "IDList": [
+        50540000
+      ]
+    },
+    {
+      "Text": "Piquebone Arrow",
+      "IDList": [
+        50550000
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Harpoon",
+      "IDList": [
+        51500000
+      ]
+    },
+    {
+      "Text": "Piquebone Bolt",
+      "IDList": [
+        52520000
+      ]
+    },
+    {
+      "Text": "Rabbath\u0027s Greatbolt",
+      "IDList": [
+        53500000
+      ]
+    },
+    {
+      "Text": "Dryleaf Arts",
+      "IDList": [
+        60500000
+      ]
+    },
+    {
+      "Text": "Heavy Dryleaf Arts",
+      "IDList": [
+        60500100
+      ]
+    },
+    {
+      "Text": "Keen Dryleaf Arts",
+      "IDList": [
+        60500200
+      ]
+    },
+    {
+      "Text": "Quality Dryleaf Arts",
+      "IDList": [
+        60500300
+      ]
+    },
+    {
+      "Text": "Fire Dryleaf Arts",
+      "IDList": [
+        60500400
+      ]
+    },
+    {
+      "Text": "Flame Art Dryleaf Arts",
+      "IDList": [
+        60500500
+      ]
+    },
+    {
+      "Text": "Lightning Dryleaf Arts",
+      "IDList": [
+        60500600
+      ]
+    },
+    {
+      "Text": "Sacred Dryleaf Arts",
+      "IDList": [
+        60500700
+      ]
+    },
+    {
+      "Text": "Magic Dryleaf Arts",
+      "IDList": [
+        60500800
+      ]
+    },
+    {
+      "Text": "Cold Dryleaf Arts",
+      "IDList": [
+        60500900
+      ]
+    },
+    {
+      "Text": "Poison Dryleaf Arts",
+      "IDList": [
+        60501000
+      ]
+    },
+    {
+      "Text": "Blood Dryleaf Arts",
+      "IDList": [
+        60501100
+      ]
+    },
+    {
+      "Text": "Occult Dryleaf Arts",
+      "IDList": [
+        60501200
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Footwork",
+      "IDList": [
+        60510000
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Heavy Footwork",
+      "IDList": [
+        60510100
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Keen Footwork",
+      "IDList": [
+        60510200
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Quality Footwork",
+      "IDList": [
+        60510300
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Fire Footwork",
+      "IDList": [
+        60510400
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Flame Art Footwork",
+      "IDList": [
+        60510500
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Lightning Footwork",
+      "IDList": [
+        60510600
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Sacred Footwork",
+      "IDList": [
+        60510700
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Magic Footwork",
+      "IDList": [
+        60510800
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Cold Footwork",
+      "IDList": [
+        60510900
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Poison Footwork",
+      "IDList": [
+        60511000
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Blood Footwork",
+      "IDList": [
+        60511100
+      ]
+    },
+    {
+      "Text": "Dane\u0027s Occult Footwork",
+      "IDList": [
+        60511200
+      ]
+    },
+    {
+      "Text": "Firespark Perfume Bottle",
+      "IDList": [
+        61500000
+      ]
+    },
+    {
+      "Text": "Chilling Perfume Bottle",
+      "IDList": [
+        61510000
+      ]
+    },
+    {
+      "Text": "Frenzyflame Perfume Bottle",
+      "IDList": [
+        61520000
+      ]
+    },
+    {
+      "Text": "Lightning Perfume Bottle",
+      "IDList": [
+        61530000
+      ]
+    },
+    {
+      "Text": "Deadly Poison Perfume Bottle",
+      "IDList": [
+        61540000
+      ]
+    },
+    {
+      "Text": "Dueling Shield",
+      "IDList": [
+        62500000
+      ]
+    },
+    {
+      "Text": "Heavy Dueling Shield",
+      "IDList": [
+        62500100
+      ]
+    },
+    {
+      "Text": "Keen Dueling Shield",
+      "IDList": [
+        62500200
+      ]
+    },
+    {
+      "Text": "Quality Dueling Shield",
+      "IDList": [
+        62500300
+      ]
+    },
+    {
+      "Text": "Fire Dueling Shield",
+      "IDList": [
+        62500400
+      ]
+    },
+    {
+      "Text": "Flame Art Dueling Shield",
+      "IDList": [
+        62500500
+      ]
+    },
+    {
+      "Text": "Lightning Dueling Shield",
+      "IDList": [
+        62500600
+      ]
+    },
+    {
+      "Text": "Sacred Dueling Shield",
+      "IDList": [
+        62500700
+      ]
+    },
+    {
+      "Text": "Magic Dueling Shield",
+      "IDList": [
+        62500800
+      ]
+    },
+    {
+      "Text": "Cold Dueling Shield",
+      "IDList": [
+        62500900
+      ]
+    },
+    {
+      "Text": "Poison Dueling Shield",
+      "IDList": [
+        62501000
+      ]
+    },
+    {
+      "Text": "Blood Dueling Shield",
+      "IDList": [
+        62501100
+      ]
+    },
+    {
+      "Text": "Occult Dueling Shield",
+      "IDList": [
+        62501200
+      ]
+    },
+    {
+      "Text": "Carian Thrusting Shield",
+      "IDList": [
+        62510000
+      ]
+    },
+    {
+      "Text": "Heavy Carian Thrusting Shield",
+      "IDList": [
+        62510100
+      ]
+    },
+    {
+      "Text": "Keen Carian Thrusting Shield",
+      "IDList": [
+        62510200
+      ]
+    },
+    {
+      "Text": "Quality Carian Thrusting Shield",
+      "IDList": [
+        62510300
+      ]
+    },
+    {
+      "Text": "Fire Carian Thrusting Shield",
+      "IDList": [
+        62510400
+      ]
+    },
+    {
+      "Text": "Flame Art Carian Thrusting Shield",
+      "IDList": [
+        62510500
+      ]
+    },
+    {
+      "Text": "Lightning Carian Thrusting Shield",
+      "IDList": [
+        62510600
+      ]
+    },
+    {
+      "Text": "Sacred Carian Thrusting Shield",
+      "IDList": [
+        62510700
+      ]
+    },
+    {
+      "Text": "Magic Carian Thrusting Shield",
+      "IDList": [
+        62510800
+      ]
+    },
+    {
+      "Text": "Cold Carian Thrusting Shield",
+      "IDList": [
+        62510900
+      ]
+    },
+    {
+      "Text": "Poison Carian Thrusting Shield",
+      "IDList": [
+        62511000
+      ]
+    },
+    {
+      "Text": "Blood Carian Thrusting Shield",
+      "IDList": [
+        62511100
+      ]
+    },
+    {
+      "Text": "Occult Carian Thrusting Shield",
+      "IDList": [
+        62511200
+      ]
+    },
+    {
+      "Text": "Smithscript Dagger",
+      "IDList": [
+        63500000
+      ]
+    },
+    {
+      "Text": "Heavy Smithscript Dagger",
+      "IDList": [
+        63500100
+      ]
+    },
+    {
+      "Text": "Keen Smithscript Dagger",
+      "IDList": [
+        63500200
+      ]
+    },
+    {
+      "Text": "Quality Smithscript Dagger",
+      "IDList": [
+        63500300
+      ]
+    },
+    {
+      "Text": "Fire Smithscript Dagger",
+      "IDList": [
+        63500400
+      ]
+    },
+    {
+      "Text": "Flame Art Smithscript Dagger",
+      "IDList": [
+        63500500
+      ]
+    },
+    {
+      "Text": "Lightning Smithscript Dagger",
+      "IDList": [
+        63500600
+      ]
+    },
+    {
+      "Text": "Sacred Smithscript Dagger",
+      "IDList": [
+        63500700
+      ]
+    },
+    {
+      "Text": "Magic Smithscript Dagger",
+      "IDList": [
+        63500800
+      ]
+    },
+    {
+      "Text": "Cold Smithscript Dagger",
+      "IDList": [
+        63500900
+      ]
+    },
+    {
+      "Text": "Poison Smithscript Dagger",
+      "IDList": [
+        63501000
+      ]
+    },
+    {
+      "Text": "Blood Smithscript Dagger",
+      "IDList": [
+        63501100
+      ]
+    },
+    {
+      "Text": "Occult Smithscript Dagger",
+      "IDList": [
+        63501200
+      ]
+    },
+    {
+      "Text": "Backhand Blade",
+      "IDList": [
+        64500000
+      ]
+    },
+    {
+      "Text": "Heavy Backhand Blade",
+      "IDList": [
+        64500100
+      ]
+    },
+    {
+      "Text": "Keen Backhand Blade",
+      "IDList": [
+        64500200
+      ]
+    },
+    {
+      "Text": "Quality Backhand Blade",
+      "IDList": [
+        64500300
+      ]
+    },
+    {
+      "Text": "Fire Backhand Blade",
+      "IDList": [
+        64500400
+      ]
+    },
+    {
+      "Text": "Flame Art Backhand Blade",
+      "IDList": [
+        64500500
+      ]
+    },
+    {
+      "Text": "Lightning Backhand Blade",
+      "IDList": [
+        64500600
+      ]
+    },
+    {
+      "Text": "Sacred Backhand Blade",
+      "IDList": [
+        64500700
+      ]
+    },
+    {
+      "Text": "Magic Backhand Blade",
+      "IDList": [
+        64500800
+      ]
+    },
+    {
+      "Text": "Cold Backhand Blade",
+      "IDList": [
+        64500900
+      ]
+    },
+    {
+      "Text": "Poison Backhand Blade",
+      "IDList": [
+        64501000
+      ]
+    },
+    {
+      "Text": "Blood Backhand Blade",
+      "IDList": [
+        64501100
+      ]
+    },
+    {
+      "Text": "Occult Backhand Blade",
+      "IDList": [
+        64501200
+      ]
+    },
+    {
+      "Text": "Smithscript Cirque",
+      "IDList": [
+        64510000
+      ]
+    },
+    {
+      "Text": "Heavy Smithscript Cirque",
+      "IDList": [
+        64510100
+      ]
+    },
+    {
+      "Text": "Keen Smithscript Cirque",
+      "IDList": [
+        64510200
+      ]
+    },
+    {
+      "Text": "Quality Smithscript Cirque",
+      "IDList": [
+        64510300
+      ]
+    },
+    {
+      "Text": "Fire Smithscript Cirque",
+      "IDList": [
+        64510400
+      ]
+    },
+    {
+      "Text": "Flame Art Smithscript Cirque",
+      "IDList": [
+        64510500
+      ]
+    },
+    {
+      "Text": "Lightning Smithscript Cirque",
+      "IDList": [
+        64510600
+      ]
+    },
+    {
+      "Text": "Sacred Smithscript Cirque",
+      "IDList": [
+        64510700
+      ]
+    },
+    {
+      "Text": "Magic Smithscript Cirque",
+      "IDList": [
+        64510800
+      ]
+    },
+    {
+      "Text": "Cold Smithscript Cirque",
+      "IDList": [
+        64510900
+      ]
+    },
+    {
+      "Text": "Poison Smithscript Cirque",
+      "IDList": [
+        64511000
+      ]
+    },
+    {
+      "Text": "Blood Smithscript Cirque",
+      "IDList": [
+        64511100
+      ]
+    },
+    {
+      "Text": "Occult Smithscript Cirque",
+      "IDList": [
+        64511200
+      ]
+    },
+    {
+      "Text": "Curseblade\u0027s Cirque",
+      "IDList": [
+        64520000
+      ]
+    },
+    {
+      "Text": "Great Katana",
+      "IDList": [
+        66500000
+      ]
+    },
+    {
+      "Text": "Heavy Great Katana",
+      "IDList": [
+        66500100
+      ]
+    },
+    {
+      "Text": "Keen Great Katana",
+      "IDList": [
+        66500200
+      ]
+    },
+    {
+      "Text": "Quality Great Katana",
+      "IDList": [
+        66500300
+      ]
+    },
+    {
+      "Text": "Fire Great Katana",
+      "IDList": [
+        66500400
+      ]
+    },
+    {
+      "Text": "Flame Art Great Katana",
+      "IDList": [
+        66500500
+      ]
+    },
+    {
+      "Text": "Lightning Great Katana",
+      "IDList": [
+        66500600
+      ]
+    },
+    {
+      "Text": "Sacred Great Katana",
+      "IDList": [
+        66500700
+      ]
+    },
+    {
+      "Text": "Magic Great Katana",
+      "IDList": [
+        66500800
+      ]
+    },
+    {
+      "Text": "Cold Great Katana",
+      "IDList": [
+        66500900
+      ]
+    },
+    {
+      "Text": "Poison Great Katana",
+      "IDList": [
+        66501000
+      ]
+    },
+    {
+      "Text": "Blood Great Katana",
+      "IDList": [
+        66501100
+      ]
+    },
+    {
+      "Text": "Occult Great Katana",
+      "IDList": [
+        66501200
+      ]
+    },
+    {
+      "Text": "Dragon-Hunter\u0027s Great Katana",
+      "IDList": [
+        66510000
+      ]
+    },
+    {
+      "Text": "Rakshasa\u0027s Great Katana",
+      "IDList": [
+        66520000
+      ]
+    },
+    {
+      "Text": "Milady",
+      "IDList": [
+        67500000
+      ]
+    },
+    {
+      "Text": "Heavy Milady",
+      "IDList": [
+        67500100
+      ]
+    },
+    {
+      "Text": "Keen Milady",
+      "IDList": [
+        67500200
+      ]
+    },
+    {
+      "Text": "Quality Milady",
+      "IDList": [
+        67500300
+      ]
+    },
+    {
+      "Text": "Fire Milady",
+      "IDList": [
+        67500400
+      ]
+    },
+    {
+      "Text": "Flame Art Milady",
+      "IDList": [
+        67500500
+      ]
+    },
+    {
+      "Text": "Lightning Milady",
+      "IDList": [
+        67500600
+      ]
+    },
+    {
+      "Text": "Sacred Milady",
+      "IDList": [
+        67500700
+      ]
+    },
+    {
+      "Text": "Magic Milady",
+      "IDList": [
+        67500800
+      ]
+    },
+    {
+      "Text": "Cold Milady",
+      "IDList": [
+        67500900
+      ]
+    },
+    {
+      "Text": "Poison Milady",
+      "IDList": [
+        67501000
+      ]
+    },
+    {
+      "Text": "Blood Milady",
+      "IDList": [
+        67501100
+      ]
+    },
+    {
+      "Text": "Occult Milady",
+      "IDList": [
+        67501200
+      ]
+    },
+    {
+      "Text": "Leda\u0027s Sword",
+      "IDList": [
+        67510000
+      ]
+    },
+    {
+      "Text": "Rellana\u0027s Twin Blades",
+      "IDList": [
+        67520000
+      ]
+    },
+    {
+      "Text": "Beast Claw",
+      "IDList": [
+        68500000
+      ]
+    },
+    {
+      "Text": "Heavy Beast Claw",
+      "IDList": [
+        68500100
+      ]
+    },
+    {
+      "Text": "Keen Beast Claw",
+      "IDList": [
+        68500200
+      ]
+    },
+    {
+      "Text": "Quality Beast Claw",
+      "IDList": [
+        68500300
+      ]
+    },
+    {
+      "Text": "Fire Beast Claw",
+      "IDList": [
+        68500400
+      ]
+    },
+    {
+      "Text": "Flame Art Beast Claw",
+      "IDList": [
+        68500500
+      ]
+    },
+    {
+      "Text": "Lightning Beast Claw",
+      "IDList": [
+        68500600
+      ]
+    },
+    {
+      "Text": "Sacred Beast Claw",
+      "IDList": [
+        68500700
+      ]
+    },
+    {
+      "Text": "Magic Beast Claw",
+      "IDList": [
+        68500800
+      ]
+    },
+    {
+      "Text": "Cold Beast Claw",
+      "IDList": [
+        68500900
+      ]
+    },
+    {
+      "Text": "Poison Beast Claw",
+      "IDList": [
+        68501000
+      ]
+    },
+    {
+      "Text": "Blood Beast Claw",
+      "IDList": [
+        68501100
+      ]
+    },
+    {
+      "Text": "Occult Beast Claw",
+      "IDList": [
+        68501200
+      ]
+    },
+    {
+      "Text": "Red Bear\u0027s Claw",
+      "IDList": [
+        68510000
+      ]
+    }
+  ]
+}

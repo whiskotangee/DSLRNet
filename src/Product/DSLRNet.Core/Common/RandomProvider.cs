@@ -58,9 +58,16 @@ public class RandomProvider(int seed)
         throw new Exception("Failure");
     }
 
-    public T GetRandomItem<T>(List<T> values)
+    public T GetRandomItem<T>(IEnumerable<T> values)
     {
-        return values[this.random.Next(values.Count)];
+        int itemNumber = this.random.Next(values.Count());
+
+        return values.ElementAt(itemNumber);
+    }
+
+    public List<T> GetRandomItems<T>(IEnumerable<T> values, int count)
+    {
+        return GetRandomizedList(values).Take(count).ToList();
     }
 
     public List<T> GetRandomizedList<T>(IEnumerable<T> source)

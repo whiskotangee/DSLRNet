@@ -1,0 +1,3751 @@
+{
+  "FMG_ID": 319,
+  "Entries": [
+    {
+      "Text": "Hefty Fire Pot",
+      "IDList": [
+        2000300
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        2000301,
+        2000302,
+        2000303,
+        2000304,
+        2000305,
+        2000306,
+        2000307,
+        2000308,
+        2000309,
+        2000311,
+        2000312,
+        2000313,
+        2000314,
+        2000315,
+        2000316,
+        2000317,
+        2000318,
+        2000319,
+        2000321,
+        2000322,
+        2000323,
+        2000324,
+        2000325,
+        2000326,
+        2000327,
+        2000328,
+        2000329,
+        2000331,
+        2000332,
+        2000333,
+        2000334,
+        2000335,
+        2000336,
+        2000337,
+        2000338,
+        2000339,
+        2000361,
+        2000362,
+        2000363,
+        2000364,
+        2000365,
+        2000366,
+        2000367,
+        2000368,
+        2000369,
+        2000371,
+        2000372,
+        2000373,
+        2000374,
+        2000375,
+        2000376,
+        2000377,
+        2000378,
+        2000379,
+        2000651,
+        2000652,
+        2000653,
+        2000654,
+        2000655,
+        2000656,
+        2000657,
+        2000658,
+        2000659,
+        2000661,
+        2000662,
+        2000663,
+        2000664,
+        2000665,
+        2000666,
+        2000667,
+        2000668,
+        2000669,
+        2000671,
+        2000672,
+        2000673,
+        2000674,
+        2000675,
+        2000676,
+        2000677,
+        2000678,
+        2000679,
+        2000681,
+        2000682,
+        2000683,
+        2000684,
+        2000685,
+        2000686,
+        2000687,
+        2000688,
+        2000689,
+        2000691,
+        2000692,
+        2000693,
+        2000694,
+        2000695,
+        2000696,
+        2000697,
+        2000698,
+        2000699,
+        2000701,
+        2000702,
+        2000703,
+        2000704,
+        2000705,
+        2000706,
+        2000707,
+        2000708,
+        2000709,
+        2000901,
+        2000902,
+        2000903,
+        2000904,
+        2000905,
+        2000906,
+        2000907,
+        2000908,
+        2000909,
+        2001101,
+        2001102,
+        2001103,
+        2001104,
+        2001106,
+        2001107,
+        2001108,
+        2001109,
+        2001111,
+        2001112,
+        2001113,
+        2001114,
+        2001115,
+        2001116,
+        2001117,
+        2001118,
+        2001119,
+        2001121,
+        2001122,
+        2001123,
+        2001124,
+        2001125,
+        2001126,
+        2001127,
+        2001128,
+        2001129,
+        2001131,
+        2001132,
+        2001133,
+        2001134,
+        2001135,
+        2001136,
+        2001137,
+        2001138,
+        2001139,
+        2001141,
+        2001142,
+        2001143,
+        2001144,
+        2001145,
+        2001146,
+        2001147,
+        2001148,
+        2001149,
+        2001151,
+        2001152,
+        2001153,
+        2001154,
+        2001155,
+        2001156,
+        2001157,
+        2001158,
+        2001159,
+        2001161,
+        2001162,
+        2001163,
+        2001164,
+        2001165,
+        2001166,
+        2001167,
+        2001168,
+        2001169,
+        2001204,
+        2001205,
+        2001206,
+        2001207,
+        2001208,
+        2001209,
+        2001211,
+        2001212,
+        2001213,
+        2001214,
+        2001215,
+        2001216,
+        2001217,
+        2001218,
+        2001219,
+        2001221,
+        2001222,
+        2001223,
+        2001224,
+        2001225,
+        2001226,
+        2001227,
+        2001228,
+        2001229,
+        2001401,
+        2001402,
+        2001403,
+        2001404,
+        2001405,
+        2001406,
+        2001407,
+        2001408,
+        2001409,
+        2001411,
+        2001412,
+        2001413,
+        2001414,
+        2001415,
+        2001416,
+        2001417,
+        2001418,
+        2001419,
+        2001421,
+        2001422,
+        2001423,
+        2001424,
+        2001425,
+        2001426,
+        2001427,
+        2001428,
+        2001429,
+        2001501,
+        2001502,
+        2001503,
+        2001504,
+        2001505,
+        2001506,
+        2001507,
+        2001508,
+        2001509,
+        2001511,
+        2001512,
+        2001513,
+        2001514,
+        2001515,
+        2001516,
+        2001517,
+        2001518,
+        2001519,
+        2001521,
+        2001522,
+        2001523,
+        2001524,
+        2001525,
+        2001526,
+        2001527,
+        2001528,
+        2001529,
+        2001701,
+        2001702,
+        2001703,
+        2001704,
+        2001705,
+        2001706,
+        2001707,
+        2001708,
+        2001709,
+        2002001,
+        2002002,
+        2002003,
+        2002004,
+        2002005,
+        2002006,
+        2002007,
+        2002008,
+        2002009,
+        2002011,
+        2002012,
+        2002013,
+        2002014,
+        2002015,
+        2002016,
+        2002017,
+        2002018,
+        2002019,
+        2002021,
+        2002022,
+        2002023,
+        2002024,
+        2002025,
+        2002026,
+        2002027,
+        2002028,
+        2002029,
+        2002121,
+        2002122,
+        2002123,
+        2002124,
+        2002125,
+        2002126,
+        2002127,
+        2002128,
+        2002129,
+        2002131,
+        2002132,
+        2002133,
+        2002134,
+        2002135,
+        2002136,
+        2002137,
+        2002138,
+        2002139,
+        2002141,
+        2002142,
+        2002143,
+        2002144,
+        2002145,
+        2002146,
+        2002147,
+        2002148,
+        2002149,
+        2002906,
+        2003131,
+        2003132,
+        2003133,
+        2003134,
+        2003135,
+        2003136,
+        2003137,
+        2003138,
+        2003139,
+        2003141,
+        2003142,
+        2003143,
+        2003144,
+        2003145,
+        2003146,
+        2003147,
+        2003148,
+        2003149,
+        2003151,
+        2003152,
+        2003153,
+        2003154,
+        2003155,
+        2003156,
+        2003157,
+        2003158,
+        2003159,
+        2003161,
+        2003162,
+        2003163,
+        2003164,
+        2003165,
+        2003166,
+        2003167,
+        2003168,
+        2003169,
+        2003171,
+        2003172,
+        2003173,
+        2003174,
+        2003175,
+        2003176,
+        2003177,
+        2003178,
+        2003179,
+        2003181,
+        2003182,
+        2003183,
+        2003184,
+        2003185,
+        2003186,
+        2003187,
+        2003188,
+        2003189,
+        2003191,
+        2003192,
+        2003193,
+        2003194,
+        2003195,
+        2003196,
+        2003197,
+        2003198,
+        2003199,
+        2004301,
+        2004302,
+        2004303,
+        2004304,
+        2004305,
+        2004306,
+        2004307,
+        2004308,
+        2004309,
+        2004311,
+        2004312,
+        2004313,
+        2004314,
+        2004315,
+        2004316,
+        2004317,
+        2004318,
+        2004319,
+        2004501,
+        2004502,
+        2004503,
+        2004504,
+        2004505,
+        2004506,
+        2004507,
+        2004508,
+        2004509,
+        2004701,
+        2004702,
+        2004703,
+        2004704,
+        2004705,
+        2004706,
+        2004707,
+        2004708,
+        2004709,
+        2004901,
+        2004902,
+        2004903,
+        2004904,
+        2004905,
+        2004906,
+        2004907,
+        2004908,
+        2004909,
+        2006201,
+        2006202,
+        2006203,
+        2006204,
+        2006205,
+        2006206,
+        2006207,
+        2006208,
+        2006209,
+        2006651,
+        2006652,
+        2006653,
+        2006654,
+        2006655,
+        2006656,
+        2006657,
+        2006658,
+        2006659,
+        2006661,
+        2006662,
+        2006663,
+        2006664,
+        2006665,
+        2006666,
+        2006667,
+        2006668,
+        2006669,
+        2006671,
+        2006672,
+        2006673,
+        2006674,
+        2006675,
+        2006676,
+        2006677,
+        2006678,
+        2006679,
+        2006681,
+        2006682,
+        2006683,
+        2006684,
+        2006685,
+        2006686,
+        2006687,
+        2006688,
+        2006689,
+        2006691,
+        2006692,
+        2006693,
+        2006694,
+        2006695,
+        2006696,
+        2006697,
+        2006698,
+        2006699,
+        2006701,
+        2006702,
+        2006703,
+        2006704,
+        2006705,
+        2006706,
+        2006707,
+        2006708,
+        2006709,
+        2006901,
+        2006902,
+        2006903,
+        2006904,
+        2006905,
+        2006906,
+        2006907,
+        2006908,
+        2006909,
+        2006911,
+        2006912,
+        2006913,
+        2006914,
+        2006915,
+        2006916,
+        2006917,
+        2006918,
+        2006919,
+        2007001,
+        2007002,
+        2007003,
+        2007004,
+        2007005,
+        2007006,
+        2007007,
+        2007008,
+        2007009,
+        2007011,
+        2007012,
+        2007013,
+        2007014,
+        2007015,
+        2007016,
+        2007017,
+        2007018,
+        2007019,
+        2007201,
+        2007202,
+        2007203,
+        2007204,
+        2007205,
+        2007206,
+        2007207,
+        2007208,
+        2007209,
+        2007411,
+        2007412,
+        2007413,
+        2007414,
+        2007415,
+        2007416,
+        2007417,
+        2007418,
+        2007419,
+        2007701,
+        2007702,
+        2007703,
+        2007704,
+        2007705,
+        2007706,
+        2007707,
+        2007708,
+        2007709,
+        2007711,
+        2007712,
+        2007713,
+        2007714,
+        2007715,
+        2007716,
+        2007717,
+        2007718,
+        2007719,
+        2007721,
+        2007722,
+        2007723,
+        2007724,
+        2007725,
+        2007726,
+        2007727,
+        2007728,
+        2007729,
+        2007731,
+        2007732,
+        2007733,
+        2007734,
+        2007735,
+        2007736,
+        2007737,
+        2007738,
+        2007739,
+        2007801,
+        2007802,
+        2007803,
+        2007804,
+        2007805,
+        2007806,
+        2007807,
+        2007808,
+        2007809,
+        2007811,
+        2007812,
+        2007813,
+        2007814,
+        2007815,
+        2007816,
+        2007817,
+        2007818,
+        2007819,
+        2008001,
+        2008002,
+        2008009,
+        2008010,
+        2008020,
+        2008022,
+        2008024,
+        2008026,
+        2008035,
+        2011001,
+        2011002,
+        2011003,
+        2011004,
+        2011005,
+        2011006,
+        2011007,
+        2011008,
+        2011009,
+        2011011,
+        2011012,
+        2011013,
+        2011014,
+        2011015,
+        2011016,
+        2011017,
+        2011018,
+        2011019,
+        2011021,
+        2011022,
+        2011023,
+        2011024,
+        2011025,
+        2011026,
+        2011027,
+        2011028,
+        2011029,
+        2011031,
+        2011032,
+        2011033,
+        2011034,
+        2011035,
+        2011036,
+        2011037,
+        2011038,
+        2011039,
+        2011041,
+        2011042,
+        2011043,
+        2011044,
+        2011045,
+        2011046,
+        2011047,
+        2011048,
+        2011049,
+        2011051,
+        2011052,
+        2011053,
+        2011054,
+        2011055,
+        2011056,
+        2011057,
+        2011058,
+        2011059,
+        2011061,
+        2011062,
+        2011063,
+        2011064,
+        2011065,
+        2011066,
+        2011067,
+        2011068,
+        2011069,
+        2015001,
+        2015002,
+        2015003,
+        2015004,
+        2015005,
+        2015006,
+        2015007,
+        2015008,
+        2015009,
+        2015011,
+        2015012,
+        2015013,
+        2015014,
+        2015015,
+        2015016,
+        2015017,
+        2015018,
+        2015019,
+        2015021,
+        2015022,
+        2015023,
+        2015024,
+        2015025,
+        2015026,
+        2015027,
+        2015028,
+        2015029,
+        2015031,
+        2015032,
+        2015033,
+        2015034,
+        2015035,
+        2015036,
+        2015037,
+        2015038,
+        2015039
+      ]
+    },
+    {
+      "Text": "Hefty Rock Pot",
+      "IDList": [
+        2000310
+      ]
+    },
+    {
+      "Text": "Hefty Lightning Pot",
+      "IDList": [
+        2000320
+      ]
+    },
+    {
+      "Text": "Hefty Fetid Pot",
+      "IDList": [
+        2000330
+      ]
+    },
+    {
+      "Text": "Hefty Fly Pot",
+      "IDList": [
+        2000340
+      ]
+    },
+    {
+      "Text": "Hefty Freezing Pot",
+      "IDList": [
+        2000360
+      ]
+    },
+    {
+      "Text": "Hefty Poison Pot",
+      "IDList": [
+        2000370
+      ]
+    },
+    {
+      "Text": "Hefty Oil Pot",
+      "IDList": [
+        2000380
+      ]
+    },
+    {
+      "Text": "Hefty Volcano Pot",
+      "IDList": [
+        2000600
+      ]
+    },
+    {
+      "Text": "Hefty Frenzied Flame Pot",
+      "IDList": [
+        2000620
+      ]
+    },
+    {
+      "Text": "Hefty Rancor Pot",
+      "IDList": [
+        2000650
+      ]
+    },
+    {
+      "Text": "Hefty Magic Pot",
+      "IDList": [
+        2000660
+      ]
+    },
+    {
+      "Text": "Hefty Rot Pot",
+      "IDList": [
+        2000670
+      ]
+    },
+    {
+      "Text": "Hefty Furnace Pot",
+      "IDList": [
+        2000680
+      ]
+    },
+    {
+      "Text": "Hefty Red Lightning Pot",
+      "IDList": [
+        2000690
+      ]
+    },
+    {
+      "Text": "Red Lightning Pot",
+      "IDList": [
+        2000700
+      ]
+    },
+    {
+      "Text": "Frenzied Flame Pot",
+      "IDList": [
+        2000710
+      ]
+    },
+    {
+      "Text": "Eternal Sleep Pot",
+      "IDList": [
+        2000740
+      ]
+    },
+    {
+      "Text": "Roped Frenzied Flame Pot",
+      "IDList": [
+        2000760
+      ]
+    },
+    {
+      "Text": "Spirit Raisin",
+      "IDList": [
+        2000800
+      ]
+    },
+    {
+      "Text": "Blessing of Marika",
+      "IDList": [
+        2000900
+      ]
+    },
+    {
+      "Text": "Lulling Branch",
+      "IDList": [
+        2000910
+      ]
+    },
+    {
+      "Text": "Dragon Communion Flesh",
+      "IDList": [
+        2001100
+      ]
+    },
+    {
+      "Text": "Dragonscale Flesh",
+      "IDList": [
+        2001105
+      ]
+    },
+    {
+      "Text": "Fingerprint Nostrum",
+      "IDList": [
+        2001110
+      ]
+    },
+    {
+      "Text": "Spellproof Pickled Liver",
+      "IDList": [
+        2001120
+      ]
+    },
+    {
+      "Text": "Fireproof Pickled Liver",
+      "IDList": [
+        2001130
+      ]
+    },
+    {
+      "Text": "Lightningproof Pickled Liver",
+      "IDList": [
+        2001140
+      ]
+    },
+    {
+      "Text": "Holyproof Pickled Liver",
+      "IDList": [
+        2001150
+      ]
+    },
+    {
+      "Text": "Opaline Pickled Liver",
+      "IDList": [
+        2001160
+      ]
+    },
+    {
+      "Text": "Well-Pickled Turtle Neck",
+      "IDList": [
+        2001170
+      ]
+    },
+    {
+      "Text": "Scorpion Stew",
+      "IDList": [
+        2001200,
+        2001202
+      ]
+    },
+    {
+      "Text": "Gourmet Scorpion Stew",
+      "IDList": [
+        2001201,
+        2001203
+      ]
+    },
+    {
+      "Text": "Sacred Bloody Flesh",
+      "IDList": [
+        2001210
+      ]
+    },
+    {
+      "Text": "Silver Horn Tender",
+      "IDList": [
+        2001220
+      ]
+    },
+    {
+      "Text": "Golden Horn Tender",
+      "IDList": [
+        2001230
+      ]
+    },
+    {
+      "Text": "Messmerfire Grease",
+      "IDList": [
+        2001400
+      ]
+    },
+    {
+      "Text": "Dragonbolt Grease",
+      "IDList": [
+        2001410
+      ]
+    },
+    {
+      "Text": "Royal Magic Grease",
+      "IDList": [
+        2001420
+      ]
+    },
+    {
+      "Text": "Golden Grease",
+      "IDList": [
+        2001430
+      ]
+    },
+    {
+      "Text": "Eternal Sleep Grease",
+      "IDList": [
+        2001450
+      ]
+    },
+    {
+      "Text": "Dragon Communion Grease",
+      "IDList": [
+        2001480
+      ]
+    },
+    {
+      "Text": "Drawstring Messmerfire Grease",
+      "IDList": [
+        2001500
+      ]
+    },
+    {
+      "Text": "Drawstring Dragonbolt Grease",
+      "IDList": [
+        2001510
+      ]
+    },
+    {
+      "Text": "Drawstring Royal Magic Grease",
+      "IDList": [
+        2001520
+      ]
+    },
+    {
+      "Text": "Drawstring Golden Grease",
+      "IDList": [
+        2001530
+      ]
+    },
+    {
+      "Text": "Drawstring Eternal Sleep Grease",
+      "IDList": [
+        2001550
+      ]
+    },
+    {
+      "Text": "Festive Grease",
+      "IDList": [
+        2001600
+      ]
+    },
+    {
+      "Text": "Innard Meat",
+      "IDList": [
+        2001700
+      ]
+    },
+    {
+      "Text": "Dragon Communion Harpoon",
+      "IDList": [
+        2001710
+      ]
+    },
+    {
+      "Text": "Polter Stone",
+      "IDList": [
+        2002000
+      ]
+    },
+    {
+      "Text": "Rock Heart",
+      "IDList": [
+        2002010
+      ]
+    },
+    {
+      "Text": "Priestess Heart",
+      "IDList": [
+        2002020
+      ]
+    },
+    {
+      "Text": "Lamenter\u0027s Mask",
+      "IDList": [
+        2002030
+      ]
+    },
+    {
+      "Text": "Ancient Dragon\u0027s Blessing",
+      "IDList": [
+        2002100
+      ]
+    },
+    {
+      "Text": "Iris of Grace",
+      "IDList": [
+        2002120
+      ]
+    },
+    {
+      "Text": "Iris of Occultation",
+      "IDList": [
+        2002130
+      ]
+    },
+    {
+      "Text": "Thiollier\u0027s Concoction",
+      "IDList": [
+        2002140
+      ]
+    },
+    {
+      "Text": "Prattling Pate \u0022Lamentation\u0022",
+      "IDList": [
+        2002150
+      ]
+    },
+    {
+      "Text": "Remembrance of the Wild Boar Rider",
+      "IDList": [
+        2002900
+      ]
+    },
+    {
+      "Text": "Remembrance of the Impaler",
+      "IDList": [
+        2002901
+      ]
+    },
+    {
+      "Text": "Remembrance of the Shadow Sunflower",
+      "IDList": [
+        2002902
+      ]
+    },
+    {
+      "Text": "Remembrance of the Twin Moon Knight",
+      "IDList": [
+        2002903
+      ]
+    },
+    {
+      "Text": "Remembrance of the Saint of the Bud",
+      "IDList": [
+        2002904
+      ]
+    },
+    {
+      "Text": "Remembrance of the Dancing Lion",
+      "IDList": [
+        2002905
+      ]
+    },
+    {
+      "Text": "Remembrance of a God and a Lord",
+      "IDList": [
+        2002907
+      ]
+    },
+    {
+      "Text": "Remembrance of the Lord of Frenzied Flame",
+      "IDList": [
+        2002908
+      ]
+    },
+    {
+      "Text": "Remembrance of the Mother of Fingers",
+      "IDList": [
+        2002909
+      ]
+    },
+    {
+      "Text": "Remembrance of Putrescence",
+      "IDList": [
+        2002910
+      ]
+    },
+    {
+      "Text": "Leda\u0027s Rune",
+      "IDList": [
+        2002950
+      ]
+    },
+    {
+      "Text": "Broken Rune",
+      "IDList": [
+        2002951
+      ]
+    },
+    {
+      "Text": "Shadow Realm Rune [1]",
+      "IDList": [
+        2002952
+      ]
+    },
+    {
+      "Text": "Shadow Realm Rune [2]",
+      "IDList": [
+        2002953
+      ]
+    },
+    {
+      "Text": "Shadow Realm Rune [3]",
+      "IDList": [
+        2002954
+      ]
+    },
+    {
+      "Text": "Shadow Realm Rune [4]",
+      "IDList": [
+        2002955
+      ]
+    },
+    {
+      "Text": "Shadow Realm Rune [5]",
+      "IDList": [
+        2002956
+      ]
+    },
+    {
+      "Text": "Shadow Realm Rune [6]",
+      "IDList": [
+        2002957
+      ]
+    },
+    {
+      "Text": "Shadow Realm Rune [7]",
+      "IDList": [
+        2002958
+      ]
+    },
+    {
+      "Text": "Rune of an Unsung Hero",
+      "IDList": [
+        2002959
+      ]
+    },
+    {
+      "Text": "Marika\u0027s Rune",
+      "IDList": [
+        2002960
+      ]
+    },
+    {
+      "Text": "Bondstone",
+      "IDList": [
+        2003000
+      ]
+    },
+    {
+      "Text": "Spritestone",
+      "IDList": [
+        2003001
+      ]
+    },
+    {
+      "Text": "Horned Bairn",
+      "IDList": [
+        2003130
+      ]
+    },
+    {
+      "Text": "Perfumed Oil of Ranah",
+      "IDList": [
+        2003140
+      ]
+    },
+    {
+      "Text": "Call of Tibia",
+      "IDList": [
+        2003150
+      ]
+    },
+    {
+      "Text": "Surging Frenzied Flame",
+      "IDList": [
+        2003160
+      ]
+    },
+    {
+      "Text": "Golden Vow",
+      "IDList": [
+        2003170
+      ]
+    },
+    {
+      "Text": "Fire Coil",
+      "IDList": [
+        2003180
+      ]
+    },
+    {
+      "Text": "Fire Spritestone",
+      "IDList": [
+        2003190
+      ]
+    },
+    {
+      "Text": "Glinting Nail",
+      "IDList": [
+        2003200
+      ]
+    },
+    {
+      "Text": "Sunwarmth Stone",
+      "IDList": [
+        2003310
+      ]
+    },
+    {
+      "Text": "Charming Branch",
+      "IDList": [
+        2003350
+      ]
+    },
+    {
+      "Text": "Miriam\u0027s Vanishing",
+      "IDList": [
+        2004300
+      ]
+    },
+    {
+      "Text": "Glintblade Trio",
+      "IDList": [
+        2004310
+      ]
+    },
+    {
+      "Text": "Rellana\u0027s Twin Moons",
+      "IDList": [
+        2004320
+      ]
+    },
+    {
+      "Text": "Glintstone Nail",
+      "IDList": [
+        2004500
+      ]
+    },
+    {
+      "Text": "Glintstone Nails",
+      "IDList": [
+        2004510
+      ]
+    },
+    {
+      "Text": "Blades of Stone",
+      "IDList": [
+        2004700
+      ]
+    },
+    {
+      "Text": "Gravitational Missile",
+      "IDList": [
+        2004710
+      ]
+    },
+    {
+      "Text": "Mantle of Thorns",
+      "IDList": [
+        2004900
+      ]
+    },
+    {
+      "Text": "Impenetrable Thorns",
+      "IDList": [
+        2004910
+      ]
+    },
+    {
+      "Text": "Rings of Spectral Light",
+      "IDList": [
+        2005000
+      ]
+    },
+    {
+      "Text": "Vortex of Putrescence",
+      "IDList": [
+        2006200
+      ]
+    },
+    {
+      "Text": "Mass of Putrescence",
+      "IDList": [
+        2006210
+      ]
+    },
+    {
+      "Text": "Furious Blade of Ansbach",
+      "IDList": [
+        2006300
+      ]
+    },
+    {
+      "Text": "Heal from Afar",
+      "IDList": [
+        2006400
+      ]
+    },
+    {
+      "Text": "Aspects of the Crucible: Thorns",
+      "IDList": [
+        2006650
+      ]
+    },
+    {
+      "Text": "Aspects of the Crucible: Bloom",
+      "IDList": [
+        2006660
+      ]
+    },
+    {
+      "Text": "Minor Erdtree",
+      "IDList": [
+        2006670
+      ]
+    },
+    {
+      "Text": "Land of Shadow",
+      "IDList": [
+        2006680
+      ]
+    },
+    {
+      "Text": "Wrath from Afar",
+      "IDList": [
+        2006690
+      ]
+    },
+    {
+      "Text": "Light of Miquella",
+      "IDList": [
+        2006700
+      ]
+    },
+    {
+      "Text": "Multilayered Ring of Light",
+      "IDList": [
+        2006710
+      ]
+    },
+    {
+      "Text": "Roar of Rugalea",
+      "IDList": [
+        2006800
+      ]
+    },
+    {
+      "Text": "Knight\u0027s Lightning Spear",
+      "IDList": [
+        2006900
+      ]
+    },
+    {
+      "Text": "Dragonbolt of Florissax",
+      "IDList": [
+        2006910
+      ]
+    },
+    {
+      "Text": "Electrocharge",
+      "IDList": [
+        2006920
+      ]
+    },
+    {
+      "Text": "Bayle\u0027s Tyranny",
+      "IDList": [
+        2007000
+      ]
+    },
+    {
+      "Text": "Bayle\u0027s Flame Lightning",
+      "IDList": [
+        2007010
+      ]
+    },
+    {
+      "Text": "Ghostflame Breath",
+      "IDList": [
+        2007020
+      ]
+    },
+    {
+      "Text": "Rotten Butterflies",
+      "IDList": [
+        2007200
+      ]
+    },
+    {
+      "Text": "Pest-Thread Spears",
+      "IDList": [
+        2007210
+      ]
+    },
+    {
+      "Text": "Midra\u0027s Flame of Frenzy",
+      "IDList": [
+        2007300
+      ]
+    },
+    {
+      "Text": "Fleeting Microcosm",
+      "IDList": [
+        2007410
+      ]
+    },
+    {
+      "Text": "Cherishing Fingers",
+      "IDList": [
+        2007420
+      ]
+    },
+    {
+      "Text": "Watchful Spirit",
+      "IDList": [
+        2007600
+      ]
+    },
+    {
+      "Text": "Golden Arcs",
+      "IDList": [
+        2007700
+      ]
+    },
+    {
+      "Text": "Giant Golden Arc",
+      "IDList": [
+        2007710
+      ]
+    },
+    {
+      "Text": "Spira",
+      "IDList": [
+        2007720
+      ]
+    },
+    {
+      "Text": "Divine Beast Tornado",
+      "IDList": [
+        2007730
+      ]
+    },
+    {
+      "Text": "Divine Bird Feathers",
+      "IDList": [
+        2007740
+      ]
+    },
+    {
+      "Text": "Fire Serpent",
+      "IDList": [
+        2007800
+      ]
+    },
+    {
+      "Text": "Rain of Fire",
+      "IDList": [
+        2007810
+      ]
+    },
+    {
+      "Text": "Messmer\u0027s Orb",
+      "IDList": [
+        2007820
+      ]
+    },
+    {
+      "Text": "Miquella\u0027s Great Rune",
+      "IDList": [
+        2008000
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Furled Finger",
+      "IDList": [
+        2008003
+      ]
+    },
+    {
+      "Text": "Well Depths Key",
+      "IDList": [
+        2008004
+      ]
+    },
+    {
+      "Text": "Gaol Upper Level Key",
+      "IDList": [
+        2008005
+      ]
+    },
+    {
+      "Text": "Gaol Lower Level Key",
+      "IDList": [
+        2008006
+      ]
+    },
+    {
+      "Text": "Cross Map",
+      "IDList": [
+        2008007
+      ]
+    },
+    {
+      "Text": "Hole-Laden Necklace",
+      "IDList": [
+        2008008
+      ]
+    },
+    {
+      "Text": "Heart of Bayle",
+      "IDList": [
+        2008011
+      ]
+    },
+    {
+      "Text": "New Cross Map",
+      "IDList": [
+        2008012
+      ]
+    },
+    {
+      "Text": "Storeroom Key",
+      "IDList": [
+        2008013
+      ]
+    },
+    {
+      "Text": "Secret Rite Scroll",
+      "IDList": [
+        2008014
+      ]
+    },
+    {
+      "Text": "Letter for Freyja",
+      "IDList": [
+        2008015
+      ]
+    },
+    {
+      "Text": "Ruins Map",
+      "IDList": [
+        2008016
+      ]
+    },
+    {
+      "Text": "Ruins Map (2nd)",
+      "IDList": [
+        2008017
+      ]
+    },
+    {
+      "Text": "Ruins Map (3rd)",
+      "IDList": [
+        2008018
+      ]
+    },
+    {
+      "Text": "Black Syrup",
+      "IDList": [
+        2008019
+      ]
+    },
+    {
+      "Text": "Messmer\u0027s Kindling",
+      "IDList": [
+        2008021
+      ]
+    },
+    {
+      "Text": "Keep Wall Key",
+      "IDList": [
+        2008023
+      ]
+    },
+    {
+      "Text": "Furnace Keeper\u0027s Note",
+      "IDList": [
+        2008025
+      ]
+    },
+    {
+      "Text": "Castle Cross Message",
+      "IDList": [
+        2008027
+      ]
+    },
+    {
+      "Text": "Ancient Ruins Cross Message",
+      "IDList": [
+        2008028
+      ]
+    },
+    {
+      "Text": "Monk\u0027s Missive",
+      "IDList": [
+        2008029
+      ]
+    },
+    {
+      "Text": "Storehouse Cross Message",
+      "IDList": [
+        2008030
+      ]
+    },
+    {
+      "Text": "Note: Sealed Spiritsprings",
+      "IDList": [
+        2008031,
+        2008131
+      ]
+    },
+    {
+      "Text": "Torn Diary Page",
+      "IDList": [
+        2008032
+      ]
+    },
+    {
+      "Text": "Larval Tear",
+      "IDList": [
+        2008033
+      ]
+    },
+    {
+      "Text": "Message from Leda",
+      "IDList": [
+        2008034
+      ]
+    },
+    {
+      "Text": "Prayer Room Key",
+      "IDList": [
+        2008036
+      ]
+    },
+    {
+      "Text": "Tower of Shadow Message",
+      "IDList": [
+        2008037
+      ]
+    },
+    {
+      "Text": "\u0022Incursion\u0022 Painting",
+      "IDList": [
+        2008200
+      ]
+    },
+    {
+      "Text": "\u0022The Sacred Tower\u0022 Painting",
+      "IDList": [
+        2008201
+      ]
+    },
+    {
+      "Text": "\u0022Domain of Dragons\u0022 Painting",
+      "IDList": [
+        2008202
+      ]
+    },
+    {
+      "Text": "Map: Gravesite Plain",
+      "IDList": [
+        2008600
+      ]
+    },
+    {
+      "Text": "Map: Scadu Altus",
+      "IDList": [
+        2008601
+      ]
+    },
+    {
+      "Text": "Map: Southern Shore",
+      "IDList": [
+        2008602
+      ]
+    },
+    {
+      "Text": "Map: Rauh Ruins",
+      "IDList": [
+        2008603
+      ]
+    },
+    {
+      "Text": "Map: Abyss",
+      "IDList": [
+        2008604
+      ]
+    },
+    {
+      "Text": "Moore\u0027s Bell Bearing",
+      "IDList": [
+        2008900
+      ]
+    },
+    {
+      "Text": "Ymir\u0027s Bell Bearing",
+      "IDList": [
+        2008901
+      ]
+    },
+    {
+      "Text": "Herbalist\u0027s Bell Bearing",
+      "IDList": [
+        2008902
+      ]
+    },
+    {
+      "Text": "Mushroom-Seller\u0027s Bell Bearing [1]",
+      "IDList": [
+        2008903
+      ]
+    },
+    {
+      "Text": "Mushroom-Seller\u0027s Bell Bearing [2]",
+      "IDList": [
+        2008904
+      ]
+    },
+    {
+      "Text": "Greasemonger\u0027s Bell Bearing",
+      "IDList": [
+        2008905
+      ]
+    },
+    {
+      "Text": "Moldmonger\u0027s Bell Bearing",
+      "IDList": [
+        2008906
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Bell Bearing",
+      "IDList": [
+        2008907
+      ]
+    },
+    {
+      "Text": "Spellmachinist\u0027s Bell Bearing",
+      "IDList": [
+        2008908
+      ]
+    },
+    {
+      "Text": "String-Seller\u0027s Bell Bearing",
+      "IDList": [
+        2008909
+      ]
+    },
+    {
+      "Text": "Ring of Miquella",
+      "IDList": [
+        2009000
+      ]
+    },
+    {
+      "Text": "May the Best Win",
+      "IDList": [
+        2009001
+      ]
+    },
+    {
+      "Text": "The Two Fingers",
+      "IDList": [
+        2009002
+      ]
+    },
+    {
+      "Text": "Let Us Go Together",
+      "IDList": [
+        2009003
+      ]
+    },
+    {
+      "Text": "O Mother",
+      "IDList": [
+        2009004
+      ]
+    },
+    {
+      "Text": "About the Scadutree Blessing",
+      "IDList": [
+        2009160
+      ]
+    },
+    {
+      "Text": "About the Revered Spirit Ash Blessing",
+      "IDList": [
+        2009161
+      ]
+    },
+    {
+      "Text": "About New Inventory Features",
+      "IDList": [
+        2009162
+      ]
+    },
+    {
+      "Text": "Forager Brood Cookbook [6]",
+      "IDList": [
+        2009301
+      ]
+    },
+    {
+      "Text": "Forager Brood Cookbook [1]",
+      "IDList": [
+        2009302
+      ]
+    },
+    {
+      "Text": "Forager Brood Cookbook [2]",
+      "IDList": [
+        2009303
+      ]
+    },
+    {
+      "Text": "Forager Brood Cookbook [3]",
+      "IDList": [
+        2009304
+      ]
+    },
+    {
+      "Text": "Forager Brood Cookbook [4]",
+      "IDList": [
+        2009305
+      ]
+    },
+    {
+      "Text": "Forager Brood Cookbook [5]",
+      "IDList": [
+        2009306
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Cookbook [2]",
+      "IDList": [
+        2009307
+      ]
+    },
+    {
+      "Text": "Finger-Weaver\u0027s Cookbook [2]",
+      "IDList": [
+        2009308
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [1]",
+      "IDList": [
+        2009309
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [4]",
+      "IDList": [
+        2009310
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [5]",
+      "IDList": [
+        2009311
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [12]",
+      "IDList": [
+        2009312
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [7]",
+      "IDList": [
+        2009313
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [9]",
+      "IDList": [
+        2009314
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [10]",
+      "IDList": [
+        2009315
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [11]",
+      "IDList": [
+        2009316
+      ]
+    },
+    {
+      "Text": "Mad Craftsman\u0027s Cookbook [2]",
+      "IDList": [
+        2009317
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [8]",
+      "IDList": [
+        2009318
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [3]",
+      "IDList": [
+        2009319
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [13]",
+      "IDList": [
+        2009320
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [14]",
+      "IDList": [
+        2009321
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [6]",
+      "IDList": [
+        2009322
+      ]
+    },
+    {
+      "Text": "Greater Potentate\u0027s Cookbook [2]",
+      "IDList": [
+        2009323
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Knight\u0027s Cookbook [1]",
+      "IDList": [
+        2009324
+      ]
+    },
+    {
+      "Text": "Mad Craftsman\u0027s Cookbook [1]",
+      "IDList": [
+        2009325
+      ]
+    },
+    {
+      "Text": "St. Trina Disciple\u0027s Cookbook [1]",
+      "IDList": [
+        2009326
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Cookbook [1]",
+      "IDList": [
+        2009327
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Knight\u0027s Cookbook [2]",
+      "IDList": [
+        2009328
+      ]
+    },
+    {
+      "Text": "Loyal Knight\u0027s Cookbook",
+      "IDList": [
+        2009329
+      ]
+    },
+    {
+      "Text": "Battlefield Priest\u0027s Cookbook [1]",
+      "IDList": [
+        2009330
+      ]
+    },
+    {
+      "Text": "Igon\u0027s Cookbook [1]",
+      "IDList": [
+        2009331
+      ]
+    },
+    {
+      "Text": "Battlefield Priest\u0027s Cookbook [2]",
+      "IDList": [
+        2009332
+      ]
+    },
+    {
+      "Text": "Forager Brood Cookbook [7]",
+      "IDList": [
+        2009333
+      ]
+    },
+    {
+      "Text": "St. Trina Disciple\u0027s Cookbook [3]",
+      "IDList": [
+        2009334
+      ]
+    },
+    {
+      "Text": "Grave Keeper\u0027s Cookbook [2]",
+      "IDList": [
+        2009335
+      ]
+    },
+    {
+      "Text": "Antiquity Scholar\u0027s Cookbook [2]",
+      "IDList": [
+        2009336
+      ]
+    },
+    {
+      "Text": "Tibia\u0027s Cookbook",
+      "IDList": [
+        2009337
+      ]
+    },
+    {
+      "Text": "Mad Craftsman\u0027s Cookbook [3]",
+      "IDList": [
+        2009338
+      ]
+    },
+    {
+      "Text": "Battlefield Priest\u0027s Cookbook [3]",
+      "IDList": [
+        2009339
+      ]
+    },
+    {
+      "Text": "Fire Knight\u0027s Cookbook [2]",
+      "IDList": [
+        2009340
+      ]
+    },
+    {
+      "Text": "Antiquity Scholar\u0027s Cookbook [1]",
+      "IDList": [
+        2009341
+      ]
+    },
+    {
+      "Text": "Finger-Weaver\u0027s Cookbook [1]",
+      "IDList": [
+        2009342
+      ]
+    },
+    {
+      "Text": "Battlefield Priest\u0027s Cookbook [4]",
+      "IDList": [
+        2009343
+      ]
+    },
+    {
+      "Text": "Grave Keeper\u0027s Cookbook [1]",
+      "IDList": [
+        2009344
+      ]
+    },
+    {
+      "Text": "St. Trina Disciple\u0027s Cookbook [2]",
+      "IDList": [
+        2009345
+      ]
+    },
+    {
+      "Text": "Hefty Cracked Pot",
+      "IDList": [
+        2009500
+      ]
+    },
+    {
+      "Text": "Scadutree Fragment",
+      "IDList": [
+        2010000
+      ]
+    },
+    {
+      "Text": "Revered Spirit Ash",
+      "IDList": [
+        2010100
+      ]
+    },
+    {
+      "Text": "Viridian Hidden Tear",
+      "IDList": [
+        2011000
+      ]
+    },
+    {
+      "Text": "Crimsonburst Dried Tear",
+      "IDList": [
+        2011010
+      ]
+    },
+    {
+      "Text": "Crimson-Sapping Cracked Tear",
+      "IDList": [
+        2011020
+      ]
+    },
+    {
+      "Text": "Cerulean-Sapping Cracked Tear",
+      "IDList": [
+        2011030
+      ]
+    },
+    {
+      "Text": "Oil-Soaked Tear",
+      "IDList": [
+        2011040
+      ]
+    },
+    {
+      "Text": "Bloodsucking Cracked Tear",
+      "IDList": [
+        2011050
+      ]
+    },
+    {
+      "Text": "Glovewort Crystal Tear",
+      "IDList": [
+        2011060
+      ]
+    },
+    {
+      "Text": "Deflecting Hardtear",
+      "IDList": [
+        2011070
+      ]
+    },
+    {
+      "Text": "Beast Horn",
+      "IDList": [
+        2015000
+      ]
+    },
+    {
+      "Text": "Spirit Calculus",
+      "IDList": [
+        2015010
+      ]
+    },
+    {
+      "Text": "Pearlescent Scale",
+      "IDList": [
+        2015020
+      ]
+    },
+    {
+      "Text": "Scorpion Liver",
+      "IDList": [
+        2015030
+      ]
+    },
+    {
+      "Text": "Fly Mold",
+      "IDList": [
+        2015040
+      ]
+    },
+    {
+      "Text": "Rada Fruit",
+      "IDList": [
+        2020001
+      ]
+    },
+    {
+      "Text": "Redflesh Mushroom",
+      "IDList": [
+        2020002
+      ]
+    },
+    {
+      "Text": "Whiteflesh Mushroom",
+      "IDList": [
+        2020003
+      ]
+    },
+    {
+      "Text": "Knot Resin",
+      "IDList": [
+        2020004
+      ]
+    },
+    {
+      "Text": "Dewgem",
+      "IDList": [
+        2020005
+      ]
+    },
+    {
+      "Text": "Black Pyrefly",
+      "IDList": [
+        2020006
+      ]
+    },
+    {
+      "Text": "Glintslab Firefly",
+      "IDList": [
+        2020007
+      ]
+    },
+    {
+      "Text": "Yellow Fulgurbloom",
+      "IDList": [
+        2020008
+      ]
+    },
+    {
+      "Text": "Shadow Sunflower",
+      "IDList": [
+        2020009
+      ]
+    },
+    {
+      "Text": "Toxic Mossling",
+      "IDList": [
+        2020010
+      ]
+    },
+    {
+      "Text": "Scarlet Bud",
+      "IDList": [
+        2020011
+      ]
+    },
+    {
+      "Text": "Sanguine Amaryllis",
+      "IDList": [
+        2020012
+      ]
+    },
+    {
+      "Text": "Frozen Maggot",
+      "IDList": [
+        2020013
+      ]
+    },
+    {
+      "Text": "Deep-Purple Lily",
+      "IDList": [
+        2020014
+      ]
+    },
+    {
+      "Text": "Nectarblood Burgeon",
+      "IDList": [
+        2020015
+      ]
+    },
+    {
+      "Text": "Winter-Lantern Fly",
+      "IDList": [
+        2020016
+      ]
+    },
+    {
+      "Text": "Swollen Grape",
+      "IDList": [
+        2020017
+      ]
+    },
+    {
+      "Text": "Grave Keeper\u0027s Brainpan",
+      "IDList": [
+        2020018
+      ]
+    },
+    {
+      "Text": "Horn-Strewn Excrement",
+      "IDList": [
+        2020019
+      ]
+    },
+    {
+      "Text": "Gas Stone",
+      "IDList": [
+        2020020
+      ]
+    },
+    {
+      "Text": "Ghostflame Bloom",
+      "IDList": [
+        2020021
+      ]
+    },
+    {
+      "Text": "Grave Cricket",
+      "IDList": [
+        2020022
+      ]
+    },
+    {
+      "Text": "Dragon\u0027s Calorbloom",
+      "IDList": [
+        2020023
+      ]
+    },
+    {
+      "Text": "Finger Mimic",
+      "IDList": [
+        2020024
+      ]
+    },
+    {
+      "Text": "Empyrean-Blood Burgeon",
+      "IDList": [
+        2020025
+      ]
+    },
+    {
+      "Text": "Congealed Putrescence",
+      "IDList": [
+        2020026
+      ]
+    },
+    {
+      "Text": "Roundrock",
+      "IDList": [
+        2020027
+      ]
+    },
+    {
+      "Text": "Spiritgrave Stone",
+      "IDList": [
+        2020028
+      ]
+    },
+    {
+      "Text": "Rauh Burrow",
+      "IDList": [
+        2020029
+      ]
+    },
+    {
+      "Text": "Ember of Messmer",
+      "IDList": [
+        2020030
+      ]
+    },
+    {
+      "Text": "Blessed Bone Shard",
+      "IDList": [
+        2020031
+      ]
+    },
+    {
+      "Text": "Red Fulgurbloom",
+      "IDList": [
+        2020032
+      ]
+    },
+    {
+      "Text": "Nailstone",
+      "IDList": [
+        2020033
+      ]
+    },
+    {
+      "Text": "Sharp Gravel Stone",
+      "IDList": [
+        2020034
+      ]
+    },
+    {
+      "Text": "Furnace Visage",
+      "IDList": [
+        2020035
+      ]
+    },
+    {
+      "Text": "Curseblade Meera",
+      "IDList": [
+        2200000
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B1",
+      "IDList": [
+        2200001
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B2",
+      "IDList": [
+        2200002
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B3",
+      "IDList": [
+        2200003
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B4",
+      "IDList": [
+        2200004
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B5",
+      "IDList": [
+        2200005
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B6",
+      "IDList": [
+        2200006
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B7",
+      "IDList": [
+        2200007
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B8",
+      "IDList": [
+        2200008
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B9",
+      "IDList": [
+        2200009
+      ]
+    },
+    {
+      "Text": "Curseblade Meera \u002B10",
+      "IDList": [
+        2200010
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes",
+      "IDList": [
+        2201000
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B1",
+      "IDList": [
+        2201001
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B2",
+      "IDList": [
+        2201002
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B3",
+      "IDList": [
+        2201003
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B4",
+      "IDList": [
+        2201004
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B5",
+      "IDList": [
+        2201005
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B6",
+      "IDList": [
+        2201006
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B7",
+      "IDList": [
+        2201007
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B8",
+      "IDList": [
+        2201008
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B9",
+      "IDList": [
+        2201009
+      ]
+    },
+    {
+      "Text": "Bloodfiend Hexer\u0027s Ashes \u002B10",
+      "IDList": [
+        2201010
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes",
+      "IDList": [
+        2202000
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B1",
+      "IDList": [
+        2202001
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B2",
+      "IDList": [
+        2202002
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B3",
+      "IDList": [
+        2202003
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B4",
+      "IDList": [
+        2202004
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B5",
+      "IDList": [
+        2202005
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B6",
+      "IDList": [
+        2202006
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B7",
+      "IDList": [
+        2202007
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B8",
+      "IDList": [
+        2202008
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B9",
+      "IDList": [
+        2202009
+      ]
+    },
+    {
+      "Text": "Gravebird Ashes \u002B10",
+      "IDList": [
+        2202010
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde",
+      "IDList": [
+        2203000
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B1",
+      "IDList": [
+        2203001
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B2",
+      "IDList": [
+        2203002
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B3",
+      "IDList": [
+        2203003
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B4",
+      "IDList": [
+        2203004
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B5",
+      "IDList": [
+        2203005
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B6",
+      "IDList": [
+        2203006
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B7",
+      "IDList": [
+        2203007
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B8",
+      "IDList": [
+        2203008
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B9",
+      "IDList": [
+        2203009
+      ]
+    },
+    {
+      "Text": "Fire Knight Hilde \u002B10",
+      "IDList": [
+        2203010
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes",
+      "IDList": [
+        2204000
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B1",
+      "IDList": [
+        2204001
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B2",
+      "IDList": [
+        2204002
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B3",
+      "IDList": [
+        2204003
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B4",
+      "IDList": [
+        2204004
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B5",
+      "IDList": [
+        2204005
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B6",
+      "IDList": [
+        2204006
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B7",
+      "IDList": [
+        2204007
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B8",
+      "IDList": [
+        2204008
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B9",
+      "IDList": [
+        2204009
+      ]
+    },
+    {
+      "Text": "Spider Scorpion Ashes \u002B10",
+      "IDList": [
+        2204010
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes",
+      "IDList": [
+        2205000
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B1",
+      "IDList": [
+        2205001
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B2",
+      "IDList": [
+        2205002
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B3",
+      "IDList": [
+        2205003
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B4",
+      "IDList": [
+        2205004
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B5",
+      "IDList": [
+        2205005
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B6",
+      "IDList": [
+        2205006
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B7",
+      "IDList": [
+        2205007
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B8",
+      "IDList": [
+        2205008
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B9",
+      "IDList": [
+        2205009
+      ]
+    },
+    {
+      "Text": "Inquisitor Ashes \u002B10",
+      "IDList": [
+        2205010
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh",
+      "IDList": [
+        2206000
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B1",
+      "IDList": [
+        2206001
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B2",
+      "IDList": [
+        2206002
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B3",
+      "IDList": [
+        2206003
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B4",
+      "IDList": [
+        2206004
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B5",
+      "IDList": [
+        2206005
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B6",
+      "IDList": [
+        2206006
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B7",
+      "IDList": [
+        2206007
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B8",
+      "IDList": [
+        2206008
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B9",
+      "IDList": [
+        2206009
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordsman Yosh \u002B10",
+      "IDList": [
+        2206010
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes",
+      "IDList": [
+        2207000
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B1",
+      "IDList": [
+        2207001
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B2",
+      "IDList": [
+        2207002
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B3",
+      "IDList": [
+        2207003
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B4",
+      "IDList": [
+        2207004
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B5",
+      "IDList": [
+        2207005
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B6",
+      "IDList": [
+        2207006
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B7",
+      "IDList": [
+        2207007
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B8",
+      "IDList": [
+        2207008
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B9",
+      "IDList": [
+        2207009
+      ]
+    },
+    {
+      "Text": "Messmer Soldier Ashes \u002B10",
+      "IDList": [
+        2207010
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas",
+      "IDList": [
+        2208000
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B1",
+      "IDList": [
+        2208001
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B2",
+      "IDList": [
+        2208002
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B3",
+      "IDList": [
+        2208003
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B4",
+      "IDList": [
+        2208004
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B5",
+      "IDList": [
+        2208005
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B6",
+      "IDList": [
+        2208006
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B7",
+      "IDList": [
+        2208007
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B8",
+      "IDList": [
+        2208008
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B9",
+      "IDList": [
+        2208009
+      ]
+    },
+    {
+      "Text": "Black Knight Commander Andreas \u002B10",
+      "IDList": [
+        2208010
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw",
+      "IDList": [
+        2209000
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B1",
+      "IDList": [
+        2209001
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B2",
+      "IDList": [
+        2209002
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B3",
+      "IDList": [
+        2209003
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B4",
+      "IDList": [
+        2209004
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B5",
+      "IDList": [
+        2209005
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B6",
+      "IDList": [
+        2209006
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B7",
+      "IDList": [
+        2209007
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B8",
+      "IDList": [
+        2209008
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B9",
+      "IDList": [
+        2209009
+      ]
+    },
+    {
+      "Text": "Black Knight Captain Huw \u002B10",
+      "IDList": [
+        2209010
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes",
+      "IDList": [
+        2210000
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B1",
+      "IDList": [
+        2210001
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B2",
+      "IDList": [
+        2210002
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B3",
+      "IDList": [
+        2210003
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B4",
+      "IDList": [
+        2210004
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B5",
+      "IDList": [
+        2210005
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B6",
+      "IDList": [
+        2210006
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B7",
+      "IDList": [
+        2210007
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B8",
+      "IDList": [
+        2210008
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B9",
+      "IDList": [
+        2210009
+      ]
+    },
+    {
+      "Text": "Bigmouth Imp Ashes \u002B10",
+      "IDList": [
+        2210010
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes",
+      "IDList": [
+        2211000
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B1",
+      "IDList": [
+        2211001
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B2",
+      "IDList": [
+        2211002
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B3",
+      "IDList": [
+        2211003
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B4",
+      "IDList": [
+        2211004
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B5",
+      "IDList": [
+        2211005
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B6",
+      "IDList": [
+        2211006
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B7",
+      "IDList": [
+        2211007
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B8",
+      "IDList": [
+        2211008
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B9",
+      "IDList": [
+        2211009
+      ]
+    },
+    {
+      "Text": "Man-Fly Ashes \u002B10",
+      "IDList": [
+        2211010
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith",
+      "IDList": [
+        2212000
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B1",
+      "IDList": [
+        2212001
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B2",
+      "IDList": [
+        2212002
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B3",
+      "IDList": [
+        2212003
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B4",
+      "IDList": [
+        2212004
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B5",
+      "IDList": [
+        2212005
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B6",
+      "IDList": [
+        2212006
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B7",
+      "IDList": [
+        2212007
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B8",
+      "IDList": [
+        2212008
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B9",
+      "IDList": [
+        2212009
+      ]
+    },
+    {
+      "Text": "Taylew the Golem Smith \u002B10",
+      "IDList": [
+        2212010
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis",
+      "IDList": [
+        2213000
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B1",
+      "IDList": [
+        2213001
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B2",
+      "IDList": [
+        2213002
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B3",
+      "IDList": [
+        2213003
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B4",
+      "IDList": [
+        2213004
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B5",
+      "IDList": [
+        2213005
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B6",
+      "IDList": [
+        2213006
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B7",
+      "IDList": [
+        2213007
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B8",
+      "IDList": [
+        2213008
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B9",
+      "IDList": [
+        2213009
+      ]
+    },
+    {
+      "Text": "Divine Bird Warrior Ornis \u002B10",
+      "IDList": [
+        2213010
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes",
+      "IDList": [
+        2214000
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B1",
+      "IDList": [
+        2214001
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B2",
+      "IDList": [
+        2214002
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B3",
+      "IDList": [
+        2214003
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B4",
+      "IDList": [
+        2214004
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B5",
+      "IDList": [
+        2214005
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B6",
+      "IDList": [
+        2214006
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B7",
+      "IDList": [
+        2214007
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B8",
+      "IDList": [
+        2214008
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B9",
+      "IDList": [
+        2214009
+      ]
+    },
+    {
+      "Text": "Horned Warrior Ashes \u002B10",
+      "IDList": [
+        2214010
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax",
+      "IDList": [
+        2215000
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B1",
+      "IDList": [
+        2215001
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B2",
+      "IDList": [
+        2215002
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B3",
+      "IDList": [
+        2215003
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B4",
+      "IDList": [
+        2215004
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B5",
+      "IDList": [
+        2215005
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B6",
+      "IDList": [
+        2215006
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B7",
+      "IDList": [
+        2215007
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B8",
+      "IDList": [
+        2215008
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B9",
+      "IDList": [
+        2215009
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax \u002B10",
+      "IDList": [
+        2215010
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes",
+      "IDList": [
+        2217000
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B1",
+      "IDList": [
+        2217001
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B2",
+      "IDList": [
+        2217002
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B3",
+      "IDList": [
+        2217003
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B4",
+      "IDList": [
+        2217004
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B5",
+      "IDList": [
+        2217005
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B6",
+      "IDList": [
+        2217006
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B7",
+      "IDList": [
+        2217007
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B8",
+      "IDList": [
+        2217008
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B9",
+      "IDList": [
+        2217009
+      ]
+    },
+    {
+      "Text": "Fingercreeper Ashes \u002B10",
+      "IDList": [
+        2217010
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign",
+      "IDList": [
+        2218000
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B1",
+      "IDList": [
+        2218001
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B2",
+      "IDList": [
+        2218002
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B3",
+      "IDList": [
+        2218003
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B4",
+      "IDList": [
+        2218004
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B5",
+      "IDList": [
+        2218005
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B6",
+      "IDList": [
+        2218006
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B7",
+      "IDList": [
+        2218007
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B8",
+      "IDList": [
+        2218008
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B9",
+      "IDList": [
+        2218009
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign \u002B10",
+      "IDList": [
+        2218010
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n",
+      "IDList": [
+        2219000
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B1",
+      "IDList": [
+        2219001
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B2",
+      "IDList": [
+        2219002
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B3",
+      "IDList": [
+        2219003
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B4",
+      "IDList": [
+        2219004
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B5",
+      "IDList": [
+        2219005
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B6",
+      "IDList": [
+        2219006
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B7",
+      "IDList": [
+        2219007
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B8",
+      "IDList": [
+        2219008
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B9",
+      "IDList": [
+        2219009
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n \u002B10",
+      "IDList": [
+        2219010
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna",
+      "IDList": [
+        2220000
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B1",
+      "IDList": [
+        2220001
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B2",
+      "IDList": [
+        2220002
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B3",
+      "IDList": [
+        2220003
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B4",
+      "IDList": [
+        2220004
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B5",
+      "IDList": [
+        2220005
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B6",
+      "IDList": [
+        2220006
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B7",
+      "IDList": [
+        2220007
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B8",
+      "IDList": [
+        2220008
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B9",
+      "IDList": [
+        2220009
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna \u002B10",
+      "IDList": [
+        2220010
+      ]
+    }
+  ]
+}

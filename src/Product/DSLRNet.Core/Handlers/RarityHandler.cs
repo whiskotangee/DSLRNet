@@ -17,7 +17,7 @@ public class RarityHandler : BaseHandler
         this.RarityConfigs = raritySetupDataSource.GetAll().ToDictionary(d => d.ID);
     }
 
-    public int ChooseRarityFromIdSetWithBuiltInWeights(List<int> idset)
+    public int ChooseRarityFromIdSet(List<int> idset)
     {
         List<int> valididset = [];
         List<int> valididweights = [];
@@ -44,7 +44,7 @@ public class RarityHandler : BaseHandler
         int finalrarityid = this.GetNearestRarityId(rarityid);
         int offset = 0;
 
-        if (armortalisman || rarityid > 5)
+        if (armortalisman || rarityid >= 5)
         {
             finalboolarray.Enqueue(true);
             offset = 1;
@@ -80,13 +80,13 @@ public class RarityHandler : BaseHandler
         return new FloatValueRange(this.RarityConfigs[finalrarity].ArmorCutRateAddMin, this.RarityConfigs[finalrarity].ArmorCutRateAddMax);
     }
 
-    public FloatValueRange GetRarityShieldGuardRateRange(int rarityid)
+    public FloatValueRange GetShieldGuardRateRange(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
         return new FloatValueRange(this.RarityConfigs[finalrarity].ShieldGuardRateMultMin, this.RarityConfigs[finalrarity].ShieldGuardRateMultMax);
     }
 
-    public float GetRarityArmorCutRateAddition(int rarityid)
+    public float GetArmorCutRateAddition(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
         FloatValueRange range = this.GetArmorCutRateRange(finalrarity);
@@ -126,16 +126,16 @@ public class RarityHandler : BaseHandler
         return finalrarities;
     }
 
-    public FloatValueRange GetRarityArmorResistMultRange(int rarityid)
+    public FloatValueRange GetArmorResistMultRange(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
         return new FloatValueRange(this.RarityConfigs[finalrarity].ArmorResistMinMult, this.RarityConfigs[finalrarity].ArmorResistMaxMult);
     }
 
-    public float GetRarityArmorResistMultiplier(int rarityid)
+    public float GetArmorResistMultiplier(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
-        FloatValueRange range = this.GetRarityArmorResistMultRange(finalrarity);
+        FloatValueRange range = this.GetArmorResistMultRange(finalrarity);
 
         return (float)this.randomNumberGetter.Next(range);
     }
@@ -145,7 +145,7 @@ public class RarityHandler : BaseHandler
         return this.RarityConfigs[this.GetNearestRarityId(rarityid)].RarityParamValue;
     }
 
-    public List<int> GetRaritySpeffectPowerArray(int rarityid)
+    public List<int> GetSpeffectPowerArray(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
 
@@ -164,7 +164,7 @@ public class RarityHandler : BaseHandler
         return this.RarityConfigs[matchedRarityId].Name;
     }
 
-    public int GetRaritySellValue(int rarityid)
+    public int GetSellValue(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
         return this.randomNumberGetter.NextInt(this.RarityConfigs[finalrarity].SellValueMin, this.RarityConfigs[finalrarity].SellValueMax);
@@ -208,7 +208,7 @@ public class RarityHandler : BaseHandler
         return this.RarityConfigs.Keys.Max();
     }
 
-    public int GetIconIdForRarity(int iconId, int rarityId, bool isUnique = false)
+    public int GetIconId(int iconId, int rarityId, bool isUnique = false)
     {
         if (rarityId == 0)
         {

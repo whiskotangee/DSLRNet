@@ -1,7 +1,11 @@
 ﻿namespace DSLRNet.Core.Generators;
 
+using System.Linq;
+
 public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 {
+    private readonly ArmorGeneratorConfig armorConfig;
+
     public ArmorLootGenerator(
         RarityHandler rarityHandler,
         AllowListHandler whiteListHandler,
@@ -10,6 +14,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         RandomProvider random,
         ParamEditsRepository dataRepository,
         IOptions<Configuration> configuration,
+        IOptions<ArmorGeneratorConfig> armorConfig,
         IDataSource<EquipParamProtector> paramDataSource,
         ILogger<ParamLootGenerator<EquipParamProtector>> logger)
         : base(rarityHandler, whiteListHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector, logger)
@@ -17,85 +22,75 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         this.CumulativeID = new CumulativeID(logger);
 
         this.DataSource = paramDataSource;
+        this.armorConfig = armorConfig.Value;
     }
 
     public int CreateArmor(int rarityId, List<int> wllIds)
     {
         EquipParamProtector newArmor = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
 
-        string armorStatDesc = "";
-
         newArmor.ID = this.CumulativeID.GetNext();
-        newArmor.sellValue = this.RarityHandler.GetRaritySellValue(rarityId);
+        newArmor.sellValue = this.RarityHandler.GetSellValue(rarityId);
         newArmor.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
-        newArmor.iconIdM = this.RarityHandler.GetIconIdForRarity(newArmor.iconIdM, rarityId);
-        newArmor.iconIdF = this.RarityHandler.GetIconIdForRarity(newArmor.iconIdF, rarityId);
+        newArmor.iconIdM = this.RarityHandler.GetIconId(newArmor.iconIdM, rarityId);
+        newArmor.iconIdF = this.RarityHandler.GetIconId(newArmor.iconIdF, rarityId);
 
-        armorStatDesc += this.ApplyCutRateAdditionsFromRarity(rarityId, newArmor.GenericParam);
+        string armorStatDesc = this.ApplyCutRateAdditions(newArmor, rarityId);
 
-        this.ApplyArmorResistanceAdditions(newArmor.GenericParam, rarityId);
+        this.ModifyArmorResistance(newArmor, rarityId);
 
         newArmor.weight = this.RarityHandler.GetRandomizedWeight(newArmor.weight, rarityId);
 
         IEnumerable<SpEffectText> speffs = this.ApplySpEffects(rarityId, [0], newArmor.GenericParam, 1.0f, true, -1, true);
 
         string originalName = newArmor.Name;
-        string finalTitle = this.CreateLootTitle(originalName.Replace(" (Altered)", " (Alt)"), rarityId, "", speffs, true, false);
+        string finalTitle = this.CreateLootTitle(originalName.Replace(" (Altered)", ""), rarityId, "", speffs, true, false);
 
         //newArmor.Name = finalTitle;
 
-        this.ExportLootDetails(newArmor.GenericParam, LootType.Armor, finalTitle, this.CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc + this.LoreGenerator.GenerateDescription(finalTitle, true)));
+        this.ExportLootDetails(
+            newArmor.GenericParam, 
+            LootType.Armor, 
+            finalTitle, 
+            this.CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList(), armorStatDesc),
+            this.LoreGenerator.GenerateDescription(finalTitle, true)));
 
         return newArmor.ID;
     }
 
-    public string ApplyCutRateAdditionsFromRarity(int rarityId, GenericParam outputDictionary)
+    private string ApplyCutRateAdditions(EquipParamProtector newArmor, int rarityId)
     {
-        string descriptionString = "";
+        List<string> descriptionStrings = [];
 
-        List<string> cutRateParams = this.Configuration.LootParam.ArmorParam;
-        List<string> defenseParams = this.Configuration.LootParam.ArmorDefenseParams;
+        float addition = this.RarityHandler.GetArmorCutRateAddition(rarityId);
+        IEnumerable<string> cutRateProperties = newArmor.GenericParam.GetFieldNamesByFilter("DamageCutRate", true, "flick");
+        List<string> cutRateModifyProperties = this.Random.GetRandomItems(cutRateProperties, this.armorConfig.CutRateParamBuffCount);
 
-        if (cutRateParams.Count > 0)
+        foreach (string param in cutRateModifyProperties)
         {
-            foreach (string param in cutRateParams)
-            {
-                if (outputDictionary.ContainsKey(param))
-                {
-                    float oldValue = outputDictionary.GetValue<float>(param);
-                    outputDictionary.SetValue(param, oldValue - this.RarityHandler.GetRarityArmorCutRateAddition(rarityId));
-                }
-            }
+            float oldValue = newArmor.GenericParam.GetValue<float>(param);
+            newArmor.GenericParam.SetValue(param, oldValue - addition);
+            descriptionStrings.Add(param.Replace("DamageCutRate", "").ToUpper());
         }
 
-        if (defenseParams.Count > 0)
+        List<string> defenseProperties = newArmor.GenericParam.GetFieldNamesByFilter("defense").ToList();
+
+        foreach (string param in defenseProperties)
         {
-            foreach (string param in defenseParams)
-            {
-                if (outputDictionary.ContainsKey(param))
-                {
-                    outputDictionary.SetValue(param, 0);
-                }
-            }
+            newArmor.GenericParam.SetValue(param, 0);
         }
 
-        return descriptionString;
+        return $"+{addition:F1} {string.Join("/", descriptionStrings)} Defense";
     }
 
-    public void ApplyArmorResistanceAdditions(GenericParam newArmor, int rarity)
+    private void ModifyArmorResistance(EquipParamProtector newArmor, int rarity)
     {
-        List<string> resistances = this.Configuration.LootParam.ArmorResistParams;
+        var resistProperties = newArmor.GenericParam.GetFieldNamesByFilter("resist");
+        float multiplier = this.RarityHandler.GetArmorResistMultiplier(rarity);
 
-        if (resistances.Count > 0)
+        foreach (string param in this.Random.GetRandomItems(resistProperties, this.armorConfig.ResistParamBuffCount))
         {
-            foreach (string param in resistances)
-            {
-                if (newArmor.ContainsKey(param))
-                {
-                    int oldValue = newArmor.GetValue<int>(param);
-                    newArmor.SetValue(param, (int)(oldValue * this.RarityHandler.GetRarityArmorResistMultiplier(rarity)));
-                }
-            }
+            newArmor.GenericParam.SetValue(param, (int)(newArmor.GenericParam.GetValue<int>(param) * multiplier));
         }
     }
 

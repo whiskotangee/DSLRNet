@@ -59,9 +59,9 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         WeaponTypes generatedType = this.GetWeaponType(newWeapon.wepmotionCategory);
 
         newWeapon.ID = this.CumulativeID.GetNext();
-        newWeapon.sellValue = this.RarityHandler.GetRaritySellValue(rarityId);
+        newWeapon.sellValue = this.RarityHandler.GetSellValue(rarityId);
         newWeapon.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
-        newWeapon.iconId = this.RarityHandler.GetIconIdForRarity(newWeapon.iconId, rarityId, isUnique: isUniqueWeapon);
+        newWeapon.iconId = this.RarityHandler.GetIconId(newWeapon.iconId, rarityId, isUnique: isUniqueWeapon);
 
         // 42300 allows scaling from all sources (STR,DEX,INT,FTH,ARC)
         if (generatedType != WeaponTypes.StaffsSeals)
@@ -155,16 +155,16 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         }
     }
 
-    private void ApplyWeaponScalingRange(GenericParam weaponDictionary, WeaponModifications modifications, int rarityId)
+    private void ApplyWeaponScalingRange(GenericParam newWeapon, WeaponModifications modifications, int rarityId)
     {
-        var damageParams = this.Configuration.LootParam.WeaponsScaling.Select(d => new { ParamName = d, Value = weaponDictionary.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
+        var damageParams = newWeapon.GetFieldNamesByFilter("correct").Select(d => new { ParamName = d, Value = newWeapon.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
 
         List<string> takenParams = [];
 
         // reset the scalings
         foreach(var scaleParam in damageParams.Keys)
         {
-            weaponDictionary.SetValue(scaleParam, 0);
+            newWeapon.SetValue(scaleParam, 0);
         }
 
         var statScalingRange = this.RarityHandler.GetWeaponScalingRange(rarityId);
@@ -174,7 +174,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         takenParams.Add(primaryScalingParam);
 
-        weaponDictionary.SetValue(primaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(weaponGeneratorConfig.PrimaryBaseScalingRange));
+        newWeapon.SetValue(primaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(weaponGeneratorConfig.PrimaryBaseScalingRange));
 
         // set secondary scaling if applicable
         string? secondaryScalingParam = null;
@@ -185,7 +185,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
             takenParams.Add(secondaryScalingParam);
 
-            weaponDictionary.SetValue(secondaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(weaponGeneratorConfig.SecondaryBaseScalingRange));
+            newWeapon.SetValue(secondaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(weaponGeneratorConfig.SecondaryBaseScalingRange));
         }
 
         // set other stat scalings
@@ -197,7 +197,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
             float newValue = this.Random.NextInt(weaponGeneratorConfig.OtherBaseScalingRange);
 
-            weaponDictionary.SetValue(currentScaling.ParamName, newValue);
+            newWeapon.SetValue(currentScaling.ParamName, newValue);
         }
     }
 
@@ -209,7 +209,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         float existingValue = weapon.GenericParam.GetValue<float>(mods.PrimaryDamageType.ShieldParam);
         float? existingSecondaryValue = mods.SecondaryDamageType != null ? weapon.GenericParam.GetValue<float>(mods.SecondaryDamageType.ShieldParam) : null;
 
-        float guardRateMultiplier = this.Random.Next(this.RarityHandler.GetRarityShieldGuardRateRange(rarityId));
+        float guardRateMultiplier = this.Random.Next(this.RarityHandler.GetShieldGuardRateRange(rarityId));
 
         float value = Math.Clamp(existingValue * guardRateMultiplier, 0, 100);
 
@@ -259,17 +259,14 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         IntValueRange dmgRange = this.RarityHandler.GetDamageAdditionRange(rarityId);
 
-        List<string> dmgParams = this.Configuration.LootParam.WeaponsDamageParam;
+        List<string> dmgParams = weapon.GenericParam.GetFieldNamesByFilter("attackBase");
 
-        long maxOriginalValue = 0;
-
-        GenericParam originalValues = weapon.GenericParam.Clone() as GenericParam;
+        long maxOriginalValue = dmgParams.Max(weapon.GenericParam.GetValue<long>);
 
         // reset all damage
         foreach (string dmgParam in dmgParams)
         {
             weapon.GenericParam.SetValue(dmgParam, 0f);
-            maxOriginalValue = Math.Max(originalValues.GetValue<long>(dmgParam), maxOriginalValue);
         }
 
         float overallMultiplier = mods.PrimaryDamageType.OverallMultiplier;
@@ -344,15 +341,13 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         mods.SpEffectDescriptions = effectStrings.Select(s => $"Effect: {s}").ToList();
 
-        string hitVfxParam = this.Configuration.LootParam.WeaponsHitVfx;
-
         int hitVfx = mods.PrimaryDamageType.HitEffectCategory;
         if (mods.SecondaryDamageType != null && mods.SecondaryDamageType.HitEffectCategory > 0)
         {
             hitVfx = mods.SecondaryDamageType.HitEffectCategory;
         }
 
-        weapon.GenericParam.SetValue(hitVfxParam, hitVfx);
+        weapon.spAttribute = hitVfx;
 
         float critMultiplier = mods.PrimaryDamageType.CriticalMultAddition + mods.SecondaryDamageType?.CriticalMultAddition ?? 0;
 
@@ -365,8 +360,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         weapon.throwAtkRate = (int)(critValue * (1 + critMultiplier));
 
-        string staminaParam = this.Configuration.LootParam.WeaponsStaminaRate;
-        float maxDamage = this.Configuration.LootParam.WeaponsDamageParam.Max(par => weapon.GenericParam.GetValue<float>(par));
+        float maxDamage = dmgParams.Max(par => weapon.GenericParam.GetValue<float>(par));
 
         if (maxDamage > weaponGeneratorConfig.DamageIncreasesStaminaThreshold)
         {

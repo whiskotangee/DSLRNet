@@ -1,0 +1,775 @@
+{
+  "FMG_ID": 366,
+  "Entries": [
+    {
+      "Text": "Shadow Realm Blessing",
+      "IDList": [
+        20010001
+      ]
+    },
+    {
+      "Text": "Scadutree Blessing (\u003C?dlcPlayerDopingLevel?\u003E)",
+      "IDList": [
+        20010002
+      ]
+    },
+    {
+      "Text": "Revered Spirit Ash Blessing (\u003C?dlcBuddyDopingLevel?\u003E)",
+      "IDList": [
+        20010003
+      ]
+    },
+    {
+      "Text": "Cancel",
+      "IDList": [
+        20010004
+      ]
+    },
+    {
+      "Text": "Use 1 Scadutree Fragment to empower blessing?",
+      "IDList": [
+        20011040
+      ]
+    },
+    {
+      "Text": "Use 2 Scadutree Fragments to empower blessing?",
+      "IDList": [
+        20011041
+      ]
+    },
+    {
+      "Text": "Use 3 Scadutree Fragments to empower blessing?",
+      "IDList": [
+        20011042
+      ]
+    },
+    {
+      "Text": "Use 4 Scadutree Fragments to empower blessing?",
+      "IDList": [
+        20011043
+      ]
+    },
+    {
+      "Text": "Use 5 Scadutree Fragments to empower blessing?",
+      "IDList": [
+        20011044
+      ]
+    },
+    {
+      "Text": "Use 6 Scadutree Fragments to empower blessing?",
+      "IDList": [
+        20011045
+      ]
+    },
+    {
+      "Text": "Use 7 Scadutree Fragments to empower blessing?",
+      "IDList": [
+        20011046
+      ]
+    },
+    {
+      "Text": "Use 8 Scadutree Fragments to empower blessing?",
+      "IDList": [
+        20011047
+      ]
+    },
+    {
+      "Text": "Use 9 Scadutree Fragments to empower blessing?",
+      "IDList": [
+        20011048
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        20011049,
+        20011059,
+        24181003,
+        24181004,
+        24181005,
+        26002001,
+        26002002,
+        26002003,
+        26002004,
+        26002005,
+        26002006,
+        26002007,
+        26002008,
+        26002009,
+        26302001,
+        26302002,
+        26302003,
+        26302004,
+        26302005,
+        26302006,
+        26302007,
+        26302008,
+        26302009
+      ]
+    },
+    {
+      "Text": "Use 1 Revered Spirit Ash to empower blessing?",
+      "IDList": [
+        20011050
+      ]
+    },
+    {
+      "Text": "Use 2 Revered Spirit Ashes to empower blessing?",
+      "IDList": [
+        20011051
+      ]
+    },
+    {
+      "Text": "Use 3 Revered Spirit Ashes to empower blessing?",
+      "IDList": [
+        20011052
+      ]
+    },
+    {
+      "Text": "Use 4 Revered Spirit Ashes to empower blessing?",
+      "IDList": [
+        20011053
+      ]
+    },
+    {
+      "Text": "Use 5 Revered Spirit Ashes to empower blessing?",
+      "IDList": [
+        20011054
+      ]
+    },
+    {
+      "Text": "Use 6 Revered Spirit Ashes to empower blessing?",
+      "IDList": [
+        20011055
+      ]
+    },
+    {
+      "Text": "Use 7 Revered Spirit Ashes to empower blessing?",
+      "IDList": [
+        20011056
+      ]
+    },
+    {
+      "Text": "Use 8 Revered Spirit Ashes to empower blessing?",
+      "IDList": [
+        20011057
+      ]
+    },
+    {
+      "Text": "Use 9 Revered Spirit Ashes to empower blessing?",
+      "IDList": [
+        20011058
+      ]
+    },
+    {
+      "Text": "Not enough Scadutree Fragments",
+      "IDList": [
+        20011060
+      ]
+    },
+    {
+      "Text": "Not enough Revered Spirit Ashes",
+      "IDList": [
+        20011061
+      ]
+    },
+    {
+      "Text": "Scadutree Blessing empowered",
+      "IDList": [
+        20011062
+      ]
+    },
+    {
+      "Text": "Revered Spirit Ash Blessing empowered",
+      "IDList": [
+        20011063
+      ]
+    },
+    {
+      "Text": "Scadutree Blessing cannot be empowered any further",
+      "IDList": [
+        20011064
+      ]
+    },
+    {
+      "Text": "Revered Spirit Ash Blessing cannot be empowered any further",
+      "IDList": [
+        20011065
+      ]
+    },
+    {
+      "Text": "Imbibe nectar",
+      "IDList": [
+        24050000
+      ]
+    },
+    {
+      "Text": "Leave",
+      "IDList": [
+        24050001,
+        24060003,
+        24060005,
+        24060007,
+        24061003,
+        24090004,
+        24130002,
+        24140001,
+        24151006,
+        24160002,
+        24160004,
+        24160006,
+        24160011,
+        24170002,
+        24170004,
+        24170006,
+        24170008,
+        24181006,
+        24190005,
+        24190007,
+        24190009,
+        24191006,
+        24201006
+      ]
+    },
+    {
+      "Text": "Devour draconic essence",
+      "IDList": [
+        24060000
+      ]
+    },
+    {
+      "Text": "Do not partake",
+      "IDList": [
+        24060001
+      ]
+    },
+    {
+      "Text": "Use Thiollier\u0027s concoction",
+      "IDList": [
+        24060002
+      ]
+    },
+    {
+      "Text": "Confess to putting her to sleep",
+      "IDList": [
+        24060004
+      ]
+    },
+    {
+      "Text": "Take her with you",
+      "IDList": [
+        24060006
+      ]
+    },
+    {
+      "Text": "Ask for power",
+      "IDList": [
+        24061000
+      ]
+    },
+    {
+      "Text": "Ask about Bayle",
+      "IDList": [
+        24061001
+      ]
+    },
+    {
+      "Text": "Ask about Igon",
+      "IDList": [
+        24061002
+      ]
+    },
+    {
+      "Text": "Tell her you were attacked by a Swordhand of Night underground",
+      "IDList": [
+        24090000
+      ]
+    },
+    {
+      "Text": "Say nothing",
+      "IDList": [
+        24090001
+      ]
+    },
+    {
+      "Text": "Use Iris of Grace",
+      "IDList": [
+        24090002,
+        24130000
+      ]
+    },
+    {
+      "Text": "Use Iris of Occultation",
+      "IDList": [
+        24090003,
+        24130001
+      ]
+    },
+    {
+      "Text": "Usher Anna into Swordhand of Night Jol\u00E1n\u0027s spirit ashes?",
+      "IDList": [
+        24121000,
+        24121001,
+        24121002,
+        24121003,
+        24121004,
+        24121005,
+        24121006,
+        24121007,
+        24121008,
+        24121009,
+        24121010
+      ]
+    },
+    {
+      "Text": "Remove Anna from Swordhand of Night Jol\u00E1n\u0027s spirit ashes?",
+      "IDList": [
+        24121011,
+        24121012,
+        24121013,
+        24121014,
+        24121015,
+        24121016,
+        24121017,
+        24121018,
+        24121019,
+        24121020,
+        24121021
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n\u0027s spirit ashes not in inventory",
+      "IDList": [
+        24121022
+      ]
+    },
+    {
+      "Text": "Neither Anna\u0027s nor Jol\u00E1n\u0027s spirit ashes are in inventory",
+      "IDList": [
+        24121023
+      ]
+    },
+    {
+      "Text": "Ushered Anna into Swordhand of Night Jol\u00E1n\u0027s spirit ashes",
+      "IDList": [
+        24121024
+      ]
+    },
+    {
+      "Text": "Removed Anna from Swordhand of Night Jol\u00E1n\u0027s spirit ashes",
+      "IDList": [
+        24121025
+      ]
+    },
+    {
+      "Text": "Puppet of Anna",
+      "IDList": [
+        24121026
+      ]
+    },
+    {
+      "Text": "Give scorpion stew",
+      "IDList": [
+        24140000
+      ]
+    },
+    {
+      "Text": "Map of cross sites received.\nCheck in inventory.",
+      "IDList": [
+        24141000,
+        24141001
+      ]
+    },
+    {
+      "Text": "Map to old ruins received.\nCheck in inventory.",
+      "IDList": [
+        24142000,
+        24142001,
+        24142002
+      ]
+    },
+    {
+      "Text": "Put it behind you",
+      "IDList": [
+        24150000
+      ]
+    },
+    {
+      "Text": "Remain sad forever",
+      "IDList": [
+        24150001
+      ]
+    },
+    {
+      "Text": "I don\u0027t know",
+      "IDList": [
+        24150002
+      ]
+    },
+    {
+      "Text": "Talk to Moore",
+      "IDList": [
+        24151000,
+        24151001,
+        24151002,
+        24151003,
+        24151007,
+        24151008,
+        24151009,
+        24151010
+      ]
+    },
+    {
+      "Text": "Purchase",
+      "IDList": [
+        24151004,
+        24191000
+      ]
+    },
+    {
+      "Text": "Sell",
+      "IDList": [
+        24151005,
+        24191001
+      ]
+    },
+    {
+      "Text": "Speak of the cross at the tower",
+      "IDList": [
+        24160000
+      ]
+    },
+    {
+      "Text": "Speak of the cross where the eye was abandoned",
+      "IDList": [
+        24160001
+      ]
+    },
+    {
+      "Text": "Hand over Secret Rite Scroll",
+      "IDList": [
+        24160003
+      ]
+    },
+    {
+      "Text": "Pass on Freyja\u0027s message",
+      "IDList": [
+        24160005
+      ]
+    },
+    {
+      "Text": "Ask about the person in verdigris armor",
+      "IDList": [
+        24160007
+      ]
+    },
+    {
+      "Text": "Tell him about Freyja\u0027s decision",
+      "IDList": [
+        24160008
+      ]
+    },
+    {
+      "Text": "Ask about Thiollier",
+      "IDList": [
+        24160009
+      ]
+    },
+    {
+      "Text": "Ask about Mohg\u0027s death",
+      "IDList": [
+        24160010
+      ]
+    },
+    {
+      "Text": "Speak of the cross at the coast",
+      "IDList": [
+        24160012
+      ]
+    },
+    {
+      "Text": "What do you intend to look into?",
+      "IDList": [
+        24170000
+      ]
+    },
+    {
+      "Text": "What if you become our enemy?",
+      "IDList": [
+        24170001
+      ]
+    },
+    {
+      "Text": "Pass on Letter for Freyja",
+      "IDList": [
+        24170003
+      ]
+    },
+    {
+      "Text": "Ask about that other man",
+      "IDList": [
+        24170005
+      ]
+    },
+    {
+      "Text": "Ask about the damage to her helm",
+      "IDList": [
+        24170007
+      ]
+    },
+    {
+      "Text": "Ask about the missing man",
+      "IDList": [
+        24170009
+      ]
+    },
+    {
+      "Text": "Suggest Thiollier",
+      "IDList": [
+        24180000
+      ]
+    },
+    {
+      "Text": "Suggest the hornsent",
+      "IDList": [
+        24180001
+      ]
+    },
+    {
+      "Text": "Make no suggestion",
+      "IDList": [
+        24180002
+      ]
+    },
+    {
+      "Text": "Ask about the hornsent",
+      "IDList": [
+        24181002
+      ]
+    },
+    {
+      "Text": "Ask about the silent monk",
+      "IDList": [
+        24181007
+      ]
+    },
+    {
+      "Text": "Pass on St. Trina\u0027s words",
+      "IDList": [
+        24190004,
+        24190008
+      ]
+    },
+    {
+      "Text": "Try to pass on St. Trina\u0027s words again",
+      "IDList": [
+        24190006
+      ]
+    },
+    {
+      "Text": "Give black syrup",
+      "IDList": [
+        24191002
+      ]
+    },
+    {
+      "Text": "Ask about black syrup",
+      "IDList": [
+        24191003
+      ]
+    },
+    {
+      "Text": "I\u0027m weary of life",
+      "IDList": [
+        24191004
+      ]
+    },
+    {
+      "Text": "Tell him St. Trina\u0027s whereabouts",
+      "IDList": [
+        24191005
+      ]
+    },
+    {
+      "Text": "Study sorcery",
+      "IDList": [
+        24201000
+      ]
+    },
+    {
+      "Text": "Ask about glintstone sorcery",
+      "IDList": [
+        24201001
+      ]
+    },
+    {
+      "Text": "Ask about the knight in black armor",
+      "IDList": [
+        24201002
+      ]
+    },
+    {
+      "Text": "Ask about the nature of the world",
+      "IDList": [
+        24201003,
+        24201005
+      ]
+    },
+    {
+      "Text": "Ask about Miquella",
+      "IDList": [
+        24201004
+      ]
+    },
+    {
+      "Text": "Bell Bearing Shop 5",
+      "IDList": [
+        26002000
+      ]
+    },
+    {
+      "Text": "Moore\u0027s Bell Bearing",
+      "IDList": [
+        26002010
+      ]
+    },
+    {
+      "Text": "Ymir\u0027s Bell Bearing",
+      "IDList": [
+        26002011
+      ]
+    },
+    {
+      "Text": "Offer Moore\u0027s Bell Bearing",
+      "IDList": [
+        26002110
+      ]
+    },
+    {
+      "Text": "Offer Ymir\u0027s Bell Bearing",
+      "IDList": [
+        26002111
+      ]
+    },
+    {
+      "Text": "Offer Herbalist\u0027s Bell Bearing",
+      "IDList": [
+        26002112
+      ]
+    },
+    {
+      "Text": "Offer Mushroom-Seller\u0027s Bell Bearing [1]",
+      "IDList": [
+        26002113
+      ]
+    },
+    {
+      "Text": "Offer Mushroom-Seller\u0027s Bell Bearing [2]",
+      "IDList": [
+        26002114
+      ]
+    },
+    {
+      "Text": "Offer Greasemonger\u0027s Bell Bearing",
+      "IDList": [
+        26002115
+      ]
+    },
+    {
+      "Text": "Offer Moldmonger\u0027s Bell Bearing",
+      "IDList": [
+        26002116
+      ]
+    },
+    {
+      "Text": "Offer Igon\u0027s Bell Bearing",
+      "IDList": [
+        26002117
+      ]
+    },
+    {
+      "Text": "Offer Spellmachinist\u0027s Bell Bearing",
+      "IDList": [
+        26002118
+      ]
+    },
+    {
+      "Text": "Offer String-Seller\u0027s Bell Bearing",
+      "IDList": [
+        26002119
+      ]
+    },
+    {
+      "Text": "Offered Moore\u0027s Bell Bearing",
+      "IDList": [
+        26002210
+      ]
+    },
+    {
+      "Text": "Offered Ymir\u0027s Bell Bearing",
+      "IDList": [
+        26002211
+      ]
+    },
+    {
+      "Text": "Offered Herbalist\u0027s Bell Bearing",
+      "IDList": [
+        26002212
+      ]
+    },
+    {
+      "Text": "Offered Mushroom-Seller\u0027s Bell Bearing [1]",
+      "IDList": [
+        26002213
+      ]
+    },
+    {
+      "Text": "Offered Mushroom-Seller\u0027s Bell Bearing [2]",
+      "IDList": [
+        26002214
+      ]
+    },
+    {
+      "Text": "Offered Greasemonger\u0027s Bell Bearing",
+      "IDList": [
+        26002215
+      ]
+    },
+    {
+      "Text": "Offered Moldmonger\u0027s Bell Bearing",
+      "IDList": [
+        26002216
+      ]
+    },
+    {
+      "Text": "Offered Igon\u0027s Bell Bearing",
+      "IDList": [
+        26002217
+      ]
+    },
+    {
+      "Text": "Offered Spellmachinist\u0027s Bell Bearing",
+      "IDList": [
+        26002218
+      ]
+    },
+    {
+      "Text": "Offered String-Seller\u0027s Bell Bearing",
+      "IDList": [
+        26002219
+      ]
+    },
+    {
+      "Text": "Communion with Bayle",
+      "IDList": [
+        26302000
+      ]
+    },
+    {
+      "Text": "Ritual of Dragon Communion",
+      "IDList": [
+        26302010
+      ]
+    }
+  ]
+}

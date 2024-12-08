@@ -10,6 +10,7 @@ public static class IServiceCollectionExtensions
         // configurations
         services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
                 .Configure<WeaponGeneratorConfig>(configuration.GetSection(nameof(WeaponGeneratorConfig)))
+                .Configure<ArmorGeneratorConfig>(configuration.GetSection(nameof(ArmorGeneratorConfig)))
                 .Configure<AllowListConfig>(configuration.GetSection(nameof(AllowListConfig)))
                 .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)))
                 .Configure<AshOfWarConfig>(configuration.GetSection(nameof(AshOfWarConfig)))

@@ -56,7 +56,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
             ? AccessoryGroupCumulativeID.GetNext()
             : newTalismanConfig.NoStackingGroupID;
 
-        newTalisman.iconId = this.RarityHandler.GetIconIdForRarity(newTalisman.iconId, rarityId);
+        newTalisman.iconId = this.RarityHandler.GetIconId(newTalisman.iconId, rarityId);
         newTalisman.GenericParam.SetValue(availableSlot, newTalismanConfig.RefSpEffect);
 
         List<SpEffectText> spEffs =

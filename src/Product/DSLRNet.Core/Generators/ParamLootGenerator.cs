@@ -84,7 +84,7 @@ public class ParamLootGenerator<TParamType>(
         }
         else if (rarityId > 5)
         {
-            logger.LogWarning("APPLY SPEFFECTS CALL RESULTED IN NO SPEFFECTS WITH RARITY > 5");
+            logger.LogError("Failed to apply any SpEffects when rarity > 5");
         }
 
         return spEffectTexts;

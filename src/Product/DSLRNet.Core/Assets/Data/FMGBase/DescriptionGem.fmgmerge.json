@@ -1,0 +1,752 @@
+{
+  "FMG_ID": 37,
+  "Entries": [
+    {
+      "Text": "%null%",
+      "IDList": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006,
+        1007,
+        1008,
+        1009,
+        1010,
+        1011,
+        1012,
+        1013,
+        1014,
+        1015,
+        1016,
+        1017
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Lion\u0027s Claw: Skill of the Redmanes, who fought alongside General Radahn. Somersault forwards, striking foes with armament.\u0022\n\nUsable on swords, axes, and hammers\n(small armaments and thrusting swords excepted).",
+      "IDList": [
+        10000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Impaling Thrust: Skill that lets piercing armaments overcome enemy shields. Build power, then lunge forward for a strong thrust that pierces an enemy\u0027s guard.\u0022\n\nUsable on armaments capable of thrusting\n(colossal weapons excepted).",
+      "IDList": [
+        10100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Piercing Fang: Skill used by Yura, the Bloody Finger Hunter. Starting with the blade held horizontally, make a powerful thrust that cannot be blocked.\u0022\n\nUsable on medium and large armaments capable of thrusting.",
+      "IDList": [
+        10200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Spinning Slash: Skill favored by dexterous warriors. Slash foes as your body spins. Additional input allows for a follow-up attack.\u0022\n\nUsable on swords, axes, and polearms (colossal weapons excepted).",
+      "IDList": [
+        10300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Charge Forth: Quickly charge forward with the armament at the hip, carrying the momentum into a thrust. Hold to cover a greater distance.\u0022\n\nUsable on polearms capable of thrusting, heavy thrusting swords, and twinblades.",
+      "IDList": [
+        10500
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Stamp (Upward Cut): Brace armament and step into a low stance that prevents recoil from most enemy attacks. Follow up with a strong attack for an upward strike.\u0022\n\nUsable on swords, axes, and hammers (small and medium swords excepted).",
+      "IDList": [
+        10600
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Stamp (Sweep): Brace armament and step into a low stance that prevents recoil from most enemy attacks. Follow up with a strong attack for a sweeping strike.\u0022\n\nUsable on swords, axes, and hammers (small and medium swords excepted).",
+      "IDList": [
+        10700
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Blood affinity and the following skill:\n\n\u0022Blood Tax: Blood Oath skill granted by the Lord of Blood. Twist to build power, then unleash a flurry of thrusts that rob the target of both their blood and their HP.\u0022\n\nUsable on armaments capable of thrusting\n(colossal weapons excepted).",
+      "IDList": [
+        10800
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Repeating Thrust: Twist to build power, then unleash a flurry of thrusts.\u0022\n\nUsable on armaments capable of thrusting\n(colossal weapons excepted).",
+      "IDList": [
+        10900
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Wild Strikes: Swing armament with wild abandon. Hold to continue swinging. Can be followed up with a normal or strong attack.\u0022\n\nUsable on axes and hammers as well as curved swords and greatswords (colossal weapons excepted).",
+      "IDList": [
+        11000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Spinning Strikes: Polearm skill that performs continuous spinning attacks. Hold to continue the attack. Can be followed up with a normal or strong attack. Nullifies projectiles such as arrows while spinning.\u0022\n\nUsable on polearms (great spears excepted).",
+      "IDList": [
+        11100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Double Slash: Skill of superior swordsmen. Perform a crossing slash attack from a low stance. Repeated inputs allow for up to two follow-up attacks.\u0022\n\nUsable on swords and polearms capable of slashing (colossal weapons excepted).",
+      "IDList": [
+        11200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Flame Art affinity and the following skill:\n\n\u0022Prelate\u0027s Charge: Slam armament into the ground to create a surge of flames, then charge in. Hold to continue the charge.\u0022\n\nUsable on large and colossal axes and hammers.",
+      "IDList": [
+        11300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Unsheathe: Skill of swordsmen from the Land of Reeds. Sheathe blade, holding it at the hip in a composed stance. Follow up with a normal or strong attack to perform a swift slash attack.\u0022\n\nUsable on katana.",
+      "IDList": [
+        11400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Square Off: This skill starts with the sword held level. Follow up with a normal attack to slash upwards through enemy\u0027s guard, or a strong attack to perform a running thrust.\u0022\n\nUsable on straight swords.",
+      "IDList": [
+        11500
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Giant Hunt: Skill developed for confronting gigantic foes. Step forward from a low stance, carrying the momentum into a sudden upward thrust.\u0022\n\nUsable on large and colossal weapons capable of thrusting, spears, and twinblades.",
+      "IDList": [
+        11600
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament\nthe Skill: Torch Attack.",
+      "IDList": [
+        11700
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Loretta\u0027s Slash: Skill of Loretta the Royal Knight. Leap forward, imbuing the blade with glintstone, then descend, accelerating into a sweeping slash.\u0022\n\nUsable on polearms and twinblades.",
+      "IDList": [
+        11800
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Poison affinity and the following skill:\n\n\u0022Poison Moth Flight: Slash with a poison-infused blade. If the follow-up strike lands on a poisoned foe, it will deal significant damage.\u0022\n\nUsable on small and medium swords (twinblades excepted).",
+      "IDList": [
+        11900
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Spinning Weapon: Defensive skill employed by Carian princesses. Lifts armament into mid-air, then makes it spin violently. Those it touches will suffer successive attacks.\u0022\n\nUsable on small and medium swords, axes, and hammers, as well as polearms and staves (great spears excepted)",
+      "IDList": [
+        12000
+      ]
+    },
+    {
+      "Text": "Affix to weapon to enable use\nof the Skill: Wicked Stance",
+      "IDList": [
+        12100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Storm Assault: One of the skills that channel the tempests of Stormveil. Leap forward through surrounding storm winds and thrust armament downward. The attack will produce more storm winds at the point of impact.\u0022\n\nUsable on polearms capable of thrusting, heavy thrusting swords, and twinblades.",
+      "IDList": [
+        12200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Stormcaller: One of the skills that channel the tempests of Stormveil. Spin armament to create surrounding storm winds. Repeated inputs allow for up to two follow-up attacks.\u0022\n\nUsable on swords capable of slashing, axes, hammers, and polearms (small and colossal weapons excepted)",
+      "IDList": [
+        12300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Sword Dance: Quickly close in to perform a series of spinning upward slashes. Follow up with an additional input to finish with a downward slash.\u0022\n\nUsable on swords, axes, and polearms capable of slashing (colossal weapons and great spears excepted).",
+      "IDList": [
+        12400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament\nthe Skill: Pulverize.",
+      "IDList": [
+        12500
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Glintblade Phalanx: Skill used by the enchanted knights who served the Carian royal family. Form an arch of magic glintblades overhead, which will attack foes automatically. Follow up with a strong attack to chain this skill into a lunging thrust.\u0022\n\nUsable on swords as well as polearms capable of thrusting (colossal weapons excepted).",
+      "IDList": [
+        20000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Sacred Blade: Grants armament\u0027s attacks holy essence and fires off a golden blade projectile. The armament retains its holy essence for a while.\u0022\n\nUsable on melee armaments (whips, fists, and claws excepted).",
+      "IDList": [
+        20100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Cold affinity and the following skill:\n\n\u0022Ice Spear: Skill of the warriors who served Lunar Princess Ranni. Spin armament to release cold magic, then channel it into a piercing spear of ice.\u0022\n\nUsable on polearms capable of thrusting and twinblades.",
+      "IDList": [
+        20200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Glintstone Pebble: Skill that employs the glintstone sorcery of the same name. Follow up with a strong attack to chain this skill into a lunging thrust, performed while the armament is still imbued with glintstone.\u0022\n\nUsable on swords as well as polearms capable of thrusting (colossal weapons excepted).",
+      "IDList": [
+        20300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Blood affinity and the following skill:\n\n\u0022Bloody Slash: Blood Oath skill granted by the Lord of Blood. From a low stance, coat the blade in your own blood to unleash a rending blood slash in a wide arc.\u0022\n\nUsable on swords (colossal weapons excepted).",
+      "IDList": [
+        20400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Occult affinity and the following skill:\n\n\u0022Lifesteal Fist: Skill that demonstrates mastery of the art of controlling vital energies.\nA slow, controlled punch with an energy-infused fist that renders foes unconscious and steals their HP. Only effective against foes of human build.\u0022\n\nUsable on fists and claws.",
+      "IDList": [
+        20500
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Fire affinity and the following skill:\n\n\u0022Eruption: Skill of the knights who serve at Volcano Manor. Slam armament into the ground, spawning roiling lava which spouts up upon release.\u0022\n\nUsable on large and colossal swords, axes, and hammers.",
+      "IDList": [
+        20700
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Prayerful Strike: Raise armament aloft in prayer, then slam it into the ground. This inspired blow restores HP to the self and nearby allies if it successfully hits.\u0022\n\nUsable on axes and hammers.",
+      "IDList": [
+        20800
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Gravitas: Skill originating from the Alabaster Lords, who had skin of stone. Thrust the armament into the ground to create a gravity well. In addition to dealing damage, this attack pulls enemies in.\u0022\n\nUsable on melee armaments (small armaments and whips excepted).",
+      "IDList": [
+        20900
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Storm Blade: Lost skill of Stormveil. Surround armament with shearing storm winds that can be fired forward. Can be fired in rapid succession.\u0022\n\nUsable on swords (colossal weapons and twinblades excepted).",
+      "IDList": [
+        21000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Earthshaker: Thrust armament into the ground, then gather strength to unleash an earth-shaking shockwave. Follow up with a strong attack to swing the armament in a sweeping strike.\u0022\n\nUsable on greataxes, great hammers, great spears, and colossal weapons.",
+      "IDList": [
+        21200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Golden Land: Thrust armament into the ground, then gather strength to unleash a blast of sacred energy that coalesces into golden darts. Follow up with a strong attack to swing the armament in a sweeping strike.\u0022\n\nUsable on greataxes, great hammers, great spears, and colossal weapons.",
+      "IDList": [
+        21300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Fire affinity and the following skill:\n\n\u0022Flaming Strike: Skill that emits flame in a wide frontward arc. Follow up with a strong attack to perform a lunging, sweeping strike. This will also coat the armament in fire.\u0022\n\nUsable on melee armaments (colossal weapons and whips excepted).",
+      "IDList": [
+        21400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Lightning affinity and the following skill:\n\n\u0022Thunderbolt: Skill used by the capital\u0027s ancient dragon cult. Raise armament aloft to call down a bolt of lightning. Can be fired in rapid succession.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        21600
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Lightning affinity and the following skill:\n\n\u0022Lightning Slash: Call down a bolt of lightning into armament, then swing it down to create an explosive shock. The armament retains the lightning enchantment for a while.\u0022\n\nUsable on swords, axes, and hammers.",
+      "IDList": [
+        21700
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Carian Grandeur: Carian royal prestige embodied in a skill. Transform blade into a magical greatsword and swing it down. Can be charged to increase its power by up to two levels.\u0022\n\nUsable on swords (colossal weapons excepted).",
+      "IDList": [
+        21800
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Carian Greatsword: Carian royal prestige embodied in a skill. Transform blade into a magical greatsword and swing it down. Can be charged to increase its power.\u0022\n\nUsable on swords (colossal weapons excepted).",
+      "IDList": [
+        21900
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Vacuum Slice: Lost skill of ancient heroes. Hold the armament aloft to surround it with a shearing vacuum, then launch it forwards as a blade-like projectile.\u0022\n\nUsable on swords and axes (colossal axes excepted).",
+      "IDList": [
+        22000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Flame Art affinity and the following skill:\n\n\u0022Black Flame Tornado: Spin armament overhead and then plunge it into the ground to summon a raging vortex of black flames. Hold to create an initial flame tornado while spinning the armament.\u0022\n\nUsable on polearms and twinblades.",
+      "IDList": [
+        22100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Sacred Ring of Light: Skill used by the commanders of the Cleanrot Knights. Gather a sacred ring of light in the armament, then fire it forwards. Can be fired in rapid succession.\u0022\n\nUsable on polearms (great spears excepted).",
+      "IDList": [
+        22200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament\nthe Skill: Fire Breath.",
+      "IDList": [
+        22300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Blood affinity and the following skill:\n\n\u0022Blood Blade: Wound self to coat the armament with blood, then unleash an airborne blood blade that causes hemorrhaging. Can be fired in rapid succession.\u0022\n\nUsable on small and medium swords.",
+      "IDList": [
+        22400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Phantom Slash: Skill inspired by the fond remembrances of the Night\u0027s Cavalry. Creates an apparition of the knights\u0027 former instructor who guides a joint lunging upward swing. Additional input allows for a follow-up attack.\u0022\n\nUsable on polearms and twinblades (great spears excepted).",
+      "IDList": [
+        22500
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Occult affinity and the following skill:\n\n\u0022Spectral Lance: Skill of the headless Mausoleum Knights. Hurl a phantasmic spear at foes.\u0022\n\nUsable on polearms (reapers excepted).",
+      "IDList": [
+        22600
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Cold affinity and the following skill:\n\n\u0022Chilling Mist: Coat armament in frost, and then slash, spreading frigid mist forwards. The armament retains its frost for a while.\u0022\n\nUsable on melee armaments (whips, fists, and claws excepted).",
+      "IDList": [
+        22700
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Poison affinity and the following skill:\n\n\u0022Poisonous Mist: Bathe armament in poison, and then slash, spreading toxic mist forwards. The armament retains its poison for a while.\u0022\n\nUsable on melee armaments (whips, fists, and claws excepted).",
+      "IDList": [
+        22800
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Shield Bash: Brace behind shield before using bodyweight to ram foes while maintaining guarding stance. Weaker enemies will be shoved backwards, and can even be staggered.\u0022\n\nUsable on all shields.",
+      "IDList": [
+        30000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Barricade Shield: Skill made famous by Sir Neidhardt. Focus your energy into the shield, temporarily hardening it to deflect greater blows.\u0022\n\nUsable on all shields.",
+      "IDList": [
+        30100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Parry: Use this skill in time with a foe\u0027s melee attack to deflect it and break that foe\u0027s stance. This provides an opening to perform a critical hit.\u0022\n\nUsable on daggers, curved swords, thrusting swords, fists, claws, and small and medium shields.",
+      "IDList": [
+        30200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament\nthe Skill: Buckler Parry.",
+      "IDList": [
+        30300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament\nthe Skill: Parry.",
+      "IDList": [
+        30400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Carian Retaliation: Swing the shield to dispel incoming sorceries and incantations, transforming the magic into retaliatory glintblades. Can also be used in the same way as a regular parry.\u0022\n\nUsable on small and medium shields.",
+      "IDList": [
+        30500
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Storm Wall: Swing the shield to create a wall of storm winds in front of you, deflecting arrows and other such physical projectiles. Can also be used in the same way as a regular parry.\u0022\n\nUsable on small and medium shields.",
+      "IDList": [
+        30600
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Golden Parry: Perform an Erdtree incantation and swing the shield to deflect enemy attacks and break their stance. Effective even at a slight distance.\u0022\n\nUsable on small and medium shields.",
+      "IDList": [
+        30700
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Shield Crash: Two-hand the shield and charge forwards while maintaining guard. Weaker enemies will be shoved backwards and can even be staggered. Hold to extend the duration of the charge forwards.\u0022\n\nUsable on all shields.",
+      "IDList": [
+        30800
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament and replaces any skill present with the following:\n\n\u0022No skill: This armament has no skill. If the armament in the other hand has a skill, that skill will be used instead.\u0022\n\nUsable on shields and torches.",
+      "IDList": [
+        30900
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Thops\u0027s Barrier: Erect a magical forcefield while swinging the shield to deflect sorceries and incantations. Can also be used in the same way as a regular parry.\u0022\n\nUsable on small and medium shields.",
+      "IDList": [
+        31000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Through and Through: Powerful archery skill using a greatbow held in an oblique stance. Ready the greatbow, then twist the bowstring to fire a mighty greatarrow that can penetrate through enemies.\u0022\n\nUsable on greatbows.",
+      "IDList": [
+        40000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Barrage: Archery skill using a bow held horizontally. Ready the bow, then fire off a rapid succession of shots faster than the eye can see.\u0022\n\nUsable on light bows.",
+      "IDList": [
+        40100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Mighty Shot: Archery skill performed from an oblique stance. Ready the bow, then pull the bowstring to its limit to enhance the power of the shot, penetrating the enemy\u0027s guard.\u0022\n\nUsable on light bows and longbows.",
+      "IDList": [
+        40200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Enchanted Shot: Archery skill that enlivens the arrow with spiritual essence. The resulting shot will fly faster than regular shots and change its trajectory to follow the target.\u0022\n\nUsable on light bows and longbows.",
+      "IDList": [
+        40400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Sky Shot: Archery skill performed from a low stance. Ready the bow, then fire an arrow high up into the air, arcing so as to strike the enemy from above when it comes down.\u0022\n\nUsable on light bows and longbows.",
+      "IDList": [
+        40500
+      ]
+    },
+    {
+      "Text": "This Ash of War grants no affinity to an armament, but imparts the following skill:\n\n\u0022Rain of Arrows: Archery skill performed from a low stance. Ready the bow, then fire a burst of arrows into the sky to shower the enemy with projectiles.\u0022\n\nUsable on all bows.",
+      "IDList": [
+        40600
+      ]
+    },
+    {
+      "Text": "Affix to weapon to enable use\nof the Skill: Invisible Arrow",
+      "IDList": [
+        40700
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Cold affinity and the following skill:\n\n\u0022Hoarfrost Stomp: Stomp hard to spread a trail of freezing mist on the ground. The mist applies the frost status effect.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        50100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Storm Stomp: One of the skills that channel the tempests of Stormveil. Stomp hard on the ground to kick up a momentary storm.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        50200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Kick: Push an enemy back with a high kick. Effective against enemies who are guarding, and can break a foe\u0027s stance. Sometimes a simple tool is the most effective.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        50300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Lightning affinity and the following skill:\n\n\u0022Lightning Ram: Skill inspired by tumbling rams. Let out a bleat, then tumble forwards, clad in lightning. Tumbles can be repeated in rapid succession.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        50400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Fire affinity and the following skill:\n\n\u0022Flame of the Redmanes: Skill of the Redmanes, who fought alongside General Radahn. Produce a powerful burst of flames in a wide frontward arc.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        50500
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Ground Slam: Jump up high into the air and crash down on the ground ahead. The resulting pratfall sends a powerful shockwave in all directions.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        50600
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Golden Slam: Skill of the avatars who protect Minor Erdtrees. Jump up high into the air and crash down on the ground ahead. The resulting pratfall sends golden shockwaves in all directions.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        50700
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Magic affinity and the following skill:\n\n\u0022Waves of Darkness: Plunge armament into the ground to release three waves of darkness. Follow up with a strong attack to swing the armament in a sweeping strike.\u0022\n\nUsable on greataxes, great hammers, great spears, and colossal weapons.",
+      "IDList": [
+        50800
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Hoarah Loux\u0027s Earthshaker: Slam both hands onto the ground to violently shake the earth and unleash a shockwave. Follow up with an additional input to slam the ground again.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        50900
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Determination: A knightly skill. Hold the flat of the armament to your face and pledge your resolve, powering up your next attack.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        60000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Quality affinity and the following skill:\n\n\u0022Royal Knight\u0027s Resolve: Skill of the knights who once served the Elden Lord. Hold the flat of the armament to your face and pledge your resolve, greatly powering up your next attack.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        60100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Occult affinity and the following skill:\n\n\u0022Assassin\u0027s Gambit: Skill that masks the user\u0027s presence at the cost of a self-inflicted wound. Grants near-invisibility and silences footsteps.\u0022\n\nUsable on small and medium straight swords and thrusting swords.",
+      "IDList": [
+        60200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Golden Vow: Skill passed down from antiquity among the knights of the capital. Raise armament aloft and pledge to honor the Erdtree in battle, granting self and nearby allies increased attack power and defense.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        60300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Sacred Order: Skill of the Golden Order fundamentalist knights. Perform a salute and grant the armament holy essence. Highly effective against Those Who Live in Death.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        60400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Shared Order: Skill of the Golden Order fundamentalist knights. Grant the armament and those of nearby allies holy essence. Highly effective against Those Who Live in Death.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        60500
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Blood affinity and the following skill:\n\n\u0022Seppuku: A forbidden technique used by swordsmen from the Land of Reeds. Plunge the blade into your stomach to stain it with blood. Increases attack power and improves ability to inflict blood loss.\u0022\n\nUsable on swords as well as polearms capable of thrusting (small and colossal weapons excepted).",
+      "IDList": [
+        60600
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Cragblade: Skill that manipulates gravity. Bury the armament in the ground, pulling rocks from the earth to reinforce it. Increases attack power and makes it easier to break enemy stance.\u0022\n\nUsable on melee armaments (whips excepted).",
+      "IDList": [
+        60700
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Barbaric Roar: Let loose a bestial roar to rally the spirit and increase attack power. While active, strong attacks change to savage combo attacks.\u0022\n\nUsable on melee armaments (daggers, thrusting swords, and whips excepted).",
+      "IDList": [
+        65000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022War Cry: Give a war cry to rally the spirit and increase attack power. While active, strong attacks change to charging attacks.\u0022\n\nUsable on melee armaments (daggers, thrusting swords, and whips excepted).",
+      "IDList": [
+        65100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Beast\u0027s Roar: Unleash a beastly roar, rending the air as a forward-travelling projectile.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        65200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Troll\u0027s Roar: Look into the distance and let out an intense roar, generating a powerful shockwave that blows back surrounding foes. Follow up with a strong attack to slam the armament down.\u0022\n\nUsable on large and colossal swords, axes, and hammers.",
+      "IDList": [
+        65300
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Braggart\u0027s Roar: Declare your presence with a boastful roar. Raises attack power, defense, and stamina recovery speed.\u0022\n\nUsable on melee armaments (daggers, thrusting swords, and whips excepted).",
+      "IDList": [
+        65400
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Heavy affinity and the following skill:\n\n\u0022Endure: Assume an anchored stance to brace for incoming attacks, briefly boosting poise. Damage taken while using this skill is reduced.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        70000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Vow of the Indomitable: Skill of the ancient warriors of the Erdtree. Hold shield aloft to imbue yourself with golden power, granting momentary invincibility.\u0022\n\nUsable on all shields.",
+      "IDList": [
+        70100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Sacred affinity and the following skill:\n\n\u0022Holy Ground: Raise shield to create an Erdtree-consecrated area that continuously restores HP and boosts defense for self and allies inside it.\u0022\n\nUsable on all shields.",
+      "IDList": [
+        70200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Quickstep: Skill prized by the crafty and fleet of foot.\nPerform a quickstep maneuver that allows for circling around lock-on targets.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        80000
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Bloodhound\u0027s Step: Skill that allows the user to become temporarily invisible while dodging at high speed. Moves faster and travels farther than a regular quickstep. This skill can be used to circle around lock-on targets.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        80100
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Keen affinity and the following skill:\n\n\u0022Raptor of the Mists: Duck into a low stance, momentarily vanishing. If an enemy attack connects, avian wings will allow for a quick escape into the air.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        80200
+      ]
+    },
+    {
+      "Text": "This Ash of War grants an armament the Occult affinity and the following skill:\n\n\u0022White Shadow\u0027s Lure: Hold armament in a brief, silent prayer to create a white shadow. The apparition lures in foes of human build who are not in combat, drawing their aggression. Effective on demi-humans even if they are already in a combat state.\u0022\n\nUsable on all melee armaments.",
+      "IDList": [
+        85000
+      ]
+    }
+  ]
+}

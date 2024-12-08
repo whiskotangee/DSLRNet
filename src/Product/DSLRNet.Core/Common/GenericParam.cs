@@ -24,6 +24,18 @@ public class GenericParam : ICloneable
 
     public string Name { get => this.GetValue<string>("Name"); set => this.SetValue("Name", value); }
 
+    public List<string> GetFieldNamesByFilter(string filter, bool endsWith = false, string? excludeFilter = null)
+    {
+        var ret = Properties.Keys
+            .Where(d => endsWith ? d.EndsWith(filter, StringComparison.OrdinalIgnoreCase) : d.StartsWith(filter, StringComparison.OrdinalIgnoreCase));
+        if (excludeFilter != null)
+        {
+            ret = ret.Where(d => !d.Contains(excludeFilter));
+        }
+
+        return ret.ToList();
+    }
+
     public T GetValue<T>(string name)
     {
         if (this.Properties.TryGetValue(name, out object? value))

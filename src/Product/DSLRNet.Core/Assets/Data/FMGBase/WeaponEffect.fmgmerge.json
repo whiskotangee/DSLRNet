@@ -1,0 +1,413 @@
+{
+  "FMG_ID": 44,
+  "Entries": [
+    {
+      "Text": "%null%",
+      "IDList": [
+        1,
+        2,
+        3,
+        100,
+        1011,
+        6403,
+        6404,
+        6405,
+        6406,
+        6407,
+        6408,
+        6409,
+        6503,
+        6504,
+        6505,
+        6506,
+        6507,
+        6508,
+        6509
+      ]
+    },
+    {
+      "Text": "Some damage isn\u0027t negated when guarded",
+      "IDList": [
+        1000
+      ]
+    },
+    {
+      "Text": "Recovers HP from defeated enemies",
+      "IDList": [
+        1001
+      ]
+    },
+    {
+      "Text": "Recovers FP from defeated enemies",
+      "IDList": [
+        1002
+      ]
+    },
+    {
+      "Text": "Successful attacks recover HP",
+      "IDList": [
+        1003
+      ]
+    },
+    {
+      "Text": "Successful attacks recover FP",
+      "IDList": [
+        1004
+      ]
+    },
+    {
+      "Text": "Slowly recovers HP",
+      "IDList": [
+        1005
+      ]
+    },
+    {
+      "Text": "Slowly recovers FP",
+      "IDList": [
+        1006
+      ]
+    },
+    {
+      "Text": "Boosts stamina recovery speed",
+      "IDList": [
+        1007
+      ]
+    },
+    {
+      "Text": "Attack power rises as attacks continue",
+      "IDList": [
+        1008
+      ]
+    },
+    {
+      "Text": "Take self-inflicted damage",
+      "IDList": [
+        1009
+      ]
+    },
+    {
+      "Text": "Saps beasts of the will to fight",
+      "IDList": [
+        1010
+      ]
+    },
+    {
+      "Text": "Boosts potency of physical spells",
+      "IDList": [
+        1012
+      ]
+    },
+    {
+      "Text": "Boosts potency of fire spells",
+      "IDList": [
+        1013
+      ]
+    },
+    {
+      "Text": "Boosts potency of spirit spells",
+      "IDList": [
+        1014
+      ]
+    },
+    {
+      "Text": "Boosts potency of lightning spells",
+      "IDList": [
+        1015
+      ]
+    },
+    {
+      "Text": "Boosts potency of sacred spells",
+      "IDList": [
+        1016
+      ]
+    },
+    {
+      "Text": "Boosts area of buffs and healing spells",
+      "IDList": [
+        1017
+      ]
+    },
+    {
+      "Text": "Handles any sorcery or incantation",
+      "IDList": [
+        1018
+      ]
+    },
+    {
+      "Text": "Use as catalyst for glintstone sorcery",
+      "IDList": [
+        1019
+      ]
+    },
+    {
+      "Text": "Use as seal for incantations",
+      "IDList": [
+        1020
+      ]
+    },
+    {
+      "Text": "Successive attacks recover HP",
+      "IDList": [
+        1021
+      ]
+    },
+    {
+      "Text": "Successive attacks recover FP",
+      "IDList": [
+        1022
+      ]
+    },
+    {
+      "Text": "Boosts Crystalian sorcery",
+      "IDList": [
+        1100
+      ]
+    },
+    {
+      "Text": "Boosts gravity sorcery",
+      "IDList": [
+        1101
+      ]
+    },
+    {
+      "Text": "Boosts thorn sorcery",
+      "IDList": [
+        1102
+      ]
+    },
+    {
+      "Text": "Boosts death sorcery",
+      "IDList": [
+        1103
+      ]
+    },
+    {
+      "Text": "Boosts full moon sorcery",
+      "IDList": [
+        1104
+      ]
+    },
+    {
+      "Text": "Boosts Stonedigger sorcery",
+      "IDList": [
+        1105
+      ]
+    },
+    {
+      "Text": "Boosts Glintblade sorcery",
+      "IDList": [
+        1106
+      ]
+    },
+    {
+      "Text": "Boosts Carian sword sorcery",
+      "IDList": [
+        1107
+      ]
+    },
+    {
+      "Text": "Boosts Azur\u0027s primeval sorcery",
+      "IDList": [
+        1108
+      ]
+    },
+    {
+      "Text": "Boosts Lusat\u0027s primeval sorcery",
+      "IDList": [
+        1109
+      ]
+    },
+    {
+      "Text": "Boosts invisibility sorcery",
+      "IDList": [
+        1110
+      ]
+    },
+    {
+      "Text": "Boosts Giants\u0027 Flame incantations",
+      "IDList": [
+        1111
+      ]
+    },
+    {
+      "Text": "Boosts Fundamentalist incantations",
+      "IDList": [
+        1112
+      ]
+    },
+    {
+      "Text": "Boosts bestial incantations",
+      "IDList": [
+        1113
+      ]
+    },
+    {
+      "Text": "Boosts Dragon Cult incantations",
+      "IDList": [
+        1114
+      ]
+    },
+    {
+      "Text": "Boosts Dragon Communion incantations",
+      "IDList": [
+        1115
+      ]
+    },
+    {
+      "Text": "Boosts Frenzied Flame incantations",
+      "IDList": [
+        1116
+      ]
+    },
+    {
+      "Text": "Boosts lava sorcery",
+      "IDList": [
+        1117
+      ]
+    },
+    {
+      "Text": "Boosts godslayer incantations",
+      "IDList": [
+        1118
+      ]
+    },
+    {
+      "Text": "Causes slight poison buildup (\u003C?poisonATKpwr?\u003E)",
+      "IDList": [
+        6400
+      ]
+    },
+    {
+      "Text": "Causes poison buildup (\u003C?poisonATKpwr?\u003E)",
+      "IDList": [
+        6401
+      ]
+    },
+    {
+      "Text": "Causes heavy poison buildup (\u003C?poisonATKpwr?\u003E)",
+      "IDList": [
+        6402
+      ]
+    },
+    {
+      "Text": "Causes intense poison buildup (\u003C?poisonATKpwr?\u003E)",
+      "IDList": [
+        6410
+      ]
+    },
+    {
+      "Text": "Causes slight scarlet rot buildup (\u003C?diseaseATKpwr?\u003E)",
+      "IDList": [
+        6450
+      ]
+    },
+    {
+      "Text": "Causes scarlet rot buildup (\u003C?diseaseATKpwr?\u003E)",
+      "IDList": [
+        6451
+      ]
+    },
+    {
+      "Text": "Causes heavy scarlet rot buildup (\u003C?diseaseATKpwr?\u003E)",
+      "IDList": [
+        6452
+      ]
+    },
+    {
+      "Text": "Causes slight blood loss buildup (\u003C?bleedATKpwr?\u003E)",
+      "IDList": [
+        6500
+      ]
+    },
+    {
+      "Text": "Causes blood loss buildup (\u003C?bleedATKpwr?\u003E)",
+      "IDList": [
+        6501
+      ]
+    },
+    {
+      "Text": "Causes heavy blood loss buildup (\u003C?bleedATKpwr?\u003E)",
+      "IDList": [
+        6502
+      ]
+    },
+    {
+      "Text": "Causes intense blood loss buildup (\u003C?bleedATKpwr?\u003E)",
+      "IDList": [
+        6510
+      ]
+    },
+    {
+      "Text": "Causes slight death buildup (\u003C?curseATKpwr?\u003E)",
+      "IDList": [
+        6550
+      ]
+    },
+    {
+      "Text": "Causes death buildup (\u003C?curseATKpwr?\u003E)",
+      "IDList": [
+        6551
+      ]
+    },
+    {
+      "Text": "Causes heavy death buildup (\u003C?curseATKpwr?\u003E)",
+      "IDList": [
+        6552
+      ]
+    },
+    {
+      "Text": "Causes slight frost buildup (\u003C?freezeATKpwr?\u003E)",
+      "IDList": [
+        6600
+      ]
+    },
+    {
+      "Text": "Causes frost buildup (\u003C?freezeATKpwr?\u003E)",
+      "IDList": [
+        6601
+      ]
+    },
+    {
+      "Text": "Causes heavy frost buildup (\u003C?freezeATKpwr?\u003E)",
+      "IDList": [
+        6602
+      ]
+    },
+    {
+      "Text": "Causes slight sleep buildup (\u003C?sleepATKpwr?\u003E)",
+      "IDList": [
+        6650
+      ]
+    },
+    {
+      "Text": "Causes sleep buildup (\u003C?sleepATKpwr?\u003E)",
+      "IDList": [
+        6651
+      ]
+    },
+    {
+      "Text": "Causes heavy sleep buildup (\u003C?sleepATKpwr?\u003E)",
+      "IDList": [
+        6652
+      ]
+    },
+    {
+      "Text": "Causes slight madness buildup (\u003C?madnessATKpwr?\u003E)",
+      "IDList": [
+        6700
+      ]
+    },
+    {
+      "Text": "Causes madness buildup (\u003C?madnessATKpwr?\u003E)",
+      "IDList": [
+        6701
+      ]
+    },
+    {
+      "Text": "Causes heavy madness buildup (\u003C?madnessATKpwr?\u003E)",
+      "IDList": [
+        6702
+      ]
+    }
+  ]
+}

@@ -30,11 +30,11 @@ public class DSLRNetBuilder(
 
         Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
-        List<ItemLotQueueEntry> enemyItemLotsSetups = Directory.GetFiles("Data\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
+        List<ItemLotQueueEntry> enemyItemLotsSetups = Directory.GetFiles("Assets\\Data\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[0]))
             .ToList();
 
-        List<ItemLotQueueEntry> mapItemLotsSetups = Directory.GetFiles("Data\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
+        List<ItemLotQueueEntry> mapItemLotsSetups = Directory.GetFiles("Assets\\Data\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotQueueEntry.Create(s, this.configuration.Itemlots.Categories[1]))
             .ToList();
 
@@ -54,10 +54,10 @@ public class DSLRNetBuilder(
 
         if (remainingIds.Any())
         {
-            ItemLotQueueEntry remainingMapLots = ItemLotQueueEntry.Create("Data\\ItemLots\\Default_Map.ini", this.configuration.Itemlots.Categories[1]);
+            ItemLotQueueEntry remainingMapLots = ItemLotQueueEntry.Create("Assets\\Data\\ItemLots\\Default_Map.ini", this.configuration.Itemlots.Categories[1]);
             remainingMapLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Map].OrderBy(d => d).ToList();
 
-            ItemLotQueueEntry remainingEnemyLots = ItemLotQueueEntry.Create("Data\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
+            ItemLotQueueEntry remainingEnemyLots = ItemLotQueueEntry.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
             remainingEnemyLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Enemy].OrderBy(d => d).ToList();
 
             itemLotGenerator.CreateItemLots([remainingMapLots]);

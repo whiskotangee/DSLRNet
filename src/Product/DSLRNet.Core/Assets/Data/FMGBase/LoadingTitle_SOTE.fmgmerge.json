@@ -1,0 +1,35 @@
+{
+  "FMG_ID": 373,
+  "Entries": [
+    {
+      "Text": "Scadutree Blessing",
+      "IDList": [
+        80
+      ]
+    },
+    {
+      "Text": "Revered Spirit Ash Blessing",
+      "IDList": [
+        81
+      ]
+    },
+    {
+      "Text": "Keeping Track of New Items",
+      "IDList": [
+        205
+      ]
+    },
+    {
+      "Text": "Keeping Track of Recent Items",
+      "IDList": [
+        206
+      ]
+    },
+    {
+      "Text": "Carrying Over Summoning Pools",
+      "IDList": [
+        207
+      ]
+    }
+  ]
+}

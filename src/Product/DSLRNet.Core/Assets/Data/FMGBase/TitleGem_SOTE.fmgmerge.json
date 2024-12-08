@@ -1,0 +1,155 @@
+{
+  "FMG_ID": 322,
+  "Entries": [
+    {
+      "Text": "Ash of War: Dryleaf Whirlwind",
+      "IDList": [
+        200000
+      ]
+    },
+    {
+      "Text": "Ash of War: Aspects of the Crucible: Wings",
+      "IDList": [
+        200100
+      ]
+    },
+    {
+      "Text": "Ash of War: Spinning Gravity Thrust",
+      "IDList": [
+        400000
+      ]
+    },
+    {
+      "Text": "Ash of War: Palm Blast",
+      "IDList": [
+        401000
+      ]
+    },
+    {
+      "Text": "Ash of War: Piercing Throw",
+      "IDList": [
+        402000
+      ]
+    },
+    {
+      "Text": "Ash of War: Scattershot Throw",
+      "IDList": [
+        403000
+      ]
+    },
+    {
+      "Text": "Ash of War: Wall of Sparks",
+      "IDList": [
+        404000
+      ]
+    },
+    {
+      "Text": "Ash of War: Rolling Sparks",
+      "IDList": [
+        405000
+      ]
+    },
+    {
+      "Text": "Ash of War: Raging Beast",
+      "IDList": [
+        406000
+      ]
+    },
+    {
+      "Text": "Ash of War: Savage Claws",
+      "IDList": [
+        407000
+      ]
+    },
+    {
+      "Text": "Ash of War: Blind Spot",
+      "IDList": [
+        409000
+      ]
+    },
+    {
+      "Text": "Ash of War: Swift Slash",
+      "IDList": [
+        410000
+      ]
+    },
+    {
+      "Text": "Ash of War: Overhead Stance",
+      "IDList": [
+        411000
+      ]
+    },
+    {
+      "Text": "Ash of War: Wing Stance",
+      "IDList": [
+        412000
+      ]
+    },
+    {
+      "Text": "Ash of War: Blinkbolt",
+      "IDList": [
+        413000
+      ]
+    },
+    {
+      "Text": "Ash of War: Flame Skewer",
+      "IDList": [
+        414000
+      ]
+    },
+    {
+      "Text": "Ash of War: Savage Lion\u0027s Claw",
+      "IDList": [
+        415000
+      ]
+    },
+    {
+      "Text": "Ash of War: Divine Beast Frost Stomp",
+      "IDList": [
+        416000
+      ]
+    },
+    {
+      "Text": "Ash of War: Flame Spear",
+      "IDList": [
+        417000
+      ]
+    },
+    {
+      "Text": "Ash of War: Carian Sovereignty",
+      "IDList": [
+        418000
+      ]
+    },
+    {
+      "Text": "Ash of War: Shriek of Sorrow",
+      "IDList": [
+        419000
+      ]
+    },
+    {
+      "Text": "Ash of War: Ghostflame Call",
+      "IDList": [
+        422000
+      ]
+    },
+    {
+      "Text": "Ash of War: The Poison Flower Blooms Twice",
+      "IDList": [
+        505000
+      ]
+    },
+    {
+      "Text": "Ash of War: Igon\u0027s Drake Hunt",
+      "IDList": [
+        548000
+      ]
+    },
+    {
+      "Text": "Ash of War: Shield Strike",
+      "IDList": [
+        800000
+      ]
+    }
+  ]
+}

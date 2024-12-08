@@ -4,7 +4,7 @@ public class DamageTypeHandler : BaseHandler
 {
     private Configuration configuration { get; set; }
 
-    public List<DamageTypeSetup> DamageTypes { get; set; }
+    private List<DamageTypeSetup> DamageTypes { get; set; }
 
     private readonly RandomProvider random;
 
@@ -38,10 +38,6 @@ public class DamageTypeHandler : BaseHandler
 
     public DamageTypeSetup ChooseDamageTypeAtRandom(bool totallyRandom = false, bool secondaryDamage = false)
     {
-        // Choose weight to get from DamageType dictionary based on secondary damage
-        int weightToGet = secondaryDamage ? 11 : 10;
-
-        // If totally random, choose from the available DamageTypes at complete random
         if (totallyRandom)
         {
             return this.random.GetRandomItem(this.DamageTypes);

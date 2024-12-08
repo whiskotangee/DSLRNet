@@ -1,0 +1,77 @@
+{
+  "FMG_ID": 330,
+  "Entries": [
+    {
+      "Text": "Use \u003C?gdsparam@2002900?\u003E?",
+      "IDList": [
+        10010850
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@2002901?\u003E?",
+      "IDList": [
+        10010851
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@2002902?\u003E?",
+      "IDList": [
+        10010852
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@2002903?\u003E?",
+      "IDList": [
+        10010853
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@2002904?\u003E?",
+      "IDList": [
+        10010854
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@2002905?\u003E?",
+      "IDList": [
+        10010855
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        10010856
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@2002907?\u003E?",
+      "IDList": [
+        10010857
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@2002908?\u003E?",
+      "IDList": [
+        10010858
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@2002909?\u003E?",
+      "IDList": [
+        10010859
+      ]
+    },
+    {
+      "Text": "Use \u003C?gdsparam@2002910?\u003E?",
+      "IDList": [
+        10010860
+      ]
+    },
+    {
+      "Text": "The spectral steed is frightened and cannot be summoned.",
+      "IDList": [
+        20000810
+      ]
+    }
+  ]
+}

@@ -1,0 +1,429 @@
+{
+  "FMG_ID": 328,
+  "Entries": [
+    {
+      "Text": "Hornsent Grandam",
+      "IDList": [
+        140200
+      ]
+    },
+    {
+      "Text": "Igon",
+      "IDList": [
+        140300
+      ]
+    },
+    {
+      "Text": "Drake Warrior Igon",
+      "IDList": [
+        140301
+      ]
+    },
+    {
+      "Text": "St. Trina",
+      "IDList": [
+        140500
+      ]
+    },
+    {
+      "Text": "Dragon Communion Priestess",
+      "IDList": [
+        140600
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Florissax",
+      "IDList": [
+        140601
+      ]
+    },
+    {
+      "Text": "Ancient Dragon-Man",
+      "IDList": [
+        140700,
+        900000430
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Jol\u00E1n",
+      "IDList": [
+        140900,
+        140901,
+        140902,
+        140903,
+        140905,
+        900000605
+      ]
+    },
+    {
+      "Text": "Swordhand of Night Anna",
+      "IDList": [
+        140904
+      ]
+    },
+    {
+      "Text": "Jol\u00E1n and Anna",
+      "IDList": [
+        140906
+      ]
+    },
+    {
+      "Text": "Fire Knight Queelign",
+      "IDList": [
+        141300,
+        141301,
+        141302
+      ]
+    },
+    {
+      "Text": "Hornsent",
+      "IDList": [
+        141400,
+        141401,
+        141402,
+        141403
+      ]
+    },
+    {
+      "Text": "Moore",
+      "IDList": [
+        141500,
+        141501,
+        141502
+      ]
+    },
+    {
+      "Text": "Forager Brood",
+      "IDList": [
+        141503,
+        141504
+      ]
+    },
+    {
+      "Text": "Sir Ansbach",
+      "IDList": [
+        141600,
+        141601,
+        141602
+      ]
+    },
+    {
+      "Text": "Pureblood Knight Ansbach",
+      "IDList": [
+        141603
+      ]
+    },
+    {
+      "Text": "Redmane Freyja",
+      "IDList": [
+        141700,
+        141701,
+        141702
+      ]
+    },
+    {
+      "Text": "Needle Knight Leda",
+      "IDList": [
+        141800,
+        141801,
+        141802,
+        141803
+      ]
+    },
+    {
+      "Text": "Thiollier",
+      "IDList": [
+        141900,
+        141901,
+        141902,
+        141903
+      ]
+    },
+    {
+      "Text": "Count Ymir, High Priest",
+      "IDList": [
+        142000
+      ]
+    },
+    {
+      "Text": "Count Ymir, Mother of Fingers",
+      "IDList": [
+        142001,
+        900000606
+      ]
+    },
+    {
+      "Text": "Red Bear",
+      "IDList": [
+        142100,
+        900000560
+      ]
+    },
+    {
+      "Text": "Dancer of Ranah",
+      "IDList": [
+        142200,
+        900000561
+      ]
+    },
+    {
+      "Text": "Rakshasa",
+      "IDList": [
+        142300,
+        900000562
+      ]
+    },
+    {
+      "Text": "Knight of the Solitary Gaol",
+      "IDList": [
+        142400,
+        900000563
+      ]
+    },
+    {
+      "Text": "Dryleaf Dane",
+      "IDList": [
+        142500,
+        142501,
+        142502
+      ]
+    },
+    {
+      "Text": "Sanguine Noble Nataan",
+      "IDList": [
+        142600
+      ]
+    },
+    {
+      "Text": "Lamenter",
+      "IDList": [
+        142700,
+        900000410
+      ]
+    },
+    {
+      "Text": "Greater Potentate",
+      "IDList": [
+        142800
+      ]
+    },
+    {
+      "Text": "Madding Hand",
+      "IDList": [
+        142900
+      ]
+    },
+    {
+      "Text": "Logur, the Beast Claw",
+      "IDList": [
+        143100
+      ]
+    },
+    {
+      "Text": "Moonrithyll, Carian Knight",
+      "IDList": [
+        143200
+      ]
+    },
+    {
+      "Text": "Grand Altar of Dragon Communion",
+      "IDList": [
+        163000
+      ]
+    },
+    {
+      "Text": "Commander Gaius",
+      "IDList": [
+        905000000
+      ]
+    },
+    {
+      "Text": "Golden Hippopotamus",
+      "IDList": [
+        905010000
+      ]
+    },
+    {
+      "Text": "Putrescent Knight",
+      "IDList": [
+        905020000
+      ]
+    },
+    {
+      "Text": "Romina, Saint of the Bud",
+      "IDList": [
+        905030000
+      ]
+    },
+    {
+      "Text": "Curseblade Labirith",
+      "IDList": [
+        905040400
+      ]
+    },
+    {
+      "Text": "Midra, Lord of Frenzied Flame",
+      "IDList": [
+        905051000
+      ]
+    },
+    {
+      "Text": "Death Knight",
+      "IDList": [
+        905070400,
+        905070401
+      ]
+    },
+    {
+      "Text": "Chief Bloodfiend",
+      "IDList": [
+        905081430
+      ]
+    },
+    {
+      "Text": "Bayle the Dread",
+      "IDList": [
+        905120000
+      ]
+    },
+    {
+      "Text": "Messmer the Impaler",
+      "IDList": [
+        905130000
+      ]
+    },
+    {
+      "Text": "Base Serpent Messmer",
+      "IDList": [
+        905130001
+      ]
+    },
+    {
+      "Text": "Metyr, Mother of Fingers",
+      "IDList": [
+        905200000
+      ]
+    },
+    {
+      "Text": "Divine Beast Dancing Lion",
+      "IDList": [
+        905210000,
+        905210600
+      ]
+    },
+    {
+      "Text": "Promised Consort Radahn",
+      "IDList": [
+        905220000
+      ]
+    },
+    {
+      "Text": "Radahn, Consort of Miquella",
+      "IDList": [
+        905220001
+      ]
+    },
+    {
+      "Text": "Scadutree Avatar",
+      "IDList": [
+        905230000,
+        905230001,
+        905230002
+      ]
+    },
+    {
+      "Text": "Rellana, Twin Moon Knight",
+      "IDList": [
+        905300000
+      ]
+    },
+    {
+      "Text": "Jori, Elder Inquisitor",
+      "IDList": [
+        905320000
+      ]
+    },
+    {
+      "Text": "Ancient Dragon Senessax",
+      "IDList": [
+        905370600
+      ]
+    },
+    {
+      "Text": "Jagged Peak Drake",
+      "IDList": [
+        905580600,
+        905580601
+      ]
+    },
+    {
+      "Text": "Demi-Human Queen Marigga",
+      "IDList": [
+        905730600
+      ]
+    },
+    {
+      "Text": "Demi-Human Swordmaster Onze",
+      "IDList": [
+        905810410
+      ]
+    },
+    {
+      "Text": "Rugalea the Great Red Bear",
+      "IDList": [
+        905820600
+      ]
+    },
+    {
+      "Text": "Ralva the Great Red Bear",
+      "IDList": [
+        905820601
+      ]
+    },
+    {
+      "Text": "Black Knight Edredd",
+      "IDList": [
+        905840500
+      ]
+    },
+    {
+      "Text": "Black Knight Garrew",
+      "IDList": [
+        905840501
+      ]
+    },
+    {
+      "Text": "Ghostflame Dragon",
+      "IDList": [
+        905860600,
+        905860601,
+        905860603
+      ]
+    },
+    {
+      "Text": "%null%",
+      "IDList": [
+        905860602
+      ]
+    },
+    {
+      "Text": "Tree Sentinel",
+      "IDList": [
+        906251600,
+        906251601
+      ]
+    },
+    {
+      "Text": "Death Rite Bird",
+      "IDList": [
+        906260600
+      ]
+    },
+    {
+      "Text": "Fallingstar Beast",
+      "IDList": [
+        906310600
+      ]
+    }
+  ]
+}

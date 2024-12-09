@@ -32,7 +32,7 @@ public class SpEffectHandler : BaseHandler
                 {
                     ParamName = ParamNames.SpEffectParam,
                     Operation = ParamOperation.MassEdit,
-                    MassEditString = this.CreateMassEditParamFromParamDictionary(
+                    MassEditString = this.CreateMassEdit(
                         spEffectParam.GenericParam,
                         ParamNames.SpEffectParam,
                         spEffectParam.ID,

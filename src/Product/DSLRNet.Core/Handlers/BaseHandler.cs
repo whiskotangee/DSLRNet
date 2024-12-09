@@ -10,23 +10,12 @@ public class BaseHandler(ParamEditsRepository generatedDataRepository)
 
     public ParamEditsRepository GeneratedDataRepository { get; set; } = generatedDataRepository;
 
-    public LootFMG CreateFmgLootEntrySet(string category = "Weapons", string title = "Dagger", string description = "This is a dagger!", string summary = "")
-    {
-        return new LootFMG()
-        {
-            Category = category,
-            Name = title,
-            Caption = description,
-            Info = summary
-        };
-    }
-
     public static string CreateMassEditLine(ParamNames paramName, int id = 0, string propName = "Name", string value = "DSLR", string newLine = "\n")
     {
         return $"param {paramName}: id {id}: {propName}: = {value};{newLine}";
     }
 
-    public string CreateMassEditParamFromParamDictionary(GenericParam dict, ParamNames paramName, int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null, GenericParam? defaultValue = null)
+    public string CreateMassEdit(GenericParam dict, ParamNames paramName, int id = 0, List<string> additionalFilters = null, List<string> bannedEquals = null, List<string> mandatoryKeys = null, GenericParam? defaultValue = null)
     {
         string finalMassEdit = "";
         List<string> banned = ["[", "]", "|"];

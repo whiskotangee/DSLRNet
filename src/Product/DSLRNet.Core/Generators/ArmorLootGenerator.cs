@@ -48,7 +48,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
         //newArmor.Name = finalTitle;
 
-        this.ExportLootDetails(
+        this.AddLootDetails(
             newArmor.GenericParam, 
             LootType.Armor, 
             finalTitle, 

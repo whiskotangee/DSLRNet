@@ -124,7 +124,7 @@ public class ItemLotGenerator : BaseHandler
                     this.CalculateNoItemChance(newItemLot);
 
                     GenericParam genericDict = GenericParam.FromObject(newItemLot);
-                    string itemLotMassEdit = this.CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
+                    string itemLotMassEdit = this.CreateMassEdit(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
                     this.GeneratedDataRepository.AddParamEdit(
                         new ParamEdit() 
                         {
@@ -187,7 +187,7 @@ public class ItemLotGenerator : BaseHandler
                         }
 
                         GenericParam genericParam = GenericParam.FromObject(newItemLot);
-                        string itemLotMassEdit = this.CreateMassEditParamFromParamDictionary(genericParam, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
+                        string itemLotMassEdit = this.CreateMassEdit(genericParam, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
                         this.GeneratedDataRepository.AddParamEdit(
                             new ParamEdit()
                             {

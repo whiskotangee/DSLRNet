@@ -105,22 +105,15 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
         return paramEdit != null;
     }
 
-    public void AddParamEdit(ParamNames name, ParamOperation operation, string massEditString, LootFMG text, GenericParam? param)
+    public void AddParamEdit(ParamEdit paramEdit)
     {
-        if (param != null && this.ContainsParamEdit(name, param.ID))
+        if (paramEdit.ParamObject != null && this.ContainsParamEdit(paramEdit.ParamName, paramEdit.ParamObject.ID))
         {
-            logger.LogError($"Attempting to add param {name} edit with Id {param.ID} that already exists");
-            throw new Exception($"Attempting to add param {name} edit with Id {param.ID} that already exists");
+            logger.LogError($"Attempting to add param {paramEdit.ParamName} edit with Id {paramEdit.ParamObject.ID} that already exists");
+            throw new Exception($"Attempting to add param {paramEdit.ParamName} edit with Id {paramEdit.ParamObject.ID} that already exists");
         }
 
-        this.paramEdits[name].Add(new ParamEdit
-        {
-            Operation = operation,
-            ParamName = name,
-            MassEditString = massEditString,
-            MessageText = text,
-            ParamObject = param ?? new GenericParam()
-        });
+        this.paramEdits[paramEdit.ParamName].Add(paramEdit);
     }
 
     public List<ParamEdit> GetParamEdits(ParamOperation? operation = null, string? paramName = null)

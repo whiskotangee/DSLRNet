@@ -24,15 +24,18 @@ public class DamageTypeHandler : BaseHandler
             .ForEach(d =>
             {
                 this.GeneratedDataRepository.AddParamEdit(
-                    ParamNames.TextOnly,
-                    ParamOperation.TextOnly,
-                    string.Empty,
-                    new LootFMG()
+                    new ParamEdit
                     {
-                        Category = "Weapon",
-                        Effect = d.EffectDescription
-                    },
-                    new GenericParam() { Properties = new Dictionary<string, object?>() { { "ID", d.Message } } });
+                        ParamName = ParamNames.TextOnly,
+                        Operation = ParamOperation.TextOnly,
+                        MassEditString = string.Empty,
+                        MessageText = new LootFMG()
+                        {
+                            Category = "Weapon",
+                            Effect = d.EffectDescription
+                        },
+                        ParamObject = new GenericParam() { Properties = new Dictionary<string, object?>() { { "ID", d.Message } } }
+                    });
             });
     }
 

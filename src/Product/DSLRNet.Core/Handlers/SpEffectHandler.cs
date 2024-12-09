@@ -28,17 +28,20 @@ public class SpEffectHandler : BaseHandler
         foreach (SpEffectParam? spEffectParam in loadedSpEffectParams)
         {
             this.GeneratedDataRepository.AddParamEdit(
-                ParamNames.SpEffectParam,
-                ParamOperation.MassEdit,
-                this.CreateMassEditParamFromParamDictionary(
-                    spEffectParam.GenericParam,
-                    ParamNames.SpEffectParam,
-                    spEffectParam.ID,
-                    [],
-                    ["0", "-1"],
-                    ["conditionHp", "effectEndurance", "conditionHpRate"]),
-                null,
-                spEffectParam.GenericParam);
+                new ParamEdit
+                {
+                    ParamName = ParamNames.SpEffectParam,
+                    Operation = ParamOperation.MassEdit,
+                    MassEditString = this.CreateMassEditParamFromParamDictionary(
+                        spEffectParam.GenericParam,
+                        ParamNames.SpEffectParam,
+                        spEffectParam.ID,
+                        [],
+                        ["0", "-1"],
+                        ["conditionHp", "effectEndurance", "conditionHpRate"]),
+                    MessageText = null,
+                    ParamObject = spEffectParam.GenericParam
+                });
         }
     }
 

@@ -45,11 +45,14 @@ public class ParamLootGenerator<TParamType>(
         string finalMassEditOutput = this.CreateMassEditParamFromParamDictionary(massEditDict, this.OutputParamName, massEditDict.ID, extraFilters, extraBannedValues, this.ParamMandatoryKeys);
 
         this.GeneratedDataRepository.AddParamEdit(
-            this.OutputParamName,
-            ParamOperation.Create,
-            finalMassEditOutput,
-            this.CreateFmgLootEntrySet(this.OutputLootRealNames[lootType], title, description, summary),
-            massEditDict);
+            new ParamEdit
+            {
+                ParamName = this.OutputParamName,
+                Operation = ParamOperation.Create,
+                MassEditString = finalMassEditOutput,
+                MessageText = this.CreateFmgLootEntrySet(this.OutputLootRealNames[lootType], title, description, summary),
+                ParamObject = massEditDict
+            });
     }
 
     public IEnumerable<SpEffectText> ApplySpEffects(

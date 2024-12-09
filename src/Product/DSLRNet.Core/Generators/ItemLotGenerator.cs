@@ -1,5 +1,7 @@
 ﻿namespace DSLRNet.Core.Generators;
 
+using DSLRNet.Core.Common;
+
 public class ItemLotGenerator : BaseHandler
 {
     public string[] ItemlotOutputRealName { get; } = ["ItemLotParam_enemy", "ItemLotParam_map"];
@@ -123,7 +125,15 @@ public class ItemLotGenerator : BaseHandler
 
                     GenericParam genericDict = GenericParam.FromObject(newItemLot);
                     string itemLotMassEdit = this.CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
-                    this.GeneratedDataRepository.AddParamEdit(queueEntry.ParamName, ParamOperation.Create, itemLotMassEdit, null, genericDict);
+                    this.GeneratedDataRepository.AddParamEdit(
+                        new ParamEdit() 
+                        {
+                            ParamName = queueEntry.ParamName, 
+                            Operation = ParamOperation.Create, 
+                            MassEditString = itemLotMassEdit,
+                            MessageText = null,
+                            ParamObject = genericDict
+                        });
                 }
                 else
                 {
@@ -132,11 +142,14 @@ public class ItemLotGenerator : BaseHandler
             }
 
             this.GeneratedDataRepository.AddParamEdit(
-                ParamNames.NpcParam,
-                ParamOperation.MassEdit,
-                this.CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids),
-                null,
-                null);
+                new ParamEdit()
+                {
+                    ParamName = ParamNames.NpcParam,
+                    Operation = ParamOperation.MassEdit,
+                    MassEditString = this.CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids),
+                    MessageText = null,
+                    ParamObject = null
+                });
         }
     }
 
@@ -173,9 +186,17 @@ public class ItemLotGenerator : BaseHandler
                             this.CreateItemLotEntry(queueEntry, newItemLot, offset + y, newItemLot.ID, (float)queueEntry.DropChanceMultiplier, true);
                         }
 
-                        GenericParam genericDict = GenericParam.FromObject(newItemLot);
-                        string itemLotMassEdit = this.CreateMassEditParamFromParamDictionary(genericDict, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
-                        this.GeneratedDataRepository.AddParamEdit(queueEntry.ParamName, ParamOperation.Create, itemLotMassEdit, null, genericDict);
+                        GenericParam genericParam = GenericParam.FromObject(newItemLot);
+                        string itemLotMassEdit = this.CreateMassEditParamFromParamDictionary(genericParam, queueEntry.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
+                        this.GeneratedDataRepository.AddParamEdit(
+                            new ParamEdit()
+                            {
+                                ParamName = queueEntry.ParamName,
+                                Operation = ParamOperation.Create,
+                                MassEditString = itemLotMassEdit,
+                                MessageText = null,
+                                ParamObject = genericParam
+                            });
                     }
                 }
                 else
@@ -185,11 +206,14 @@ public class ItemLotGenerator : BaseHandler
             }
 
             this.GeneratedDataRepository.AddParamEdit(
-                ParamNames.NpcParam,
-                ParamOperation.MassEdit,
-                this.CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids),
-                null,
-                null);
+                new ParamEdit()
+                {
+                    ParamName = ParamNames.NpcParam,
+                    Operation = ParamOperation.MassEdit,
+                    MassEditString = this.CreateNpcMassEditString(queueEntry, queueEntry.NpcIds, queueEntry.NpcItemlotids),
+                    MessageText = null,
+                    ParamObject = null
+                });
         }
     }
 

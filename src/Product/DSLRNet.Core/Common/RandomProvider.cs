@@ -40,6 +40,10 @@ public class RandomProvider(int seed)
             {
                 return val.Value;
             }
+            else
+            {
+                weightedResult -= val.Weight;
+            }
         }
 
         return values.FirstOrDefault().Value;

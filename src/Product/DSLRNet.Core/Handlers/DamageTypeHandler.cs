@@ -31,7 +31,7 @@ public class DamageTypeHandler : BaseHandler
                         MassEditString = string.Empty,
                         MessageText = new LootFMG()
                         {
-                            Category = "Weapon",
+                            Category = LootType.Weapon.ToString(),
                             Effect = d.EffectDescription
                         },
                         ParamObject = new GenericParam() { Properties = new Dictionary<string, object?>() { { "ID", d.Message } } }

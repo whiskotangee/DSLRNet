@@ -52,8 +52,8 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
             newArmor.GenericParam, 
             LootType.Armor, 
             finalTitle, 
-            this.CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList(), armorStatDesc),
-            this.LoreGenerator.GenerateDescription(finalTitle, true)));
+            this.CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc),
+            this.LoreGenerator.GenerateDescription(finalTitle, true));
 
         return newArmor.ID;
     }
@@ -73,14 +73,14 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
             descriptionStrings.Add(param.Replace("DamageCutRate", "").ToUpper());
         }
 
-        List<string> defenseProperties = newArmor.GenericParam.GetFieldNamesByFilter("defense").ToList();
+        List<string> defenseProperties = newArmor.GenericParam.GetFieldNamesByFilter("defense", false, "Material").ToList();
 
         foreach (string param in defenseProperties)
         {
             newArmor.GenericParam.SetValue(param, 0);
         }
 
-        return $"+{addition:F1} {string.Join("/", descriptionStrings)} Defense";
+        return $"+{addition*100:F1}% {string.Join("/", descriptionStrings)} Defense";
     }
 
     private void ModifyArmorResistance(EquipParamProtector newArmor, int rarity)

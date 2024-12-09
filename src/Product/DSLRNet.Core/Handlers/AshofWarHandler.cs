@@ -30,7 +30,7 @@ public class AshofWarHandler(
         }
         else
         {
-            this.logger.LogWarning($"Weapon Base {weaponType} named {weapon.Name} did not have any matching valid gems");
+            this.logger.LogWarning($"Weapon Base {weaponType} named {weapon.Name} did not have any valid gems to assign.");
         }
     }
 }

@@ -93,7 +93,14 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
          spEffs,
          true);
 
-        this.AddLootDetails(newTalisman.GenericParam, LootType.Talisman, talismanFinalTitleColored, string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()), string.Join(Environment.NewLine, talismanSummaries), [], []);
+        this.AddLootDetails(
+            newTalisman.GenericParam, 
+            LootType.Talisman, 
+            talismanFinalTitleColored, 
+            string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()), 
+            string.Join(Environment.NewLine, talismanSummaries), 
+            [],
+            []);
 
         return newTalisman.ID;
     }

@@ -5,6 +5,8 @@ public class RegulationBinDataSource<T>(DataSourceConfig paramSource, RandomProv
 {
     public override IEnumerable<T> LoadData()
     {
+        // TODO: Remove reliance on CSV files by loading directly from regulation bin
+        // This will require grabbing the PARAMDEF files from DSMS in order to read them
         throw new NotImplementedException();
     }
 }

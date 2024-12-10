@@ -5,26 +5,27 @@ public class ItemLotScanner(
     RandomProvider random,
     IOptions<Configuration> configuration,
     IDataSource<ItemLotParam_map> mapItemLotSource,
+    IDataSource<ItemLotParam_enemy> enemyItemLotSource,
     IDataSource<NpcParam> npcParamSource)
 {
     private readonly ILogger<ItemLotScanner> logger = logger;
     private readonly RandomProvider random = random;
     private readonly Configuration configuration = configuration.Value;
     private readonly List<ItemLotParam_map> itemLotParam_Map = mapItemLotSource.GetAll().ToList();
+    private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = enemyItemLotSource.GetAll().ToList();
     private readonly List<NpcParam> npcParams = npcParamSource.GetAll().ToList();
 
     public Dictionary<ItemLotCategory, HashSet<int>> ScanForItemLotIds(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
         string modDir = $"{this.configuration.Settings.DeployPath}\\map\\mapstudio";
-
-        List<string> mapStudioFiles = Directory.GetFiles(modDir, "*.msb.dcx")
-            .ToList();
-
+        
         Dictionary<ItemLotCategory, HashSet<int>> returnDictionary = new()
         {
             { ItemLotCategory.ItemLot_Enemy, [] },
             { ItemLotCategory.ItemLot_Map, [] }
         };
+
+        List<string> mapStudioFiles = [.. Directory.GetFiles(modDir, "*.msb.dcx")];
 
         foreach (string? mapFile in mapStudioFiles)
         {
@@ -35,7 +36,8 @@ public class ItemLotScanner(
             {
                 int modelNumber = int.Parse(enemy.ModelName.Substring(1));
 
-                if (modelNumber >= 2000 && modelNumber <= 6000)
+                // Range is to ignore wildlife drops
+                if (modelNumber >= 2000 && modelNumber <= 6000 || modelNumber >= 6200)
                 {
                     npcIds.Add(enemy.NPCParamID);
                 }
@@ -51,7 +53,7 @@ public class ItemLotScanner(
                     .Distinct()
                     .ToList();
 
-                enemyIds = this.GenerateSequentialItemLotIds(candidateEnemyBaseLotIds, ItemLotCategory.ItemLot_Enemy);
+                enemyIds = this.GetValidItemLotIds(candidateEnemyBaseLotIds, ItemLotCategory.ItemLot_Enemy);
             }
 
             List<int> mapLotIds = [];
@@ -90,7 +92,7 @@ public class ItemLotScanner(
                         .ToList();
                 }
 
-                mapLotIds = this.GenerateSequentialItemLotIds(candidateTreasures, ItemLotCategory.ItemLot_Map);
+                mapLotIds = this.GetValidItemLotIds(candidateTreasures, ItemLotCategory.ItemLot_Map);
             }
 
             mapLotIds.Distinct().ToList().ForEach(i => returnDictionary[ItemLotCategory.ItemLot_Map].Add(i));
@@ -102,7 +104,7 @@ public class ItemLotScanner(
         return returnDictionary;
     }
 
-    public List<int> GenerateSequentialItemLotIds(List<int> baseLotIds, ItemLotCategory itemLotCategory)
+    private List<int> GetValidItemLotIds(List<int> baseLotIds, ItemLotCategory itemLotCategory)
     {
         List<int> finalArray = [];
         List<int> allTakenIds = [];
@@ -129,6 +131,19 @@ public class ItemLotScanner(
         }
         else
         {
+            finalArray = this.itemLotParam_Enemy
+                .Where(d => baseLotIds.Contains(d.ID))
+                .Where(d => d.lotItemCategory01 >= 1
+                            || d.lotItemCategory02 >= 1
+                            || d.lotItemCategory03 >= 1
+                            || d.lotItemCategory04 >= 1
+                            || d.lotItemCategory05 >= 1
+                            || d.lotItemCategory06 >= 1
+                            || d.lotItemCategory07 >= 1
+                            || d.lotItemCategory08 >= 1)
+                .Select(d => d.ID)
+                .ToList();
+
             return baseLotIds;
         }
     }

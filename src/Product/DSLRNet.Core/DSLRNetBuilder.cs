@@ -47,9 +47,6 @@ public class DSLRNetBuilder(
         takenIds[ItemLotCategory.ItemLot_Enemy] = enemyItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
         takenIds[ItemLotCategory.ItemLot_Map] = mapItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
 
-        itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
-        itemLotGenerator.CreateItemLots(mapItemLotsSetups);
-
         Dictionary<ItemLotCategory, HashSet<int>> remainingIds = itemLotScanner.ScanForItemLotIds(takenIds);
 
         if (remainingIds.Any())
@@ -63,6 +60,9 @@ public class DSLRNetBuilder(
             itemLotGenerator.CreateItemLots([remainingMapLots]);
             itemLotGenerator.CreateItemLots([remainingEnemyLots]);
         }
+
+        itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
+        itemLotGenerator.CreateItemLots(mapItemLotsSetups);
 
         dataRepository.VerifyItemLots();
 

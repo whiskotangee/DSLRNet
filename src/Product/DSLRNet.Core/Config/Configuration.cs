@@ -24,6 +24,8 @@ public class ItemLotGeneratorSettings
 {
     public int ItemLotsPerBaseMapLot { get; set; }
 
+    public int ItemLotsPerBaseEnemyLot { get; set; }
+
     public int LootPerItemLot_Enemy { get; set; }
 
     public int LootPerItemLot_Map { get; set; }

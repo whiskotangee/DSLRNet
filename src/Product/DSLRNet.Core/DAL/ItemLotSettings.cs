@@ -6,6 +6,7 @@ public enum GameStage { Early, Mid, Late, End }
 public class GameStageConfig
 {
     public GameStage Stage { get; set; }
+
     public List<int> ItemLotIds { get; set; }
 
     public List<int> AllowedRarities { get; set; }

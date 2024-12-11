@@ -1,4 +1,6 @@
 ﻿namespace DSLRNet.Core.Extensions;
+
+using DSLRNet.Core.DAL;
 using DSLRNet.Core.Generators;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

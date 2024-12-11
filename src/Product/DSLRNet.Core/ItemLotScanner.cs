@@ -15,7 +15,7 @@ public class ItemLotScanner(
     private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = enemyItemLotSource.GetAll().ToList();
     private readonly List<NpcParam> npcParams = npcParamSource.GetAll().ToList();
 
-    public Dictionary<ItemLotCategory, HashSet<int>> ScanForItemLotIds(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
+    public Dictionary<ItemLotCategory, HashSet<int>> ScanAndCreateItemLotSets(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
         string modDir = $"{this.configuration.Settings.DeployPath}\\map\\mapstudio";
         
@@ -126,8 +126,6 @@ public class ItemLotScanner(
                 .GroupBy(d => d.getItemFlagId)
                 .Select(g => g.First().ID)
                 .ToList();
-
-            return finalArray;
         }
         else
         {
@@ -143,8 +141,8 @@ public class ItemLotScanner(
                             || d.lotItemCategory08 >= 1)
                 .Select(d => d.ID)
                 .ToList();
-
-            return baseLotIds;
         }
+
+        return finalArray;
     }
 }

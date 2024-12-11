@@ -41,18 +41,18 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         this.DataSource = weaponDataSource;
     }
 
-    public int CreateWeapon(int rarityId, List<int> whitelistLootIds = null)
+    public int CreateWeapon(int rarityId, List<int> allowedLootIds = null)
     {
-        whitelistLootIds ??= [];
+        allowedLootIds ??= [];
 
-        if (whitelistLootIds.Count == 0)
+        if (allowedLootIds.Count == 0)
         {
-            whitelistLootIds.Add(100);
+            allowedLootIds.Add(100);
         }
 
         bool isUniqueWeapon = this.Random.PassesPercentCheck(this.weaponGeneratorConfig.UniqueNameChance);
 
-        EquipParamWeapon newWeapon = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(whitelistLootIds, LootType.Weapon));
+        EquipParamWeapon newWeapon = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(allowedLootIds, LootType.Weapon));
 
         WeaponTypes generatedType = this.GetWeaponType(newWeapon.wepmotionCategory);
 

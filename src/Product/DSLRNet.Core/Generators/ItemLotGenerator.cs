@@ -75,81 +75,84 @@ public class ItemLotGenerator : BaseHandler
 
     public void CreateItemLot_Enemy(ItemLotSettings itemLotSettings)
     {
-        List<int> itemLotIds = itemLotSettings.GetAllItemLotIdsFromAllTiers();
-
-        itemLotIds.AddRange(itemLotIds
-            .SelectMany(id => this.FindSequentialItemLotIds(
-                itemLotSettings, 
-                id, 
-                this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot,
-                (i) => this.itemLotParam_Enemy.SingleOrDefault(d => d.ID == i) != null)).ToList());
-
-        itemLotIds = itemLotIds.Distinct().ToList();
-
-        bool dropGuaranteed = this.configuration.Settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
-
-        for (int x = 0; x < itemLotIds.Count; x++)
+        foreach (var gameStageConfig in itemLotSettings.GameStageConfigs)
         {
-            if (!itemLotSettings.BlackListIds.Contains(itemLotIds[x]))
-            {
-                ItemLotBase newItemLot;
-                ItemLotParam_enemy? existingItemLot = this.itemLotParam_Enemy.SingleOrDefault(d => d.ID == itemLotIds[x]);
+            List<int> itemLotIds = gameStageConfig.ItemLotIds;
 
-                if (existingItemLot != null)
+            itemLotIds.AddRange(itemLotIds
+                .SelectMany(id => this.FindSequentialItemLotIds(
+                    itemLotSettings,
+                    id,
+                    this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot,
+                    (i) => this.itemLotParam_Enemy.SingleOrDefault(d => d.ID == i) != null)).ToList());
+
+            itemLotIds = itemLotIds.Distinct().ToList();
+
+            bool dropGuaranteed = this.configuration.Settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
+
+            for (int x = 0; x < itemLotIds.Count; x++)
+            {
+                if (!itemLotSettings.BlackListIds.Contains(itemLotIds[x]))
                 {
-                    this.logger.LogDebug($"ItemLot {itemLotIds[x]} already exists in CSV data for type {itemLotSettings.Category}, basing template on existing");
-                    newItemLot = existingItemLot.CloneToBase();
-                }
-                else if (this.GeneratedDataRepository.TryGetParamEdit(itemLotSettings.ParamName, itemLotIds[x], out ParamEdit? paramEdit))
-                {
-                    this.logger.LogWarning($"ItemLot {itemLotIds[x]} already modified for type {itemLotSettings.Category}, ignoring entry");
-                    continue;
+                    ItemLotBase newItemLot;
+                    ItemLotParam_enemy? existingItemLot = this.itemLotParam_Enemy.SingleOrDefault(d => d.ID == itemLotIds[x]);
+
+                    if (existingItemLot != null)
+                    {
+                        this.logger.LogDebug($"ItemLot {itemLotIds[x]} already exists in CSV data for type {itemLotSettings.Category}, basing template on existing");
+                        newItemLot = existingItemLot.CloneToBase();
+                    }
+                    else if (this.GeneratedDataRepository.TryGetParamEdit(itemLotSettings.ParamName, itemLotIds[x], out ParamEdit? paramEdit))
+                    {
+                        this.logger.LogWarning($"ItemLot {itemLotIds[x]} already modified for type {itemLotSettings.Category}, ignoring entry");
+                        continue;
+                    }
+                    else
+                    {
+                        newItemLot = this.CreateDefaultItemLotDictionary();
+                        newItemLot.ID = itemLotIds[x];
+
+                        if (!dropGuaranteed)
+                        {
+                            newItemLot.lotItemBasePoint01 = 1000;
+                            newItemLot.lotItemId01 = 0;
+                            newItemLot.lotItemNum01 = 0;
+                            newItemLot.lotItemCategory01 = 0;
+                        }
+                    }
+
+                    newItemLot.Name = string.Empty;
+
+                    int offset = Math.Max(newItemLot.GetIndexOfFirstOpenLotItemId(), dropGuaranteed ? 1 : 2);
+
+                    if (offset < 0)
+                    {
+                        throw new Exception("No open item spots in item lot");
+                    }
+
+                    for (int y = 0; y < this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy; y++)
+                    {
+                        this.CreateItemLotEntry(itemLotSettings, gameStageConfig, newItemLot, y + offset, (float)itemLotSettings.DropChanceMultiplier, dropGuaranteed);
+                    }
+
+                    this.CalculateNoItemChance(newItemLot);
+
+                    GenericParam genericDict = GenericParam.FromObject(newItemLot);
+                    string itemLotMassEdit = this.CreateMassEdit(genericDict, itemLotSettings.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
+                    this.GeneratedDataRepository.AddParamEdit(
+                        new ParamEdit()
+                        {
+                            ParamName = itemLotSettings.ParamName,
+                            Operation = ParamOperation.Create,
+                            MassEditString = itemLotMassEdit,
+                            MessageText = null,
+                            ParamObject = genericDict
+                        });
                 }
                 else
                 {
-                    newItemLot = this.CreateDefaultItemLotDictionary();
-                    newItemLot.ID = itemLotIds[x];
-
-                    if (!dropGuaranteed)
-                    {
-                        newItemLot.lotItemBasePoint01 = 1000;
-                        newItemLot.lotItemId01 = 0;
-                        newItemLot.lotItemNum01 = 0;
-                        newItemLot.lotItemCategory01 = 0;
-                    }
+                    this.logger.LogDebug($"Itemlot ID {itemLotIds[x]} is blacklisted, skipping...");
                 }
-
-                newItemLot.Name = string.Empty;
-
-                int offset = Math.Max(newItemLot.GetIndexOfFirstOpenLotItemId(), dropGuaranteed ? 1 : 2);
-
-                if (offset < 0)
-                {
-                    throw new Exception("No open item spots in item lot");
-                }
-
-                for (int y = 0; y < this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy; y++)
-                {
-                    this.CreateItemLotEntry(itemLotSettings, newItemLot, y + offset, itemLotIds[x], (float)itemLotSettings.DropChanceMultiplier, dropGuaranteed);
-                }
-
-                this.CalculateNoItemChance(newItemLot);
-
-                GenericParam genericDict = GenericParam.FromObject(newItemLot);
-                string itemLotMassEdit = this.CreateMassEdit(genericDict, itemLotSettings.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
-                this.GeneratedDataRepository.AddParamEdit(
-                    new ParamEdit()
-                    {
-                        ParamName = itemLotSettings.ParamName,
-                        Operation = ParamOperation.Create,
-                        MassEditString = itemLotMassEdit,
-                        MessageText = null,
-                        ParamObject = genericDict
-                    });
-            }
-            else
-            {
-                this.logger.LogDebug($"Itemlot ID {itemLotIds[x]} is blacklisted, skipping...");
             }
         }
 
@@ -169,16 +172,17 @@ public class ItemLotGenerator : BaseHandler
 
     public void CreateItemLot_Map(ItemLotSettings itemLotSettings)
     {
-        List<int> baseItemLotIds = itemLotSettings.GetAllItemLotIdsFromAllTiers();
-
-        // take itemLotId and if it already exists find first empty itemLot
-        if (baseItemLotIds.Count > 0)
+        foreach(var gameStageConfig in itemLotSettings.GameStageConfigs)
         {
-            for (int x = 0; x < baseItemLotIds.Count; x++)
+            foreach(var itemLotId in gameStageConfig.ItemLotIds)
             {
-                if (!itemLotSettings.BlackListIds.Contains(baseItemLotIds[x]))
+                if (!itemLotSettings.BlackListIds.Contains(itemLotId))
                 {
-                    List<int> itemLotIds = this.FindSequentialItemLotIds(itemLotSettings, baseItemLotIds[x], this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBaseMapLot, (i) => this.itemLotParam_Map.SingleOrDefault(d => d.ID == i) != null);
+                    List<int> itemLotIds = this.FindSequentialItemLotIds(
+                        itemLotSettings, 
+                        itemLotId, 
+                        this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBaseMapLot, 
+                        (i) => this.itemLotParam_Map.SingleOrDefault(d => d.ID == i) != null);
 
                     for (int i = 0; i < itemLotIds.Count; i++)
                     {
@@ -197,7 +201,14 @@ public class ItemLotGenerator : BaseHandler
 
                         for (int y = 0; y < this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Map; y++)
                         {
-                            this.CreateItemLotEntry(itemLotSettings, newItemLot, offset + y, newItemLot.ID, (float)itemLotSettings.DropChanceMultiplier, true);
+                            this.CreateItemLotEntry(
+                                itemLotSettings, 
+                                gameStageConfig, 
+                                newItemLot, 
+                                offset + y, 
+                                this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Map, 
+                                (float)itemLotSettings.DropChanceMultiplier, 
+                                true);
                         }
 
                         GenericParam genericParam = GenericParam.FromObject(newItemLot);
@@ -215,10 +226,13 @@ public class ItemLotGenerator : BaseHandler
                 }
                 else
                 {
-                    this.logger.LogDebug($"Itemlot ID {baseItemLotIds[x]} is blacklisted, skipping...");
+                    this.logger.LogDebug($"Itemlot ID {itemLotId} is blacklisted, skipping...");
                 }
             }
+        }
 
+        if (itemLotSettings.NpcIds.Any() && itemLotSettings.NpcItemlotids.Any())
+        {
             this.GeneratedDataRepository.AddParamEdit(
                 new ParamEdit()
                 {
@@ -303,32 +317,32 @@ public class ItemLotGenerator : BaseHandler
         return flagId;
     }
 
-    public (int FinalId, int FinalCategory) TaskLootGeneratorBasedOnLootType(ItemLotSettings itemLotSettings, int rarityId = 0)
+    public (int finalId, int finalCategory) TaskLootGeneratorBasedOnLootType(ItemLotSettings itemLotSettings, int rarityId)
     {
         LootType itemType = this.random.NextWeightedValue(itemLotSettings.LootWeightsByType);
 
-        int finalCategory;
-        int finalId;
+        int itemCategory;
+        int itemId;
 
         if (LootType.Armor == itemType && this.armorLootGenerator.HasLootTemplates())
         {
-            finalId = this.armorLootGenerator.CreateArmor(rarityId, itemLotSettings.AllowedLootIds);
-            finalCategory = 3;
+            itemId = this.armorLootGenerator.CreateArmor(rarityId, itemLotSettings.AllowedLootIds);
+            itemCategory = 3;
         }
         else if (LootType.Talisman == itemType && this.talismanLootGenerator.HasLootTemplates())
         {
-            finalId = this.talismanLootGenerator.CreateTalisman(rarityId, itemLotSettings.AllowedLootIds);
-            finalCategory = 4;
+            itemId = this.talismanLootGenerator.CreateTalisman(rarityId, itemLotSettings.AllowedLootIds);
+            itemCategory = 4;
         }
         else
         {
-            finalId = this.weaponLootGenerator.CreateWeapon(rarityId, itemLotSettings.AllowedLootIds);
-            finalCategory = 2;
+            itemId = this.weaponLootGenerator.CreateWeapon(rarityId, itemLotSettings.AllowedLootIds);
+            itemCategory = 2;
         }
 
-        generatedItemsStats.GetOrAdd(itemType, (type) => []).Add(finalId);
+        generatedItemsStats.GetOrAdd(itemType, (type) => []).Add(itemId);
 
-        return (finalId, finalCategory);
+        return (itemId, itemCategory);
     }
 
     public ItemLotBase CreateDefaultItemLotDictionary()
@@ -336,22 +350,32 @@ public class ItemLotGenerator : BaseHandler
         return this.ItemLotTemplate.Clone();
     }
 
-    public void CreateItemLotEntry(ItemLotSettings itemLotSettings, ItemLotBase itemLotDict, int itemNumber, int itemLotId, float dropMult, bool dropGauranteed = false)
+    public void CreateItemLotEntry(
+        ItemLotSettings itemLotSettings, 
+        GameStageConfig gameStageConfig, 
+        ItemLotBase itemLot,
+        int lootPerItemLot,
+        int itemNumber, 
+        float dropMult, 
+        bool dropGauranteed = false)
     {
-        int rarity = this.ChooseRarityFromItemLotIdTierAllowedRarities(itemLotSettings, itemLotId);
+        //TODO: Set drop chance based on hp of enemy or detected map
+        int rarity = this.rarityHandler.ChooseRarityFromIdSet(gameStageConfig.AllowedRarities);
 
-        (int FinalId, int FinalCategory) = this.TaskLootGeneratorBasedOnLootType(itemLotSettings, rarity);
+        (int finalId, int finalCategory) = this.TaskLootGeneratorBasedOnLootType(itemLotSettings, rarity);
 
-        itemLotDict.GenericParam.SetValue($"lotItemId0{itemNumber}", FinalId);
-        itemLotDict.GenericParam.SetValue($"lotItemCategory0{itemNumber}", FinalCategory);
-        itemLotDict.GenericParam.SetValue($"lotItemNum0{itemNumber}", 1);
-        itemLotDict.GenericParam.SetValue($"lotItemBasePoint0{itemNumber}", dropGauranteed ? 1000 / this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Map : (int)(this.GetGlobalDropChance() * dropMult));
-        itemLotDict.GenericParam.SetValue($"enableLuck0{itemNumber}", 1);
+        itemLot.GenericParam.SetValue($"lotItemId0{itemNumber}", finalId);
+        itemLot.GenericParam.SetValue($"lotItemCategory0{itemNumber}", finalCategory);
+        itemLot.GenericParam.SetValue($"lotItemNum0{itemNumber}", 1);
+        itemLot.GenericParam.SetValue($"lotItemBasePoint0{itemNumber}", this.GetDropChance(dropGauranteed, dropMult, lootPerItemLot);
+        itemLot.GenericParam.SetValue($"enableLuck0{itemNumber}", 1);
     }
 
-    private float GetGlobalDropChance()
+    private float GetDropChance(bool dropGauranteed, float dropMutliplier, int lootPerItemLot)
     {
-        return Math.Clamp(this.configuration.Settings.ItemLotGeneratorSettings.GlobalDropChance + Math.Max(0, 6 - this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy) * 9, 0, 1000);
+        var itemDropChance = this.configuration.Settings.ItemLotGeneratorSettings.GlobalDropChance + Math.Max(0, 6 - lootPerItemLot) * 9;
+
+        return Math.Clamp(dropGauranteed ? 1000 / lootPerItemLot : (int)(itemDropChance * dropMutliplier), 0, 1000);
     }
 
     public List<int> GetItemLotIdTierAllowedRarities(ItemLotSettings itemLotSettings, int itemLotId = 0)

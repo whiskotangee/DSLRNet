@@ -1,14 +1,16 @@
 ﻿namespace DSLRNet.Core.Data;
 
-public class DataSourceFactory
+using DSLRNet.Core.DAL;
+
+public class DataSourceFactory(Csv csv, RegulationBinReader regulationBinReader, RandomProvider random)
 {
-    public static IDataSource<T> CreateDataSource<T>(DataSourceConfig paramSource, RandomProvider random, Csv csv)
-        where T : class, ICloneable<T>, new()
+    public IDataSource<T> CreateDataSource<T>(DataSourceConfig paramSource)
+        where T : ParamBase<T>, ICloneable<T>, new()
     {
         return paramSource.SourceType switch
         {
             DataSourceType.CSV => new CsvDataSource<T>(paramSource, random, csv),
-            DataSourceType.RegulationBin => new RegulationBinDataSource<T>(paramSource, random),
+            DataSourceType.RegulationBin => new RegulationBinDataSource<T>(paramSource, regulationBinReader, random),
             _ => throw new ArgumentException("Invalid source type"),
         };
     }

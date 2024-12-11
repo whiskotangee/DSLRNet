@@ -1,12 +1,45 @@
 ﻿namespace DSLRNet.Core.Data;
 
-public class RegulationBinDataSource<T>(DataSourceConfig paramSource, RandomProvider random) : BaseDataSource<T>(random)
-    where T : class, ICloneable<T>, new()
+using DSLRNet.Core.DAL;
+
+public class RegulationBinDataSource<T>(
+    DataSourceConfig paramSource, 
+    RegulationBinReader regulationBinReader,
+    RandomProvider random) : BaseDataSource<T>(random)
+    where T : ParamBase<T>, ICloneable<T>, new()
 {
+    private PARAM? readParam = null;
+
     public override IEnumerable<T> LoadData()
     {
-        // TODO: Remove reliance on CSV files by loading directly from regulation bin
-        // This will require grabbing the PARAMDEF files from DSMS in order to read them
-        throw new NotImplementedException();
+        if (readParam == null)
+        {
+            this.readParam = regulationBinReader.GetParam(paramSource.Name);
+        }
+
+        return this.readParam.Rows.Select(this.CreateFromPARAM).ToList();
+    }
+
+    private T CreateFromPARAM(PARAM.Row row)
+    {
+        T newObject = new();
+
+        newObject.GenericParam.ID = row.ID;
+        newObject.GenericParam.Name = row.Name;
+
+        foreach (var cell in row.Cells)
+        {
+            if (cell.Value as byte[] != null)
+            {
+                newObject.GenericParam.SetValue(cell.Def.InternalName, $"[{string.Join("|", cell.Value)}]");
+            }
+            else
+            {
+                newObject.GenericParam.SetValue(cell.Def.InternalName, cell.Value);
+            }
+            
+        }
+
+        return newObject;
     }
 }

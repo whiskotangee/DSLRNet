@@ -132,7 +132,14 @@ public class ItemLotGenerator : BaseHandler
 
                     for (int y = 0; y < this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy; y++)
                     {
-                        this.CreateItemLotEntry(itemLotSettings, gameStageConfig, newItemLot, y + offset, (float)itemLotSettings.DropChanceMultiplier, dropGuaranteed);
+                        this.CreateItemLotEntry(
+                            itemLotSettings, 
+                            gameStageConfig, 
+                            newItemLot, 
+                            this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy, 
+                            y + offset, 
+                            (float)itemLotSettings.DropChanceMultiplier, 
+                            dropGuaranteed);
                     }
 
                     this.CalculateNoItemChance(newItemLot);
@@ -367,7 +374,7 @@ public class ItemLotGenerator : BaseHandler
         itemLot.GenericParam.SetValue($"lotItemId0{itemNumber}", finalId);
         itemLot.GenericParam.SetValue($"lotItemCategory0{itemNumber}", finalCategory);
         itemLot.GenericParam.SetValue($"lotItemNum0{itemNumber}", 1);
-        itemLot.GenericParam.SetValue($"lotItemBasePoint0{itemNumber}", this.GetDropChance(dropGauranteed, dropMult, lootPerItemLot);
+        itemLot.GenericParam.SetValue($"lotItemBasePoint0{itemNumber}", this.GetDropChance(dropGauranteed, dropMult, lootPerItemLot));
         itemLot.GenericParam.SetValue($"enableLuck0{itemNumber}", 1);
     }
 

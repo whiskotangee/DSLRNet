@@ -67,6 +67,7 @@ public enum DataSourceType { CSV, RegulationBin }
 
 public enum DataSourceNames
 {
+    // actual params
     EquipParamWeapon,
     EquipParamAccessory,
     EquipParamProtector,
@@ -75,6 +76,7 @@ public enum DataSourceNames
     SpEffectParam,
     ItemLotParam_enemy,
     ItemLotParam_map,
+    // config setups
     RaritySetup,
     ItemLotBase,
     DamageTypeSetup,

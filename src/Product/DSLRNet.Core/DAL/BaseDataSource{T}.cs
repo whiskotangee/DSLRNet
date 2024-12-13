@@ -2,16 +2,9 @@
 
 using System.Diagnostics;
 
-public abstract class BaseDataSource<T> : IDataSource<T>
+public abstract class BaseDataSource<T>(RandomProvider random) : IDataSource<T>
     where T : class, ICloneable<T>, new()
 {
-    private readonly RandomProvider random;
-
-    public BaseDataSource(RandomProvider random)
-    {
-        this.random = random;
-    }
-
     protected Dictionary<int, T> CachedData { get; set; }
 
     public T? GetItemById(int id)
@@ -26,7 +19,7 @@ public abstract class BaseDataSource<T> : IDataSource<T>
 
     public T GetRandomItem()
     {
-        return this.random.GetRandomItem(this.CachedData.Values.ToList()).Clone();
+        return random.GetRandomItem(this.CachedData.Values.ToList()).Clone();
     }
 
     public IEnumerable<T> GetAll()
@@ -36,13 +29,12 @@ public abstract class BaseDataSource<T> : IDataSource<T>
 
     public abstract Task<IEnumerable<T>> LoadDataAsync();
 
-    public async Task InitializeDataAsync()
+    public async Task InitializeDataAsync(IEnumerable<int>? ignoreIds = null)
     {
         if (this.CachedData == null)
         {
             var loadedData = await this.LoadDataAsync();
-            this.CachedData = loadedData.ToDictionary(this.GetId);
-            this.GetAll();
+            this.CachedData = loadedData.Where(d => ignoreIds == null || !ignoreIds.Contains(this.GetId(d))).ToDictionary(this.GetId);
         }
     }
 

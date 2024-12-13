@@ -31,6 +31,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         DamageTypeHandler damageTypeHandler,
         ParamEditsRepository dataRepository,
         IDataSource<EquipParamWeapon> weaponDataSource,
+        IDataSource<EquipParamCustomWeapon> customWeaponsDataSource,
         ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamWeapon, logger)
     {
         this.CumulativeID = new CumulativeID(logger);
@@ -53,6 +54,8 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         bool isUniqueWeapon = this.Random.PassesPercentCheck(this.weaponGeneratorConfig.UniqueNameChance);
 
         EquipParamWeapon newWeapon = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(allowedLootIds, LootType.Weapon));
+
+        var wepType = newWeapon.wepType;
 
         WeaponTypes generatedType = this.GetWeaponType(newWeapon.wepmotionCategory);
 

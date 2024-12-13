@@ -11,7 +11,8 @@ public class RegulationBinDataSource<T>(
 {
     private PARAM? readParam = null;
     private bool pocoCreated = false;
-    private static SemaphoreSlim semaphore = new SemaphoreSlim(1);
+    private static SemaphoreSlim semaphore = new(1);
+    private Dictionary<int, string> namesMapping = [];
 
     public async override Task<IEnumerable<T>> LoadDataAsync()
     {
@@ -19,6 +20,9 @@ public class RegulationBinDataSource<T>(
         {
             this.readParam = regulationBinReader.GetParam(paramSource.Name);
         }
+
+        var names = File.ReadAllLines($"Assets\\Data\\PARAM\\ER\\Names\\{paramSource.Name}.txt");
+        this.namesMapping = names.ToDictionary(s => Convert.ToInt32(s.Split(" ")[0]), d => d.Split(" ")[1].ToString());
 
         ConcurrentBag<T> loadedValues = [];
         await Parallel.ForEachAsync(
@@ -29,7 +33,7 @@ public class RegulationBinDataSource<T>(
                 loadedValues.Add(await this.CreateFromPARAMAsync(row));
             });
 
-        return [.. loadedValues];
+        return [.. ApplyFilters(loadedValues)];
     }
 
     private async Task<T> CreateFromPARAMAsync(PARAM.Row row)
@@ -48,7 +52,7 @@ public class RegulationBinDataSource<T>(
         T newObject = new();
 
         newObject.GenericParam.ID = row.ID;
-        newObject.GenericParam.Name = row.Name;
+        newObject.GenericParam.Name = this.namesMapping.TryGetValue(row.ID, out string? value) ? value : row.Name;
 
         foreach (var cell in row.Cells)
         {
@@ -56,5 +60,46 @@ public class RegulationBinDataSource<T>(
         }
 
         return newObject;
+    }
+
+    protected IEnumerable<T> ApplyFilters(IEnumerable<T> data)
+    {
+        if (paramSource.Filters != null)
+        {
+            var countBefore = data.Count();
+
+            IEnumerable<T> filteredData = data;
+            foreach (var filter in paramSource.Filters)
+            {
+                switch (filter.Operator)
+                {
+                    case FilterOperator.GreaterThan:
+                        filteredData = filteredData.Where(d => d.GenericParam.GetValue<int>(filter.Field) > Convert.ToDouble(filter.Value));
+                        break;
+                    case FilterOperator.LessThan:
+                        filteredData = filteredData.Where(d => d.GenericParam.GetValue<int>(filter.Field) < Convert.ToInt32(filter.Value));
+                        break;
+                    case FilterOperator.StartsWith:
+                        filteredData = filteredData.Where(d => d.GenericParam.GetValue<string>(filter.Field).ToString().StartsWith(filter.Value.ToString()));
+                        break;
+                    case FilterOperator.EndsWith:
+                        filteredData = filteredData.Where(d => d.GenericParam.GetValue<string>(filter.Field).ToString().EndsWith(filter.Value.ToString()));
+                        break;
+                    case FilterOperator.NotEqual:
+                        filteredData = filteredData.Where(d => !d.GenericParam.GetValue<string>(filter.Field).Equals(filter.Value.ToString(), StringComparison.OrdinalIgnoreCase));
+                        break;
+                    case FilterOperator.NotInRange:
+                        var range = filter.Value.ToString().Split("..");
+                        filteredData = filteredData.Where(d => !Enumerable.Range(Convert.ToInt32(range[0]), Convert.ToInt32(range[1]) - Convert.ToInt32(range[0])).ToList().Contains(d.GenericParam.GetValue<int>(filter.Field)));
+                        break;
+                }
+            }
+
+            Console.WriteLine($"Applied filters removed {countBefore - filteredData.Count()} rows");
+
+            return filteredData.ToList();
+        }
+
+        return data;
     }
 }

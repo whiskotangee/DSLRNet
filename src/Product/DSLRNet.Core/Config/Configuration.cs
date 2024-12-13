@@ -1,9 +1,7 @@
 ﻿namespace DSLRNet.Core.Config;
 
-using Org.BouncyCastle.Utilities;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using System.Drawing;
 
 public class Configuration
 {
@@ -69,6 +67,7 @@ public enum DataSourceNames
 {
     // actual params
     EquipParamWeapon,
+    EquipParamCustomWeapon,
     EquipParamAccessory,
     EquipParamProtector,
     EquipParamGem,
@@ -91,6 +90,8 @@ public class DataSourceConfig
     public DataSourceType SourceType { get; set; }
 
     public string SourcePath { get; set; }
+
+    public List<Filter> Filters { get; set; }
 }
 
 public class ItemlotsConfig

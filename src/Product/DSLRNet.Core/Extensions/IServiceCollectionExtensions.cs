@@ -37,6 +37,7 @@ public static class IServiceCollectionExtensions
 
         // Initialize data sources with the factory
         var equipParamWeapon = CreateDataSource<EquipParamWeapon>(factory, DataSourceNames.EquipParamWeapon, configSettings);
+        var equipParamCustomWeapon = CreateDataSource<EquipParamCustomWeapon>(factory, DataSourceNames.EquipParamCustomWeapon, configSettings);
         var equipParamAccessory = CreateDataSource<EquipParamAccessory>(factory, DataSourceNames.EquipParamAccessory, configSettings);
         var equipParamGem = CreateDataSource<EquipParamGem>(factory, DataSourceNames.EquipParamGem, configSettings);
         var equipParamProtector = CreateDataSource<EquipParamProtector>(factory, DataSourceNames.EquipParamProtector, configSettings);
@@ -53,7 +54,7 @@ public static class IServiceCollectionExtensions
         // List to hold all initialization tasks
         List<Task> tasks =
         [
-            equipParamWeapon.InitializeDataAsync(),
+            equipParamCustomWeapon.InitializeDataAsync(),
             equipParamAccessory.InitializeDataAsync(),
             equipParamGem.InitializeDataAsync(), 
             equipParamProtector.InitializeDataAsync(), 
@@ -71,8 +72,11 @@ public static class IServiceCollectionExtensions
         // Await all tasks
         await Task.WhenAll(tasks);
 
+        await equipParamWeapon.InitializeDataAsync(equipParamCustomWeapon.GetAll().Select(d => d.baseWepId).Distinct());
+
         // Add initialized data sources to service collection
         services.AddSingleton(equipParamWeapon)
+            .AddSingleton(equipParamCustomWeapon)
             .AddSingleton(equipParamAccessory)
             .AddSingleton(equipParamGem)
             .AddSingleton(equipParamProtector)

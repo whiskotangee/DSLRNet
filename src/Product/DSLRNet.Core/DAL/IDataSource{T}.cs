@@ -2,7 +2,7 @@
 
 public interface IDataSource
 {
-    Task InitializeDataAsync();
+    Task InitializeDataAsync(IEnumerable<int>? ignoreIds = null);
 }
 
 public interface IDataSource<T> : IDataSource

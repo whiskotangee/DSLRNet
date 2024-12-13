@@ -45,10 +45,10 @@ public class SpEffectHandler : BaseHandler
         }
     }
 
-    public List<SpEffectText> GetSpEffects(int desiredCount, List<int> allowedtypes, int rarityid, bool armortalisman = false, float chancemult = 1.0f)
+    public List<SpEffectText> GetSpEffects(int desiredCount, List<int> allowedtypes, int rarityid, LootType lootType, float chancemult = 1.0f)
     {
         int finalrarity = this.rarityHandler.GetNearestRarityId(rarityid);
-        Queue<bool> chancearray = this.rarityHandler.GetRarityEffectChances(desiredCount, finalrarity, armortalisman);
+        Queue<bool> chancearray = this.rarityHandler.GetRarityEffectChances(desiredCount, finalrarity, lootType);
 
         List<int> speffectpowerrange = this.rarityHandler.GetSpeffectPowerArray(rarityid);
 

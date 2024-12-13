@@ -1,5 +1,7 @@
 ﻿namespace DSLRNet.Core;
 
+using System.Collections.Concurrent;
+
 public class ItemLotScanner(
     ILogger<ItemLotScanner> logger,
     RandomProvider random,
@@ -15,19 +17,17 @@ public class ItemLotScanner(
     private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = enemyItemLotSource.GetAll().ToList();
     private readonly List<NpcParam> npcParams = npcParamSource.GetAll().ToList();
 
-    public Dictionary<ItemLotCategory, HashSet<int>> ScanAndCreateItemLotSets(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
+    public async Task<Dictionary<ItemLotCategory, HashSet<int>>> ScanAndCreateItemLotSetsAsync(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
         string modDir = $"{this.configuration.Settings.DeployPath}\\map\\mapstudio";
-        
-        Dictionary<ItemLotCategory, HashSet<int>> returnDictionary = new()
-        {
-            { ItemLotCategory.ItemLot_Enemy, [] },
-            { ItemLotCategory.ItemLot_Map, [] }
-        };
+
+        ConcurrentDictionary<ItemLotCategory, ConcurrentBag<int>> returnDictionary = new();
+        returnDictionary.TryAdd(ItemLotCategory.ItemLot_Enemy, []);
+        returnDictionary.TryAdd(ItemLotCategory.ItemLot_Map, []);
 
         List<string> mapStudioFiles = [.. Directory.GetFiles(modDir, "*.msb.dcx")];
 
-        foreach (string? mapFile in mapStudioFiles)
+        await Parallel.ForEachAsync(mapStudioFiles, (mapFile, c) =>
         {
             MSBE msb = MSBE.Read(mapFile);
 
@@ -99,9 +99,11 @@ public class ItemLotScanner(
             enemyIds.Distinct().ToList().ForEach(i => returnDictionary[ItemLotCategory.ItemLot_Enemy].Add(i));
 
             this.logger.LogInformation($"Found {enemyIds.Count} enemy itemLot Ids and {mapLotIds.Count} treasure Ids from {Path.GetFileName(mapFile)}");
-        }
 
-        return returnDictionary;
+            return ValueTask.CompletedTask;
+        });
+
+        return returnDictionary.ToDictionary(d => d.Key, d => d.Value.ToHashSet());
     }
 
     private List<int> GetValidItemLotIds(List<int> baseLotIds, ItemLotCategory itemLotCategory)

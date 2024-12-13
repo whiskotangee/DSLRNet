@@ -31,14 +31,14 @@ public class RarityHandler : BaseHandler
         return finalid;
     }
 
-    public Queue<bool> GetRarityEffectChances(int desiredCount, int rarityid, bool armortalisman = false)
+    public Queue<bool> GetRarityEffectChances(int desiredCount, int rarityid, LootType lootType)
     {
         Queue<bool> finalboolarray = [];
 
         int finalrarityid = this.GetNearestRarityId(rarityid);
         int offset = 0;
 
-        if (armortalisman || rarityid >= 5)
+        if (lootType != LootType.Weapon && rarityid >= 5)
         {
             finalboolarray.Enqueue(true);
             offset = 1;

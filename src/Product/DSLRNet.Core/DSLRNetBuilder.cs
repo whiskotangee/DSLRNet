@@ -47,7 +47,7 @@ public class DSLRNetBuilder(
         takenIds[ItemLotCategory.ItemLot_Enemy] = enemyItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
         takenIds[ItemLotCategory.ItemLot_Map] = mapItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
 
-        Dictionary<ItemLotCategory, HashSet<int>> remainingIds = itemLotScanner.ScanAndCreateItemLotSets(takenIds);
+        Dictionary<ItemLotCategory, HashSet<int>> remainingIds = await itemLotScanner.ScanAndCreateItemLotSetsAsync(takenIds);
 
         if (remainingIds.Any())
         {

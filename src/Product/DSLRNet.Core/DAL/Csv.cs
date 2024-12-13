@@ -33,7 +33,15 @@ public class Csv(ILogger<Csv> logger)
             {
                 if (obj.Properties.TryGetValue(header, out object? value))
                 {
-                    values.Add(value?.ToString());
+                    if (value is byte[] byteArray)
+                    {
+                        values.Add($"[{string.Join('|', byteArray)}]");
+                    }
+                    else
+                    {
+                        values.Add(value?.ToString());
+                    }
+                    
                 }
                 else
                 {

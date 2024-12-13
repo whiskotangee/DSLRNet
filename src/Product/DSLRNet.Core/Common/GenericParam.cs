@@ -50,6 +50,11 @@ public class GenericParam : ICloneable
                 return (T)(object)data; 
             }
 
+            if (value is string str && (str.Contains('|') || str.Contains("[")))
+            {
+                return (T)Convert.ChangeType(str.Split("|").Select(s => Convert.ToByte(s.Trim('[').Trim(']'))).ToArray(), typeof(T));
+            }
+
             try 
             { 
                 return (T)Convert.ChangeType(value, typeof(T)); 
@@ -91,7 +96,14 @@ public class GenericParam : ICloneable
 
         foreach (KeyValuePair<string, object?> keyValue in this.Properties)
         {
-            clonedDictionary[keyValue.Key] = JsonConvert.DeserializeObject<object?>(JsonConvert.SerializeObject(keyValue.Value));
+            if (keyValue.Value is byte[])
+            {
+                clonedDictionary[keyValue.Key] = keyValue.Value;
+            }
+            else
+            {
+                clonedDictionary[keyValue.Key] = JsonConvert.DeserializeObject<object?>(JsonConvert.SerializeObject(keyValue.Value));
+            }
         }
 
         newDictionary.Properties = clonedDictionary;

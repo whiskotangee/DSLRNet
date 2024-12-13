@@ -40,9 +40,9 @@ public class ParamLootGenerator<TParamType>(
         { LootType.Talisman, "Accessory" }
     };
 
-    public void AddLootDetails(GenericParam massEditDict, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null)
+    public void AddLootDetails(GenericParam lootItem, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null)
     {
-        string finalMassEditOutput = this.CreateMassEdit(massEditDict, this.OutputParamName, massEditDict.ID, extraFilters, extraBannedValues, this.ParamMandatoryKeys);
+        string finalMassEditOutput = this.CreateMassEdit(lootItem, this.OutputParamName, lootItem.ID, extraFilters, extraBannedValues, this.ParamMandatoryKeys);
 
         this.GeneratedDataRepository.AddParamEdit(
             new ParamEdit
@@ -57,43 +57,43 @@ public class ParamLootGenerator<TParamType>(
                         Caption = description,
                         Info = summary
                     },
-                ParamObject = massEditDict
+                ParamObject = lootItem
             });
     }
 
     public IEnumerable<SpEffectText> ApplySpEffects(
         int rarityId,
         List<int> allowedSpefTypes,
-        GenericParam outputDictionary,
-        float spefChanceMult = 1.0f,
-        bool armorTalisman = false,
+        GenericParam lootItem,
+        float spefChanceMult,
+        LootType lootType,
         int spefNumOverride = -1,
         bool overwriteExistingSpEffects = false)
     {
         List<SpEffectText> spEffectTexts = [];
 
-        List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailableSpEffectSlots(outputDictionary) : this.GetPassiveSpEffectSlotArrayFromOutputParamName();
+        List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailableSpEffectSlots(lootItem) : this.GetPassiveSpEffectSlotArrayFromOutputParamName();
         if (speffectParam.Count == 0)
         {
-            logger.LogWarning($"{outputDictionary.ID} has no available spEffect slots, not applying any");
+            logger.LogWarning($"New item {lootItem.ID} of type {lootType} has no available spEffect slots, not applying any");
             return [];
         }
 
         int finalNumber = spefNumOverride < 0 && spefNumOverride <= speffectParam.Count ? speffectParam.Count : spefNumOverride;
-        List<SpEffectText> speffectsToApply = this.SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, armorTalisman, spefChanceMult);
+        List<SpEffectText> speffectsToApply = this.SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, lootType, spefChanceMult);
 
         if (speffectsToApply.Count != 0)
         {
             for (int x = 0; x < speffectsToApply.Count; x++)
             {
-                outputDictionary.SetValue(speffectParam[x], speffectsToApply[x].ID);
+                lootItem.SetValue(speffectParam[x], speffectsToApply[x].ID);
 
                 spEffectTexts.Add(speffectsToApply[x]);
             }
         }
         else if (rarityId > 5)
         {
-            logger.LogError("Failed to apply any SpEffects when rarity > 5");
+            logger.LogWarning($"New Item {lootItem.ID} of type {lootType} Failed to apply any SpEffects when rarity > 5");
         }
 
         return spEffectTexts;
@@ -127,29 +127,6 @@ public class ParamLootGenerator<TParamType>(
         }
 
         return this.DataSource.GetItemById(baseId);
-    }
-
-    public string CreateAffinityTitle(WeaponModifications modifications)
-    {
-        List<string> names =
-        [
-            modifications.PrimaryDamageType.PriName,
-            modifications.SecondaryDamageType?.SecName
-        ];
-
-        if (string.IsNullOrEmpty(names[0]))
-        {
-            names[0] = modifications.PrimaryDamageType.SecName != modifications.SecondaryDamageType?.SecName
-                        ? modifications.PrimaryDamageType.SecName
-                        : string.Empty;
-        }
-
-        if (modifications.PrimaryDamageType.SecName == modifications.SecondaryDamageType?.SecName)
-        {
-            names[1] = string.Empty;
-        }
-
-        return string.Join(' ', names.Where(s => !string.IsNullOrWhiteSpace(s)));
     }
 
     public int ChoosePriorityIdAtRandom()

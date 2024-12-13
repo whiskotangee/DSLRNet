@@ -41,7 +41,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
         newArmor.weight = this.RarityHandler.GetRandomizedWeight(newArmor.weight, rarityId);
 
-        IEnumerable<SpEffectText> speffs = this.ApplySpEffects(rarityId, [0], newArmor.GenericParam, 1.0f, true, -1, true);
+        IEnumerable<SpEffectText> speffs = this.ApplySpEffects(rarityId, [0], newArmor.GenericParam, 1.0f, LootType.Armor, -1, true);
 
         string originalName = newArmor.Name;
         string finalTitle = this.CreateLootTitle(originalName.Replace(" (Altered)", ""), rarityId, "", speffs, true, false);

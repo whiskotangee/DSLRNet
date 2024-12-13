@@ -134,6 +134,29 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         return newWeapon.ID;
     }
 
+    public string CreateAffinityTitle(WeaponModifications modifications)
+    {
+        List<string> names =
+        [
+            modifications.PrimaryDamageType.PriName,
+            modifications.SecondaryDamageType?.SecName
+        ];
+
+        if (string.IsNullOrEmpty(names[0]))
+        {
+            names[0] = modifications.PrimaryDamageType.SecName != modifications.SecondaryDamageType?.SecName
+                        ? modifications.PrimaryDamageType.SecName
+                        : string.Empty;
+        }
+
+        if (modifications.PrimaryDamageType.SecName == modifications.SecondaryDamageType?.SecName)
+        {
+            names[1] = string.Empty;
+        }
+
+        return string.Join(' ', names.Where(s => !string.IsNullOrWhiteSpace(s)));
+    }
+
     private void SetWeaponOriginParam(GenericParam weaponDictionary, int id, int upgradeCap = 25, bool replace = true)
     {
         List<string> originParams =
@@ -238,7 +261,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         mods.PrimaryDamageValue = value;
 
-        IEnumerable<SpEffectText> nameParts = this.ApplySpEffects(rarityId, [0], weapon.GenericParam, spEffectMultiplier, true);
+        IEnumerable<SpEffectText> nameParts = this.ApplySpEffects(rarityId, [0], weapon.GenericParam, spEffectMultiplier, LootType.Weapon);
 
         mods.SpEffectTexts = nameParts.ToList();
 
@@ -252,7 +275,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weapon.GenericParam);
 
-        IEnumerable<SpEffectText> nameParts = this.ApplySpEffects(rarityId, options, weapon.GenericParam, 1.0f, true);
+        IEnumerable<SpEffectText> nameParts = this.ApplySpEffects(rarityId, options, weapon.GenericParam, 1.0f, LootType.Weapon);
 
         modifications.SpEffectTexts = nameParts.ToList();
 
@@ -317,7 +340,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weapon.GenericParam);
 
-        this.ApplySpEffects(rarityId, options, weapon.GenericParam);
+        this.ApplySpEffects(rarityId, options, weapon.GenericParam, 1.0f, LootType.Weapon);
 
         List<string> passiveParams = this.GetPassiveSpEffectSlotArrayFromOutputParamName();
 

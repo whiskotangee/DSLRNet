@@ -18,7 +18,16 @@ public class RegulationBinReader
         this.configuration = configuration.Value;
         this.logger = logger;
 
-        var regBinPath = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+        var regBinPath = Path.Combine(this.configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
+        if (!File.Exists(regBinPath))
+        {
+            regBinPath = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+            if (!File.Exists(regBinPath))
+            {
+                regBinPath = Path.Combine(this.configuration.Settings.GamePath, "regulation.predslr.bin");
+            }
+        }
+
         this.logger.LogInformation($"Loading regulation bin from {regBinPath}");
         paramBnd = GetRegulationBin();
     }

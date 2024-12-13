@@ -73,7 +73,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
                     Suffix = string.Empty
                 }
             },
-            .. this.ApplySpEffects(rarityId, [0], newTalisman.GenericParam, 1.0f, true, -1, false) ?? [],
+            .. this.ApplySpEffects(rarityId, [0], newTalisman.GenericParam, 1.0f, LootType.Talisman, -1, false) ?? [],
         ];
 
         string originalName = newTalisman.Name;

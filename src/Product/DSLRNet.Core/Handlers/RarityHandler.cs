@@ -134,9 +134,9 @@ public class RarityHandler : BaseHandler
         return (float)this.randomNumberGetter.Next(range);
     }
 
-    public int GetRarityParamValue(int rarityid)
+    public byte GetRarityParamValue(int rarityid)
     {
-        return this.RarityConfigs[this.GetNearestRarityId(rarityid)].RarityParamValue;
+        return (byte)this.RarityConfigs[this.GetNearestRarityId(rarityid)].RarityParamValue;
     }
 
     public List<int> GetSpeffectPowerArray(int rarityid)
@@ -202,7 +202,7 @@ public class RarityHandler : BaseHandler
         return this.RarityConfigs.Keys.Max();
     }
 
-    public int GetIconId(int iconId, int rarityId, bool isUnique = false)
+    public ushort GetIconId(ushort iconId, int rarityId, bool isUnique = false)
     {
         if (rarityId == 0)
         {

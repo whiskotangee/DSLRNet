@@ -47,6 +47,7 @@ public class ItemLotGenerator : BaseHandler
             IsItemFlagAcquisitionCumulativeID = true,
             UseWrapAround = true
         };
+
         this.ItemLotTemplate = itemLotBaseDataSource.GetAll().First();
         this.itemLotParam_Map = mapDataSource.GetAll();
         this.itemLotParam_Enemy = enemyDataSource.GetAll();
@@ -281,9 +282,9 @@ public class ItemLotGenerator : BaseHandler
         return returnIds;
     }
 
-    private int FindFlagId(ItemLotSettings itemLotSettings, ItemLotBase baseItem)
+    private uint FindFlagId(ItemLotSettings itemLotSettings, ItemLotBase baseItem)
     {
-        int flagId = baseItem.getItemFlagId;
+        uint flagId = baseItem.getItemFlagId;
         int currentItemLotId = baseItem.ID - 1;
 
         if (flagId > 0)
@@ -309,7 +310,7 @@ public class ItemLotGenerator : BaseHandler
             else if (editExists && paramLot.ParamObject.GetValue<long>("getItemFlagId") > 0)
             {
                 this.logger.LogDebug($"Reusing item flag {paramLot.ParamObject.GetValue<long>("getItemFlagId")} from param edit {currentItemLotId} for item lot {paramLot.ParamObject.GetValue<long>("ID")}");
-                flagId = paramLot.ParamObject.GetValue<int>("getItemFlagId");
+                flagId = paramLot.ParamObject.GetValue<uint>("getItemFlagId");
             }
 
             currentItemLotId -= 1;
@@ -403,25 +404,25 @@ public class ItemLotGenerator : BaseHandler
         return this.rarityHandler.ChooseRarityFromIdSet(rarities);
     }
 
-    public int GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)
+    public ushort GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)
     {
-        int itemLotChanceSum = 0;
+        ushort itemLotChanceSum = 0;
 
         int offset = includeFirst ? 1 : 2;
 
         for (int x = 0; x < ItemLotParamMax - (offset - 1); x++)
         {
-            itemLotChanceSum += itemLotDict.GetValue<int>($"lotItemBasePoint0{x + offset}");
+            itemLotChanceSum += itemLotDict.GetValue<ushort>($"lotItemBasePoint0{x + offset}");
         }
 
         return itemLotChanceSum;
     }
 
-    public void CalculateNoItemChance(ItemLotBase itemLot, int baseChance = 1000, int fallback = 25)
+    public void CalculateNoItemChance(ItemLotBase itemLot, ushort baseChance = 1000, ushort fallback = 25)
     {
-        int finalBaseChance = baseChance;
+        ushort finalBaseChance = baseChance;
 
-        int otherBasePointTotal = this.GetItemLotChanceSum(itemLot, false);
+        ushort otherBasePointTotal = this.GetItemLotChanceSum(itemLot, false);
 
         finalBaseChance -= otherBasePointTotal;
         finalBaseChance = Math.Clamp(finalBaseChance, fallback, baseChance);

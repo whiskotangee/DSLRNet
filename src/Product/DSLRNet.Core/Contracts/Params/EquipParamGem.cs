@@ -1,112 +1,112 @@
 using System;
 
-public class EquipParamGem
+public class EquipParamGem : ParamBase<EquipParamGem>
 {
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public byte disableParam_NT { get; set; }
-    public byte disableParamReserve1 { get; set; }
-    public byte[] disableParamReserve2 { get; set; }
-    public ushort iconId { get; set; }
-    public sbyte rank { get; set; }
-    public byte sortGroupId { get; set; }
-    public int spEffectId0 { get; set; }
-    public int spEffectId1 { get; set; }
-    public int spEffectId2 { get; set; }
-    public uint itemGetTutorialFlagId { get; set; }
-    public int swordArtsParamId { get; set; }
-    public int mountValue { get; set; }
-    public int sellValue { get; set; }
-    public int saleValue { get; set; }
-    public int sortId { get; set; }
-    public short compTrophySedId { get; set; }
-    public short trophySeqId { get; set; }
-    public byte configurableWepAttr00 { get; set; }
-    public byte configurableWepAttr01 { get; set; }
-    public byte configurableWepAttr02 { get; set; }
-    public byte configurableWepAttr03 { get; set; }
-    public byte configurableWepAttr04 { get; set; }
-    public byte configurableWepAttr05 { get; set; }
-    public byte configurableWepAttr06 { get; set; }
-    public byte configurableWepAttr07 { get; set; }
-    public byte configurableWepAttr08 { get; set; }
-    public byte configurableWepAttr09 { get; set; }
-    public byte configurableWepAttr10 { get; set; }
-    public byte configurableWepAttr11 { get; set; }
-    public byte configurableWepAttr12 { get; set; }
-    public byte configurableWepAttr13 { get; set; }
-    public byte configurableWepAttr14 { get; set; }
-    public byte configurableWepAttr15 { get; set; }
-    public byte rarity { get; set; }
-    public byte configurableWepAttr16 { get; set; }
-    public byte configurableWepAttr17 { get; set; }
-    public byte configurableWepAttr18 { get; set; }
-    public byte configurableWepAttr19 { get; set; }
-    public byte configurableWepAttr20 { get; set; }
-    public byte configurableWepAttr21 { get; set; }
-    public byte configurableWepAttr22 { get; set; }
-    public byte configurableWepAttr23 { get; set; }
-    public byte isDiscard { get; set; }
-    public byte isDrop { get; set; }
-    public byte isDeposit { get; set; }
-    public byte disableMultiDropShare { get; set; }
-    public byte showDialogCondType { get; set; }
-    public byte showLogCondType { get; set; }
-    public byte pad { get; set; }
-    public byte defaultWepAttr { get; set; }
-    public byte isSpecialSwordArt { get; set; }
-    public byte[] pad2 { get; set; }
-    public byte canMountWep_Dagger { get; set; }
-    public byte canMountWep_SwordNormal { get; set; }
-    public byte canMountWep_SwordLarge { get; set; }
-    public byte canMountWep_SwordGigantic { get; set; }
-    public byte canMountWep_SaberNormal { get; set; }
-    public byte canMountWep_SaberLarge { get; set; }
-    public byte canMountWep_katana { get; set; }
-    public byte canMountWep_SwordDoubleEdge { get; set; }
-    public byte canMountWep_SwordPierce { get; set; }
-    public byte canMountWep_RapierHeavy { get; set; }
-    public byte canMountWep_AxeNormal { get; set; }
-    public byte canMountWep_AxeLarge { get; set; }
-    public byte canMountWep_HammerNormal { get; set; }
-    public byte canMountWep_HammerLarge { get; set; }
-    public byte canMountWep_Flail { get; set; }
-    public byte canMountWep_SpearNormal { get; set; }
-    public byte canMountWep_SpearLarge { get; set; }
-    public byte canMountWep_SpearHeavy { get; set; }
-    public byte canMountWep_SpearAxe { get; set; }
-    public byte canMountWep_Sickle { get; set; }
-    public byte canMountWep_Knuckle { get; set; }
-    public byte canMountWep_Claw { get; set; }
-    public byte canMountWep_Whip { get; set; }
-    public byte canMountWep_AxhammerLarge { get; set; }
-    public byte canMountWep_BowSmall { get; set; }
-    public byte canMountWep_BowNormal { get; set; }
-    public byte canMountWep_BowLarge { get; set; }
-    public byte canMountWep_ClossBow { get; set; }
-    public byte canMountWep_Ballista { get; set; }
-    public byte canMountWep_Staff { get; set; }
-    public byte canMountWep_Sorcery { get; set; }
-    public byte canMountWep_Talisman { get; set; }
-    public byte canMountWep_ShieldSmall { get; set; }
-    public byte canMountWep_ShieldNormal { get; set; }
-    public byte canMountWep_ShieldLarge { get; set; }
-    public byte canMountWep_Torch { get; set; }
-    public byte canMountWep_HandToHand { get; set; }
-    public byte canMountWep_PerfumeBottle { get; set; }
-    public byte canMountWep_ThrustingShield { get; set; }
-    public byte canMountWep_ThrowingWeapon { get; set; }
-    public byte canMountWep_ReverseHandSword { get; set; }
-    public byte canMountWep_LightGreatsword { get; set; }
-    public byte canMountWep_GreatKatana { get; set; }
-    public byte canMountWep_BeastClaw { get; set; }
-    public byte reserved_canMountWep_0x3d_4 { get; set; }
-    public byte[] reserved2_canMountWep { get; set; }
-    public int spEffectMsgId0 { get; set; }
-    public int spEffectMsgId1 { get; set; }
-    public int spEffectId_forAtk0 { get; set; }
-    public int spEffectId_forAtk1 { get; set; }
-    public int spEffectId_forAtk2 { get; set; }
-    public int mountWepTextId { get; set; }
-    public byte[] pad6 { get; set; }
+    public int ID { get { return this.GenericParam.GetValue<int>("ID"); } set { this.GenericParam.SetValue("ID", value); } }
+    public string Name { get { return this.GenericParam.GetValue<string>("Name"); } set { this.GenericParam.SetValue("Name", value); } }
+    public byte disableParam_NT { get { return this.GenericParam.GetValue<byte>("disableParam_NT"); } set { this.GenericParam.SetValue("disableParam_NT", value); } }
+    public byte disableParamReserve1 { get { return this.GenericParam.GetValue<byte>("disableParamReserve1"); } set { this.GenericParam.SetValue("disableParamReserve1", value); } }
+    public byte[] disableParamReserve2 { get { return this.GenericParam.GetValue<byte[]>("disableParamReserve2"); } set { this.GenericParam.SetValue("disableParamReserve2", value); } }
+    public ushort iconId { get { return this.GenericParam.GetValue<ushort>("iconId"); } set { this.GenericParam.SetValue("iconId", value); } }
+    public sbyte rank { get { return this.GenericParam.GetValue<sbyte>("rank"); } set { this.GenericParam.SetValue("rank", value); } }
+    public byte sortGroupId { get { return this.GenericParam.GetValue<byte>("sortGroupId"); } set { this.GenericParam.SetValue("sortGroupId", value); } }
+    public int spEffectId0 { get { return this.GenericParam.GetValue<int>("spEffectId0"); } set { this.GenericParam.SetValue("spEffectId0", value); } }
+    public int spEffectId1 { get { return this.GenericParam.GetValue<int>("spEffectId1"); } set { this.GenericParam.SetValue("spEffectId1", value); } }
+    public int spEffectId2 { get { return this.GenericParam.GetValue<int>("spEffectId2"); } set { this.GenericParam.SetValue("spEffectId2", value); } }
+    public uint itemGetTutorialFlagId { get { return this.GenericParam.GetValue<uint>("itemGetTutorialFlagId"); } set { this.GenericParam.SetValue("itemGetTutorialFlagId", value); } }
+    public int swordArtsParamId { get { return this.GenericParam.GetValue<int>("swordArtsParamId"); } set { this.GenericParam.SetValue("swordArtsParamId", value); } }
+    public int mountValue { get { return this.GenericParam.GetValue<int>("mountValue"); } set { this.GenericParam.SetValue("mountValue", value); } }
+    public int sellValue { get { return this.GenericParam.GetValue<int>("sellValue"); } set { this.GenericParam.SetValue("sellValue", value); } }
+    public int saleValue { get { return this.GenericParam.GetValue<int>("saleValue"); } set { this.GenericParam.SetValue("saleValue", value); } }
+    public int sortId { get { return this.GenericParam.GetValue<int>("sortId"); } set { this.GenericParam.SetValue("sortId", value); } }
+    public short compTrophySedId { get { return this.GenericParam.GetValue<short>("compTrophySedId"); } set { this.GenericParam.SetValue("compTrophySedId", value); } }
+    public short trophySeqId { get { return this.GenericParam.GetValue<short>("trophySeqId"); } set { this.GenericParam.SetValue("trophySeqId", value); } }
+    public byte configurableWepAttr00 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr00"); } set { this.GenericParam.SetValue("configurableWepAttr00", value); } }
+    public byte configurableWepAttr01 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr01"); } set { this.GenericParam.SetValue("configurableWepAttr01", value); } }
+    public byte configurableWepAttr02 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr02"); } set { this.GenericParam.SetValue("configurableWepAttr02", value); } }
+    public byte configurableWepAttr03 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr03"); } set { this.GenericParam.SetValue("configurableWepAttr03", value); } }
+    public byte configurableWepAttr04 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr04"); } set { this.GenericParam.SetValue("configurableWepAttr04", value); } }
+    public byte configurableWepAttr05 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr05"); } set { this.GenericParam.SetValue("configurableWepAttr05", value); } }
+    public byte configurableWepAttr06 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr06"); } set { this.GenericParam.SetValue("configurableWepAttr06", value); } }
+    public byte configurableWepAttr07 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr07"); } set { this.GenericParam.SetValue("configurableWepAttr07", value); } }
+    public byte configurableWepAttr08 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr08"); } set { this.GenericParam.SetValue("configurableWepAttr08", value); } }
+    public byte configurableWepAttr09 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr09"); } set { this.GenericParam.SetValue("configurableWepAttr09", value); } }
+    public byte configurableWepAttr10 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr10"); } set { this.GenericParam.SetValue("configurableWepAttr10", value); } }
+    public byte configurableWepAttr11 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr11"); } set { this.GenericParam.SetValue("configurableWepAttr11", value); } }
+    public byte configurableWepAttr12 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr12"); } set { this.GenericParam.SetValue("configurableWepAttr12", value); } }
+    public byte configurableWepAttr13 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr13"); } set { this.GenericParam.SetValue("configurableWepAttr13", value); } }
+    public byte configurableWepAttr14 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr14"); } set { this.GenericParam.SetValue("configurableWepAttr14", value); } }
+    public byte configurableWepAttr15 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr15"); } set { this.GenericParam.SetValue("configurableWepAttr15", value); } }
+    public byte rarity { get { return this.GenericParam.GetValue<byte>("rarity"); } set { this.GenericParam.SetValue("rarity", value); } }
+    public byte configurableWepAttr16 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr16"); } set { this.GenericParam.SetValue("configurableWepAttr16", value); } }
+    public byte configurableWepAttr17 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr17"); } set { this.GenericParam.SetValue("configurableWepAttr17", value); } }
+    public byte configurableWepAttr18 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr18"); } set { this.GenericParam.SetValue("configurableWepAttr18", value); } }
+    public byte configurableWepAttr19 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr19"); } set { this.GenericParam.SetValue("configurableWepAttr19", value); } }
+    public byte configurableWepAttr20 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr20"); } set { this.GenericParam.SetValue("configurableWepAttr20", value); } }
+    public byte configurableWepAttr21 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr21"); } set { this.GenericParam.SetValue("configurableWepAttr21", value); } }
+    public byte configurableWepAttr22 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr22"); } set { this.GenericParam.SetValue("configurableWepAttr22", value); } }
+    public byte configurableWepAttr23 { get { return this.GenericParam.GetValue<byte>("configurableWepAttr23"); } set { this.GenericParam.SetValue("configurableWepAttr23", value); } }
+    public byte isDiscard { get { return this.GenericParam.GetValue<byte>("isDiscard"); } set { this.GenericParam.SetValue("isDiscard", value); } }
+    public byte isDrop { get { return this.GenericParam.GetValue<byte>("isDrop"); } set { this.GenericParam.SetValue("isDrop", value); } }
+    public byte isDeposit { get { return this.GenericParam.GetValue<byte>("isDeposit"); } set { this.GenericParam.SetValue("isDeposit", value); } }
+    public byte disableMultiDropShare { get { return this.GenericParam.GetValue<byte>("disableMultiDropShare"); } set { this.GenericParam.SetValue("disableMultiDropShare", value); } }
+    public byte showDialogCondType { get { return this.GenericParam.GetValue<byte>("showDialogCondType"); } set { this.GenericParam.SetValue("showDialogCondType", value); } }
+    public byte showLogCondType { get { return this.GenericParam.GetValue<byte>("showLogCondType"); } set { this.GenericParam.SetValue("showLogCondType", value); } }
+    public byte pad { get { return this.GenericParam.GetValue<byte>("pad"); } set { this.GenericParam.SetValue("pad", value); } }
+    public byte defaultWepAttr { get { return this.GenericParam.GetValue<byte>("defaultWepAttr"); } set { this.GenericParam.SetValue("defaultWepAttr", value); } }
+    public byte isSpecialSwordArt { get { return this.GenericParam.GetValue<byte>("isSpecialSwordArt"); } set { this.GenericParam.SetValue("isSpecialSwordArt", value); } }
+    public byte[] pad2 { get { return this.GenericParam.GetValue<byte[]>("pad2"); } set { this.GenericParam.SetValue("pad2", value); } }
+    public byte canMountWep_Dagger { get { return this.GenericParam.GetValue<byte>("canMountWep_Dagger"); } set { this.GenericParam.SetValue("canMountWep_Dagger", value); } }
+    public byte canMountWep_SwordNormal { get { return this.GenericParam.GetValue<byte>("canMountWep_SwordNormal"); } set { this.GenericParam.SetValue("canMountWep_SwordNormal", value); } }
+    public byte canMountWep_SwordLarge { get { return this.GenericParam.GetValue<byte>("canMountWep_SwordLarge"); } set { this.GenericParam.SetValue("canMountWep_SwordLarge", value); } }
+    public byte canMountWep_SwordGigantic { get { return this.GenericParam.GetValue<byte>("canMountWep_SwordGigantic"); } set { this.GenericParam.SetValue("canMountWep_SwordGigantic", value); } }
+    public byte canMountWep_SaberNormal { get { return this.GenericParam.GetValue<byte>("canMountWep_SaberNormal"); } set { this.GenericParam.SetValue("canMountWep_SaberNormal", value); } }
+    public byte canMountWep_SaberLarge { get { return this.GenericParam.GetValue<byte>("canMountWep_SaberLarge"); } set { this.GenericParam.SetValue("canMountWep_SaberLarge", value); } }
+    public byte canMountWep_katana { get { return this.GenericParam.GetValue<byte>("canMountWep_katana"); } set { this.GenericParam.SetValue("canMountWep_katana", value); } }
+    public byte canMountWep_SwordDoubleEdge { get { return this.GenericParam.GetValue<byte>("canMountWep_SwordDoubleEdge"); } set { this.GenericParam.SetValue("canMountWep_SwordDoubleEdge", value); } }
+    public byte canMountWep_SwordPierce { get { return this.GenericParam.GetValue<byte>("canMountWep_SwordPierce"); } set { this.GenericParam.SetValue("canMountWep_SwordPierce", value); } }
+    public byte canMountWep_RapierHeavy { get { return this.GenericParam.GetValue<byte>("canMountWep_RapierHeavy"); } set { this.GenericParam.SetValue("canMountWep_RapierHeavy", value); } }
+    public byte canMountWep_AxeNormal { get { return this.GenericParam.GetValue<byte>("canMountWep_AxeNormal"); } set { this.GenericParam.SetValue("canMountWep_AxeNormal", value); } }
+    public byte canMountWep_AxeLarge { get { return this.GenericParam.GetValue<byte>("canMountWep_AxeLarge"); } set { this.GenericParam.SetValue("canMountWep_AxeLarge", value); } }
+    public byte canMountWep_HammerNormal { get { return this.GenericParam.GetValue<byte>("canMountWep_HammerNormal"); } set { this.GenericParam.SetValue("canMountWep_HammerNormal", value); } }
+    public byte canMountWep_HammerLarge { get { return this.GenericParam.GetValue<byte>("canMountWep_HammerLarge"); } set { this.GenericParam.SetValue("canMountWep_HammerLarge", value); } }
+    public byte canMountWep_Flail { get { return this.GenericParam.GetValue<byte>("canMountWep_Flail"); } set { this.GenericParam.SetValue("canMountWep_Flail", value); } }
+    public byte canMountWep_SpearNormal { get { return this.GenericParam.GetValue<byte>("canMountWep_SpearNormal"); } set { this.GenericParam.SetValue("canMountWep_SpearNormal", value); } }
+    public byte canMountWep_SpearLarge { get { return this.GenericParam.GetValue<byte>("canMountWep_SpearLarge"); } set { this.GenericParam.SetValue("canMountWep_SpearLarge", value); } }
+    public byte canMountWep_SpearHeavy { get { return this.GenericParam.GetValue<byte>("canMountWep_SpearHeavy"); } set { this.GenericParam.SetValue("canMountWep_SpearHeavy", value); } }
+    public byte canMountWep_SpearAxe { get { return this.GenericParam.GetValue<byte>("canMountWep_SpearAxe"); } set { this.GenericParam.SetValue("canMountWep_SpearAxe", value); } }
+    public byte canMountWep_Sickle { get { return this.GenericParam.GetValue<byte>("canMountWep_Sickle"); } set { this.GenericParam.SetValue("canMountWep_Sickle", value); } }
+    public byte canMountWep_Knuckle { get { return this.GenericParam.GetValue<byte>("canMountWep_Knuckle"); } set { this.GenericParam.SetValue("canMountWep_Knuckle", value); } }
+    public byte canMountWep_Claw { get { return this.GenericParam.GetValue<byte>("canMountWep_Claw"); } set { this.GenericParam.SetValue("canMountWep_Claw", value); } }
+    public byte canMountWep_Whip { get { return this.GenericParam.GetValue<byte>("canMountWep_Whip"); } set { this.GenericParam.SetValue("canMountWep_Whip", value); } }
+    public byte canMountWep_AxhammerLarge { get { return this.GenericParam.GetValue<byte>("canMountWep_AxhammerLarge"); } set { this.GenericParam.SetValue("canMountWep_AxhammerLarge", value); } }
+    public byte canMountWep_BowSmall { get { return this.GenericParam.GetValue<byte>("canMountWep_BowSmall"); } set { this.GenericParam.SetValue("canMountWep_BowSmall", value); } }
+    public byte canMountWep_BowNormal { get { return this.GenericParam.GetValue<byte>("canMountWep_BowNormal"); } set { this.GenericParam.SetValue("canMountWep_BowNormal", value); } }
+    public byte canMountWep_BowLarge { get { return this.GenericParam.GetValue<byte>("canMountWep_BowLarge"); } set { this.GenericParam.SetValue("canMountWep_BowLarge", value); } }
+    public byte canMountWep_ClossBow { get { return this.GenericParam.GetValue<byte>("canMountWep_ClossBow"); } set { this.GenericParam.SetValue("canMountWep_ClossBow", value); } }
+    public byte canMountWep_Ballista { get { return this.GenericParam.GetValue<byte>("canMountWep_Ballista"); } set { this.GenericParam.SetValue("canMountWep_Ballista", value); } }
+    public byte canMountWep_Staff { get { return this.GenericParam.GetValue<byte>("canMountWep_Staff"); } set { this.GenericParam.SetValue("canMountWep_Staff", value); } }
+    public byte canMountWep_Sorcery { get { return this.GenericParam.GetValue<byte>("canMountWep_Sorcery"); } set { this.GenericParam.SetValue("canMountWep_Sorcery", value); } }
+    public byte canMountWep_Talisman { get { return this.GenericParam.GetValue<byte>("canMountWep_Talisman"); } set { this.GenericParam.SetValue("canMountWep_Talisman", value); } }
+    public byte canMountWep_ShieldSmall { get { return this.GenericParam.GetValue<byte>("canMountWep_ShieldSmall"); } set { this.GenericParam.SetValue("canMountWep_ShieldSmall", value); } }
+    public byte canMountWep_ShieldNormal { get { return this.GenericParam.GetValue<byte>("canMountWep_ShieldNormal"); } set { this.GenericParam.SetValue("canMountWep_ShieldNormal", value); } }
+    public byte canMountWep_ShieldLarge { get { return this.GenericParam.GetValue<byte>("canMountWep_ShieldLarge"); } set { this.GenericParam.SetValue("canMountWep_ShieldLarge", value); } }
+    public byte canMountWep_Torch { get { return this.GenericParam.GetValue<byte>("canMountWep_Torch"); } set { this.GenericParam.SetValue("canMountWep_Torch", value); } }
+    public byte canMountWep_HandToHand { get { return this.GenericParam.GetValue<byte>("canMountWep_HandToHand"); } set { this.GenericParam.SetValue("canMountWep_HandToHand", value); } }
+    public byte canMountWep_PerfumeBottle { get { return this.GenericParam.GetValue<byte>("canMountWep_PerfumeBottle"); } set { this.GenericParam.SetValue("canMountWep_PerfumeBottle", value); } }
+    public byte canMountWep_ThrustingShield { get { return this.GenericParam.GetValue<byte>("canMountWep_ThrustingShield"); } set { this.GenericParam.SetValue("canMountWep_ThrustingShield", value); } }
+    public byte canMountWep_ThrowingWeapon { get { return this.GenericParam.GetValue<byte>("canMountWep_ThrowingWeapon"); } set { this.GenericParam.SetValue("canMountWep_ThrowingWeapon", value); } }
+    public byte canMountWep_ReverseHandSword { get { return this.GenericParam.GetValue<byte>("canMountWep_ReverseHandSword"); } set { this.GenericParam.SetValue("canMountWep_ReverseHandSword", value); } }
+    public byte canMountWep_LightGreatsword { get { return this.GenericParam.GetValue<byte>("canMountWep_LightGreatsword"); } set { this.GenericParam.SetValue("canMountWep_LightGreatsword", value); } }
+    public byte canMountWep_GreatKatana { get { return this.GenericParam.GetValue<byte>("canMountWep_GreatKatana"); } set { this.GenericParam.SetValue("canMountWep_GreatKatana", value); } }
+    public byte canMountWep_BeastClaw { get { return this.GenericParam.GetValue<byte>("canMountWep_BeastClaw"); } set { this.GenericParam.SetValue("canMountWep_BeastClaw", value); } }
+    public byte reserved_canMountWep_0x3d_4 { get { return this.GenericParam.GetValue<byte>("reserved_canMountWep_0x3d_4"); } set { this.GenericParam.SetValue("reserved_canMountWep_0x3d_4", value); } }
+    public byte[] reserved2_canMountWep { get { return this.GenericParam.GetValue<byte[]>("reserved2_canMountWep"); } set { this.GenericParam.SetValue("reserved2_canMountWep", value); } }
+    public int spEffectMsgId0 { get { return this.GenericParam.GetValue<int>("spEffectMsgId0"); } set { this.GenericParam.SetValue("spEffectMsgId0", value); } }
+    public int spEffectMsgId1 { get { return this.GenericParam.GetValue<int>("spEffectMsgId1"); } set { this.GenericParam.SetValue("spEffectMsgId1", value); } }
+    public int spEffectId_forAtk0 { get { return this.GenericParam.GetValue<int>("spEffectId_forAtk0"); } set { this.GenericParam.SetValue("spEffectId_forAtk0", value); } }
+    public int spEffectId_forAtk1 { get { return this.GenericParam.GetValue<int>("spEffectId_forAtk1"); } set { this.GenericParam.SetValue("spEffectId_forAtk1", value); } }
+    public int spEffectId_forAtk2 { get { return this.GenericParam.GetValue<int>("spEffectId_forAtk2"); } set { this.GenericParam.SetValue("spEffectId_forAtk2", value); } }
+    public int mountWepTextId { get { return this.GenericParam.GetValue<int>("mountWepTextId"); } set { this.GenericParam.SetValue("mountWepTextId", value); } }
+    public byte[] pad6 { get { return this.GenericParam.GetValue<byte[]>("pad6"); } set { this.GenericParam.SetValue("pad6", value); } }
 }

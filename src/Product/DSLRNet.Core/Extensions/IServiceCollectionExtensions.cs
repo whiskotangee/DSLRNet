@@ -4,11 +4,91 @@ using DSLRNet.Core.DAL;
 using DSLRNet.Core.Generators;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 public static class IServiceCollectionExtensions
 {
-    public static IServiceCollection InitializeDSLR(this IServiceCollection services, IConfiguration configuration)
+
+    public static async Task<IServiceCollection> SetupDSLRAsync(this IServiceCollection services, IConfiguration configuration)
     {
+        IServiceCollection serviceCollection = new ServiceCollection();
+
+        serviceCollection.Configure<Configuration>(configuration.GetSection(nameof(Configuration)));
+
+        serviceCollection.AddLogging((builder) =>
+        {
+            builder.AddSerilog();
+        });
+        serviceCollection.AddSingleton<Csv>();
+        serviceCollection.AddSingleton<RegulationBinReader>();
+        serviceCollection.AddSingleton<DataSourceFactory>()
+                            .AddSingleton((sp) =>
+                            {
+                                return new RandomProvider(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
+                            });
+
+        var factoryServiceProvider = serviceCollection.BuildServiceProvider();
+        var csv = factoryServiceProvider.GetRequiredService<Csv>();
+        var regulationBinReader = factoryServiceProvider.GetRequiredService<Csv>();
+        var randomProvider = factoryServiceProvider.GetRequiredService<RandomProvider>();
+        var factory = factoryServiceProvider.GetRequiredService<DataSourceFactory>();
+        var configSettings = factoryServiceProvider.GetRequiredService<IOptions<Configuration>>().Value;
+
+
+        // Initialize data sources with the factory
+        var equipParamWeapon = CreateDataSource<EquipParamWeapon>(factory, DataSourceNames.EquipParamWeapon, configSettings);
+        var equipParamAccessory = CreateDataSource<EquipParamAccessory>(factory, DataSourceNames.EquipParamAccessory, configSettings);
+        var equipParamGem = CreateDataSource<EquipParamGem>(factory, DataSourceNames.EquipParamGem, configSettings);
+        var equipParamProtector = CreateDataSource<EquipParamProtector>(factory, DataSourceNames.EquipParamProtector, configSettings);
+        var spEffectParam = CreateDataSource<SpEffectParam>(factory, DataSourceNames.SpEffectParam, configSettings);
+        var itemLotParamEnemy = CreateDataSource<ItemLotParam_enemy>(factory, DataSourceNames.ItemLotParam_enemy, configSettings);
+        var itemLotParamMap = CreateDataSource<ItemLotParam_map>(factory, DataSourceNames.ItemLotParam_map, configSettings);
+        var npcParam = CreateDataSource<NpcParam>(factory, DataSourceNames.NpcParam, configSettings);
+        var raritySetup = CreateDataSource<RaritySetup>(factory, DataSourceNames.RaritySetup, configSettings);
+        var itemLotBase = CreateDataSource<ItemLotBase>(factory, DataSourceNames.ItemLotBase, configSettings);
+        var damageTypeSetup = CreateDataSource<DamageTypeSetup>(factory, DataSourceNames.DamageTypeSetup, configSettings);
+        var talismanConfig = CreateDataSource<TalismanConfig>(factory, DataSourceNames.TalismanConfig, configSettings);
+        var spEffectConfig = CreateDataSource<SpEffectConfig>(factory, DataSourceNames.SpEffectConfig, configSettings);
+
+        // List to hold all initialization tasks
+        List<Task> tasks =
+        [
+            equipParamWeapon.InitializeDataAsync(),
+            equipParamAccessory.InitializeDataAsync(),
+            equipParamGem.InitializeDataAsync(), 
+            equipParamProtector.InitializeDataAsync(), 
+            spEffectParam.InitializeDataAsync(),
+            itemLotParamEnemy.InitializeDataAsync(), 
+            itemLotParamMap.InitializeDataAsync(), 
+            npcParam.InitializeDataAsync(), 
+            raritySetup.InitializeDataAsync(), 
+            itemLotBase.InitializeDataAsync(), 
+            damageTypeSetup.InitializeDataAsync(), 
+            talismanConfig.InitializeDataAsync(), 
+            spEffectConfig.InitializeDataAsync() 
+        ]; 
+
+        // Await all tasks
+        await Task.WhenAll(tasks);
+
+        // Add initialized data sources to service collection
+        services.AddSingleton(equipParamWeapon)
+            .AddSingleton(equipParamAccessory)
+            .AddSingleton(equipParamGem)
+            .AddSingleton(equipParamProtector)
+            .AddSingleton(spEffectParam)
+            .AddSingleton(itemLotParamEnemy)
+            .AddSingleton(itemLotParamMap)
+            .AddSingleton(npcParam)
+            .AddSingleton(raritySetup)
+            .AddSingleton(itemLotBase)
+            .AddSingleton(damageTypeSetup)
+            .AddSingleton(talismanConfig)
+            .AddSingleton(spEffectConfig)
+            .AddSingleton(csv)
+            .AddSingleton(regulationBinReader)
+            .AddSingleton(randomProvider);
+
         // configurations
         services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
                 .Configure<WeaponGeneratorConfig>(configuration.GetSection(nameof(WeaponGeneratorConfig)))
@@ -33,42 +113,17 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<DSLRNetBuilder>()
                 .AddSingleton<ProcessRunner>()
                 .AddSingleton<ItemLotScanner>()
-                .AddSingleton<IconBuilder>()
-                .AddSingleton<Csv>()
-                .AddSingleton<RegulationBinReader>()
-                .AddSingleton<DataSourceFactory>()
-                .AddSingleton((sp) =>
-                {
-                    return new RandomProvider(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
-                });
-
-        // Data Sources
-        services.AddSingleton(sp => CreateDataSource<EquipParamWeapon>(sp, DataSourceNames.EquipParamWeapon))
-                .AddSingleton(sp => CreateDataSource<EquipParamAccessory>(sp, DataSourceNames.EquipParamAccessory))
-                .AddSingleton(sp => CreateDataSource<EquipParamGem>(sp, DataSourceNames.EquipParamGem))
-                .AddSingleton(sp => CreateDataSource<EquipParamProtector>(sp, DataSourceNames.EquipParamProtector))
-                .AddSingleton(sp => CreateDataSource<SpEffectParam>(sp, DataSourceNames.SpEffectParam))
-                .AddSingleton(sp => CreateDataSource<ItemLotParam_enemy>(sp, DataSourceNames.ItemLotParam_enemy))
-                .AddSingleton(sp => CreateDataSource<ItemLotParam_map>(sp, DataSourceNames.ItemLotParam_map))
-                .AddSingleton(sp => CreateDataSource<NpcParam>(sp, DataSourceNames.NpcParam))
-                .AddSingleton(sp => CreateDataSource<RaritySetup>(sp, DataSourceNames.RaritySetup))
-                .AddSingleton(sp => CreateDataSource<ItemLotBase>(sp, DataSourceNames.ItemLotBase))
-                .AddSingleton(sp => CreateDataSource<DamageTypeSetup>(sp, DataSourceNames.DamageTypeSetup))
-                .AddSingleton(sp => CreateDataSource<TalismanConfig>(sp, DataSourceNames.TalismanConfig))
-                .AddSingleton(sp => CreateDataSource<SpEffectConfig>(sp, DataSourceNames.SpEffectConfig));
+                .AddSingleton<IconBuilder>();
 
         return services;
     }
 
-    public static IDataSource<T> CreateDataSource<T>(IServiceProvider provider, DataSourceNames configName)
+    public static IDataSource<T> CreateDataSource<T>(DataSourceFactory factory, DataSourceNames configName, Configuration configSettings)
         where T : ParamBase<T>, ICloneable<T>, new()
     {
-        Settings configSettings = provider.GetRequiredService<IOptions<Configuration>>().Value.Settings;
+        DataSourceConfig config = configSettings.Settings.DataSourceConfigs.Single(d => d.Name == configName);
+        var dataSource = factory.CreateDataSource<T>(config);
 
-        DataSourceConfig config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
-
-        var factory = provider.GetRequiredService<DataSourceFactory>();
-
-        return factory.CreateDataSource<T>(config);
+        return dataSource;
     }
 }

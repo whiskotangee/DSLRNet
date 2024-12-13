@@ -56,7 +56,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         WeaponTypes generatedType = this.GetWeaponType(newWeapon.wepmotionCategory);
 
-        newWeapon.ID = this.CumulativeID.GetNext();
+        newWeapon.ID = (int)this.CumulativeID.GetNext();
         newWeapon.sellValue = this.RarityHandler.GetSellValue(rarityId);
         newWeapon.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
         newWeapon.iconId = this.RarityHandler.GetIconId(newWeapon.iconId, rarityId, isUnique: isUniqueWeapon);
@@ -67,7 +67,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             newWeapon.attackElementCorrectId = 42300;
         }
 
-        newWeapon.gemMountType = generatedType == WeaponTypes.StaffsSeals ? 0 : 2;
+        newWeapon.gemMountType = (byte)(generatedType == WeaponTypes.StaffsSeals ? 0 : 2);
         newWeapon.disableGemAttr = 1;
         newWeapon.weight = this.RarityHandler.GetRandomizedWeight(newWeapon.weight, rarityId);
 
@@ -145,7 +145,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             foreach (string? param in originParams)
             {
-                if (weaponDictionary.GetValue<int>(param) > 0)
+                if (weaponDictionary.GetValue<uint>(param) > 0)
                 {
                     weaponDictionary.SetValue(param, id);
                 }
@@ -346,7 +346,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         mods.SpEffectDescriptions = effectStrings.Select(s => $"Effect: {s}").ToList();
 
-        int hitVfx = mods.PrimaryDamageType.HitEffectCategory;
+        byte hitVfx = mods.PrimaryDamageType.HitEffectCategory;
         if (mods.SecondaryDamageType != null && mods.SecondaryDamageType.HitEffectCategory > 0)
         {
             hitVfx = mods.SecondaryDamageType.HitEffectCategory;
@@ -363,7 +363,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             critValue = this.Random.NextInt(weaponGeneratorConfig.CritChanceRange);
         }
 
-        weapon.throwAtkRate = (int)(critValue * (1 + critMultiplier));
+        weapon.throwAtkRate = (short)(critValue * (1 + critMultiplier));
 
         float maxDamage = dmgParams.Max(par => weapon.GenericParam.GetValue<float>(par));
 

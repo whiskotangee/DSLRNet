@@ -1,5 +1,7 @@
 ﻿namespace DSLRNet.Core.Data;
 
+using System.Diagnostics;
+
 public abstract class BaseDataSource<T> : IDataSource<T>
     where T : class, ICloneable<T>, new()
 {
@@ -8,7 +10,6 @@ public abstract class BaseDataSource<T> : IDataSource<T>
     public BaseDataSource(RandomProvider random)
     {
         this.random = random;
-        this.ReloadData();
     }
 
     protected Dictionary<int, T> CachedData { get; set; }
@@ -33,11 +34,16 @@ public abstract class BaseDataSource<T> : IDataSource<T>
         return this.CachedData.Values.Select(s => s.Clone()).ToList();
     }
 
-    public abstract IEnumerable<T> LoadData();
+    public abstract Task<IEnumerable<T>> LoadDataAsync();
 
-    public void ReloadData()
+    public async Task InitializeDataAsync()
     {
-        this.CachedData = this.LoadData().ToDictionary(this.GetId);
+        if (this.CachedData == null)
+        {
+            var loadedData = await this.LoadDataAsync();
+            this.CachedData = loadedData.ToDictionary(this.GetId);
+            this.GetAll();
+        }
     }
 
     private int GetId(T value)

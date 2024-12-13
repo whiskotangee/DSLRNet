@@ -40,7 +40,24 @@ public class GenericParam : ICloneable
     {
         if (this.Properties.TryGetValue(name, out object? value))
         {
-            return (T)Convert.ChangeType(value, typeof(T));
+            if (value is T castValue) 
+            { 
+                return castValue; 
+            }
+
+            if (value is byte[] data && typeof(T) == typeof(byte[])) 
+            { 
+                return (T)(object)data; 
+            }
+
+            try 
+            { 
+                return (T)Convert.ChangeType(value, typeof(T)); 
+            } 
+            catch (InvalidCastException) 
+            { 
+                throw new Exception($"Param with name {name} not of type {typeof(T)} or not found in dictionary"); 
+            }
         }
 
         throw new Exception($"Param with name {name} not of type {typeof(T)} or not found in dictionary");

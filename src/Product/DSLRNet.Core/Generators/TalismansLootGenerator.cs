@@ -43,17 +43,17 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
 
         if (freeSlotCount <= 0)
         {
-            return -1;
+            return 0;
         }
 
         TalismanConfig newTalismanConfig = this.Random.GetRandomItem(this.TalismanConfigs);
 
         string availableSlot = this.GetAvailableSpEffectSlots(newTalisman.GenericParam).First();
 
-        newTalisman.ID = this.CumulativeID.GetNext();
+        newTalisman.ID = (int)this.CumulativeID.GetNext();
         newTalisman.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
         newTalisman.accessoryGroup = newTalismanConfig.NoStackingGroupID < 0
-            ? AccessoryGroupCumulativeID.GetNext()
+            ? (short)AccessoryGroupCumulativeID.GetNext()
             : newTalismanConfig.NoStackingGroupID;
 
         newTalisman.iconId = this.RarityHandler.GetIconId(newTalisman.iconId, rarityId);

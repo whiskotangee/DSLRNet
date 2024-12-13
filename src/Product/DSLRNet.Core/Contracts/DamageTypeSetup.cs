@@ -12,7 +12,7 @@ public partial class DamageTypeSetup : ParamBase<DamageTypeSetup>
     public string ShieldParam { get; set; }
     public int SpEffect { get; set; }
     public int OnHitSpEffect { get; set; }
-    public int HitEffectCategory { get; set; }
+    public byte HitEffectCategory { get; set; }
     public int PriWeight { get; set; }
     public int SecWeight { get; set; }
     public float OverallMultiplier { get; set; }

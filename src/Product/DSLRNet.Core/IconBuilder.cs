@@ -136,7 +136,7 @@ public partial class IconBuilder(
 
         TPF baseIcons = TPF.Read(Path.Combine(sourcePath, "menu", "hi", "01_common.tpf.dcx"));
 
-        Dictionary<LootType, List<int>> iconsToDuplicate = [];
+        Dictionary<LootType, List<ushort>> iconsToDuplicate = [];
 
         iconsToDuplicate[LootType.Weapon] = weaponDataSource.GetAll().Select(s => s.iconId).ToList();
         iconsToDuplicate[LootType.Armor] = armorDataSource.GetAll().Select(s => s.iconIdF).ToList().Union(armorDataSource.GetAll().Select(s => s.iconIdM).ToList()).ToList();
@@ -157,7 +157,7 @@ public partial class IconBuilder(
             {
                 logger.LogInformation($"Generating icon sheets for loot type {lootType} and icon background{rarity.BackgroundImageName}");
 
-                IEnumerable<List<int>> splitIcons = iconsToDuplicate[lootType].Split(settings.IconSheetSettings.GoalIconsPerSheet).ToList();
+                IEnumerable<List<ushort>> splitIcons = iconsToDuplicate[lootType].Split(settings.IconSheetSettings.GoalIconsPerSheet).ToList();
 
                 if (rarity.RarityIds.First() == -1 && lootType != LootType.Weapon)
                 {
@@ -181,7 +181,7 @@ public partial class IconBuilder(
                                 IconMapping ret = new()
                                 {
                                     OriginalIconId = s,
-                                    NewIconId = overallIdCounter,
+                                    NewIconId = (ushort)overallIdCounter,
                                     SourceIconPath = $"MENU_ItemIcon_{s:D5}.png",
                                     ConvertedIcon = CreateIcon(settings.IconSheetSettings, iconBackgroundImage, s, baseIcons, layoutAtlases)
                                 };

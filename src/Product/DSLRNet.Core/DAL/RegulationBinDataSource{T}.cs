@@ -1,27 +1,50 @@
 ﻿namespace DSLRNet.Core.Data;
 
 using DSLRNet.Core.DAL;
+using System.Collections.Concurrent;
 
 public class RegulationBinDataSource<T>(
-    DataSourceConfig paramSource, 
-    RegulationBinReader regulationBinReader,
-    RandomProvider random) : BaseDataSource<T>(random)
+    DataSourceConfig paramSource,
+    RandomProvider random,
+    RegulationBinReader regulationBinReader) : BaseDataSource<T>(random)
     where T : ParamBase<T>, ICloneable<T>, new()
 {
     private PARAM? readParam = null;
+    private bool pocoCreated = false;
+    private static SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
-    public override IEnumerable<T> LoadData()
+    public async override Task<IEnumerable<T>> LoadDataAsync()
     {
         if (readParam == null)
         {
             this.readParam = regulationBinReader.GetParam(paramSource.Name);
         }
 
-        return this.readParam.Rows.Select(this.CreateFromPARAM).ToList();
+        ConcurrentBag<T> loadedValues = [];
+        await Parallel.ForEachAsync(
+            this.readParam.Rows,
+            new ParallelOptions() { MaxDegreeOfParallelism = 1000 },
+            async (row, c) =>
+            {
+                loadedValues.Add(await this.CreateFromPARAMAsync(row));
+            });
+
+        return [.. loadedValues];
     }
 
-    private T CreateFromPARAM(PARAM.Row row)
+    private async Task<T> CreateFromPARAMAsync(PARAM.Row row)
     {
+        if (false && !pocoCreated)
+        {
+            await semaphore.WaitAsync();
+
+            if (!pocoCreated)
+            { 
+                PocoGenerator.GenerateClass(typeof(T).Name, row);
+                pocoCreated = true;
+            }
+        }
+
         T newObject = new();
 
         newObject.GenericParam.ID = row.ID;
@@ -29,15 +52,7 @@ public class RegulationBinDataSource<T>(
 
         foreach (var cell in row.Cells)
         {
-            if (cell.Value as byte[] != null)
-            {
-                newObject.GenericParam.SetValue(cell.Def.InternalName, $"[{string.Join("|", cell.Value)}]");
-            }
-            else
-            {
-                newObject.GenericParam.SetValue(cell.Def.InternalName, cell.Value);
-            }
-            
+            newObject.GenericParam.SetValue(cell.Def.InternalName, cell.Value);
         }
 
         return newObject;

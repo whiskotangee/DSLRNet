@@ -54,7 +54,7 @@ services.AddLogging((builder) =>
     builder.AddSerilog();
 });
 
-services.InitializeDSLR(configuration);
+await services.SetupDSLRAsync(configuration);
 
 ServiceProvider sp = services.BuildServiceProvider();
 

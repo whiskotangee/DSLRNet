@@ -7,6 +7,6 @@ public partial class TalismanConfig : ParamBase<TalismanConfig>
     public string Effect { get; set; }
     public string ShortEffect { get; set; }
     public int RefSpEffect { get; set; }
-    public int NoStackingGroupID { get; set; }
+    public short NoStackingGroupID { get; set; }
     public string NamePrefix { get; set; }
 }

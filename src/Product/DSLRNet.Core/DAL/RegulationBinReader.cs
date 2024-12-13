@@ -1,6 +1,7 @@
 ﻿namespace DSLRNet.Core.DAL;
 
 using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.IO;
 
 public class RegulationBinReader
@@ -11,7 +12,6 @@ public class RegulationBinReader
 
     private readonly ConcurrentDictionary<DataSourceNames, PARAMDEF> paramDefs = [];
     private readonly ConcurrentDictionary<DataSourceNames, PARAM> loadedParams = [];
-    private bool disposedValue;
 
     public RegulationBinReader(IOptions<Configuration> configuration, ILogger<RegulationBinReader> logger)
     {
@@ -27,17 +27,25 @@ public class RegulationBinReader
     {
         return loadedParams.GetOrAdd(paramName, (name) =>
         {
-            foreach (BinderFile f in this.paramBnd.Files)
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            try
             {
-                var paramName = Path.GetFileNameWithoutExtension(f.Name);
-
-                if (Enum.TryParse<DataSourceNames>(paramName, out var readName) && readName == name)
+                foreach (BinderFile f in this.paramBnd.Files)
                 {
-                    this.logger.LogInformation($"Creating PARAM object for {name}");
-                    PARAM readParam = PARAM.Read(f.Bytes);
-                    readParam.ApplyParamdef(GetParamDef(name));
-                    return readParam;
+                    var paramName = Path.GetFileNameWithoutExtension(f.Name);
+
+                    if (Enum.TryParse<DataSourceNames>(paramName, out var readName) && readName == name)
+                    {
+                        this.logger.LogInformation($"Creating PARAM object for {name}");
+                        PARAM readParam = PARAM.Read(f.Bytes);
+                        readParam.ApplyParamdef(GetParamDef(name));
+                        return readParam;
+                    }
                 }
+            } 
+            finally
+            {
+                this.logger.LogInformation($"Getting param {paramName} took {stopwatch.ElapsedMilliseconds}ms");
             }
 
             throw new ArgumentException($"Param {paramName} was not found");

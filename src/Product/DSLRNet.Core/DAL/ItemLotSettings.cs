@@ -106,7 +106,7 @@ public class ItemLotSettings
 
     public string NpcParamCategory { get; set; }
 
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string Realname { get; set; }
     public int Enabled { get; set; }
     public List<int> AllowedLootIds { get; set; }

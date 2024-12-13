@@ -29,7 +29,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
     {
         EquipParamProtector newArmor = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
 
-        newArmor.ID = this.CumulativeID.GetNext();
+        newArmor.ID = (int)this.CumulativeID.GetNext();
         newArmor.sellValue = this.RarityHandler.GetSellValue(rarityId);
         newArmor.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
         newArmor.iconIdM = this.RarityHandler.GetIconId(newArmor.iconIdM, rarityId);

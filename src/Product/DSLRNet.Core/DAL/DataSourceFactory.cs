@@ -10,7 +10,7 @@ public class DataSourceFactory(Csv csv, RegulationBinReader regulationBinReader,
         return paramSource.SourceType switch
         {
             DataSourceType.CSV => new CsvDataSource<T>(paramSource, random, csv),
-            DataSourceType.RegulationBin => new RegulationBinDataSource<T>(paramSource, regulationBinReader, random),
+            DataSourceType.RegulationBin => new RegulationBinDataSource<T>(paramSource, random, regulationBinReader),
             _ => throw new ArgumentException("Invalid source type"),
         };
     }

@@ -11,19 +11,16 @@ public class CumulativeID(ILogger logger)
     public float IDMultiplier { get; set; } = 10000;
     public bool UseWrapAround { get; set; } = false;
     public int WrapAroundLimit { get; set; } = 998;
-    private int cumulativeId { get; set; } = -1;
+    private int cumulativeId { get; set; } = 0;
 
     public bool IsItemFlagAcquisitionCumulativeID { get; set; } = false;
 
-    private Dictionary<string, object> IFA { get; set; } = new Dictionary<string, object>
-    {
-        { "offsets", new List<int> { 0, 4, 7, 8, 9 } },
-        { "starting", 1024260000 }
-    };
+    private static List<int> ItemAcquisitionOffsets = [0, 4, 7, 8, 9];
+    private static int ItemAquisitionStartingId = 1024260000;
 
     private int IFA_CurrentOffset { get; set; } = 0;
 
-    public int GetNext()
+    public uint GetNext()
     {
         this.cumulativeId += 1;
         int IDBeforeWrap = this.cumulativeId;
@@ -33,7 +30,7 @@ public class CumulativeID(ILogger logger)
             if (this.IsItemFlagAcquisitionCumulativeID)
             {
                 this.IFA_CurrentOffset += 1;
-                this.IFA_CurrentOffset = this.Wrap(this.IFA_CurrentOffset, 0, ((List<int>)this.IFA["offsets"]).Count - 1);
+                this.IFA_CurrentOffset = this.Wrap(this.IFA_CurrentOffset, 0, ItemAcquisitionOffsets.Count - 1);
             }
         }
 
@@ -45,13 +42,13 @@ public class CumulativeID(ILogger logger)
         // Split off depending on if we're getting an ItemFlagAcquisitionID or not
         if (this.IsItemFlagAcquisitionCumulativeID)
         {
-            int flagId = (int)this.IFA["starting"] + ((List<int>)this.IFA["offsets"])[this.IFA_CurrentOffset] * 1000 + this.cumulativeId;
+            uint flagId = (uint)(ItemAquisitionStartingId + (ItemAcquisitionOffsets)[this.IFA_CurrentOffset] * 1000 + this.cumulativeId);
             this.logger.LogInformation($"Assigning acquisition flag {flagId}");
             return flagId;
         }
         else
         {
-            return (int)((this.StartingID + this.cumulativeId) * this.IDMultiplier);
+            return (uint)((this.StartingID + this.cumulativeId) * this.IDMultiplier);
         }
     }
 

@@ -1,14 +1,17 @@
 ﻿namespace DSLRNet.Core.Data;
 
-public interface IDataSource<T>
+public interface IDataSource
 {
-    int Count();
+    Task InitializeDataAsync();
+}
 
+public interface IDataSource<T> : IDataSource
+{
     IEnumerable<T> GetAll();
 
     T GetRandomItem();
 
     T GetItemById(int id);
 
-    void ReloadData();
+    int Count();
 }

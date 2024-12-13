@@ -170,7 +170,7 @@ public class IconMapping
 {
     public int OriginalIconId { get; set; }
 
-    public int NewIconId { get; set; }
+    public ushort NewIconId { get; set; }
 
     public string SourceIconPath { get; set; }
 

@@ -22,7 +22,7 @@ public class RegulationBinDataSource<T>(
         }
 
         var names = File.ReadAllLines($"Assets\\Data\\PARAM\\ER\\Names\\{paramSource.Name}.txt");
-        this.namesMapping = names.ToDictionary(s => Convert.ToInt32(s.Split(" ")[0]), d => d.Split(" ")[1].ToString());
+        this.namesMapping = names.ToDictionary(s => Convert.ToInt32(s.Substring(0, s.IndexOf(" "))), d => d.Substring(d.IndexOf(" ")).ToString());
 
         ConcurrentBag<T> loadedValues = [];
         await Parallel.ForEachAsync(

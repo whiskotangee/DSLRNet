@@ -20,4 +20,16 @@ public static class MathFunctions
         value |= value >> 16;
         return value + 1;
     }
+
+    public static Dictionary<float, int> MapToRange(List<double> values, int targetMin, int targetMax)
+    {
+        double sourceMin = values.Min();
+        double sourceMax = values.Max();
+        return values.Distinct().ToDictionary(t => (float)t, t => MapValue(t, sourceMin, sourceMax, targetMin, targetMax));
+    }
+
+    public static int MapValue(double value, double sourceMin, double sourceMax, int targetMin, int targetMax)
+    {
+        return (int)((value - sourceMin) / (sourceMax - sourceMin) * (targetMax - targetMin) + targetMin);
+    }
 }

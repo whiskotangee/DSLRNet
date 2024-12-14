@@ -1,5 +1,7 @@
 ﻿namespace DSLRNet.Core.Common;
 
+using System.Runtime.CompilerServices;
+
 public class FloatValueRange(float min, float max)
 {
     public float Min { get; set; } = min;
@@ -7,13 +9,28 @@ public class FloatValueRange(float min, float max)
     public float Max { get; set; } = max;
 }
 
-public class IntValueRange(int min, int max)
+public class IntValueRange
 {
     public static IntValueRange PercentRange = new(0, 101);
 
-    public int Min { get; set; } = min;
+    public IntValueRange(int min, int max)
+    {
+        Min = min; Max = max;
+    }
 
-    public int Max { get; set; } = max;
+    public int Min { get; set; }
+
+    public int Max { get; set; }
+
+    public bool Contains(int value)
+    {
+        return Min <= value && value <= Max;
+    }
+
+    public static IntValueRange CreateFrom(IEnumerable<int> values)
+    {
+        return new IntValueRange(values.Min(), values.Max());
+    }
 
     public static IntValueRange operator +(IntValueRange value1, IntValueRange value2)
     {

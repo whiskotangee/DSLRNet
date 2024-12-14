@@ -7,9 +7,9 @@ public class GameStageConfig
 {
     public GameStage Stage { get; set; }
 
-    public List<int> ItemLotIds { get; set; }
+    public HashSet<int> ItemLotIds { get; set; }
 
-    public List<int> AllowedRarities { get; set; }
+    public HashSet<int> AllowedRarities { get; set; }
 
     public int OverrideType { get; set; }
 }
@@ -25,32 +25,32 @@ public class ItemLotSettings
         obj.GameStageConfigs.Add(new GameStageConfig
         {
             Stage = GameStage.Early,
-            AllowedRarities = setup.AllowedRaritiesEarly,
-            ItemLotIds = setup.ItemLotIdsEarly,
+            AllowedRarities = [.. setup.AllowedRaritiesEarly],
+            ItemLotIds = [.. setup.ItemLotIdsEarly],
             OverrideType = setup.OverrideTypeEarly,
         });
 
         obj.GameStageConfigs.Add(new GameStageConfig
         {
             Stage = GameStage.Mid,
-            AllowedRarities = setup.AllowedRaritiesMid,
-            ItemLotIds = setup.ItemLotIdsMid,
+            AllowedRarities = [.. setup.AllowedRaritiesMid],
+            ItemLotIds = [.. setup.ItemLotIdsMid],
             OverrideType = setup.OverrideTypeMid,
         });
 
         obj.GameStageConfigs.Add(new GameStageConfig
         {
             Stage = GameStage.Late,
-            AllowedRarities = setup.AllowedRaritiesLate,
-            ItemLotIds = setup.ItemLotIdsLate,
+            AllowedRarities = [.. setup.AllowedRaritiesLate],
+            ItemLotIds = [.. setup.ItemLotIdsLate],
             OverrideType = setup.OverrideTypeLate,
         });
 
         obj.GameStageConfigs.Add(new GameStageConfig
         {
             Stage = GameStage.End,
-            AllowedRarities = setup.AllowedRaritiesEnd,
-            ItemLotIds = setup.ItemLotIdsEnd,
+            AllowedRarities = [.. setup.AllowedRaritiesEnd],
+            ItemLotIds = [.. setup.ItemLotIdsEnd],
             OverrideType = setup.OverrideTypeEnd,
         });
 
@@ -83,14 +83,13 @@ public class ItemLotSettings
 
     public List<int> GetAllItemLotIdsFromAllTiers()
     {
-        return Enum.GetValues(typeof(GameStage))
+        return [.. Enum.GetValues(typeof(GameStage))
             .Cast<GameStage>()
             .SelectMany(tier => this.GameStageConfigs
                 .Where(d => d.Stage == tier && d.ItemLotIds.Count > 0)
                 .SelectMany(s => s.ItemLotIds))
             .Distinct()
-            .OrderBy(id => id)
-            .ToList();
+            .OrderBy(id => id)];
     }
 
     public GameStageConfig GetItemLotIdTier(int itemLotId = 0)

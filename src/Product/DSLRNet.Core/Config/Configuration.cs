@@ -34,6 +34,8 @@ public class ItemLotGeneratorSettings
 
     public ScannerSettings EnemyLootScannerSettings { get; set; }
 
+    public AutoScalingSettings ScannerAutoScalingSettings { get; set; }
+
     public bool ChaosLootEnabled { get; set; }
 
     public string UniqueItemColor { get; set; }
@@ -41,6 +43,11 @@ public class ItemLotGeneratorSettings
     public float GlobalDropChance { get; set; }
 
     public bool AllLootGauranteed { get; set; }
+}
+
+public class AutoScalingSettings
+{
+    public List<int> AreaScalingSpEffectIds { get; set; } = [];
 }
 
 public class Settings
@@ -72,6 +79,7 @@ public enum DataSourceNames
     EquipParamProtector,
     EquipParamGem,
     NpcParam,
+    SpEffectParamNew,
     SpEffectParam,
     ItemLotParam_enemy,
     ItemLotParam_map,

@@ -78,7 +78,7 @@ public class ItemLotGenerator : BaseHandler
     {
         foreach (var gameStageConfig in itemLotSettings.GameStageConfigs)
         {
-            List<int> itemLotIds = gameStageConfig.ItemLotIds;
+            List<int> itemLotIds = gameStageConfig.ItemLotIds.ToList();
 
             itemLotIds.AddRange(itemLotIds
                 .SelectMany(id => this.FindSequentialItemLotIds(
@@ -93,6 +93,12 @@ public class ItemLotGenerator : BaseHandler
 
             for (int x = 0; x < itemLotIds.Count; x++)
             {
+                if (this.GeneratedDataRepository.TryGetParamEdit(ParamNames.ItemLotParam_enemy, itemLotIds[x], out var itemLotParam)) 
+                {
+                    this.logger.LogWarning($"Item lot {itemLotIds[x]} has already been processed, skipping");
+                    continue;
+                }
+
                 if (!itemLotSettings.BlackListIds.Contains(itemLotIds[x]))
                 {
                     ItemLotBase newItemLot;

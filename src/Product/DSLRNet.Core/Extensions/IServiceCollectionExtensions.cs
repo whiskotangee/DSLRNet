@@ -42,6 +42,7 @@ public static class IServiceCollectionExtensions
         var equipParamGem = CreateDataSource<EquipParamGem>(factory, DataSourceNames.EquipParamGem, configSettings);
         var equipParamProtector = CreateDataSource<EquipParamProtector>(factory, DataSourceNames.EquipParamProtector, configSettings);
         var spEffectParam = CreateDataSource<SpEffectParam>(factory, DataSourceNames.SpEffectParam, configSettings);
+        var spEffectParamNew = CreateDataSource<SpEffectParamNew>(factory, DataSourceNames.SpEffectParamNew, configSettings);
         var itemLotParamEnemy = CreateDataSource<ItemLotParam_enemy>(factory, DataSourceNames.ItemLotParam_enemy, configSettings);
         var itemLotParamMap = CreateDataSource<ItemLotParam_map>(factory, DataSourceNames.ItemLotParam_map, configSettings);
         var npcParam = CreateDataSource<NpcParam>(factory, DataSourceNames.NpcParam, configSettings);
@@ -59,6 +60,7 @@ public static class IServiceCollectionExtensions
             equipParamGem.InitializeDataAsync(), 
             equipParamProtector.InitializeDataAsync(), 
             spEffectParam.InitializeDataAsync(),
+            spEffectParamNew.InitializeDataAsync(),
             itemLotParamEnemy.InitializeDataAsync(), 
             itemLotParamMap.InitializeDataAsync(), 
             npcParam.InitializeDataAsync(), 
@@ -81,6 +83,7 @@ public static class IServiceCollectionExtensions
             .AddSingleton(equipParamGem)
             .AddSingleton(equipParamProtector)
             .AddSingleton(spEffectParam)
+            .AddSingleton(spEffectParamNew)
             .AddSingleton(itemLotParamEnemy)
             .AddSingleton(itemLotParamMap)
             .AddSingleton(npcParam)

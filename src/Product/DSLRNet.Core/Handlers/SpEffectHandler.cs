@@ -15,7 +15,7 @@ public class SpEffectHandler : BaseHandler
         RandomProvider random,
         ParamEditsRepository dataRepository,
         IDataSource<SpEffectConfig> spEffectConfigDataSource,
-        IDataSource<SpEffectParam> spEffectDataSource) : base(dataRepository)
+        IDataSource<SpEffectParamNew> spEffectDataSource) : base(dataRepository)
     {
         this.configuration = configuration.Value;
         this.rarityHandler = rarityHandler;
@@ -23,9 +23,9 @@ public class SpEffectHandler : BaseHandler
 
         this.LoadedSpEffectConfigs = spEffectConfigDataSource.GetAll();
 
-        IEnumerable<SpEffectParam> loadedSpEffectParams = spEffectDataSource.GetAll().ToList();
+        IEnumerable<SpEffectParamNew> loadedSpEffectParams = spEffectDataSource.GetAll().ToList();
 
-        foreach (SpEffectParam? spEffectParam in loadedSpEffectParams)
+        foreach (SpEffectParamNew? spEffectParam in loadedSpEffectParams)
         {
             this.GeneratedDataRepository.AddParamEdit(
                 new ParamEdit

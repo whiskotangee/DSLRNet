@@ -47,18 +47,12 @@ public class DSLRNetBuilder(
         takenIds[ItemLotCategory.ItemLot_Enemy] = enemyItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
         takenIds[ItemLotCategory.ItemLot_Map] = mapItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
 
-        Dictionary<ItemLotCategory, HashSet<int>> remainingIds = await itemLotScanner.ScanAndCreateItemLotSetsAsync(takenIds);
+        Dictionary<ItemLotCategory, ItemLotSettings> scanned = await itemLotScanner.ScanAndCreateItemLotSetsAsync(takenIds);
 
-        if (remainingIds.Any())
-        {
-            ItemLotSettings remainingMapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map.ini", this.configuration.Itemlots.Categories[1]);
-            remainingMapLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Map].OrderBy(d => d).ToList();
-
-            ItemLotSettings remainingEnemyLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
-            remainingEnemyLots.GameStageConfigs.First().ItemLotIds = remainingIds[ItemLotCategory.ItemLot_Enemy].OrderBy(d => d).ToList();
-
-            itemLotGenerator.CreateItemLots([remainingMapLots]);
-            itemLotGenerator.CreateItemLots([remainingEnemyLots]);
+        if (scanned.Any())
+        { 
+            itemLotGenerator.CreateItemLots([scanned[ItemLotCategory.ItemLot_Enemy]]);
+            itemLotGenerator.CreateItemLots([scanned[ItemLotCategory.ItemLot_Map]]);
         }
 
         itemLotGenerator.CreateItemLots(enemyItemLotsSetups);

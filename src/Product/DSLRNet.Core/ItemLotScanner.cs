@@ -8,7 +8,9 @@ public class ItemLotScanner(
     IOptions<Configuration> configuration,
     IDataSource<ItemLotParam_map> mapItemLotSource,
     IDataSource<ItemLotParam_enemy> enemyItemLotSource,
-    IDataSource<NpcParam> npcParamSource)
+    IDataSource<NpcParam> npcParamSource,
+    IDataSource<SpEffectParam> spEffectParam,
+    IDataSource<RaritySetup> raritySetup)
 {
     private readonly ILogger<ItemLotScanner> logger = logger;
     private readonly RandomProvider random = random;
@@ -16,135 +18,252 @@ public class ItemLotScanner(
     private readonly List<ItemLotParam_map> itemLotParam_Map = mapItemLotSource.GetAll().ToList();
     private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = enemyItemLotSource.GetAll().ToList();
     private readonly List<NpcParam> npcParams = npcParamSource.GetAll().ToList();
+    private readonly List<SpEffectParam> areaScalingSpEffects = 
+        spEffectParam
+            .GetAll()
+            .Where(d => configuration.Value.Settings.ItemLotGeneratorSettings.ScannerAutoScalingSettings.AreaScalingSpEffectIds.Contains(d.ID))
+            .ToList();
 
-    public async Task<Dictionary<ItemLotCategory, HashSet<int>>> ScanAndCreateItemLotSetsAsync(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
+    public async Task<Dictionary<ItemLotCategory, ItemLotSettings>> ScanAndCreateItemLotSetsAsync(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
         string modDir = $"{this.configuration.Settings.DeployPath}\\map\\mapstudio";
 
-        ConcurrentDictionary<ItemLotCategory, ConcurrentBag<int>> returnDictionary = new();
-        returnDictionary.TryAdd(ItemLotCategory.ItemLot_Enemy, []);
-        returnDictionary.TryAdd(ItemLotCategory.ItemLot_Map, []);
+        Dictionary<ItemLotCategory, ItemLotSettings> generatedItemLotSettings = [];
+
+        ItemLotSettings remainingMapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_And_Events.ini", this.configuration.Itemlots.Categories[1]);
+        ItemLotSettings remainingEnemyLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", this.configuration.Itemlots.Categories[0]);
+
+        generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Enemy, remainingEnemyLots);
+        generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Map, remainingMapLots);
 
         List<string> mapStudioFiles = [.. Directory.GetFiles(modDir, "*.msb.dcx")];
 
-        await Parallel.ForEachAsync(mapStudioFiles, (mapFile, c) =>
+        List<int> globalNpcIds = new List<int>();
+
+        foreach (string mapFile in mapStudioFiles) 
         {
             MSBE msb = MSBE.Read(mapFile);
 
-            HashSet<int> npcIds = [];
+            string mapFileName = Path.GetFileName(mapFile);
+
+            Dictionary<int, List<NpcParam>> npcs = [];
             foreach (MSBE.Part.Enemy? enemy in msb.Parts.Enemies)
             {
+                if (globalNpcIds.Contains(enemy.NPCParamID))
+                {
+                    continue;
+                }
+
                 int modelNumber = int.Parse(enemy.ModelName.Substring(1));
 
                 // Range is to ignore wildlife drops
                 if (modelNumber >= 2000 && modelNumber <= 6000 || modelNumber >= 6200)
                 {
-                    npcIds.Add(enemy.NPCParamID);
+                    if (!npcs.TryGetValue(modelNumber, out List<NpcParam> value))
+                    {
+                        value = new List<NpcParam>();
+                        npcs[modelNumber] = value;
+                    }
+
+                    var item = npcParamSource.GetItemById(enemy.NPCParamID);
+                    if (item == null)
+                    {
+                        logger.LogWarning($"NPC with ID {enemy.NPCParamID} from map {mapFileName} with model {modelNumber} did not match a param");
+                        continue;
+                    }
+                    else if (item.itemLotId_enemy < 0 && item.itemLotId_map < 0)
+                    {
+                        logger.LogWarning($"NPC with ID {enemy.NPCParamID} from map {mapFileName} with model {modelNumber} did not have an item lot associated with it");
+                        continue;
+                    }
+
+                    if (!value.Any(d => d.ID == enemy.NPCParamID))
+                    {
+                        value.Add(item);
+                    }
                 }
             }
 
-            List<int> enemyIds = [];
+            var enemiesAdded = this.SetupEnemyLots(mapFileName, claimedIds[ItemLotCategory.ItemLot_Enemy], npcs, remainingEnemyLots);
+            var mapItemsAdded = this.SetupMapLots(mapFileName, msb, claimedIds[ItemLotCategory.ItemLot_Map], npcs, remainingMapLots);
 
-            if (this.configuration.Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.Enabled)
-            {
-                List<int> candidateEnemyBaseLotIds = this.npcParams
-                    .Where(d => npcIds.Contains(d.ID) && d.itemLotId_enemy > 100 && !claimedIds[ItemLotCategory.ItemLot_Enemy].Contains(d.itemLotId_enemy))
-                    .Select(d => d.itemLotId_enemy)
-                    .Distinct()
-                    .ToList();
+            this.logger.LogInformation($"Map {mapFileName} Enemies: {JsonConvert.SerializeObject(enemiesAdded)} Treasures: {JsonConvert.SerializeObject(mapItemsAdded)}");
+        }
 
-                enemyIds = this.GetValidItemLotIds(candidateEnemyBaseLotIds, ItemLotCategory.ItemLot_Enemy);
-            }
-
-            List<int> mapLotIds = [];
-
-            if (this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled
-                || this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
-            {
-                List<int> candidateTreasures = [];
-
-                List<MSBE.Event.Treasure> baseFilteredMapTreasures = msb.Events.Treasures
-                    .Where(d => d.ItemLotID > 0 && !claimedIds[ItemLotCategory.ItemLot_Map].Contains(d.ItemLotID)).ToList();
-
-                if (this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
-                {
-                    candidateTreasures.AddRange(baseFilteredMapTreasures
-                        .Where(d => d.InChest == 1)
-                        .Where(d => this.random.PassesPercentCheck(this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.ApplyPercent))
-                        .Select(s => s.ItemLotID));
-                }
-
-                if (this.configuration.Settings.ItemLotGeneratorSettings.MapLootScannerSettings.Enabled)
-                {
-                    candidateTreasures.AddRange(baseFilteredMapTreasures
-                        .Where(d => d.InChest != 1)
-                        .Where(d => this.random.PassesPercentCheck(this.configuration.Settings.ItemLotGeneratorSettings.MapLootScannerSettings.ApplyPercent))
-                        .Select(s => s.ItemLotID));
-                }
-
-                if (candidateTreasures.Any())
-                {
-                    candidateTreasures = candidateTreasures
-                        .Union(this.npcParams
-                            .Where(d => npcIds.Contains(d.ID) && d.itemLotId_map > 0 && !claimedIds[ItemLotCategory.ItemLot_Map].Contains(d.itemLotId_map))
-                            .Select(d => d.itemLotId_map)
-                            .Distinct())
-                        .ToList();
-                }
-
-                mapLotIds = this.GetValidItemLotIds(candidateTreasures, ItemLotCategory.ItemLot_Map);
-            }
-
-            mapLotIds.Distinct().ToList().ForEach(i => returnDictionary[ItemLotCategory.ItemLot_Map].Add(i));
-            enemyIds.Distinct().ToList().ForEach(i => returnDictionary[ItemLotCategory.ItemLot_Enemy].Add(i));
-
-            this.logger.LogInformation($"Found {enemyIds.Count} enemy itemLot Ids and {mapLotIds.Count} treasure Ids from {Path.GetFileName(mapFile)}");
-
-            return ValueTask.CompletedTask;
-        });
-
-        return returnDictionary.ToDictionary(d => d.Key, d => d.Value.ToHashSet());
+        return generatedItemLotSettings;
     }
 
-    private List<int> GetValidItemLotIds(List<int> baseLotIds, ItemLotCategory itemLotCategory)
+    private Dictionary<GameStage, int> SetupEnemyLots(string mapFile, HashSet<int> claimedIds, Dictionary<int, List<NpcParam>> npcParams, ItemLotSettings settings)
     {
-        List<int> finalArray = [];
-        List<int> allTakenIds = [];
+        Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 
-        // Get the original IDs based on the category
+        if (this.configuration.Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.Enabled)
+        {
+            var hpRates = areaScalingSpEffects.Select(d => (double)d.maxHpRate).OrderBy(d => d).ToList();
+            hpRates.Prepend(1.0f);
+
+            var hpMultToRarityMap = MathFunctions.MapToRange(
+                hpRates,
+                settings.GameStageConfigs.Min(d => d.AllowedRarities.Min()),
+                settings.GameStageConfigs.Max(d => d.AllowedRarities.Max()));
+
+            // TODO: Check baseHp of enemies and do a range based on those as well
+
+            foreach (var npcMapping in npcParams.Keys)
+            {
+                foreach (var npc in npcParams[npcMapping].Where(d => d.itemLotId_enemy > 0))
+                {
+                    if (!IsValidItemLotId(npc.itemLotId_enemy, ItemLotCategory.ItemLot_Enemy))
+                    {
+                        logger.LogInformation($"Skipping item lot Id as it does not give any items {npc.itemLotId_enemy}");
+                        continue;
+                    }
+
+                    if (claimedIds.Contains(npc.itemLotId_enemy) ||
+                        !this.random.PassesPercentCheck(this.configuration.Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))
+                    {
+                        continue;
+                    }
+
+                    var maxHpMultiplier = 1.0f;
+                    var spEffects = npc.GenericParam.GetFieldNamesByFilter("spEffectID").Select(npc.GenericParam.GetValue<int>)
+                        .Where(d => areaScalingSpEffects.SingleOrDefault(s => s.ID == d) != null)
+                        .Select(d => areaScalingSpEffects.SingleOrDefault(s => s.ID == d))
+                        .ToList();
+
+                    if (!spEffects.Any())
+                    {
+                        logger.LogWarning($"NPC id {npc.ID} missing area scaling of model number {npcMapping} from map {mapFile}");
+                    }
+                    else
+                    {
+                        maxHpMultiplier = spEffects.Max(s => s.maxHpRate);
+                    }
+
+                    if (!hpMultToRarityMap.TryGetValue(maxHpMultiplier, out var goalRarityMap))
+                    {
+                        throw new Exception("Excuse me?");
+                    }
+
+                    bool assigned = false;
+
+                    foreach (var stage in settings.GameStageConfigs)
+                    {
+                        if (IntValueRange.CreateFrom(stage.AllowedRarities).Contains(goalRarityMap))
+                        {
+                            assigned = true;
+                            stage.ItemLotIds.Add(npc.itemLotId_enemy);
+                            addedByStage[stage.Stage] += 1;
+                        }
+                    }
+
+                    // TODO: Adjust drop rate depending on how many instances of the enemy there are across all msbs
+                    if (!assigned)
+                    {
+                        throw new Exception("Hello?");
+                    }
+                }
+            }
+        }
+
+        return addedByStage;
+    }
+
+    private Dictionary<GameStage, int> SetupMapLots(string name, MSBE msb, HashSet<int> claimedIds, Dictionary<int, List<NpcParam>> npcParams, ItemLotSettings settings)
+    {
+        Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
+
+        if (this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled
+                || this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
+        {
+            GameStageConfig gameStage = GetGameStageConfigForMap(name, msb, settings);
+
+            List<int> candidateTreasures = [];
+
+            List<MSBE.Event.Treasure> baseFilteredMapTreasures = msb.Events.Treasures
+                .Where(d => d.ItemLotID > 0 && !claimedIds.Contains(d.ItemLotID)).ToList();
+
+            if (this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
+            {
+                candidateTreasures.AddRange(baseFilteredMapTreasures
+                    .Where(d => d.InChest == 1)
+                    .Where(d => this.random.PassesPercentCheck(this.configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.ApplyPercent))
+                    .Select(s => s.ItemLotID));
+            }
+
+            if (this.configuration.Settings.ItemLotGeneratorSettings.MapLootScannerSettings.Enabled)
+            {
+                candidateTreasures.AddRange(baseFilteredMapTreasures
+                    .Where(d => d.InChest != 1)
+                    .Where(d => this.random.PassesPercentCheck(this.configuration.Settings.ItemLotGeneratorSettings.MapLootScannerSettings.ApplyPercent))
+                    .Select(s => s.ItemLotID));
+            }
+
+            if (candidateTreasures.Any())
+            {
+                candidateTreasures = candidateTreasures
+                    .Union(npcParams.Values.SelectMany(d => d)
+                        .Where(d => d.itemLotId_map > 0 && !claimedIds.Contains(d.itemLotId_map))
+                        .Select(d => d.itemLotId_map)
+                        .Distinct())
+                    .ToList();
+            }
+
+            candidateTreasures = candidateTreasures.Where(d => this.IsValidItemLotId(d, ItemLotCategory.ItemLot_Map)).ToList();
+            addedByStage[gameStage.Stage] += candidateTreasures.Count;
+
+            candidateTreasures.ForEach(d => gameStage.ItemLotIds.Add(d));
+        }
+
+        return addedByStage;
+    }
+
+    private GameStageConfig GetGameStageConfigForMap(string name, MSBE msb, ItemLotSettings settings)
+    {
+        // TODO: Mapping from msb to game stage
+        return random.GetRandomItem(settings.GameStageConfigs);
+    }
+
+    private bool IsValidItemLotId(int itemLotId, ItemLotCategory itemLotCategory)
+    {
         if (itemLotCategory == ItemLotCategory.ItemLot_Map)
         {
-            finalArray = this.itemLotParam_Map
-                .Where(d => baseLotIds.Contains(d.ID))
-                .Where(d => d.getItemFlagId > 0)
-                .Where(d => d.lotItemCategory01 >= 1
-                            || d.lotItemCategory02 >= 1
-                            || d.lotItemCategory03 >= 1
-                            || d.lotItemCategory04 >= 1
-                            || d.lotItemCategory05 >= 1
-                            || d.lotItemCategory06 >= 1
-                            || d.lotItemCategory07 >= 1
-                            || d.lotItemCategory08 >= 1)
-                .GroupBy(d => d.getItemFlagId)
-                .Select(g => g.First().ID)
-                .ToList();
+            var match = this.itemLotParam_Map
+                .SingleOrDefault(d => itemLotId == d.ID);
+
+            if (match == null)
+            {
+                return false;
+            }
+
+            return match.getItemFlagId > 0 
+                && (match.lotItemCategory01 >= 1
+                    || match.lotItemCategory02 >= 1
+                    || match.lotItemCategory03 >= 1
+                    || match.lotItemCategory04 >= 1
+                    || match.lotItemCategory05 >= 1
+                    || match.lotItemCategory06 >= 1
+                    || match.lotItemCategory07 >= 1
+                    || match.lotItemCategory08 >= 1);
         }
         else
         {
-            finalArray = this.itemLotParam_Enemy
-                .Where(d => baseLotIds.Contains(d.ID))
-                .Where(d => d.lotItemCategory01 >= 1
-                            || d.lotItemCategory02 >= 1
-                            || d.lotItemCategory03 >= 1
-                            || d.lotItemCategory04 >= 1
-                            || d.lotItemCategory05 >= 1
-                            || d.lotItemCategory06 >= 1
-                            || d.lotItemCategory07 >= 1
-                            || d.lotItemCategory08 >= 1)
-                .Select(d => d.ID)
-                .ToList();
-        }
+            var match = this.itemLotParam_Enemy
+                .SingleOrDefault(d => itemLotId == d.ID);
 
-        return finalArray;
+            if (match == null)
+            {
+                return false;
+            }
+
+            return match.lotItemCategory01 >= 1
+                    || match.lotItemCategory02 >= 1
+                    || match.lotItemCategory03 >= 1
+                    || match.lotItemCategory04 >= 1
+                    || match.lotItemCategory05 >= 1
+                    || match.lotItemCategory06 >= 1
+                    || match.lotItemCategory07 >= 1
+                    || match.lotItemCategory08 >= 1;
+        }
     }
 }

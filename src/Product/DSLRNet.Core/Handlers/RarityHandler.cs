@@ -17,7 +17,7 @@ public class RarityHandler : BaseHandler
         this.RarityConfigs = raritySetupDataSource.GetAll().ToDictionary(d => d.ID);
     }
 
-    public int ChooseRarityFromIdSet(List<int> idset)
+    public int ChooseRarityFromIdSet(IEnumerable<int> idset)
     {
         List<WeightedValue<int>> weightedValues = [];
 

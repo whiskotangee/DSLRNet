@@ -55,8 +55,6 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         EquipParamWeapon newWeapon = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(allowedLootIds, LootType.Weapon));
 
-        var wepType = newWeapon.wepType;
-
         WeaponTypes generatedType = this.GetWeaponType(newWeapon.wepmotionCategory);
 
         newWeapon.ID = (int)this.CumulativeID.GetNext();

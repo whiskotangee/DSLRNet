@@ -8,7 +8,6 @@ global using DSLRNet.Core.Data;
 global using DSLRNet.Core.Handlers;
 global using Microsoft.Extensions.Options;
 global using Newtonsoft.Json;
-global using Serilog;
 global using System.Globalization;
 global using Microsoft.Extensions.Logging;
 global using SoulsFormats;

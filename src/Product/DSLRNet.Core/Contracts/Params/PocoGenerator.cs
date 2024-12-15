@@ -5,7 +5,7 @@ using System.Text;
 
 public class PocoGenerator
 {
-    private static readonly Dictionary<Type, string> typeMap = new Dictionary<Type, string>
+    private static readonly Dictionary<Type, string> typeMap = new()
     {
         { typeof(int), "int" },
         { typeof(float), "float" },

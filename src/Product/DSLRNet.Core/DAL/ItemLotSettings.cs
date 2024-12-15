@@ -81,15 +81,9 @@ public class ItemLotSettings
 
     }
 
-    public List<int> GetAllItemLotIdsFromAllTiers()
+    public GameStageConfig GetGameStageConfig(GameStage stage)
     {
-        return [.. Enum.GetValues(typeof(GameStage))
-            .Cast<GameStage>()
-            .SelectMany(tier => this.GameStageConfigs
-                .Where(d => d.Stage == tier && d.ItemLotIds.Count > 0)
-                .SelectMany(s => s.ItemLotIds))
-            .Distinct()
-            .OrderBy(id => id)];
+        return GameStageConfigs.Single(d => d.Stage == stage);
     }
 
     public GameStageConfig GetItemLotIdTier(int itemLotId = 0)

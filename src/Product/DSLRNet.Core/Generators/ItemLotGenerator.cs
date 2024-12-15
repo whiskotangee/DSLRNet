@@ -7,9 +7,6 @@ public class ItemLotGenerator : BaseHandler
 {
     private ConcurrentDictionary<LootType, List<int>> generatedItemsStats = [];
 
-    public string[] ItemlotOutputRealName { get; } = ["ItemLotParam_enemy", "ItemLotParam_map"];
-    public List<int> ItemCategories { get; } = [2, 3, 4];
-
     private const int ItemLotParamMax = 8;
     private readonly ArmorLootGenerator armorLootGenerator;
     private readonly WeaponLootGenerator weaponLootGenerator;
@@ -42,7 +39,7 @@ public class ItemLotGenerator : BaseHandler
         this.random = random;
         this.logger = logger;
         this.configuration = configuration.Value;
-        this.itemAcquisitionCumulativeId = new CumulativeID(logger as Microsoft.Extensions.Logging.ILogger)
+        this.itemAcquisitionCumulativeId = new CumulativeID(logger)
         {
             IsItemFlagAcquisitionCumulativeID = true,
             UseWrapAround = true
@@ -71,7 +68,8 @@ public class ItemLotGenerator : BaseHandler
             }
         }
 
-        this.logger.LogInformation($"Current edit count: {JsonConvert.SerializeObject(this.GeneratedDataRepository.EditCountsByName())}");
+        this.logger.LogInformation($"Current rarity generation counts {JsonConvert.SerializeObject(rarityHandler.CountByRarity.OrderBy(d => d.Key), Formatting.Indented)}");
+        this.logger.LogInformation($"Current edit count: {JsonConvert.SerializeObject(this.GeneratedDataRepository.EditCountsByName(), Formatting.Indented)}");
     }
 
     public void CreateItemLot_Enemy(ItemLotSettings itemLotSettings)
@@ -152,13 +150,13 @@ public class ItemLotGenerator : BaseHandler
                     this.CalculateNoItemChance(newItemLot);
 
                     GenericParam genericDict = GenericParam.FromObject(newItemLot);
-                    string itemLotMassEdit = this.CreateMassEdit(genericDict, itemLotSettings.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
+                    
                     this.GeneratedDataRepository.AddParamEdit(
                         new ParamEdit()
                         {
                             ParamName = itemLotSettings.ParamName,
                             Operation = ParamOperation.Create,
-                            MassEditString = itemLotMassEdit,
+                            MassEditString = this.CreateMassEdit(genericDict, itemLotSettings.ParamName, newItemLot.ID),
                             MessageText = null,
                             ParamObject = genericDict
                         });
@@ -373,7 +371,6 @@ public class ItemLotGenerator : BaseHandler
         float dropMult, 
         bool dropGauranteed = false)
     {
-        //TODO: Set drop chance based on hp of enemy or detected map
         int rarity = this.rarityHandler.ChooseRarityFromIdSet(gameStageConfig.AllowedRarities);
 
         (int finalId, int finalCategory) = this.TaskLootGeneratorBasedOnLootType(itemLotSettings, rarity);
@@ -402,12 +399,6 @@ public class ItemLotGenerator : BaseHandler
         GameStageConfig tier = itemLotSettings.GetItemLotIdTier(itemLotId);
 
         return this.rarityHandler.GetRaritiesWithinRange(tier.AllowedRarities.Min(), tier.AllowedRarities.Max());
-    }
-
-    public int ChooseRarityFromItemLotIdTierAllowedRarities(ItemLotSettings itemLotSettings, int itemLotId = 0)
-    {
-        List<int> rarities = this.GetItemLotIdTierAllowedRarities(itemLotSettings, itemLotId);
-        return this.rarityHandler.ChooseRarityFromIdSet(rarities);
     }
 
     public ushort GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)

@@ -17,6 +17,8 @@ public class RarityHandler : BaseHandler
         this.RarityConfigs = raritySetupDataSource.GetAll().ToDictionary(d => d.ID);
     }
 
+    public Dictionary<int, int> CountByRarity { get; set; } = [];
+
     public int ChooseRarityFromIdSet(IEnumerable<int> idset)
     {
         List<WeightedValue<int>> weightedValues = [];
@@ -27,6 +29,13 @@ public class RarityHandler : BaseHandler
         }
 
         int finalid = this.randomNumberGetter.NextWeightedValue(weightedValues);
+
+        if (!CountByRarity.TryGetValue(finalid, out var count))
+        {
+            CountByRarity[finalid] = 0;
+        }
+
+        CountByRarity[finalid]++;
 
         return finalid;
     }

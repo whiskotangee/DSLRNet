@@ -2,9 +2,11 @@
 
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Generators;
+using DSLRNet.Core.Scan;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 public static class IServiceCollectionExtensions
 {
@@ -120,7 +122,9 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<DSLRNetBuilder>()
                 .AddSingleton<ProcessRunner>()
                 .AddSingleton<ItemLotScanner>()
-                .AddSingleton<IconBuilder>();
+                .AddSingleton<IconBuilder>()
+                .AddSingleton<BossDropScanner>()
+                .AddSingleton<GameStageEvaluator>();
 
         return services;
     }

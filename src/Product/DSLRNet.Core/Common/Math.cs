@@ -21,15 +21,19 @@ public static class MathFunctions
         return value + 1;
     }
 
-    public static Dictionary<float, int> MapToRange(List<double> values, int targetMin, int targetMax)
+    public static Dictionary<float, int> MapToRange(List<float> values, int targetMin, int targetMax)
     {
-        double sourceMin = values.Min();
-        double sourceMax = values.Max();
-        return values.Distinct().ToDictionary(t => (float)t, t => MapValue(t, sourceMin, sourceMax, targetMin, targetMax));
-    }
+        var sortedValues = values.Distinct().OrderBy(v => v).ToList(); 
 
-    public static int MapValue(double value, double sourceMin, double sourceMax, int targetMin, int targetMax)
-    {
-        return (int)((value - sourceMin) / (sourceMax - sourceMin) * (targetMax - targetMin) + targetMin);
+        var valueToQuantile = new Dictionary<float, int>(); 
+        int numQuantiles = targetMax - targetMin + 1; 
+        int numValues = sortedValues.Count; 
+
+        for (int i = 0; i < numValues; i++) 
+        { 
+            int quantile = targetMin + (i * numQuantiles / numValues); valueToQuantile[sortedValues[i]] = quantile;
+        } 
+        
+        return valueToQuantile;
     }
 }

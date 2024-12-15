@@ -1,6 +1,7 @@
 ﻿namespace DSLRNet.Core;
 
 using DSLRNet.Core.Generators;
+using DSLRNet.Core.Scan;
 using Microsoft.Extensions.Logging;
 using SoulsFormats;
 using SoulsFormats.Formats;

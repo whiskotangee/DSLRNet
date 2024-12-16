@@ -9,7 +9,6 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
     public ArmorLootGenerator(
         RarityHandler rarityHandler,
-        AllowListHandler whiteListHandler,
         SpEffectHandler spEffectHandler,
         LoreGenerator loreGenerator,
         RandomProvider random,
@@ -18,7 +17,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         IOptions<ArmorGeneratorConfig> armorConfig,
         DataAccess dataAccess,
         ILogger<ParamLootGenerator<EquipParamProtector>> logger)
-        : base(rarityHandler, whiteListHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector, logger)
+        : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector, logger)
     {
         this.CumulativeID = new CumulativeID(logger);
 
@@ -26,9 +25,9 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         this.armorConfig = armorConfig.Value;
     }
 
-    public int CreateArmor(int rarityId, List<int> wllIds)
+    public int CreateArmor(int rarityId)
     {
-        EquipParamProtector newArmor = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(wllIds, LootType.Armor));
+        EquipParamProtector newArmor = this.GetNewLootItem();
 
         newArmor.ID = (int)this.CumulativeID.GetNext();
         newArmor.sellValue = this.RarityHandler.GetSellValue(rarityId);

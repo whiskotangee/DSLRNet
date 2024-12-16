@@ -25,14 +25,13 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         IOptions<WeaponGeneratorConfig> weaponGeneratorConfig,
         AshofWarHandler ashofWarHandler,
         RarityHandler rarityHandler,
-        AllowListHandler whitelistHandler,
         SpEffectHandler spEffectHandler,
         RandomProvider random,
         LoreGenerator loreGenerator,
         DamageTypeHandler damageTypeHandler,
         ParamEditsRepository dataRepository,
         DataAccess dataAccess,
-        ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamWeapon, logger)
+        ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamWeapon, logger)
     {
         this.CumulativeID = new CumulativeID(logger);
         this.weaponGeneratorConfig = weaponGeneratorConfig.Value;
@@ -42,20 +41,30 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         this.DataSource = dataAccess.EquipParamWeapon;
     }
 
-    public int CreateWeapon(int rarityId, List<int> allowedLootIds = null)
+    public EquipParamWeapon GetNewWeapon(WeaponTypes type)
     {
-        allowedLootIds ??= [];
-
-        if (allowedLootIds.Count == 0)
+        bool found = false;
+        do
         {
-            allowedLootIds.Add(100);
+            var weaponCandidate = this.GetNewLootItem();
+            if (this.GetWeaponType(weaponCandidate.wepmotionCategory) == type)
+            {
+                return weaponCandidate;
+            }
         }
+        while (!found);
 
+        // we didn't find something, return whatever comes
+        return this.GetNewLootItem();
+    }
+
+    public int CreateWeapon(ItemLotSettings itemLotSettings, int rarityId)
+    {
         bool isUniqueWeapon = this.Random.PassesPercentCheck(this.weaponGeneratorConfig.UniqueNameChance);
 
-        EquipParamWeapon newWeapon = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(allowedLootIds, LootType.Weapon));
+        WeaponTypes weaponType = this.Random.NextWeightedValue(itemLotSettings.WeaponWeightsByType);
 
-        WeaponTypes generatedType = this.GetWeaponType(newWeapon.wepmotionCategory);
+        EquipParamWeapon newWeapon = this.GetNewWeapon(weaponType);
 
         newWeapon.ID = (int)this.CumulativeID.GetNext();
         newWeapon.sellValue = this.RarityHandler.GetSellValue(rarityId);
@@ -63,12 +72,12 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         newWeapon.iconId = this.RarityHandler.GetIconId(newWeapon.iconId, rarityId, isUnique: isUniqueWeapon);
 
         // 42300 allows scaling from all sources (STR,DEX,INT,FTH,ARC)
-        if (generatedType != WeaponTypes.StaffsSeals)
+        if (weaponType != WeaponTypes.StaffsSeals)
         {
             newWeapon.attackElementCorrectId = 42300;
         }
 
-        newWeapon.gemMountType = (byte)(generatedType == WeaponTypes.StaffsSeals ? 0 : 2);
+        newWeapon.gemMountType = (byte)(weaponType == WeaponTypes.StaffsSeals ? 0 : 2);
         newWeapon.disableGemAttr = 1;
         newWeapon.weight = this.RarityHandler.GetRandomizedWeight(newWeapon.weight, rarityId);
 
@@ -77,18 +86,18 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         WeaponModifications modifications = this.ApplyWeaponModifications(
             newWeapon,
             rarityId,
-            generatedType);
+            weaponType);
 
         this.damageTypeHandler.ApplyDamageTypeWeaponSpEffects(modifications, newWeapon.GenericParam);
 
         string weaponDesc = string.Join(Environment.NewLine, modifications.SpEffectDescriptions);
 
-        if (generatedType == WeaponTypes.Normal)
+        if (weaponType == WeaponTypes.Normal)
         {
             affinity = this.CreateAffinityTitle(modifications);
         }
 
-        if (newWeapon.reinforceTypeId != 2200 && generatedType != WeaponTypes.StaffsSeals)
+        if (newWeapon.reinforceTypeId != 2200 && weaponType != WeaponTypes.StaffsSeals)
         {
             this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
@@ -113,7 +122,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         if (isUniqueWeapon)
         {
-            string uniqueName = this.LoreGenerator.CreateRandomUniqueName(generatedType == WeaponTypes.Shields);
+            string uniqueName = this.LoreGenerator.CreateRandomUniqueName(weaponType == WeaponTypes.Shields);
 
             weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Configuration.Settings.ItemLotGeneratorSettings.UniqueItemColor);
         }

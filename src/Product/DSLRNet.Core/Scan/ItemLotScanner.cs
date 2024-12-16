@@ -45,7 +45,7 @@ public class ItemLotScanner(
             Dictionary<GameStage, int> mapItemsAdded = SetupMapLots(mapFileName, msb, claimedIds[ItemLotCategory.ItemLot_Map], npcs, remainingMapLots, eventItemLotDetails);
 
             Dictionary<GameStage, int> eventItemsAdded = SetupEventLots(mapFileName, msb, claimedIds[ItemLotCategory.ItemLot_Map], remainingMapLots, eventItemLotDetails);
-            logger.LogInformation($"Map {mapFileName} Enemies: {JsonConvert.SerializeObject(enemiesAdded)} Treasures: {JsonConvert.SerializeObject(mapItemsAdded)}");
+            logger.LogInformation($"Map {mapFileName} Enemies: {JsonConvert.SerializeObject(enemiesAdded)} Treasures: {JsonConvert.SerializeObject(mapItemsAdded)} BossDrops: {JsonConvert.SerializeObject(eventItemsAdded)}");
         }
 
         logger.LogInformation($"Map averages: {JsonConvert.SerializeObject(this.mapAverageStage, Formatting.Indented)}");
@@ -88,11 +88,11 @@ public class ItemLotScanner(
         {
             foreach (NpcParam? npc in npcParams.Where(d => d.itemLotId_enemy > 0))
             {
-                if (!IsValidItemLotId(npc.itemLotId_enemy, ItemLotCategory.ItemLot_Enemy))
-                {
-                    logger.LogInformation($"Skipping item lot Id as it does not give any items {npc.itemLotId_enemy}");
-                    continue;
-                }
+                //if (!IsValidItemLotId(npc.itemLotId_enemy, ItemLotCategory.ItemLot_Enemy))
+                //{
+                //    logger.LogInformation($"Skipping item lot Id as it does not give any items {npc.itemLotId_enemy}");
+                //    continue;
+                //}
 
                 if (claimedIds.Contains(npc.itemLotId_enemy) ||
                     !random.PassesPercentCheck(configuration.Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))

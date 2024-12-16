@@ -15,7 +15,6 @@ public static class IServiceCollectionExtensions
         services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
                 .Configure<WeaponGeneratorConfig>(configuration.GetSection(nameof(WeaponGeneratorConfig)))
                 .Configure<ArmorGeneratorConfig>(configuration.GetSection(nameof(ArmorGeneratorConfig)))
-                .Configure<AllowListConfig>(configuration.GetSection(nameof(AllowListConfig)))
                 .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)))
                 .Configure<AshOfWarConfig>(configuration.GetSection(nameof(AshOfWarConfig)))
                 .Configure<IconBuilderSettings>(configuration.GetSection(nameof(IconBuilderSettings)));
@@ -30,7 +29,6 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<DamageTypeHandler>()
                 .AddSingleton<RarityHandler>()
                 .AddSingleton<SpEffectHandler>()
-                .AddSingleton<AllowListHandler>()
                 .AddSingleton<ParamEditsRepository>()
                 .AddSingleton<DSLRNetBuilder>()
                 .AddSingleton<ProcessRunner>()

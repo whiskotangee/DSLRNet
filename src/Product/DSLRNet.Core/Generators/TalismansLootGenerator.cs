@@ -15,14 +15,13 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
     public TalismanLootGenerator(
         IOptions<Configuration> configuration,
         RarityHandler rarityHandler,
-        AllowListHandler whitelistHandler,
         SpEffectHandler spEffectHandler,
         RandomProvider random,
         LoreGenerator loreGenerator,
         ParamEditsRepository dataRepository,
         DataAccess dataAccess,
         ILogger<ParamLootGenerator<EquipParamAccessory>> logger)
-        : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory, logger)
+        : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory, logger)
     {
         this.CumulativeID = new CumulativeID(logger) { IDMultiplier = 10 };
 
@@ -31,12 +30,12 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         this.DataSource = dataAccess.EquipParamAccessory;
     }
 
-    public int CreateTalisman(int rarityId = 0, List<int> allowListIds = null)
+    public int CreateTalisman(int rarityId = 0)
     {
         List<string> talismanDescriptions = [];
         List<string> talismanSummaries = [];
 
-        EquipParamAccessory newTalisman = this.GetNewLootItem(this.WhiteListHandler.GetLootByAllowList(allowListIds, LootType.Talisman));
+        EquipParamAccessory newTalisman = this.GetNewLootItem();
 
         int freeSlotCount = this.GetAvailableSpeffectSlotCount(newTalisman.GenericParam);
 

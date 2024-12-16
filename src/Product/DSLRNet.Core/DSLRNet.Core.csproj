@@ -22,9 +22,6 @@
     <Content Include="appsettings.Default.IconBuilder.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="appsettings.Default.AllowedConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="appsettings.Default.AshOfWarConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

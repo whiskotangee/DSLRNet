@@ -2,7 +2,6 @@
 
 public class ParamLootGenerator<TParamType>(
     RarityHandler rarityHandler,
-    AllowListHandler whiteListHandler,
     SpEffectHandler spEffectHandler,
     LoreGenerator loreGenerator,
     RandomProvider random,
@@ -12,8 +11,6 @@ public class ParamLootGenerator<TParamType>(
     ILogger<ParamLootGenerator<TParamType>> logger) : BaseHandler(dataRepository)
 {
     public RarityHandler RarityHandler { get; set; } = rarityHandler;
-
-    public AllowListHandler WhiteListHandler { get; set; } = whiteListHandler;
 
     public SpEffectHandler SpEffectHandler { get; set; } = spEffectHandler;
 
@@ -26,8 +23,6 @@ public class ParamLootGenerator<TParamType>(
     public CumulativeID CumulativeID { get; set; }
 
     public IDataSource<TParamType> DataSource { get; set; }
-
-    private List<int> PriorityIDs_Current { get; set; } = [];
 
     private List<string> ParamMandatoryKeys { get; set; } = [];
 
@@ -114,31 +109,9 @@ public class ParamLootGenerator<TParamType>(
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)).Distinct());
     }
 
-    public TParamType GetNewLootItem(int baseId = -1)
+    public TParamType GetNewLootItem()
     {
-        if (this.Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled)
-        {
-            return this.DataSource.GetRandomItem();
-        }
-
-        if (baseId == -1 && this.PriorityIDs_Current.Count > 0)
-        {
-            baseId = this.ChoosePriorityIdAtRandom();
-        }
-
-        return this.DataSource.GetItemById(baseId);
-    }
-
-    public int ChoosePriorityIdAtRandom()
-    {
-        int chosenId = this.Random.GetRandomItem(this.PriorityIDs_Current);
-        if (chosenId != -1)
-        {
-            logger.LogDebug($"Priority ID {chosenId} Chosen, remaining Ids: {string.Join(", ", this.PriorityIDs_Current)}");
-        }
-
-        this.PriorityIDs_Current.Remove(chosenId);
-        return chosenId;
+        return this.DataSource.GetRandomItem();
     }
 
     public List<string> GetPassiveSpEffectSlotArrayFromOutputParamName()

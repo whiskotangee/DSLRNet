@@ -92,7 +92,7 @@ public class ItemLotGenerator : BaseHandler
             {
                 if (this.GeneratedDataRepository.TryGetParamEdit(ParamNames.ItemLotParam_enemy, itemLotIds[x], out var itemLotParam)) 
                 {
-                    this.logger.LogWarning($"Item lot {itemLotIds[x]} has already been processed, skipping");
+                    this.logger.LogDebug($"Enemy item lot {itemLotIds[x]} has already been processed, skipping");
                     continue;
                 }
 
@@ -337,17 +337,17 @@ public class ItemLotGenerator : BaseHandler
 
         if (LootType.Armor == itemType && this.armorLootGenerator.HasLootTemplates())
         {
-            itemId = this.armorLootGenerator.CreateArmor(rarityId, itemLotSettings.AllowedLootIds);
+            itemId = this.armorLootGenerator.CreateArmor(rarityId);
             itemCategory = 3;
         }
         else if (LootType.Talisman == itemType && this.talismanLootGenerator.HasLootTemplates())
         {
-            itemId = this.talismanLootGenerator.CreateTalisman(rarityId, itemLotSettings.AllowedLootIds);
+            itemId = this.talismanLootGenerator.CreateTalisman(rarityId);
             itemCategory = 4;
         }
         else
         {
-            itemId = this.weaponLootGenerator.CreateWeapon(rarityId, itemLotSettings.AllowedLootIds);
+            itemId = this.weaponLootGenerator.CreateWeapon(itemLotSettings, rarityId);
             itemCategory = 2;
         }
 

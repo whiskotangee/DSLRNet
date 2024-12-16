@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Core.Scan;
 
+using System.Net.Http.Headers;
 using static SoulsFormats.EMEVD.Instruction;
 
 public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configuration> config)
@@ -83,25 +84,52 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
                     if (instruction.Bank == 2003 && instruction.ID == 4)
                     {
                         var itemLotId = Convert.ToInt32(args[0]);
-                        var existingMapping = lotDetails.SingleOrDefault(d => d.ItemLotId == itemLotId);
-                        if (existingMapping == null)
+                        if (itemLotId > 0)
                         {
-                            existingMapping = new EventDropItemLotDetails
+                            var existingMapping = lotDetails.SingleOrDefault(d => d.ItemLotId == itemLotId);
+                            if (existingMapping == null)
                             {
-                                ItemLotId = itemLotId
-                            };
-                            lotDetails.Add(existingMapping);
-                        }
+                                existingMapping = new EventDropItemLotDetails
+                                {
+                                    ItemLotId = itemLotId
+                                };
+                                lotDetails.Add(existingMapping);
+                            }
 
-                        existingMapping.MapId = mapId;
+                            existingMapping.MapId = mapId;
+                        }
                     }
-                    // HandleBossDefeatAndDisplayBanner
+                    // Unknown200476 - grants items in some cases for events
+                    // bosses like the dancer in the dlc use this
+                    else if (instruction.Bank == 2004 && instruction.ID == 76)
+                    {
+                        var flagId = Convert.ToInt32(args[0]);
+                        var itemLotId = Convert.ToInt32(args[1]);
+                        
+                        if (itemLotId > 0)
+                        {
+                            var existingMapping = lotDetails.SingleOrDefault(d => d.EventTriggerFlagId == flagId || d.ItemLotId == itemLotId);
+                            if (existingMapping == null)
+                            {
+                                existingMapping = new EventDropItemLotDetails
+                                {
+                                    MapId = mapId,
+                                };
+                                lotDetails.Add(existingMapping);
+                            }
+
+                            existingMapping.EntityId = flagId; // it appears the flag is the entityId
+                            existingMapping.EventTriggerFlagId = flagId;
+                            existingMapping.ItemLotId = itemLotId;
+                        }
+                    }
+                    // HandleBossDefeatAndDisplayBanner - boss is killed
                     else if (instruction.Bank == 2003 && instruction.ID == 12)
                     {
                         entityId = Convert.ToInt32(args[0]);
                         lookingForEventId = true;
                     }
-                    // SetEventFlagID
+                    // SetEventFlagID - Set flag to award item from emevd commons
                     else if (instruction.Bank == 2003 && instruction.ID == 66 && lookingForEventId)
                     {
                         var flagId = Convert.ToInt32(args[1]);
@@ -116,6 +144,26 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
                                 existingMapping.EntityId = entityId;
                                 existingMapping.MapId = mapId;
                             }
+                        }
+                    }
+                    //AwardItemsIncludingClients - open world bosses use this to award items (maybe only in dlc?)
+                    else if (instruction.Bank == 2003 && instruction.ID == 33 && lookingForEventId)
+                    {
+                        var itemLotId = Convert.ToInt32(args[0]);
+                        if (itemLotId > 0)
+                        {
+                            var existingMapping = lotDetails.SingleOrDefault(d => d.ItemLotId == itemLotId);
+                            if (existingMapping == null)
+                            {
+                                existingMapping = new EventDropItemLotDetails
+                                {
+                                    ItemLotId = itemLotId
+                                };
+                                lotDetails.Add(existingMapping);
+                            }
+
+                            existingMapping.EntityId = entityId;
+                            existingMapping.MapId = mapId;
                         }
                     }
                 }

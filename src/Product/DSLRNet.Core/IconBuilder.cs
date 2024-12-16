@@ -13,6 +13,7 @@ using DSLRNet.Core.Extensions;
 using DdsFileTypePlus;
 using PaintDotNet;
 using ImageMagick;
+using DSLRNet.Core.DAL;
 
 public partial class IconBuilder(
     IOptionsMonitor<Configuration> configOptions, 
@@ -20,9 +21,7 @@ public partial class IconBuilder(
     ILogger<IconBuilder> logger,
     RarityHandler rarityHandler,
     ProcessRunner processRunner,
-    IDataSource<EquipParamWeapon> weaponDataSource,
-    IDataSource<EquipParamProtector> armorDataSource,
-    IDataSource<EquipParamAccessory> accessoryDataSource)
+    DataAccess dataAccess)
 {
     private readonly string nameBase = "SB_Icon_DSLR_";
     private ConcurrentDictionary<string, Image<Bgra32>> loadedDDSImageCache = [];
@@ -138,9 +137,9 @@ public partial class IconBuilder(
 
         Dictionary<LootType, List<ushort>> iconsToDuplicate = [];
 
-        iconsToDuplicate[LootType.Weapon] = weaponDataSource.GetAll().Select(s => s.iconId).ToList();
-        iconsToDuplicate[LootType.Armor] = armorDataSource.GetAll().Select(s => s.iconIdF).ToList().Union(armorDataSource.GetAll().Select(s => s.iconIdM).ToList()).ToList();
-        iconsToDuplicate[LootType.Talisman] = accessoryDataSource.GetAll().Select(s => s.iconId).ToList();
+        iconsToDuplicate[LootType.Weapon] = dataAccess.EquipParamWeapon.GetAll().Select(s => s.iconId).ToList();
+        iconsToDuplicate[LootType.Armor] = dataAccess.EquipParamProtector.GetAll().Select(s => s.iconIdF).ToList().Union(dataAccess.EquipParamProtector.GetAll().Select(s => s.iconIdM).ToList()).ToList();
+        iconsToDuplicate[LootType.Talisman] = dataAccess.EquipParamAccessory.GetAll().Select(s => s.iconId).ToList();
 
         ConcurrentBag<string> iconSheetFileNames = [];
 

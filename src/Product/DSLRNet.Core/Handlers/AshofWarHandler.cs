@@ -1,13 +1,15 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
+using DSLRNet.Core.DAL;
+
 public class AshofWarHandler(
     RandomProvider random,
     IOptions<AshOfWarConfig> ashofWarConfig,
     ParamEditsRepository generatedDataRepository,
-    IDataSource<EquipParamGem> gemParamDataSource,
+    DataAccess dataAccess,
     ILogger<AshofWarHandler> logger) : BaseHandler(generatedDataRepository)
 {
-    private readonly IEnumerable<EquipParamGem> equipParamGems = gemParamDataSource.GetAll();
+    private readonly IEnumerable<EquipParamGem> equipParamGems = dataAccess.EquipParamGem.GetAll();
     private readonly AshOfWarConfig ashOfWarConfig = ashofWarConfig.Value;
     private readonly ILogger<AshofWarHandler> logger = logger;
 

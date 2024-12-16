@@ -11,4 +11,6 @@ public class EventDropItemLotDetails
     public int ItemLotId { get; set; }
 
     public int AcquisitionFlag { get; set; }
+
+    public int NpcId { get; set; }
 }

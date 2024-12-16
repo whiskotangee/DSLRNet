@@ -1,7 +1,9 @@
 ﻿namespace DSLRNet.Core.Data;
+
+using DSLRNet.Core.DAL;
 using System.Text;
 
-public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, IDataSource<ItemLotParam_enemy> enemyDataSource, ILogger<ParamEditsRepository> logger)
+public class ParamEditsRepository(DataAccess dataAccess, ILogger<ParamEditsRepository> logger)
 {
     private Dictionary<ParamNames, List<ParamEdit>> paramEdits { get; set; } =
         Enum.GetValues(typeof(ParamNames))
@@ -18,8 +20,8 @@ public class ParamEditsRepository(IDataSource<ItemLotParam_map> mapDataSource, I
         List<ParamEdit> enemyLots = this.paramEdits[ParamNames.ItemLotParam_enemy].ToList();
         List<ParamEdit> mapLots = this.paramEdits[ParamNames.ItemLotParam_map].ToList();
 
-        HashSet<int> preExistingIds = mapDataSource.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 })
-            .Concat(enemyDataSource.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 }))
+        HashSet<int> preExistingIds = dataAccess.ItemLotParamMap.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 })
+            .Concat(dataAccess.ItemLotParamEnemy.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 }))
             .ToHashSet();
 
         HashSet<int> lotItemIds = this.paramEdits

@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Core;
 
+using DSLRNet.Core.DAL;
 using DSLRNet.Core.Generators;
 using DSLRNet.Core.Scan;
 using Microsoft.Extensions.Logging;

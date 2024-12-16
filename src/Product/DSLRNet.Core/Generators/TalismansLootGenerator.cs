@@ -3,7 +3,7 @@
 using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Contracts.Params;
+using DSLRNet.Core.DAL;
 using DSLRNet.Core.Data;
 using DSLRNet.Core.Handlers;
 using Microsoft.Extensions.Options;
@@ -20,16 +20,15 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         RandomProvider random,
         LoreGenerator loreGenerator,
         ParamEditsRepository dataRepository,
-        IDataSource<TalismanConfig> talismanConfigDataSource,
-        IDataSource<EquipParamAccessory> talismanParamDataSource,
+        DataAccess dataAccess,
         ILogger<ParamLootGenerator<EquipParamAccessory>> logger)
         : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory, logger)
     {
         this.CumulativeID = new CumulativeID(logger) { IDMultiplier = 10 };
 
-        this.TalismanConfigs = talismanConfigDataSource.GetAll().ToList();
+        this.TalismanConfigs = dataAccess.TalismanConfig.GetAll().ToList();
 
-        this.DataSource = talismanParamDataSource;
+        this.DataSource = dataAccess.EquipParamAccessory;
     }
 
     public int CreateTalisman(int rarityId = 0, List<int> allowListIds = null)

@@ -21,17 +21,41 @@ public static class MathFunctions
         return value + 1;
     }
 
-    public static Dictionary<float, int> MapToRange(List<float> values, int targetMin, int targetMax)
+    public static float GetNearestValue(float value, IEnumerable<float> values)
     {
-        var sortedValues = values.Distinct().OrderBy(v => v).ToList(); 
+        if (values == null || values.Count() == 0)
+        {
+            throw new ArgumentException("The list of values cannot be null or empty.");
+        }
 
-        var valueToQuantile = new Dictionary<float, int>(); 
+        float nearestValue = values.First();
+        float smallestDifference = Math.Abs(nearestValue - value);
+
+        foreach (float v in values)
+        {
+            float difference = Math.Abs(v - value);
+            if (difference < smallestDifference)
+            {
+                smallestDifference = difference;
+                nearestValue = v;
+            }
+        }
+
+        return nearestValue;
+    }
+
+    public static Dictionary<int, int> MapToRange<T>(IEnumerable<T> values, Func<T, float> getMeasurement, Func<T, int> getKey, int targetMin, int targetMax)
+    {
+        var sortedValues = values.OrderBy(v => getMeasurement(v)).ToList(); 
+
+        var valueToQuantile = new Dictionary<int, int>(); 
         int numQuantiles = targetMax - targetMin + 1; 
         int numValues = sortedValues.Count; 
 
         for (int i = 0; i < numValues; i++) 
         { 
-            int quantile = targetMin + (i * numQuantiles / numValues); valueToQuantile[sortedValues[i]] = quantile;
+            int quantile = targetMin + (i * numQuantiles / numValues);
+            valueToQuantile[getKey(sortedValues[i])] = quantile;
         } 
         
         return valueToQuantile;

@@ -1,4 +1,5 @@
 ﻿using DSLRNet.Core;
+using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,9 +55,11 @@ services.AddLogging((builder) =>
     builder.AddSerilog();
 });
 
-await services.SetupDSLRAsync(configuration);
+services.SetupDSLR(configuration);
 
 ServiceProvider sp = services.BuildServiceProvider();
+
+await sp.GetRequiredService<DataAccess>().InitializeDataSourcesAsync();
 
 IconBuilder iconbuilder = sp.GetRequiredService<IconBuilder>();
 DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();

@@ -19,12 +19,12 @@ public static class MSBEExtensions
                 NpcParam? item = allNpcs.SingleOrDefault(d => d.ID == enemy.NPCParamID);
                 if (item == null)
                 {
-                    logger.LogWarning($"NPC with ID {enemy.NPCParamID} from map {mapFileName} with model {modelNumber} did not match a param");
+                    logger.LogDebug($"NPC with ID {enemy.NPCParamID} from map {mapFileName} with model {modelNumber} did not match a param");
                     continue;
                 }
                 else if (item.itemLotId_enemy < 0 && item.itemLotId_map < 0)
                 {
-                    logger.LogWarning($"NPC with ID {enemy.NPCParamID} from map {mapFileName} with model {modelNumber} did not have an item lot associated with it");
+                    logger.LogDebug($"NPC with ID {enemy.NPCParamID} from map {mapFileName} with model {modelNumber} did not have an item lot associated with it");
                     continue;
                 }
 

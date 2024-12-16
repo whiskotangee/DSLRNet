@@ -4,6 +4,7 @@ using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts;
 using DSLRNet.Core.Contracts.Params;
+using DSLRNet.Core.DAL;
 using DSLRNet.Core.Data;
 using DSLRNet.Core.Extensions;
 using DSLRNet.Core.Handlers;
@@ -30,8 +31,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         LoreGenerator loreGenerator,
         DamageTypeHandler damageTypeHandler,
         ParamEditsRepository dataRepository,
-        IDataSource<EquipParamWeapon> weaponDataSource,
-        IDataSource<EquipParamCustomWeapon> customWeaponsDataSource,
+        DataAccess dataAccess,
         ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, whitelistHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamWeapon, logger)
     {
         this.CumulativeID = new CumulativeID(logger);
@@ -39,7 +39,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         this.ashofWarHandler = ashofWarHandler;
         this.damageTypeHandler = damageTypeHandler;
         this.logger = logger;
-        this.DataSource = weaponDataSource;
+        this.DataSource = dataAccess.EquipParamWeapon;
     }
 
     public int CreateWeapon(int rarityId, List<int> allowedLootIds = null)

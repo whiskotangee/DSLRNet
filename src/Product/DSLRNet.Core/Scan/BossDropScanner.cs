@@ -64,10 +64,10 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
         {
             EMEVD mapEmevd = EMEVD.Read(mapEventFile);
 
-            logger.LogInformation($"Scanning for events from {mapEventFile}");
-
             var mapId = Path.GetFileName(mapEventFile);
             mapId = mapId.Substring(0, mapId.IndexOf('.'));
+
+            logger.LogInformation($"Scanning events from {mapId} for boss drops");
 
             foreach (var ev in mapEmevd.Events)
             {

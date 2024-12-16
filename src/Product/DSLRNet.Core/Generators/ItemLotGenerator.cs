@@ -1,6 +1,7 @@
 ﻿namespace DSLRNet.Core.Generators;
 
 using DSLRNet.Core.Common;
+using DSLRNet.Core.DAL;
 using System.Collections.Concurrent;
 
 public class ItemLotGenerator : BaseHandler
@@ -27,9 +28,7 @@ public class ItemLotGenerator : BaseHandler
         ParamEditsRepository dataRepository,
         RandomProvider random,
         IOptions<Configuration> configuration,
-        IDataSource<ItemLotParam_map> mapDataSource,
-        IDataSource<ItemLotParam_enemy> enemyDataSource,
-        IDataSource<ItemLotBase> itemLotBaseDataSource,
+        DataAccess dataAccess,
         ILogger<ItemLotGenerator> logger) : base(dataRepository)
     {
         this.armorLootGenerator = armorLootGenerator;
@@ -45,9 +44,9 @@ public class ItemLotGenerator : BaseHandler
             UseWrapAround = true
         };
 
-        this.ItemLotTemplate = itemLotBaseDataSource.GetAll().First();
-        this.itemLotParam_Map = mapDataSource.GetAll();
-        this.itemLotParam_Enemy = enemyDataSource.GetAll();
+        this.ItemLotTemplate = dataAccess.ItemLotBase.GetAll().First();
+        this.itemLotParam_Map = dataAccess.ItemLotParamMap.GetAll();
+        this.itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll();
     }
 
     private ItemLotBase ItemLotTemplate { get; set; }
@@ -371,7 +370,7 @@ public class ItemLotGenerator : BaseHandler
         float dropMult, 
         bool dropGauranteed = false)
     {
-        int rarity = this.rarityHandler.ChooseRarityFromIdSet(gameStageConfig.AllowedRarities);
+        int rarity = this.rarityHandler.ChooseRarityFromIdSet(IntValueRange.CreateFrom(gameStageConfig.AllowedRarities));
 
         (int finalId, int finalCategory) = this.TaskLootGeneratorBasedOnLootType(itemLotSettings, rarity);
 

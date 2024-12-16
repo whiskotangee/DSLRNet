@@ -32,6 +32,16 @@ public class IntValueRange
         return new IntValueRange(values.Min(), values.Max());
     }
 
+    public IEnumerable<int> ToRangeOfValues()
+    {
+        if (Min == Max)
+        {
+            return [Min];
+        }
+        
+        return Enumerable.Range(Min, Max - Min + 1);
+    }
+
     public static IntValueRange operator +(IntValueRange value1, IntValueRange value2)
     {
         return new IntValueRange(value1.Min + value2.Min, value1.Max + value2.Max);

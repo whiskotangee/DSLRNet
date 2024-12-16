@@ -1,4 +1,6 @@
 ﻿namespace DSLRNet.Core.Handlers;
+
+using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
 
 public class RarityHandler : BaseHandler
@@ -11,19 +13,19 @@ public class RarityHandler : BaseHandler
     public RarityHandler(
         RandomProvider randomNumberGetter,
         ParamEditsRepository dataRepository,
-        IDataSource<RaritySetup> raritySetupDataSource) : base(dataRepository)
+        DataAccess dataAccess) : base(dataRepository)
     {
         this.randomNumberGetter = randomNumberGetter;
-        this.RarityConfigs = raritySetupDataSource.GetAll().ToDictionary(d => d.ID);
+        this.RarityConfigs = dataAccess.RaritySetup.GetAll().ToDictionary(d => d.ID);
     }
 
     public Dictionary<int, int> CountByRarity { get; set; } = [];
 
-    public int ChooseRarityFromIdSet(IEnumerable<int> idset)
+    public int ChooseRarityFromIdSet(IntValueRange range)
     {
         List<WeightedValue<int>> weightedValues = [];
 
-        foreach (int x in idset)
+        foreach (int x in range.ToRangeOfValues())
         {
             weightedValues.Add(new WeightedValue<int> { Value = this.GetNearestRarityId(x), Weight = this.RarityConfigs[x].SelectionWeight });
         }

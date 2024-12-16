@@ -5,99 +5,12 @@ using DSLRNet.Core.Generators;
 using DSLRNet.Core.Scan;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Serilog;
 
 public static class IServiceCollectionExtensions
 {
 
-    public static async Task<IServiceCollection> SetupDSLRAsync(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection SetupDSLR(this IServiceCollection services, IConfiguration configuration)
     {
-        IServiceCollection serviceCollection = new ServiceCollection();
-
-        serviceCollection.Configure<Configuration>(configuration.GetSection(nameof(Configuration)));
-
-        serviceCollection.AddLogging((builder) =>
-        {
-            builder.AddSerilog();
-        });
-        serviceCollection.AddSingleton<Csv>();
-        serviceCollection.AddSingleton<RegulationBinReader>();
-        serviceCollection.AddSingleton<DataSourceFactory>()
-                            .AddSingleton((sp) =>
-                            {
-                                return new RandomProvider(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
-                            });
-
-        var factoryServiceProvider = serviceCollection.BuildServiceProvider();
-        var csv = factoryServiceProvider.GetRequiredService<Csv>();
-        var regulationBinReader = factoryServiceProvider.GetRequiredService<Csv>();
-        var randomProvider = factoryServiceProvider.GetRequiredService<RandomProvider>();
-        var factory = factoryServiceProvider.GetRequiredService<DataSourceFactory>();
-        var configSettings = factoryServiceProvider.GetRequiredService<IOptions<Configuration>>().Value;
-
-
-        // Initialize data sources with the factory
-        var equipParamWeapon = CreateDataSource<EquipParamWeapon>(factory, DataSourceNames.EquipParamWeapon, configSettings);
-        var equipParamCustomWeapon = CreateDataSource<EquipParamCustomWeapon>(factory, DataSourceNames.EquipParamCustomWeapon, configSettings);
-        var equipParamAccessory = CreateDataSource<EquipParamAccessory>(factory, DataSourceNames.EquipParamAccessory, configSettings);
-        var equipParamGem = CreateDataSource<EquipParamGem>(factory, DataSourceNames.EquipParamGem, configSettings);
-        var equipParamProtector = CreateDataSource<EquipParamProtector>(factory, DataSourceNames.EquipParamProtector, configSettings);
-        var spEffectParam = CreateDataSource<SpEffectParam>(factory, DataSourceNames.SpEffectParam, configSettings);
-        var spEffectParamNew = CreateDataSource<SpEffectParamNew>(factory, DataSourceNames.SpEffectParamNew, configSettings);
-        var itemLotParamEnemy = CreateDataSource<ItemLotParam_enemy>(factory, DataSourceNames.ItemLotParam_enemy, configSettings);
-        var itemLotParamMap = CreateDataSource<ItemLotParam_map>(factory, DataSourceNames.ItemLotParam_map, configSettings);
-        var npcParam = CreateDataSource<NpcParam>(factory, DataSourceNames.NpcParam, configSettings);
-        var raritySetup = CreateDataSource<RaritySetup>(factory, DataSourceNames.RaritySetup, configSettings);
-        var itemLotBase = CreateDataSource<ItemLotBase>(factory, DataSourceNames.ItemLotBase, configSettings);
-        var damageTypeSetup = CreateDataSource<DamageTypeSetup>(factory, DataSourceNames.DamageTypeSetup, configSettings);
-        var talismanConfig = CreateDataSource<TalismanConfig>(factory, DataSourceNames.TalismanConfig, configSettings);
-        var spEffectConfig = CreateDataSource<SpEffectConfig>(factory, DataSourceNames.SpEffectConfig, configSettings);
-
-        // List to hold all initialization tasks
-        List<Task> tasks =
-        [
-            equipParamCustomWeapon.InitializeDataAsync(),
-            equipParamAccessory.InitializeDataAsync(),
-            equipParamGem.InitializeDataAsync(), 
-            equipParamProtector.InitializeDataAsync(), 
-            spEffectParam.InitializeDataAsync(),
-            spEffectParamNew.InitializeDataAsync(),
-            itemLotParamEnemy.InitializeDataAsync(), 
-            itemLotParamMap.InitializeDataAsync(), 
-            npcParam.InitializeDataAsync(), 
-            raritySetup.InitializeDataAsync(), 
-            itemLotBase.InitializeDataAsync(), 
-            damageTypeSetup.InitializeDataAsync(), 
-            talismanConfig.InitializeDataAsync(), 
-            spEffectConfig.InitializeDataAsync() 
-        ]; 
-
-        // Await all tasks
-        await Task.WhenAll(tasks);
-
-        await equipParamWeapon.InitializeDataAsync(equipParamCustomWeapon.GetAll().Select(d => d.baseWepId).Distinct());
-
-        // Add initialized data sources to service collection
-        services.AddSingleton(equipParamWeapon)
-            .AddSingleton(equipParamCustomWeapon)
-            .AddSingleton(equipParamAccessory)
-            .AddSingleton(equipParamGem)
-            .AddSingleton(equipParamProtector)
-            .AddSingleton(spEffectParam)
-            .AddSingleton(spEffectParamNew)
-            .AddSingleton(itemLotParamEnemy)
-            .AddSingleton(itemLotParamMap)
-            .AddSingleton(npcParam)
-            .AddSingleton(raritySetup)
-            .AddSingleton(itemLotBase)
-            .AddSingleton(damageTypeSetup)
-            .AddSingleton(talismanConfig)
-            .AddSingleton(spEffectConfig)
-            .AddSingleton(csv)
-            .AddSingleton(regulationBinReader)
-            .AddSingleton(randomProvider);
-
         // configurations
         services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
                 .Configure<WeaponGeneratorConfig>(configuration.GetSection(nameof(WeaponGeneratorConfig)))
@@ -124,7 +37,16 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<ItemLotScanner>()
                 .AddSingleton<IconBuilder>()
                 .AddSingleton<BossDropScanner>()
-                .AddSingleton<GameStageEvaluator>();
+                .AddSingleton<GameStageEvaluator>()
+                .AddSingleton<MSBProvider>()
+                .AddSingleton<DataAccess>()
+                .AddSingleton<Csv>()
+                .AddSingleton<RegulationBinReader>()
+                .AddSingleton<DataSourceFactory>()
+                .AddSingleton((sp) =>
+                {
+                    return new RandomProvider(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
+                });
 
         return services;
     }

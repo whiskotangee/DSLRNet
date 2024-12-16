@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Core.Generators;
 
+using DSLRNet.Core.DAL;
 using System.Linq;
 
 public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
@@ -15,13 +16,13 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         ParamEditsRepository dataRepository,
         IOptions<Configuration> configuration,
         IOptions<ArmorGeneratorConfig> armorConfig,
-        IDataSource<EquipParamProtector> paramDataSource,
+        DataAccess dataAccess,
         ILogger<ParamLootGenerator<EquipParamProtector>> logger)
         : base(rarityHandler, whiteListHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector, logger)
     {
         this.CumulativeID = new CumulativeID(logger);
 
-        this.DataSource = paramDataSource;
+        this.DataSource = dataAccess.EquipParamProtector;
         this.armorConfig = armorConfig.Value;
     }
 

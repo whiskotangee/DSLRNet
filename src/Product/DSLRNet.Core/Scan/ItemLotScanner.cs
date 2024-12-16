@@ -1,29 +1,24 @@
 ﻿namespace DSLRNet.Core.Scan;
 
+using DSLRNet.Core.DAL;
 using DSLRNet.Core.Data;
 using DSLRNet.Core.Extensions;
-using System.Collections.Concurrent;
-using System.Diagnostics;
-using static SoulsFormats.EMEVD.Instruction;
 
 public class ItemLotScanner(
     ILogger<ItemLotScanner> logger,
     RandomProvider random,
     IOptions<Configuration> configuration,
-    IDataSource<ItemLotParam_map> mapItemLotSource,
-    IDataSource<ItemLotParam_enemy> enemyItemLotSource,
-    IDataSource<NpcParam> npcParamSource,
-    IDataSource<SpEffectParam> spEffectParam,
-    IDataSource<RaritySetup> raritySetup,
+    DataAccess dataAccess,
     BossDropScanner bossDropScanner,
-    GameStageEvaluator gameStageEvaluator)
+    GameStageEvaluator gameStageEvaluator,
+    MSBProvider msbProvider)
 {
     private readonly ILogger<ItemLotScanner> logger = logger;
     private readonly RandomProvider random = random;
     private readonly Configuration configuration = configuration.Value;
-    private readonly List<ItemLotParam_map> itemLotParam_Map = mapItemLotSource.GetAll().ToList();
-    private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = enemyItemLotSource.GetAll().ToList();
-    private readonly List<NpcParam> npcParams = npcParamSource.GetAll().ToList();
+    private readonly List<ItemLotParam_map> itemLotParam_Map = dataAccess.ItemLotParamMap.GetAll().ToList();
+    private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll().ToList();
+    private readonly List<NpcParam> npcParams = dataAccess.NpcParam.GetAll().ToList();
 
     public async Task<Dictionary<ItemLotCategory, ItemLotSettings>> ScanAndCreateItemLotSetsAsync(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
@@ -31,7 +26,7 @@ public class ItemLotScanner(
 
         Dictionary<ItemLotCategory, ItemLotSettings> generatedItemLotSettings = [];
 
-        ItemLotSettings remainingMapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_And_Events.ini", configuration.Itemlots.Categories[1]);
+        ItemLotSettings remainingMapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]);
         ItemLotSettings remainingEnemyLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]);
 
         List<EventDropItemLotDetails> eventItemLotDetails = bossDropScanner.ScanEventsForBossDrops();
@@ -39,22 +34,12 @@ public class ItemLotScanner(
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Enemy, remainingEnemyLots);
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Map, remainingMapLots);
 
-        List<int> globalNpcIds = [];
-
-        List<string> mapStudioFiles = Directory.GetFiles(Path.Combine(this.configuration.Settings.DeployPath, "map", "mapstudio"), "*.msb.dcx").ToList();
-        List<string> additionalMapFiles = Directory.GetFiles(Path.Combine(this.configuration.Settings.GamePath, "map", "mapstudio"), "*.msb.dcx")
-            .Where(d => !mapStudioFiles.Any(s => Path.GetFileName(s) == Path.GetFileName(d)))
-            .ToList();
-
-        mapStudioFiles.AddRange(additionalMapFiles);
-
-        foreach (string mapFile in mapStudioFiles)
+        foreach (var mapFile in msbProvider.GetAllMsbs())
         {
-            MSBE msb = MSBE.Read(mapFile);
+            string mapFileName = mapFile.Key;
+            MSBE msb = mapFile.Value;
 
-            string mapFileName = Path.GetFileName(mapFile);
-
-            List<NpcParam> npcs = msb.FilterRelevantNpcs(logger, npcParams, mapFile);
+            List<NpcParam> npcs = msb.FilterRelevantNpcs(logger, npcParams, mapFileName);
 
             Dictionary<GameStage, int> enemiesAdded = SetupEnemyLots(mapFileName, claimedIds[ItemLotCategory.ItemLot_Enemy], npcs, remainingEnemyLots);
             Dictionary<GameStage, int> mapItemsAdded = SetupMapLots(mapFileName, msb, claimedIds[ItemLotCategory.ItemLot_Map], npcs, remainingMapLots, eventItemLotDetails);
@@ -78,8 +63,9 @@ public class ItemLotScanner(
             if (foundEvent != null)
             {
                 NpcParam foundNpc = npcParams.Single(d => d.ID == foundEvent.NPCParamID);
+                details.NpcId = foundNpc.ID;
 
-                GameStage evaluatedStage = gameStageEvaluator.EvaluateDifficulty(settings, foundNpc);
+                GameStage evaluatedStage = gameStageEvaluator.EvaluateDifficulty(settings, foundNpc, true);
 
                 settings.GetGameStageConfig(evaluatedStage).ItemLotIds.Add(details.ItemLotId);
                 if (!assigned.TryGetValue(evaluatedStage, out int count))
@@ -114,7 +100,7 @@ public class ItemLotScanner(
                     continue;
                 }
 
-                GameStage assignedGameStage = gameStageEvaluator.EvaluateDifficulty(settings, npc);
+                GameStage assignedGameStage = gameStageEvaluator.EvaluateDifficulty(settings, npc, false);
 
                 settings.GetGameStageConfig(assignedGameStage).ItemLotIds.Add(npc.itemLotId_enemy);
                 addedByStage[assignedGameStage] += 1;
@@ -132,7 +118,7 @@ public class ItemLotScanner(
         if (configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled
                 || configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
         {
-            GameStageConfig gameStage = GetGameStageConfigsForMap(name, msb, npcParams, settings, lotDetails);
+            GameStageConfig gameStage = GetGameStageConfigForMap(name, msb, npcParams, settings, lotDetails);
 
             List<int> candidateTreasures = [];
 
@@ -179,7 +165,7 @@ public class ItemLotScanner(
 
     Dictionary<string, string> mapAverageStage = [];
 
-    private GameStageConfig GetGameStageConfigsForMap(string name, MSBE msb, List<NpcParam> npcs, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
+    private GameStageConfig GetGameStageConfigForMap(string name, MSBE msb, List<NpcParam> npcs, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
     {
         GameStage gameStage = gameStageEvaluator.EvaluateDifficulty(settings, msb, npcs, name, lotDetails);
 
@@ -200,15 +186,7 @@ public class ItemLotScanner(
                 return false;
             }
 
-            return match.getItemFlagId > 0
-                && (match.lotItemCategory01 >= 1
-                    || match.lotItemCategory02 >= 1
-                    || match.lotItemCategory03 >= 1
-                    || match.lotItemCategory04 >= 1
-                    || match.lotItemCategory05 >= 1
-                    || match.lotItemCategory06 >= 1
-                    || match.lotItemCategory07 >= 1
-                    || match.lotItemCategory08 >= 1);
+            return match.GenericParam.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GenericParam.GetValue<int>(d) >= 1);
         }
         else
         {
@@ -220,14 +198,7 @@ public class ItemLotScanner(
                 return false;
             }
 
-            return match.lotItemCategory01 >= 1
-                    || match.lotItemCategory02 >= 1
-                    || match.lotItemCategory03 >= 1
-                    || match.lotItemCategory04 >= 1
-                    || match.lotItemCategory05 >= 1
-                    || match.lotItemCategory06 >= 1
-                    || match.lotItemCategory07 >= 1
-                    || match.lotItemCategory08 >= 1;
+            return match.GenericParam.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GenericParam.GetValue<int>(d) >= 1);
         }
     }
 }

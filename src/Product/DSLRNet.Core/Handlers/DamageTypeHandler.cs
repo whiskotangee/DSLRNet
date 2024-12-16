@@ -1,23 +1,25 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
+using DSLRNet.Core.DAL;
+
 public class DamageTypeHandler : BaseHandler
 {
     private Configuration configuration { get; set; }
 
     private List<DamageTypeSetup> DamageTypes { get; set; }
-
+    
     private readonly RandomProvider random;
 
     public DamageTypeHandler(
         IOptions<Configuration> configuration,
         RandomProvider random,
         ParamEditsRepository dataRepository,
-        IDataSource<DamageTypeSetup> damageTypeDataSource) : base(dataRepository)
+        DataAccess dataAccess) : base(dataRepository)
     {
         this.configuration = configuration.Value;
         this.random = random;
 
-        this.DamageTypes = damageTypeDataSource.GetAll().ToList();
+        this.DamageTypes = dataAccess.DamageTypeSetup.GetAll().ToList();
 
         this.DamageTypes.Where(d => d.Message >= 1022 && d.Message <= 1100)
             .ToList()
@@ -46,19 +48,15 @@ public class DamageTypeHandler : BaseHandler
             return this.random.GetRandomItem(this.DamageTypes);
         }
 
-        List<WeightedValue<int>> weightedValues = [];
-
-        // Iterate over all DamageType keys, add their weightsToGet and ID to relevant arrays
-        foreach (DamageTypeSetup damageType in this.DamageTypes)
+        List<WeightedValue<int>> weightedValues = this.DamageTypes.Select(d => new WeightedValue<int>
         {
-            weightedValues.Add(new WeightedValue<int>
-            {
-                Weight = secondaryDamage ? damageType.SecWeight : damageType.PriWeight,
-                Value = damageType.ID
-            });
-        }
+            Weight = secondaryDamage ? d.SecWeight : d.PriWeight,
+            Value = d.ID
+        }).ToList();
 
-        return this.DamageTypes.Single(d => d.ID == this.random.NextWeightedValue(weightedValues));
+        var chosenValue = this.random.NextWeightedValue(weightedValues);
+
+        return this.DamageTypes.Single(d => d.ID == chosenValue);
     }
 
     public void ApplyDamageTypeWeaponSpEffects(WeaponModifications mods, GenericParam weaponDict)

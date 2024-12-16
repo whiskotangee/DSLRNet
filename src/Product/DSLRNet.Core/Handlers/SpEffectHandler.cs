@@ -1,5 +1,7 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
+using DSLRNet.Core.DAL;
+
 public class SpEffectHandler : BaseHandler
 {
     private readonly Configuration configuration;
@@ -14,16 +16,15 @@ public class SpEffectHandler : BaseHandler
         RarityHandler rarityHandler,
         RandomProvider random,
         ParamEditsRepository dataRepository,
-        IDataSource<SpEffectConfig> spEffectConfigDataSource,
-        IDataSource<SpEffectParamNew> spEffectDataSource) : base(dataRepository)
+        DataAccess dataAccess) : base(dataRepository)
     {
         this.configuration = configuration.Value;
         this.rarityHandler = rarityHandler;
         this.randomNumberGetter = random;
 
-        this.LoadedSpEffectConfigs = spEffectConfigDataSource.GetAll();
+        this.LoadedSpEffectConfigs = dataAccess.SpEffectConfig.GetAll();
 
-        IEnumerable<SpEffectParamNew> loadedSpEffectParams = spEffectDataSource.GetAll().ToList();
+        IEnumerable<SpEffectParamNew> loadedSpEffectParams = dataAccess.SpEffectParamNew.GetAll().ToList();
 
         foreach (SpEffectParamNew? spEffectParam in loadedSpEffectParams)
         {

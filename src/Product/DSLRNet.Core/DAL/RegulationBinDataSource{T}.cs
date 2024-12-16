@@ -95,8 +95,6 @@ public class RegulationBinDataSource<T>(
                 }
             }
 
-            Console.WriteLine($"Applied filters removed {countBefore - filteredData.Count()} rows");
-
             return filteredData.ToList();
         }
 

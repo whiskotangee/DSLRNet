@@ -59,9 +59,8 @@ public class RarityHandler : BaseHandler
         for (int i = offset; i < desiredCount; i++)
         {
             string paramName = $"SpEffect{i}Chance";
-            RaritySetup item = rarity;
 
-            float chance = item.GetValue<float>(paramName);
+            float chance = Convert.ToSingle(rarity.GetType().GetProperties().Single(d => d.Name.Contains(paramName)).GetValue(rarity));
             chanceQueue.Enqueue(this.randomProvider.PassesPercentCheck(chance * chanceMultiplier));
         }
 
@@ -139,6 +138,29 @@ public class RarityHandler : BaseHandler
         return originalWeight * (float)this.randomProvider.Next(rarity.WeightMultMin, rarity.WeightMultMax);
     }
 
+    public ushort GetIconId(ushort iconId, int rarityId, bool isUnique = false)
+    {
+        if (rarityId == 0)
+        {
+            return iconId;
+        }
+
+        if (isUnique)
+        {
+            rarityId = -1;
+        }
+
+        RarityIconMapping? options = this.iconMappingConfig.IconSheets.Where(d => d.IconMappings.RarityIds.Contains(rarityId)).Select(s => s.IconMappings)
+            .Where(d => d.IconReplacements.Any(d => d.OriginalIconId == iconId)).FirstOrDefault();
+
+        return options?.IconReplacements.FirstOrDefault(s => s.OriginalIconId == iconId)?.NewIconId ?? iconId;
+    }
+
+    public void UpdateIconMapping(RarityIconMappingConfig config)
+    {
+        this.iconMappingConfig = config;
+    }
+
     private RaritySetup GetNearestRarity(int rarityId = 0)
     {
         if (rarityId == -1)
@@ -159,28 +181,5 @@ public class RarityHandler : BaseHandler
             }
         }
         return RarityConfigs[nearestRarity];
-    }
-
-    public ushort GetIconId(ushort iconId, int rarityId, bool isUnique = false)
-    {
-        if (rarityId == 0)
-        {
-            return iconId;
-        }
-
-        if (isUnique)
-        {
-            var rarity = -1;
-        }
-
-        RarityIconMapping? options = this.iconMappingConfig.IconSheets.Where(d => d.IconMappings.RarityIds.Contains(rarityId)).Select(s => s.IconMappings)
-            .Where(d => d.IconReplacements.Any(d => d.OriginalIconId == iconId)).FirstOrDefault();
-
-        return options?.IconReplacements.FirstOrDefault(s => s.OriginalIconId == iconId)?.NewIconId ?? iconId;
-    }
-
-    public void UpdateIconMapping(RarityIconMappingConfig config)
-    {
-        this.iconMappingConfig = config;
     }
 }

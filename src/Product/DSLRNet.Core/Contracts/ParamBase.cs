@@ -3,7 +3,7 @@
 public class ParamBase<T> : ICloneable<T> where T : class
 {
     [JsonIgnore]
-    internal GenericParam GenericParam { get; } = new GenericParam();
+    internal GenericParam GenericParam { get; private set; } = new GenericParam();
 
     public TGetType GetValue<TGetType>(string name)
     {

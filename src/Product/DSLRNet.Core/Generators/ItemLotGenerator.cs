@@ -255,25 +255,35 @@ public class ItemLotGenerator : BaseHandler
         {
             int currentId = i;
 
-            while (existsInDataCheck(currentId)
-                || this.GeneratedDataRepository.ContainsParamEdit(itemLotSettings.ParamName, currentId)
-                || returnIds.Contains(currentId))
+            while (IsIdTaken(currentId) || returnIds.Contains(currentId))
             {
                 currentId++;
             }
 
-            if (existsInDataCheck(currentId + 1)
-                || this.GeneratedDataRepository.ContainsParamEdit(itemLotSettings.ParamName, i + 1)
+            if ( IsIdTaken(currentId + 1)
                 || returnIds.Contains(currentId + 1))
             {
-                this.logger.LogWarning($"Map item lot {startingId} could not find a sequential item lot, stopping at {currentId} but itemLot {currentId + 1} exists");
-                continue;
+                this.logger.LogWarning($"Base item lot {startingId} could not find a sequential item lot, tried {currentId} but itemLot {currentId + 1} exists.");
+                break;
             }
 
             returnIds.Add(currentId);
         }
 
         return returnIds;
+
+        bool IsIdTaken(int id)
+        {
+            var existsInData = existsInDataCheck(id);
+            var existsInEdits = this.GeneratedDataRepository.ContainsParamEdit(itemLotSettings.ParamName, id);
+
+            if (existsInData || existsInEdits)
+            {
+                this.logger.LogDebug($"Id {id} is taken.  InData? {existsInData} InEdits? {existsInEdits}");
+            }
+
+            return existsInData || existsInEdits;
+        }
     }
 
     private uint FindFlagId(ItemLotSettings itemLotSettings, ItemLotBase baseItem)

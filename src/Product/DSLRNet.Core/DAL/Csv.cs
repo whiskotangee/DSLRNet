@@ -35,7 +35,14 @@ public class Csv(ILogger<Csv> logger)
                 {
                     if (value is byte[] byteArray)
                     {
-                        values.Add($"[{string.Join('|', byteArray)}]");
+                        if (byteArray.Length == 1)
+                        {
+                            values.Add(Convert.ToInt32(byteArray[0]).ToString());
+                        }
+                        else
+                        {
+                            values.Add($"[{string.Join('|', byteArray)}]");
+                        }
                     }
                     else
                     {

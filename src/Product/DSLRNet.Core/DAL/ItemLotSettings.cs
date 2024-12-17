@@ -10,8 +10,6 @@ public class GameStageConfig
     public HashSet<int> ItemLotIds { get; set; }
 
     public HashSet<int> AllowedRarities { get; set; }
-
-    public int OverrideType { get; set; }
 }
 
 public class ItemLotSettings
@@ -26,32 +24,28 @@ public class ItemLotSettings
         {
             Stage = GameStage.Early,
             AllowedRarities = [.. setup.AllowedRaritiesEarly],
-            ItemLotIds = [.. setup.ItemLotIdsEarly],
-            OverrideType = setup.OverrideTypeEarly,
+            ItemLotIds = [.. setup.ItemLotIdsEarly]
         });
 
         obj.GameStageConfigs.Add(new GameStageConfig
         {
             Stage = GameStage.Mid,
             AllowedRarities = [.. setup.AllowedRaritiesMid],
-            ItemLotIds = [.. setup.ItemLotIdsMid],
-            OverrideType = setup.OverrideTypeMid,
+            ItemLotIds = [.. setup.ItemLotIdsMid]
         });
 
         obj.GameStageConfigs.Add(new GameStageConfig
         {
             Stage = GameStage.Late,
             AllowedRarities = [.. setup.AllowedRaritiesLate],
-            ItemLotIds = [.. setup.ItemLotIdsLate],
-            OverrideType = setup.OverrideTypeLate,
+            ItemLotIds = [.. setup.ItemLotIdsLate]
         });
 
         obj.GameStageConfigs.Add(new GameStageConfig
         {
             Stage = GameStage.End,
             AllowedRarities = [.. setup.AllowedRaritiesEnd],
-            ItemLotIds = [.. setup.ItemLotIdsEnd],
-            OverrideType = setup.OverrideTypeEnd,
+            ItemLotIds = [.. setup.ItemLotIdsEnd]
         });
 
         obj.BlackListIds = File.Exists($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt") ? File.ReadAllLines($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt").Where(d => !string.IsNullOrWhiteSpace(d)).Select(long.Parse).ToList() : [];
@@ -99,6 +93,8 @@ public class ItemLotSettings
 
     public string NpcParamCategory { get; set; }
 
+    public bool IsForBosses { get; set; } = false;
+
     public int ID { get; set; }
     public string Realname { get; set; }
     public int Enabled { get; set; }
@@ -145,12 +141,7 @@ class DslItemLotSetup
             WeaponTypeWeights = ParseList(data["dslitemlotsetup"]["weapontypeweights"]),
             DropChanceMultiplier = float.Parse(data["dslitemlotsetup"]["dropchancemultiplier"]),
             NpcIds = ParseNestedList(data["dslitemlotsetup"]["npc_ids"]),
-            NpcItemLotIds = ParseNestedList(data["dslitemlotsetup"]["npc_itemlotids"]),
-            OverrideTypeEarly = int.Parse(data["dslitemlotsetup"]["overridetype_early"]),
-            OverrideTypeMid = int.Parse(data["dslitemlotsetup"]["overridetype_mid"]),
-            OverrideTypeLate = int.Parse(data["dslitemlotsetup"]["overridetype_late"]),
-            OverrideTypeEnd = int.Parse(data["dslitemlotsetup"]["overridetype_end"]),
-            ClearItemLotIds = ParseList(data["dslitemlotsetup"]["clearitemlotids"])
+            NpcItemLotIds = ParseNestedList(data["dslitemlotsetup"]["npc_itemlotids"])
         };
     }
 
@@ -177,11 +168,6 @@ class DslItemLotSetup
     public float DropChanceMultiplier { get; set; }
     public List<List<int>> NpcIds { get; set; }
     public List<List<int>> NpcItemLotIds { get; set; }
-    public int OverrideTypeEarly { get; set; }
-    public int OverrideTypeMid { get; set; }
-    public int OverrideTypeLate { get; set; }
-    public int OverrideTypeEnd { get; set; }
-    public List<int> ClearItemLotIds { get; set; }
 
     static List<int> ParseList(string input)
     {

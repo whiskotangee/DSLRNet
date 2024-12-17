@@ -113,7 +113,7 @@ public class ItemLotGenerator : BaseHandler
                     }
                     else
                     {
-                        newItemLot = this.CreateDefaultItemLotDictionary();
+                        newItemLot = this.ItemLotTemplate.Clone();
                         newItemLot.ID = itemLotIds[x];
 
                         if (!dropGuaranteed)
@@ -191,13 +191,15 @@ public class ItemLotGenerator : BaseHandler
                 {
                     List<int> itemLotIds = this.FindSequentialItemLotIds(
                         itemLotSettings, 
-                        itemLotId, 
-                        this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBaseMapLot, 
+                        itemLotId,
+                        itemLotSettings.IsForBosses ? 
+                            this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBossLot :
+                            this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBaseMapLot, 
                         (i) => this.itemLotParam_Map.SingleOrDefault(d => d.ID == i) != null);
 
                     for (int i = 0; i < itemLotIds.Count; i++)
                     {
-                        ItemLotBase newItemLot = this.CreateDefaultItemLotDictionary();
+                        ItemLotBase newItemLot = this.ItemLotTemplate.Clone();
                         newItemLot.ID = itemLotIds[i];
                         newItemLot.getItemFlagId = this.FindFlagId(itemLotSettings, newItemLot);
 
@@ -210,20 +212,21 @@ public class ItemLotGenerator : BaseHandler
 
                         int offset = 1;
 
-                        for (int y = 0; y < this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Map; y++)
+                        var lootPerLot = itemLotSettings.IsForBosses ? this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Bosses : this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Map;
+                        for (int y = 0; y < lootPerLot; y++)
                         {
                             this.CreateItemLotEntry(
                                 itemLotSettings, 
                                 gameStageConfig, 
                                 newItemLot, 
-                                offset + y, 
-                                this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Map, 
+                                offset + y,
+                                lootPerLot, 
                                 (float)itemLotSettings.DropChanceMultiplier, 
                                 true);
                         }
 
                         GenericParam genericParam = GenericParam.FromObject(newItemLot);
-                        string itemLotMassEdit = this.CreateMassEdit(genericParam, itemLotSettings.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.CreateDefaultItemLotDictionary()));
+                        string itemLotMassEdit = this.CreateMassEdit(genericParam, itemLotSettings.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.ItemLotTemplate.Clone()));
                         this.GeneratedDataRepository.AddParamEdit(
                             new ParamEdit()
                             {
@@ -354,11 +357,6 @@ public class ItemLotGenerator : BaseHandler
         generatedItemsStats.GetOrAdd(itemType, (type) => []).Add(itemId);
 
         return (itemId, itemCategory);
-    }
-
-    public ItemLotBase CreateDefaultItemLotDictionary()
-    {
-        return this.ItemLotTemplate.Clone();
     }
 
     public void CreateItemLotEntry(

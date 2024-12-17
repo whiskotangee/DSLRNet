@@ -22,8 +22,6 @@ public class ItemLotScanner(
 
     public async Task<Dictionary<ItemLotCategory, ItemLotSettings>> ScanAndCreateItemLotSetsAsync(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
-        string modDir = $"{configuration.Settings.DeployPath}\\map\\mapstudio";
-
         Dictionary<ItemLotCategory, ItemLotSettings> generatedItemLotSettings = [];
 
         ItemLotSettings remainingMapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]);
@@ -57,7 +55,9 @@ public class ItemLotScanner(
     {
         Dictionary<GameStage, int> assigned = [];
 
-        foreach (EventDropItemLotDetails? details in lotDetails.Where(d => d.EntityId > 0))
+        var withEntityId = lotDetails.Where(d => d.EntityId > 0);
+
+        foreach (EventDropItemLotDetails? details in withEntityId)
         {
             MSBE.Part.Enemy? foundEvent = msb.Parts.Enemies.Where(d => d.EntityID == details.EntityId).FirstOrDefault();
             if (foundEvent != null)
@@ -67,13 +67,22 @@ public class ItemLotScanner(
 
                 GameStage evaluatedStage = gameStageEvaluator.EvaluateDifficulty(settings, foundNpc, true);
 
-                settings.GetGameStageConfig(evaluatedStage).ItemLotIds.Add(details.ItemLotId);
-                if (!assigned.TryGetValue(evaluatedStage, out int count))
+                if (!claimedIds.Contains(details.ItemLotId))
                 {
-                    assigned.Add(evaluatedStage, 0);
+                    settings.GetGameStageConfig(evaluatedStage).ItemLotIds.Add(details.ItemLotId);
+                    if (!assigned.TryGetValue(evaluatedStage, out int count))
+                    {
+                        assigned.Add(evaluatedStage, 0);
+                    }
+
+                    assigned[evaluatedStage] += 1;
+                }
+                else
+                {
+                    logger.LogInformation($"Boss item lot {details.ItemLotId} already claimed");
                 }
 
-                assigned[evaluatedStage] += 1;
+                settings.IsForBosses = true;
             }
         }
 
@@ -88,12 +97,6 @@ public class ItemLotScanner(
         {
             foreach (NpcParam? npc in npcParams.Where(d => d.itemLotId_enemy > 0))
             {
-                //if (!IsValidItemLotId(npc.itemLotId_enemy, ItemLotCategory.ItemLot_Enemy))
-                //{
-                //    logger.LogInformation($"Skipping item lot Id as it does not give any items {npc.itemLotId_enemy}");
-                //    continue;
-                //}
-
                 if (claimedIds.Contains(npc.itemLotId_enemy) ||
                     !random.PassesPercentCheck(configuration.Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))
                 {
@@ -105,7 +108,7 @@ public class ItemLotScanner(
                 settings.GetGameStageConfig(assignedGameStage).ItemLotIds.Add(npc.itemLotId_enemy);
                 addedByStage[assignedGameStage] += 1;
             }
-            
+
         }
 
         return addedByStage;

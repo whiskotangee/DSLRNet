@@ -20,24 +20,18 @@ public class DSLRNetBuilder(
     private readonly ILogger<DSLRNetBuilder> logger = logger;
     private readonly ProcessRunner processRunner = processRunner;
 
-    public async Task BuildAndApply()
+    public void BuildItemLots()
     {
-        // ensure oo2core file is there
-        string? existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
-        if (existingFile == null)
-        {
-            string? oo2GameCore = Directory.GetFiles(this.configuration.Settings.GamePath, "oo2core*dll").FirstOrDefault();
-            File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
-        }
-
         Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
-        List<ItemLotSettings> enemyItemLotsSetups = Directory.GetFiles("Assets\\Data\\ItemLots\\Enemies", "*.ini", SearchOption.AllDirectories)
+        List<ItemLotSettings> enemyItemLotsSetups = Directory.GetFiles("Assets\\Data\\ItemLots\\EnemiesOverrides", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotSettings.Create(s, this.configuration.Itemlots.Categories[0]))
+            .Where(s => s != null)
             .ToList();
 
-        List<ItemLotSettings> mapItemLotsSetups = Directory.GetFiles("Assets\\Data\\ItemLots\\Map", "*.ini", SearchOption.AllDirectories)
+        List<ItemLotSettings> mapItemLotsSetups = Directory.GetFiles("Assets\\Data\\ItemLots\\MapsOverrides", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotSettings.Create(s, this.configuration.Itemlots.Categories[1]))
+            .Where(s => s != null)
             .ToList();
 
         Dictionary<ItemLotCategory, HashSet<int>> takenIds = new()
@@ -49,10 +43,10 @@ public class DSLRNetBuilder(
         takenIds[ItemLotCategory.ItemLot_Enemy] = enemyItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
         takenIds[ItemLotCategory.ItemLot_Map] = mapItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
 
-        Dictionary<ItemLotCategory, ItemLotSettings> scanned = await itemLotScanner.ScanAndCreateItemLotSetsAsync(takenIds);
+        Dictionary<ItemLotCategory, ItemLotSettings> scanned = itemLotScanner.ScanAndCreateItemLotSets(takenIds);
 
         if (scanned.Any())
-        { 
+        {
             itemLotGenerator.CreateItemLots([scanned[ItemLotCategory.ItemLot_Enemy]]);
             itemLotGenerator.CreateItemLots([scanned[ItemLotCategory.ItemLot_Map]]);
         }
@@ -61,7 +55,10 @@ public class DSLRNetBuilder(
         itemLotGenerator.CreateItemLots(mapItemLotsSetups);
 
         dataRepository.VerifyItemLots();
+    }
 
+    public async Task ApplyAsync()
+    {
         string regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
         string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.working.bin");
 
@@ -80,7 +77,7 @@ public class DSLRNetBuilder(
 
         IEnumerable<IGrouping<ParamNames, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
 
-        List<string> massEditFiles = Directory.GetFiles("Data\\MassEdit\\", "*.massedit")
+        List<string> massEditFiles = Directory.GetFiles("Assets\\Data\\MassEdit\\", "*.massedit")
             .ToList();
 
         foreach (string? massEdit in massEditFiles)

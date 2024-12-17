@@ -20,7 +20,7 @@ public class ItemLotScanner(
     private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll().ToList();
     private readonly List<NpcParam> npcParams = dataAccess.NpcParam.GetAll().ToList();
 
-    public async Task<Dictionary<ItemLotCategory, ItemLotSettings>> ScanAndCreateItemLotSetsAsync(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
+    public Dictionary<ItemLotCategory, ItemLotSettings> ScanAndCreateItemLotSets(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
         Dictionary<ItemLotCategory, ItemLotSettings> generatedItemLotSettings = [];
 
@@ -97,8 +97,7 @@ public class ItemLotScanner(
         {
             foreach (NpcParam? npc in npcParams.Where(d => d.itemLotId_enemy > 0))
             {
-                if (claimedIds.Contains(npc.itemLotId_enemy) ||
-                    !random.PassesPercentCheck(configuration.Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))
+                if (claimedIds.Contains(npc.itemLotId_enemy) || !random.PassesPercentCheck(configuration.Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))
                 {
                     continue;
                 }

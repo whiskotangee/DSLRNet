@@ -33,7 +33,7 @@ public class RegulationBinDataSource<T>(
                 loadedValues.Add(await this.CreateFromPARAMAsync(row));
             });
 
-        return [.. ApplyFilters(loadedValues)];
+        return [.. ApplyFilters(loadedValues).OrderBy(d => d.GenericParam.ID)];
     }
 
     private async Task<T> CreateFromPARAMAsync(PARAM.Row row)

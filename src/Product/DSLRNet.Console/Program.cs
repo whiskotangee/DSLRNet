@@ -1,9 +1,10 @@
 ﻿using DSLRNet.Core;
+using DSLRNet.Core.Config;
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Serilog;
 using System.Diagnostics;
 
@@ -59,6 +60,16 @@ services.SetupDSLR(configuration);
 
 ServiceProvider sp = services.BuildServiceProvider();
 
+var config = sp.GetRequiredService<IOptions<Configuration>>().Value;
+
+// ensure oo2core file is there
+string? existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
+if (existingFile == null)
+{
+    string? oo2GameCore = Directory.GetFiles(config.Settings.GamePath, "oo2core*dll").FirstOrDefault();
+    File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
+}
+
 await sp.GetRequiredService<DataAccess>().InitializeDataSourcesAsync();
 
 IconBuilder iconbuilder = sp.GetRequiredService<IconBuilder>();
@@ -66,4 +77,6 @@ DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
 
 await iconbuilder.ApplyIcons();
 
-await dslrBuilder.BuildAndApply();
+dslrBuilder.BuildItemLots();
+
+await dslrBuilder.ApplyAsync();

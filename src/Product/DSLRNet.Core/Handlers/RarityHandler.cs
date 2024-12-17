@@ -5,17 +5,17 @@ using DSLRNet.Core.Extensions;
 
 public class RarityHandler : BaseHandler
 {
-    private readonly RandomProvider randomNumberGetter;
+    private readonly RandomProvider randomProvider;
     private RarityIconMappingConfig iconMappingConfig = new();
 
     private readonly Dictionary<int, RaritySetup> RarityConfigs = [];
 
     public RarityHandler(
-        RandomProvider randomNumberGetter,
+        RandomProvider randomProvider,
         ParamEditsRepository dataRepository,
         DataAccess dataAccess) : base(dataRepository)
     {
-        this.randomNumberGetter = randomNumberGetter;
+        this.randomProvider = randomProvider;
         this.RarityConfigs = dataAccess.RaritySetup.GetAll().ToDictionary(d => d.ID);
     }
 
@@ -30,7 +30,7 @@ public class RarityHandler : BaseHandler
             weightedValues.Add(new WeightedValue<int> { Value = this.GetNearestRarityId(x), Weight = this.RarityConfigs[x].SelectionWeight });
         }
 
-        int finalid = this.randomNumberGetter.NextWeightedValue(weightedValues);
+        int finalid = this.randomProvider.NextWeightedValue(weightedValues);
 
         if (!CountByRarity.TryGetValue(finalid, out var count))
         {
@@ -61,7 +61,7 @@ public class RarityHandler : BaseHandler
             RaritySetup item = this.RarityConfigs[finalrarityid];
 
             float speffectchance = (float)item.GetType().GetProperty(spefchance).GetValue(item);
-            finalboolarray.Enqueue(this.randomNumberGetter.PassesPercentCheck(speffectchance));
+            finalboolarray.Enqueue(this.randomProvider.PassesPercentCheck(speffectchance));
         }
 
         return finalboolarray;
@@ -95,7 +95,7 @@ public class RarityHandler : BaseHandler
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
         FloatValueRange range = this.GetArmorCutRateRange(finalrarity);
-        return (float)Math.Round(this.randomNumberGetter.Next(range), 4);
+        return (float)Math.Round(this.randomProvider.Next(range), 4);
     }
 
     public List<int> GetRaritiesWithinRange(int highest = 10, int lowerrange = 0)
@@ -142,7 +142,7 @@ public class RarityHandler : BaseHandler
         int finalrarity = this.GetNearestRarityId(rarityid);
         FloatValueRange range = this.GetArmorResistMultRange(finalrarity);
 
-        return (float)this.randomNumberGetter.Next(range);
+        return (float)this.randomProvider.Next(range);
     }
 
     public byte GetRarityParamValue(int rarityid)
@@ -172,13 +172,13 @@ public class RarityHandler : BaseHandler
     public int GetSellValue(int rarityid)
     {
         int finalrarity = this.GetNearestRarityId(rarityid);
-        return this.randomNumberGetter.NextInt(this.RarityConfigs[finalrarity].SellValueMin, this.RarityConfigs[finalrarity].SellValueMax);
+        return this.randomProvider.NextInt(this.RarityConfigs[finalrarity].SellValueMin, this.RarityConfigs[finalrarity].SellValueMax);
     }
 
     public float GetRandomizedWeight(float originalWeight, int rarityId)
     {
         int finalrarity = this.GetNearestRarityId(rarityId);
-        return originalWeight * (float)this.randomNumberGetter.Next(this.RarityConfigs[finalrarity].WeightMultMin, this.RarityConfigs[finalrarity].WeightMultMax);
+        return originalWeight * (float)this.randomProvider.Next(this.RarityConfigs[finalrarity].WeightMultMin, this.RarityConfigs[finalrarity].WeightMultMax);
     }
 
     public int GetLowestRarityId()
@@ -190,7 +190,7 @@ public class RarityHandler : BaseHandler
     {
         if (desiredrarityvalue == -1)
         {
-            return this.randomNumberGetter.GetRandomItem<int>(this.RarityConfigs.Keys.ToList());
+            return this.randomProvider.GetRandomItem<int>(this.RarityConfigs.Keys.ToList());
         }
 
         int finalrarityid = desiredrarityvalue;

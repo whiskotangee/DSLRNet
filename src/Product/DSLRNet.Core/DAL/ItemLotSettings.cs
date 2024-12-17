@@ -14,9 +14,14 @@ public class GameStageConfig
 
 public class ItemLotSettings
 {
-    public static ItemLotSettings Create(string file, Category category)
+    public static ItemLotSettings? Create(string file, Category category)
     {
-        DslItemLotSetup setup = DslItemLotSetup.Create(file);
+        DslItemLotSetup? setup = DslItemLotSetup.Create(file);
+
+        if (setup == null)
+        {
+            return null;
+        }
 
         ItemLotSettings? obj = JsonConvert.DeserializeObject<ItemLotSettings>(JsonConvert.SerializeObject(setup));
         obj.GameStageConfigs = [];
@@ -48,7 +53,6 @@ public class ItemLotSettings
             ItemLotIds = [.. setup.ItemLotIdsEnd]
         });
 
-        obj.BlackListIds = File.Exists($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt") ? File.ReadAllLines($"{Path.GetDirectoryName(file)}\\ItemlotIDBlacklist.txt").Where(d => !string.IsNullOrWhiteSpace(d)).Select(long.Parse).ToList() : [];
         obj.Category = category.ParamCategory.Equals("ItemLotParam_Map", StringComparison.OrdinalIgnoreCase) ? ItemLotCategory.ItemLot_Map : ItemLotCategory.ItemLot_Enemy;
         obj.ParamName = Enum.Parse<ParamNames>(category.ParamCategory, true);
         obj.NpcParamCategory = category.NpcParamCategory;
@@ -85,8 +89,6 @@ public class ItemLotSettings
         return this.GameStageConfigs.FirstOrDefault(d => d.ItemLotIds.Contains(itemLotId)) ?? this.GameStageConfigs.First();
     }
 
-    public List<long> BlackListIds { get; set; }
-
     public ItemLotCategory Category { get; set; }
 
     public ParamNames ParamName { get; set; }
@@ -117,32 +119,39 @@ public enum ItemLotCategory
 
 class DslItemLotSetup
 {
-    public static DslItemLotSetup Create(string file)
+    public static DslItemLotSetup? Create(string file)
     {
         FileIniDataParser iniParser = new();
         IniParser.Model.IniData data = iniParser.ReadFile(file);
 
-        return new DslItemLotSetup
+        try
         {
-            Id = int.Parse(data["dslitemlotsetup"]["id"]),
-            Realname = data["dslitemlotsetup"]["realname"],
-            Enabled = int.Parse(data["dslitemlotsetup"]["enabled"]),
-            ItemLotIdsEarly = ParseList(data["dslitemlotsetup"]["itemlotids_early"]),
-            ItemLotIdsMid = ParseList(data["dslitemlotsetup"]["itemlotids_mid"]),
-            ItemLotIdsLate = ParseList(data["dslitemlotsetup"]["itemlotids_late"]),
-            ItemLotIdsEnd = ParseList(data["dslitemlotsetup"]["itemlotids_end"]),
-            AllowedRaritiesEarly = ParseList(data["dslitemlotsetup"]["allowedrarities_early"]),
-            AllowedRaritiesMid = ParseList(data["dslitemlotsetup"]["allowedrarities_mid"]),
-            AllowedRaritiesLate = ParseList(data["dslitemlotsetup"]["allowedrarities_late"]),
-            AllowedRaritiesEnd = ParseList(data["dslitemlotsetup"]["allowedrarities_end"]),
-            GuaranteedDrop = int.Parse(data["dslitemlotsetup"]["guaranteeddrop"]),
-            OneTimePickup = int.Parse(data["dslitemlotsetup"]["onetimepickup"]),
-            LootTypeWeights = ParseList(data["dslitemlotsetup"]["loottypeweights"]),
-            WeaponTypeWeights = ParseList(data["dslitemlotsetup"]["weapontypeweights"]),
-            DropChanceMultiplier = float.Parse(data["dslitemlotsetup"]["dropchancemultiplier"]),
-            NpcIds = ParseNestedList(data["dslitemlotsetup"]["npc_ids"]),
-            NpcItemLotIds = ParseNestedList(data["dslitemlotsetup"]["npc_itemlotids"])
-        };
+            return new DslItemLotSetup
+            {
+                Id = int.Parse(data["dslitemlotsetup"]["id"]),
+                Realname = data["dslitemlotsetup"]["realname"],
+                Enabled = int.Parse(data["dslitemlotsetup"]["enabled"]),
+                ItemLotIdsEarly = ParseList(data["dslitemlotsetup"]["itemlotids_early"]),
+                ItemLotIdsMid = ParseList(data["dslitemlotsetup"]["itemlotids_mid"]),
+                ItemLotIdsLate = ParseList(data["dslitemlotsetup"]["itemlotids_late"]),
+                ItemLotIdsEnd = ParseList(data["dslitemlotsetup"]["itemlotids_end"]),
+                AllowedRaritiesEarly = ParseList(data["dslitemlotsetup"]["allowedrarities_early"]),
+                AllowedRaritiesMid = ParseList(data["dslitemlotsetup"]["allowedrarities_mid"]),
+                AllowedRaritiesLate = ParseList(data["dslitemlotsetup"]["allowedrarities_late"]),
+                AllowedRaritiesEnd = ParseList(data["dslitemlotsetup"]["allowedrarities_end"]),
+                GuaranteedDrop = int.Parse(data["dslitemlotsetup"]["guaranteeddrop"]),
+                OneTimePickup = int.Parse(data["dslitemlotsetup"]["onetimepickup"]),
+                LootTypeWeights = ParseList(data["dslitemlotsetup"]["loottypeweights"]),
+                WeaponTypeWeights = ParseList(data["dslitemlotsetup"]["weapontypeweights"]),
+                DropChanceMultiplier = float.Parse(data["dslitemlotsetup"]["dropchancemultiplier"]),
+                NpcIds = ParseNestedList(data["dslitemlotsetup"]["npc_ids"]),
+                NpcItemLotIds = ParseNestedList(data["dslitemlotsetup"]["npc_itemlotids"])
+            };
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 
     protected DslItemLotSetup()

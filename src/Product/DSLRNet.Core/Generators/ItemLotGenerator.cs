@@ -51,11 +51,11 @@ public class ItemLotGenerator : BaseHandler
 
     private ItemLotBase ItemLotTemplate { get; set; }
 
-    public void CreateItemLots(IEnumerable<ItemLotSettings> itemLotQueueEntries)
+    public void CreateItemLots(IEnumerable<ItemLotSettings> itemLotBatches)
     {
         generatedItemsStats = [];
 
-        foreach (ItemLotSettings itemLotEntry in itemLotQueueEntries)
+        foreach (ItemLotSettings itemLotEntry in itemLotBatches)
         {
             if (itemLotEntry.Category == ItemLotCategory.ItemLot_Map)
             {
@@ -71,7 +71,7 @@ public class ItemLotGenerator : BaseHandler
         this.logger.LogInformation($"Current edit count: {JsonConvert.SerializeObject(this.GeneratedDataRepository.EditCountsByName(), Formatting.Indented)}");
     }
 
-    public void CreateItemLot_Enemy(ItemLotSettings itemLotSettings)
+    private void CreateItemLot_Enemy(ItemLotSettings itemLotSettings)
     {
         foreach (var gameStageConfig in itemLotSettings.GameStageConfigs)
         {
@@ -174,8 +174,10 @@ public class ItemLotGenerator : BaseHandler
         }
     }
 
-    public void CreateItemLot_Map(ItemLotSettings itemLotSettings)
+    private void CreateItemLot_Map(ItemLotSettings itemLotSettings)
     {
+        var defaultValue = GenericParam.FromObject(this.ItemLotTemplate.Clone());
+
         foreach (var gameStageConfig in itemLotSettings.GameStageConfigs)
         {
             foreach (var itemLotId in gameStageConfig.ItemLotIds)
@@ -217,7 +219,7 @@ public class ItemLotGenerator : BaseHandler
                     }
 
                     GenericParam genericParam = GenericParam.FromObject(newItemLot);
-                    string itemLotMassEdit = this.CreateMassEdit(genericParam, itemLotSettings.ParamName, newItemLot.ID, [], [], defaultValue: GenericParam.FromObject(this.ItemLotTemplate.Clone()));
+                    string itemLotMassEdit = this.CreateMassEdit(genericParam, itemLotSettings.ParamName, newItemLot.ID, defaultValue: defaultValue);
                     this.GeneratedDataRepository.AddParamEdit(
                         new ParamEdit()
                         {
@@ -317,7 +319,7 @@ public class ItemLotGenerator : BaseHandler
         return flagId;
     }
 
-    public (int finalId, int finalCategory) TaskLootGeneratorBasedOnLootType(ItemLotSettings itemLotSettings, int rarityId)
+    private (int finalId, int finalCategory) GenerateLoot(ItemLotSettings itemLotSettings, int rarityId)
     {
         LootType itemType = this.random.NextWeightedValue(itemLotSettings.LootWeightsByType);
 
@@ -345,7 +347,7 @@ public class ItemLotGenerator : BaseHandler
         return (itemId, itemCategory);
     }
 
-    public void CreateItemLotEntry(
+    private void CreateItemLotEntry(
         ItemLotSettings itemLotSettings,
         GameStageConfig gameStageConfig,
         ItemLotBase itemLot,
@@ -356,13 +358,13 @@ public class ItemLotGenerator : BaseHandler
     {
         int rarity = this.rarityHandler.ChooseRarityFromIdSet(IntValueRange.CreateFrom(gameStageConfig.AllowedRarities));
 
-        (int finalId, int finalCategory) = this.TaskLootGeneratorBasedOnLootType(itemLotSettings, rarity);
+        (int finalId, int finalCategory) = this.GenerateLoot(itemLotSettings, rarity);
 
-        itemLot.GenericParam.SetValue($"lotItemId0{itemNumber}", finalId);
-        itemLot.GenericParam.SetValue($"lotItemCategory0{itemNumber}", finalCategory);
-        itemLot.GenericParam.SetValue($"lotItemNum0{itemNumber}", 1);
-        itemLot.GenericParam.SetValue($"lotItemBasePoint0{itemNumber}", this.GetDropChance(dropGauranteed, dropMult, lootPerItemLot));
-        itemLot.GenericParam.SetValue($"enableLuck0{itemNumber}", 1);
+        itemLot.SetValue($"lotItemId0{itemNumber}", finalId);
+        itemLot.SetValue($"lotItemCategory0{itemNumber}", finalCategory);
+        itemLot.SetValue($"lotItemNum0{itemNumber}", 1);
+        itemLot.SetValue($"lotItemBasePoint0{itemNumber}", this.GetDropChance(dropGauranteed, dropMult, lootPerItemLot));
+        itemLot.SetValue($"enableLuck0{itemNumber}", 1);
     }
 
     private float GetDropChance(bool dropGauranteed, float dropMutliplier, int lootPerItemLot)
@@ -372,19 +374,7 @@ public class ItemLotGenerator : BaseHandler
         return Math.Clamp(dropGauranteed ? 1000 / lootPerItemLot : (int)(itemDropChance * dropMutliplier), 0, 1000);
     }
 
-    public List<int> GetItemLotIdTierAllowedRarities(ItemLotSettings itemLotSettings, int itemLotId = 0)
-    {
-        if (this.configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled)
-        {
-            return this.rarityHandler.GetRaritiesWithinRange(this.random.NextInt(1, 10), 0);
-        }
-
-        GameStageConfig tier = itemLotSettings.GetItemLotIdTier(itemLotId);
-
-        return this.rarityHandler.GetRaritiesWithinRange(tier.AllowedRarities.Min(), tier.AllowedRarities.Max());
-    }
-
-    public ushort GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)
+    private ushort GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)
     {
         ushort itemLotChanceSum = 0;
 
@@ -398,7 +388,7 @@ public class ItemLotGenerator : BaseHandler
         return itemLotChanceSum;
     }
 
-    public void CalculateNoItemChance(ItemLotBase itemLot, ushort baseChance = 1000, ushort fallback = 25)
+    private void CalculateNoItemChance(ItemLotBase itemLot, ushort baseChance = 1000, ushort fallback = 25)
     {
         ushort finalBaseChance = baseChance;
 
@@ -410,7 +400,7 @@ public class ItemLotGenerator : BaseHandler
         itemLot.lotItemBasePoint01 = finalBaseChance;
     }
 
-    public string CreateNpcMassEdit(ItemLotSettings itemLotSettings, List<List<int>> npcIds, List<List<int>> npcItemLots)
+    private string CreateNpcMassEdit(ItemLotSettings itemLotSettings, List<List<int>> npcIds, List<List<int>> npcItemLots)
     {
         if (npcIds.Count == 0 || npcIds.Any(d => d.Count == 0) || npcItemLots.Count == 0 || npcItemLots.Any(d => d.Count == 0))
         {

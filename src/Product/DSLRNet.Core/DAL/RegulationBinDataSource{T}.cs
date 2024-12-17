@@ -22,7 +22,7 @@ public class RegulationBinDataSource<T>(
         }
 
         var names = File.ReadAllLines($"Assets\\Data\\PARAM\\ER\\Names\\{paramSource.Name}.txt");
-        this.namesMapping = names.ToDictionary(s => Convert.ToInt32(s.Substring(0, s.IndexOf(" "))), d => d.Substring(d.IndexOf(" ")).ToString());
+        this.namesMapping = names.ToDictionary(s => Convert.ToInt32(s.Substring(0, s.IndexOf(" "))), d => d.Substring(d.IndexOf(" ")).Trim().ToString());
 
         ConcurrentBag<T> loadedValues = [];
         await Parallel.ForEachAsync(
@@ -33,7 +33,7 @@ public class RegulationBinDataSource<T>(
                 loadedValues.Add(await this.CreateFromPARAMAsync(row));
             });
 
-        return [.. ApplyFilters(loadedValues).OrderBy(d => d.GenericParam.ID)];
+        return [.. ApplyFilters(loadedValues).OrderBy(d => d.ID)];
     }
 
     private async Task<T> CreateFromPARAMAsync(PARAM.Row row)
@@ -47,16 +47,20 @@ public class RegulationBinDataSource<T>(
                 PocoGenerator.GenerateClass(typeof(T).Name, row);
                 pocoCreated = true;
             }
+
+            semaphore.Release();
         }
 
-        T newObject = new();
+        T newObject = new()
+        {
+            ID = row.ID
+        };
 
-        newObject.GenericParam.ID = row.ID;
         newObject.GenericParam.Name = this.namesMapping.TryGetValue(row.ID, out string? value) ? value : row.Name;
 
         foreach (var cell in row.Cells)
         {
-            newObject.GenericParam.SetValue(cell.Def.InternalName, cell.Value);
+            newObject.SetValue(cell.Def.InternalName, cell.Value);
         }
 
         return newObject;
@@ -74,23 +78,23 @@ public class RegulationBinDataSource<T>(
                 switch (filter.Operator)
                 {
                     case FilterOperator.GreaterThan:
-                        filteredData = filteredData.Where(d => d.GenericParam.GetValue<int>(filter.Field) > Convert.ToDouble(filter.Value));
+                        filteredData = filteredData.Where(d => d.GetValue<int>(filter.Field) > Convert.ToDouble(filter.Value));
                         break;
                     case FilterOperator.LessThan:
-                        filteredData = filteredData.Where(d => d.GenericParam.GetValue<int>(filter.Field) < Convert.ToInt32(filter.Value));
+                        filteredData = filteredData.Where(d => d.GetValue<int>(filter.Field) < Convert.ToInt32(filter.Value));
                         break;
                     case FilterOperator.StartsWith:
-                        filteredData = filteredData.Where(d => d.GenericParam.GetValue<string>(filter.Field).ToString().StartsWith(filter.Value.ToString()));
+                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().StartsWith(filter.Value.ToString()));
                         break;
                     case FilterOperator.EndsWith:
-                        filteredData = filteredData.Where(d => d.GenericParam.GetValue<string>(filter.Field).ToString().EndsWith(filter.Value.ToString()));
+                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().EndsWith(filter.Value.ToString()));
                         break;
                     case FilterOperator.NotEqual:
-                        filteredData = filteredData.Where(d => !d.GenericParam.GetValue<string>(filter.Field).Equals(filter.Value.ToString(), StringComparison.OrdinalIgnoreCase));
+                        filteredData = filteredData.Where(d => !d.GetValue<string>(filter.Field).Equals(filter.Value.ToString(), StringComparison.OrdinalIgnoreCase));
                         break;
                     case FilterOperator.NotInRange:
                         var range = filter.Value.ToString().Split("..");
-                        filteredData = filteredData.Where(d => !Enumerable.Range(Convert.ToInt32(range[0]), Convert.ToInt32(range[1]) - Convert.ToInt32(range[0])).ToList().Contains(d.GenericParam.GetValue<int>(filter.Field)));
+                        filteredData = filteredData.Where(d => !Enumerable.Range(Convert.ToInt32(range[0]), Convert.ToInt32(range[1]) - Convert.ToInt32(range[0])).ToList().Contains(d.GetValue<int>(filter.Field)));
                         break;
                 }
             }

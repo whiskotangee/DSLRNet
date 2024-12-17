@@ -6,8 +6,6 @@ using DSLRNet.Core.Data;
 
 public class BaseHandler(ParamEditsRepository generatedDataRepository)
 {
-    public string Name { get; set; }
-
     public ParamEditsRepository GeneratedDataRepository { get; set; } = generatedDataRepository;
 
     public static string CreateMassEditLine(ParamNames paramName, int id = 0, string propName = "Name", string value = "DSLR", string newLine = "\n")

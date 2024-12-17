@@ -24,8 +24,6 @@ public class ParamLootGenerator<TParamType>(
 
     public IDataSource<TParamType> DataSource { get; set; }
 
-    private List<string> ParamMandatoryKeys { get; set; } = [];
-
     public ParamNames OutputParamName { get; } = outputParamName;
 
     public Dictionary<LootType, string> OutputLootRealNames { get; } = new()
@@ -35,9 +33,17 @@ public class ParamLootGenerator<TParamType>(
         { LootType.Talisman, "Accessory" }
     };
 
-    public void AddLootDetails(GenericParam lootItem, LootType lootType, string title = "", string description = "", string summary = "", List<string> extraFilters = null, List<string> extraBannedValues = null)
+    public void AddLootDetails(
+        GenericParam lootItem, 
+        LootType lootType, 
+        string title = "", 
+        string description = "", 
+        string summary = "")
     {
-        string finalMassEditOutput = this.CreateMassEdit(lootItem, this.OutputParamName, lootItem.ID, extraFilters, extraBannedValues, this.ParamMandatoryKeys);
+        string finalMassEditOutput = this.CreateMassEdit(
+            lootItem, 
+            this.OutputParamName, 
+            lootItem.ID);
 
         this.GeneratedDataRepository.AddParamEdit(
             new ParamEdit
@@ -67,7 +73,7 @@ public class ParamLootGenerator<TParamType>(
     {
         List<SpEffectText> spEffectTexts = [];
 
-        List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailableSpEffectSlots(lootItem) : this.GetPassiveSpEffectSlotArrayFromOutputParamName();
+        List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailableSpEffectSlots(lootItem) : this.GetPassiveSpEffectFieldNames();
         if (speffectParam.Count == 0)
         {
             logger.LogWarning($"New item {lootItem.ID} of type {lootType} has no available spEffect slots, not applying any");
@@ -114,14 +120,14 @@ public class ParamLootGenerator<TParamType>(
         return this.DataSource.GetRandomItem();
     }
 
-    public List<string> GetPassiveSpEffectSlotArrayFromOutputParamName()
+    public List<string> GetPassiveSpEffectFieldNames()
     {
         return this.Configuration.LootParam.Speffects.GetType().GetProperty(this.OutputParamName.ToString()).GetValue(this.Configuration.LootParam.Speffects) as List<string>;
     }
 
     public List<string> GetAvailableSpEffectSlots(GenericParam itemParam)
     {
-        List<string> baseParams = this.GetPassiveSpEffectSlotArrayFromOutputParamName();
+        List<string> baseParams = this.GetPassiveSpEffectFieldNames();
         List<string> finalArray = [];
         foreach (string param in baseParams)
         {

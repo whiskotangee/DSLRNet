@@ -8,26 +8,6 @@ using Microsoft.Extensions.Options;
 using Serilog;
 using System.Diagnostics;
 
-//string[] paramCsvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs\\Params", "*.csv");
-//string[] otherCsvFiles = Directory.GetFiles("DefaultData\\ER\\CSVs", "*.csv");
-////foreach (var csvFile in csvFiles)
-////{
-////    //CsvFixer.AddNewHeaders(csvFile);
-////}
-
-//foreach (string paramCsvFile in paramCsvFiles)
-//{
-//    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(paramCsvFile, true);
-//}
-
-//foreach (string otherCsvFile in otherCsvFiles)
-//{
-//    DSLRNet.Core.Data.CsvFixer.GenerateClassFromCsv(otherCsvFile, false);
-//}
-
-//CsvFixer.UpdateNamesInCSVs();
-
-Stopwatch overallTimer = Stopwatch.StartNew();
 
 ConfigurationBuilder configurationBuilder = new();
 

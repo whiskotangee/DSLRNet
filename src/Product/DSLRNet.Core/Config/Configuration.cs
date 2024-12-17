@@ -126,12 +126,10 @@ public class DSLRDescTextConfig
 
 public class LootParamConfig
 {
-    public string WeaponOriginParamBase { get; set; }
     public List<string> WeaponBehSpeffects { get; set; }
     public SpeffectsConfig Speffects { get; set; }
     public List<string> SpeffectMsg { get; set; }
     public WeaponSpecialMotionCategoriesConfig WeaponSpecialMotionCategories { get; set; }
-    public WeaponsCanCastParamConfig WeaponsCanCastParam { get; set; }
     public List<string> WeaponsVfxParam { get; set; }
     public List<string> WeaponsVfxDummyParam { get; set; }
     public List<int> WeaponsVfxDummies { get; set; }
@@ -149,12 +147,6 @@ public class WeaponSpecialMotionCategoriesConfig
     public List<int> Shields { get; set; }
     public List<int> StaffsSeals { get; set; }
     public List<int> BowsCrossbows { get; set; }
-}
-
-public class WeaponsCanCastParamConfig
-{
-    public string Sorcery { get; set; }
-    public string Miracles { get; set; }
 }
 
 public class RarityIconMappingConfig

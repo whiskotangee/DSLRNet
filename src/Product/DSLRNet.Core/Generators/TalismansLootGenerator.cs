@@ -55,7 +55,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
             : newTalismanConfig.NoStackingGroupID;
 
         newTalisman.iconId = this.RarityHandler.GetIconId(newTalisman.iconId, rarityId);
-        newTalisman.GenericParam.SetValue(availableSlot, newTalismanConfig.RefSpEffect);
+        newTalisman.SetValue(availableSlot, newTalismanConfig.RefSpEffect);
 
         List<SpEffectText> spEffs =
         [
@@ -96,16 +96,14 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
             LootType.Talisman, 
             talismanFinalTitleColored, 
             string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()), 
-            string.Join(Environment.NewLine, talismanSummaries), 
-            [],
-            []);
+            string.Join(Environment.NewLine, talismanSummaries));
 
         return newTalisman.ID;
     }
 
     private int GetAvailableSpeffectSlotCount(GenericParam newTalisman)
     {
-        List<string> parms = this.GetPassiveSpEffectSlotArrayFromOutputParamName();
+        List<string> parms = this.GetPassiveSpEffectFieldNames();
 
         return parms.Where(d => new List<int>() { 0, -1 }.Contains(newTalisman.GetValue<int>(d))).ToList().Count;
     }

@@ -21,7 +21,7 @@ public class AshofWarHandler(
         int weaponType = weapon.wepType;
         string? boolFlagToCheck = this.ashOfWarConfig.WeaponTypeCanMountWepFlags.FirstOrDefault(d => d.Id == weaponType)?.FlagName;
 
-        List<EquipParamGem> validGems = this.equipParamGems.Where(d => d.GenericParam.GetValue<int>(boolFlagToCheck) == 1).ToList();
+        List<EquipParamGem> validGems = this.equipParamGems.Where(d => d.GetValue<int>(boolFlagToCheck) == 1).ToList();
 
         if (validGems.Any())
         {

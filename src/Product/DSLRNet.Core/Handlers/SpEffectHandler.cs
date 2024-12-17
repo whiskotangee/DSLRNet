@@ -37,21 +37,20 @@ public class SpEffectHandler : BaseHandler
                         spEffectParam.GenericParam,
                         ParamNames.SpEffectParam,
                         spEffectParam.ID,
-                        [],
-                        ["0", "-1"],
-                        ["conditionHp", "effectEndurance", "conditionHpRate"]),
+                        bannedEquals: ["0", "-1"],
+                        mandatoryKeys: ["conditionHp", "effectEndurance", "conditionHpRate"]),
                     MessageText = null,
                     ParamObject = spEffectParam.GenericParam
                 });
         }
     }
 
-    public List<SpEffectText> GetSpEffects(int desiredCount, List<int> allowedtypes, int rarityid, LootType lootType, float chancemult = 1.0f)
+    public List<SpEffectText> GetSpEffects(int desiredCount, List<int> allowedtypes, int rarityid, LootType lootType, float chanceMultiplier = 1.0f)
     {
         int finalrarity = this.rarityHandler.GetNearestRarityId(rarityid);
-        Queue<bool> chancearray = this.rarityHandler.GetRarityEffectChances(desiredCount, finalrarity, lootType);
+        Queue<bool> chanceQueue = this.rarityHandler.GetRarityEffectChances(desiredCount, finalrarity, lootType, chanceMultiplier);
 
-        List<int> speffectpowerrange = this.rarityHandler.GetSpeffectPowerArray(rarityid);
+        IntValueRange powerRange = this.rarityHandler.GetSpeffectPowerArray(rarityid);
 
         desiredCount = Math.Clamp(desiredCount, 0, 4);
 
@@ -59,41 +58,42 @@ public class SpEffectHandler : BaseHandler
 
         if (desiredCount > 0)
         {
-            List<SpEffectConfig> spEffectChoices = this.GetAvailableSpEffectConfigs(speffectpowerrange[0], speffectpowerrange[1], allowedtypes).ToList();
-            if (spEffectChoices.Count > 0)
+            List<SpEffectConfig> spEffectChoices = this.GetAvailableSpEffectConfigs(powerRange, allowedtypes).ToList();
+            if (spEffectChoices.Count == 0)
             {
-                while (chancearray.TryDequeue(out bool result))
+                return effects;
+            }
+            while (chanceQueue.TryDequeue(out bool result))
+            {
+                if (result)
                 {
-                    if (result)
+                    SpEffectConfig newSpEffect = this.randomNumberGetter.GetRandomItem(spEffectChoices);
+
+                    string description = this.GetSpeffectDescriptionWithValue(
+                        newSpEffect.Description,
+                        newSpEffect.Value.ToString(),
+                        newSpEffect.Stacks == 1);
+
+                    string summary = this.GetSpeffectDescriptionWithValue(
+                        newSpEffect.ShortDescription == ""
+                            ? newSpEffect.Description
+                            : newSpEffect.ShortDescription,
+                        newSpEffect.Value.ToString(),
+                        newSpEffect.Stacks == 1,
+                        true);
+
+                    effects.Add(new SpEffectText
                     {
-                        SpEffectConfig newSpEffect = this.randomNumberGetter.GetRandomItem(spEffectChoices);
-
-                        string newdescription = this.GetSpeffectDescriptionWithValue(
-                            newSpEffect.Description,
-                            newSpEffect.Value.ToString(),
-                            newSpEffect.Stacks == 1);
-
-                        string newsummary = this.GetSpeffectDescriptionWithValue(
-                            newSpEffect.ShortDescription == ""
-                                ? newSpEffect.Description
-                                : newSpEffect.ShortDescription,
-                            newSpEffect.Value.ToString(),
-                            newSpEffect.Stacks == 1,
-                            true);
-
-                        effects.Add(new SpEffectText
+                        ID = newSpEffect.ID,
+                        Description = description,
+                        Summary = summary,
+                        NameParts = new NameParts
                         {
-                            ID = newSpEffect.ID,
-                            Description = newdescription,
-                            Summary = newsummary,
-                            NameParts = new NameParts
-                            {
-                                Suffix = newSpEffect.Suffix,
-                                Prefix = newSpEffect.Prefix,
-                                Interfix = newSpEffect.Interfix,
-                            }
-                        });
-                    }
+                            Suffix = newSpEffect.Suffix,
+                            Prefix = newSpEffect.Prefix,
+                            Interfix = newSpEffect.Interfix,
+                        }
+                    });
                 }
             }
         }
@@ -109,23 +109,19 @@ public class SpEffectHandler : BaseHandler
         return effecttext + returnstring + stacking;
     }
 
-    public List<int> GetPossibleWeaponSpeffectTypes(GenericParam weapdict, bool allowstandardspeffects = true)
+    public List<int> GetPossibleWeaponSpeffectTypes(EquipParamWeapon weapon, bool allowstandardspeffects = true)
     {
         List<int> speffecttypes = [];
-        WeaponsCanCastParamConfig weaponsCanCastConfig = this.configuration.LootParam.WeaponsCanCastParam;
-        List<string> speffectparams = [weaponsCanCastConfig.Sorcery, weaponsCanCastConfig.Miracles];
-
         List<int> speffectvalues = [3, 2];
 
-        for (int i = 0; i < speffectparams.Count; i++)
+        if (weapon.enableSorcery == 1)
         {
-            if (weapdict.ContainsKey(speffectparams[i]))
-            {
-                if (weapdict.GetValue<int>(speffectparams[i]) == 1)
-                {
-                    speffecttypes.Add(speffectvalues[i]);
-                }
-            }
+            speffecttypes.Add(3);
+        }
+
+        if (weapon.enableMiracle == 1)
+        {
+            speffectvalues.Add(2);
         }
 
         if (allowstandardspeffects)
@@ -136,40 +132,33 @@ public class SpEffectHandler : BaseHandler
         return speffecttypes;
     }
 
-    public IEnumerable<SpEffectConfig> GetAvailableSpEffectConfigs(int powermin, int powermax, List<int> allowedtypes)
+    private IEnumerable<SpEffectConfig> GetAvailableSpEffectConfigs(IntValueRange range, List<int> allowedTypes)
     {
         List<SpEffectConfig> spEffects = [];
 
-        powermax = Math.Clamp(powermax, 0, 9999);
-        powermin = Math.Clamp(powermin, 0, powermax);
-        int threshold = (int)((powermin + powermax) * 0.5);
+        int threshold = (int)((range.Min + range.Max) * 0.5);
 
-        int superthreshold = Math.Clamp((int)(powermax * 0.9), 0, 9999);
+        int upperThreshold = Math.Clamp((int)(range.Max * 0.9), 0, 9999);
 
-        if (this.LoadedSpEffectConfigs.Count() == 0)
-        {
-            return [];
-        }
-
-        foreach (int x in allowedtypes)
+        foreach (int x in allowedTypes)
         {
             List<SpEffectConfig> allOptions = this.LoadedSpEffectConfigs
                 .Where(d => d.SpEffectType == x)
                 .ToList();
 
             IEnumerable<SpEffectConfig> filteredOptions = allOptions
-                .Where(d => d.SpEffectPower >= powermin && d.SpEffectPower <= powermax);
+                .Where(d => d.SpEffectPower >= range.Min && d.SpEffectPower <= range.Max);
 
             if (filteredOptions.Any())
             {
                 spEffects.AddRange(filteredOptions);
                 // add within threshold twice to make it more likely
-                spEffects.AddRange(filteredOptions.Where(d => d.SpEffectPower >= threshold && d.SpEffectPower <= superthreshold).ToList());
+                spEffects.AddRange(filteredOptions.Where(d => d.SpEffectPower >= threshold && d.SpEffectPower <= upperThreshold).ToList());
             }
             else
             {
                 // add fallbacks if they exist
-                spEffects.AddRange(allOptions.Where(d => d.SpEffectPower < powermin));
+                spEffects.AddRange(allOptions.Where(d => d.SpEffectPower < range.Min));
             }
         }
 

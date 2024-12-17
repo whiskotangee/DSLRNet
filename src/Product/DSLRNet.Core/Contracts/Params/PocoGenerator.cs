@@ -33,15 +33,15 @@ public class PocoGenerator
         sb.AppendLine($"public class {className} : ParamBase<{className}>");
         sb.AppendLine("{");
 
-        sb.AppendLine($"    public int ID {{ get {{ return this.GenericParam.GetValue<int>(\"ID\"); }} set {{ this.GenericParam.SetValue(\"ID\", value); }} }}");
-        sb.AppendLine($"    public string Name {{ get {{ return this.GenericParam.GetValue<string>(\"Name\"); }} set {{ this.GenericParam.SetValue(\"Name\", value); }} }}");
+        sb.AppendLine($"    public int ID {{ get {{ return this.GetValue<int>(\"ID\"); }} set {{ this.SetValue(\"ID\", value); }} }}");
+        sb.AppendLine($"    public string Name {{ get {{ return this.GetValue<string>(\"Name\"); }} set {{ this.SetValue(\"Name\", value); }} }}");
 
         foreach (var cell in row.Cells)
         {
             string propertyName = cell.Def.InternalName;
             string propertyType = GetFriendlyTypeName(cell.Value.GetType());
 
-            sb.AppendLine($"    public {propertyType} {propertyName} {{ get {{ return this.GenericParam.GetValue<{propertyType}>(\"{propertyName}\"); }} set {{ this.GenericParam.SetValue(\"{propertyName}\", value); }} }}");
+            sb.AppendLine($"    public {propertyType} {propertyName} {{ get {{ return this.GetValue<{propertyType}>(\"{propertyName}\"); }} set {{ this.SetValue(\"{propertyName}\", value); }} }}");
         }
 
         sb.AppendLine("}");

@@ -188,7 +188,7 @@ public class ItemLotScanner(
                 return false;
             }
 
-            return match.GenericParam.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GenericParam.GetValue<int>(d) >= 1);
+            return match.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GetValue<int>(d) >= 1);
         }
         else
         {
@@ -200,7 +200,7 @@ public class ItemLotScanner(
                 return false;
             }
 
-            return match.GenericParam.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GenericParam.GetValue<int>(d) >= 1);
+            return match.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GetValue<int>(d) >= 1);
         }
     }
 }

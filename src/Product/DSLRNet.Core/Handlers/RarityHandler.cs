@@ -32,7 +32,7 @@ public class RarityHandler : BaseHandler
 
         int finalid = this.randomProvider.NextWeightedValue(weightedValues);
 
-        if (!CountByRarity.TryGetValue(finalid, out var count))
+        if (!CountByRarity.TryGetValue(finalid, out var _))
         {
             CountByRarity[finalid] = 0;
         }
@@ -42,93 +42,60 @@ public class RarityHandler : BaseHandler
         return finalid;
     }
 
-    public Queue<bool> GetRarityEffectChances(int desiredCount, int rarityid, LootType lootType)
+    public Queue<bool> GetRarityEffectChances(int desiredCount, int rarityId, LootType lootType, float chanceMultiplier)
     {
-        Queue<bool> finalboolarray = [];
+        Queue<bool> chanceQueue = [];
 
-        int finalrarityid = this.GetNearestRarityId(rarityid);
+        rarityId = this.GetNearestRarityId(rarityId);
         int offset = 0;
 
-        if (lootType != LootType.Weapon && rarityid >= 5)
+        if (lootType != LootType.Weapon && rarityId >= 5)
         {
-            finalboolarray.Enqueue(true);
+            chanceQueue.Enqueue(true);
             offset = 1;
         }
 
         for (int i = offset; i < desiredCount; i++)
         {
-            string spefchance = $"SpEffect{i}Chance";
-            RaritySetup item = this.RarityConfigs[finalrarityid];
+            string paramName = $"SpEffect{i}Chance";
+            RaritySetup item = this.RarityConfigs[rarityId];
 
-            float speffectchance = (float)item.GetType().GetProperty(spefchance).GetValue(item);
-            finalboolarray.Enqueue(this.randomProvider.PassesPercentCheck(speffectchance));
+            float chance = item.GetValue<float>(paramName);
+            chanceQueue.Enqueue(this.randomProvider.PassesPercentCheck(chance * chanceMultiplier));
         }
 
-        return finalboolarray;
+        return chanceQueue;
     }
 
-    public IntValueRange GetDamageAdditionRange(int rarityid)
+    public IntValueRange GetDamageAdditionRange(int rarityId)
     {
-        int finalrarity = this.GetNearestRarityId(rarityid);
-        return new IntValueRange(this.RarityConfigs[finalrarity].WeaponDmgAddMin, this.RarityConfigs[finalrarity].WeaponDmgAddMax);
+        rarityId = this.GetNearestRarityId(rarityId);
+        return new IntValueRange(this.RarityConfigs[rarityId].WeaponDmgAddMin, this.RarityConfigs[rarityId].WeaponDmgAddMax);
     }
 
     public IntValueRange GetWeaponScalingRange(int rarityId)
     {
-        int finalrarity = this.GetNearestRarityId(rarityId);
-        return new IntValueRange(this.RarityConfigs[finalrarity].ScalingMin, this.RarityConfigs[finalrarity].ScalingMax);
+        rarityId = this.GetNearestRarityId(rarityId);
+        return new IntValueRange(this.RarityConfigs[rarityId].ScalingMin, this.RarityConfigs[rarityId].ScalingMax);
     }
 
-    public FloatValueRange GetArmorCutRateRange(int rarityid)
+    public FloatValueRange GetArmorCutRateRange(int rarityId)
     {
-        int finalrarity = this.GetNearestRarityId(rarityid);
-        return new FloatValueRange(this.RarityConfigs[finalrarity].ArmorCutRateAddMin, this.RarityConfigs[finalrarity].ArmorCutRateAddMax);
+        rarityId = this.GetNearestRarityId(rarityId);
+        return new FloatValueRange(this.RarityConfigs[rarityId].ArmorCutRateAddMin, this.RarityConfigs[rarityId].ArmorCutRateAddMax);
     }
 
-    public FloatValueRange GetShieldGuardRateRange(int rarityid)
+    public FloatValueRange GetShieldGuardRateRange(int rarityId)
     {
-        int finalrarity = this.GetNearestRarityId(rarityid);
-        return new FloatValueRange(this.RarityConfigs[finalrarity].ShieldGuardRateMultMin, this.RarityConfigs[finalrarity].ShieldGuardRateMultMax);
+        rarityId = this.GetNearestRarityId(rarityId);
+        return new FloatValueRange(this.RarityConfigs[rarityId].ShieldGuardRateMultMin, this.RarityConfigs[rarityId].ShieldGuardRateMultMax);
     }
 
-    public float GetArmorCutRateAddition(int rarityid)
+    public float GetArmorCutRateAddition(int rarityId)
     {
-        int finalrarity = this.GetNearestRarityId(rarityid);
-        FloatValueRange range = this.GetArmorCutRateRange(finalrarity);
+        rarityId = this.GetNearestRarityId(rarityId);
+        FloatValueRange range = this.GetArmorCutRateRange(rarityId);
         return (float)Math.Round(this.randomProvider.Next(range), 4);
-    }
-
-    public List<int> GetRaritiesWithinRange(int highest = 10, int lowerrange = 0)
-    {
-        if (highest == -1)
-        {
-            if (this.RarityConfigs.Count != 0)
-            {
-                return [0];
-            }
-
-            highest = this.GetNearestRarityId((int)Math.Round(this.RarityConfigs.Keys.Max() * 0.5));
-        }
-
-        highest = this.GetNearestRarityId(highest);
-
-        int lowest = Math.Clamp(this.GetNearestRarityId((int)Math.Round((highest - lowerrange) / 2f)), this.GetLowestRarityId(), this.GetHighestRarityId());
-        List<int> finalrarities = [];
-
-        foreach (int x in new int[] { highest, lowest })
-        {
-            finalrarities.Add(x);
-        }
-
-        foreach (int x in this.RarityConfigs.Keys)
-        {
-            if (x > lowest && x < highest)
-            {
-                finalrarities.Add(x);
-            }
-        }
-
-        return finalrarities;
     }
 
     public FloatValueRange GetArmorResistMultRange(int rarityid)
@@ -145,28 +112,30 @@ public class RarityHandler : BaseHandler
         return (float)this.randomProvider.Next(range);
     }
 
-    public byte GetRarityParamValue(int rarityid)
+    public byte GetRarityParamValue(int rarityId)
     {
-        return (byte)this.RarityConfigs[this.GetNearestRarityId(rarityid)].RarityParamValue;
+        return (byte)this.RarityConfigs[this.GetNearestRarityId(rarityId)].RarityParamValue;
     }
 
-    public List<int> GetSpeffectPowerArray(int rarityid)
+    public IntValueRange GetSpeffectPowerArray(int rarityId)
     {
-        int finalrarity = this.GetNearestRarityId(rarityid);
+        rarityId = this.GetNearestRarityId(rarityId);
 
-        return [Math.Clamp(this.RarityConfigs[finalrarity].SpEffectPowerMin - 10, 0, this.RarityConfigs[finalrarity].SpEffectPowerMax), this.RarityConfigs[finalrarity].SpEffectPowerMax];
+        return new IntValueRange(
+            Math.Clamp(this.RarityConfigs[rarityId].SpEffectPowerMin - 10, 0, this.RarityConfigs[rarityId].SpEffectPowerMax), 
+            this.RarityConfigs[rarityId].SpEffectPowerMax);
     }
 
-    public string GetRarityName(int rarityid, bool withColor)
+    public string GetRarityName(int rarityId, bool withColor)
     {
-        int matchedRarityId = this.GetNearestRarityId(rarityid);
+        rarityId = this.GetNearestRarityId(rarityId);
 
         if (withColor)
         {
-            return this.RarityConfigs[matchedRarityId].Name.WrapTextWithProperties(color: this.RarityConfigs[matchedRarityId].ColorHex);
+            return this.RarityConfigs[rarityId].Name.WrapTextWithProperties(color: this.RarityConfigs[rarityId].ColorHex);
         }
 
-        return this.RarityConfigs[matchedRarityId].Name;
+        return this.RarityConfigs[rarityId].Name;
     }
 
     public int GetSellValue(int rarityid)
@@ -181,16 +150,11 @@ public class RarityHandler : BaseHandler
         return originalWeight * (float)this.randomProvider.Next(this.RarityConfigs[finalrarity].WeightMultMin, this.RarityConfigs[finalrarity].WeightMultMax);
     }
 
-    public int GetLowestRarityId()
-    {
-        return this.RarityConfigs.Keys.Min();
-    }
-
     public int GetNearestRarityId(int desiredrarityvalue = 0)
     {
         if (desiredrarityvalue == -1)
         {
-            return this.randomProvider.GetRandomItem<int>(this.RarityConfigs.Keys.ToList());
+            return this.randomProvider.GetRandomItem(this.RarityConfigs.Keys.ToList());
         }
 
         int finalrarityid = desiredrarityvalue;
@@ -206,11 +170,6 @@ public class RarityHandler : BaseHandler
             }
         }
         return finalrarityid;
-    }
-
-    public int GetHighestRarityId()
-    {
-        return this.RarityConfigs.Keys.Max();
     }
 
     public ushort GetIconId(ushort iconId, int rarityId, bool isUnique = false)

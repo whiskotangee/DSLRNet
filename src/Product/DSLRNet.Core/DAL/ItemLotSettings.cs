@@ -186,7 +186,7 @@ class DslItemLotSetup
         {
             foreach (string item in input.Split(','))
             {
-                string preppedItem = item.Trim(new[] { '[', ']' });
+                string preppedItem = item.Trim(['[', ']']);
                 if (!string.IsNullOrWhiteSpace(preppedItem))
                 {
                     result.Add(int.Parse(preppedItem));

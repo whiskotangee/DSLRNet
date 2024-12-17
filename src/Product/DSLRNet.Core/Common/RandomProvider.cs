@@ -1,39 +1,36 @@
 ﻿namespace DSLRNet.Core.Common;
 
-using System.Collections.Concurrent;
-using System.Runtime.CompilerServices;
-
 public class RandomProvider(int seed)
 {
     private readonly Random random = new(seed);
 
-    public int NextInt(IntValueRange range, [CallerMemberName] string caller = "Unknown")
+    public int NextInt(IntValueRange range)
     {
-        return this.NextInt(range.Min, range.Max, caller);
+        return this.NextInt(range.Min, range.Max);
     }
 
-    public int NextInt(int minimum, int maximum, [CallerMemberName] string caller = "Unknown")
+    public int NextInt(int minimum, int maximum)
     {
         return this.random.Next(minimum, maximum + 1);
     }
 
-    public float Next(FloatValueRange range, [CallerMemberName] string caller = "Unknown")
+    public float Next(FloatValueRange range)
     {
-        return (float)this.Next(range.Min, range.Max, caller);
+        return (float)this.Next(range.Min, range.Max);
     }
 
-    public double Next(double minimum = 0, double maximum = 1, [CallerMemberName] string caller = "Unknown")
+    public double Next(double minimum = 0, double maximum = 1)
     {
         double value = this.random.NextDouble();
 
         return value * (maximum - minimum) + minimum;
     }
 
-    public T NextWeightedValue<T>(List<WeightedValue<T>> values, [CallerMemberName] string caller = "Unknown")
+    public T NextWeightedValue<T>(List<WeightedValue<T>> values)
     {
         var weightTotal = values.Sum(d => d.Weight);
 
-        int weightedResult = this.NextInt(0, weightTotal, caller);
+        int weightedResult = this.NextInt(0, weightTotal);
 
         foreach (var val in values)
         {
@@ -50,28 +47,28 @@ public class RandomProvider(int seed)
         return values.FirstOrDefault().Value;
     }
 
-    public T GetRandomItem<T>(IEnumerable<T> values, [CallerMemberName] string caller = "Unknown")
+    public T GetRandomItem<T>(IEnumerable<T> values)
     {
-        int itemNumber = this.NextInt(0, values.Count() - 1, caller);
+        int itemNumber = this.NextInt(0, values.Count() - 1);
 
         return values.ElementAt(itemNumber);
     }
 
-    public List<T> GetRandomItems<T>(IEnumerable<T> values, int count, [CallerMemberName] string caller = "Unknown")
+    public List<T> GetRandomItems<T>(IEnumerable<T> values, int count)
     {
-        return GetRandomizedList(values, caller).Take(count).ToList();
+        return GetRandomizedList(values).Take(count).ToList();
     }
 
-    public List<T> GetRandomizedList<T>(IEnumerable<T> source, [CallerMemberName] string caller = "Unknown")
+    public List<T> GetRandomizedList<T>(IEnumerable<T> source)
     {
-        return [.. source.OrderBy(d => this.NextInt(0, 1000, caller))];
+        return [.. source.OrderBy(d => this.NextInt(0, 1000))];
     }
 
-    public bool PassesPercentCheck(int percent, [CallerMemberName] string caller = "Unknown")
+    public bool PassesPercentCheck(int percent)
     {
         if (percent < 100)
         {
-            return this.NextInt(IntValueRange.PercentRange, caller) < percent;
+            return this.NextInt(IntValueRange.PercentRange) < percent;
         }
         else
         {
@@ -79,11 +76,11 @@ public class RandomProvider(int seed)
         }
     }
 
-    public bool PassesPercentCheck(double percent, [CallerMemberName] string caller = "Unknown")
+    public bool PassesPercentCheck(double percent)
     {
         if (percent < 100)
         {
-            return this.Next(0, percent, caller) < percent;
+            return this.Next(0, percent) < percent;
         }
         else
         {

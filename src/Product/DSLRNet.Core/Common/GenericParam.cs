@@ -50,7 +50,7 @@ public class GenericParam : ICloneable
                 return (T)(object)data; 
             }
 
-            if (value is string str && (str.Contains('|') || str.Contains("[")))
+            if (value is string str && (str.Contains('|') || str.Contains('[')))
             {
                 return (T)Convert.ChangeType(str.Split("|").Select(s => Convert.ToByte(s.Trim('[').Trim(']'))).ToArray(), typeof(T));
             }
@@ -70,12 +70,12 @@ public class GenericParam : ICloneable
 
     public void SetValue<T>(string name, T? value)
     {
-        if (this.Properties.ContainsKey(name)
-            && typeof(T).Name != this.Properties[name].GetType().Name
-            && !typeof(T).Name.Contains("Int32") && !this.Properties[name].GetType().Name.Contains("Int64")
-            && !typeof(T).Name.Contains("Int64") && !this.Properties[name].GetType().Name.Contains("Int32")
-            && !typeof(T).Name.Contains("Single") && !this.Properties[name].GetType().Name.Contains("Double")
-            && !typeof(T).Name.Contains("Double") && !this.Properties[name].GetType().Name.Contains("Single"))
+        if (this.Properties.TryGetValue(name, out object? curValue) 
+            && typeof(T).Name != curValue.GetType().Name
+            && !typeof(T).Name.Contains("Int32") && !curValue.GetType().Name.Contains("Int64")
+            && !typeof(T).Name.Contains("Int64") && !curValue.GetType().Name.Contains("Int32")
+            && !typeof(T).Name.Contains("Single") && !curValue.GetType().Name.Contains("Double")
+            && !typeof(T).Name.Contains("Double") && !curValue.GetType().Name.Contains("Single"))
         {
             throw new Exception("Mismatched type being set");
         }

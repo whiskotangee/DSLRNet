@@ -102,8 +102,9 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
 
-        this.ApplyWeaponScalingRange(newWeapon.GenericParam, modifications, rarityId);
-        this.SetWeaponOriginParam(newWeapon.GenericParam, newWeapon.ID, replace: true);
+        this.ApplyWeaponScalingRange(newWeapon, modifications, rarityId);
+
+        this.SetWeaponOriginParam(newWeapon, newWeapon.ID);
 
         string weaponOriginalTitle = newWeapon.Name;
 
@@ -133,10 +134,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             newWeapon.GenericParam, 
             LootType.Weapon, 
             weaponFinalTitleColored, 
-            weaponDesc + Environment.NewLine + this.LoreGenerator.GenerateDescription(weaponFinalTitle, false), 
-            "", 
-            [],
-            []);
+            weaponDesc + Environment.NewLine + this.LoreGenerator.GenerateDescription(weaponFinalTitle, false));
 
         return newWeapon.ID;
     }
@@ -164,36 +162,26 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         return string.Join(' ', names.Where(s => !string.IsNullOrWhiteSpace(s)));
     }
 
-    private void SetWeaponOriginParam(GenericParam weaponDictionary, int id, int upgradeCap = 25, bool replace = true)
+    private void SetWeaponOriginParam(EquipParamWeapon weapon, int id, int upgradeCap = 25)
     {
         List<string> originParams =
             Enumerable.Range(1, upgradeCap)
-            .Where(d => weaponDictionary.ContainsKey($"{this.Configuration.LootParam.WeaponOriginParamBase}{d}") &&
-                        weaponDictionary.GetValue<int>($"{this.Configuration.LootParam.WeaponOriginParamBase}{d}") > 0)
-            .Select(d => $"{this.Configuration.LootParam.WeaponOriginParamBase}{d}").ToList();
+            .Where(d => weapon.GenericParam.ContainsKey($"originEquipWep{d}") &&
+                        weapon.GetValue<int>($"originEquipWep{d}") > 0)
+            .Select(d => $"originEquipWep{d}").ToList();
 
-        weaponDictionary.SetValue(this.Configuration.LootParam.WeaponOriginParamBase, id);
+        weapon.originEquipWep = id;
 
-        if (replace)
+        foreach (string param in originParams)
         {
-            foreach (string? param in originParams)
+            if (weapon.GetValue<uint>(param) > 0)
             {
-                if (weaponDictionary.GetValue<uint>(param) > 0)
-                {
-                    weaponDictionary.SetValue(param, id);
-                }
-            }
-        }
-        else
-        {
-            foreach (string? param in originParams)
-            {
-                weaponDictionary.SetValue(param, id);
+                weapon.SetValue(param, id);
             }
         }
     }
 
-    private void ApplyWeaponScalingRange(GenericParam newWeapon, WeaponModifications modifications, int rarityId)
+    private void ApplyWeaponScalingRange(EquipParamWeapon newWeapon, WeaponModifications modifications, int rarityId)
     {
         var damageParams = newWeapon.GetFieldNamesByFilter("correct").Select(d => new { ParamName = d, Value = newWeapon.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
 
@@ -244,20 +232,20 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         WeaponModifications mods = new(dT1, dT2);
 
         float spEffectMultiplier = 1.00f;
-        float existingValue = weapon.GenericParam.GetValue<float>(mods.PrimaryDamageType.ShieldParam);
-        float? existingSecondaryValue = mods.SecondaryDamageType != null ? weapon.GenericParam.GetValue<float>(mods.SecondaryDamageType.ShieldParam) : null;
+        float existingValue = weapon.GetValue<float>(mods.PrimaryDamageType.ShieldParam);
+        float? existingSecondaryValue = mods.SecondaryDamageType != null ? weapon.GetValue<float>(mods.SecondaryDamageType.ShieldParam) : null;
 
         float guardRateMultiplier = this.Random.Next(this.RarityHandler.GetShieldGuardRateRange(rarityId));
 
         float value = Math.Clamp(existingValue * guardRateMultiplier, 0, 100);
 
-        weapon.GenericParam.SetValue(mods.PrimaryDamageType.ShieldParam, value);
+        weapon.SetValue(mods.PrimaryDamageType.ShieldParam, value);
 
         if (existingSecondaryValue != null
             && mods.PrimaryDamageType.ShieldParam != mods.SecondaryDamageType.ShieldParam)
         {
             float secondaryValue = Math.Clamp((float)(existingSecondaryValue + this.Random.Next(new FloatValueRange(.1f, 5.0f))), 0, 100);
-            weapon.GenericParam.SetValue(mods.SecondaryDamageType.ShieldParam, secondaryValue);
+            weapon.SetValue(mods.SecondaryDamageType.ShieldParam, secondaryValue);
             mods.SecondaryDamageValue = secondaryValue;
 
         }
@@ -280,7 +268,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         //TODO : randomize sorcery/incantation scaling?
         WeaponModifications modifications = new(new DamageTypeSetup(), null);
 
-        List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weapon.GenericParam);
+        List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weapon);
 
         IEnumerable<SpEffectText> nameParts = this.ApplySpEffects(rarityId, options, weapon.GenericParam, 1.0f, LootType.Weapon);
 
@@ -297,14 +285,14 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         IntValueRange dmgRange = this.RarityHandler.GetDamageAdditionRange(rarityId);
 
-        List<string> dmgParams = weapon.GenericParam.GetFieldNamesByFilter("attackBase");
+        List<string> dmgParams = weapon.GetFieldNamesByFilter("attackBase");
 
-        long maxOriginalValue = dmgParams.Max(weapon.GenericParam.GetValue<long>);
+        long maxOriginalValue = dmgParams.Max(weapon.GetValue<long>);
 
         // reset all damage
         foreach (string dmgParam in dmgParams)
         {
-            weapon.GenericParam.SetValue(dmgParam, 0f);
+            weapon.SetValue(dmgParam, 0f);
         }
 
         float overallMultiplier = mods.PrimaryDamageType.OverallMultiplier;
@@ -329,41 +317,41 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         if (mods.SecondaryDamageType != null)
         {
-            weapon.GenericParam.SetValue(mods.SecondaryDamageType.Param, (maxOriginalValue / 4) + secondaryDamage);
+            weapon.SetValue(mods.SecondaryDamageType.Param, (maxOriginalValue / 4) + secondaryDamage);
         }
 
         if (mods.SecondaryDamageType == null ||
             mods.PrimaryDamageType.Param == mods.SecondaryDamageType?.Param)
         {
-            weapon.GenericParam.SetValue(mods.PrimaryDamageType.Param, maxOriginalValue + primaryDamage);
+            weapon.SetValue(mods.PrimaryDamageType.Param, maxOriginalValue + primaryDamage);
         }
         else
         {
-            weapon.GenericParam.SetValue(mods.PrimaryDamageType.Param, maxOriginalValue + primaryDamage);
+            weapon.SetValue(mods.PrimaryDamageType.Param, maxOriginalValue + primaryDamage);
         }
 
         mods.PrimaryDamageValue = primaryDamage;
         mods.SecondaryDamageValue = secondaryDamage;
 
-        List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weapon.GenericParam);
+        List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weapon);
 
         this.ApplySpEffects(rarityId, options, weapon.GenericParam, 1.0f, LootType.Weapon);
 
-        List<string> passiveParams = this.GetPassiveSpEffectSlotArrayFromOutputParamName();
+        List<string> passiveParams = this.GetPassiveSpEffectFieldNames();
 
         List<string> behSpEffectSlots = this.Configuration.LootParam.WeaponBehSpeffects;
 
         List<string> weaponEffectTextParams = this.Configuration.LootParam.SpeffectMsg;
 
-        weapon.GenericParam.SetValue(passiveParams[0], mods.PrimaryDamageType.SpEffect);
-        weapon.GenericParam.SetValue(behSpEffectSlots[0], mods.PrimaryDamageType.OnHitSpEffect);
-        weapon.GenericParam.SetValue(weaponEffectTextParams[0], mods.PrimaryDamageType.Message);
+        weapon.SetValue(passiveParams[0], mods.PrimaryDamageType.SpEffect);
+        weapon.SetValue(behSpEffectSlots[0], mods.PrimaryDamageType.OnHitSpEffect);
+        weapon.SetValue(weaponEffectTextParams[0], mods.PrimaryDamageType.Message);
 
         if (mods.SecondaryDamageType != null)
         {
-            weapon.GenericParam.SetValue(passiveParams[1], mods.SecondaryDamageType.SpEffect);
-            weapon.GenericParam.SetValue(behSpEffectSlots[1], mods.SecondaryDamageType.OnHitSpEffect);
-            weapon.GenericParam.SetValue(weaponEffectTextParams[1], mods.SecondaryDamageType.Message);
+            weapon.SetValue(passiveParams[1], mods.SecondaryDamageType.SpEffect);
+            weapon.SetValue(behSpEffectSlots[1], mods.SecondaryDamageType.OnHitSpEffect);
+            weapon.SetValue(weaponEffectTextParams[1], mods.SecondaryDamageType.Message);
         }
 
         List<string> effectStrings = [];
@@ -398,7 +386,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         weapon.throwAtkRate = (short)(critValue * (1 + critMultiplier));
 
-        float maxDamage = dmgParams.Max(par => weapon.GenericParam.GetValue<float>(par));
+        float maxDamage = dmgParams.Max(par => weapon.GetValue<float>(par));
 
         if (maxDamage > weaponGeneratorConfig.DamageIncreasesStaminaThreshold)
         {

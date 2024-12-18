@@ -73,25 +73,24 @@ public class DSLRNetBuilder(
 
         File.Copy(regulationFile, destinationFile, true);
 
-        List<ParamEdit> generatedData = dataRepository.GetParamEdits(ParamOperation.MassEdit);
+        //List<ParamEdit> generatedData = dataRepository.GetParamEdits(ParamOperation.MassEdit);
 
-        IEnumerable<IGrouping<ParamNames, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
+        //IEnumerable<IGrouping<ParamNames, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
 
-        List<string> massEditFiles = Directory.GetFiles("Assets\\Data\\MassEdit\\", "*.massedit")
-            .ToList();
+        //foreach (IGrouping<ParamNames, ParamEdit> group in groups)
+        //{
+        //    File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), group.Select(s => s.MassEditString));
+        //    await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), destinationFile);
+        //}
+
+        await this.ApplyCreates(destinationFile, dataRepository);
+
+        List<string> massEditFiles = Directory.GetFiles("Assets\\Data\\MassEdit\\", "*.massedit").ToList();
 
         foreach (string? massEdit in massEditFiles)
         {
             await this.ApplyMassEdit(massEdit, destinationFile);
         }
-
-        foreach (IGrouping<ParamNames, ParamEdit> group in groups)
-        {
-            File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), group.Select(s => s.MassEditString));
-            await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), destinationFile);
-        }
-
-        await this.ApplyCreates(destinationFile, dataRepository);
 
         if (!File.Exists(destinationFile.Replace("working.", "pre-dslr.")))
         {
@@ -110,7 +109,7 @@ public class DSLRNetBuilder(
 
         IEnumerable<ParamNames> paramNames = edits.Select(d => d.ParamName).Distinct();
 
-        foreach (ParamNames paramName in paramNames)
+        await Parallel.ForEachAsync(paramNames, (paramName, c) => 
         {
             // write csv
             string csvFile = Path.Combine(this.configuration.Settings.DeployPath, $"{paramName}.csv");
@@ -124,14 +123,10 @@ public class DSLRNetBuilder(
                 return ret;
             }).ToList());
 
-            // dsms csv
-            await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
-            {
-                ExePath = this.configuration.Settings.DSMSPortablePath,
-                Arguments = $"\"{regulationFile}\" -G ER -P \"{this.configuration.Settings.GamePath}\" -C \"{csvFile}\"",
-                RetryCount = 0
-            });
-        }
+            return ValueTask.CompletedTask;
+        });
+
+        await repository.ApplyEditsToRegulationBinAsync(regulationFile);
     }
 
     private async Task ApplyMassEdit(string massEditFile, string destinationFile)

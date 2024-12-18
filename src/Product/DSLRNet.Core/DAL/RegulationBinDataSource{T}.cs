@@ -6,7 +6,7 @@ using System.Collections.Concurrent;
 public class RegulationBinDataSource<T>(
     DataSourceConfig paramSource,
     RandomProvider random,
-    RegulationBinReader regulationBinReader) : BaseDataSource<T>(random)
+    RegulationBinBank regulationBinReader) : BaseDataSource<T>(random)
     where T : ParamBase<T>, ICloneable<T>, new()
 {
     private PARAM? readParam = null;

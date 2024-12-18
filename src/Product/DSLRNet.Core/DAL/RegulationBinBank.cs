@@ -4,16 +4,16 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
 
-public class RegulationBinReader
+public class RegulationBinBank
 {
     private readonly Configuration configuration;
-    private readonly ILogger<RegulationBinReader> logger;
+    private readonly ILogger<RegulationBinBank> logger;
     private readonly BND4 paramBnd;
 
     private readonly ConcurrentDictionary<DataSourceNames, PARAMDEF> paramDefs = [];
     private readonly ConcurrentDictionary<DataSourceNames, PARAM> loadedParams = [];
 
-    public RegulationBinReader(IOptions<Configuration> configuration, ILogger<RegulationBinReader> logger)
+    public RegulationBinBank(IOptions<Configuration> configuration, ILogger<RegulationBinBank> logger)
     {
         this.configuration = configuration.Value;
         this.logger = logger;
@@ -30,6 +30,56 @@ public class RegulationBinReader
 
         this.logger.LogInformation($"Loading regulation bin from {regBinPath}");
         paramBnd = GetRegulationBin();
+    }
+
+    public (int updatedRows, int addedRows) AddOrUpdateRows(DataSourceNames dataSourceName, List<ParamEdit> paramEdits)
+    {
+        int updatedRows = 0;
+        int addedRows = 0;
+
+        PARAM param = loadedParams[dataSourceName];
+
+        foreach(var edit in paramEdits.OrderBy(d => d.ParamObject.ID))
+        {
+            var row = param.Rows.SingleOrDefault(d => d.ID == edit.ParamObject.ID);
+            updatedRows += row != null ? 1 : 0;
+            addedRows += row == null ? 1 : 0;
+
+            if (row == null)
+            {
+                row = new(edit.ParamObject.ID, string.Empty, param.AppliedParamdef);
+                param.Rows.Add(row);
+            }
+
+            foreach (string fieldName in edit.ParamObject.Properties.Keys.Where(d => d != "ID" && d != "Name"))
+            {
+                PARAM.Cell cell = row.Cells.Single(d => d.Def.InternalName == fieldName);
+                cell.Value = edit.ParamObject.Properties[cell.Def.InternalName];
+            }
+        }
+
+        UpdateParam(dataSourceName, param);
+
+        return (updatedRows, addedRows);
+    }
+
+    public void SaveRegulationBin(string path)
+    {
+        SFUtil.EncryptERRegulation(path, paramBnd);
+    }
+
+    public void UpdateParam(DataSourceNames name, PARAM param)
+    {
+        foreach (BinderFile f in this.paramBnd.Files)
+        {
+            var paramName = Path.GetFileNameWithoutExtension(f.Name);
+
+            if (Enum.TryParse<DataSourceNames>(paramName, out var readName) && readName == name)
+            {
+                f.Bytes = param.Write();
+                break;
+            }
+        }
     }
 
     public PARAM GetParam(DataSourceNames paramName)

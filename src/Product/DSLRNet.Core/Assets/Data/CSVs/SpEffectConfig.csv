@@ -46,6 +46,7 @@ ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEff
 80000006,7,59,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300003,0,1,0
 80000007,8,69,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300002,0,1,0
 80000008,9,79,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300001,0,1,0
+80000009,10,90,Vigorous,Vigor,of Vigor,VIG +{VALUE},,0,18000,300000,0,1,0
 80000010,1,0,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300019,0,1,0
 80000011,2,9,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300018,0,1,0
 80000012,3,19,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300017,0,1,0
@@ -55,6 +56,7 @@ ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEff
 80000016,7,59,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300013,0,1,0
 80000017,8,69,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300012,0,1,0
 80000018,9,79,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300011,0,1,0
+80000019,10,90,Caster,Casting,of Casting,MND +{VALUE},,0,18000,300010,0,1,0
 80000020,1,0,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300029,0,1,0
 80000021,2,9,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300028,0,1,0
 80000022,3,19,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300027,0,1,0
@@ -64,6 +66,7 @@ ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEff
 80000026,7,59,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300023,0,1,0
 80000027,8,69,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300022,0,1,0
 80000028,9,79,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300021,0,1,0
+80000029,10,90,Enduring,Enduring,of Endurance,END +{VALUE},,0,18000,300020,0,1,0
 80000030,1,0,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300049,0,1,0
 80000031,2,9,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300048,0,1,0
 80000032,3,19,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300047,0,1,0
@@ -73,6 +76,7 @@ ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEff
 80000036,7,59,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300043,0,1,0
 80000037,8,69,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300042,0,1,0
 80000038,9,79,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300041,0,1,0
+80000039,10,90,Strengthening,Strong,of Strength,STR +{VALUE},,0,18000,300040,0,1,0
 80000040,1,0,Dexterous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300059,0,1,0
 80000041,2,9,Dexterous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300058,0,1,0
 80000042,3,19,Dexterous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300057,0,1,0
@@ -82,6 +86,7 @@ ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEff
 80000046,7,59,Dexterous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300053,0,1,0
 80000047,8,69,Dexterous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300052,0,1,0
 80000048,9,79,Dexterous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300051,0,1,0
+80000049,10,90,Dexterous,Dexterity,of Dexterity,DEX +{VALUE},,0,18000,300050,0,1,0
 80000050,1,0,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300069,0,1,0
 80000051,2,9,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300068,0,1,0
 80000052,3,19,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300067,0,1,0
@@ -91,6 +96,7 @@ ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEff
 80000056,7,59,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300063,0,1,0
 80000057,8,69,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300062,0,1,0
 80000058,9,79,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300061,0,1,0
+80000059,10,90,Intelligent,Intelligent,of Intelligence,INT +{VALUE},,0,18000,300060,0,1,0
 80000060,1,0,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300079,0,1,0
 80000061,2,9,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300078,0,1,0
 80000062,3,19,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300077,0,1,0
@@ -100,6 +106,7 @@ ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEff
 80000066,7,59,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300073,0,1,0
 80000067,8,69,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300072,0,1,0
 80000068,9,79,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300071,0,1,0
+80000069,10,90,Pious,Pious,of Piety,FTH +{VALUE},,0,18000,300071,0,1,0
 80000070,1,0,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300089,0,1,0
 80000071,2,9,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300088,0,1,0
 80000072,3,19,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300087,0,1,0
@@ -109,6 +116,12 @@ ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEff
 80000076,7,59,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300083,0,1,0
 80000077,8,69,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300082,0,1,0
 80000078,9,79,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300081,0,1,0
+80000079,10,90,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300081,0,1,0
+80000080,1,30,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300099,0,1,0
+80000081,2,50,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300098,0,1,0
+80000082,3,60,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300097,0,1,0
+80000083,4,70,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300096,0,1,0
+80000084,5,80,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300095,0,1,0
 80030000,0,90,Infighter's,Infighting,of Close Combat,"<font color=""#ada184"">Infighter</font>: Attacking with Claws or Fists bestows an infinitely stacking buff to Poise/Stamina Regen/Damage/Poise Damage for 7 seconds","<font color=""#ada184"">Infighter</font>",0,18800,999999,1,1,0
 80030200,0,90,Pyromaniac's,Firestarter,of the Pyromaniac,"<font color=""#f48c25"">Pyromaniac</font>: When wielding a Torch all Fire Attack Power +20% & attacking imparts -5% Fire Resist/+5% Fire Attack stacking infinitely","<font color=""#f48c25"">Pyromaniac</font>",0,18250,999999,1,1,0
 80030300,0,90,Fortress,Fortress,of the Iron Fortress,"<font color=""#8fbdbe"">Fortress</font>: When wielding any shield receive Max HP/Poise/Aggro. Effect increases at Heavy Equip Load.","<font color=""#8fbdbe"">Fortress</font>",0,18220,999999,1,1,0

@@ -3,7 +3,10 @@
 using DSLRNet.Core.DAL;
 using System.Text;
 
-public class ParamEditsRepository(DataAccess dataAccess, ILogger<ParamEditsRepository> logger)
+public class ParamEditsRepository(
+    DataAccess dataAccess, 
+    ILogger<ParamEditsRepository> logger,
+    RegulationBinBank regulationBin)
 {
     private Dictionary<ParamNames, List<ParamEdit>> paramEdits { get; set; } =
         Enum.GetValues(typeof(ParamNames))
@@ -116,6 +119,24 @@ public class ParamEditsRepository(DataAccess dataAccess, ILogger<ParamEditsRepos
         }
 
         this.paramEdits[paramEdit.ParamName].Add(paramEdit);
+    }
+
+    public async Task ApplyEditsToRegulationBinAsync(string writePath)
+    {
+        logger.LogInformation($"Applying adds and edits to regulation bin");
+        await Parallel.ForEachAsync(this.paramEdits.Keys.Where(d => d != ParamNames.TextOnly), (paramName, c) =>
+        {
+            logger.LogInformation($"Applying changes to {paramName}");
+
+            (int updatedRows, int addedRows) = regulationBin.AddOrUpdateRows(Enum.Parse<DataSourceNames>(paramName.ToString()), this.paramEdits[paramName]);
+
+            logger.LogInformation($"Applied {updatedRows} updates and {addedRows} adds for {paramName}");
+
+            return ValueTask.CompletedTask;
+        });
+
+        logger.LogInformation($"Writing regulation bin to {writePath}");
+        regulationBin.SaveRegulationBin(writePath);
     }
 
     public List<ParamEdit> GetParamEdits(ParamOperation? operation = null, string? paramName = null)

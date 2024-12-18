@@ -39,7 +39,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<MSBProvider>()
                 .AddSingleton<DataAccess>()
                 .AddSingleton<Csv>()
-                .AddSingleton<RegulationBinReader>()
+                .AddSingleton<RegulationBinBank>()
                 .AddSingleton<DataSourceFactory>()
                 .AddSingleton((sp) =>
                 {

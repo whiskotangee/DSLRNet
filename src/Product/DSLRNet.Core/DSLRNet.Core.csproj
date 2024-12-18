@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Data\EMEVD\EntityIds.txt" />
     <None Remove="Assets\Data\ItemLots\EnemiesOverrides\place_enemy_itemlot_overrides_here.txt" />
     <None Remove="Assets\Data\ItemLots\MapsOverrides\place_map_itemlot_overrides_here.txt" />
   </ItemGroup>

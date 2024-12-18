@@ -2,7 +2,7 @@
 
 using DSLRNet.Core.DAL;
 
-public class DataSourceFactory(Csv csv, RegulationBinReader regulationBinReader, RandomProvider random)
+public class DataSourceFactory(Csv csv, RegulationBinBank regulationBinReader, RandomProvider random)
 {
     public IDataSource<T> CreateDataSource<T>(DataSourceConfig paramSource)
         where T : ParamBase<T>, ICloneable<T>, new()

@@ -20,17 +20,18 @@ public class ItemLotScanner(
     private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll().ToList();
     private readonly List<NpcParam> npcParams = dataAccess.NpcParam.GetAll().ToList();
 
-    public Dictionary<ItemLotCategory, ItemLotSettings> ScanAndCreateItemLotSets(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
+    public Dictionary<ItemLotCategory, List<ItemLotSettings>> ScanAndCreateItemLotSets(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
-        Dictionary<ItemLotCategory, ItemLotSettings> generatedItemLotSettings = [];
+        Dictionary<ItemLotCategory, List<ItemLotSettings>> generatedItemLotSettings = [];
 
         ItemLotSettings remainingMapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]);
         ItemLotSettings remainingEnemyLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]);
+        ItemLotSettings bossLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]);
 
         List<EventDropItemLotDetails> eventItemLotDetails = bossDropScanner.ScanEventsForBossDrops();
 
-        generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Enemy, remainingEnemyLots);
-        generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Map, remainingMapLots);
+        generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Enemy, [remainingEnemyLots]);
+        generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Map, [remainingMapLots, bossLots]);
 
         foreach (var mapFile in msbProvider.GetAllMsbs())
         {
@@ -42,7 +43,7 @@ public class ItemLotScanner(
             Dictionary<GameStage, int> enemiesAdded = SetupEnemyLots(mapFileName, claimedIds[ItemLotCategory.ItemLot_Enemy], npcs, remainingEnemyLots);
             Dictionary<GameStage, int> mapItemsAdded = SetupMapLots(mapFileName, msb, claimedIds[ItemLotCategory.ItemLot_Map], npcs, remainingMapLots, eventItemLotDetails);
 
-            Dictionary<GameStage, int> eventItemsAdded = SetupEventLots(mapFileName, msb, claimedIds[ItemLotCategory.ItemLot_Map], remainingMapLots, eventItemLotDetails);
+            Dictionary<GameStage, int> eventItemsAdded = SetupEventLots(mapFileName, msb, claimedIds[ItemLotCategory.ItemLot_Map], bossLots, eventItemLotDetails);
             logger.LogInformation($"Map {mapFileName} Enemies: {JsonConvert.SerializeObject(enemiesAdded)} Treasures: {JsonConvert.SerializeObject(mapItemsAdded)} BossDrops: {JsonConvert.SerializeObject(eventItemsAdded)}");
         }
 

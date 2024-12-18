@@ -1,5 +1,3 @@
-using System;
-
 public class SpEffectParam : ParamBase<SpEffectParam>
 {
     public int ID { get { return this.GetValue<int>("ID"); } set { this.SetValue("ID", value); } }

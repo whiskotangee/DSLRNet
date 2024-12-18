@@ -1,5 +1,3 @@
-using System;
-
 public class EquipParamGem : ParamBase<EquipParamGem>
 {
     public int ID { get { return this.GetValue<int>("ID"); } set { this.SetValue("ID", value); } }

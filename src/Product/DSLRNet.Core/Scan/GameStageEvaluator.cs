@@ -111,7 +111,7 @@ public class GameStageEvaluator
                 var totalHp = npc.hp * (spEffect?.maxHpRate ?? 1.0f);
 
                 gameStage = (GameStage)Math.Clamp((int)gameStage + 1, (int)GameStage.Early, (int)GameStage.End);
-                logger.LogInformation($"Boss of Id {npc.ID} with total hp {totalHp:F2} returned game stage {gameStage}");
+                logger.LogInformation($"Boss {npc.Name} of Id {npc.ID} with total hp {totalHp:F2} returned game stage {gameStage}");
             }
         }
 

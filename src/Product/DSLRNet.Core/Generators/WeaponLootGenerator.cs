@@ -3,7 +3,6 @@
 using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Contracts.Params;
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Data;
 using DSLRNet.Core.Extensions;
@@ -58,9 +57,13 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         return this.GetNewLootItem();
     }
 
+    public int uniqueWeaponCounter = 0;
+
     public int CreateWeapon(ItemLotSettings itemLotSettings, int rarityId)
     {
         bool isUniqueWeapon = this.Random.PassesPercentCheck(this.weaponGeneratorConfig.UniqueNameChance);
+
+        uniqueWeaponCounter += isUniqueWeapon ? 1 : 0;
 
         WeaponTypes weaponType = this.Random.NextWeightedValue(itemLotSettings.WeaponWeightsByType);
 
@@ -81,12 +84,18 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         newWeapon.disableGemAttr = 1;
         newWeapon.weight = this.RarityHandler.GetRandomizedWeight(newWeapon.weight, rarityId);
 
+        this.ApplyWeaponRequiredStatChanges(newWeapon, rarityId);
+        this.SetWeaponOriginParam(newWeapon, newWeapon.ID);
+
         string affinity = "";
 
         WeaponModifications modifications = this.ApplyWeaponModifications(
             newWeapon,
             rarityId,
             weaponType);
+
+        this.ApplyWeaponScalingRange(newWeapon, modifications, rarityId);
+
 
         this.damageTypeHandler.ApplyDamageTypeWeaponSpEffects(modifications, newWeapon.GenericParam);
 
@@ -101,10 +110,6 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
-
-        this.ApplyWeaponScalingRange(newWeapon, modifications, rarityId);
-
-        this.SetWeaponOriginParam(newWeapon, newWeapon.ID);
 
         string weaponOriginalTitle = newWeapon.Name;
 
@@ -224,6 +229,28 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             float newValue = this.Random.NextInt(weaponGeneratorConfig.OtherBaseScalingRange);
 
             newWeapon.SetValue(currentScaling.ParamName, newValue);
+        }
+    }
+
+    private void ApplyWeaponRequiredStatChanges(EquipParamWeapon newWeapon, int rarityId)
+    {
+        var requirementStats = newWeapon.GetFieldNamesByFilter("proper");
+
+        var originalValues = requirementStats.Select(newWeapon.GetValue<int>).ToList();
+
+        if (originalValues.Count < requirementStats.Count)
+        {
+            originalValues.AddRange(Enumerable.Repeat(0, requirementStats.Count - originalValues.Count));
+        }
+
+        var additionRange = RarityHandler.GetStatRequiredAdditionRange(rarityId);
+
+        var randomizedStats = this.Random.GetRandomizedList(originalValues);
+
+        for (int i = 0; i < requirementStats.Count; i++)
+        {
+            string? req = requirementStats[i];
+            newWeapon.SetValue<int>(req, originalValues[i] + this.Random.NextInt(additionRange));
         }
     }
 

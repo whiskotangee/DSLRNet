@@ -1,7 +1,4 @@
 ﻿namespace DSLRNet.Core.Common;
-
-using System.Runtime.CompilerServices;
-
 public class FloatValueRange(float min, float max)
 {
     public float Min { get; set; } = min;

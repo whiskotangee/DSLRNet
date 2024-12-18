@@ -31,7 +31,6 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<SpEffectHandler>()
                 .AddSingleton<ParamEditsRepository>()
                 .AddSingleton<DSLRNetBuilder>()
-                .AddSingleton<ProcessRunner>()
                 .AddSingleton<ItemLotScanner>()
                 .AddSingleton<IconBuilder>()
                 .AddSingleton<BossDropScanner>()

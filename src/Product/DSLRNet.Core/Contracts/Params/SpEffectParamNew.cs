@@ -1,6 +1,4 @@
-﻿using System;
-
-public class SpEffectParamNew : ParamBase<SpEffectParamNew>
+﻿public class SpEffectParamNew : ParamBase<SpEffectParamNew>
 {
     public int ID { get { return this.GetValue<int>("ID"); } set { this.SetValue("ID", value); } }
     public string Name { get { return this.GetValue<string>("Name"); } set { this.SetValue("Name", value); } }

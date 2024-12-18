@@ -67,6 +67,7 @@ public class ItemLotGenerator : BaseHandler
             }
         }
 
+        this.logger.LogInformation($"Count of unique weapons: {this.weaponLootGenerator.uniqueWeaponCounter}");
         this.logger.LogInformation($"Current rarity generation counts {JsonConvert.SerializeObject(rarityHandler.CountByRarity.OrderBy(d => d.Key), Formatting.Indented)}");
         this.logger.LogInformation($"Current edit count: {JsonConvert.SerializeObject(this.GeneratedDataRepository.EditCountsByName(), Formatting.Indented)}");
     }

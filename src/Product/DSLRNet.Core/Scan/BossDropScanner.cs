@@ -1,6 +1,5 @@
 ﻿namespace DSLRNet.Core.Scan;
 
-using System.Net.Http.Headers;
 using static SoulsFormats.EMEVD.Instruction;
 
 public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configuration> config)

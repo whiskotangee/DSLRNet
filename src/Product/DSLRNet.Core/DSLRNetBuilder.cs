@@ -1,11 +1,9 @@
 ﻿namespace DSLRNet.Core;
 
-using DSLRNet.Core.DAL;
 using DSLRNet.Core.Generators;
 using DSLRNet.Core.Scan;
 using Microsoft.Extensions.Logging;
 using SoulsFormats;
-using SoulsFormats.Formats;
 
 public class DSLRNetBuilder(
     ILogger<DSLRNetBuilder> logger,
@@ -13,23 +11,21 @@ public class DSLRNetBuilder(
     IOptions<Configuration> configuration,
     ParamEditsRepository dataRepository,
     ItemLotScanner itemLotScanner,
-    ProcessRunner processRunner,
     Csv csv)
 {
     private readonly Configuration configuration = configuration.Value;
     private readonly ILogger<DSLRNetBuilder> logger = logger;
-    private readonly ProcessRunner processRunner = processRunner;
 
     public void BuildItemLots()
     {
         Directory.CreateDirectory(this.configuration.Settings.DeployPath);
 
-        List<ItemLotSettings> enemyItemLotsSetups = Directory.GetFiles("Assets\\Data\\ItemLots\\EnemiesOverrides", "*.ini", SearchOption.AllDirectories)
+        List<ItemLotSettings> enemyOverrides = Directory.GetFiles("Assets\\Data\\ItemLots\\EnemiesOverrides", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotSettings.Create(s, this.configuration.Itemlots.Categories[0]))
             .Where(s => s != null)
             .ToList();
 
-        List<ItemLotSettings> mapItemLotsSetups = Directory.GetFiles("Assets\\Data\\ItemLots\\MapsOverrides", "*.ini", SearchOption.AllDirectories)
+        List<ItemLotSettings> mapOverrides = Directory.GetFiles("Assets\\Data\\ItemLots\\MapsOverrides", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotSettings.Create(s, this.configuration.Itemlots.Categories[1]))
             .Where(s => s != null)
             .ToList();
@@ -40,19 +36,19 @@ public class DSLRNetBuilder(
             { ItemLotCategory.ItemLot_Enemy, new HashSet<int>() }
         };
 
-        takenIds[ItemLotCategory.ItemLot_Enemy] = enemyItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
-        takenIds[ItemLotCategory.ItemLot_Map] = mapItemLotsSetups.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
+        takenIds[ItemLotCategory.ItemLot_Map] = mapOverrides.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
+        takenIds[ItemLotCategory.ItemLot_Enemy] = enemyOverrides.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
 
-        Dictionary<ItemLotCategory, ItemLotSettings> scanned = itemLotScanner.ScanAndCreateItemLotSets(takenIds);
+        Dictionary<ItemLotCategory, List<ItemLotSettings>> scanned = itemLotScanner.ScanAndCreateItemLotSets(takenIds);
+
+        itemLotGenerator.CreateItemLots(enemyOverrides);
+        itemLotGenerator.CreateItemLots(mapOverrides);
 
         if (scanned.Any())
         {
-            itemLotGenerator.CreateItemLots([scanned[ItemLotCategory.ItemLot_Enemy]]);
-            itemLotGenerator.CreateItemLots([scanned[ItemLotCategory.ItemLot_Map]]);
+            itemLotGenerator.CreateItemLots(scanned[ItemLotCategory.ItemLot_Enemy]);
+            itemLotGenerator.CreateItemLots(scanned[ItemLotCategory.ItemLot_Map]);
         }
-
-        itemLotGenerator.CreateItemLots(enemyItemLotsSetups);
-        itemLotGenerator.CreateItemLots(mapItemLotsSetups);
 
         dataRepository.VerifyItemLots();
     }
@@ -73,24 +69,7 @@ public class DSLRNetBuilder(
 
         File.Copy(regulationFile, destinationFile, true);
 
-        //List<ParamEdit> generatedData = dataRepository.GetParamEdits(ParamOperation.MassEdit);
-
-        //IEnumerable<IGrouping<ParamNames, ParamEdit>> groups = generatedData.GroupBy(d => d.ParamName);
-
-        //foreach (IGrouping<ParamNames, ParamEdit> group in groups)
-        //{
-        //    File.WriteAllLines(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), group.Select(s => s.MassEditString));
-        //    await this.ApplyMassEdit(Path.Combine(this.configuration.Settings.DeployPath, $"{group.Key}.massedit"), destinationFile);
-        //}
-
-        await this.ApplyCreates(destinationFile, dataRepository);
-
-        List<string> massEditFiles = Directory.GetFiles("Assets\\Data\\MassEdit\\", "*.massedit").ToList();
-
-        foreach (string? massEdit in massEditFiles)
-        {
-            await this.ApplyMassEdit(massEdit, destinationFile);
-        }
+        await this.ApplyChanges(destinationFile, dataRepository);
 
         if (!File.Exists(destinationFile.Replace("working.", "pre-dslr.")))
         {
@@ -102,7 +81,7 @@ public class DSLRNetBuilder(
         await this.UpdateMessages(dataRepository.GetParamEdits());
     }
 
-    public async Task ApplyCreates(string regulationFile, ParamEditsRepository repository)
+    public async Task ApplyChanges(string regulationFile, ParamEditsRepository repository)
     {
         // write csv file with headers, but only for new things, aka none of the 
         List<ParamEdit> edits = repository.GetParamEdits(ParamOperation.Create);
@@ -127,16 +106,6 @@ public class DSLRNetBuilder(
         });
 
         await repository.ApplyEditsToRegulationBinAsync(regulationFile);
-    }
-
-    private async Task ApplyMassEdit(string massEditFile, string destinationFile)
-    {
-        await this.processRunner.RunProcessAsync(new ProcessRunnerArgs<string>()
-        {
-            ExePath = this.configuration.Settings.DSMSPortablePath,
-            Arguments = $"\"{destinationFile}\" -G ER -P \"{this.configuration.Settings.GamePath}\" -M+ \"{massEditFile}\"",
-            RetryCount = 0
-        });
     }
 
     public async Task UpdateMessages(List<ParamEdit> paramEdits)

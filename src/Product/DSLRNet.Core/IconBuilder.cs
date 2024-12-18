@@ -20,7 +20,6 @@ public partial class IconBuilder(
     IOptionsMonitor<IconBuilderSettings> iconSettingsOptions,
     ILogger<IconBuilder> logger,
     RarityHandler rarityHandler,
-    ProcessRunner processRunner,
     DataAccess dataAccess)
 {
     private readonly string nameBase = "SB_Icon_DSLR_";

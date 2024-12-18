@@ -78,9 +78,9 @@ public class RandomProvider(int seed)
 
     public bool PassesPercentCheck(double percent)
     {
-        if (percent < 100)
+        if (percent < 1.0)
         {
-            return this.Next(0, percent) < percent;
+            return this.Next() < percent;
         }
         else
         {

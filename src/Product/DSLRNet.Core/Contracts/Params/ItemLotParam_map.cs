@@ -1,5 +1,3 @@
-using System;
-
 public class ItemLotParam_map : ParamBase<ItemLotParam_map>
 {
     public int ID { get { return this.GetValue<int>("ID"); } set { this.SetValue("ID", value); } }

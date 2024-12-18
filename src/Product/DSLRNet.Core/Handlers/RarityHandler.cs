@@ -2,7 +2,6 @@
 
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
-using ImageMagick;
 
 public class RarityHandler : BaseHandler
 {
@@ -65,6 +64,12 @@ public class RarityHandler : BaseHandler
         }
 
         return chanceQueue;
+    }
+
+    public IntValueRange GetStatRequiredAdditionRange(int rarityId)
+    {
+        var rarity = this.GetNearestRarity(rarityId);
+        return new IntValueRange(rarity.StatReqAddMin, rarity.StatReqAddMax);
     }
 
     public IntValueRange GetDamageAdditionRange(int rarityId)

@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Core.Config;
 
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
 public class Settings
@@ -21,5 +22,15 @@ public class Settings
     public WeaponGeneratorSettings WeaponGeneratorSettings { get; set; }
 
     public IconBuilderSettings IconBuilderSettings { get; set; }
+
+    public static Settings? CreateFromSettingsIni()
+    {
+        IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddIniFile("Settings.ini", optional: true);
+
+        IConfigurationRoot configuration = configurationBuilder.Build();
+
+        return configuration.Get<Settings>();
+    }
 }
 

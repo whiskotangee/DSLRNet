@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="DSLRNet.UserControls.ArmorSettingsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DSLRNet.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Cut Rate Description Template" />
+            <TextBox Text="{Binding CutRateDescriptionTemplate, Mode=TwoWay}" />
+
+            <TextBlock Text="Resist Param Buff Count" />
+            <TextBox Text="{Binding ResistParamBuffCount, Mode=TwoWay}" />
+
+            <TextBlock Text="Cut Rate Param Buff Count" />
+            <TextBox Text="{Binding CutRateParamBuffCount, Mode=TwoWay}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

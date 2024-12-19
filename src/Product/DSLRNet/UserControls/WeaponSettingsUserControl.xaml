@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="DSLRNet.UserControls.WeaponSettingsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Unique Name Chance" />
+            <Slider Minimum="0" Maximum="1" Value="{Binding UniqueNameChance, Mode=TwoWay}" TickFrequency="0.01" IsSnapToTickEnabled="True" />
+
+            <TextBlock Text="Unique Weapon Multiplier" />
+            <Slider Minimum="0" Maximum="10" Value="{Binding UniqueWeaponMultiplier, Mode=TwoWay}" TickFrequency="0.1" IsSnapToTickEnabled="True" />
+
+            <TextBlock Text="Split Damage Type Chance" />
+            <Slider Minimum="0" Maximum="1" Value="{Binding SplitDamageTypeChance, Mode=TwoWay}" TickFrequency="0.01" IsSnapToTickEnabled="True" />
+
+            <TextBlock Text="Damage Increases Stamina Threshold" />
+            <TextBox Text="{Binding DamageIncreasesStaminaThreshold, Mode=TwoWay}" />
+
+            <TextBlock Text="Crit Chance Range" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Min" />
+                <TextBox Text="{Binding CritChanceRange.Min, Mode=TwoWay}" Width="50" />
+                <TextBlock Text="Max" />
+                <TextBox Text="{Binding CritChanceRange.Max, Mode=TwoWay}" Width="50" />
+            </StackPanel>
+
+            <TextBlock Text="Primary Base Scaling Range" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Min" />
+                <TextBox Text="{Binding PrimaryBaseScalingRange.Min, Mode=TwoWay}" Width="50" />
+                <TextBlock Text="Max" />
+                <TextBox Text="{Binding PrimaryBaseScalingRange.Max, Mode=TwoWay}" Width="50" />
+            </StackPanel>
+
+            <TextBlock Text="Secondary Base Scaling Range" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Min" />
+                <TextBox Text="{Binding SecondaryBaseScalingRange.Min, Mode=TwoWay}" Width="50" />
+                <TextBlock Text="Max" />
+                <TextBox Text="{Binding SecondaryBaseScalingRange.Max, Mode=TwoWay}" Width="50" />
+            </StackPanel>
+
+            <TextBlock Text="Other Base Scaling Range" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Min" />
+                <TextBox Text="{Binding OtherBaseScalingRange.Min, Mode=TwoWay}" Width="50" />
+                <TextBlock Text="Max" />
+                <TextBox Text="{Binding OtherBaseScalingRange.Max, Mode=TwoWay}" Width="50" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

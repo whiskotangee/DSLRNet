@@ -2,11 +2,8 @@
 
 using static SoulsFormats.EMEVD.Instruction;
 
-public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configuration> config, IOptions<Settings> settings)
+public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configuration> config, FileSourceHandler fileHandler)
 {
-    private readonly Configuration configuration = config.Value;
-    private readonly Settings settings = settings.Value;
-
     public List<EventDropItemLotDetails> ScanEventsForBossDrops()
     {
         List<EventDropItemLotDetails> lotDetails = new();
@@ -18,7 +15,7 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
             ScanCommonEvents(emevd, lotDetails);
         }
 
-        var otherEmveds = GetOtherEmevdFiles();
+        var otherEmveds = fileHandler.ListFilesFromAllModDirectories("event", "m*emevd.dcx");
         foreach (var mapEventFile in otherEmveds.Distinct())
         {
             EMEVD mapEmevd = EMEVD.Read(mapEventFile);
@@ -34,28 +31,18 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
 
     private string GetCommonEmevdFile()
     {
-        var commonEmevdFile = Path.Combine(settings.DeployPath, "event", "common.emevd.dcx");
-        if (!File.Exists(commonEmevdFile))
+        if (!fileHandler.TryGetFile(Path.Combine("event", "common.emevd.dcx"), out string commonEmevdFile))
         {
-            commonEmevdFile = Path.Combine(settings.GamePath, "event", "common.emevd.dcx");
+            throw new Exception("Could not find common emevd file");
         }
-        return commonEmevdFile;
-    }
 
-    private List<string> GetOtherEmevdFiles()
-    {
-        var otherEmveds = Directory.GetFiles(Path.Combine(settings.DeployPath, "event"), "m*emevd.dcx").ToList();
-        var additionalEmveds = Directory.GetFiles(Path.Combine(settings.GamePath, "event"), "m*emevd.dcx")
-            .Where(d => !otherEmveds.Any(s => Path.GetFileName(s) == Path.GetFileName(d)))
-            .ToList();
-        otherEmveds.AddRange(additionalEmveds);
-        return otherEmveds;
+        return commonEmevdFile;
     }
 
     private string GetMapId(string mapEventFile)
     {
         var mapId = Path.GetFileName(mapEventFile);
-        return mapId.Substring(0, mapId.IndexOf('.'));
+        return mapId[..mapId.IndexOf('.')];
     }
 
     private void ScanCommonEvents(EMEVD emevd, List<EventDropItemLotDetails> lotDetails)

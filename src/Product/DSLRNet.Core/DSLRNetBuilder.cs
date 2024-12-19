@@ -12,6 +12,7 @@ public class DSLRNetBuilder(
     IOptions<Configuration> configOptions,
     ParamEditsRepository dataRepository,
     ItemLotScanner itemLotScanner,
+    FileSourceHandler fileSourceHandler,
     Csv csv)
 {
     private readonly Settings settings = settingsOptions.Value;
@@ -58,26 +59,21 @@ public class DSLRNetBuilder(
 
     public async Task ApplyAsync()
     {
-        string regulationFile = Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin");
         string destinationFile = Path.Combine(this.settings.DeployPath, "regulation.working.bin");
 
-        if (!File.Exists(regulationFile))
+        if (!fileSourceHandler.TryGetFile("regulation.bin", out string regulationFile))
         {
-            regulationFile = Path.Combine(this.settings.DeployPath, "regulation.bin");
-            if (!File.Exists(regulationFile))
-            {
-                regulationFile = Path.Combine(this.settings.GamePath, "regulation.bin");
-            }
+            throw new Exception("Could not find regulation.bin");
+        }
+
+        if (!fileSourceHandler.TryGetFile("regulation.pre-dslr.bin", out string preDslrPath))
+        {
+            File.Copy(regulationFile, Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin"));
         }
 
         File.Copy(regulationFile, destinationFile, true);
 
         await this.ApplyChanges(destinationFile, dataRepository);
-
-        if (!File.Exists(destinationFile.Replace("working.", "pre-dslr.")))
-        {
-            File.Copy(destinationFile.Replace("working.", ""), destinationFile.Replace("working.", "pre-dslr."), true);
-        }
 
         File.Copy(destinationFile, destinationFile.Replace(".working.bin", ".bin"), true);
 
@@ -117,23 +113,16 @@ public class DSLRNetBuilder(
 
         foreach (string fileName in this.settings.MessageFileNames)
         {
-            string existingPath = string.Empty;
-
-            foreach (string msgPath in this.settings.MessageSourcePaths)
+            if (fileSourceHandler.TryGetFile(fileName, out string existingPath))
             {
-                if (File.Exists(Path.Combine(msgPath, fileName)))
-                {
-                    existingPath = Path.Combine(msgPath, fileName);
-                    break;
-                }
+                gameMsgFiles.Add(existingPath);
+                continue;
             }
 
             if (string.IsNullOrEmpty(existingPath))
             {
                 throw new Exception($"Could not find message file {fileName}");
             }
-
-            gameMsgFiles.Add(existingPath);
         }
 
         Directory.CreateDirectory(Path.Combine(this.settings.DeployPath, "msg", "engus"));

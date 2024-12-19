@@ -9,7 +9,7 @@ using Serilog;
 public class DSLRRunner
 {
     // TODO: stats builder for ui progress
-    public static async Task Run(Settings? overrideSettings = null)
+    public static async Task Run(Settings settings)
     {
         ConfigurationBuilder configurationBuilder = new();
 
@@ -38,24 +38,7 @@ public class DSLRRunner
             builder.AddSerilog();
         });
 
-        services.SetupDSLR(configuration);
-
-        if (overrideSettings != null)
-        {
-            services.Configure<Settings>(c =>
-            {
-                c.DeployPath = overrideSettings.DeployPath;
-                c.ItemLotGeneratorSettings = overrideSettings.ItemLotGeneratorSettings;
-                c.RandomSeed = overrideSettings.RandomSeed;
-                c.MessageSourcePaths = overrideSettings.MessageSourcePaths;
-                c.GamePath = overrideSettings.GamePath;
-                c.MessageFileNames = overrideSettings.MessageFileNames;
-                c.ArmorGeneratorSettings = overrideSettings.ArmorGeneratorSettings;
-                c.WeaponGeneratorSettings = overrideSettings.WeaponGeneratorSettings;
-                c.IconBuilderSettings = overrideSettings.IconBuilderSettings;
-            });
-        }
-
+        services.SetupDSLR(configuration, settings);
 
         ServiceProvider sp = services.BuildServiceProvider();
 

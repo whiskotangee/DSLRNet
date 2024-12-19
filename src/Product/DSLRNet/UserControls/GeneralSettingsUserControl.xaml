@@ -14,7 +14,7 @@
                 <Button Content="Browse..." Click="BrowseGamePath_Click" />
             </StackPanel>
             
-            <TextBlock Text="Deploy Path" />
+            <TextBlock Text="Mod Path" />
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding DeployPath, Mode=TwoWay}" Width="300" />
                 <Button Content="Browse..." Click="BrowseDeployPath_Click" />

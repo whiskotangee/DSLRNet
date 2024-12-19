@@ -13,8 +13,6 @@ public class IconBuilderSettings
 
     public string IconSourcePath { get; set; }
 
-    public string ModSourcePath { get; set; }
-
     public required IconSheetSettings IconSheetSettings { get; set; }
 }
 

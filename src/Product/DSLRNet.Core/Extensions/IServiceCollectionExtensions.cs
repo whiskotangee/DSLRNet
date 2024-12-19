@@ -8,12 +8,23 @@ using Microsoft.Extensions.DependencyInjection;
 
 public static class IServiceCollectionExtensions
 {
-    public static IServiceCollection SetupDSLR(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection SetupDSLR(this IServiceCollection services, IConfiguration configuration, Settings settings)
     {
         // configurations
         services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
-                .Configure<Settings>(configuration.GetSection(nameof(Settings)))
-                .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)));
+                .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)))
+                .Configure<Settings>(c =>
+                {
+                    c.DeployPath = settings.DeployPath;
+                    c.ItemLotGeneratorSettings = settings.ItemLotGeneratorSettings;
+                    c.RandomSeed = settings.RandomSeed;
+                    c.GamePath = settings.GamePath;
+                    c.MessageFileNames = settings.MessageFileNames;
+                    c.ArmorGeneratorSettings = settings.ArmorGeneratorSettings;
+                    c.WeaponGeneratorSettings = settings.WeaponGeneratorSettings;
+                    c.IconBuilderSettings = settings.IconBuilderSettings;
+                    c.OrderedModPaths = settings.OrderedModPaths;
+                });
 
         // Services
         services.AddSingleton<ArmorLootGenerator>()
@@ -36,6 +47,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<Csv>()
                 .AddSingleton<RegulationBinBank>()
                 .AddSingleton<DataSourceFactory>()
+                .AddSingleton<FileSourceHandler>()
                 .AddSingleton((sp) =>
                 {
                     return new RandomProvider(sp.GetRequiredService<IOptions<Settings>>().Value.RandomSeed);

@@ -47,19 +47,6 @@ public class SettingsWrapper : BaseModel<Settings>
         }
     }
 
-    public List<string> MessageSourcePaths
-    {
-        get => _settings.MessageSourcePaths;
-        set
-        {
-            if (_settings.MessageSourcePaths != value)
-            {
-                _settings.MessageSourcePaths = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
     [Required(ErrorMessage = "Game Path is required.")]
     public string GamePath
     {

@@ -14,18 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.Default.Configuration.json" />
     <None Remove="Assets\Data\ItemLots\EnemiesOverrides\place_enemy_itemlot_overrides_here.txt" />
     <None Remove="Assets\Data\ItemLots\MapsOverrides\place_map_itemlot_overrides_here.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appsettings.Default.Configuration.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="appsettings.Default.IconBuilder.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="appsettings.Default.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -64,6 +57,7 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.6" />
+    <PackageReference Include="Tomlyn" Version="0.17.0" />
   </ItemGroup>
 
   <ItemGroup>

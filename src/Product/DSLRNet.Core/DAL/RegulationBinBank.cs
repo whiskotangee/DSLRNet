@@ -8,27 +8,17 @@ public class RegulationBinBank
 {
     private readonly Settings settings;
     private readonly ILogger<RegulationBinBank> logger;
+    private readonly FileSourceHandler fileHandler;
     private readonly BND4 paramBnd;
 
     private readonly ConcurrentDictionary<DataSourceNames, PARAMDEF> paramDefs = [];
     private readonly ConcurrentDictionary<DataSourceNames, PARAM> loadedParams = [];
 
-    public RegulationBinBank(IOptions<Settings> settings, ILogger<RegulationBinBank> logger)
+    public RegulationBinBank(IOptions<Settings> settings, ILogger<RegulationBinBank> logger, FileSourceHandler fileHandler)
     {
         this.settings = settings.Value;
         this.logger = logger;
-
-        var regBinPath = Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin");
-        if (!File.Exists(regBinPath))
-        {
-            regBinPath = Path.Combine(this.settings.DeployPath, "regulation.bin");
-            if (!File.Exists(regBinPath))
-            {
-                regBinPath = Path.Combine(this.settings.GamePath, "regulation.predslr.bin");
-            }
-        }
-
-        this.logger.LogInformation($"Loading regulation bin from {regBinPath}");
+        this.fileHandler = fileHandler;
         paramBnd = GetRegulationBin();
     }
 
@@ -143,17 +133,16 @@ public class RegulationBinBank
     }
     private BND4 GetRegulationBin()
     {
-        string regulationFile = Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin");
-
-        if (!File.Exists(regulationFile))
+        if (!fileHandler.TryGetFile("regulation.pre-dslr.bin", out string regBinPath))
         {
-            regulationFile = Path.Combine(this.settings.DeployPath, "regulation.bin");
-            if (!File.Exists(regulationFile))
+            if (fileHandler.TryGetFile("regulation.bin", out regBinPath))
             {
-                regulationFile = Path.Combine(this.settings.GamePath, "regulation.bin");
+                regBinPath = Path.Combine(this.settings.GamePath, "regulation.predslr.bin");
             }
         }
 
-        return SFUtil.DecryptERRegulation(regulationFile);
+        this.logger.LogInformation($"Loading regulation bin from {regBinPath}");
+
+        return SFUtil.DecryptERRegulation(regBinPath);
     }
 }

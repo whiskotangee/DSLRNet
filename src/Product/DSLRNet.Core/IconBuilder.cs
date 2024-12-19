@@ -20,7 +20,8 @@ public partial class IconBuilder(
     IOptions<Settings> settingsOptions,
     ILogger<IconBuilder> logger,
     RarityHandler rarityHandler,
-    DataAccess dataAccess)
+    DataAccess dataAccess,
+    FileSourceHandler fileHandler)
 {
     private readonly string nameBase = "SB_Icon_DSLR_";
     private ConcurrentDictionary<string, Image<Bgra32>> loadedDDSImageCache = [];
@@ -34,7 +35,6 @@ public partial class IconBuilder(
         Settings settings = settingsOptions.Value;
         IconBuilderSettings iconSettings = settings.IconBuilderSettings;
 
-        string sourcePathBase = iconSettings.ModSourcePath ?? settings.GamePath;
         string bakedSheetsSource = $"{iconSettings.IconSourcePath}\\BakedSheets";
         string preBakedSheetsSource = $"{iconSettings.IconSourcePath}\\PreBakedSheets";
         string iconMappingsFile = Path.Combine(bakedSheetsSource, "iconmappings.json");
@@ -68,7 +68,7 @@ public partial class IconBuilder(
 
             logger.LogInformation($"Regenerating icon sheets for each rarity as configured");
 
-            sheetConfig = await RegenerateIconSheets(iconSettings, sourcePathBase);
+            sheetConfig = await RegenerateIconSheets(iconSettings);
 
             // Save the images to BakedSheets directory
             sheetConfig.IconSheets.ForEach(d =>
@@ -97,7 +97,12 @@ public partial class IconBuilder(
             }
         }
 
-        TPF commonIcons = TPF.Read(Path.Combine(sourcePathBase, "menu", "hi", "01_common.tpf.dcx"));
+        if (!fileHandler.TryGetFile(Path.Combine("menu", "hi", "01_common.tpf.dcx"), out string sourcePath))
+        {
+            throw new Exception("Could not find common icon file");
+        }
+
+        TPF commonIcons = TPF.Read(sourcePath);
         var removeIcons = commonIcons.Textures.Where(d => d.Name.Contains(nameBase)).ToList();
 
         foreach (var item in removeIcons)
@@ -117,14 +122,14 @@ public partial class IconBuilder(
         commonIcons.Write(Path.Combine(settings.DeployPath, "menu", "hi", "01_common.tpf.dcx"));
 
         // save layout file
-        SaveLayoutFile(sourcePathBase, settings.DeployPath, sheetConfig.IconSheets, iconSettings.IconSheetSettings.IconDimensions);
+        SaveLayoutFile(settings.DeployPath, sheetConfig.IconSheets, iconSettings.IconSheetSettings.IconDimensions);
 
         rarityHandler.UpdateIconMapping(sheetConfig);
     }
 
-    private async Task<RarityIconMappingConfig> RegenerateIconSheets(IconBuilderSettings settings, string sourcePath)
+    private async Task<RarityIconMappingConfig> RegenerateIconSheets(IconBuilderSettings settings)
     {
-        var layoutAtlases = ReadLayoutFiles(sourcePath);
+        var layoutAtlases = ReadLayoutFiles();
 
         RarityIconMappingConfig sheetConfig = new()
         { 
@@ -133,7 +138,12 @@ public partial class IconBuilder(
 
         Regex regex = MyRegex();
 
-        TPF baseIcons = TPF.Read(Path.Combine(sourcePath, "menu", "hi", "01_common.tpf.dcx"));
+        if (!fileHandler.TryGetFile(Path.Combine("menu", "hi", "01_common.tpf.dcx"), out string sourcePath))
+        {
+            throw new Exception("Could not find common icon file");
+        }
+
+        TPF baseIcons = TPF.Read(sourcePath);
 
         Dictionary<LootType, List<ushort>> iconsToDuplicate = [];
 
@@ -277,11 +287,14 @@ public partial class IconBuilder(
         return ddsStream.ToArray();
     }
 
-    private List<TextureAtlas> ReadLayoutFiles(string sourcePath)
+    private List<TextureAtlas> ReadLayoutFiles()
     {
-        var fileSource = Path.Combine(sourcePath, "menu", "hi", "01_common.sblytbnd.dcx");
+        if (!fileHandler.TryGetFile(Path.Combine("menu", "hi", "01_common.sblytbnd.dcx"), out string sourcePath))
+        {
+            throw new Exception("Could not find common icon layouts file");
+        }
 
-        BND4 bnd = BND4.Read(fileSource);
+        BND4 bnd = BND4.Read(sourcePath);
 
         return bnd.Files.Select(d => TextureAtlasSerializer.Deserialize(Encoding.UTF8.GetString(d.Bytes))).ToList();
     }
@@ -323,11 +336,15 @@ public partial class IconBuilder(
         return originalIcon;
     }
 
-    private void SaveLayoutFile(string sourcePath, string destinationPath, List<IconSheetParameters> sheets, IconDimensions iconDimensions)
+    private void SaveLayoutFile(string destinationPath, List<IconSheetParameters> sheets, IconDimensions iconDimensions)
     {
         logger.LogInformation($"Saving layout file for new icon sheets at {destinationPath}");
 
-        var fileSource = Path.Combine(sourcePath, "menu", "hi", "01_common.sblytbnd.dcx");
+        if (!fileHandler.TryGetFile(Path.Combine("menu", "hi", "01_common.sblytbnd.dcx"), out string fileSource))
+        {
+            throw new Exception("Could not find common icon layout file");
+        }
+
         var fileDestination = Path.Combine(destinationPath, "menu", "hi", "01_common.sblytbnd.dcx");
         var preDSLRFile = fileDestination.Replace(".dcx", "pre-dslr.dcx");
 

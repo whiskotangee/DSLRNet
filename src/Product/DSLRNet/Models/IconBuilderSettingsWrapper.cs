@@ -53,18 +53,5 @@ public class IconBuilderSettingsWrapper : BaseModel<IconBuilderSettings>
         }
     }
 
-    public string ModSourcePath
-    {
-        get => _settings.ModSourcePath;
-        set
-        {
-            if (_settings.ModSourcePath != value)
-            {
-                _settings.ModSourcePath = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
     public IconSheetSettingsWrapper IconSheetSettings { get; }
 }

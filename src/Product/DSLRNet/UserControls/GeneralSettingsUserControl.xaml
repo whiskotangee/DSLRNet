@@ -23,11 +23,18 @@
             <TextBlock Text="Random Seed" />
             <TextBox Text="{Binding RandomSeed, Mode=TwoWay}" PreviewTextInput="NumberValidationTextBox" />
 
-            <TextBlock Text="Message Source Paths" />
-            <ListBox ItemsSource="{Binding MessageSourcePaths}" />
-
-            <TextBlock Text="Message File Names" />
-            <ListBox ItemsSource="{Binding MessageFileNames}" />
+            <TextBlock Text="Mod Paths" />
+            <StackPanel>
+                <CheckBox Content="Set Mod Sources" IsChecked="{Binding UseCustomModSources}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox ItemsSource="{Binding ModPaths}" HorizontalAlignment="Stretch" Grid.Column="0"/>
+                    <Button Content="Parse ModEngine toml" Click="ParseToml_Click" Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

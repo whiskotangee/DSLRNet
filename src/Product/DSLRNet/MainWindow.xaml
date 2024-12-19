@@ -8,20 +8,20 @@
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="Diably Style Loot (Remade) For Elden Ring" 
-        MinHeight="600"
-        MinWidth="800">
+        MinHeight="800"
+        MinWidth="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="0" >
+        <TabControl Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TabItem Header="General" >
-                <dslrusercontrols:GeneralSettingsUserControl DataContext="{Binding Settings}" />
-            </TabItem>
-            <TabItem Header="Item Lot Options" >
-                <dslrusercontrols:ItemLotSettingsUserControl DataContext="{Binding Settings.ItemLotGeneratorSettings}"/>
+                <StackPanel>
+                    <dslrusercontrols:GeneralSettingsUserControl DataContext="{Binding Settings}" />
+                    <dslrusercontrols:ItemLotSettingsUserControl DataContext="{Binding Settings.ItemLotGeneratorSettings}"/>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Loot Generation Options" >
                 <StackPanel>

@@ -7,43 +7,6 @@ using Tomlyn.Model;
 
 public class FileSourceHandler(IOptions<Settings> settings)
 {
-    public void ParseModDirectoriesFromToml(string fileName)
-    {
-        string fullPath;
-        if (!TryGetFile(fileName, out fullPath))
-        {
-            throw new FileNotFoundException($"File {fileName} not found in any of the specified paths.");
-        }
-
-        var tomlContent = File.ReadAllText(fullPath);
-        var table = Toml.Parse(tomlContent).ToModel();
-
-        var modPaths = new List<string>();
-
-        if (table.TryGetValue("extension.mod_loader", out var modLoaderSection))
-        {
-            var modLoaderTable = modLoaderSection as TomlTable;
-            if (modLoaderTable != null && modLoaderTable.TryGetValue("mods", out var mods))
-            {
-                var modsArray = mods as TomlArray;
-                if (modsArray != null)
-                {
-                    foreach (var mod in modsArray.OfType<TomlTable>())
-                    {
-                        if (mod.TryGetValue("enabled", out var enabled)
-                            && (bool)enabled
-                            && mod.TryGetValue("path", out var path))
-                        {
-                            modPaths.Add(Path.Combine(Path.GetDirectoryName(fileName), path.ToString()));
-                        }
-                    }
-                }
-            }
-        }
-
-        settings.Value.OrderedModPaths = modPaths;
-    }
-
     public bool TryGetFile(string fileName, [NotNullWhen(true)] out string fullPath)
     {
         if (settings.Value.OrderedModPaths.Count == 0)

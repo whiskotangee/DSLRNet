@@ -1,6 +1,7 @@
 namespace DSLRNet.Models;
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using DSLRNet.Core.Config;
 
@@ -12,6 +13,13 @@ public class SettingsWrapper : BaseModel<Settings>
     {
         _settings = settings;
         OriginalObject = _settings;
+        ModPaths = new ObservableCollection<string>(OriginalObject.OrderedModPaths);
+
+        ModPaths.CollectionChanged += (sender, args) =>
+        {
+            OriginalObject.OrderedModPaths = new List<string>(ModPaths);
+        };
+
         ItemLotGeneratorSettings = new ItemLotGeneratorSettingsWrapper(_settings.ItemLotGeneratorSettings);
         ArmorGeneratorSettings = new ArmorGeneratorSettingsWrapper(_settings.ArmorGeneratorSettings);
         WeaponGeneratorSettings = new WeaponGeneratorSettingsWrapper(_settings.WeaponGeneratorSettings);
@@ -60,6 +68,8 @@ public class SettingsWrapper : BaseModel<Settings>
             }
         }
     }
+
+    public ObservableCollection<string> ModPaths { get; set; }
 
     public List<string> MessageFileNames
     {

@@ -2,7 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DSLRNet"
+             xmlns:localconverters="clr-namespace:DSLRNet.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <ResourceDictionary>
+            <localconverters:ImagePathConverter x:Key="ImagePathConverter" />
+            <Style TargetType="Slider">
+                <Setter Property="MinWidth" Value="200" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -5,72 +5,17 @@ using SixLabors.ImageSharp.PixelFormats;
 
 public class Configuration
 {
-    public Settings Settings { get; set; }
     public ItemlotsConfig Itemlots { get; set; }
     public DSLRDescTextConfig DSLRDescText { get; set; }
     public LootParamConfig LootParam { get; set; }
-}
 
-public class ScannerSettings
-{
-    public bool Enabled { get; set; }
-
-    public int ApplyPercent { get; set; }
-}
-
-public class ItemLotGeneratorSettings
-{
-    public int ItemLotsPerBaseMapLot { get; set; }
-
-    public int ItemLotsPerBaseEnemyLot { get; set; }
-
-    public int ItemLotsPerBossLot { get; set; }
-
-    public int LootPerItemLot_Enemy { get; set; }
-
-    public int LootPerItemLot_Map { get; set; }
-
-    public int LootPerItemLot_Bosses { get; set; }
-
-    public ScannerSettings ChestLootScannerSettings { get; set; }
-
-    public ScannerSettings MapLootScannerSettings { get; set; }
-
-    public ScannerSettings EnemyLootScannerSettings { get; set; }
+    public List<DataSourceConfig> DataSourceConfigs { get; set; }
 
     public AutoScalingSettings ScannerAutoScalingSettings { get; set; }
 
-    public bool ChaosLootEnabled { get; set; }
-
-    public string UniqueItemColor { get; set; }
-
-    public float GlobalDropChance { get; set; }
-
-    public bool AllLootGauranteed { get; set; }
+    public AshOfWarConfig AshOfWarConfig { get; set; }
 }
 
-public class AutoScalingSettings
-{
-    public List<int> AreaScalingSpEffectIds { get; set; } = [];
-}
-
-public class Settings
-{
-    public string DeployPath { get; set; }
-    public string DSMSPortablePath { get; set; }
-
-    public ItemLotGeneratorSettings ItemLotGeneratorSettings { get; set; }
-
-    public int RandomSeed { get; set; }
-
-    public List<string> MessageSourcePaths { get; set; } = [];
-
-    public string GamePath { get; set; }
-
-    public List<string> MessageFileNames { get; set; }
-
-    public List<DataSourceConfig> DataSourceConfigs { get; set; }
-}
 
 public enum DataSourceType { CSV, RegulationBin }
 
@@ -185,4 +130,9 @@ public class IconMapping
 
     [JsonIgnore]
     public Image<Rgba32>? ConvertedIcon { get; set; }
+}
+
+public class AutoScalingSettings
+{
+    public List<int> AreaScalingSpEffectIds { get; set; } = [];
 }

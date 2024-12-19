@@ -2,9 +2,10 @@
 
 using static SoulsFormats.EMEVD.Instruction;
 
-public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configuration> config)
+public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configuration> config, IOptions<Settings> settings)
 {
     private readonly Configuration configuration = config.Value;
+    private readonly Settings settings = settings.Value;
 
     public List<EventDropItemLotDetails> ScanEventsForBossDrops()
     {
@@ -33,18 +34,18 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
 
     private string GetCommonEmevdFile()
     {
-        var commonEmevdFile = Path.Combine(configuration.Settings.DeployPath, "event", "common.emevd.dcx");
+        var commonEmevdFile = Path.Combine(settings.DeployPath, "event", "common.emevd.dcx");
         if (!File.Exists(commonEmevdFile))
         {
-            commonEmevdFile = Path.Combine(configuration.Settings.GamePath, "event", "common.emevd.dcx");
+            commonEmevdFile = Path.Combine(settings.GamePath, "event", "common.emevd.dcx");
         }
         return commonEmevdFile;
     }
 
     private List<string> GetOtherEmevdFiles()
     {
-        var otherEmveds = Directory.GetFiles(Path.Combine(configuration.Settings.DeployPath, "event"), "m*emevd.dcx").ToList();
-        var additionalEmveds = Directory.GetFiles(Path.Combine(configuration.Settings.GamePath, "event"), "m*emevd.dcx")
+        var otherEmveds = Directory.GetFiles(Path.Combine(settings.DeployPath, "event"), "m*emevd.dcx").ToList();
+        var additionalEmveds = Directory.GetFiles(Path.Combine(settings.GamePath, "event"), "m*emevd.dcx")
             .Where(d => !otherEmveds.Any(s => Path.GetFileName(s) == Path.GetFileName(d)))
             .ToList();
         otherEmveds.AddRange(additionalEmveds);

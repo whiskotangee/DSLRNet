@@ -2,7 +2,7 @@
 
 public enum WeaponTypes { Normal, Shields, StaffsSeals, BowsCrossbows }
 
-public class WeaponGeneratorConfig
+public class WeaponGeneratorSettings
 {
     public float UniqueNameChance { get; set; }
 

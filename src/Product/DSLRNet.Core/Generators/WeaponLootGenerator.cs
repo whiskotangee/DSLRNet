@@ -13,15 +13,12 @@ using System.Collections.Generic;
 
 public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 {
-    // WEAPONTYPES
-    private readonly WeaponGeneratorConfig weaponGeneratorConfig;
     private readonly AshofWarHandler ashofWarHandler;
     private readonly DamageTypeHandler damageTypeHandler;
-    private readonly ILogger<ParamLootGenerator<EquipParamWeapon>> logger;
 
     public WeaponLootGenerator(
         IOptions<Configuration> configuration,
-        IOptions<WeaponGeneratorConfig> weaponGeneratorConfig,
+        IOptions<Settings> settings,
         AshofWarHandler ashofWarHandler,
         RarityHandler rarityHandler,
         SpEffectHandler spEffectHandler,
@@ -30,13 +27,11 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         DamageTypeHandler damageTypeHandler,
         ParamEditsRepository dataRepository,
         DataAccess dataAccess,
-        ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamWeapon, logger)
+        ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamWeapon, logger)
     {
         this.CumulativeID = new CumulativeID(logger);
-        this.weaponGeneratorConfig = weaponGeneratorConfig.Value;
         this.ashofWarHandler = ashofWarHandler;
         this.damageTypeHandler = damageTypeHandler;
-        this.logger = logger;
         this.DataSource = dataAccess.EquipParamWeapon;
     }
 
@@ -61,7 +56,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
     public int CreateWeapon(ItemLotSettings itemLotSettings, int rarityId)
     {
-        bool isUniqueWeapon = this.Random.PassesPercentCheck(this.weaponGeneratorConfig.UniqueNameChance);
+        bool isUniqueWeapon = this.Random.PassesPercentCheck(this.Settings.WeaponGeneratorSettings.UniqueNameChance);
 
         uniqueWeaponCounter += isUniqueWeapon ? 1 : 0;
 
@@ -130,7 +125,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             string uniqueName = this.LoreGenerator.CreateRandomUniqueName(weaponType == WeaponTypes.Shields);
 
-            weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Configuration.Settings.ItemLotGeneratorSettings.UniqueItemColor);
+            weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Settings.ItemLotGeneratorSettings.UniqueItemColor);
         }
 
         //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
@@ -205,7 +200,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         takenParams.Add(primaryScalingParam);
 
-        newWeapon.SetValue(primaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(weaponGeneratorConfig.PrimaryBaseScalingRange));
+        newWeapon.SetValue(primaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(this.Settings.WeaponGeneratorSettings.PrimaryBaseScalingRange));
 
         // set secondary scaling if applicable
         string? secondaryScalingParam = null;
@@ -216,7 +211,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
             takenParams.Add(secondaryScalingParam);
 
-            newWeapon.SetValue(secondaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(weaponGeneratorConfig.SecondaryBaseScalingRange));
+            newWeapon.SetValue(secondaryScalingParam, this.Random.NextInt(statScalingRange) + this.Random.NextInt(this.Settings.WeaponGeneratorSettings.SecondaryBaseScalingRange));
         }
 
         // set other stat scalings
@@ -226,7 +221,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             var currentScaling = damageParams[otherScalingParam];
 
-            float newValue = this.Random.NextInt(weaponGeneratorConfig.OtherBaseScalingRange);
+            float newValue = this.Random.NextInt(this.Settings.WeaponGeneratorSettings.OtherBaseScalingRange);
 
             newWeapon.SetValue(currentScaling.ParamName, newValue);
         }
@@ -308,7 +303,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
     {
         WeaponModifications mods = new(dT1, dT2);
 
-        float uniqueValueMultiplier = isUniqueWeapon ? this.weaponGeneratorConfig.UniqueWeaponMultiplier : 1.0f;
+        float uniqueValueMultiplier = isUniqueWeapon ? this.Settings.WeaponGeneratorSettings.UniqueWeaponMultiplier : 1.0f;
 
         IntValueRange dmgRange = this.RarityHandler.GetDamageAdditionRange(rarityId);
 
@@ -408,14 +403,14 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         if (critMultiplier > 0.0)
         {
-            critValue = this.Random.NextInt(weaponGeneratorConfig.CritChanceRange);
+            critValue = this.Random.NextInt(this.Settings.WeaponGeneratorSettings.CritChanceRange);
         }
 
         weapon.throwAtkRate = (short)(critValue * (1 + critMultiplier));
 
         float maxDamage = dmgParams.Max(par => weapon.GetValue<float>(par));
 
-        if (maxDamage > weaponGeneratorConfig.DamageIncreasesStaminaThreshold)
+        if (maxDamage > this.Settings.WeaponGeneratorSettings.DamageIncreasesStaminaThreshold)
         {
             weapon.staminaConsumptionRate = (float)MathFunctions.RoundToXDecimalPlaces((float)(weapon.staminaConsumptionRate + this.Random.Next(0.05, 0.3)), 3);
         }
@@ -428,12 +423,12 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
     private WeaponModifications ApplyWeaponModifications(EquipParamWeapon weapon, int rarityId, WeaponTypes weaponType, bool isUniqueWeapon = false)
     {
         // randomize damage type
-        DamageTypeSetup primary = this.damageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled, false);
+        DamageTypeSetup primary = this.damageTypeHandler.ChooseDamageTypeAtRandom(this.Settings.ItemLotGeneratorSettings.ChaosLootEnabled, false);
         DamageTypeSetup? secondary = null;
 
-        if (this.Random.PassesPercentCheck(this.weaponGeneratorConfig.SplitDamageTypeChance))
+        if (this.Random.PassesPercentCheck(this.Settings.WeaponGeneratorSettings.SplitDamageTypeChance))
         {
-            secondary = this.damageTypeHandler.ChooseDamageTypeAtRandom(this.Configuration.Settings.ItemLotGeneratorSettings.ChaosLootEnabled, true);
+            secondary = this.damageTypeHandler.ChooseDamageTypeAtRandom(this.Settings.ItemLotGeneratorSettings.ChaosLootEnabled, true);
         }
 
         return weaponType switch

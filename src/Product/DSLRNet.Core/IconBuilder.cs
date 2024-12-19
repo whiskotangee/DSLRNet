@@ -16,8 +16,8 @@ using ImageMagick;
 using DSLRNet.Core.DAL;
 
 public partial class IconBuilder(
-    IOptionsMonitor<Configuration> configOptions, 
-    IOptionsMonitor<IconBuilderSettings> iconSettingsOptions,
+    IOptions<Configuration> configOptions,
+    IOptions<Settings> settingsOptions,
     ILogger<IconBuilder> logger,
     RarityHandler rarityHandler,
     DataAccess dataAccess)
@@ -30,10 +30,11 @@ public partial class IconBuilder(
     {
         logger.LogInformation($"Beginning apply icons");
 
-        Configuration configuration = configOptions.CurrentValue;
-        IconBuilderSettings iconSettings = iconSettingsOptions.CurrentValue;
+        Configuration configuration = configOptions.Value;
+        Settings settings = settingsOptions.Value;
+        IconBuilderSettings iconSettings = settings.IconBuilderSettings;
 
-        string sourcePathBase = iconSettings.ModSourcePath ?? configuration.Settings.GamePath;
+        string sourcePathBase = iconSettings.ModSourcePath ?? settings.GamePath;
         string bakedSheetsSource = $"{iconSettings.IconSourcePath}\\BakedSheets";
         string preBakedSheetsSource = $"{iconSettings.IconSourcePath}\\PreBakedSheets";
         string iconMappingsFile = Path.Combine(bakedSheetsSource, "iconmappings.json");
@@ -113,10 +114,10 @@ public partial class IconBuilder(
             iconSheet.GeneratedBytes = [];
         }
 
-        commonIcons.Write(Path.Combine(configuration.Settings.DeployPath, "menu", "hi", "01_common.tpf.dcx"));
+        commonIcons.Write(Path.Combine(settings.DeployPath, "menu", "hi", "01_common.tpf.dcx"));
 
         // save layout file
-        SaveLayoutFile(sourcePathBase, configuration.Settings.DeployPath, sheetConfig.IconSheets, iconSettings.IconSheetSettings.IconDimensions);
+        SaveLayoutFile(sourcePathBase, settings.DeployPath, sheetConfig.IconSheets, iconSettings.IconSheetSettings.IconDimensions);
 
         rarityHandler.UpdateIconMapping(sheetConfig);
     }

@@ -25,7 +25,7 @@ public class GameStageEvaluator
         this.configuration = config.Value;
         this.areaScalingSpEffects =
             this.allSpEffects
-                .Where(d => config.Value.Settings.ItemLotGeneratorSettings.ScannerAutoScalingSettings.AreaScalingSpEffectIds.Contains(d.ID))
+                .Where(d => config.Value.ScannerAutoScalingSettings.AreaScalingSpEffectIds.Contains(d.ID))
                 .ToList();
 
         this.vanillaSpEffects = [.. areaScalingSpEffects

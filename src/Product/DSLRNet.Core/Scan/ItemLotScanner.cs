@@ -8,6 +8,7 @@ public class ItemLotScanner(
     ILogger<ItemLotScanner> logger,
     RandomProvider random,
     IOptions<Configuration> configuration,
+    IOptions<Settings> settings,
     DataAccess dataAccess,
     BossDropScanner bossDropScanner,
     GameStageEvaluator gameStageEvaluator,
@@ -16,6 +17,7 @@ public class ItemLotScanner(
     private readonly ILogger<ItemLotScanner> logger = logger;
     private readonly RandomProvider random = random;
     private readonly Configuration configuration = configuration.Value;
+    private readonly Settings settings = settings.Value;
     private readonly List<ItemLotParam_map> itemLotParam_Map = dataAccess.ItemLotParamMap.GetAll().ToList();
     private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll().ToList();
     private readonly List<NpcParam> npcParams = dataAccess.NpcParam.GetAll().ToList();
@@ -94,11 +96,11 @@ public class ItemLotScanner(
     {
         Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 
-        if (configuration.Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.Enabled)
+        if (this.settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.Enabled)
         {
             foreach (NpcParam? npc in npcParams.Where(d => d.itemLotId_enemy > 0))
             {
-                if (claimedIds.Contains(npc.itemLotId_enemy) || !random.PassesPercentCheck(configuration.Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))
+                if (claimedIds.Contains(npc.itemLotId_enemy) || !random.PassesPercentCheck(this.settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))
                 {
                     continue;
                 }
@@ -118,8 +120,8 @@ public class ItemLotScanner(
     {
         Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 
-        if (configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled
-                || configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
+        if (this.settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled
+                || this.settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
         {
             GameStageConfig gameStage = GetGameStageConfigForMap(name, msb, npcParams, settings, lotDetails);
 
@@ -128,19 +130,19 @@ public class ItemLotScanner(
             List<MSBE.Event.Treasure> baseFilteredMapTreasures = msb.Events.Treasures
                 .Where(d => d.ItemLotID > 0 && !claimedIds.Contains(d.ItemLotID)).ToList();
 
-            if (configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
+            if (this.settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
             {
                 candidateTreasures.AddRange(baseFilteredMapTreasures
                     .Where(d => d.InChest == 1)
-                    .Where(d => random.PassesPercentCheck(configuration.Settings.ItemLotGeneratorSettings.ChestLootScannerSettings.ApplyPercent))
+                    .Where(d => random.PassesPercentCheck(this.settings.ItemLotGeneratorSettings.ChestLootScannerSettings.ApplyPercent))
                     .Select(s => s.ItemLotID));
             }
 
-            if (configuration.Settings.ItemLotGeneratorSettings.MapLootScannerSettings.Enabled)
+            if (this.settings.ItemLotGeneratorSettings.MapLootScannerSettings.Enabled)
             {
                 candidateTreasures.AddRange(baseFilteredMapTreasures
                     .Where(d => d.InChest != 1)
-                    .Where(d => random.PassesPercentCheck(configuration.Settings.ItemLotGeneratorSettings.MapLootScannerSettings.ApplyPercent))
+                    .Where(d => random.PassesPercentCheck(this.settings.ItemLotGeneratorSettings.MapLootScannerSettings.ApplyPercent))
                     .Select(s => s.ItemLotID));
             }
 

@@ -5,16 +5,16 @@ using DSLRNet.Core.Contracts;
 public class DataAccess
 {
     private readonly ILogger<DataAccess> logger;
-    private readonly IOptionsMonitor<Configuration> config;
+    private readonly Configuration config;
     private readonly DataSourceFactory dataSourceFactory;
 
     public DataAccess(
         ILogger<DataAccess> logger,
-        IOptionsMonitor<Configuration> config,
+        IOptions<Configuration> config,
         DataSourceFactory dataSourceFactory)
     {
         this.logger = logger;
-        this.config = config;
+        this.config = config.Value;
         this.dataSourceFactory = dataSourceFactory;
 
         logger.LogInformation($"Creating data sources");
@@ -83,7 +83,7 @@ public class DataAccess
     private IDataSource<T> CreateDataSource<T>(DataSourceNames configName)
         where T : ParamBase<T>, ICloneable<T>, new()
     {
-        DataSourceConfig config = this.config.CurrentValue.Settings.DataSourceConfigs.Single(d => d.Name == configName);
+        DataSourceConfig config = this.config.DataSourceConfigs.Single(d => d.Name == configName);
         var dataSource = this.dataSourceFactory.CreateDataSource<T>(config);
 
         return dataSource;

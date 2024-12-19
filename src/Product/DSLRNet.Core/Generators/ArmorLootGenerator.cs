@@ -5,8 +5,6 @@ using System.Linq;
 
 public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 {
-    private readonly ArmorGeneratorConfig armorConfig;
-
     public ArmorLootGenerator(
         RarityHandler rarityHandler,
         SpEffectHandler spEffectHandler,
@@ -14,15 +12,14 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         RandomProvider random,
         ParamEditsRepository dataRepository,
         IOptions<Configuration> configuration,
-        IOptions<ArmorGeneratorConfig> armorConfig,
+        IOptions<Settings> settings,
         DataAccess dataAccess,
         ILogger<ParamLootGenerator<EquipParamProtector>> logger)
-        : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamProtector, logger)
+        : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamProtector, logger)
     {
         this.CumulativeID = new CumulativeID(logger);
 
         this.DataSource = dataAccess.EquipParamProtector;
-        this.armorConfig = armorConfig.Value;
     }
 
     public int CreateArmor(int rarity)
@@ -64,7 +61,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
         float addition = this.RarityHandler.GetArmorCutRateAddition(rarityId);
         IEnumerable<string> cutRateProperties = newArmor.GetFieldNamesByFilter("DamageCutRate", true, "flick");
-        List<string> cutRateModifyProperties = this.Random.GetRandomItems(cutRateProperties, this.armorConfig.CutRateParamBuffCount);
+        List<string> cutRateModifyProperties = this.Random.GetRandomItems(cutRateProperties, this.Settings.ArmorGeneratorSettings.CutRateParamBuffCount);
 
         foreach (string param in cutRateModifyProperties)
         {
@@ -88,7 +85,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         var resistProperties = newArmor.GetFieldNamesByFilter("resist");
         float multiplier = this.RarityHandler.GetArmorResistMultiplier(rarity);
 
-        foreach (string param in this.Random.GetRandomItems(resistProperties, this.armorConfig.ResistParamBuffCount))
+        foreach (string param in this.Random.GetRandomItems(resistProperties, this.Settings.ArmorGeneratorSettings.ResistParamBuffCount))
         {
             newArmor.SetValue(param, (int)(newArmor.GetValue<int>(param) * multiplier));
         }

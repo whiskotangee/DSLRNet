@@ -6,6 +6,7 @@ public class ParamLootGenerator<TParamType>(
     LoreGenerator loreGenerator,
     RandomProvider random,
     IOptions<Configuration> configuration,
+    IOptions<Settings> settings,
     ParamEditsRepository dataRepository,
     ParamNames outputParamName,
     ILogger<ParamLootGenerator<TParamType>> logger) : BaseHandler(dataRepository)
@@ -19,6 +20,8 @@ public class ParamLootGenerator<TParamType>(
     public RandomProvider Random { get; set; } = random;
 
     public Configuration Configuration { get; set; } = configuration.Value;
+
+    public Settings Settings { get; set; } = settings.Value;
 
     public CumulativeID CumulativeID { get; set; }
 

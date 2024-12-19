@@ -2,14 +2,14 @@
 
 public class MSBProvider
 {
-    private readonly Configuration configuration;
+    private readonly Settings settings;
     private readonly ILogger<MSBProvider> logger;
     private Dictionary<string, MSBE> msbData = [];
 
-    public MSBProvider(IOptions<Configuration> config, ILogger<MSBProvider> logger)
+    public MSBProvider(IOptions<Settings> settings, ILogger<MSBProvider> logger)
     {
         this.logger = logger;
-        this.configuration = config.Value;
+        this.settings = settings.Value;
         
         Initialize();
     }
@@ -33,8 +33,8 @@ public class MSBProvider
     private void Initialize()
     {
         logger.LogInformation($"Loading MSB Files...");
-        List<string> mapStudioFiles = [.. Directory.GetFiles(Path.Combine(this.configuration.Settings.DeployPath, "map", "mapstudio"), "*.msb.dcx")];
-        List<string> additionalMapFiles = [.. Directory.GetFiles(Path.Combine(this.configuration.Settings.GamePath, "map", "mapstudio"), "*.msb.dcx")
+        List<string> mapStudioFiles = [.. Directory.GetFiles(Path.Combine(this.settings.DeployPath, "map", "mapstudio"), "*.msb.dcx")];
+        List<string> additionalMapFiles = [.. Directory.GetFiles(Path.Combine(this.settings.GamePath, "map", "mapstudio"), "*.msb.dcx")
             .Where(d => !mapStudioFiles.Any(s => Path.GetFileName(s) == Path.GetFileName(d)))];
 
         mapStudioFiles.AddRange(additionalMapFiles);

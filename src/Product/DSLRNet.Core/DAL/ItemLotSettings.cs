@@ -101,7 +101,6 @@ public class ItemLotSettings
     public string Realname { get; set; }
     public int Enabled { get; set; }
     public bool GuaranteedDrop { get; set; }
-    public int OneTimePickup { get; set; }
     public float DropChanceMultiplier { get; set; }
     public List<GameStageConfig> GameStageConfigs { get; set; }
     public List<WeightedValue<LootType>> LootWeightsByType { get; set; }
@@ -140,7 +139,6 @@ class DslItemLotSetup
                 AllowedRaritiesLate = ParseList(data["dslitemlotsetup"]["allowedrarities_late"]),
                 AllowedRaritiesEnd = ParseList(data["dslitemlotsetup"]["allowedrarities_end"]),
                 GuaranteedDrop = int.Parse(data["dslitemlotsetup"]["guaranteeddrop"]),
-                OneTimePickup = int.Parse(data["dslitemlotsetup"]["onetimepickup"]),
                 LootTypeWeights = ParseList(data["dslitemlotsetup"]["loottypeweights"]),
                 WeaponTypeWeights = ParseList(data["dslitemlotsetup"]["weapontypeweights"]),
                 DropChanceMultiplier = float.Parse(data["dslitemlotsetup"]["dropchancemultiplier"]),
@@ -171,7 +169,6 @@ class DslItemLotSetup
     public List<int> AllowedRaritiesLate { get; set; }
     public List<int> AllowedRaritiesEnd { get; set; }
     public int GuaranteedDrop { get; set; }
-    public int OneTimePickup { get; set; }
     public List<int> LootTypeWeights { get; set; }
     public List<int> WeaponTypeWeights { get; set; }
     public float DropChanceMultiplier { get; set; }

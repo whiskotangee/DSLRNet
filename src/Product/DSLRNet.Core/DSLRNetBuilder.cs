@@ -8,17 +8,20 @@ using SoulsFormats;
 public class DSLRNetBuilder(
     ILogger<DSLRNetBuilder> logger,
     ItemLotGenerator itemLotGenerator,
-    IOptions<Configuration> configuration,
+    IOptions<Settings> settingsOptions,
+    IOptions<Configuration> configOptions,
     ParamEditsRepository dataRepository,
     ItemLotScanner itemLotScanner,
     Csv csv)
 {
-    private readonly Configuration configuration = configuration.Value;
+    private readonly Settings settings = settingsOptions.Value;
+    private readonly Configuration configuration = configOptions.Value;
+
     private readonly ILogger<DSLRNetBuilder> logger = logger;
 
     public void BuildItemLots()
     {
-        Directory.CreateDirectory(this.configuration.Settings.DeployPath);
+        Directory.CreateDirectory(this.settings.DeployPath);
 
         List<ItemLotSettings> enemyOverrides = Directory.GetFiles("Assets\\Data\\ItemLots\\EnemiesOverrides", "*.ini", SearchOption.AllDirectories)
             .Select(s => ItemLotSettings.Create(s, this.configuration.Itemlots.Categories[0]))
@@ -55,15 +58,15 @@ public class DSLRNetBuilder(
 
     public async Task ApplyAsync()
     {
-        string regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
-        string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.working.bin");
+        string regulationFile = Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin");
+        string destinationFile = Path.Combine(this.settings.DeployPath, "regulation.working.bin");
 
         if (!File.Exists(regulationFile))
         {
-            regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+            regulationFile = Path.Combine(this.settings.DeployPath, "regulation.bin");
             if (!File.Exists(regulationFile))
             {
-                regulationFile = Path.Combine(this.configuration.Settings.GamePath, "regulation.bin");
+                regulationFile = Path.Combine(this.settings.GamePath, "regulation.bin");
             }
         }
 
@@ -91,7 +94,7 @@ public class DSLRNetBuilder(
         await Parallel.ForEachAsync(paramNames, (paramName, c) => 
         {
             // write csv
-            string csvFile = Path.Combine(this.configuration.Settings.DeployPath, $"{paramName}.csv");
+            string csvFile = Path.Combine(this.settings.DeployPath, $"{paramName}.csv");
 
             List<GenericParam> parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.ID).Select(d => d.ParamObject).ToList();
 
@@ -112,11 +115,11 @@ public class DSLRNetBuilder(
     {
         List<string> gameMsgFiles = [];
 
-        foreach (string fileName in this.configuration.Settings.MessageFileNames)
+        foreach (string fileName in this.settings.MessageFileNames)
         {
             string existingPath = string.Empty;
 
-            foreach (string msgPath in this.configuration.Settings.MessageSourcePaths)
+            foreach (string msgPath in this.settings.MessageSourcePaths)
             {
                 if (File.Exists(Path.Combine(msgPath, fileName)))
                 {
@@ -133,14 +136,14 @@ public class DSLRNetBuilder(
             gameMsgFiles.Add(existingPath);
         }
 
-        Directory.CreateDirectory(Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus"));
+        Directory.CreateDirectory(Path.Combine(this.settings.DeployPath, "msg", "engus"));
 
         await Parallel.ForEachAsync(gameMsgFiles, (gameMsgFile, c) =>
         {
             // delete working file
             // copy msg file to a working file
             // process using working file as base
-            string destinationFile = Path.Combine(this.configuration.Settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
+            string destinationFile = Path.Combine(this.settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
             string sourceFile = destinationFile.Replace(".dcx", "pre-dslr.dcx");
 
             if (!File.Exists(sourceFile))

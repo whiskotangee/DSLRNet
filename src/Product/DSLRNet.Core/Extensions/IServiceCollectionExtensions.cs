@@ -8,16 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 public static class IServiceCollectionExtensions
 {
-
     public static IServiceCollection SetupDSLR(this IServiceCollection services, IConfiguration configuration)
     {
         // configurations
         services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
-                .Configure<WeaponGeneratorConfig>(configuration.GetSection(nameof(WeaponGeneratorConfig)))
-                .Configure<ArmorGeneratorConfig>(configuration.GetSection(nameof(ArmorGeneratorConfig)))
-                .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)))
-                .Configure<AshOfWarConfig>(configuration.GetSection(nameof(AshOfWarConfig)))
-                .Configure<IconBuilderSettings>(configuration.GetSection(nameof(IconBuilderSettings)));
+                .Configure<Settings>(configuration.GetSection(nameof(Settings)))
+                .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)));
 
         // Services
         services.AddSingleton<ArmorLootGenerator>()
@@ -42,7 +38,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<DataSourceFactory>()
                 .AddSingleton((sp) =>
                 {
-                    return new RandomProvider(sp.GetRequiredService<IOptions<Configuration>>().Value.Settings.RandomSeed);
+                    return new RandomProvider(sp.GetRequiredService<IOptions<Settings>>().Value.RandomSeed);
                 });
 
         return services;
@@ -51,7 +47,7 @@ public static class IServiceCollectionExtensions
     public static IDataSource<T> CreateDataSource<T>(DataSourceFactory factory, DataSourceNames configName, Configuration configSettings)
         where T : ParamBase<T>, ICloneable<T>, new()
     {
-        DataSourceConfig config = configSettings.Settings.DataSourceConfigs.Single(d => d.Name == configName);
+        DataSourceConfig config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
         var dataSource = factory.CreateDataSource<T>(config);
 
         return dataSource;

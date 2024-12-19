@@ -9,7 +9,7 @@ using Serilog;
 public class DSLRRunner
 {
     // TODO: stats builder for ui progress
-    public static async Task Run(Configuration? overrideConfig)
+    public static async Task Run(Settings? overrideSettings = null)
     {
         ConfigurationBuilder configurationBuilder = new();
 
@@ -40,20 +40,33 @@ public class DSLRRunner
 
         services.SetupDSLR(configuration);
 
-        if (overrideConfig != null)
+        if (overrideSettings != null)
         {
-            services.Configure<Configuration>(c => c = overrideConfig);
+            services.Configure<Settings>(c =>
+            {
+                c.DeployPath = overrideSettings.DeployPath;
+                c.ItemLotGeneratorSettings = overrideSettings.ItemLotGeneratorSettings;
+                c.RandomSeed = overrideSettings.RandomSeed;
+                c.MessageSourcePaths = overrideSettings.MessageSourcePaths;
+                c.GamePath = overrideSettings.GamePath;
+                c.MessageFileNames = overrideSettings.MessageFileNames;
+                c.ArmorGeneratorSettings = overrideSettings.ArmorGeneratorSettings;
+                c.WeaponGeneratorSettings = overrideSettings.WeaponGeneratorSettings;
+                c.IconBuilderSettings = overrideSettings.IconBuilderSettings;
+            });
         }
+
 
         ServiceProvider sp = services.BuildServiceProvider();
 
+        var activeSettings = sp.GetRequiredService<IOptions<Settings>>().Value;
         var activeConfig = sp.GetRequiredService<IOptions<Configuration>>().Value;
 
         // ensure oo2core file is there
         string? existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
         if (existingFile == null)
         {
-            string? oo2GameCore = Directory.GetFiles(activeConfig.Settings.GamePath, "oo2core*dll").FirstOrDefault();
+            string? oo2GameCore = Directory.GetFiles(activeSettings.GamePath, "oo2core*dll").FirstOrDefault();
             File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
         }
 

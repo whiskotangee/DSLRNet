@@ -4,13 +4,13 @@ using DSLRNet.Core.DAL;
 
 public class AshofWarHandler(
     RandomProvider random,
-    IOptions<AshOfWarConfig> ashofWarConfig,
+    IOptions<Configuration> configuration,
     ParamEditsRepository generatedDataRepository,
     DataAccess dataAccess,
     ILogger<AshofWarHandler> logger) : BaseHandler(generatedDataRepository)
 {
     private readonly IEnumerable<EquipParamGem> equipParamGems = dataAccess.EquipParamGem.GetAll();
-    private readonly AshOfWarConfig ashOfWarConfig = ashofWarConfig.Value;
+    private readonly AshOfWarConfig ashOfWarConfig = configuration.Value.AshOfWarConfig;
     private readonly ILogger<AshofWarHandler> logger = logger;
 
     public void AssignAshOfWar(EquipParamWeapon weapon)

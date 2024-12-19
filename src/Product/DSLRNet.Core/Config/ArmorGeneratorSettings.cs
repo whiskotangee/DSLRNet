@@ -1,6 +1,6 @@
 ﻿namespace DSLRNet.Core.Config;
 
-public class ArmorGeneratorConfig
+public class ArmorGeneratorSettings
 { 
     public string CutRateDescriptionTemplate { get; set; }
     public int ResistParamBuffCount { get; set; }

@@ -6,25 +6,25 @@ using System.IO;
 
 public class RegulationBinBank
 {
-    private readonly Configuration configuration;
+    private readonly Settings settings;
     private readonly ILogger<RegulationBinBank> logger;
     private readonly BND4 paramBnd;
 
     private readonly ConcurrentDictionary<DataSourceNames, PARAMDEF> paramDefs = [];
     private readonly ConcurrentDictionary<DataSourceNames, PARAM> loadedParams = [];
 
-    public RegulationBinBank(IOptions<Configuration> configuration, ILogger<RegulationBinBank> logger)
+    public RegulationBinBank(IOptions<Settings> settings, ILogger<RegulationBinBank> logger)
     {
-        this.configuration = configuration.Value;
+        this.settings = settings.Value;
         this.logger = logger;
 
-        var regBinPath = Path.Combine(this.configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
+        var regBinPath = Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin");
         if (!File.Exists(regBinPath))
         {
-            regBinPath = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+            regBinPath = Path.Combine(this.settings.DeployPath, "regulation.bin");
             if (!File.Exists(regBinPath))
             {
-                regBinPath = Path.Combine(this.configuration.Settings.GamePath, "regulation.predslr.bin");
+                regBinPath = Path.Combine(this.settings.GamePath, "regulation.predslr.bin");
             }
         }
 
@@ -143,14 +143,14 @@ public class RegulationBinBank
     }
     private BND4 GetRegulationBin()
     {
-        string regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.pre-dslr.bin");
+        string regulationFile = Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin");
 
         if (!File.Exists(regulationFile))
         {
-            regulationFile = Path.Combine(this.configuration.Settings.DeployPath, "regulation.bin");
+            regulationFile = Path.Combine(this.settings.DeployPath, "regulation.bin");
             if (!File.Exists(regulationFile))
             {
-                regulationFile = Path.Combine(this.configuration.Settings.GamePath, "regulation.bin");
+                regulationFile = Path.Combine(this.settings.GamePath, "regulation.bin");
             }
         }
 

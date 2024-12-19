@@ -14,6 +14,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
 {
     public TalismanLootGenerator(
         IOptions<Configuration> configuration,
+        IOptions<Settings> settings,
         RarityHandler rarityHandler,
         SpEffectHandler spEffectHandler,
         RandomProvider random,
@@ -21,7 +22,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         ParamEditsRepository dataRepository,
         DataAccess dataAccess,
         ILogger<ParamLootGenerator<EquipParamAccessory>> logger)
-        : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, dataRepository, ParamNames.EquipParamAccessory, logger)
+        : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamAccessory, logger)
     {
         this.CumulativeID = new CumulativeID(logger) { IDMultiplier = 10 };
 

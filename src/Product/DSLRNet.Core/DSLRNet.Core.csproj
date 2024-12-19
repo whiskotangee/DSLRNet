@@ -14,18 +14,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.Default.Configuration.json" />
     <None Remove="Assets\Data\ItemLots\EnemiesOverrides\place_enemy_itemlot_overrides_here.txt" />
     <None Remove="Assets\Data\ItemLots\MapsOverrides\place_map_itemlot_overrides_here.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="appsettings.Default.Configuration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="appsettings.Default.IconBuilder.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="appsettings.Default.AshOfWarConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="appsettings.Default.BlockList.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="appsettings.Default.json">

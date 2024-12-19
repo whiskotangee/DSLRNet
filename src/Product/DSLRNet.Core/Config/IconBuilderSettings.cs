@@ -5,7 +5,7 @@ public class IconBuilderSettings
     public bool RegenerateIconSheets { get; set; }
 
     /// <summary>
-    /// Generating hi def icons and adding them to 00_solo results in great game stability.
+    /// Generating hi def icons and adding them to 00_solo results in great game instability.
     /// The file goes from 1.4gb to 4.8gb and the game will continually crash.
     /// Unless a whole new approach to icon backgrounds is made the compromise is that hidef icons are not available.
     /// </summary>

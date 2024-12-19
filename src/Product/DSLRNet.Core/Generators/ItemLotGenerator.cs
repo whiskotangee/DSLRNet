@@ -16,6 +16,7 @@ public class ItemLotGenerator : BaseHandler
     private readonly RandomProvider random;
     private readonly ILogger<ItemLotGenerator> logger;
     private readonly Configuration configuration;
+    private readonly Settings settings;
     private readonly CumulativeID itemAcquisitionCumulativeId;
     private readonly IEnumerable<ItemLotParam_map> itemLotParam_Map = [];
     private readonly IEnumerable<ItemLotParam_enemy> itemLotParam_Enemy = [];
@@ -28,6 +29,7 @@ public class ItemLotGenerator : BaseHandler
         ParamEditsRepository dataRepository,
         RandomProvider random,
         IOptions<Configuration> configuration,
+        IOptions<Settings> settingsOptions,
         DataAccess dataAccess,
         ILogger<ItemLotGenerator> logger) : base(dataRepository)
     {
@@ -38,6 +40,7 @@ public class ItemLotGenerator : BaseHandler
         this.random = random;
         this.logger = logger;
         this.configuration = configuration.Value;
+        this.settings = settingsOptions.Value;
         this.itemAcquisitionCumulativeId = new CumulativeID(logger)
         {
             IsItemFlagAcquisitionCumulativeID = true,
@@ -82,12 +85,12 @@ public class ItemLotGenerator : BaseHandler
                 .SelectMany(id => this.FindSequentialItemLotIds(
                     itemLotSettings,
                     id,
-                    this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot,
+                    this.settings.ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot,
                     (i) => this.itemLotParam_Enemy.SingleOrDefault(d => d.ID == i) != null)).ToList());
 
             itemLotIds = itemLotIds.Distinct().ToList();
 
-            bool dropGuaranteed = this.configuration.Settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
+            bool dropGuaranteed = this.settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
 
             for (int x = 0; x < itemLotIds.Count; x++)
             {
@@ -133,13 +136,13 @@ public class ItemLotGenerator : BaseHandler
                     throw new Exception("No open item spots in item lot");
                 }
 
-                for (int y = 0; y < this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy; y++)
+                for (int y = 0; y < this.settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy; y++)
                 {
                     this.CreateItemLotEntry(
                         itemLotSettings,
                         gameStageConfig,
                         newItemLot,
-                        this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy,
+                        this.settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy,
                         y + offset,
                         (float)itemLotSettings.DropChanceMultiplier,
                         dropGuaranteed);
@@ -187,8 +190,8 @@ public class ItemLotGenerator : BaseHandler
                     itemLotSettings,
                     itemLotId,
                     itemLotSettings.IsForBosses ?
-                        this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBossLot :
-                        this.configuration.Settings.ItemLotGeneratorSettings.ItemLotsPerBaseMapLot,
+                        this.settings.ItemLotGeneratorSettings.ItemLotsPerBossLot :
+                        this.settings.ItemLotGeneratorSettings.ItemLotsPerBaseMapLot,
                     (i) => this.itemLotParam_Map.SingleOrDefault(d => d.ID == i) != null);
 
                 for (int i = 0; i < itemLotIds.Count; i++)
@@ -206,7 +209,7 @@ public class ItemLotGenerator : BaseHandler
 
                     int offset = 1;
 
-                    var lootPerLot = itemLotSettings.IsForBosses ? this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Bosses : this.configuration.Settings.ItemLotGeneratorSettings.LootPerItemLot_Map;
+                    var lootPerLot = itemLotSettings.IsForBosses ? this.settings.ItemLotGeneratorSettings.LootPerItemLot_Bosses : this.settings.ItemLotGeneratorSettings.LootPerItemLot_Map;
                     for (int y = 0; y < lootPerLot; y++)
                     {
                         this.CreateItemLotEntry(
@@ -380,7 +383,7 @@ public class ItemLotGenerator : BaseHandler
 
     private float GetDropChance(bool dropGauranteed, float dropMutliplier, int lootPerItemLot)
     {
-        var itemDropChance = this.configuration.Settings.ItemLotGeneratorSettings.GlobalDropChance + Math.Max(0, 6 - lootPerItemLot) * 9;
+        var itemDropChance = this.settings.ItemLotGeneratorSettings.GlobalDropChance + Math.Max(0, 6 - lootPerItemLot) * 9;
 
         return Math.Clamp(dropGauranteed ? 1000 / lootPerItemLot : (int)(itemDropChance * dropMutliplier), 0, 1000);
     }

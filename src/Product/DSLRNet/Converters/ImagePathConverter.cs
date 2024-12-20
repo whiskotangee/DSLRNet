@@ -14,9 +14,10 @@ public class ImagePathConverter : IValueConverter
         {
             if (File.Exists(path))
             {
-                return new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
+                return Path.GetFullPath(path);
             }
         }
+
         return null;
     }
 

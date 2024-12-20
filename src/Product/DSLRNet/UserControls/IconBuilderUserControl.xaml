@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:DSLRNet.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <local:ImagePathConverter x:Key="ImagePathConverter" />
+    </UserControl.Resources>
     <Grid>
         <StackPanel>
 
@@ -14,15 +18,19 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox Content="Regenerate Icon Sheets" IsChecked="{Binding IconBuilderSettings.RegenerateIconSheets}" />
-
-                    <ItemsControl Grid.Row="1" ItemsSource="{Binding IconBuilderSettings.IconSheetSettings.Rarities}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <CheckBox Content="Regenerate Icon Sheets" IsChecked="{Binding RegenerateIconSheets}" />
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding IconSheetSettings.Rarities}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Background" />
-                                    <TextBox Text="{Binding BackgroundImageName}" Width="200" />
-                                    <Image Source="{Binding BackgroundImageName, Converter={StaticResource ImagePathConverter}}" Width="50" Height="50" />
+                                <StackPanel Orientation="Vertical" Margin="5" MaxWidth="200">
+                                    <Image  Source="{Binding BackgroundImageName, Converter={StaticResource ImagePathConverter}}" Width="160" Height="160" Stretch="Fill" />
+                                    <Button Margin="5,5" Content="Change" 
+                                            Command="{Binding DataContext.ChangeImageCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

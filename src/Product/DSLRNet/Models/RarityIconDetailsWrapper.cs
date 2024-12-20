@@ -14,14 +14,14 @@ public class RarityIconDetailsWrapper : BaseModel<RarityIconDetails>
         OriginalObject = _rarity;
     }
 
-    public List<int> RarityIds
+    public string RarityIds
     {
-        get => _rarity.RarityIds;
+        get => string.Join(",", _rarity.RarityIds);
         set
         {
-            if (_rarity.RarityIds != value)
+            if (string.Join(",", _rarity.RarityIds) != value)
             {
-                _rarity.RarityIds = value;
+                _rarity.RarityIds = value.Split(",").Select(d => int.Parse(d)).ToList();
                 OnPropertyChanged();
             }
         }
@@ -29,12 +29,12 @@ public class RarityIconDetailsWrapper : BaseModel<RarityIconDetails>
 
     public string BackgroundImageName
     {
-        get => Path.Combine("Assets", "LootIcons", _rarity.BackgroundImageName);
+        get => _rarity.BackgroundImageName;
         set
         {
             if (_rarity.BackgroundImageName != value)
             {
-                _rarity.BackgroundImageName = Path.GetFileNameWithoutExtension(value);
+                _rarity.BackgroundImageName = value;
                 OnPropertyChanged();
             }
         }

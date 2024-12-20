@@ -20,7 +20,7 @@
             <StackPanel Grid.Column="0">
 
                 <TextBlock Text="Unique Name Chance" />
-                <local:SliderWithTextUserControl Minimum="0" Maximum="1" Value="{Binding UniqueNameChance, Mode=TwoWay}" TickFrequency="0.01" IsSnapToTickEnabled="True" />
+                <local:SliderWithTextUserControl Minimum="0" Maximum="100" Value="{Binding UniqueNameChance, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
                 <TextBlock Text="Unique Weapon Multiplier. Multiplier to damage values when a weapon is generated as unique." />
                 <local:SliderWithTextUserControl Minimum="1" Maximum="10" Value="{Binding UniqueWeaponMultiplier, Mode=TwoWay}" TickFrequency="0.1" IsSnapToTickEnabled="True" />
@@ -36,7 +36,7 @@
                 </Grid>
                 
                 <TextBlock Text="Split Damage Type Chance" />
-                <local:SliderWithTextUserControl Minimum="0" Maximum="1" Value="{Binding SplitDamageTypeChance, Mode=TwoWay}" TickFrequency="0.01" IsSnapToTickEnabled="True" />
+                <local:SliderWithTextUserControl Minimum="0" Maximum="100" Value="{Binding SplitDamageTypeChance, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
                 <TextBlock Text="Damage threshold before increasing stamina cost" />
                 <local:SliderWithTextUserControl Minimum="0" Maximum="1000" Value="{Binding DamageIncreasesStaminaThreshold, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />

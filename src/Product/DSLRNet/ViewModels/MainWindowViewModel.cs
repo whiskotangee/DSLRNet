@@ -1,15 +1,16 @@
 ﻿namespace DSLRNet.ViewModels;
 
-using CommunityToolkit.Mvvm.Input;
-using DSLRNet.Core;
-using DSLRNet.Core.Config;
-using DSLRNet.Models;
 using System.ComponentModel;
-using System.Diagnostics;
+using System.IO;
 using System.Runtime.CompilerServices;
-using System.Windows;
+using System.Windows.Input;
+using Microsoft.Win32;
+using CommunityToolkit.Mvvm.Input;
+using DSLRNet.Core.Config;
+using DSLRNet.Core;
+using DSLRNet.Models;
 using System.Windows.Data;
-using System.Windows.Threading;
+using System.Windows;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {
@@ -19,9 +20,10 @@ public class MainWindowViewModel : INotifyPropertyChanged
     {
         this.settingsWrapper = new SettingsWrapper(Core.Config.Settings.CreateFromSettingsIni() ?? new Settings());
         GenerateLootCommand = new AsyncRelayCommand(GenerateLootAsync, () => !IsRunning);
+        ChangeImageCommand = new RelayCommand<object>(ChangeImage);
         ProgressTracker = new OperationProgressTracker();
         IsRunning = false;
-        LogMessages = [];
+        LogMessages = new ThreadSafeObservableCollection<string>();
 
         BindingOperations.EnableCollectionSynchronization(LogMessages, lockObject);
     }
@@ -29,8 +31,9 @@ public class MainWindowViewModel : INotifyPropertyChanged
     private SettingsWrapper settingsWrapper;
     private ThreadSafeObservableCollection<string> logMessages;
     private OperationProgressTracker progressTracker;
-    
+
     public IAsyncRelayCommand GenerateLootCommand { get; private set; }
+    public ICommand ChangeImageCommand { get; private set; }
 
     private bool isRunning;
     private bool hasRun;
@@ -43,6 +46,9 @@ public class MainWindowViewModel : INotifyPropertyChanged
         IsRunning = true;
         ProgressTracker.Reset();
         LogMessages.Clear();
+        LogMessages.Add($"Saving current config to Settings.User.ini");
+        settingsWrapper.OriginalObject.SaveSettings("Settings.User.ini");
+
         LogMessages.Add("Starting loot generation...");
 
         await Task.Run(async () =>
@@ -51,13 +57,37 @@ public class MainWindowViewModel : INotifyPropertyChanged
 
             await DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages, ProgressTracker);
         });
-        
+
         LogMessages.Add("Loot generation completed successfully.");
         IsRunning = false;
     }
 
-    public bool IsRunning 
-    { 
+    private void ChangeImage(object item)
+    {
+        var openFileDialog = new OpenFileDialog
+        {
+            Filter = "PNG Files (*.png)|*.png"
+        };
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            var selectedFilePath = openFileDialog.FileName;
+            var fileName = Path.GetFileName(selectedFilePath);
+            var destinationPath = Path.Combine("Assets", "LootIcons", fileName);
+
+            // Ensure the directory exists
+            Directory.CreateDirectory(Path.Combine("Assets", "LootIcons"));
+
+            // Copy the file to the destination
+            File.Copy(selectedFilePath, destinationPath, true);
+
+            // Update the BackgroundImageName property
+            ((RarityIconDetailsWrapper)item).BackgroundImageName = destinationPath;
+        }
+    }
+
+    public bool IsRunning
+    {
         get => isRunning;
         set
         {
@@ -93,15 +123,15 @@ public class MainWindowViewModel : INotifyPropertyChanged
     public SettingsWrapper Settings
     {
         get => settingsWrapper;
-        set 
+        set
         {
             settingsWrapper = value;
             OnPropertyChanged();
         }
     }
 
-    public ThreadSafeObservableCollection<string> LogMessages 
-    { 
+    public ThreadSafeObservableCollection<string> LogMessages
+    {
         get => this.logMessages;
         set
         {
@@ -110,8 +140,8 @@ public class MainWindowViewModel : INotifyPropertyChanged
         }
     }
 
-    public OperationProgressTracker ProgressTracker 
-    { 
+    public OperationProgressTracker ProgressTracker
+    {
         get => this.progressTracker;
         set
         {
@@ -134,38 +164,4 @@ public class MainWindowViewModel : INotifyPropertyChanged
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)));
         }
     }
-}
-
-public class UIBlockDetector
-{
-    static Timer _timer;
-    public UIBlockDetector(int maxFreezeTimeInMilliseconds = 500)
-    {
-        var sw = new Stopwatch();
-
-        new DispatcherTimer(TimeSpan.FromMilliseconds(10), DispatcherPriority.Send, (sender, args) =>
-        {
-            lock (sw)
-            {
-                sw.Restart();
-            }
-
-        }, Application.Current.Dispatcher);
-
-        _timer = new Timer(state =>
-        {
-            lock (sw)
-            {
-                if (sw.ElapsedMilliseconds > maxFreezeTimeInMilliseconds)
-                {
-                    Debugger.Break();
-                    // Goto Visual Studio --> Debug --> Windows --> Theads 
-                    // and checkup where the MainThread is.
-                }
-            }
-
-        }, null, TimeSpan.FromMilliseconds(0), TimeSpan.FromMilliseconds(10));
-
-    }
-
 }

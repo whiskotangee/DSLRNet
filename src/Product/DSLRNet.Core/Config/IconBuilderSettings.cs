@@ -11,8 +11,6 @@ public class IconBuilderSettings
     /// </summary>
     public bool GenerateHiDefIcons { get; set; } = false;
 
-    public string IconSourcePath { get; set; } = "Assets\\LootIcons";
-
     public required IconSheetSettings IconSheetSettings { get; set; }
 }
 

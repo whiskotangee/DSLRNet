@@ -15,7 +15,7 @@ public class WeaponGeneratorSettingsWrapper : BaseModel<WeaponGeneratorSettings>
         OtherBaseScalingRange = new IntValueRangeWrapper(_settings.OtherBaseScalingRange);
     }
 
-    public float UniqueNameChance
+    public int UniqueNameChance
     {
         get => _settings.UniqueNameChance;
         set
@@ -52,7 +52,7 @@ public class WeaponGeneratorSettingsWrapper : BaseModel<WeaponGeneratorSettings>
             }
         }
     }
-    public float SplitDamageTypeChance
+    public int SplitDamageTypeChance
     {
         get => _settings.SplitDamageTypeChance;
         set

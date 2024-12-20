@@ -2,7 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DSLRNet.UserControls"
+             xmlns:converters="clr-namespace:DSLRNet.Converters"
              Margin="0,5">
+    <UserControl.Resources>
+        <converters:ConditionalDecimalConverter x:Key="ConditionalDecimalConverter" />
+    </UserControl.Resources>
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
             <Slider MinWidth="150" Minimum="{Binding Minimum, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -11,7 +15,7 @@
                     TickFrequency="{Binding TickFrequency, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     IsSnapToTickEnabled="{Binding IsSnapToTickEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     HorizontalAlignment="Stretch"/>
-            <TextBlock Text="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" 
+            <TextBlock Text="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, Converter={StaticResource ConditionalDecimalConverter}}" 
                      Margin="10,0,0,0" VerticalAlignment="Center" MinWidth="50" Width="Auto"/>
         </StackPanel>
     </Grid>

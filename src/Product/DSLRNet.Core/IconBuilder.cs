@@ -39,8 +39,8 @@ public partial class IconBuilder(
         Settings settings = settingsOptions.Value;
         IconBuilderSettings iconSettings = settings.IconBuilderSettings;
 
-        string bakedSheetsSource = $"{iconSettings.IconSourcePath}\\BakedSheets";
-        string preBakedSheetsSource = $"{iconSettings.IconSourcePath}\\PreBakedSheets";
+        string bakedSheetsSource = $"Assets\\LootIcons\\BakedSheets";
+        string preBakedSheetsSource = $"Assets\\LootIcons\\PreBakedSheets";
         string iconMappingsFile = Path.Combine(bakedSheetsSource, "iconmappings.json");
 
         Directory.CreateDirectory(bakedSheetsSource);
@@ -458,7 +458,7 @@ public partial class IconBuilder(
     {
         return loadedPNGImageCache.GetOrAdd(rarity.BackgroundImageName, (name) =>
         {
-            var image = Image.Load<Rgba32>(Path.Combine(settings.IconSourcePath, $"{rarity.BackgroundImageName}.png"));
+            var image = Image.Load<Rgba32>(rarity.BackgroundImageName);
             image.Mutate(x => x.Resize(new Size(settings.IconSheetSettings.IconDimensions.IconSize)));
             return image;
         });

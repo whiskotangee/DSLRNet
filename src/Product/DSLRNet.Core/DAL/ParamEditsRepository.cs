@@ -6,7 +6,8 @@ using System.Text;
 public class ParamEditsRepository(
     DataAccess dataAccess, 
     ILogger<ParamEditsRepository> logger,
-    RegulationBinBank regulationBin)
+    RegulationBinBank regulationBin,
+    IOperationProgressTracker? progressTracker = null)
 {
     private Dictionary<ParamNames, List<ParamEdit>> paramEdits { get; set; } =
         Enum.GetValues(typeof(ParamNames))
@@ -116,6 +117,28 @@ public class ParamEditsRepository(
         {
             logger.LogError($"Attempting to add param {paramEdit.ParamName} edit with Id {paramEdit.ParamObject.ID} that already exists");
             throw new Exception($"Attempting to add param {paramEdit.ParamName} edit with Id {paramEdit.ParamObject.ID} that already exists");
+        }
+
+        if (progressTracker != null)
+        {
+            switch(paramEdit.ParamName)
+            {
+                case ParamNames.EquipParamWeapon:
+                    progressTracker.GeneratedWeapons += 1;
+                    break;
+                case ParamNames.EquipParamProtector:
+                    progressTracker.GeneratedArmor += 1;
+                    break;
+                case ParamNames.EquipParamAccessory:
+                    progressTracker.GeneratedTalismans += 1;
+                    break;
+                case ParamNames.ItemLotParam_enemy:
+                    progressTracker.GeneratedEnemyItemLots += 1;
+                    break;
+                case ParamNames.ItemLotParam_map:
+                    progressTracker.GeneratedMapItemLots += 1;
+                    break;
+            }
         }
 
         this.paramEdits[paramEdit.ParamName].Add(paramEdit);

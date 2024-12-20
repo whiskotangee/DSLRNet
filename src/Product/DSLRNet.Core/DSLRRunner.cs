@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 public class DSLRRunner
 {
     // TODO: stats builder for ui progress
-    public static async Task Run(Settings settings, ICollection<string>? logWatcher = null)
+    public static async Task Run(Settings settings, ICollection<string>? logWatcher = null, IOperationProgressTracker? progressTracker = null)
     {
         ConfigurationBuilder configurationBuilder = new();
 
@@ -44,12 +44,20 @@ public class DSLRRunner
             }
         });
 
+        if (progressTracker != null)
+        {
+            services.AddSingleton<IOperationProgressTracker>((sp) => progressTracker ?? new NullProgressTracker());
+        }
+
         services.SetupDSLR(configuration, settings);
 
         ServiceProvider sp = services.BuildServiceProvider();
 
+        var progress = sp.GetRequiredService<IOperationProgressTracker>();
         var activeSettings = sp.GetRequiredService<IOptions<Settings>>().Value;
         var activeConfig = sp.GetRequiredService<IOptions<Configuration>>().Value;
+
+        progress.OverallStepCount = 15;
 
         // ensure oo2core file is there
         string? existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
@@ -60,14 +68,18 @@ public class DSLRRunner
         }
 
         await sp.GetRequiredService<DataAccess>().InitializeDataSourcesAsync();
+        progressTracker.OverallProgress += 1;
 
         IconBuilder iconbuilder = sp.GetRequiredService<IconBuilder>();
         DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
 
         await iconbuilder.ApplyIcons();
+        progressTracker.OverallProgress += 1;
 
         dslrBuilder.BuildItemLots();
+        progressTracker.OverallProgress += 1;
 
         await dslrBuilder.ApplyAsync();
+        progressTracker.OverallProgress += 1;
     }
 }

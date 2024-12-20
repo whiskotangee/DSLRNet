@@ -15,6 +15,7 @@ public class ItemLotGenerator : BaseHandler
     private readonly RarityHandler rarityHandler;
     private readonly RandomProvider random;
     private readonly ILogger<ItemLotGenerator> logger;
+    private readonly IOperationProgressTracker progressTracker;
     private readonly Configuration configuration;
     private readonly Settings settings;
     private readonly CumulativeID itemAcquisitionCumulativeId;
@@ -31,7 +32,8 @@ public class ItemLotGenerator : BaseHandler
         IOptions<Configuration> configuration,
         IOptions<Settings> settingsOptions,
         DataAccess dataAccess,
-        ILogger<ItemLotGenerator> logger) : base(dataRepository)
+        ILogger<ItemLotGenerator> logger,
+        IOperationProgressTracker progressTracker) : base(dataRepository)
     {
         this.armorLootGenerator = armorLootGenerator;
         this.weaponLootGenerator = weaponLootGenerator;
@@ -39,6 +41,7 @@ public class ItemLotGenerator : BaseHandler
         this.rarityHandler = rarityHandler;
         this.random = random;
         this.logger = logger;
+        this.progressTracker = progressTracker;
         this.configuration = configuration.Value;
         this.settings = settingsOptions.Value;
         this.itemAcquisitionCumulativeId = new CumulativeID(logger)
@@ -77,6 +80,9 @@ public class ItemLotGenerator : BaseHandler
 
     private void CreateItemLot_Enemy(ItemLotSettings itemLotSettings)
     {
+        this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Sum(d => d.ItemLotIds.Distinct().Count());
+        this.progressTracker.CurrentStageProgress = 0;
+
         foreach (var gameStageConfig in itemLotSettings.GameStageConfigs)
         {
             List<int> itemLotIds = gameStageConfig.ItemLotIds.ToList();
@@ -161,6 +167,8 @@ public class ItemLotGenerator : BaseHandler
                         MessageText = null,
                         ParamObject = genericDict
                     });
+
+                this.progressTracker.CurrentStageProgress += 1;
             }
         }
 
@@ -181,6 +189,9 @@ public class ItemLotGenerator : BaseHandler
     private void CreateItemLot_Map(ItemLotSettings itemLotSettings)
     {
         var defaultValue = GenericParam.FromObject(this.ItemLotTemplate.Clone());
+
+        this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Sum(d => d.ItemLotIds.Count);
+        this.progressTracker.CurrentStageProgress = 0;
 
         foreach (var gameStageConfig in itemLotSettings.GameStageConfigs)
         {
@@ -234,6 +245,8 @@ public class ItemLotGenerator : BaseHandler
                             ParamObject = genericParam
                         });
                 }
+
+                this.progressTracker.CurrentStageProgress += 1;
             }
         }
 

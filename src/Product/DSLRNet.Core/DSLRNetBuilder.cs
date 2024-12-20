@@ -13,7 +13,8 @@ public class DSLRNetBuilder(
     ParamEditsRepository dataRepository,
     ItemLotScanner itemLotScanner,
     FileSourceHandler fileSourceHandler,
-    Csv csv)
+    Csv csv,
+    IOperationProgressTracker progressTracker)
 {
     private readonly Settings settings = settingsOptions.Value;
     private readonly Configuration configuration = configOptions.Value;
@@ -44,15 +45,16 @@ public class DSLRNetBuilder(
         takenIds[ItemLotCategory.ItemLot_Enemy] = enemyOverrides.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
 
         Dictionary<ItemLotCategory, List<ItemLotSettings>> scanned = itemLotScanner.ScanAndCreateItemLotSets(takenIds);
+        progressTracker.OverallProgress += 1;
 
         itemLotGenerator.CreateItemLots(enemyOverrides);
+        progressTracker.OverallProgress += 1;
         itemLotGenerator.CreateItemLots(mapOverrides);
-
-        if (scanned.Any())
-        {
-            itemLotGenerator.CreateItemLots(scanned[ItemLotCategory.ItemLot_Enemy]);
-            itemLotGenerator.CreateItemLots(scanned[ItemLotCategory.ItemLot_Map]);
-        }
+        progressTracker.OverallProgress += 1;
+        itemLotGenerator.CreateItemLots(scanned[ItemLotCategory.ItemLot_Enemy]);
+        progressTracker.OverallProgress += 1;
+        itemLotGenerator.CreateItemLots(scanned[ItemLotCategory.ItemLot_Map]);
+        progressTracker.OverallProgress += 1;
 
         dataRepository.VerifyItemLots();
     }
@@ -74,10 +76,12 @@ public class DSLRNetBuilder(
         File.Copy(regulationFile, destinationFile, true);
 
         await this.ApplyChanges(destinationFile, dataRepository);
+        progressTracker.OverallProgress += 1;
 
         File.Copy(destinationFile, destinationFile.Replace(".working.bin", ".bin"), true);
 
         await this.UpdateMessages(dataRepository.GetParamEdits());
+        progressTracker.OverallProgress += 1;
     }
 
     public async Task ApplyChanges(string regulationFile, ParamEditsRepository repository)

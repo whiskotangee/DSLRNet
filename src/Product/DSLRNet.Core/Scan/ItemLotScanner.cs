@@ -26,6 +26,13 @@ public class ItemLotScanner(
     {
         Dictionary<ItemLotCategory, List<ItemLotSettings>> generatedItemLotSettings = [];
 
+        if (!this.settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.Enabled && 
+            !this.settings.ItemLotGeneratorSettings.MapLootScannerSettings.Enabled &&
+            !this.settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
+        {
+            return generatedItemLotSettings;
+        }
+
         ItemLotSettings remainingMapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]);
         ItemLotSettings remainingEnemyLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]);
         ItemLotSettings bossLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]);
@@ -121,7 +128,7 @@ public class ItemLotScanner(
         Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 
         if (this.settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled
-                || this.settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
+                || this.settings.ItemLotGeneratorSettings.MapLootScannerSettings.Enabled)
         {
             GameStageConfig gameStage = GetGameStageConfigForMap(name, msb, npcParams, settings, lotDetails);
 

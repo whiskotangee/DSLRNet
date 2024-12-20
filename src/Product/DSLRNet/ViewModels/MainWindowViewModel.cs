@@ -21,19 +21,16 @@ public class MainWindowViewModel : INotifyPropertyChanged
     {
         this.settingsWrapper = new SettingsWrapper(Core.Config.Settings.CreateFromSettingsIni() ?? new Settings());
         GenerateLootCommand = new AsyncRelayCommand(GenerateLootAsync, () => !IsRunning);
-
+        ProgressTracker = new OperationProgressTracker();
         IsRunning = false;
-        LogMessages = new ThreadSafeObservableCollection<string>();
-
+        LogMessages = [];
 
         BindingOperations.EnableCollectionSynchronization(LogMessages, lockObject);
-
-        new UIBlockDetector();
     }
 
     private SettingsWrapper settingsWrapper;
     private ThreadSafeObservableCollection<string> logMessages;
-
+    private OperationProgressTracker progressTracker;
     public IAsyncRelayCommand GenerateLootCommand { get; private set; }
 
     private bool isRunning;
@@ -43,6 +40,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
     {
         // Your logic to generate loot goes here
         IsRunning = true;
+        ProgressTracker.Reset();
         LogMessages.Clear();
         LogMessages.Add("Starting loot generation...");
 
@@ -50,7 +48,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
         {
             await Task.Yield();
 
-            await DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages);
+            await DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages, ProgressTracker);
         });
         
         LogMessages.Add("Loot generation completed successfully.");
@@ -83,6 +81,16 @@ public class MainWindowViewModel : INotifyPropertyChanged
         set
         {
             this.logMessages = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public OperationProgressTracker ProgressTracker 
+    { 
+        get => this.progressTracker;
+        set
+        {
+            this.progressTracker = value;
             OnPropertyChanged();
         }
     }

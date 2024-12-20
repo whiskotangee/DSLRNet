@@ -51,7 +51,7 @@
             </StackPanel>
         </ToolBar>
 
-        <ScrollViewer x:Name="LogScrollViewer" Grid.Row="0" Grid.RowSpan="2" 
+        <ScrollViewer x:Name="LogScrollViewer" Grid.Row="0"
                       HorizontalScrollBarVisibility="Auto" 
                       VerticalScrollBarVisibility="Auto"
                       Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -68,5 +68,25 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
+        <StackPanel Grid.Row="1" Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Text="Map Item Lots: " />
+                <TextBlock Text="{Binding ProgressTracker.GeneratedMapItemLots}" Margin="5,0"/>
+                <TextBlock Text="Enemy Item Lots: " />
+                <TextBlock Text="{Binding ProgressTracker.GeneratedEnemyItemLots}" Margin="5,0"/>
+                <TextBlock Text="Weapons: " />
+                <TextBlock Text="{Binding ProgressTracker.GeneratedWeapons}" Margin="5,0"/>
+                <TextBlock Text="Armor: " />
+                <TextBlock Text="{Binding ProgressTracker.GeneratedArmor}" Margin="5,0"/>
+                <TextBlock Text="Talismans: " />
+                <TextBlock Text="{Binding ProgressTracker.GeneratedTalismans}" Margin="5,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}">
+                <TextBlock Text="Overall Progress" Margin="5,0"/>
+                <ProgressBar Value="{Binding ProgressTracker.OverallProgress}" Maximum="{Binding ProgressTracker.OverallStepCount}" Height="20" Margin="5,0"/>
+                <TextBlock Text="Current Stage Progress" Margin="5,0"/>
+                <ProgressBar Value="{Binding ProgressTracker.CurrentStageProgress}" Maximum="{Binding ProgressTracker.CurrentStageStepCount}" Height="20" Margin="5,0"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

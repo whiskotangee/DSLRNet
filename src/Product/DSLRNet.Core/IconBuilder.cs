@@ -21,7 +21,8 @@ public partial class IconBuilder(
     ILogger<IconBuilder> logger,
     RarityHandler rarityHandler,
     DataAccess dataAccess,
-    FileSourceHandler fileHandler)
+    FileSourceHandler fileHandler,
+    IOperationProgressTracker progressTracker)
 {
     private readonly string nameBase = "SB_Icon_DSLR_";
     private ConcurrentDictionary<string, Image<Bgra32>> loadedDDSImageCache = [];
@@ -29,6 +30,9 @@ public partial class IconBuilder(
 
     public async Task ApplyIcons()
     {
+        progressTracker.CurrentStageStepCount = 7;
+        progressTracker.CurrentStageProgress = 0;
+
         logger.LogInformation($"Beginning apply icons");
 
         Configuration configuration = configOptions.Value;
@@ -52,6 +56,7 @@ public partial class IconBuilder(
                 File.Copy(preBakedFile, destinationFile, overwrite: true);
             }
         }
+        progressTracker.CurrentStageProgress += 1;
 
         if (!File.Exists(iconMappingsFile))
         {
@@ -63,6 +68,9 @@ public partial class IconBuilder(
         // Step 1: Regenerate if needed
         if (iconSettings.RegenerateIconSheets)
         {
+            var originalStageCount = progressTracker.CurrentStageStepCount;
+            var originalStep = progressTracker.CurrentStageProgress;
+
             Directory.Delete(bakedSheetsSource, recursive: true);
             Directory.CreateDirectory(bakedSheetsSource);
 
@@ -79,7 +87,12 @@ public partial class IconBuilder(
 
             // Save the updated icon mappings configuration
             File.WriteAllText(iconMappingsFile, JsonConvert.SerializeObject(sheetConfig, Formatting.Indented));
+
+            progressTracker.CurrentStageStepCount = originalStageCount;
+            progressTracker.CurrentStageProgress = originalStep;
         }
+
+        progressTracker.CurrentStageProgress += 1;
 
         // Step 2: Use the icon sheets from BakedSheets
         logger.LogInformation($"Using baked icon sheet files from {bakedSheetsSource}");
@@ -110,6 +123,8 @@ public partial class IconBuilder(
             commonIcons.Textures.Remove(item);
         }
 
+        progressTracker.CurrentStageProgress += 1;
+
         string basePath = Path.GetDirectoryName(commonIcons.Textures.First().Name);
 
         foreach (var iconSheet in sheetConfig.IconSheets)
@@ -121,10 +136,13 @@ public partial class IconBuilder(
 
         commonIcons.Write(Path.Combine(settings.DeployPath, "menu", "hi", "01_common.tpf.dcx"));
 
+        progressTracker.CurrentStageProgress += 1;
         // save layout file
         SaveLayoutFile(settings.DeployPath, sheetConfig.IconSheets, iconSettings.IconSheetSettings.IconDimensions);
+        progressTracker.CurrentStageProgress += 1;
 
         rarityHandler.UpdateIconMapping(sheetConfig);
+        progressTracker.CurrentStageProgress += 1;
     }
 
     private async Task<RarityIconMappingConfig> RegenerateIconSheets(IconBuilderSettings settings)
@@ -158,6 +176,8 @@ public partial class IconBuilder(
         ConcurrentBag<IconSheetParameters> generatedSheets = [];
 
         logger.LogInformation($"Generating icon sheets for {iconsToDuplicate[LootType.Weapon].Count} weapons, {iconsToDuplicate[LootType.Armor].Count} armors, and {iconsToDuplicate[LootType.Talisman].Count} talismans");
+        progressTracker.CurrentStageStepCount = iconsToDuplicate.Keys.Count * settings.IconSheetSettings.Rarities.Count;
+
         await Parallel.ForEachAsync(iconsToDuplicate.Keys, (lootType, c) =>
         {
             int overallSheetCounter = 1;
@@ -170,6 +190,7 @@ public partial class IconBuilder(
 
                 if (rarity.RarityIds.First() == -1 && lootType != LootType.Weapon)
                 {
+                    progressTracker.CurrentStageStepCount += 1;
                     continue;
                 }
 
@@ -213,6 +234,8 @@ public partial class IconBuilder(
 
                     generatedSheets.Add(newItem);
                 }
+
+                progressTracker.CurrentStageStepCount += 1;
             }
 
             return ValueTask.CompletedTask;

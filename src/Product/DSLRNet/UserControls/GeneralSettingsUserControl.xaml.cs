@@ -37,7 +37,7 @@ namespace DSLRNet.UserControls
             };
             if (dialog.ShowDialog() == true)
             {
-                ((SettingsWrapper)DataContext).DeployPath = System.IO.Path.GetDirectoryName(dialog.FileName);
+                ((SettingsWrapper)DataContext).DeployPath = Path.GetDirectoryName(dialog.FileName);
             }
         }
 
@@ -52,13 +52,13 @@ namespace DSLRNet.UserControls
                 Title = "Select Elden Ring Game Exe",
                 FileName = settingsWrapper.GamePath,
                 DefaultDirectory = settingsWrapper.GamePath,
-                Filter = "*.exe",
+                Filter = "Elden Ring Exe (*.exe)|*.exe",
                 ValidateNames = false
             };
 
             if (dialog.ShowDialog() == true)
             {
-                ((SettingsWrapper)DataContext).GamePath = System.IO.Path.GetDirectoryName(dialog.FileName);
+                settingsWrapper.GamePath = Path.GetDirectoryName(dialog.FileName);
             }
         }
 
@@ -73,13 +73,13 @@ namespace DSLRNet.UserControls
                 Title = "Select mod engine toml file",
                 FileName = "Choose toml file",
                 DefaultDirectory = settingsWrapper.DeployPath,
-                Filter = "*.toml",
+                Filter = "TOML files (*.toml)|*.toml",
                 ValidateNames = false
             };
 
             if (dialog.ShowDialog() == true)
             {
-                ((SettingsWrapper)DataContext).GamePath = System.IO.Path.GetDirectoryName(dialog.FileName);
+                settingsWrapper.DeployPath = Path.GetDirectoryName(dialog.FileName);
             }
 
             ParseModDirectoriesFromToml(settingsWrapper, dialog.FileName);
@@ -104,26 +104,32 @@ namespace DSLRNet.UserControls
 
             var modPaths = new List<string>();
 
-            if (table.TryGetValue("extension.mod_loader", out var modLoaderSection))
+            if (!table.TryGetValue("extension", out var extensionsSection))
             {
-                var modLoaderTable = modLoaderSection as TomlTable;
-                if (modLoaderTable != null && modLoaderTable.TryGetValue("mods", out var mods))
+                return;
+            }
+
+            if (!(extensionsSection as TomlTable).TryGetValue("mod_loader", out var modLoader))
+            {
+                return;
+            }
+
+            if (!(modLoader as TomlTable).TryGetValue("mods", out var mods))
+            {
+                return;
+            }
+
+            foreach (var mod in (mods as TomlArray).OfType<TomlTable>())
+            {
+                if (mod.TryGetValue("enabled", out var enabled)
+                    && (bool)enabled
+                    && mod.TryGetValue("path", out var path))
                 {
-                    var modsArray = mods as TomlArray;
-                    if (modsArray != null)
-                    {
-                        foreach (var mod in modsArray.OfType<TomlTable>())
-                        {
-                            if (mod.TryGetValue("enabled", out var enabled)
-                                && (bool)enabled
-                                && mod.TryGetValue("path", out var path))
-                            {
-                                settings.ModPaths.Add(Path.Combine(Path.GetDirectoryName(fullPath), path.ToString()));
-                            }
-                        }
-                    }
+                    settings.ModPaths.Add(Path.Combine(Path.GetDirectoryName(fullPath), path.ToString()));
                 }
             }
+            
         }
+
     }
 }

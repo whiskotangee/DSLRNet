@@ -3,19 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:dslrusercontrols="clr-namespace:DSLRNet.UserControls"
         xmlns:viewModels="clr-namespace:DSLRNet.ViewModels"
         xmlns:converters="clr-namespace:DSLRNet.Converters"
         xmlns:behaviors="clr-namespace:DSLRNet.Behaviors"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="Diably Style Loot (Remade) For Elden Ring"
+        Title="Diablo Style Loot (Remade) For Elden Ring"
+        MinHeight="800"
         Height="800"
-        Width="900">
+        MinWidth="800"
+        Width="1000"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
     <Window.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         <converters:BoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" Inverse="True"/>
         <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        <Style TargetType="Slider" BasedOn="{StaticResource {x:Type Slider}}">
+            <Setter Property="Width" Value="250" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Width" Value="250" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -48,22 +61,22 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0">
-                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <StackPanel Orientation="Horizontal" >
                             <TextBlock Text="Map Item Lots: " />
-                            <TextBlock Text="{Binding ProgressTracker.GeneratedMapItemLots}" Margin="5,0"/>
+                            <TextBlock Text="{Binding ProgressTracker.GeneratedMapItemLots}" />
                             <TextBlock Text="Enemy Item Lots: " />
-                            <TextBlock Text="{Binding ProgressTracker.GeneratedEnemyItemLots}" Margin="5,0"/>
+                            <TextBlock Text="{Binding ProgressTracker.GeneratedEnemyItemLots}" />
                             <TextBlock Text="Weapons: " />
-                            <TextBlock Text="{Binding ProgressTracker.GeneratedWeapons}" Margin="5,0"/>
+                            <TextBlock Text="{Binding ProgressTracker.GeneratedWeapons}" />
                             <TextBlock Text="Armor: " />
-                            <TextBlock Text="{Binding ProgressTracker.GeneratedArmor}" Margin="5,0"/>
+                            <TextBlock Text="{Binding ProgressTracker.GeneratedArmor}" />
                             <TextBlock Text="Talismans: " />
-                            <TextBlock Text="{Binding ProgressTracker.GeneratedTalismans}" Margin="5,0"/>
+                            <TextBlock Text="{Binding ProgressTracker.GeneratedTalismans}" />
                         </StackPanel>
-                        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5,0">
-                            <TextBlock Text="Overall Progress" Margin="5,0"/>
+                        <StackPanel Grid.Row="0" Orientation="Vertical" >
+                            <TextBlock Text="Overall Progress" />
                             <ProgressBar Value="{Binding ProgressTracker.OverallProgress}" Maximum="{Binding ProgressTracker.OverallStepCount}"/>
-                            <TextBlock Text="Current Stage Progress" Margin="5,0"/>
+                            <TextBlock Text="Current Stage Progress" />
                             <ProgressBar Value="{Binding ProgressTracker.CurrentStageProgress}" Maximum="{Binding ProgressTracker.CurrentStageStepCount}"/>
                         </StackPanel>
                     </StackPanel>

@@ -1,15 +1,17 @@
 ﻿namespace DSLRNet.Core;
 
+using DSLRNet.Common;
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using System.Collections.ObjectModel;
 
 public class DSLRRunner
 {
     // TODO: stats builder for ui progress
-    public static async Task Run(Settings settings)
+    public static async Task Run(Settings settings, ThreadSafeObservableCollection<string>? logWatcher = null)
     {
         ConfigurationBuilder configurationBuilder = new();
 
@@ -36,6 +38,10 @@ public class DSLRRunner
         services.AddLogging((builder) =>
         {
             builder.AddSerilog();
+            if (logWatcher != null)
+            {
+                builder.AddProvider(new ThreadSafeObservableCollectionLoggerProvider(logWatcher));
+            }
         });
 
         services.SetupDSLR(configuration, settings);

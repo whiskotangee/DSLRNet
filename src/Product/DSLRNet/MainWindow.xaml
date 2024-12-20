@@ -4,19 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dslrusercontrols="clr-namespace:DSLRNet.UserControls"
-        xmlns:viewModels="clr-namespace:DSLRNet.ViewModels" 
+        xmlns:viewModels="clr-namespace:DSLRNet.ViewModels"
+        xmlns:converters="clr-namespace:DSLRNet.Converters"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="Diably Style Loot (Remade) For Elden Ring" 
+        Title="Diably Style Loot (Remade) For Elden Ring"
         MinHeight="800"
         MinWidth="900">
+    <Window.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <converters:BoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" Inverse="True"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TabControl Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding IsRunning, Converter={StaticResource InverseBoolToVisibilityConverter}}">
             <TabItem Header="General" >
                 <StackPanel>
                     <dslrusercontrols:GeneralSettingsUserControl DataContext="{Binding Settings}" />
@@ -33,11 +38,18 @@
                 <dslrusercontrols:IconBuilderUserControl DataContext="{Binding Settings.IconBuilderSettings}" />
             </TabItem>
         </TabControl>
-        <ToolBar Grid.Row="1" >
+        <ToolBar Grid.Row="1" Visibility="{Binding IsRunning, Converter={StaticResource InverseBoolToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal">
                 <Button Command="{Binding GenerateLootCommand}" Content="Generate Loot"/>
                 <Button Command="{Binding SaveSettingsCommand}" Content="Save Settings"/>
             </StackPanel>
         </ToolBar>
+
+        <TextBox Grid.Row="0" Grid.RowSpan="2" Text="{Binding TextLines, Mode=OneWay}" 
+                 Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}" 
+                 IsReadOnly="True" 
+                 VerticalScrollBarVisibility="Auto" 
+                 HorizontalScrollBarVisibility="Auto"
+                 TextChanged="OutputBox_TextChanged"/>
     </Grid>
 </Window>

@@ -5,28 +5,30 @@ using DSLRNet.Common;
 using DSLRNet.Core;
 using DSLRNet.Core.Config;
 using DSLRNet.Models;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Threading;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {
+    public static readonly object lockObject = new object();
+
     public MainWindowViewModel()
     {
         this.settingsWrapper = new SettingsWrapper(Core.Config.Settings.CreateFromSettingsIni() ?? new Settings());
         GenerateLootCommand = new AsyncRelayCommand(GenerateLootAsync, () => !IsRunning);
-        TextLines = string.Empty;
 
         IsRunning = false;
         LogMessages = new ThreadSafeObservableCollection<string>();
-        LogMessages.CollectionChanged += (sender, args) =>
-        {
-            OnPropertyChanged(nameof(TextLines));
-        };
 
-        //new UIBlockDetector();
+
+        BindingOperations.EnableCollectionSynchronization(LogMessages, lockObject);
+
+        new UIBlockDetector();
     }
 
     private SettingsWrapper settingsWrapper;
@@ -84,8 +86,6 @@ public class MainWindowViewModel : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-
-    public string TextLines { get => string.Join(Environment.NewLine, LogMessages.UnderlyingCollection.Reverse()); set { textLines = value; OnPropertyChanged(); } }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

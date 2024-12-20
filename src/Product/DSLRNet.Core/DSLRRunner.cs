@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 public class DSLRRunner
 {
     // TODO: stats builder for ui progress
-    public static async Task Run(Settings settings, ThreadSafeObservableCollection<string>? logWatcher = null)
+    public static async Task Run(Settings settings, ICollection<string>? logWatcher = null)
     {
         ConfigurationBuilder configurationBuilder = new();
 
@@ -40,7 +40,7 @@ public class DSLRRunner
             builder.AddSerilog();
             if (logWatcher != null)
             {
-                builder.AddProvider(new ThreadSafeObservableCollectionLoggerProvider(logWatcher));
+                builder.AddProvider(new CollectionLoggerProvider(logWatcher));
             }
         });
 

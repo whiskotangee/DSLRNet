@@ -1,13 +1,10 @@
-using DSLRNet.Common;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.ObjectModel;
+namespace DSLRNet.Common;
 
-public class ThreadSafeObservableCollectionLogger : ILogger
+public class CollectionLogger : ILogger
 {
-    private readonly ThreadSafeObservableCollection<string> logMessages;
+    private readonly ICollection<string> logMessages;
 
-    public ThreadSafeObservableCollectionLogger(ThreadSafeObservableCollection<string> logMessages)
+    public CollectionLogger(ICollection<string> logMessages)
     {
         this.logMessages = logMessages;
     }
@@ -26,18 +23,18 @@ public class ThreadSafeObservableCollectionLogger : ILogger
     }
 }
 
-public class ThreadSafeObservableCollectionLoggerProvider : ILoggerProvider
+public class CollectionLoggerProvider : ILoggerProvider
 {
-    private readonly ThreadSafeObservableCollection<string> logMessages;
+    private readonly ICollection<string> logMessages;
 
-    public ThreadSafeObservableCollectionLoggerProvider(ThreadSafeObservableCollection<string> logMessages)
+    public CollectionLoggerProvider(ICollection<string> logMessages)
     {
         this.logMessages = logMessages;
     }
 
     public ILogger CreateLogger(string categoryName)
     {
-        return new ThreadSafeObservableCollectionLogger(logMessages);
+        return new CollectionLogger(logMessages);
     }
 
     public void Dispose() { }

@@ -62,7 +62,6 @@ public class Settings
                     ApplyPercent = int.Parse(data["Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings"]["ApplyPercent"])
                 },
                 ChaosLootEnabled = bool.Parse(data["Settings.ItemLotGeneratorSettings"]["ChaosLootEnabled"]),
-                UniqueItemColor = data["Settings.ItemLotGeneratorSettings"]["UniqueItemColor"],
                 GlobalDropChance = float.Parse(data["Settings.ItemLotGeneratorSettings"]["GlobalDropChance"]),
                 AllLootGauranteed = bool.Parse(data["Settings.ItemLotGeneratorSettings"]["AllLootGauranteed"])
             },
@@ -76,6 +75,7 @@ public class Settings
             {
                 UniqueNameChance = float.Parse(data["Settings.WeaponGeneratorSettings"]["UniqueNameChance"]),
                 UniqueWeaponMultiplier = float.Parse(data["Settings.WeaponGeneratorSettings"]["UniqueWeaponMultiplier"]),
+                UniqueItemNameColor = data["Settings.WeaponGeneratorSettings"]["UniqueItemNameColor"],
                 SplitDamageTypeChance = float.Parse(data["Settings.WeaponGeneratorSettings"]["SplitDamageTypeChance"]),
                 DamageIncreasesStaminaThreshold = int.Parse(data["Settings.WeaponGeneratorSettings"]["DamageIncreasesStaminaThreshold"]),
                 CritChanceRange = new IntValueRange(

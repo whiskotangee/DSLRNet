@@ -8,6 +8,8 @@ public class WeaponGeneratorSettings
 
     public float UniqueWeaponMultiplier { get; set; }
 
+    public string UniqueItemNameColor { get; set; }
+
     public float SplitDamageTypeChance { get; set; }
 
     public int DamageIncreasesStaminaThreshold { get; set; }

@@ -40,7 +40,18 @@ public class WeaponGeneratorSettingsWrapper : BaseModel<WeaponGeneratorSettings>
             }
         }
     }
-
+    public string UniqueItemNameColor
+    {
+        get => _settings.UniqueItemNameColor;
+        set
+        {
+            if (_settings.UniqueItemNameColor != value)
+            {
+                _settings.UniqueItemNameColor = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     public float SplitDamageTypeChance
     {
         get => _settings.SplitDamageTypeChance;

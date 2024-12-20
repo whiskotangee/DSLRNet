@@ -6,35 +6,42 @@
              xmlns:local="clr-namespace:DSLRNet.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel Margin="10">
-            <TextBlock Text="Game Path" />
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding GamePath, Mode=TwoWay}" Width="300" />
-                <Button Content="Browse..." Click="BrowseGamePath_Click" />
-            </StackPanel>
-            
-            <TextBlock Text="Mod Path" />
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding DeployPath, Mode=TwoWay}" Width="300" />
-                <Button Content="Browse..." Click="BrowseDeployPath_Click" />
-            </StackPanel>
+    <GroupBox Header="General Settings">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10">
+                <TextBlock Text="Game Path" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding GamePath, Mode=TwoWay}" Width="300" />
+                    <Button Content="Browse..." Click="BrowseGamePath_Click" />
+                </StackPanel>
 
-            <TextBlock Text="Random Seed" />
-            <TextBox Text="{Binding RandomSeed, Mode=TwoWay}" PreviewTextInput="NumberValidationTextBox" />
+                <TextBlock Text="Deploy Path (aka Mod Path)" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding DeployPath, Mode=TwoWay}" Width="300" />
+                    <Button Content="Browse..." Click="BrowseDeployPath_Click" />
+                </StackPanel>
 
-            <TextBlock Text="Mod Paths" />
-            <StackPanel>
-                <CheckBox Content="Set Mod Sources" IsChecked="{Binding UseCustomModSources}" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <ListBox ItemsSource="{Binding ModPaths}" HorizontalAlignment="Stretch" Grid.Column="0"/>
-                    <Button Content="Parse ModEngine toml" Click="ParseToml_Click" Grid.Column="1"/>
-                </Grid>
+                <TextBlock Text="Random Seed" />
+                <TextBox Text="{Binding RandomSeed, Mode=TwoWay}" PreviewTextInput="NumberValidationTextBox" />
             </StackPanel>
-        </StackPanel>
-    </Grid>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Mod Paths" />
+                <TextBlock Text="Loot generating does auotmated scanning.  For users with multiple mod directories that do partial overwrites you can use this to include additional mod directories.  Use the Parse ModEngine toml button on config_eldenring.toml file typically included with a ModEngine setup to automatically include all mod directories in order." TextWrapping="Wrap"/>
+                <StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <ListBox ItemsSource="{Binding ModPaths}" HorizontalAlignment="Stretch" Grid.Row="1"/>
+                        <Button Content="Parse ModEngine toml" Click="ParseToml_Click" Grid.Row="0" Width="Auto" HorizontalAlignment="Left"/>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </GroupBox>
 </UserControl>

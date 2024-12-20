@@ -6,16 +6,15 @@
              xmlns:local="clr-namespace:DSLRNet.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel>
-            <TextBlock Text="Cut Rate Description Template" />
-            <TextBox Text="{Binding CutRateDescriptionTemplate, Mode=TwoWay}" />
+    <GroupBox Header="ArmorSettings">
+        <Grid>
+            <StackPanel>
+                <TextBlock Text="Number of resistance stats to include rarity based buffs for" />
+                <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ResistParamBuffCount, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
-            <TextBlock Text="Resist Param Buff Count" />
-            <TextBox Text="{Binding ResistParamBuffCount, Mode=TwoWay}" />
-
-            <TextBlock Text="Cut Rate Param Buff Count" />
-            <TextBox Text="{Binding CutRateParamBuffCount, Mode=TwoWay}" />
-        </StackPanel>
-    </Grid>
+                <TextBlock Text="Number of defensive stats to include rarity based buffs for" />
+                <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding CutRateParamBuffCount, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
+            </StackPanel>
+        </Grid>
+    </GroupBox>
 </UserControl>

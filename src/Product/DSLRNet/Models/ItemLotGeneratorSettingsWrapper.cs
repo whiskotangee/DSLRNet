@@ -108,19 +108,6 @@ public class ItemLotGeneratorSettingsWrapper : BaseModel<ItemLotGeneratorSetting
         }
     }
 
-    public string UniqueItemColor
-    {
-        get => _settings.UniqueItemColor;
-        set
-        {
-            if (_settings.UniqueItemColor != value)
-            {
-                _settings.UniqueItemColor = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
     public float GlobalDropChance
     {
         get => _settings.GlobalDropChance;

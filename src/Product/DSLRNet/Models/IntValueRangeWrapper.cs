@@ -22,6 +22,10 @@ public class IntValueRangeWrapper : BaseModel<IntValueRange>
             {
                 _range.Min = value;
                 OnPropertyChanged();
+                if (_range.Max < value)
+                {
+                    Max = value + 1;
+                }
             }
         }
     }
@@ -35,6 +39,10 @@ public class IntValueRangeWrapper : BaseModel<IntValueRange>
             {
                 _range.Max = value;
                 OnPropertyChanged();
+                if (_range.Min > value)
+                {
+                    Min = value - 1;
+                }
             }
         }
     }

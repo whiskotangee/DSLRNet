@@ -68,11 +68,16 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         newWeapon.sellValue = this.RarityHandler.GetSellValue(rarityId);
         newWeapon.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
         newWeapon.iconId = this.RarityHandler.GetIconId(newWeapon.iconId, rarityId, isUnique: isUniqueWeapon);
+        newWeapon.reinforceTypeId = 0;
 
-        // 42300 allows scaling from all sources (STR,DEX,INT,FTH,ARC)
+        
         if (weaponType != WeaponTypes.StaffsSeals)
         {
+            // 42300 allows scaling from all sources (STR,DEX,INT,FTH,ARC)
             newWeapon.attackElementCorrectId = 42300;
+            // 0 is for weapon without affinity (heavy, keen, etc) upgrade path
+            newWeapon.reinforceTypeId = 0;
+            this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
 
         newWeapon.gemMountType = (byte)(weaponType == WeaponTypes.StaffsSeals ? 0 : 2);
@@ -101,11 +106,6 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             affinity = this.CreateAffinityTitle(modifications);
         }
 
-        if (newWeapon.reinforceTypeId != 2200 && weaponType != WeaponTypes.StaffsSeals)
-        {
-            this.ashofWarHandler.AssignAshOfWar(newWeapon);
-        }
-
         string weaponOriginalTitle = newWeapon.Name;
 
         string weaponFinalTitle = this.CreateLootTitle(
@@ -125,7 +125,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             string uniqueName = this.LoreGenerator.CreateRandomUniqueName(weaponType == WeaponTypes.Shields);
 
-            weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Settings.ItemLotGeneratorSettings.UniqueItemColor);
+            weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Settings.WeaponGeneratorSettings.UniqueItemNameColor);
         }
 
         //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);

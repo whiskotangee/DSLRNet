@@ -7,60 +7,26 @@
              d:DesignHeight="300" d:DesignWidth="400">
     <Grid>
         <StackPanel>
-            <CheckBox Content="Regenerate Icon Sheets" IsChecked="{Binding IconBuilderSettings.RegenerateIconSheets}" />
-
-            <GroupBox Header="Hi-Def Icon Dimensions">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Icon Size" />
-                    <TextBox Text="{Binding IconBuilderSettings.HiDefIconDimensions.IconSize}" Grid.Column="1" Width="100" />
-                    <TextBlock Text="Padding" Grid.Row="1" />
-                    <TextBox Text="{Binding IconBuilderSettings.HiDefIconDimensions.Padding}" Grid.Column="1" Grid.Row="1" Width="100" />
-                </Grid>
-            </GroupBox>
 
             <GroupBox Header="Icon Sheet Settings">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Goal Icons Per Sheet" />
-                    <TextBox Text="{Binding IconBuilderSettings.IconSheetSettings.GoalIconsPerSheet}" Grid.Column="1" Width="100" />
-                    <TextBlock Text="Rows Per Sheet" Grid.Row="1" />
-                    <TextBox Text="{Binding IconBuilderSettings.IconSheetSettings.RowsPerSheet}" Grid.Column="1" Grid.Row="1" Width="100" />
-                    <TextBlock Text="Icons Per Row" Grid.Row="1" />
-                    <TextBox Text="{Binding IconBuilderSettings.IconSheetSettings.IconsPerRow}" Grid.Column="1" Grid.Row="2" Width="100" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <CheckBox Content="Regenerate Icon Sheets" IsChecked="{Binding IconBuilderSettings.RegenerateIconSheets}" />
 
-                    <GroupBox Header="Icon Dimensions" Grid.Row="2" Grid.ColumnSpan="2">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Icon Size" />
-                            <TextBox Text="{Binding IconBuilderSettings.IconSheetSettings.IconDimensions.IconSize}" Grid.Column="1" Width="100" />
-                            <TextBlock Text="Padding" Grid.Row="2" />
-                            <TextBox Text="{Binding IconBuilderSettings.IconSheetSettings.IconDimensions.Padding}" Grid.Column="1" Grid.Row="1" Width="100" />
-                        </Grid>
-                    </GroupBox>
-
-                    <GroupBox Header="Rarities" Grid.Row="3" Grid.ColumnSpan="2">
-                        <ItemsControl ItemsSource="{Binding IconBuilderSettings.IconSheetSettings.Rarities}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Background" />
-                                        <TextBox Text="{Binding BackgroundImageName}" Width="200" />
-                                        <Image Source="{Binding BackgroundImageName, Converter={StaticResource ImagePathConverter}}" Width="50" Height="50" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </GroupBox>
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding IconBuilderSettings.IconSheetSettings.Rarities}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Background" />
+                                    <TextBox Text="{Binding BackgroundImageName}" Width="200" />
+                                    <Image Source="{Binding BackgroundImageName, Converter={StaticResource ImagePathConverter}}" Width="50" Height="50" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </GroupBox>
         </StackPanel>

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="DSLRNet.UserControls.SliderWithTextUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DSLRNet.UserControls"
+             Margin="0,5">
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <Slider MinWidth="150" Minimum="{Binding Minimum, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Maximum="{Binding Maximum, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                    Value="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}"
+                    TickFrequency="{Binding TickFrequency, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    IsSnapToTickEnabled="{Binding IsSnapToTickEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    HorizontalAlignment="Stretch"/>
+            <TextBlock Text="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" 
+                     Margin="10,0,0,0" VerticalAlignment="Center" MinWidth="50" Width="Auto"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

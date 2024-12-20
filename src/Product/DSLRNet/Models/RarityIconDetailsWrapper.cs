@@ -1,6 +1,7 @@
 namespace DSLRNet.Models;
 
 using System.Collections.Generic;
+using System.IO;
 using global::DSLRNet.Core.Config;
 
 public class RarityIconDetailsWrapper : BaseModel<RarityIconDetails>
@@ -28,12 +29,12 @@ public class RarityIconDetailsWrapper : BaseModel<RarityIconDetails>
 
     public string BackgroundImageName
     {
-        get => _rarity.BackgroundImageName;
+        get => Path.Combine("Assets", "LootIcons", _rarity.BackgroundImageName);
         set
         {
             if (_rarity.BackgroundImageName != value)
             {
-                _rarity.BackgroundImageName = value;
+                _rarity.BackgroundImageName = Path.GetFileNameWithoutExtension(value);
                 OnPropertyChanged();
             }
         }

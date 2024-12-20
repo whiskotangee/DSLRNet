@@ -21,13 +21,11 @@
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         <converters:BoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" Inverse="True"/>
         <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
-        <Style TargetType="Slider" BasedOn="{StaticResource {x:Type Slider}}">
-            <Setter Property="Width" Value="250" />
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
+
         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Width" Value="250" />
             <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
     </Window.Resources>
     <Grid>

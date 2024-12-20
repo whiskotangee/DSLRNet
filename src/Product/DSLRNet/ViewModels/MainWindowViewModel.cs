@@ -1,14 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using System.Windows.Input;
-
-namespace DSLRNet.ViewModels;
+﻿namespace DSLRNet.ViewModels;
 
 using CommunityToolkit.Mvvm.Input;
-using DSLRNet.Common;
 using DSLRNet.Core;
 using DSLRNet.Core.Config;
 using DSLRNet.Models;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -34,15 +29,17 @@ public class MainWindowViewModel : INotifyPropertyChanged
     private SettingsWrapper settingsWrapper;
     private ThreadSafeObservableCollection<string> logMessages;
     private OperationProgressTracker progressTracker;
+    
     public IAsyncRelayCommand GenerateLootCommand { get; private set; }
 
     private bool isRunning;
-    private string textLines;
+    private bool hasRun;
+    private int selectedTabIndex;
 
     private async Task GenerateLootAsync()
     {
         // Your logic to generate loot goes here
-        IsGeneratingLoot = true;
+        HasRun = true;
         IsRunning = true;
         ProgressTracker.Reset();
         LogMessages.Clear();
@@ -59,16 +56,6 @@ public class MainWindowViewModel : INotifyPropertyChanged
         IsRunning = false;
     }
 
-    public bool IsGeneratingLoot
-    {
-        get => isGeneratingLoot;
-        set
-        {
-            isGeneratingLoot = value;
-            OnPropertyChanged();
-        }
-    }
-
     public bool IsRunning 
     { 
         get => isRunning;
@@ -76,6 +63,30 @@ public class MainWindowViewModel : INotifyPropertyChanged
         {
             isRunning = value;
             OnPropertyChanged();
+            SelectedTabIndex = value ? 3 : 0;
+        }
+    }
+
+    public bool HasRun
+    {
+        get => hasRun;
+        set
+        {
+            hasRun = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public int SelectedTabIndex
+    {
+        get => selectedTabIndex;
+        set
+        {
+            if (selectedTabIndex != value)
+            {
+                selectedTabIndex = value;
+                OnPropertyChanged();
+            }
         }
     }
 
@@ -122,16 +133,6 @@ public class MainWindowViewModel : INotifyPropertyChanged
             Application.Current.Dispatcher.Invoke(() =>
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)));
         }
-    }
-
-    private RelayCommand closeCommand;
-    private bool isGeneratingLoot;
-
-    public ICommand CloseCommand => closeCommand ??= new RelayCommand(CloseOutputTab);
-
-    private void CloseOutputTab()
-    {
-        IsGeneratingLoot = false;
     }
 }
 

@@ -1,4 +1,7 @@
-﻿namespace DSLRNet.ViewModels;
+﻿using CommunityToolkit.Mvvm.Input;
+using System.Windows.Input;
+
+namespace DSLRNet.ViewModels;
 
 using CommunityToolkit.Mvvm.Input;
 using DSLRNet.Common;
@@ -39,6 +42,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
     private async Task GenerateLootAsync()
     {
         // Your logic to generate loot goes here
+        IsGeneratingLoot = true;
         IsRunning = true;
         ProgressTracker.Reset();
         LogMessages.Clear();
@@ -53,6 +57,16 @@ public class MainWindowViewModel : INotifyPropertyChanged
         
         LogMessages.Add("Loot generation completed successfully.");
         IsRunning = false;
+    }
+
+    public bool IsGeneratingLoot
+    {
+        get => isGeneratingLoot;
+        set
+        {
+            isGeneratingLoot = value;
+            OnPropertyChanged();
+        }
     }
 
     public bool IsRunning 
@@ -108,6 +122,16 @@ public class MainWindowViewModel : INotifyPropertyChanged
             Application.Current.Dispatcher.Invoke(() =>
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)));
         }
+    }
+
+    private RelayCommand closeCommand;
+    private bool isGeneratingLoot;
+
+    public ICommand CloseCommand => closeCommand ??= new RelayCommand(CloseOutputTab);
+
+    private void CloseOutputTab()
+    {
+        IsGeneratingLoot = false;
     }
 }
 

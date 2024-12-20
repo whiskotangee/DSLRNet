@@ -13,6 +13,11 @@ namespace DSLRNet.Models
         private int generatedArmor;
         private int generatedTalismans;
 
+        public OperationProgressTracker()
+        {
+            Reset();
+        }
+
         public int OverallProgress
         {
             get => overallProgress;
@@ -133,9 +138,9 @@ namespace DSLRNet.Models
         public void Reset()
         {
             OverallProgress = 0;
-            OverallStepCount = 0;
+            OverallStepCount = 1;
             CurrentStageProgress = 0;
-            CurrentStageStepCount = 0;
+            CurrentStageStepCount = 1;
             GeneratedMapItemLots = 0;
             GeneratedEnemyItemLots = 0;
             GeneratedWeapons = 0;

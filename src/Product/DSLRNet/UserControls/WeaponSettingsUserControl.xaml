@@ -14,67 +14,67 @@
     <GroupBox Header="Weapon Settings">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
+            <StackPanel Grid.Column="0" Margin="5">
 
-                <TextBlock Text="Unique Name Chance" />
+                <TextBlock Text="Unique Name Chance" Margin="0,5,0,5"/>
                 <local:SliderWithTextUserControl Minimum="0" Maximum="100" Value="{Binding UniqueNameChance, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
-                <TextBlock Text="Unique Weapon Multiplier. Multiplier to damage values when a weapon is generated as unique." />
+                <TextBlock Text="Unique Weapon Multiplier. Multiplier to damage values when a weapon is generated as unique." TextWrapping="Wrap" Margin="0,5,0,5"/>
                 <local:SliderWithTextUserControl Minimum="1" Maximum="10" Value="{Binding UniqueWeaponMultiplier, Mode=TwoWay}" TickFrequency="0.1" IsSnapToTickEnabled="True" />
 
-                <TextBlock Text="Unique Weapon Name Display Color" />
-                <Grid>
+                <TextBlock Text="Unique Weapon Name Display Color" Margin="0,5,0,5"/>
+                <Grid Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBox Text="{Binding UniqueItemNameColor, Mode=TwoWay}" IsEnabled="False" Grid.Column="0" MinWidth="50"/>
+                    <TextBox Text="{Binding UniqueItemNameColor, Mode=TwoWay}" IsEnabled="False" Grid.Column="0" Width="70"/>
                     <xctk:ColorPicker SelectedColor="{Binding UniqueItemNameColor, Converter={StaticResource HexStringToColorConverter}, Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1"/>
                 </Grid>
-                
-                <TextBlock Text="Split Damage Type Chance" />
+
+                <TextBlock Text="Split Damage Type Chance" Margin="0,5,0,5"/>
                 <local:SliderWithTextUserControl Minimum="0" Maximum="100" Value="{Binding SplitDamageTypeChance, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
-                <TextBlock Text="Damage threshold before increasing stamina cost" />
+                <TextBlock Text="Damage threshold before increasing stamina cost" Margin="0,5,0,5"/>
                 <local:SliderWithTextUserControl Minimum="0" Maximum="1000" Value="{Binding DamageIncreasesStaminaThreshold, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
                 
             </StackPanel>
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1" Margin="5">
 
-                <TextBlock Text="Control the weapon scaling (STR, DEX, FAITH, INT, ARCANE.) of generated loot here."/>
+                <TextBlock Text="Control the weapon scaling (STR, DEX, FAITH, INT, ARCANE.) of generated loot here." Margin="0,5,0,5"/>
                 <StackPanel>
-                    <TextBlock Text="E: 0 - 24" />
-                    <TextBlock Text="D: 25 - 59" />
-                    <TextBlock Text="C: 60 - 89" />
-                    <TextBlock Text="B: 90 - 139" />
-                    <TextBlock Text="A: 140 - 174" />
-                    <TextBlock Text="S: 175+" />
+                    <TextBlock Text="E: 0 - 24" Margin="0,5,0,5"/>
+                    <TextBlock Text="D: 25 - 59" Margin="0,5,0,5"/>
+                    <TextBlock Text="C: 60 - 89" Margin="0,5,0,5"/>
+                    <TextBlock Text="B: 90 - 139" Margin="0,5,0,5"/>
+                    <TextBlock Text="A: 140 - 174" Margin="0,5,0,5"/>
+                    <TextBlock Text="S: 175+" Margin="0,5,0,5"/>
                 </StackPanel>
-                
-                <TextBlock Text="Primary damage stat scaling" />
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Min" />
+
+                <TextBlock Text="Primary Damage Stat Scaling" Margin="0,5,0,5"/>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                    <TextBlock Text="Min" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="174" Value="{Binding PrimaryBaseScalingRange.Min, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True"/>
-                    <TextBlock Text="Max" />
+                    <TextBlock Text="Max" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <local:SliderWithTextUserControl Minimum="1" Maximum="300" Value="{Binding PrimaryBaseScalingRange.Max, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True"/>
                 </StackPanel>
 
-                <TextBlock Text="Secondary Stat Scaling Range" />
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Min" />
+                <TextBlock Text="Secondary Damage Stat Scaling" Margin="0,5,0,5"/>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                    <TextBlock Text="Min" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="174" Value="{Binding SecondaryBaseScalingRange.Min, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True"/>
-                    <TextBlock Text="Max" />
+                    <TextBlock Text="Max" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <local:SliderWithTextUserControl Minimum="1" Maximum="300" Value="{Binding SecondaryBaseScalingRange.Max, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True"/>
                 </StackPanel>
 
-                <TextBlock Text="Other Base Scaling Range" />
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Min" />
+                <TextBlock Text="Other Scaling Range" Margin="0,5,0,5"/>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                    <TextBlock Text="Min"  Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="174" Value="{Binding OtherBaseScalingRange.Min, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
-                    <TextBlock Text="Max" />
+                    <TextBlock Text="Max" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <local:SliderWithTextUserControl Minimum="1" Maximum="300" Value="{Binding OtherBaseScalingRange.Max, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
                 </StackPanel>

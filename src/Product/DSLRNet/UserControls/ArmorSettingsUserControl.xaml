@@ -8,11 +8,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <GroupBox Header="ArmorSettings">
         <Grid>
-            <StackPanel>
-                <TextBlock Text="Number of resistance stats to include rarity based buffs for" />
+            <StackPanel Margin="5">
+                <TextBlock Text="Number of resistance stats to include rarity based buffs for" Margin="0,0,0,10"/>
                 <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ResistParamBuffCount, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
-                <TextBlock Text="Number of defensive stats to include rarity based buffs for" />
+                <TextBlock Text="Number of defensive stats to include rarity based buffs for" Margin="0,5,0,5"/>
                 <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding CutRateParamBuffCount, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
             </StackPanel>
         </Grid>

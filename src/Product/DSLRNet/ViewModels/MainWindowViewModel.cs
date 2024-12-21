@@ -55,10 +55,17 @@ public class MainWindowViewModel : INotifyPropertyChanged
         {
             await Task.Yield();
 
-            await DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages, ProgressTracker);
+            try
+            {
+                await DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages, ProgressTracker);
+                LogMessages.Add("Loot generation completed successfully.");
+            }
+            catch (Exception ex)
+            {
+                LogMessages.Add($"Exception caught - loot Generation is most likely incomplete: {ex}");
+            }
         });
 
-        LogMessages.Add("Loot generation completed successfully.");
         IsRunning = false;
     }
 

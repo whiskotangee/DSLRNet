@@ -4,11 +4,13 @@ public class MSBProvider
 {
     private readonly Settings settings;
     private readonly ILogger<MSBProvider> logger;
+    private readonly IOperationProgressTracker progressTracker;
     private Dictionary<string, MSBE> msbData = [];
 
-    public MSBProvider(IOptions<Settings> settings, ILogger<MSBProvider> logger)
+    public MSBProvider(IOptions<Settings> settings, ILogger<MSBProvider> logger, IOperationProgressTracker progressTracker)
     {
         this.logger = logger;
+        this.progressTracker = progressTracker;
         this.settings = settings.Value;
         
         Initialize();
@@ -39,10 +41,15 @@ public class MSBProvider
 
         mapStudioFiles.AddRange(additionalMapFiles);
 
+        progressTracker.CurrentStageStepCount = mapStudioFiles.Count;
+        progressTracker.CurrentStageProgress = 0;
+
         foreach (string mapFile in mapStudioFiles)
         {
             var name = Path.GetFileName(mapFile);
             name = name[.. name.IndexOf('.')];
+
+            progressTracker.CurrentStageProgress++;
 
             msbData[Path.GetFileName(mapFile)] = MSBE.Read(mapFile);
         }

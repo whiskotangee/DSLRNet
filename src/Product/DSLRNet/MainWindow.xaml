@@ -11,9 +11,7 @@
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="Diablo Style Loot (Remade) For Elden Ring"
-        MinHeight="800"
-        Height="800"
-        MinWidth="800"
+        Height="950"
         Width="1000"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}">
@@ -25,7 +23,6 @@
         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Width" Value="250" />
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
     </Window.Resources>
     <Grid>

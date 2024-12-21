@@ -28,7 +28,7 @@ public class Settings
     {
         var parser = new FileIniDataParser();
         IniData data = new IniData();
-        data["Settings"]["DeployPath"] = path;
+        data["Settings"]["DeployPath"] = DeployPath;
         data["Settings"]["OrderedModPaths"] = string.Join(",", OrderedModPaths);
         data["Settings"]["RandomSeed"] = RandomSeed.ToString();
         data["Settings"]["GamePath"] = GamePath;
@@ -79,7 +79,7 @@ public class Settings
         data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity5"]["RarityIds"] = string.Join(",", IconBuilderSettings.IconSheetSettings.Rarities[4].RarityIds);
         data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity5"]["BackgroundImageName"] = IconBuilderSettings.IconSheetSettings.Rarities[4].BackgroundImageName;
 
-        File.WriteAllLines("Settings.User.ini", data.ToString().Split("\n"));
+        File.WriteAllLines(path, data.ToString().Split("\n"));
     }
 
     public static Settings? CreateFromSettingsIni()

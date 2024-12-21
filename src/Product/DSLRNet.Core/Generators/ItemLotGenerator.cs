@@ -98,6 +98,8 @@ public class ItemLotGenerator : BaseHandler
 
             bool dropGuaranteed = this.settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
 
+            this.logger.LogDebug($"Generating {itemLotIds.Count} item lots for enemy with drop guaranteed: {dropGuaranteed}");
+
             for (int x = 0; x < itemLotIds.Count; x++)
             {
                 if (this.GeneratedDataRepository.TryGetParamEdit(ParamNames.ItemLotParam_enemy, itemLotIds[x], out var itemLotParam))
@@ -142,14 +144,17 @@ public class ItemLotGenerator : BaseHandler
                     throw new Exception("No open item spots in item lot");
                 }
 
-                for (int y = 0; y < this.settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy; y++)
+                var startingIndex = offset;
+                var endingIndex = Math.Clamp(offset + this.settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy, 1, ItemLotParamMax);
+
+                for (int y = startingIndex; y < endingIndex; y++)
                 {
                     this.CreateItemLotEntry(
                         itemLotSettings,
                         gameStageConfig,
                         newItemLot,
                         this.settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy,
-                        y + offset,
+                        y,
                         (float)itemLotSettings.DropChanceMultiplier,
                         dropGuaranteed);
                 }
@@ -383,6 +388,11 @@ public class ItemLotGenerator : BaseHandler
         float dropMult,
         bool dropGauranteed = false)
     {
+        if (itemNumber >= ItemLotParamMax)
+        {
+            throw new Exception($"Item lot {itemLot.ID} has too many items");
+        }   
+
         int rarity = this.rarityHandler.ChooseRarityFromIdSet(IntValueRange.CreateFrom(gameStageConfig.AllowedRarities));
 
         (int finalId, int finalCategory) = this.GenerateLoot(itemLotSettings, rarity);
@@ -392,6 +402,8 @@ public class ItemLotGenerator : BaseHandler
         itemLot.SetValue($"lotItemNum0{itemNumber}", 1);
         itemLot.SetValue($"lotItemBasePoint0{itemNumber}", this.GetDropChance(dropGauranteed, dropMult, lootPerItemLot));
         itemLot.SetValue($"enableLuck0{itemNumber}", 1);
+
+        this.logger.LogDebug($"Generated item lot entry {itemNumber} for {itemLot.ID} with item {finalId} of category {finalCategory} and rarity {rarity}");
     }
 
     private float GetDropChance(bool dropGauranteed, float dropMutliplier, int lootPerItemLot)

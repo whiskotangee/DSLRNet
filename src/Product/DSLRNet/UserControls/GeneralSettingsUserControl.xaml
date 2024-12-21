@@ -13,24 +13,23 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Margin="10">
-                <TextBlock Text="Game Path" />
-                <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Game Path" Margin="0,0,0,5"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <TextBox Text="{Binding GamePath, Mode=TwoWay}" Width="300" />
                     <Button Content="Browse..." Click="BrowseGamePath_Click" />
                 </StackPanel>
 
-                <TextBlock Text="Deploy Path (aka Mod Path)" />
+                <TextBlock Text="Deploy Path (aka Mod Path)" Margin="0,10,0,5"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBox Text="{Binding DeployPath, Mode=TwoWay}" Width="300" />
                     <Button Content="Browse..." Click="BrowseDeployPath_Click" />
                 </StackPanel>
 
-                <TextBlock Text="Random Seed" />
+                <TextBlock Text="Random Seed" Margin="0,10,0,5"/>
                 <TextBox Text="{Binding RandomSeed, Mode=TwoWay}" PreviewTextInput="NumberValidationTextBox" />
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <TextBlock Text="Mod Paths" />
-                <TextBlock Text="Loot generating does auotmated scanning.  For users with multiple mod directories that do partial overwrites you can use this to include additional mod directories.  Use the Parse ModEngine toml button on config_eldenring.toml file typically included with a ModEngine setup to automatically include all mod directories in order." TextWrapping="Wrap"/>
+                <TextBlock Margin="0,0,0,20" Text="Loot generating does auotmated scanning.  For users with multiple mod directories that do partial overwrites you can use this to include additional mod directories.  Use the Parse ModEngine toml button on config_eldenring.toml file typically included with a ModEngine setup to automatically include all mod directories in order." TextWrapping="Wrap"/>
                 <StackPanel>
                     <Grid>
                         <Grid.RowDefinitions>

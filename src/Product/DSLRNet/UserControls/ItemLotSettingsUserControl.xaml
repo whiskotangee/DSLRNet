@@ -16,34 +16,30 @@
 
         <StackPanel Grid.Column="0">
             <GroupBox Header="Item Drops">
-                <StackPanel>
+                <StackPanel  Margin="5">
                     <TextBlock Text="Global drop chance for items. (0-1000, 1000 == 100%)" />
                     <local:SliderWithTextUserControl Minimum="0" Maximum="1000" Value="{Binding GlobalDropChance, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,10">
                         <CheckBox Content="Chaos Loot Enabled" IsChecked="{Binding ChaosLootEnabled, Mode=TwoWay}" />
-                        <TextBlock Text="Enable or disable chaos loot. Anything of any rarity can drop anywhere." />
-                        <CheckBox Content="All Loot Guaranteed" IsChecked="{Binding AllLootGauranteed, Mode=TwoWay}" />
-                        <TextBlock Text="Guarantee all loot drops.  Something will always drop" />
+                        <TextBlock Text="Enable or disable chaos loot. Anything of any rarity can drop anywhere." Margin="0,5,0,5"/>
+                        <CheckBox Content="All item lots Guaranteed" IsChecked="{Binding AllLootGauranteed, Mode=TwoWay}" />
+                        <TextBlock Text="Guarantee all loot drops.  Something will always drop" Margin="0,5,0,5"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Item Lots">
-                <StackPanel>
-                    <TextBlock Text="Item Lots Per Map Pickup" />
-                    <TextBlock Text="Number of item lots generated per base map lot." />
+                <StackPanel Margin="5">
+                    <TextBlock Text="Drops Per Map Pickup" Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBaseMapLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
-                    <TextBlock Text="Item Lots Per Enemy" />
-                    <TextBlock Text="Number of item lots generated per base enemy lot." />
-                    <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBaseEnemyLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
-
-                    <TextBlock Text="Item Lots Per Boss Lot" />
-                    <TextBlock Text="Number of item lots generated per boss lot." />
+                    <TextBlock Text="Drops Per Boss" Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBossLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
-                    <TextBlock Text="Loot Per Item Lot (Enemy)" />
-                    <TextBlock Text="Number of loot items per enemy item lot." />
+                    <TextBlock Text="Drop chances Per Enemy" Margin="0,5,0,5"/>
+                    <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBaseEnemyLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
+                    
+                    <TextBlock Text="Loot Item Pool Count Per Enemy Drop" Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="7" Value="{Binding LootPerItemLot_Enemy, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
                 </StackPanel>
@@ -52,28 +48,27 @@
 
         <!-- Right half for scanner settings -->
         <GroupBox Grid.Column="1" Header="Scanner Settings">
-            <StackPanel Margin="10">
+            <StackPanel Margin="5">
                 <StackPanel>
-                    <TextBlock Text="Enable or disable scanning and generating loot for chests." />
-                    <CheckBox Content="Enabled" IsChecked="{Binding ChestLootScannerSettings.Enabled, Mode=TwoWay}" />
-                    
-                    <TextBlock Text="Percentage of chests to generate loot for." />
+                    <CheckBox Content="Scanning Enabled" IsChecked="{Binding ChestLootScannerSettings.Enabled, Mode=TwoWay}" />
+
+                    <TextBlock Text="Percentage of chests to generate loot for." Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="100" Value="{Binding ChestLootScannerSettings.ApplyPercent, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
                 </StackPanel>
 
                 <StackPanel>
-                    <TextBlock Text="Enable or disable scanning and generating loot for map pickups." />
+                    <TextBlock Text="Enable or disable scanning and generating loot for map pickups." Margin="0,5,0,5"/>
                     <CheckBox Content="Enabled" IsChecked="{Binding MapLootScannerSettings.Enabled, Mode=TwoWay}" />
-                    
-                    <TextBlock Text="Percentage of map pickups to generate loot for." />
+
+                    <TextBlock Text="Percentage of map pickups to generate loot for." Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="100" Value="{Binding MapLootScannerSettings.ApplyPercent, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
                 </StackPanel>
 
                 <StackPanel>
-                    <TextBlock Text="Enable or disable scanning and generating loot for enemy drops." />
+                    <TextBlock Text="Enable or disable scanning and generating loot for enemy drops." Margin="0,5,0,5"/>
                     <CheckBox Content="Enabled" IsChecked="{Binding EnemyLootScannerSettings.Enabled, Mode=TwoWay}" />
-                    
-                    <TextBlock Text="Percentage of enemies to generate loot for." />
+
+                    <TextBlock Text="Percentage of enemies to generate loot for." Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="100" Value="{Binding EnemyLootScannerSettings.ApplyPercent, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
                 </StackPanel>
             </StackPanel>

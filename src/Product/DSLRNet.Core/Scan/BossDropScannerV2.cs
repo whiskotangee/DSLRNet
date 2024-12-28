@@ -1,25 +1,47 @@
 ﻿namespace DSLRNet.Core.Scan;
 
 using DSLRNet.Core.DAL;
-using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
+
 using static SoulsFormats.EMEVD.Instruction;
 
-public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configuration> config, FileSourceHandler fileHandler, DataAccess dataAccess)
+public class BossDropScannerV2(ILogger<BossDropScanner> logger, IOptions<Configuration> config, FileSourceHandler fileHandler, DataAccess dataAccess)
 {
     public List<EventDropItemLotDetails> ScanEventsForBossDrops()
     {
+        // start with GameAreaParam, these are boss entity ids
+
+        var bossDeathFlags = new Dictionary<uint, int>();
+        foreach (var gameAreaParam in dataAccess.GameAreaParam.GetAll())
+        {
+            if (gameAreaParam.defeatBossFlagId > 0)
+            {
+                bossDeathFlags.TryAdd(gameAreaParam.defeatBossFlagId, gameAreaParam.ID);
+            }
+        }
+
+        logger.LogWarning($"Bosses missing event drops {bossDeathFlags.Count()} - {string.Join(",", bossDeathFlags.Select(d => d.Key))}");
+
+        // scan common emevds for flags that give item lots
         logger.LogInformation($"Scanning common events for boss drops");
 
-        List<EventDropItemLotDetails> lotDetails = [];
         List<EventDropItemLotDetails> commonEventsDetails = [];
-
+        List<EventDropItemLotDetails> lotDetails = [];
         var commonEmevdFile = GetCommonEmevdFile("common.emevd.dcx");
 
         EMEVD emevd = EMEVD.Read(commonEmevdFile);
         ScanMapEvents(emevd, Path.GetFileNameWithoutExtension(commonEmevdFile), commonEventsDetails, lotDetails);
 
+        var filteredBossFlags = bossDeathFlags.Where(d => !lotDetails.Any(s => s.EventTriggerFlagId == d.Key && s.ItemLotId > 0)).ToDictionary(d => d.Key, d => d.Value);
+
+        if (filteredBossFlags.Any())
+        {
+            logger.LogWarning($"Bosses missing event drops {filteredBossFlags.Count()} - {string.Join(",", filteredBossFlags.Select(d => d.Key))}");
+        }
+
+        // scan all other emevds, look for boss defeat events, then for setting flags that trigger item lots
+
+        //var otherEmveds = fileHandler.ListFilesFromAllModDirectories("event", "m60_42_38*emevd.dcx");
         var otherEmveds = fileHandler.ListFilesFromAllModDirectories("event", "m*emevd.dcx");
         foreach (var mapEventFile in otherEmveds.Distinct())
         {
@@ -27,23 +49,31 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
             var mapId = GetMapId(mapEventFile);
             logger.LogInformation($"Scanning events from {mapId} for boss drops");
             ScanMapEvents(mapEmevd, mapId, commonEventsDetails, lotDetails);
+
+            filteredBossFlags = filteredBossFlags.Where(d => !lotDetails.Any(s => s.EventTriggerFlagId == d.Key && s.ItemLotId > 0)).ToDictionary(d => d.Key, d => d.Value);
+
+            logger.LogWarning($"Bosses missing event drops {filteredBossFlags.Count()} - {string.Join(",", filteredBossFlags.Select(d => d.Key))}");
         }
 
-        lotDetails.AddRange(commonEventsDetails.Where(d => !lotDetails.Any(s => s.ItemLotId == d.ItemLotId)));
+        var missingCommonEvents = commonEventsDetails.Where(d => d.ItemLotId > 0 && !lotDetails.Any(s => s.EventTriggerFlagId == d.EventTriggerFlagId)).ToList();
+        lotDetails.AddRange(missingCommonEvents);
+        //lotDetails.AddRange(commonEventsDetails.Where(d => !lotDetails.Any(s => s.ItemLotId == d.ItemLotId)));
+
+        filteredBossFlags = filteredBossFlags.Where(d => !lotDetails.Any(s => (s.EventTriggerFlagId == d.Key || s.EntityId == d.Key) && s.ItemLotId > 0)).ToDictionary(d => d.Key, d => d.Value);
+
+        logger.LogWarning($"Bosses missing event drops {filteredBossFlags.Count()} - {string.Join(",", filteredBossFlags.Select(d => d.Key))}");
 
         logger.LogInformation($"Found {lotDetails.Where(d => d.ItemLotId > 0).DistinctBy(d => d.ItemLotId).Count()} boss drop events");
+
         var res = EventDropItemLotDetails.SummarizeUnsetProperties(lotDetails);
         foreach (var toLog in res)
         {
             logger.LogInformation($"{toLog.Key} - {string.Join(Environment.NewLine, toLog.Value)}");  
         }
 
-        var missingEntityIds = dataAccess.GameAreaParam.GetAll().Where(d => !lotDetails.Any(s => s.EntityId == d.defeatBossFlagId));
-        logger.LogInformation($"Bosses missing event drops {string.Join(",", missingEntityIds.Select(d => d.ID))}");
         throw new Exception($"Stop early");
         //return [.. lotDetails];
     }
-
 
     private string GetCommonEmevdFile(string name)
     {
@@ -65,14 +95,7 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
     {
         lotDetails = null;
 
-        var candidateConfigs = config.Value.ScannerConfig.CommonBossEventConfigs.Where(d => d.BankId == instruction.Bank && d.InstructionId == instruction.ID).ToList();
-
-        if (!candidateConfigs.Any())
-        {
-            return false;
-        }
-
-        var bossEventConfig = candidateConfigs.SingleOrDefault(d => d.EventId == Convert.ToInt64(args[d.EventIdIndex]));
+        var bossEventConfig = config.Value.ScannerConfig.CommonBossEventConfigs.SingleOrDefault(d => d.BankId == instruction.Bank && d.InstructionId == instruction.ID && d.EventId == Convert.ToInt64(args[d.EventIdIndex]));
         if (bossEventConfig != null)
         {
             var details = new EventDropItemLotDetails();
@@ -159,12 +182,17 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
                     }
                     else
                     {
+                        logger.LogDebug($"TryHandleCommonEventInstruction {lotDetails.ToString()} being set to {commonEventDetails.ToString()}");
+                        if (lotDetails.EventTriggerFlagId > 0)
+                        {
+                            lotDetailsList.Add(lotDetails);
+                        }
                         lotDetails = commonEventDetails;
                     }
 
-                    //lotDetailsList.Add(lotDetails);
                     commonEventsDetails.Add(commonEventDetails);
                     logger.LogDebug($"TryHandleCommonEventInstruction {lotDetails.ToString()}");
+                    continue;
                 }
                 // AwardItemLot
                 else if (instruction.Bank == 2003 && instruction.ID == 4)
@@ -190,13 +218,20 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
                 // SetEventFlagID - sets flag events to trigger common event drops
                 else if (instruction.Bank == 2003 && instruction.ID == 66)
                 {
-                    ProcessSetEventFlagID(args, entityId, mapId, lotDetails);
+                    var foundFlag = ProcessSetEventFlagID(args, entityId, mapId, lotDetails);
+
                     var commonEvent = commonEventsDetails.SingleOrDefault(d => d.EventTriggerFlagId == lotDetails.EventTriggerFlagId);
                     if (commonEvent != null)
                     {
                         lotDetails.CopyFrom(logger, commonEvent);
-                        logger.LogWarning($"SetEventFlagID {lotDetails.ToString()} already exists in common events");
                     }
+                    
+                    commonEvent = commonEventsDetails.SingleOrDefault(d => d.EventTriggerFlagId == foundFlag);
+                    if (commonEvent != null)
+                    {
+                        lotDetails.CopyFrom(logger, commonEvent);
+                    }
+
                     logger.LogDebug($"SetEventFlagID {lotDetails.ToString()}");
                 }
                 // AwardItemsIncludingClients - used for some open world boss drops
@@ -210,6 +245,12 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
 
             if (isBossDefeatedEvent)
             {
+                if (lotDetails.EventTriggerFlagId == 0 || lotDetails.ItemLotId == 0)
+                {
+                    logger.LogError($"Boss defeated event {lotDetails.ToString()} missing event trigger flag id");
+                    continue;
+                }
+
                 var existing = lotDetailsList.Where(d =>
                     d.EventTriggerFlagId == lotDetails.EventTriggerFlagId && d.EntityId == lotDetails.EntityId).ToList();
 
@@ -224,7 +265,15 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
                 }
                 else
                 {
-                    lotDetailsList.Add(lotDetails);
+                    var existingByFlagId = lotDetailsList.SingleOrDefault(d => d.EventTriggerFlagId == lotDetails.EventTriggerFlagId);
+                    if (existingByFlagId != null)
+                    {
+                        existingByFlagId.CopyFrom(logger, lotDetails);
+                    }
+                    else
+                    {
+                        lotDetailsList.Add(lotDetails);
+                    }
                 }
 
                 logger.LogInformation($"Found boss defeated event {lotDetails.ToString()} - was {(existing.Any() ? "updated" : "added")}");
@@ -256,7 +305,7 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
         }
     }
 
-    private void ProcessSetEventFlagID(List<long> args, int entityId, string mapId, EventDropItemLotDetails lotDetails)
+    private int ProcessSetEventFlagID(List<long> args, int entityId, string mapId, EventDropItemLotDetails lotDetails)
     {
         var flagId = Convert.ToInt32(args[1]);
         if (flagId > 0)
@@ -272,6 +321,8 @@ public class BossDropScanner(ILogger<BossDropScanner> logger, IOptions<Configura
                 logger.LogError($"FlagId mismatch: {lotDetails.EventTriggerFlagId} != {flagId} when overwriting {lotDetails.ToString()}");
             }
         }
+
+        return flagId;
     }
 
     private void ProcessAwardItemsIncludingClients(List<long> args, int entityId, string mapId, EventDropItemLotDetails lotDetails)

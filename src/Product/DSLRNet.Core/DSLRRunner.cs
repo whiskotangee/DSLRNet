@@ -44,18 +44,14 @@ public class DSLRRunner
             }
         });
 
-        if (progressTracker != null)
-        {
-            services.AddSingleton<IOperationProgressTracker>((sp) => progressTracker ?? new NullProgressTracker());
-        }
-
-        services.SetupDSLR(configuration, settings);
+        services.SetupDSLR(configuration, settings, progressTracker);
 
         ServiceProvider sp = services.BuildServiceProvider();
 
         var progress = sp.GetRequiredService<IOperationProgressTracker>();
         var activeSettings = sp.GetRequiredService<IOptions<Settings>>().Value;
         var activeConfig = sp.GetRequiredService<IOptions<Configuration>>().Value;
+        var msbLoader = sp.GetRequiredService<MSBProvider>();
 
         progress.OverallStepCount = 15;
 
@@ -68,18 +64,23 @@ public class DSLRRunner
         }
 
         await sp.GetRequiredService<DataAccess>().InitializeDataSourcesAsync();
-        progressTracker.OverallProgress += 1;
+
+        progress.OverallProgress += 1;
+
+        await msbLoader.InitializeAsync();
+
+        progress.OverallProgress += 1;
 
         IconBuilder iconbuilder = sp.GetRequiredService<IconBuilder>();
         DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
 
-        await iconbuilder.ApplyIcons();
-        progressTracker.OverallProgress += 1;
+        //await iconbuilder.ApplyIcons();
+        progress.OverallProgress += 1;
 
         dslrBuilder.BuildItemLots();
-        progressTracker.OverallProgress += 1;
+        progress.OverallProgress += 1;
 
         await dslrBuilder.ApplyAsync();
-        progressTracker.OverallProgress += 1;
+        progress.OverallProgress += 1;
     }
 }

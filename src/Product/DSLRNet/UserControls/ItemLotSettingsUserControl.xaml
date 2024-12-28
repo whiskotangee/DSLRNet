@@ -36,10 +36,10 @@
                     <TextBlock Text="Drops Per Boss" Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBossLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
-                    <TextBlock Text="Drop chances Per Enemy" Margin="0,5,0,5"/>
+                    <TextBlock Text="Drop chances per enemy (Number of consecutive item lots)" Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBaseEnemyLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
                     
-                    <TextBlock Text="Loot Item Pool Count Per Enemy Drop" Margin="0,5,0,5"/>
+                    <TextBlock Text="Number of loot options per drop lot for enemies" Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl Minimum="0" Maximum="7" Value="{Binding LootPerItemLot_Enemy, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
                 </StackPanel>

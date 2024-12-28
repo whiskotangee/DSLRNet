@@ -30,6 +30,7 @@ public class DataAccess
         ItemLotParamEnemy = CreateDataSource<ItemLotParam_enemy>(DataSourceNames.ItemLotParam_enemy);
         ItemLotParamMap = CreateDataSource<ItemLotParam_map>(DataSourceNames.ItemLotParam_map);
         NpcParam = CreateDataSource<NpcParam>(DataSourceNames.NpcParam);
+        GameAreaParam = CreateDataSource<GameAreaParam>(DataSourceNames.GameAreaParam);
         RaritySetup = CreateDataSource<RaritySetup>(DataSourceNames.RaritySetup);
         ItemLotBase = CreateDataSource<ItemLotBase>(DataSourceNames.ItemLotBase);
         DamageTypeSetup = CreateDataSource<DamageTypeSetup>(DataSourceNames.DamageTypeSetup);
@@ -47,6 +48,7 @@ public class DataAccess
     public IDataSource<ItemLotParam_enemy> ItemLotParamEnemy { get; }
     public IDataSource<ItemLotParam_map> ItemLotParamMap { get; }
     public IDataSource<NpcParam> NpcParam { get; }
+    public IDataSource<GameAreaParam> GameAreaParam { get; }
     public IDataSource<RaritySetup> RaritySetup { get; }
     public IDataSource<ItemLotBase> ItemLotBase { get; }
     public IDataSource<DamageTypeSetup> DamageTypeSetup { get; }
@@ -74,7 +76,8 @@ public class DataAccess
             ItemLotBase.InitializeDataAsync(),
             DamageTypeSetup.InitializeDataAsync(),
             TalismanConfig.InitializeDataAsync(),
-            SpEffectConfig.InitializeDataAsync()
+            SpEffectConfig.InitializeDataAsync(),
+            GameAreaParam.InitializeDataAsync()
         ];
 
         await Task.WhenAll(tasks);

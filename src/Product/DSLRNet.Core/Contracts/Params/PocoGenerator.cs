@@ -46,6 +46,8 @@ public class PocoGenerator
 
         sb.AppendLine("}");
 
+        Directory.CreateDirectory(Path.Combine("DAL", "Generated"));
+
         File.WriteAllText($"DAL\\Generated\\{className}.cs", sb.ToString());
 
         return sb.ToString();

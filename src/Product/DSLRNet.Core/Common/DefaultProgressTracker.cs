@@ -1,6 +1,6 @@
 ﻿namespace DSLRNet.Core.Common;
 
-internal class NullProgressTracker : IOperationProgressTracker
+internal class DefaultProgressTracker : IOperationProgressTracker
 {
     public int OverallProgress { get ; set ; }
     public int OverallStepCount { get ; set ; }

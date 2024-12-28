@@ -11,7 +11,7 @@ public class Configuration
 
     public List<DataSourceConfig> DataSourceConfigs { get; set; }
 
-    public AutoScalingSettings ScannerAutoScalingSettings { get; set; }
+    public ScannerConfig ScannerConfig { get; set; }
 
     public AshOfWarConfig AshOfWarConfig { get; set; }
 }
@@ -32,6 +32,7 @@ public enum DataSourceNames
     SpEffectParam,
     ItemLotParam_enemy,
     ItemLotParam_map,
+    GameAreaParam,
     // config setups
     RaritySetup,
     ItemLotBase,
@@ -132,7 +133,29 @@ public class IconMapping
     public Image<Rgba32>? ConvertedIcon { get; set; }
 }
 
-public class AutoScalingSettings
+public class ScannerConfig
 {
+    public List<CommonBossEventConfig> CommonBossEventConfigs { get; set; } = [];
+
     public List<int> AreaScalingSpEffectIds { get; set; } = [];
 }
+
+public class CommonBossEventConfig
+{
+    public long EventId { get; set; }
+    public string EventName { get; set; }
+
+    public int BankId { get; set; }
+
+    public int EventIdIndex { get; set; }
+    public int EntityIdIndex { get; set; }
+
+    public int InstructionId { get; set; }
+
+    public int EventFlagIndex { get; set; }
+
+    public int ItemLotIdIndex { get; set; }
+
+    public int AcquisitionFlagIndex { get; set; }
+}
+    

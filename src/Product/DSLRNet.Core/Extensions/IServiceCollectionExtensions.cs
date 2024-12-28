@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 public static class IServiceCollectionExtensions
 {
-    public static IServiceCollection SetupDSLR(this IServiceCollection services, IConfiguration configuration, Settings settings)
+    public static IServiceCollection SetupDSLR(this IServiceCollection services, IConfiguration configuration, Settings settings, IOperationProgressTracker? progressTracker)
     {
         // configurations
         services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
@@ -40,7 +40,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<DSLRNetBuilder>()
                 .AddSingleton<ItemLotScanner>()
                 .AddSingleton<IconBuilder>()
-                .AddSingleton<BossDropScanner>()
+                .AddSingleton<BossDropScannerV2>()
                 .AddSingleton<GameStageEvaluator>()
                 .AddSingleton<MSBProvider>()
                 .AddSingleton<DataAccess>()
@@ -48,6 +48,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<RegulationBinBank>()
                 .AddSingleton<DataSourceFactory>()
                 .AddSingleton<FileSourceHandler>()
+                .AddSingleton<IOperationProgressTracker>((sp) => progressTracker ?? new DefaultProgressTracker())
                 .AddSingleton((sp) =>
                 {
                     return new RandomProvider(sp.GetRequiredService<IOptions<Settings>>().Value.RandomSeed);

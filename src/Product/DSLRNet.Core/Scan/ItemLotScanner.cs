@@ -10,7 +10,7 @@ public class ItemLotScanner(
     IOptions<Configuration> configuration,
     IOptions<Settings> settings,
     DataAccess dataAccess,
-    BossDropScanner bossDropScanner,
+    BossDropScannerV2 bossDropScanner,
     GameStageEvaluator gameStageEvaluator,
     MSBProvider msbProvider)
 {
@@ -24,6 +24,9 @@ public class ItemLotScanner(
 
     public Dictionary<ItemLotCategory, List<ItemLotSettings>> ScanAndCreateItemLotSets(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
+
+        logger.LogInformation($"Beginning scan for item lots in msb files");
+
         Dictionary<ItemLotCategory, List<ItemLotSettings>> generatedItemLotSettings = [];
 
         if (!this.settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.Enabled && 
@@ -42,7 +45,7 @@ public class ItemLotScanner(
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Enemy, [remainingEnemyLots]);
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Map, [remainingMapLots, bossLots]);
 
-        foreach (var mapFile in msbProvider.GetAllMsbs())
+        foreach (var mapFile in msbProvider.GetAllMsbs().OrderBy(d => d.Key))
         {
             string mapFileName = mapFile.Key;
             MSBE msb = mapFile.Value;

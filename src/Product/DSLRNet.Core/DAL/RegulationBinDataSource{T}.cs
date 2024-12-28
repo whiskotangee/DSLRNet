@@ -38,7 +38,7 @@ public class RegulationBinDataSource<T>(
 
     private async Task<T> CreateFromPARAMAsync(PARAM.Row row)
     {
-        if (false && !pocoCreated)
+        if (!pocoCreated)
         {
             await semaphore.WaitAsync();
 

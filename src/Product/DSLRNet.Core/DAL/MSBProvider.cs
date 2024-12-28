@@ -1,39 +1,30 @@
 ﻿namespace DSLRNet.Core.DAL;
 
+using System.Collections.Concurrent;
+
 public class MSBProvider
 {
     private readonly Settings settings;
     private readonly ILogger<MSBProvider> logger;
     private readonly IOperationProgressTracker progressTracker;
-    private Dictionary<string, MSBE> msbData = [];
+    private ConcurrentDictionary<string, MSBE> msbData = [];
 
     public MSBProvider(IOptions<Settings> settings, ILogger<MSBProvider> logger, IOperationProgressTracker progressTracker)
     {
         this.logger = logger;
         this.progressTracker = progressTracker;
         this.settings = settings.Value;
-        
-        Initialize();
-    }
-
-    public MSBE GetMsbFromName(string name)
-    {
-        return msbData[name];
     }
 
     public Dictionary<string, MSBE> GetAllMsbs()
     {
-        return msbData;
+        return msbData.ToDictionary();
     }
 
-    public bool TryGetMSBForEntity(int entityId, out MSBE msb)
+    public async Task InitializeAsync()
     {
-        msb = msbData.Values.FirstOrDefault(d => d.Parts.Enemies.Any(t => t.EntityID == entityId));
-        return msb != null;
-    }
+        msbData.Clear();
 
-    private void Initialize()
-    {
         logger.LogInformation($"Loading MSB Files...");
         List<string> mapStudioFiles = [.. Directory.GetFiles(Path.Combine(this.settings.DeployPath, "map", "mapstudio"), "*.msb.dcx")];
         List<string> additionalMapFiles = [.. Directory.GetFiles(Path.Combine(this.settings.GamePath, "map", "mapstudio"), "*.msb.dcx")
@@ -44,15 +35,17 @@ public class MSBProvider
         progressTracker.CurrentStageStepCount = mapStudioFiles.Count;
         progressTracker.CurrentStageProgress = 0;
 
-        foreach (string mapFile in mapStudioFiles)
+        await Parallel.ForEachAsync(mapStudioFiles, (mapFile, c) =>
         {
             var name = Path.GetFileName(mapFile);
-            name = name[.. name.IndexOf('.')];
+            name = name[..name.IndexOf('.')];
 
             progressTracker.CurrentStageProgress++;
 
-            msbData[Path.GetFileName(mapFile)] = MSBE.Read(mapFile);
-        }
+            msbData.TryAdd(name, MSBE.Read(mapFile));
+
+            return ValueTask.CompletedTask;
+        });
 
         logger.LogInformation($"Finished loading MSB Files");
     }

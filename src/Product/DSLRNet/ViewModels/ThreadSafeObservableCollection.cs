@@ -20,7 +20,15 @@ public class ThreadSafeObservableCollection<T> : ObservableCollection<T>
                     Dispatcher dispatcher = dispObj.Dispatcher;
                     if (dispatcher != null && !dispatcher.CheckAccess())
                     {
-                        dispatcher.BeginInvoke(() => nh.Invoke(this, e), DispatcherPriority.DataBind);
+                        try
+                        {
+                            dispatcher.BeginInvoke(() => nh.Invoke(this, e), DispatcherPriority.DataBind);
+                        }
+                        catch (Exception ex)
+                        {
+                            // nom nom we don't care if a logging thing caused an exception
+                        }
+
                         continue;
                     }
                 }

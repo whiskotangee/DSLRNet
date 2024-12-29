@@ -9,10 +9,10 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Path: src/Product/DSLRNet.sln  # Replace with your solution name
-      Output_Path: publish        # Output directory for published files
-      Major_Version: 1            # Major version
-      Minor_Version: 0            # Minor version
+      Solution_Path: src/Product/DSLRNet.sln  # Replace with the correct path to your solution file
+      Output_Path: publish                    # Output directory for published files
+      Major_Version: 1                        # Major version
+      Minor_Version: 0                        # Minor version
 
     steps:
     - name: Checkout
@@ -30,7 +30,8 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Restore dependencies
-      run: dotnet restore ${{ env.Solution_Name }}
+      run: dotnet restore ${{ env.Solution_Path }}
+      working-directory: ${{ github.workspace }}
 
     - name: Get current date
       id: date
@@ -41,23 +42,28 @@ jobs:
       run: echo "Version=${{ env.Major_Version }}.${{ env.Minor_Version }}.${{ steps.date.outputs.date }}" >> $GITHUB_ENV
 
     - name: Build solution
-      run: dotnet build ${{ env.Solution_Name }} --configuration Release --no-restore /p:Version=${{ env.Version }}
+      run: dotnet build ${{ env.Solution_Path }} --configuration Release --no-restore /p:Version=${{ env.Version }}
+      working-directory: ${{ github.workspace }}
 
     - name: Publish DSLRNet
-      run: dotnet publish DSLRNet/DSLRNet.csproj --configuration Release --output ${{ env.Output_Path }}/DSLRNet /p:Version=${{ env.Version }}
+      run: dotnet publish src/Product/DSLRNet/DSLRNet.csproj --configuration Release --output ${{ env.Output_Path }}/DSLRNet /p:Version=${{ env.Version }}
+      working-directory: ${{ github.workspace }}
 
     - name: Publish DSLRNet.Console
-      run: dotnet publish DSLRNet.Console/DSLRNet.Console.csproj --configuration Release --output ${{ env.Output_Path }}/DSLRNet.Console /p:Version=${{ env.Version }}
+      run: dotnet publish src/Product/DSLRNet.Console/DSLRNet.Console.csproj --configuration Release --output ${{ env.Output_Path }}/DSLRNet.Console /p:Version=${{ env.Version }}
+      working-directory: ${{ github.workspace }}
 
     - name: Combine published outputs
       run: |
         mkdir ${{ env.Output_Path }}/combined
         cp -r ${{ env.Output_Path }}/DSLRNet/* ${{ env.Output_Path }}/combined/
         cp -r ${{ env.Output_Path }}/DSLRNet.Console/* ${{ env.Output_Path }}/combined/
+      working-directory: ${{ github.workspace }}
 
     - name: Create zip file
       run: Compress-Archive -Path ${{ env.Output_Path }}/combined/* -DestinationPath ${{ env.Output_Path }}/DSLRNet-publish-${{ env.Version }}.zip
       shell: pwsh
+      working-directory: ${{ github.workspace }}
 
     - name: Upload zip file
       uses: actions/upload-artifact@v3
@@ -65,3 +71,4 @@ jobs:
         name: DSLRNet-publish-zip-${{ env.Version }}
         path: ${{ env.Output_Path }}/DSLRNet-publish-${{ env.Version }}.zip
         retention-days: 7  # Optional: specify how long to keep the artifact
+      working-directory: ${{ github.workspace }}

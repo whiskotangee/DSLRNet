@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: src\Product\DSLRNet.sln  # Replace with your solution name
+      Solution_Name: DSLRNet.sln  # Replace with your solution name
       Output_Path: publish        # Output directory for published files
       Major_Version: 1            # Major version
       Minor_Version: 0            # Minor version
@@ -21,6 +21,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        submodules: true  # Ensure submodules are checked out
 
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4

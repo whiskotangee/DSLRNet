@@ -3,7 +3,7 @@ DSLRNet
 
 DSLRNet is a dotnet rewrite of the original [Diablo Style Loot Remastered (Alpha 3.1)](https://www.nexusmods.com/eldenring/mods/3498) by CornflakeRush.  The original mod did not work post DLC and I needed it for an overhaul I was creating for friends.  Since I went through the work of making the app to generate this stuff, I wanted to give back and release the app as a usable thing with a GUI.
 
-A goal was to keep compatibility with how the original mod could be configured and this was mostly kept that way.  The Assets folder of the DSLRNet.Core project should have some very familiar things to it.
+A goal was to keep compatibility with how the original mod could be configured and this was mostly achieved.  The Assets folder of the DSLRNet.Core project should have some very familiar things to it.
 
 Features
 --------
@@ -61,14 +61,14 @@ Additionally, when an ItemLot is rolled, if there is another ItemLot that is +1 
 Contributing
 ------------
 
-We welcome contributions to DSLRNet! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
+If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
 
 Credits
 -------
 
 - This project is an extension/rewrite of the [Diablo Style Loot Remastered (Alpha 3.1)](https://www.nexusmods.com/eldenring/mods/3498) by CornflakeRush.
-- Special thanks to the [SoulsFormats](https://github.com/JKAnderson/SoulsFormats) library for providing essential functionality used in this project.
-- Extra special thanks to the fine people at the ?SERVER NAME? discord server and the [souls modding wiki](http://soulsmodding.wikidot.com/tutorial:main) for having a searchable wealth of knowledge on how this stuff works
+- Special thanks to the [SoulsFormats](https://github.com/JKAnderson/SoulsFormats) project to enable interactions with souls games files.
+- Extra special thanks to the fine people at the ?ServerName? discord server and the [souls modding wiki](http://soulsmodding.wikidot.com/tutorial:main) for having a searchable wealth of knowledge on how this stuff works
 
 License
 -------

@@ -16,9 +16,9 @@ The way this works is the app will scan the game files to find all enemies, map 
 
 ### Custom Icons
 
-This app allows automatic generation and injection of custom icon backgrounds for the diablo style loot generated items.  NOTE: hi def icons cannot be supported due to a massive bloat in memory and game instability. While technically possible, a whole different approach to doing these icons (maybe change gfx files for inventory to allow an item layer below the icon so it's not icon sheets per rarity group?)
+This app allows automatic generation and injection of custom icon backgrounds for the diablo style loot generated items.  It does this by injecting icon sheets into the menu/hi/01_common.tpf.dcx file and updating the menu/hi/01_common.sblytbnd.dcx file to include texture atlases for the new icon ids.  NOTE: hi def icons cannot be supported due to a massive bloat in memory and game instability. While technically possible, a whole different approach to doing these icons (maybe change gfx files for inventory to allow an item layer below the icon so it's not icon sheets per rarity group?)
 
-In the app you can change which background to use for which group of rarities. The groupings and what file name to use are controlled within the [Settings.ini](src/Product/DSLRNet.Core/Settings.ini) file
+In the app you can change which background to use for which group of rarities. The groupings and what file name to use are controlled within the [Settings.ini](src/Product/DSLRNet.Core/Settings.ini) file.
 
 Item Lot Example
 ----------------
@@ -66,7 +66,7 @@ If you have any ideas, suggestions, or bug reports, please open an issue or subm
 Credits
 -------
 
-- This project is an extension/rewrite of the [Diablo Style Loot Remastered (Alpha 3.1)](https://www.nexusmods.com/eldenring/mods/3498) by CornflakeRush.
+- This project is an extension/rewrite of the [Diablo Style Loot Remastered (Alpha 3.1)](https://www.nexusmods.com/eldenring/mods/3498) by CornflakeRush.  Some code inspriation was taken from that mod and integrated here.
 - Special thanks to the [SoulsFormats](https://github.com/JKAnderson/SoulsFormats) project to enable interactions with souls games files.
 - Extra special thanks to the fine people at the ?ServerName? discord server and the [souls modding wiki](http://soulsmodding.wikidot.com/tutorial:main) for having a searchable wealth of knowledge on how this stuff works
 

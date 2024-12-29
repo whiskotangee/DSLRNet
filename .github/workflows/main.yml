@@ -47,7 +47,7 @@ jobs:
       run: |
         mkdir ${{ github.workspace }}/${{ env.Output_Path }}/combined
         cp -r ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet/* ${{ github.workspace }}/${{ env.Output_Path }}/combined/
-        cp -r ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet.Console/* ${{ github.workspace }}/${{ env.Output_Path }}/combined/
+        cp -r -Force ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet.Console/* ${{ github.workspace }}/${{ env.Output_Path }}/combined/
 
     - name: Create zip file
       run: Compress-Archive -Path ${{ github.workspace }}/${{ env.Output_Path }}/combined/* -DestinationPath ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet-publish-${{ env.Version }}.zip

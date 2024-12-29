@@ -33,24 +33,30 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedIndex="{Binding SelectedTabIndex}" Padding="0,5">
-                <TabItem Header="General" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+        <TabControl Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedIndex="{Binding SelectedTabIndex}" Padding="0,5">
+            <TabItem Header="General" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <dslrusercontrols:GeneralSettingsUserControl DataContext="{Binding Settings}" />
                         <dslrusercontrols:ItemLotSettingsUserControl DataContext="{Binding Settings.ItemLotGeneratorSettings}"/>
                     </StackPanel>
-                </TabItem>
-                <TabItem Header="Loot Generation Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Loot Generation Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <dslrusercontrols:WeaponSettingsUserControl DataContext="{Binding Settings.WeaponGeneratorSettings}"/>
                         <dslrusercontrols:ArmorSettingsUserControl DataContext="{Binding Settings.ArmorGeneratorSettings}"/>
                     </StackPanel>
-                </TabItem>
-                <TabItem Header="Icon Builder Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Icon Builder Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                     <dslrusercontrols:IconBuilderUserControl DataContext="{Binding Settings.IconBuilderSettings}" />
-                </TabItem>
-                <TabItem Header="Output" IsEnabled="{Binding HasRun}">
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Output" IsEnabled="{Binding HasRun}">
+                <ScrollViewer x:Name="LogScrollViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -58,57 +64,55 @@
                             <RowDefinition Height="1"/>
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0">
-                            <StackPanel Orientation="Horizontal" Margin="0,5">
-                                <TextBlock Text="Map Item Lots: " Margin="5,5"/>
-                                <TextBlock Text="{Binding ProgressTracker.GeneratedMapItemLots}" Margin="5,5"/>
-                                <TextBlock Text="Enemy Item Lots: " Margin="5,5"/>
-                                <TextBlock Text="{Binding ProgressTracker.GeneratedEnemyItemLots}" Margin="5,5"/>
-                                <TextBlock Text="Weapons: " Margin="5,5"/>
-                                <TextBlock Text="{Binding ProgressTracker.GeneratedWeapons}" Margin="5,5"/>
-                                <TextBlock Text="Armor: " Margin="5,5"/>
-                                <TextBlock Text="{Binding ProgressTracker.GeneratedArmor}" Margin="5,5" />
-                                <TextBlock Text="Talismans: " Margin="5,5" />
-                                <TextBlock Text="{Binding ProgressTracker.GeneratedTalismans}" Margin="5,5"/>
-                            </StackPanel>
-                            <StackPanel Grid.Row="0" Orientation="Vertical" >
-                                <TextBlock Text="Overall Progress" />
-                                <ProgressBar Value="{Binding ProgressTracker.OverallProgress}" Maximum="{Binding ProgressTracker.OverallStepCount}" Height="20" Margin="5"/>
-                                <TextBlock Text="Current Stage Progress" />
-                                <ProgressBar Value="{Binding ProgressTracker.CurrentStageProgress}" Maximum="{Binding ProgressTracker.CurrentStageStepCount}" Height="20" Margin="5"/>
-                            </StackPanel>
-                        </StackPanel>
-                        <ScrollViewer x:Name="LogScrollViewer" Grid.Row="1" 
-                                      HorizontalAlignment="Stretch" 
-                                      VerticalAlignment="Stretch" 
-                                      HorizontalScrollBarVisibility="Auto" 
-                                      VerticalScrollBarVisibility="Auto" >
-                            <ItemsControl ItemsSource="{Binding LogMessages}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding}" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel IsItemsHost="True"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
-                        </ScrollViewer>
+                        <ItemsControl Grid.Row="1" ItemsSource="{Binding LogMessages}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel IsItemsHost="True"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
                     </Grid>
-                </TabItem>
-            </TabControl>
-        </ScrollViewer>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="Map Item Lots: " Margin="5,5"/>
+                    <TextBlock Text="{Binding ProgressTracker.GeneratedMapItemLots}" Margin="5,5"/>
+                    <TextBlock Text="Enemy Item Lots: " Margin="5,5"/>
+                    <TextBlock Text="{Binding ProgressTracker.GeneratedEnemyItemLots}" Margin="5,5"/>
+                    <TextBlock Text="Weapons: " Margin="5,5"/>
+                    <TextBlock Text="{Binding ProgressTracker.GeneratedWeapons}" Margin="5,5"/>
+                    <TextBlock Text="Armor: " Margin="5,5"/>
+                    <TextBlock Text="{Binding ProgressTracker.GeneratedArmor}" Margin="5,5" />
+                    <TextBlock Text="Talismans: " Margin="5,5" />
+                    <TextBlock Text="{Binding ProgressTracker.GeneratedTalismans}" Margin="5,5"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Orientation="Vertical" >
+                    <TextBlock Text="Overall Progress" />
+                    <ProgressBar Value="{Binding ProgressTracker.OverallProgress}" Maximum="{Binding ProgressTracker.OverallStepCount}" Height="20" Margin="5"/>
+                    <TextBlock Text="Current Stage Progress" />
+                    <ProgressBar Value="{Binding ProgressTracker.CurrentStageProgress}" Maximum="{Binding ProgressTracker.CurrentStageStepCount}" Height="20" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                 <Button Command="{Binding GenerateLootCommand}" Content="Generate Loot" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}" Margin="10"/>
-                <Button Command="{Binding SaveSettingsCommand}" Content="Save Output For Sharing" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}" Margin="10"/>
+                <Button Visibility="Collapsed" Command="{Binding SaveSettingsCommand}" Content="Save Output For Sharing" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}" Margin="10"/>
             </StackPanel>
         </Grid>
     </Grid>

@@ -22,7 +22,17 @@ public class ThreadSafeObservableCollection<T> : ObservableCollection<T>
                     {
                         try
                         {
-                            dispatcher.BeginInvoke(() => nh.Invoke(this, e), DispatcherPriority.DataBind);
+                            dispatcher.BeginInvoke(() =>
+                            {
+                                try 
+                                {
+                                    nh.Invoke(this, e); 
+                                } 
+                                catch (Exception ex) 
+                                {
+                                    // nom nom we don't care if a logging thing caused an exception
+                                }
+                            }, DispatcherPriority.DataBind);
                         }
                         catch (Exception ex)
                         {
@@ -32,7 +42,14 @@ public class ThreadSafeObservableCollection<T> : ObservableCollection<T>
                         continue;
                     }
                 }
-                nh.Invoke(this, e);
+                try
+                {
+                    nh.Invoke(this, e);
+                }
+                catch (Exception)
+                {
+                    // nom nom we don't care if a logging thing caused an exception
+                }
             }
         }
     }

@@ -26,10 +26,11 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
         }
 
         // scan common emevds for flags that give item lots
-        logger.LogInformation($"Scanning common events for boss drops");
 
         this.bossDeathFunctions = [];
         this.itemRewardingFunctions = [];
+        this.flagToItemLotMapping = [];
+
         ScanFunctionDefinitions(EMEVD.Read(GetCommonEmevdFile("common_func.emevd.dcx")), "common_func");
 
         List<EventDropItemLotDetails> commonEventsDetails = [];
@@ -58,8 +59,7 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
 
         var filteredBossFlags = bossDeathFlags.Where(d => !lotDetails.Any(s => (s.EventTriggerFlagId == d.Key || s.EntityId == d.Key) && s.ItemLotId > 0)).ToDictionary(d => d.Key, d => d.Value);
 
-        logger.LogWarning($"Bosses missing event drops {filteredBossFlags.Count()} - {string.Join(",", filteredBossFlags.Select(d => d.Key))}");
-
+        logger.LogDebug($"Bosses missing event drops {filteredBossFlags.Count()} - {string.Join(",", filteredBossFlags.Select(d => d.Key))}");
         logger.LogInformation($"Found {lotDetails.Where(d => d.ItemLotId > 0).DistinctBy(d => d.ItemLotId).Count()} boss drop events");
 
         var res = EventDropItemLotDetails.SummarizeUnsetProperties(lotDetails);
@@ -150,6 +150,8 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
 
     private void ScanFunctionDefinitions(EMEVD mapEmevd, string mapId)
     {
+        logger.LogInformation($"Compiling list of relevant functions from {mapId}");
+
         foreach (var ev in mapEmevd.Events)
         {
             bool isBossDeathFunction = ev.Instructions.Any(d => d.IsProcessHandleBossDefeatAndDisplayBanner());
@@ -267,6 +269,8 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
 
     private void ScanMapEvents(EMEVD mapEmevd, string mapId, List<EventDropItemLotDetails> commonEventsDetails, List<EventDropItemLotDetails> lotDetailsList)
     {
+        logger.LogInformation($"Scanning events from {mapId}"); 
+
         foreach (var ev in mapEmevd.Events)
         {
             var lotDetails = new EventDropItemLotDetails();
@@ -283,40 +287,14 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
                 var itemLotDetails = EvaluateInitializeEventInstruction(mapId, mapEmevd, ev, instruction, args);
                 if (itemLotDetails != null)
                 {
-                    AddOrUpdate(itemLotDetails, lotDetailsList, []);
+                    AddOrUpdate(itemLotDetails, lotDetailsList);
                 }
             }
         }
     }
 
-    private void UpdateFromCommonEvents(EventDropItemLotDetails lotDetails, int flagId, List<EventDropItemLotDetails> commonEventsDetails)
+    private void AddOrUpdate(EventDropItemLotDetails lotDetails, List<EventDropItemLotDetails> lotDetailsList)
     {
-        var commonEvent = commonEventsDetails.SingleOrDefault(d => d.EventTriggerFlagId == lotDetails.EventTriggerFlagId);
-        if (commonEvent != null)
-        {
-            lotDetails.CopyFrom(logger, commonEvent);
-        }
-
-        commonEvent = commonEventsDetails.SingleOrDefault(d => d.EventTriggerFlagId == flagId);
-        if (commonEvent != null)
-        {
-            lotDetails.CopyFrom(logger, commonEvent);
-        }
-
-        if (lotDetails.EntityId > 0)
-        {
-            commonEvent = commonEventsDetails.SingleOrDefault(d => d.EntityId != 0 && d.EntityId == lotDetails.EntityId);
-            if (commonEvent != null)
-            {
-                lotDetails.CopyFrom(logger, commonEvent);
-            }
-        }
-    }
-
-    private void AddOrUpdate(EventDropItemLotDetails lotDetails, List<EventDropItemLotDetails> lotDetailsList, List<EventDropItemLotDetails> commonEventsDetails)
-    {
-        UpdateFromCommonEvents(lotDetails, lotDetails.EventTriggerFlagId, commonEventsDetails);
-
         List<EventDropItemLotDetails> existing = new();
 
         if (lotDetails.EventTriggerFlagId > 0)

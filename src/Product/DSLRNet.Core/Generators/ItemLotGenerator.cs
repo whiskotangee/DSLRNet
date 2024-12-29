@@ -113,7 +113,7 @@ public class ItemLotGenerator : BaseHandler
 
                 if (existingItemLot != null)
                 {
-                    this.logger.LogDebug($"ItemLot {itemLotIds[x]} already exists in CSV data for type {itemLotSettings.Category}, basing template on existing");
+                    this.logger.LogDebug($"ItemLot {itemLotIds[x]} already exists in data for type {itemLotSettings.Category}, basing template on existing");
                     newItemLot = existingItemLot.CloneToBase();
                 }
                 else if (this.GeneratedDataRepository.TryGetParamEdit(itemLotSettings.ParamName, itemLotIds[x], out ParamEdit? paramEdit))
@@ -298,11 +298,6 @@ public class ItemLotGenerator : BaseHandler
         {
             var existsInData = existsInDataCheck(id);
             var existsInEdits = this.GeneratedDataRepository.ContainsParamEdit(itemLotSettings.ParamName, id);
-
-            if (existsInData || existsInEdits)
-            {
-                this.logger.LogDebug($"Id {id} is taken.  InData? {existsInData} InEdits? {existsInEdits}");
-            }
 
             return existsInData || existsInEdits;
         }

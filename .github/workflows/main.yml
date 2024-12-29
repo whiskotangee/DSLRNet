@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: DSLRNet.sln  # Replace with your solution name
+      Solution_Path: src/Product/DSLRNet.sln  # Replace with your solution name
       Output_Path: publish        # Output directory for published files
       Major_Version: 1            # Major version
       Minor_Version: 0            # Minor version

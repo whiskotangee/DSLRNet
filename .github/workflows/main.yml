@@ -33,38 +33,30 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore ${{ env.Solution_Path }}
-      working-directory: ${{ github.workspace }}
-
-    - name: Get current date 
-      id: date 
-      run: echo "date=$(date +'%y%m%d')" >> $GITHUB_ENV 
-      shell: bash 
-
-    - name: Set version 
-      run: echo "Version=${{ env.Major_Version }}.${{ env.Minor_Version }}.${{ env.date }}" >> $GITHUB_ENV
 
     - name: Build solution
-      run: dotnet build ${{ env.Solution_Path }} --configuration Release --no-restore /p:Version=${{ env.Version }}
+      run: dotnet build ${{ env.Solution_Path }} --configuration Release --no-restore
 
     - name: Publish DSLRNet
-      run: dotnet publish src/Product/DSLRNet/DSLRNet.csproj --configuration Release --output ${{ env.Output_Path }}/DSLRNet /p:Version=${{ env.Version }}
+      run: dotnet publish src/Product/DSLRNet/DSLRNet.csproj --configuration Release --output ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet
 
     - name: Publish DSLRNet.Console
-      run: dotnet publish src/Product/DSLRNet.Console/DSLRNet.Console.csproj --configuration Release --output ${{ env.Output_Path }}/DSLRNet.Console /p:Version=${{ env.Version }}
+      run: dotnet publish src/Product/DSLRNet.Console/DSLRNet.Console.csproj --configuration Release --output ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet.Console
 
     - name: Combine published outputs
       run: |
-        mkdir ${{ env.Output_Path }}/combined
-        cp -r ${{ env.Output_Path }}/DSLRNet/* ${{ env.Output_Path }}/combined/
-        cp -r ${{ env.Output_Path }}/DSLRNet.Console/* ${{ env.Output_Path }}/combined/
+        mkdir ${{ github.workspace }}/${{ env.Output_Path }}/combined
+        cp -r ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet/* ${{ github.workspace }}/${{ env.Output_Path }}/combined/
+        cp -r ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet.Console/* ${{ github.workspace }}/${{ env.Output_Path }}/combined/
 
     - name: Create zip file
-      run: Compress-Archive -Path ${{ env.Output_Path }}/combined/* -DestinationPath ${{ env.Output_Path }}/DSLRNet-publish-${{ env.Version }}.zip
+      run: Compress-Archive -Path ${{ github.workspace }}/${{ env.Output_Path }}/combined/* -DestinationPath ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet-publish-${{ env.Version }}.zip
       shell: pwsh
 
     - name: Upload zip file
       uses: actions/upload-artifact@v3
       with:
         name: DSLRNet-publish-zip-${{ env.Version }}
-        path: ${{ env.Output_Path }}/DSLRNet-publish-${{ env.Version }}.zip
+        path: ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet-publish-${{ env.Version }}.zip
         retention-days: 7  # Optional: specify how long to keep the artifact
+ 

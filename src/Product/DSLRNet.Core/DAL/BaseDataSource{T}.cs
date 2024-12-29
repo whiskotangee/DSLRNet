@@ -21,7 +21,7 @@ public abstract class BaseDataSource<T>(RandomProvider random) : IDataSource<T>
 
     public IEnumerable<T> GetAll()
     {
-        return this.CachedData.Values.Select(s => s.Clone()).ToList();
+        return this.CachedData.Values.ToList();
     }
 
     public abstract Task<IEnumerable<T>> LoadDataAsync();

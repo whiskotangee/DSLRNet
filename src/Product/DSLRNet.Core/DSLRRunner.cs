@@ -48,39 +48,48 @@ public class DSLRRunner
 
         ServiceProvider sp = services.BuildServiceProvider();
 
-        var progress = sp.GetRequiredService<IOperationProgressTracker>();
-        var activeSettings = sp.GetRequiredService<IOptions<Settings>>().Value;
-        var activeConfig = sp.GetRequiredService<IOptions<Configuration>>().Value;
-        var msbLoader = sp.GetRequiredService<MSBProvider>();
+        var logger = sp.GetRequiredService<ILogger<DSLRRunner>>();
 
-        progress.OverallStepCount = 15;
-
-        // ensure oo2core file is there
-        string? existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
-        if (existingFile == null)
+        try
         {
-            string? oo2GameCore = Directory.GetFiles(activeSettings.GamePath, "oo2core*dll").FirstOrDefault();
-            File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
+            var progress = sp.GetRequiredService<IOperationProgressTracker>();
+            var activeSettings = sp.GetRequiredService<IOptions<Settings>>().Value;
+            var activeConfig = sp.GetRequiredService<IOptions<Configuration>>().Value;
+            var msbLoader = sp.GetRequiredService<MSBProvider>();
+
+            progress.OverallStepCount = 14;
+
+            // ensure oo2core file is there
+            string? existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
+            if (existingFile == null)
+            {
+                string? oo2GameCore = Directory.GetFiles(activeSettings.GamePath, "oo2core*dll").FirstOrDefault();
+                File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
+            }
+
+            List<Task> initializeTasks = [];
+            initializeTasks.Add(sp.GetRequiredService<DataAccess>().InitializeDataSourcesAsync());
+            initializeTasks.Add(msbLoader.InitializeAsync());
+
+            await Task.WhenAll(initializeTasks);
+
+            progress.OverallProgress += 1;
+
+            IconBuilder iconbuilder = sp.GetRequiredService<IconBuilder>();
+            DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
+
+            //await iconbuilder.ApplyIcons();
+            progress.OverallProgress += 1;
+
+            dslrBuilder.BuildItemLots();
+            progress.OverallProgress += 1;
+
+            await dslrBuilder.ApplyAsync();
+            progress.OverallProgress += 1;
         }
-
-        await sp.GetRequiredService<DataAccess>().InitializeDataSourcesAsync();
-
-        progress.OverallProgress += 1;
-
-        await msbLoader.InitializeAsync();
-
-        progress.OverallProgress += 1;
-
-        IconBuilder iconbuilder = sp.GetRequiredService<IconBuilder>();
-        DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
-
-        //await iconbuilder.ApplyIcons();
-        progress.OverallProgress += 1;
-
-        dslrBuilder.BuildItemLots();
-        progress.OverallProgress += 1;
-
-        await dslrBuilder.ApplyAsync();
-        progress.OverallProgress += 1;
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred during execution");
+        }
     }
 }

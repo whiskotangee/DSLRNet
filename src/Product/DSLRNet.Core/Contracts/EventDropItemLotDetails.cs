@@ -14,8 +14,24 @@ public class EventDropItemLotDetails
 
     public int NpcId { get; set; }
 
+    public bool IsCompleteEvent()
+    {
+        return EventTriggerFlagId > 0 && ItemLotId > 0 && EntityId > 0 && AcquisitionFlag > 0;
+    }
+
     public void CopyFrom(ILogger logger, EventDropItemLotDetails from)
     {
+        if (this.EventTriggerFlagId == 0 && from.EventTriggerFlagId > 0)
+        {
+            this.EventTriggerFlagId = from.EventTriggerFlagId;
+        }
+        else if (this.EventTriggerFlagId > 0 && from.EventTriggerFlagId > 0 && this.EventTriggerFlagId != from.EventTriggerFlagId)
+        {
+            // This is a boss event that gives items via a common event i.e. event 10000850 actually gives item via flag 9100
+            logger.LogError($"EventTriggerFlagId mismatch: {this.EventTriggerFlagId} != {from.EventTriggerFlagId} when overwriting {this.ToString()} with {from.ToString()}");
+            this.EventTriggerFlagId = from.EventTriggerFlagId;
+        }
+
         if (this.ItemLotId == 0 && from.ItemLotId > 0)
         {
             this.ItemLotId = from.ItemLotId;
@@ -24,6 +40,7 @@ public class EventDropItemLotDetails
         {
             logger.LogError($"ItemLotId mismatch: {this.ItemLotId} != {from.ItemLotId} when overwriting {this.ToString()} with {from.ToString()}");
         }
+
         if (this.MapId == null)
         {
             this.MapId = from.MapId;

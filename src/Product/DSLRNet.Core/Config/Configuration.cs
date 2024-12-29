@@ -135,8 +135,6 @@ public class IconMapping
 
 public class ScannerConfig
 {
-    public List<CommonBossEventConfig> CommonBossEventConfigs { get; set; } = [];
-
     public List<int> AreaScalingSpEffectIds { get; set; } = [];
 }
 
@@ -147,15 +145,22 @@ public class CommonBossEventConfig
 
     public int BankId { get; set; }
 
-    public int EventIdIndex { get; set; }
-    public int EntityIdIndex { get; set; }
-
     public int InstructionId { get; set; }
 
-    public int EventFlagIndex { get; set; }
+    public int EventIdIndex { get; set; } = -1;
 
-    public int ItemLotIdIndex { get; set; }
+    public HashSet<int> EntityIdIndexes { get; set; } = [];
 
-    public int AcquisitionFlagIndex { get; set; }
+    public HashSet<int> FlagIndexes { get; set; } = [];
+
+    public HashSet<int> ItemLotIdIndexes { get; set; } = [];
+
+    public int AcquisitionFlagIndex { get; set; } = -1;
+
+    public long HardCodedEntityId { get; set; }
+
+    public HashSet<long> HardCodedFlags { get; set; } = [];
+
+    public HashSet<long> HardCodedItemLots { get; set; } = [];
 }
     

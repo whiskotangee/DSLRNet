@@ -8,11 +8,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:CustomColorTheme BaseTheme="Dark" PrimaryColor="DarkViolet"  SecondaryColor="DarkOrange"  />
+                <materialDesign:CustomColorTheme BaseTheme="Dark" PrimaryColor="Chocolate"  SecondaryColor="DarkOrange"  />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <localconverters:ImagePathConverter x:Key="ImagePathConverter" />
+            <BitmapImage x:Key="DSLRIcon" UriSource="pack://application:,,,/DSLRNet;component/Resources/dslr_eldenring_icon.ico" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

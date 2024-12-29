@@ -14,7 +14,8 @@
         Height="950"
         Width="1000"
         Background="{DynamicResource MaterialDesignPaper}"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Icon="{StaticResource DSLRIcon}">
     <Window.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         <converters:BoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" Inverse="True"/>

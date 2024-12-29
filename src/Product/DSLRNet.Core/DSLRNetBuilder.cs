@@ -68,7 +68,8 @@ public class DSLRNetBuilder(
             throw new Exception("Could not find regulation.bin");
         }
 
-        if (!fileSourceHandler.TryGetFile("regulation.pre-dslr.bin", out string preDslrPath))
+        if (!fileSourceHandler.TryGetFile("regulation.pre-dslr.bin", out string preDslrPath)
+            || !preDslrPath.Contains(this.settings.DeployPath))
         {
             File.Copy(regulationFile, Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin"));
         }

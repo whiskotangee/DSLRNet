@@ -95,9 +95,9 @@ public class ParamLootGenerator<TParamType>(
                 spEffectTexts.Add(speffectsToApply[x]);
             }
         }
-        else if (rarityId > 5)
+        else if (rarityId > 7)
         {
-            logger.LogWarning($"New Item {lootItem.ID} of type {lootType} Failed to apply any SpEffects when rarity > 5");
+            logger.LogWarning($"New Item {lootItem.ID} of type {lootType} Failed to apply any SpEffects when rarity > 7");
         }
 
         return spEffectTexts;

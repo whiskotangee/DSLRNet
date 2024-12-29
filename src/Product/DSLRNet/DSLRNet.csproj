@@ -6,7 +6,20 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\dslr_eldenring_icon.ico" />
+    <None Remove="Resources\dslr_eldenring_icon.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\dslr_eldenring_icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <EmbeddedResource Include="Resources\dslr_eldenring_icon.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />

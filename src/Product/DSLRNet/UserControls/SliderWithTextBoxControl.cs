@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace DSLRNet.UserControls
 {
-    public partial class SliderWithTextUserControl : UserControl
+    public partial class SliderWithTextUserControl : System.Windows.Controls.UserControl
     {
         public static readonly DependencyProperty MinimumProperty =
             DependencyProperty.Register("Minimum", typeof(double), typeof(SliderWithTextUserControl), new PropertyMetadata(0.0));

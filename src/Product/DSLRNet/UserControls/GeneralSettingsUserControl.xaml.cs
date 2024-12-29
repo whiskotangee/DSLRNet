@@ -8,13 +8,14 @@ using System.Windows.Input;
 using Tomlyn.Model;
 using Tomlyn;
 using System.IO;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace DSLRNet.UserControls
 {
     /// <summary>
     /// Interaction logic for GeneralSettingsUserControl.xaml
     /// </summary>
-    public partial class GeneralSettingsUserControl : UserControl
+    public partial class GeneralSettingsUserControl : System.Windows.Controls.UserControl
     {
         public GeneralSettingsUserControl()
         {
@@ -24,20 +25,16 @@ namespace DSLRNet.UserControls
         private void BrowseDeployPath_Click(object sender, RoutedEventArgs e)
         {
             var settingsWrapper = this.DataContext as SettingsWrapper;
-
-            var dialog = new OpenFileDialog
+            using FolderBrowserDialog folderChooser = new()
             {
-                CheckFileExists = false,
-                CheckPathExists = true,
-                Title = "Select Mod Folder",
-                FileName = settingsWrapper.DeployPath,
-                DefaultDirectory = settingsWrapper.DeployPath,
-                Filter = "Folders|no.files",
-                ValidateNames = false
+                Description = "Select Deploy Folder",
+                SelectedPath = settingsWrapper.DeployPath,
+                InitialDirectory = settingsWrapper.DeployPath
             };
-            if (dialog.ShowDialog() == true)
+
+            if (folderChooser.ShowDialog() == DialogResult.OK)
             {
-                ((SettingsWrapper)DataContext).DeployPath = Path.GetDirectoryName(dialog.FileName);
+                ((SettingsWrapper)DataContext).DeployPath = folderChooser.SelectedPath;
             }
         }
 
@@ -51,12 +48,12 @@ namespace DSLRNet.UserControls
                 CheckPathExists = true,
                 Title = "Select Elden Ring Game Exe",
                 FileName = settingsWrapper.GamePath,
-                DefaultDirectory = settingsWrapper.GamePath,
+                InitialDirectory = settingsWrapper.GamePath,
                 Filter = "Elden Ring Exe (*.exe)|*.exe",
                 ValidateNames = false
             };
 
-            if (dialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 settingsWrapper.GamePath = Path.GetDirectoryName(dialog.FileName);
             }
@@ -72,17 +69,15 @@ namespace DSLRNet.UserControls
                 CheckPathExists = true,
                 Title = "Select mod engine toml file",
                 FileName = "Choose toml file",
-                DefaultDirectory = settingsWrapper.DeployPath,
+                InitialDirectory = settingsWrapper.DeployPath,
                 Filter = "TOML files (*.toml)|*.toml",
                 ValidateNames = false
             };
 
-            if (dialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                settingsWrapper.DeployPath = Path.GetDirectoryName(dialog.FileName);
-            }
-
-            ParseModDirectoriesFromToml(settingsWrapper, dialog.FileName);
+                ParseModDirectoriesFromToml(settingsWrapper, dialog.FileName);
+            }            
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

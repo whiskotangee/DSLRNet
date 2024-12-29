@@ -100,7 +100,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
         {
             isRunning = value;
             OnPropertyChanged();
-            SelectedTabIndex = value ? 3 : 0;
+            SelectedTabIndex = value ? 3 : hasRun ? 3 : 0;
         }
     }
 

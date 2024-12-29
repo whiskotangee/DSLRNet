@@ -60,6 +60,8 @@ public class RegulationBinBank
 
     public void UpdateParam(DataSourceNames name, PARAM param)
     {
+        param.Rows = param.Rows.OrderBy(d => d.ID).ToList();
+
         foreach (BinderFile f in this.paramBnd.Files)
         {
             var paramName = Path.GetFileNameWithoutExtension(f.Name);
@@ -137,7 +139,7 @@ public class RegulationBinBank
         {
             if (fileHandler.TryGetFile("regulation.bin", out regBinPath))
             {
-                regBinPath = Path.Combine(this.settings.GamePath, "regulation.predslr.bin");
+                regBinPath = Path.Combine(this.settings.GamePath, "regulation.bin");
             }
         }
 

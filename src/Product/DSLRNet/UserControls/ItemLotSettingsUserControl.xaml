@@ -50,6 +50,7 @@
         <GroupBox Grid.Column="1" Header="Scanner Settings">
             <StackPanel Margin="5">
                 <StackPanel>
+                    <TextBlock Text="Enable or disable scanning and generating loot for opening chests." Margin="0,5,0,5"/>
                     <CheckBox Content="Scanning Enabled" IsChecked="{Binding ChestLootScannerSettings.Enabled, Mode=TwoWay}" />
 
                     <TextBlock Text="Percentage of chests to generate loot for." Margin="0,5,0,5"/>

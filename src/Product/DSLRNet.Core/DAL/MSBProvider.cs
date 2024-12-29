@@ -7,12 +7,14 @@ public class MSBProvider
     private readonly Settings settings;
     private readonly ILogger<MSBProvider> logger;
     private readonly IOperationProgressTracker progressTracker;
+    private readonly FileSourceHandler fileSourceHandler;
     private ConcurrentDictionary<string, MSBE> msbData = [];
 
-    public MSBProvider(IOptions<Settings> settings, ILogger<MSBProvider> logger, IOperationProgressTracker progressTracker)
+    public MSBProvider(IOptions<Settings> settings, ILogger<MSBProvider> logger, IOperationProgressTracker progressTracker, FileSourceHandler fileSourceHandler)
     {
         this.logger = logger;
         this.progressTracker = progressTracker;
+        this.fileSourceHandler = fileSourceHandler;
         this.settings = settings.Value;
     }
 
@@ -26,11 +28,7 @@ public class MSBProvider
         msbData.Clear();
 
         logger.LogInformation($"Loading MSB Files...");
-        List<string> mapStudioFiles = [.. Directory.GetFiles(Path.Combine(this.settings.DeployPath, "map", "mapstudio"), "*.msb.dcx")];
-        List<string> additionalMapFiles = [.. Directory.GetFiles(Path.Combine(this.settings.GamePath, "map", "mapstudio"), "*.msb.dcx")
-            .Where(d => !mapStudioFiles.Any(s => Path.GetFileName(s) == Path.GetFileName(d)))];
-
-        mapStudioFiles.AddRange(additionalMapFiles);
+        List<string> mapStudioFiles = [.. this.fileSourceHandler.ListFilesFromAllModDirectories(Path.Combine("map", "mapstudio"), "*.msb.dcx")];
 
         progressTracker.CurrentStageStepCount = mapStudioFiles.Count;
         progressTracker.CurrentStageProgress = 0;

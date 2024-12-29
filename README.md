@@ -67,7 +67,8 @@ Credits
 -------
 
 - This project is an extension/rewrite of the [Diablo Style Loot Remastered (Alpha 3.1)](https://www.nexusmods.com/eldenring/mods/3498) by CornflakeRush.  Some code inspriation was taken from that mod and integrated here.
-- Special thanks to the [SoulsFormats](https://github.com/JKAnderson/SoulsFormats) project to enable interactions with souls games files.
+- PARAM Defs borrowed from the [Smithbox](https://github.com/vawser/Smithbox/tree/main/src/StudioCore/Assets/PARAM/ER) project headed by vawser to allow direct read/writes of various regulation bin params.
+- The [SoulsFormats](https://github.com/JKAnderson/SoulsFormats) project to enable interactions with souls games files.
 - Extra special thanks to the fine people at the ?ServerName? discord server and the [souls modding wiki](http://soulsmodding.wikidot.com/tutorial:main) for having a searchable wealth of knowledge on how this stuff works
 
 License

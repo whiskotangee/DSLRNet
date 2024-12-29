@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <!-- Set the version for the entire solution -->
+    <Version>1.0.0</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+    <InformationalVersion>$(Version)</InformationalVersion>
+    <TargetFramework>net8.0-windows</TargetFramework>
+  </PropertyGroup>
+</Project>

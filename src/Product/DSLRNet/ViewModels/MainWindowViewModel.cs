@@ -44,29 +44,45 @@ public class MainWindowViewModel : INotifyPropertyChanged
         // Your logic to generate loot goes here
         HasRun = true;
         IsRunning = true;
-        ProgressTracker.Reset();
-        LogMessages.Clear();
-        LogMessages.Add($"Saving current config to Settings.User.ini");
-        settingsWrapper.OriginalObject.SaveSettings("Settings.User.ini");
 
-        LogMessages.Add("Starting loot generation...");
-
-        await Task.Run(async () =>
+        try
         {
-            await Task.Yield();
-
-            try
+            ProgressTracker.Reset();
+            LogMessages.Clear();
+            LogMessages.Add($"Saving current config to Settings.User.ini");
+            settingsWrapper.OriginalObject.ValidatePaths();
+            if (settingsWrapper.RandomSeed == 0)
             {
-                await DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages, ProgressTracker);
-                LogMessages.Add("Loot generation completed successfully.");
+                settingsWrapper.RandomSeed = new Random().Next();
             }
-            catch (Exception ex)
-            {
-                LogMessages.Add($"Exception caught - loot Generation is most likely incomplete: {ex}");
-            }
-        });
 
-        IsRunning = false;
+            settingsWrapper.OriginalObject.SaveSettings("Settings.User.ini");
+
+            LogMessages.Add("Starting loot generation...");
+
+            await Task.Run(async () =>
+            {
+                await Task.Yield();
+
+                try
+                {
+                    await DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages, ProgressTracker);
+                    LogMessages.Add("Loot generation completed successfully.");
+                }
+                catch (Exception ex)
+                {
+                    LogMessages.Add($"Exception caught - loot Generation is most likely incomplete: {ex}");
+                }
+            });
+        }
+        catch (Exception ex)
+        {
+            LogMessages.Add($"Exception caught, cannot generate loot: {ex}");
+        }
+        finally
+        {
+            IsRunning = false;
+        }
     }
 
     private void ChangeImage(object item)

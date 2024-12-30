@@ -18,13 +18,12 @@ public class ItemLotScanner(
     private readonly RandomProvider random = random;
     private readonly Configuration configuration = configuration.Value;
     private readonly Settings settings = settings.Value;
-    private readonly List<ItemLotParam_map> itemLotParam_Map = dataAccess.ItemLotParamMap.GetAll().ToList();
-    private readonly List<ItemLotParam_enemy> itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll().ToList();
-    private readonly List<NpcParam> npcParams = dataAccess.NpcParam.GetAll().ToList();
+    private readonly Dictionary<int, ItemLotParam_map> itemLotParam_Map = dataAccess.ItemLotParamMap.GetAll().ToDictionary(k => k.ID);
+    private readonly Dictionary<int, ItemLotParam_enemy> itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll().ToDictionary(k => k.ID);
+    private readonly Dictionary<int, NpcParam> npcParams = dataAccess.NpcParam.GetAll().ToDictionary(k => k.ID);
 
     public Dictionary<ItemLotCategory, List<ItemLotSettings>> ScanAndCreateItemLotSets(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
-
         logger.LogInformation($"Beginning scan for item lots in msb files");
 
         Dictionary<ItemLotCategory, List<ItemLotSettings>> generatedItemLotSettings = [];
@@ -75,7 +74,7 @@ public class ItemLotScanner(
             MSBE.Part.Enemy? foundEvent = msb.Parts.Enemies.Where(d => d.EntityID == details.EntityId).FirstOrDefault();
             if (foundEvent != null)
             {
-                NpcParam foundNpc = npcParams.Single(d => d.ID == foundEvent.NPCParamID);
+                NpcParam foundNpc = npcParams[foundEvent.NPCParamID];
                 details.NpcId = foundNpc.ID;
 
                 GameStage evaluatedStage = gameStageEvaluator.EvaluateDifficulty(settings, foundNpc, true);
@@ -120,7 +119,6 @@ public class ItemLotScanner(
                 settings.GetGameStageConfig(assignedGameStage).ItemLotIds.Add(npc.itemLotId_enemy);
                 addedByStage[assignedGameStage] += 1;
             }
-
         }
 
         return addedByStage;
@@ -133,7 +131,7 @@ public class ItemLotScanner(
         if (this.settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled
                 || this.settings.ItemLotGeneratorSettings.MapLootScannerSettings.Enabled)
         {
-            GameStageConfig gameStage = GetGameStageConfigForMap(name, msb, npcParams, settings, lotDetails);
+            (GameStageConfig minConfig, GameStageConfig maxConfig) = GetGameStageConfigRangeForMap(name, msb, npcParams, settings, lotDetails);
 
             List<int> candidateTreasures = [];
 
@@ -169,9 +167,11 @@ public class ItemLotScanner(
             candidateTreasures = candidateTreasures.Where(d => IsValidItemLotId(d, ItemLotCategory.ItemLot_Map)).ToList();
             foreach (var treasure in candidateTreasures)
             {
+                var gameStage = this.random.PassesPercentCheck(60) ? maxConfig : minConfig;
+
                 addedByStage[gameStage.Stage] += candidateTreasures.Count;
 
-                candidateTreasures.ForEach(d => gameStage.ItemLotIds.Add(d));
+                gameStage.ItemLotIds.Add(treasure);
             }
         }
 
@@ -180,40 +180,34 @@ public class ItemLotScanner(
 
     Dictionary<string, string> mapAverageStage = [];
 
-    private GameStageConfig GetGameStageConfigForMap(string name, MSBE msb, List<NpcParam> npcs, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
+    private (GameStageConfig minConfig, GameStageConfig maxConfig) GetGameStageConfigRangeForMap(string name, MSBE msb, List<NpcParam> npcs, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
     {
         GameStage gameStage = gameStageEvaluator.EvaluateDifficulty(settings, msb, npcs, name, lotDetails);
 
         mapAverageStage[name] = gameStage.ToString();
 
-        return settings.GetGameStageConfig(gameStage);
+        return (settings.GetGameStageConfig((GameStage)Math.Clamp((int)gameStage - 1, (int)GameStage.Early, (int)GameStage.Late)), settings.GetGameStageConfig(gameStage));
     }
 
     private bool IsValidItemLotId(int itemLotId, ItemLotCategory itemLotCategory)
     {
         if (itemLotCategory == ItemLotCategory.ItemLot_Map)
         {
-            ItemLotParam_map? match = itemLotParam_Map
-                .SingleOrDefault(d => itemLotId == d.ID);
-
-            if (match == null)
+            if (itemLotParam_Map.TryGetValue(itemLotId, out ItemLotParam_map? match))
             {
-                return false;
+                return match.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GetValue<int>(d) >= 1);
             }
 
-            return match.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GetValue<int>(d) >= 1);
+            return false;
         }
         else
         {
-            ItemLotParam_enemy? match = itemLotParam_Enemy
-                .SingleOrDefault(d => itemLotId == d.ID);
-
-            if (match == null)
+            if(itemLotParam_Enemy.TryGetValue(itemLotId, out ItemLotParam_enemy? match))
             {
-                return false;
+                return match.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GetValue<int>(d) >= 1);
             }
 
-            return match.GetFieldNamesByFilter("lotItemCategory0").Any(d => match.GetValue<int>(d) >= 1);
+            return false;
         }
     }
 }

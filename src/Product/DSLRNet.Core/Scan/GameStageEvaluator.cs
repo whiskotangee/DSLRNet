@@ -7,11 +7,10 @@ using System.Collections.Concurrent;
 public class GameStageEvaluator
 {
     private readonly ILogger<GameStageEvaluator> logger;
-    private readonly List<NpcParam> npcParams;
+    private readonly Dictionary<int, NpcParam> npcParams;
     private readonly Configuration configuration;
-    private readonly List<SpEffectParam> allSpEffects;
+    private readonly Dictionary<int, SpEffectParam> allSpEffects;
     private readonly List<SpEffectParam> areaScalingSpEffects;
-
     private readonly List<SpEffectParam> vanillaSpEffects;
     private readonly List<SpEffectParam> dlcSpEffects;
 
@@ -20,11 +19,11 @@ public class GameStageEvaluator
     public GameStageEvaluator(ILogger<GameStageEvaluator> logger, IOptions<Configuration> config, DataAccess dataAccess)
     {
         this.logger = logger;
-        this.allSpEffects = dataAccess.SpEffectParam.GetAll().ToList();
-        this.npcParams = dataAccess.NpcParam.GetAll().ToList();
+        this.allSpEffects = dataAccess.SpEffectParam.GetAll().ToDictionary(k => k.ID, v => v);
+        this.npcParams = dataAccess.NpcParam.GetAll().ToDictionary(k => k.ID, v => v);
         this.configuration = config.Value;
         this.areaScalingSpEffects =
-            this.allSpEffects
+            this.allSpEffects.Values
                 .Where(d => config.Value.ScannerConfig.AreaScalingSpEffectIds.Contains(d.ID))
                 .ToList();
 
@@ -42,22 +41,19 @@ public class GameStageEvaluator
     {
         // evalute difficulty and return game stage for the given map drops
 
-        var npcs = msb.FilterRelevantNpcs(logger, relevantNpcs, Path.GetFileName(mapName));
-
-        // Average count of all npc difficulties in the map
         var regularEnemies = msb.Parts.Enemies
             .Where(d => !bossDropDetails.Any(s => s.EntityId == d.EntityID))
-            .Where(d => npcs.Any(s => s.ID == d.NPCParamID))
+            .Where(d => relevantNpcs.Any(s => s.ID == d.NPCParamID))
             .DistinctBy(d => d.NPCParamID);
 
         var bossEnemies = msb.Parts.Enemies
             .Where(d => bossDropDetails.Any(s => s.EntityId == d.EntityID));
 
         var gameStages = regularEnemies
-            .Select(d => new { ID = d.NPCParamID, GameStage = EvaluateDifficulty(settings, npcParams.Single(s => s.ID == d.NPCParamID), false) });
+            .Select(d => new { ID = d.NPCParamID, GameStage = EvaluateDifficulty(settings, npcParams[d.NPCParamID], false) });
 
         var bossGameStages = bossEnemies
-            .Select(d => new { ID = d.NPCParamID, GameStage = EvaluateDifficulty(settings, npcParams.Single(s => s.ID == d.NPCParamID), true) })
+            .Select(d => new { ID = d.NPCParamID, GameStage = EvaluateDifficulty(settings, npcParams[d.NPCParamID], true) })
             .ToList();
 
         var averageDifficulty = 0.0;
@@ -91,7 +87,7 @@ public class GameStageEvaluator
         }
         else
         {
-            var spEffect = this.allSpEffects.Single(d => d.ID == spEffectId);
+            var spEffect = this.allSpEffects[spEffectId];
 
             if (!vanilla.TryGetValue(spEffect.ID, out gameStage) && !dlc.TryGetValue(spEffect.ID, out gameStage))
             {
@@ -120,13 +116,12 @@ public class GameStageEvaluator
 
     private (Dictionary<int, GameStage> vanilla, Dictionary<int, GameStage> dlc) InitializeHpMultMaps(ItemLotSettings settings)
     {
-        // TODO: config driven split?
         Dictionary<int, int> hpMultToRarityMap = MathFunctions.MapToRange(
             this.vanillaSpEffects,
             (spEffect) => spEffect.maxHpRate,
             (spEffect) => spEffect.ID,
-            (int)settings.GameStageConfigs.Min(d => d.Stage),
-            (int)settings.GameStageConfigs.Max(d => d.Stage));
+            (int)settings.GameStageConfigs.Values.Min(d => d.Stage),
+            (int)settings.GameStageConfigs.Values.Max(d => d.Stage));
 
         Dictionary<int, int> dlcHpMultToRarityMap = MathFunctions.MapToRange(
             this.dlcSpEffects.ToList(),

@@ -41,8 +41,8 @@ public class DSLRNetBuilder(
             { ItemLotCategory.ItemLot_Enemy, new HashSet<int>() }
         };
 
-        takenIds[ItemLotCategory.ItemLot_Map] = mapOverrides.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
-        takenIds[ItemLotCategory.ItemLot_Enemy] = enemyOverrides.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.ItemLotIds).Distinct().ToHashSet();
+        takenIds[ItemLotCategory.ItemLot_Map] = mapOverrides.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.Value.ItemLotIds).Distinct().ToHashSet();
+        takenIds[ItemLotCategory.ItemLot_Enemy] = enemyOverrides.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.Value.ItemLotIds).Distinct().ToHashSet();
 
         Dictionary<ItemLotCategory, List<ItemLotSettings>> scanned = itemLotScanner.ScanAndCreateItemLotSets(takenIds);
         progressTracker.OverallProgress += 1;
@@ -68,8 +68,7 @@ public class DSLRNetBuilder(
             throw new Exception("Could not find regulation.bin");
         }
 
-        if (!fileSourceHandler.TryGetFile("regulation.pre-dslr.bin", out string preDslrPath)
-            || !preDslrPath.Contains(this.settings.DeployPath))
+        if (!File.Exists(Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin")))
         {
             File.Copy(regulationFile, Path.Combine(this.settings.DeployPath, "regulation.pre-dslr.bin"));
         }

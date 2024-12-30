@@ -25,28 +25,28 @@ public class ItemLotSettings
 
         ItemLotSettings? obj = JsonConvert.DeserializeObject<ItemLotSettings>(JsonConvert.SerializeObject(setup));
         obj.GameStageConfigs = [];
-        obj.GameStageConfigs.Add(new GameStageConfig
+        obj.GameStageConfigs.Add(GameStage.Early, new GameStageConfig
         {
             Stage = GameStage.Early,
             AllowedRarities = [.. setup.AllowedRaritiesEarly],
             ItemLotIds = [.. setup.ItemLotIdsEarly]
         });
 
-        obj.GameStageConfigs.Add(new GameStageConfig
+        obj.GameStageConfigs.Add(GameStage.Mid, new GameStageConfig
         {
             Stage = GameStage.Mid,
             AllowedRarities = [.. setup.AllowedRaritiesMid],
             ItemLotIds = [.. setup.ItemLotIdsMid]
         });
 
-        obj.GameStageConfigs.Add(new GameStageConfig
+        obj.GameStageConfigs.Add(GameStage.Late, new GameStageConfig
         {
             Stage = GameStage.Late,
             AllowedRarities = [.. setup.AllowedRaritiesLate],
             ItemLotIds = [.. setup.ItemLotIdsLate]
         });
 
-        obj.GameStageConfigs.Add(new GameStageConfig
+        obj.GameStageConfigs.Add(GameStage.End, new GameStageConfig
         {
             Stage = GameStage.End,
             AllowedRarities = [.. setup.AllowedRaritiesEnd],
@@ -81,12 +81,7 @@ public class ItemLotSettings
 
     public GameStageConfig GetGameStageConfig(GameStage stage)
     {
-        return GameStageConfigs.Single(d => d.Stage == stage);
-    }
-
-    public GameStageConfig GetItemLotIdTier(int itemLotId = 0)
-    {
-        return this.GameStageConfigs.FirstOrDefault(d => d.ItemLotIds.Contains(itemLotId)) ?? this.GameStageConfigs.First();
+        return GameStageConfigs[stage];
     }
 
     public ItemLotCategory Category { get; set; }
@@ -102,7 +97,7 @@ public class ItemLotSettings
     public int Enabled { get; set; }
     public bool GuaranteedDrop { get; set; }
     public float DropChanceMultiplier { get; set; }
-    public List<GameStageConfig> GameStageConfigs { get; set; }
+    public Dictionary<GameStage, GameStageConfig> GameStageConfigs { get; set; }
     public List<WeightedValue<LootType>> LootWeightsByType { get; set; }
     public List<WeightedValue<WeaponTypes>> WeaponWeightsByType { get; set; }
     public List<List<int>> NpcIds { get; set; }

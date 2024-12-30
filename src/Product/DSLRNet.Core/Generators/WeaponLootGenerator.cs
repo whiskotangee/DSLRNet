@@ -69,7 +69,6 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         newWeapon.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
         newWeapon.iconId = this.RarityHandler.GetIconId(newWeapon.iconId, rarityId, isUnique: isUniqueWeapon);
         newWeapon.reinforceTypeId = 0;
-
         
         if (weaponType != WeaponTypes.StaffsSeals)
         {
@@ -95,7 +94,6 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             weaponType);
 
         this.ApplyWeaponScalingRange(newWeapon, modifications, rarityId);
-
 
         this.damageTypeHandler.ApplyDamageTypeWeaponSpEffects(modifications, newWeapon.GenericParam);
 

@@ -32,6 +32,12 @@ public class FileSourceHandler(IOptions<Settings> settings)
             return true;
         }
 
+        if (File.Exists(Path.Combine("Assets", "VanillaFiles", fileName)))
+        {
+            fullPath = Path.Combine("Assets", "VanillaFiles", fileName);
+            return true;
+        }
+
         return false;
     }
 
@@ -56,10 +62,19 @@ public class FileSourceHandler(IOptions<Settings> settings)
         }
 
         // pick up any files in the game path that are not in the mod paths, just in case we need them
+        if (Directory.Exists(Path.Combine(settings.Value.GamePath, basePath)))
+        {
+            files.AddRange(
+                Directory.GetFiles(Path.Combine(settings.Value.GamePath, basePath), filter)
+                    .Where(d => !files.Any(t => Path.GetFileName(t) == Path.GetFileName(d)))
+                    .ToList());
+        }
+
+        // finally grab from our own vanilla files
         files.AddRange(
-            Directory.GetFiles(Path.Combine(settings.Value.GamePath, basePath), filter)
-                .Where(d => !files.Any(t => Path.GetFileName(t) == Path.GetFileName(d)))
-                .ToList());
+                Directory.GetFiles(Path.Combine("Assets", "VanillaFiles", basePath), filter)
+                    .Where(d => !files.Any(t => Path.GetFileName(t) == Path.GetFileName(d)))
+                    .ToList());
 
         return files;
     }

@@ -44,7 +44,7 @@ public class RandomProvider(int seed)
             }
         }
 
-        return values.FirstOrDefault().Value;
+        return values.First().Value;
     }
 
     public T GetRandomItem<T>(IEnumerable<T> values)

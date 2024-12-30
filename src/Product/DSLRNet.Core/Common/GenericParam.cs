@@ -56,8 +56,11 @@ public class GenericParam : ICloneable
             }
 
             try 
-            { 
-                return (T)Convert.ChangeType(value, typeof(T)); 
+            {
+                var returnType = Convert.ChangeType(value, typeof(T)) 
+                    ?? throw new Exception($"Could not convert value of property {name} from {value} to type {typeof(T)}");
+
+                return (T)returnType; 
             } 
             catch (InvalidCastException) 
             { 
@@ -70,7 +73,8 @@ public class GenericParam : ICloneable
 
     public void SetValue<T>(string name, T? value)
     {
-        if (this.Properties.TryGetValue(name, out object? curValue) 
+        if (this.Properties.TryGetValue(name, out object? curValue)
+            && curValue != null
             && typeof(T).Name != curValue.GetType().Name
             && !typeof(T).Name.Contains("Int32") && !curValue.GetType().Name.Contains("Int64")
             && !typeof(T).Name.Contains("Int64") && !curValue.GetType().Name.Contains("Int32")

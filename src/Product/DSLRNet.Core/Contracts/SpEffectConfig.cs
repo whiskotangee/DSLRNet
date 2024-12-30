@@ -3,14 +3,13 @@ namespace DSLRNet.Core.Contracts;
 
 public partial class SpEffectConfig : ParamBase<SpEffectConfig>
 {
-    public int ID { get; set; }
     public float Value { get; set; }
     public int SpEffectPower { get; set; }
-    public string Prefix { get; set; }
-    public string Interfix { get; set; }
-    public string Suffix { get; set; }
-    public string Description { get; set; }
-    public string ShortDescription { get; set; }
+    public string Prefix { get; set; } = string.Empty;
+    public string Interfix { get; set; } = string.Empty;
+    public string Suffix { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string ShortDescription { get; set; } = string.Empty;
     public int SpEffectType { get; set; }
     public int TalismanIcon { get; set; }
     public int TalismanSortID { get; set; }

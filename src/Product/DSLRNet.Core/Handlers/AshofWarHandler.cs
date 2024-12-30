@@ -19,7 +19,7 @@ public class AshofWarHandler(
 
         // get sword artsId from set of equip gems compatible with this weapon
         int weaponType = weapon.wepType;
-        string? boolFlagToCheck = this.ashOfWarConfig.WeaponTypeCanMountWepFlags.FirstOrDefault(d => d.Id == weaponType)?.FlagName;
+        string? boolFlagToCheck = this.ashOfWarConfig.WeaponTypeCanMountWepFlags.First(d => d.Id == weaponType).FlagName;
 
         List<EquipParamGem> validGems = this.equipParamGems.Where(d => d.GetValue<int>(boolFlagToCheck) == 1).ToList();
 

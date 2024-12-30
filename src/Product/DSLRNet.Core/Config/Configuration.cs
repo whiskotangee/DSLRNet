@@ -5,15 +5,15 @@ using SixLabors.ImageSharp.PixelFormats;
 
 public class Configuration
 {
-    public ItemlotsConfig Itemlots { get; set; }
-    public DSLRDescTextConfig DSLRDescText { get; set; }
-    public LootParamConfig LootParam { get; set; }
+    public ItemlotsConfig Itemlots { get; set; } = new ItemlotsConfig();
+    public DSLRDescTextConfig DSLRDescText { get; set; } = new DSLRDescTextConfig();
+    public LootParamConfig LootParam { get; set; } = new LootParamConfig();
 
-    public List<DataSourceConfig> DataSourceConfigs { get; set; }
+    public List<DataSourceConfig> DataSourceConfigs { get; set; } = [];
 
-    public ScannerConfig ScannerConfig { get; set; }
+    public ScannerConfig ScannerConfig { get; set; } = new ScannerConfig();
 
-    public AshOfWarConfig AshOfWarConfig { get; set; }
+    public AshOfWarConfig AshOfWarConfig { get; set; } = new AshOfWarConfig();
 }
 
 

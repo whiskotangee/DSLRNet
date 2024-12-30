@@ -16,7 +16,7 @@ public static class MSBEExtensions
             // Range is to ignore wildlife drops
             if (modelNumber >= 2000 && modelNumber <= 6000 || modelNumber >= 6200)
             {
-                if (!allNpcs.TryGetValue(enemy.NPCParamID, out NpcParam item))
+                if (!allNpcs.TryGetValue(enemy.NPCParamID, out NpcParam? item))
                 {
                     logger.LogDebug($"NPC with ID {enemy.NPCParamID} from map {mapFileName} with model {modelNumber} did not match a param");
                     continue;

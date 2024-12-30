@@ -185,7 +185,7 @@ public class ItemLotGenerator : BaseHandler
                     Operation = ParamOperation.MassEdit,
                     MassEditString = this.CreateNpcMassEdit(itemLotSettings, itemLotSettings.NpcIds, itemLotSettings.NpcItemlotids),
                     MessageText = null,
-                    ParamObject = null
+                    ParamObject = new GenericParam()
                 });
         }
     }
@@ -263,7 +263,7 @@ public class ItemLotGenerator : BaseHandler
                     Operation = ParamOperation.MassEdit,
                     MassEditString = this.CreateNpcMassEdit(itemLotSettings, itemLotSettings.NpcIds, itemLotSettings.NpcItemlotids),
                     MessageText = null,
-                    ParamObject = null
+                    ParamObject = new GenericParam()
                 });
         }
     }
@@ -327,7 +327,7 @@ public class ItemLotGenerator : BaseHandler
                 this.logger.LogDebug($"Reusing item flag {itemLot.getItemFlagId} from existing {currentItemLotId} for item lot {baseItem.ID}");
                 flagId = itemLot.getItemFlagId;
             }
-            else if (editExists && paramLot.ParamObject?.GetValue<long>("getItemFlagId") > 0)
+            else if (editExists && paramLot?.ParamObject.GetValue<long>("getItemFlagId") > 0)
             {
                 this.logger.LogDebug($"Reusing item flag {paramLot.ParamObject.GetValue<long>("getItemFlagId")} from param edit {currentItemLotId} for item lot {paramLot.ParamObject.GetValue<long>("ID")}");
                 flagId = paramLot.ParamObject.GetValue<uint>("getItemFlagId");

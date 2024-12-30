@@ -262,7 +262,8 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         weapon.SetValue(mods.PrimaryDamageType.ShieldParam, value);
 
         if (existingSecondaryValue != null
-            && mods.PrimaryDamageType.ShieldParam != mods.SecondaryDamageType.ShieldParam)
+            && mods.PrimaryDamageType.ShieldParam != mods.SecondaryDamageType?.ShieldParam
+            && mods.SecondaryDamageType != null)
         {
             float secondaryValue = Math.Clamp((float)(existingSecondaryValue + this.Random.Next(new FloatValueRange(.1f, 5.0f))), 0, 100);
             weapon.SetValue(mods.SecondaryDamageType.ShieldParam, secondaryValue);

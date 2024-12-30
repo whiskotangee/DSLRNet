@@ -15,5 +15,5 @@ public class ParamEdit
 
     public string MassEditString { get; set; } = string.Empty;
 
-    public GenericParam? ParamObject { get; set; }
+    public required GenericParam ParamObject { get; set; }
 }

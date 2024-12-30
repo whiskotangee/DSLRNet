@@ -14,16 +14,11 @@ public class GameStageConfig
 
 public class ItemLotSettings
 {
-    public static ItemLotSettings? Create(string file, Category category)
+    public static ItemLotSettings Create(string file, Category category)
     {
-        DslItemLotSetup? setup = DslItemLotSetup.Create(file);
+        DslItemLotSetup? setup = DslItemLotSetup.Create(file) ?? throw new Exception($"Could not load ini file from {file}");
+        ItemLotSettings? obj = JsonConvert.DeserializeObject<ItemLotSettings>(JsonConvert.SerializeObject(setup)) ?? throw new Exception($"Could not deserialize item lot settings file {file}");
 
-        if (setup == null)
-        {
-            return null;
-        }
-
-        ItemLotSettings? obj = JsonConvert.DeserializeObject<ItemLotSettings>(JsonConvert.SerializeObject(setup));
         obj.GameStageConfigs = [];
         obj.GameStageConfigs.Add(GameStage.Early, new GameStageConfig
         {

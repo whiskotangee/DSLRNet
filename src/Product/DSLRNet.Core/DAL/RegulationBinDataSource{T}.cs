@@ -75,6 +75,13 @@ public class RegulationBinDataSource<T>(
             IEnumerable<T> filteredData = data;
             foreach (var filter in paramSource.Filters)
             {
+                var valueString = filter.Value.ToString();
+
+                if (valueString == null)
+                {
+                    throw new ArgumentNullException(nameof(filter.Value), $"Filter {filter.Operator} on param {paramSource.Name}");
+                }
+
                 switch (filter.Operator)
                 {
                     case FilterOperator.GreaterThan:
@@ -84,16 +91,16 @@ public class RegulationBinDataSource<T>(
                         filteredData = filteredData.Where(d => d.GetValue<int>(filter.Field) < Convert.ToInt32(filter.Value));
                         break;
                     case FilterOperator.StartsWith:
-                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().StartsWith(filter.Value.ToString()));
+                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().StartsWith(valueString));
                         break;
                     case FilterOperator.EndsWith:
-                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().EndsWith(filter.Value.ToString()));
+                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().EndsWith(valueString));
                         break;
                     case FilterOperator.NotEqual:
-                        filteredData = filteredData.Where(d => !d.GetValue<string>(filter.Field).Equals(filter.Value.ToString(), StringComparison.OrdinalIgnoreCase));
+                        filteredData = filteredData.Where(d => !d.GetValue<string>(filter.Field).Equals(valueString, StringComparison.OrdinalIgnoreCase));
                         break;
                     case FilterOperator.NotInRange:
-                        var range = filter.Value.ToString().Split("..");
+                        var range = valueString.Split("..");
                         filteredData = filteredData.Where(d => !Enumerable.Range(Convert.ToInt32(range[0]), Convert.ToInt32(range[1]) - Convert.ToInt32(range[0])).ToList().Contains(d.GetValue<int>(filter.Field)));
                         break;
                 }

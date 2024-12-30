@@ -272,6 +272,11 @@ public partial class IconBuilder(
 
         foreach (var iconMapping in iconMappings)
         {
+            if (iconMapping.ConvertedIcon == null)
+            {
+                throw new Exception($"Failed to generate icon due to {iconMapping.SourceIconPath} not having a converted icon loaded");
+            }
+
             (int x, int y) = GetImageCoordinates(count, sheetSettings, iconSheetSizeDetails.iconsPerRow);
 
             iconMapping.TileX = x;

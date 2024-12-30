@@ -96,7 +96,7 @@ public class DSLRNetBuilder(
             // write csv
             string csvFile = Path.Combine(this.settings.DeployPath, $"{paramName}.csv");
 
-            List<GenericParam?> parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject?.ID).Select(d => d.ParamObject).ToList();
+            List<GenericParam> parms = edits.Where(d => d.ParamName == paramName).OrderBy(d => d.ParamObject.ID).Select(d => d.ParamObject).ToList();
 
             csv.WriteCsv(csvFile, parms.Select(d =>
             {
@@ -147,9 +147,9 @@ public class DSLRNetBuilder(
             this.logger.LogInformation($"Processing {Path.GetFileName(sourceFile)}");
             BND4 bnd = BND4.Read(sourceFile);
 
-            List<IGrouping<string, ParamEdit>> categories = paramEdits.Where(d => d.MessageText != null).GroupBy(d => d.MessageText?.Category).ToList();
+            List<IGrouping<string?, ParamEdit>> categories = paramEdits.Where(d => d.MessageText != null).GroupBy(d => d.MessageText?.Category).ToList();
 
-            foreach (IGrouping<string, ParamEdit>? category in categories)
+            foreach (IGrouping<string?, ParamEdit>? category in categories)
             {
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key}");
                 List<BinderFile> captionFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Caption")).ToList();
@@ -185,7 +185,7 @@ public class DSLRNetBuilder(
                 foreach (BinderFile? effectFile in effectFilesToUpdate)
                 {
                     FMG fmg = FMG.Read(effectFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText?.Effect != null).Select(d => new FMG.Entry((int)d.ParamObject?.ID, d.MessageText?.Effect)));
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText?.Effect != null).Select(d => new FMG.Entry(d.ParamObject.ID, d.MessageText?.Effect)));
                     effectFile.Bytes = fmg.Write();
                 }
 

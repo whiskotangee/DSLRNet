@@ -2,7 +2,7 @@
 
 public class EventDropItemLotDetails
 {
-    public string MapId { get; set; }
+    public string MapId { get; set; } = string.Empty;
 
     public int EntityId { get; set; }
 

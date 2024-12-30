@@ -7,10 +7,10 @@ using System.Xml.Serialization;
 public class TextureAtlas
 {
     [XmlAttribute("imagePath")]
-    public string ImagePath { get; set; }
+    public string ImagePath { get; set; } = string.Empty;
 
     [XmlElement("SubTexture")]
-    public List<SubTexture> SubTextures { get; set; }
+    public List<SubTexture> SubTextures { get; set; } = [];
 }
 
 public class SubTexture

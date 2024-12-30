@@ -6,13 +6,18 @@ using DSLRNet.Core.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
-using System.Collections.ObjectModel;
 
 public class DSLRRunner
 {
-    // TODO: stats builder for ui progress
     public static async Task Run(Settings settings, ICollection<string>? logWatcher = null, IOperationProgressTracker? progressTracker = null)
     {
+        settings.ValidatePaths();
+
+        if (settings.RandomSeed == 0)
+        {
+            settings.RandomSeed = new Random().Next();
+        }
+
         ConfigurationBuilder configurationBuilder = new();
 
         string[] jsonFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "appsettings.Default*.json");
@@ -89,7 +94,7 @@ public class DSLRRunner
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "An error occurred during execution");
+            logger.LogError($"An error occurred during execution {ex}");
         }
     }
 }

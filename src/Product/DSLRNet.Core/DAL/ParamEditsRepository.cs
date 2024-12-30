@@ -9,10 +9,10 @@ public class ParamEditsRepository(
     RegulationBinBank regulationBin,
     IOperationProgressTracker? progressTracker = null)
 {
-    private Dictionary<ParamNames, List<ParamEdit>> paramEdits { get; set; } =
+    private Dictionary<ParamNames, Dictionary<long, ParamEdit>> paramEdits { get; set; } =
         Enum.GetValues(typeof(ParamNames))
             .Cast<ParamNames>()
-            .ToDictionary(paramName => paramName, paramName => new List<ParamEdit>());
+            .ToDictionary(paramName => paramName, paramName => new Dictionary<long, ParamEdit>());
 
     public Dictionary<ParamNames, int> EditCountsByName()
     {
@@ -21,16 +21,16 @@ public class ParamEditsRepository(
 
     public bool VerifyItemLots()
     {
-        List<ParamEdit> enemyLots = this.paramEdits[ParamNames.ItemLotParam_enemy].ToList();
-        List<ParamEdit> mapLots = this.paramEdits[ParamNames.ItemLotParam_map].ToList();
+        List<ParamEdit> enemyLots = this.paramEdits[ParamNames.ItemLotParam_enemy].Values.ToList();
+        List<ParamEdit> mapLots = this.paramEdits[ParamNames.ItemLotParam_map].Values.ToList();
 
         HashSet<int> preExistingIds = dataAccess.ItemLotParamMap.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 })
             .Concat(dataAccess.ItemLotParamEnemy.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 }))
             .ToHashSet();
 
-        HashSet<int> lotItemIds = this.paramEdits
+        HashSet<long> lotItemIds = this.paramEdits
             .Where(d => d.Key == ParamNames.EquipParamWeapon || d.Key == ParamNames.EquipParamProtector || d.Key == ParamNames.EquipParamAccessory)
-            .SelectMany(d => d.Value.Select(d => d.ParamObject.ID))
+            .SelectMany(p => p.Value.Keys)
             .ToHashSet();
 
         HashSet<int> expectedIds = enemyLots
@@ -39,7 +39,7 @@ public class ParamEditsRepository(
             .Where(d => d > 0)
             .ToHashSet();
 
-        List<int> itemIdsNotGeneratedForItemLots = lotItemIds.Where(d => !expectedIds.Contains(d) && !preExistingIds.Contains(d)).ToList();
+        List<long> itemIdsNotGeneratedForItemLots = lotItemIds.Where(d => !expectedIds.Contains((int)d) && !preExistingIds.Contains((int)d)).ToList();
         List<int> itemIdsNotInItemLots = expectedIds.Where(d => !lotItemIds.Contains(d) && !preExistingIds.Contains(d)).ToList();
 
         StringBuilder errorMessages = new();
@@ -97,18 +97,12 @@ public class ParamEditsRepository(
 
     public bool ContainsParamEdit(ParamNames paramName, long Id)
     {
-        ParamEdit? existing = this.paramEdits[paramName]
-            .SingleOrDefault(d => d.ParamObject.ID == Id);
-
-        return existing != null;
+        return this.paramEdits[paramName].ContainsKey(Id);
     }
 
     public bool TryGetParamEdit(ParamNames paramName, long Id, out ParamEdit? paramEdit)
     {
-        paramEdit = this.paramEdits[paramName]
-            .SingleOrDefault(d => d.ParamObject.ID == Id);
-
-        return paramEdit != null;
+        return this.paramEdits[paramName].TryGetValue(Id, out paramEdit);
     }
 
     public void AddParamEdit(ParamEdit paramEdit)
@@ -141,7 +135,7 @@ public class ParamEditsRepository(
             }
         }
 
-        this.paramEdits[paramEdit.ParamName].Add(paramEdit);
+        this.paramEdits[paramEdit.ParamName][paramEdit.ParamObject.ID] = paramEdit;
     }
 
     public async Task ApplyEditsToRegulationBinAsync(string writePath)
@@ -151,7 +145,7 @@ public class ParamEditsRepository(
         {
             logger.LogInformation($"Applying changes to {paramName}");
 
-            (int updatedRows, int addedRows) = regulationBin.AddOrUpdateRows(Enum.Parse<DataSourceNames>(paramName.ToString()), this.paramEdits[paramName]);
+            (int updatedRows, int addedRows) = regulationBin.AddOrUpdateRows(Enum.Parse<DataSourceNames>(paramName.ToString()), this.paramEdits[paramName].Values);
 
             logger.LogInformation($"Applied {updatedRows} updates and {addedRows} adds for {paramName}");
 
@@ -164,7 +158,7 @@ public class ParamEditsRepository(
 
     public List<ParamEdit> GetParamEdits(ParamOperation? operation = null, string? paramName = null)
     {
-        IEnumerable<ParamEdit> edits = [.. this.paramEdits.Values.SelectMany(d => d)];
+        IEnumerable<ParamEdit> edits = [.. this.paramEdits.Values.SelectMany(d => d.Values)];
 
         if (operation != null)
         {

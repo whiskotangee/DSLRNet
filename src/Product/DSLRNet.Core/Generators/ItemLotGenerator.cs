@@ -19,8 +19,8 @@ public class ItemLotGenerator : BaseHandler
     private readonly Configuration configuration;
     private readonly Settings settings;
     private readonly CumulativeID itemAcquisitionCumulativeId;
-    private readonly IEnumerable<ItemLotParam_map> itemLotParam_Map = [];
-    private readonly IEnumerable<ItemLotParam_enemy> itemLotParam_Enemy = [];
+    private readonly Dictionary<int, ItemLotParam_map> itemLotParam_Map = [];
+    private readonly Dictionary<int, ItemLotParam_enemy> itemLotParam_Enemy = [];
 
     public ItemLotGenerator(
         ArmorLootGenerator armorLootGenerator,
@@ -51,8 +51,8 @@ public class ItemLotGenerator : BaseHandler
         };
 
         this.ItemLotTemplate = dataAccess.ItemLotBase.GetAll().First();
-        this.itemLotParam_Map = dataAccess.ItemLotParamMap.GetAll();
-        this.itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll();
+        this.itemLotParam_Map = dataAccess.ItemLotParamMap.GetAll().ToDictionary(k => k.ID);
+        this.itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll().ToDictionary(k => k.ID);
     }
 
     private ItemLotBase ItemLotTemplate { get; set; }
@@ -80,10 +80,10 @@ public class ItemLotGenerator : BaseHandler
 
     private void CreateItemLot_Enemy(ItemLotSettings itemLotSettings)
     {
-        this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Sum(d => d.ItemLotIds.Distinct().Count());
+        this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Values.Sum(d => d.ItemLotIds.Distinct().Count());
         this.progressTracker.CurrentStageProgress = 0;
 
-        foreach (var gameStageConfig in itemLotSettings.GameStageConfigs)
+        foreach (var gameStageConfig in itemLotSettings.GameStageConfigs.Values)
         {
             List<int> itemLotIds = gameStageConfig.ItemLotIds.ToList();
 
@@ -92,7 +92,7 @@ public class ItemLotGenerator : BaseHandler
                     itemLotSettings,
                     id,
                     this.settings.ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot,
-                    (i) => this.itemLotParam_Enemy.SingleOrDefault(d => d.ID == i) != null)).ToList());
+                    (i) => this.itemLotParam_Enemy.ContainsKey(i))).ToList());
 
             itemLotIds = itemLotIds.Distinct().ToList();
 
@@ -109,9 +109,8 @@ public class ItemLotGenerator : BaseHandler
                 }
 
                 ItemLotBase newItemLot;
-                ItemLotParam_enemy? existingItemLot = this.itemLotParam_Enemy.SingleOrDefault(d => d.ID == itemLotIds[x]);
 
-                if (existingItemLot != null)
+                if (this.itemLotParam_Enemy.TryGetValue(itemLotIds[x], out ItemLotParam_enemy? existingItemLot))
                 {
                     this.logger.LogDebug($"ItemLot {itemLotIds[x]} already exists in data for type {itemLotSettings.Category}, basing template on existing");
                     newItemLot = existingItemLot.CloneToBase();
@@ -195,10 +194,10 @@ public class ItemLotGenerator : BaseHandler
     {
         var defaultValue = GenericParam.FromObject(this.ItemLotTemplate.Clone());
 
-        this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Sum(d => d.ItemLotIds.Count);
+        this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Values.Sum(d => d.ItemLotIds.Count);
         this.progressTracker.CurrentStageProgress = 0;
 
-        foreach (var gameStageConfig in itemLotSettings.GameStageConfigs)
+        foreach (var gameStageConfig in itemLotSettings.GameStageConfigs.Values)
         {
             foreach (var itemLotId in gameStageConfig.ItemLotIds)
             {
@@ -208,7 +207,7 @@ public class ItemLotGenerator : BaseHandler
                     itemLotSettings.IsForBosses ?
                         this.settings.ItemLotGeneratorSettings.ItemLotsPerBossLot :
                         this.settings.ItemLotGeneratorSettings.ItemLotsPerBaseMapLot,
-                    (i) => this.itemLotParam_Map.SingleOrDefault(d => d.ID == i) != null);
+                    (i) => this.itemLotParam_Map.ContainsKey(i));
 
                 for (int i = 0; i < itemLotIds.Count; i++)
                 {
@@ -315,7 +314,7 @@ public class ItemLotGenerator : BaseHandler
 
         do
         {
-            ItemLotParam_map? itemLot = this.itemLotParam_Map.SingleOrDefault(d => d.ID == currentItemLotId);
+            this.itemLotParam_Map.TryGetValue(currentItemLotId, out ItemLotParam_map? itemLot);
             bool editExists = this.GeneratedDataRepository.TryGetParamEdit(itemLotSettings.ParamName, currentItemLotId, out ParamEdit? paramLot);
             if (itemLot == null && !editExists)
             {

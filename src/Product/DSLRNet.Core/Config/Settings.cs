@@ -6,6 +6,24 @@ using System.Collections.Generic;
 
 public class Settings
 {
+    public void ValidatePaths()
+    {
+        if (!Directory.Exists(DeployPath))
+        {
+            throw new DirectoryNotFoundException($"Deploy path {DeployPath} does not exist.");
+        }
+
+        if (OrderedModPaths.Any(x => !Directory.Exists(x)))
+        {
+            throw new DirectoryNotFoundException($"One or more mod paths do not exist.");
+        }
+
+        if (!Directory.Exists(GamePath))
+        {
+            throw new DirectoryNotFoundException($"Game path {GamePath} does not exist.");
+        }
+    }
+
     public string DeployPath { get; set; }
 
     public List<string> OrderedModPaths { get; set; }
@@ -100,7 +118,7 @@ public class Settings
         {
             DeployPath = data["Settings"]["DeployPath"],
             OrderedModPaths = [.. data["Settings"]["OrderedModPaths"].Split(",")],
-            RandomSeed = int.Parse(data["Settings"]["RandomSeed"]),
+            RandomSeed = int.TryParse(data["Settings"]["RandomSeed"], out int result) ? result : 0,
             GamePath = data["Settings"]["GamePath"],
             MessageFileNames = [.. data["Settings"]["MessageFileNames"].Split(",")],
             ItemLotGeneratorSettings = new ItemLotGeneratorSettings

@@ -28,7 +28,7 @@ public class MSBProvider
         msbData.Clear();
 
         logger.LogInformation($"Loading MSB Files...");
-        List<string> mapStudioFiles = [.. this.fileSourceHandler.ListFilesFromAllModDirectories(Path.Combine("map", "mapstudio"), "*.msb.dcx")];
+        List<string> mapStudioFiles = [.. this.fileSourceHandler.ListFilesFromAllModDirectories(Path.Combine("map", "mapstudio"), "*.msb.dcx").Where(d => !d.Contains("_99."))];
 
         progressTracker.CurrentStageStepCount = mapStudioFiles.Count;
         progressTracker.CurrentStageProgress = 0;

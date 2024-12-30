@@ -22,7 +22,7 @@ public class RegulationBinBank
         paramBnd = GetRegulationBin();
     }
 
-    public (int updatedRows, int addedRows) AddOrUpdateRows(DataSourceNames dataSourceName, List<ParamEdit> paramEdits)
+    public (int updatedRows, int addedRows) AddOrUpdateRows(DataSourceNames dataSourceName, IEnumerable<ParamEdit> paramEdits)
     {
         int updatedRows = 0;
         int addedRows = 0;

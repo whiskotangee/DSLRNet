@@ -5,7 +5,7 @@ using System.Linq;
 
 public static class MSBEExtensions
 {
-    public static List<NpcParam> FilterRelevantNpcs(this MSBE msb, ILogger logger, List<NpcParam> allNpcs, string mapFileName)
+    public static List<NpcParam> FilterRelevantNpcs(this MSBE msb, ILogger logger, Dictionary<int, NpcParam> allNpcs, string mapFileName)
     {
         List<NpcParam> npcs = [];
 
@@ -16,8 +16,7 @@ public static class MSBEExtensions
             // Range is to ignore wildlife drops
             if (modelNumber >= 2000 && modelNumber <= 6000 || modelNumber >= 6200)
             {
-                NpcParam? item = allNpcs.SingleOrDefault(d => d.ID == enemy.NPCParamID);
-                if (item == null)
+                if (!allNpcs.TryGetValue(enemy.NPCParamID, out NpcParam item))
                 {
                     logger.LogDebug($"NPC with ID {enemy.NPCParamID} from map {mapFileName} with model {modelNumber} did not match a param");
                     continue;

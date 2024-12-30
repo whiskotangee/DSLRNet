@@ -13,7 +13,7 @@ public class Settings
             throw new DirectoryNotFoundException($"Deploy path {DeployPath} does not exist.");
         }
 
-        if (OrderedModPaths.Any(x => !Directory.Exists(x)))
+        if (OrderedModPaths.Count > 0 && OrderedModPaths.Any(x => !string.IsNullOrWhiteSpace(x) && !Directory.Exists(x)))
         {
             throw new DirectoryNotFoundException($"One or more mod paths do not exist.");
         }

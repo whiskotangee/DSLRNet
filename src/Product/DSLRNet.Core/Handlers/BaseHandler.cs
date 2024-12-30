@@ -2,7 +2,7 @@
 
 using DSLRNet.Core.Common;
 using DSLRNet.Core.Contracts;
-using DSLRNet.Core.Data;
+using DSLRNet.Core.DAL;
 
 public class BaseHandler(ParamEditsRepository generatedDataRepository)
 {

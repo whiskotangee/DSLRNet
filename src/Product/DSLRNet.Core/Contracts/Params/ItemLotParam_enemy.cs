@@ -1,3 +1,7 @@
+namespace DSLRNet.Core.Contracts.Params;
+
+using System;
+
 public class ItemLotParam_enemy : ParamBase<ItemLotParam_enemy>
 {
     public string Name { get { return this.GetValue<string>("Name"); } set { this.SetValue("Name", value); } }

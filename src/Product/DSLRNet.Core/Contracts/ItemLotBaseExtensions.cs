@@ -1,5 +1,7 @@
 ﻿namespace DSLRNet.Core.Contracts;
 
+using DSLRNet.Core.Contracts.Params;
+
 public static class ItemLotBaseExtensions
 {
     public static ItemLotBase CloneToBase(this ItemLotParam_enemy enemyItemLot)

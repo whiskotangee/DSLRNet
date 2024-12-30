@@ -29,9 +29,9 @@ public class RegulationBinBank
 
         PARAM param = loadedParams[dataSourceName];
 
-        foreach(var edit in paramEdits.OrderBy(d => d.ParamObject.ID))
+        foreach(ParamEdit? edit in paramEdits.OrderBy(d => d.ParamObject.ID))
         {
-            var row = param.Rows.SingleOrDefault(d => d.ID == edit.ParamObject.ID);
+            PARAM.Row? row = param.Rows.SingleOrDefault(d => d.ID == edit.ParamObject.ID);
             updatedRows += row != null ? 1 : 0;
             addedRows += row == null ? 1 : 0;
 
@@ -60,13 +60,13 @@ public class RegulationBinBank
 
     public void UpdateParam(DataSourceNames name, PARAM param)
     {
-        param.Rows = param.Rows.OrderBy(d => d.ID).ToList();
+        param.Rows = [.. param.Rows.OrderBy(d => d.ID)];
 
         foreach (BinderFile f in this.paramBnd.Files)
         {
-            var paramName = Path.GetFileNameWithoutExtension(f.Name);
+            string paramName = Path.GetFileNameWithoutExtension(f.Name);
 
-            if (Enum.TryParse<DataSourceNames>(paramName, out var readName) && readName == name)
+            if (Enum.TryParse<DataSourceNames>(paramName, out DataSourceNames readName) && readName == name)
             {
                 f.Bytes = param.Write();
                 break;
@@ -83,9 +83,9 @@ public class RegulationBinBank
             {
                 foreach (BinderFile f in this.paramBnd.Files)
                 {
-                    var paramName = Path.GetFileNameWithoutExtension(f.Name);
+                    string paramName = Path.GetFileNameWithoutExtension(f.Name);
 
-                    if (Enum.TryParse<DataSourceNames>(paramName, out var readName) && readName == name)
+                    if (Enum.TryParse<DataSourceNames>(paramName, out DataSourceNames readName) && readName == name)
                     {
                         this.logger.LogInformation($"Creating PARAM object for {name}");
                         PARAM readParam = PARAM.Read(f.Bytes);
@@ -109,7 +109,7 @@ public class RegulationBinBank
         {
             string fileName = GetFileName(name);
 
-            var path = $"Assets\\Data\\PARAM\\ER\\Defs\\{fileName}.xml";
+            string path = $"Assets\\Data\\PARAM\\ER\\Defs\\{fileName}.xml";
             this.logger.LogInformation($"Loading PARAMDEF {path} for {fileName}");
             return PARAMDEF.XmlDeserialize(path);
         });

@@ -26,7 +26,7 @@ public class GenericParam : ICloneable
 
     public List<string> GetFieldNamesByFilter(string filter, bool endsWith = false, string? excludeFilter = null)
     {
-        var ret = Properties.Keys
+        IEnumerable<string> ret = Properties.Keys
             .Where(d => endsWith ? d.EndsWith(filter, StringComparison.OrdinalIgnoreCase) : d.StartsWith(filter, StringComparison.OrdinalIgnoreCase));
         if (excludeFilter != null)
         {
@@ -57,7 +57,7 @@ public class GenericParam : ICloneable
 
             try 
             {
-                var returnType = Convert.ChangeType(value, typeof(T)) 
+                object returnType = Convert.ChangeType(value, typeof(T)) 
                     ?? throw new Exception($"Could not convert value of property {name} from {value} to type {typeof(T)}");
 
                 return (T)returnType; 

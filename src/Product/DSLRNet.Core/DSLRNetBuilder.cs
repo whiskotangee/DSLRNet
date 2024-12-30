@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Core;
 
+using DSLRNet.Core.DAL;
 using DSLRNet.Core.Generators;
 using DSLRNet.Core.Scan;
 using Microsoft.Extensions.Logging;
@@ -160,7 +161,7 @@ public class DSLRNetBuilder(
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} captions");
                 foreach (BinderFile? captionFile in captionFilesToUpdate)
                 {
-                    FMG fmg = FMG.Read(captionFile.Bytes.ToArray());
+                    FMG fmg = FMG.Read([.. captionFile.Bytes]);
                     fmg.Entries.AddRange(category.Where(d => d.MessageText?.Caption != null).Select(d => new FMG.Entry(d.ParamObject.ID, d.MessageText?.Caption)));
                     captionFile.Bytes = fmg.Write();
                 }
@@ -168,7 +169,7 @@ public class DSLRNetBuilder(
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} info");
                 foreach (BinderFile? infoFile in infoFilesToUpdate)
                 {
-                    FMG fmg = FMG.Read(infoFile.Bytes.ToArray());
+                    FMG fmg = FMG.Read([.. infoFile.Bytes]);
                     fmg.Entries.AddRange(category.Where(d => d.MessageText?.Info != null).Select(d => new FMG.Entry(d.ParamObject.ID, d.MessageText?.Info)));
                     infoFile.Bytes = fmg.Write();
                 }
@@ -176,7 +177,7 @@ public class DSLRNetBuilder(
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} names");
                 foreach (BinderFile? nameFile in nameFilesToUpdate)
                 {
-                    FMG fmg = FMG.Read(nameFile.Bytes.ToArray());
+                    FMG fmg = FMG.Read([.. nameFile.Bytes]);
                     fmg.Entries.AddRange(category.Where(d => d.MessageText?.Name != null).Select(d => new FMG.Entry(d.ParamObject.ID, d.MessageText?.Name)));
                     nameFile.Bytes = fmg.Write();
                 }
@@ -184,7 +185,7 @@ public class DSLRNetBuilder(
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} effects");
                 foreach (BinderFile? effectFile in effectFilesToUpdate)
                 {
-                    FMG fmg = FMG.Read(effectFile.Bytes.ToArray());
+                    FMG fmg = FMG.Read([.. effectFile.Bytes]);
                     fmg.Entries.AddRange(category.Where(d => d.MessageText?.Effect != null).Select(d => new FMG.Entry(d.ParamObject.ID, d.MessageText?.Effect)));
                     effectFile.Bytes = fmg.Write();
                 }

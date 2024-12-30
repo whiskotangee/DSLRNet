@@ -9,9 +9,9 @@ public static class MSBEExtensions
     {
         List<NpcParam> npcs = [];
 
-        foreach (var enemy in msb.Parts.Enemies)
+        foreach (MSBE.Part.Enemy? enemy in msb.Parts.Enemies)
         {
-            int modelNumber = int.Parse(enemy.ModelName.Substring(1));
+            int modelNumber = int.Parse(enemy.ModelName[1..]);
 
             // Range is to ignore wildlife drops
             if (modelNumber >= 2000 && modelNumber <= 6000 || modelNumber >= 6200)

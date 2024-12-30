@@ -4,7 +4,6 @@ using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts;
 using DSLRNet.Core.DAL;
-using DSLRNet.Core.Data;
 using DSLRNet.Core.Extensions;
 using DSLRNet.Core.Handlers;
 using Microsoft.Extensions.Options;
@@ -40,7 +39,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         bool found = false;
         do
         {
-            var weaponCandidate = this.GetNewLootItem();
+            EquipParamWeapon weaponCandidate = this.GetNewLootItem();
             if (this.GetWeaponType(weaponCandidate.wepmotionCategory) == type)
             {
                 return weaponCandidate;
@@ -186,15 +185,15 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         List<string> takenParams = [];
 
         // reset the scalings
-        foreach(var scaleParam in damageParams.Keys)
+        foreach(string scaleParam in damageParams.Keys)
         {
             newWeapon.SetValue(scaleParam, 0);
         }
 
-        var statScalingRange = this.RarityHandler.GetWeaponScalingRange(rarityId);
+        IntValueRange statScalingRange = this.RarityHandler.GetWeaponScalingRange(rarityId);
 
         // set primary scaling 
-        var primaryScalingParam = this.Random.GetRandomItem(damageParams.Keys.ToList());
+        string primaryScalingParam = this.Random.GetRandomItem(damageParams.Keys.ToList());
 
         takenParams.Add(primaryScalingParam);
 
@@ -213,7 +212,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         }
 
         // set other stat scalings
-        var otherDamageParams = damageParams.Keys.Except(takenParams).ToList();
+        List<string> otherDamageParams = damageParams.Keys.Except(takenParams).ToList();
 
         foreach (string otherScalingParam in otherDamageParams)
         {
@@ -227,18 +226,18 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
     private void ApplyWeaponRequiredStatChanges(EquipParamWeapon newWeapon, int rarityId)
     {
-        var requirementStats = newWeapon.GetFieldNamesByFilter("proper");
+        List<string> requirementStats = newWeapon.GetFieldNamesByFilter("proper");
 
-        var originalValues = requirementStats.Select(newWeapon.GetValue<int>).ToList();
+        List<int> originalValues = requirementStats.Select(newWeapon.GetValue<int>).ToList();
 
         if (originalValues.Count < requirementStats.Count)
         {
             originalValues.AddRange(Enumerable.Repeat(0, requirementStats.Count - originalValues.Count));
         }
 
-        var additionRange = RarityHandler.GetStatRequiredAdditionRange(rarityId);
+        IntValueRange additionRange = RarityHandler.GetStatRequiredAdditionRange(rarityId);
 
-        var randomizedStats = this.Random.GetRandomizedList(originalValues);
+        List<int> randomizedStats = this.Random.GetRandomizedList(originalValues);
 
         for (int i = 0; i < requirementStats.Count; i++)
         {

@@ -1,5 +1,7 @@
 ﻿namespace DSLRNet.Core.Generators;
 
+using DSLRNet.Core.DAL;
+
 public class ParamLootGenerator<TParamType>(
     RarityHandler rarityHandler,
     SpEffectHandler spEffectHandler,

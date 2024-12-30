@@ -1,7 +1,4 @@
-﻿namespace DSLRNet.Core.Data;
-
-using DSLRNet.Core.DAL;
-
+﻿namespace DSLRNet.Core.DAL;
 public class DataSourceFactory(Csv csv, RegulationBinBank regulationBinReader, RandomProvider random)
 {
     public IDataSource<T> CreateDataSource<T>(DataSourceConfig paramSource)

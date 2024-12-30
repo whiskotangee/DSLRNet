@@ -28,11 +28,11 @@ public class RandomProvider(int seed)
 
     public T NextWeightedValue<T>(List<WeightedValue<T>> values)
     {
-        var weightTotal = values.Sum(d => d.Weight);
+        int weightTotal = values.Sum(d => d.Weight);
 
         int weightedResult = this.NextInt(0, weightTotal);
 
-        foreach (var val in values)
+        foreach (WeightedValue<T> val in values)
         {
             if (weightedResult <= val.Weight)
             {

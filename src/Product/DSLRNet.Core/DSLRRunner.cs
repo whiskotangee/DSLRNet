@@ -1,6 +1,5 @@
 ﻿namespace DSLRNet.Core;
 
-using DSLRNet.Common;
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -53,14 +52,14 @@ public class DSLRRunner
 
         ServiceProvider sp = services.BuildServiceProvider();
 
-        var logger = sp.GetRequiredService<ILogger<DSLRRunner>>();
+        ILogger<DSLRRunner> logger = sp.GetRequiredService<ILogger<DSLRRunner>>();
 
         try
         {
-            var progress = sp.GetRequiredService<IOperationProgressTracker>();
-            var activeSettings = sp.GetRequiredService<IOptions<Settings>>().Value;
-            var activeConfig = sp.GetRequiredService<IOptions<Configuration>>().Value;
-            var msbLoader = sp.GetRequiredService<MSBProvider>();
+            IOperationProgressTracker progress = sp.GetRequiredService<IOperationProgressTracker>();
+            Settings activeSettings = sp.GetRequiredService<IOptions<Settings>>().Value;
+            Configuration activeConfig = sp.GetRequiredService<IOptions<Configuration>>().Value;
+            MSBProvider msbLoader = sp.GetRequiredService<MSBProvider>();
 
             progress.OverallStepCount = 14;
 
@@ -68,11 +67,7 @@ public class DSLRRunner
             string? existingFile = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "oo2core*dll").FirstOrDefault();
             if (existingFile == null)
             {
-                string? oo2GameCore = Directory.GetFiles(activeSettings.GamePath, "oo2core*dll").FirstOrDefault();
-                if (oo2GameCore == null)
-                {
-                    throw new InvalidOperationException("Could not find oo2core file in directory or game directory");
-                }
+                string? oo2GameCore = Directory.GetFiles(activeSettings.GamePath, "oo2core*dll").FirstOrDefault() ?? throw new InvalidOperationException("Could not find oo2core file in directory or game directory");
                 File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
             }
 

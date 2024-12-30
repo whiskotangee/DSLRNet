@@ -1,4 +1,4 @@
-﻿namespace DSLRNet.Core.Data;
+﻿namespace DSLRNet.Core.DAL;
 using IniParser;
 
 public enum GameStage { Early, Mid, Late, End }
@@ -189,7 +189,7 @@ class DslItemLotSetup
         List<List<int>> result = [];
         if (!string.IsNullOrEmpty(input))
         {
-            foreach (string item in input.Split(new[] { "], [" }, StringSplitOptions.None))
+            foreach (string item in input.Split(["], ["], StringSplitOptions.None))
             {
                 result.Add(ParseList(item));
             }

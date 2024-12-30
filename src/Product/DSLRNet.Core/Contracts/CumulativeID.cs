@@ -15,8 +15,8 @@ public class CumulativeID(ILogger logger)
 
     public bool IsItemFlagAcquisitionCumulativeID { get; set; } = false;
 
-    private static List<int> ItemAcquisitionOffsets = [0, 4, 7, 8, 9];
-    private static int ItemAquisitionStartingId = 1024260000;
+    private static readonly List<int> ItemAcquisitionOffsets = [0, 4, 7, 8, 9];
+    private static readonly int ItemAquisitionStartingId = 1024260000;
 
     private int IFA_CurrentOffset { get; set; } = 0;
 

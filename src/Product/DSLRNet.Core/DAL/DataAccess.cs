@@ -1,6 +1,7 @@
 ﻿namespace DSLRNet.Core.DAL;
 
 using DSLRNet.Core.Contracts;
+using DSLRNet.Core.Contracts.Params;
 
 public class DataAccess
 {
@@ -87,7 +88,7 @@ public class DataAccess
         where T : ParamBase<T>, ICloneable<T>, new()
     {
         DataSourceConfig config = this.config.DataSourceConfigs.Single(d => d.Name == configName);
-        var dataSource = this.dataSourceFactory.CreateDataSource<T>(config);
+        IDataSource<T> dataSource = this.dataSourceFactory.CreateDataSource<T>(config);
 
         return dataSource;
     }

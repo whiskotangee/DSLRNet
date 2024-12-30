@@ -44,8 +44,7 @@ public class Settings
 
     public void SaveSettings(string path)
     {
-        var parser = new FileIniDataParser();
-        IniData data = new IniData();
+        IniData data = new();
         data["Settings"]["DeployPath"] = DeployPath;
         data["Settings"]["OrderedModPaths"] = string.Join(",", OrderedModPaths);
         data["Settings"]["RandomSeed"] = RandomSeed.ToString();
@@ -102,7 +101,7 @@ public class Settings
 
     public static Settings? CreateFromSettingsIni()
     {
-        var parser = new FileIniDataParser();
+        FileIniDataParser parser = new();
         IniData data;
 
         if (File.Exists("Settings.User.ini"))
@@ -114,7 +113,7 @@ public class Settings
             data = parser.ReadFile("Settings.ini");
         }
 
-        var settings = new Settings
+        Settings settings = new()
         {
             DeployPath = data["Settings"]["DeployPath"],
             OrderedModPaths = [.. data["Settings"]["OrderedModPaths"].Split(",")],

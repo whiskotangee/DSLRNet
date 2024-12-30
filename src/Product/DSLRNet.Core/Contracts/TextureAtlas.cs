@@ -37,16 +37,16 @@ public class SubTexture
 public class TextureAtlasSerializer 
 { 
     public static string Serialize(TextureAtlas textureAtlas) 
-    { 
-        var serializer = new XmlSerializer(typeof(TextureAtlas)); 
-        using var stringWriter = new StringWriter(); 
+    {
+        XmlSerializer serializer = new(typeof(TextureAtlas)); 
+        using StringWriter stringWriter = new(); 
         serializer.Serialize(stringWriter, textureAtlas); 
         return stringWriter.ToString(); 
     } 
     public static TextureAtlas? Deserialize(string xml) 
-    { 
-        var serializer = new XmlSerializer(typeof(TextureAtlas)); 
-        using var stringReader = new StringReader(xml); 
+    {
+        XmlSerializer serializer = new(typeof(TextureAtlas)); 
+        using StringReader stringReader = new(xml); 
         return serializer.Deserialize(stringReader) as TextureAtlas; 
     } 
 }

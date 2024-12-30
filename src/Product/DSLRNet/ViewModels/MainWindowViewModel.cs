@@ -14,7 +14,7 @@ using System.Windows;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {
-    public static readonly object lockObject = new object();
+    public static readonly object lockObject = new();
 
     private SettingsWrapper settingsWrapper;
     private ThreadSafeObservableCollection<string> logMessages;

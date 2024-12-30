@@ -13,6 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSLRNet", "src\Product\DSLR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{638D27AD-6A67-44C1-BEF0-6961F9E57652}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.github\workflows\main.yml = .github\workflows\main.yml
 	EndProjectSection
 EndProject

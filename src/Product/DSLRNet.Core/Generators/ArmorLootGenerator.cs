@@ -70,7 +70,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
             descriptionStrings.Add(param.Replace("DamageCutRate", "").ToUpper());
         }
 
-        List<string> defenseProperties = newArmor.GetFieldNamesByFilter("defense", false, "Material").ToList();
+        List<string> defenseProperties = [.. newArmor.GetFieldNamesByFilter("defense", false, "Material")];
 
         foreach (string param in defenseProperties)
         {
@@ -82,7 +82,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
     private void ModifyArmorResistance(EquipParamProtector newArmor, int rarity)
     {
-        var resistProperties = newArmor.GetFieldNamesByFilter("resist");
+        List<string> resistProperties = newArmor.GetFieldNamesByFilter("resist");
         float multiplier = this.RarityHandler.GetArmorResistMultiplier(rarity);
 
         foreach (string param in this.Random.GetRandomItems(resistProperties, this.Settings.ArmorGeneratorSettings.ResistParamBuffCount))

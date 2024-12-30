@@ -61,7 +61,7 @@ public static class IServiceCollectionExtensions
         where T : ParamBase<T>, ICloneable<T>, new()
     {
         DataSourceConfig config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
-        var dataSource = factory.CreateDataSource<T>(config);
+        IDataSource<T> dataSource = factory.CreateDataSource<T>(config);
 
         return dataSource;
     }

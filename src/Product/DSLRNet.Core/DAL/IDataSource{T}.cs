@@ -1,5 +1,4 @@
-﻿namespace DSLRNet.Core.Data;
-
+﻿namespace DSLRNet.Core.DAL;
 public interface IDataSource
 {
     Task InitializeDataAsync(IEnumerable<int>? ignoreIds = null);

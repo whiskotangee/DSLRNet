@@ -3,21 +3,15 @@
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
 
-public class RarityHandler : BaseHandler
+public class RarityHandler(
+    RandomProvider randomProvider,
+    ParamEditsRepository dataRepository,
+    DataAccess dataAccess) : BaseHandler(dataRepository)
 {
-    private readonly RandomProvider randomProvider;
+    private readonly RandomProvider randomProvider = randomProvider;
     private RarityIconMappingConfig iconMappingConfig = new();
 
-    private readonly Dictionary<int, RaritySetup> RarityConfigs = [];
-
-    public RarityHandler(
-        RandomProvider randomProvider,
-        ParamEditsRepository dataRepository,
-        DataAccess dataAccess) : base(dataRepository)
-    {
-        this.randomProvider = randomProvider;
-        this.RarityConfigs = dataAccess.RaritySetup.GetAll().ToDictionary(d => d.ID);
-    }
+    private readonly Dictionary<int, RaritySetup> RarityConfigs = dataAccess.RaritySetup.GetAll().ToDictionary(d => d.ID);
 
     public Dictionary<int, int> CountByRarity { get; set; } = [];
 
@@ -32,7 +26,7 @@ public class RarityHandler : BaseHandler
 
         int finalid = this.randomProvider.NextWeightedValue(weightedValues);
 
-        if (!CountByRarity.TryGetValue(finalid, out var _))
+        if (!CountByRarity.TryGetValue(finalid, out int _))
         {
             CountByRarity[finalid] = 0;
         }
@@ -46,7 +40,7 @@ public class RarityHandler : BaseHandler
     {
         Queue<bool> chanceQueue = [];
 
-        var rarity = this.GetNearestRarity(rarityId);
+        RaritySetup rarity = this.GetNearestRarity(rarityId);
         int offset = 0;
 
         if (lootType != LootType.Weapon && rarityId >= 5)
@@ -68,38 +62,38 @@ public class RarityHandler : BaseHandler
 
     public IntValueRange GetStatRequiredAdditionRange(int rarityId)
     {
-        var rarity = this.GetNearestRarity(rarityId);
+        RaritySetup rarity = this.GetNearestRarity(rarityId);
         return new IntValueRange(rarity.StatReqAddMin, rarity.StatReqAddMax);
     }
 
     public IntValueRange GetDamageAdditionRange(int rarityId)
     {
-        var rarity = this.GetNearestRarity(rarityId);
+        RaritySetup rarity = this.GetNearestRarity(rarityId);
         return new IntValueRange(rarity.WeaponDmgAddMin, rarity.WeaponDmgAddMax);
     }
 
     public IntValueRange GetWeaponScalingRange(int rarityId)
     {
-        var rarity = this.GetNearestRarity(rarityId);
+        RaritySetup rarity = this.GetNearestRarity(rarityId);
         return new IntValueRange(rarity.ScalingMin, rarity.ScalingMax);
     }
 
     public FloatValueRange GetShieldGuardRateRange(int rarityId)
     {
-        var rarity = this.GetNearestRarity(rarityId);
+        RaritySetup rarity = this.GetNearestRarity(rarityId);
         return new FloatValueRange(rarity.ShieldGuardRateMultMin, rarity.ShieldGuardRateMultMax);
     }
 
     public float GetArmorCutRateAddition(int rarityId)
     {
-        var rarity = this.GetNearestRarity(rarityId);
+        RaritySetup rarity = this.GetNearestRarity(rarityId);
         FloatValueRange range = new(rarity.ArmorCutRateAddMin, rarity.ArmorCutRateAddMax);
         return (float)Math.Round(this.randomProvider.Next(range), 4);
     }
 
     public float GetArmorResistMultiplier(int rarityid)
     {
-        var rarity = this.GetNearestRarity(rarityid);
+        RaritySetup rarity = this.GetNearestRarity(rarityid);
         FloatValueRange range = new(rarity.ArmorResistMinMult, rarity.ArmorResistMaxMult);
 
         return (float)this.randomProvider.Next(range);
@@ -112,7 +106,7 @@ public class RarityHandler : BaseHandler
 
     public IntValueRange GetSpeffectPowerRange(int rarityId)
     {
-        var rarity = this.GetNearestRarity(rarityId);
+        RaritySetup rarity = this.GetNearestRarity(rarityId);
 
         return new IntValueRange(
             Math.Clamp(rarity.SpEffectPowerMin - 10, 0, rarity.SpEffectPowerMax),
@@ -121,7 +115,7 @@ public class RarityHandler : BaseHandler
 
     public string GetRarityName(int rarityId, bool withColor)
     {
-        var rarity = this.GetNearestRarity(rarityId);
+        RaritySetup rarity = this.GetNearestRarity(rarityId);
 
         if (withColor)
         {
@@ -133,7 +127,7 @@ public class RarityHandler : BaseHandler
 
     public int GetSellValue(int rarityid)
     {
-        var rarity = this.GetNearestRarity(rarityid);
+        RaritySetup rarity = this.GetNearestRarity(rarityid);
         return this.randomProvider.NextInt(rarity.SellValueMin, rarity.SellValueMax);
     }
 

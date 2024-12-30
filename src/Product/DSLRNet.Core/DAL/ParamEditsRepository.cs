@@ -1,11 +1,9 @@
-﻿namespace DSLRNet.Core.Data;
-
-using DSLRNet.Core.DAL;
+﻿namespace DSLRNet.Core.DAL;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 public class ParamEditsRepository(
-    DataAccess dataAccess, 
+    DataAccess dataAccess,
     ILogger<ParamEditsRepository> logger,
     RegulationBinBank regulationBin,
     IOperationProgressTracker? progressTracker = null)
@@ -22,8 +20,8 @@ public class ParamEditsRepository(
 
     public bool VerifyItemLots()
     {
-        List<ParamEdit> enemyLots = this.paramEdits[ParamNames.ItemLotParam_enemy].Values.ToList();
-        List<ParamEdit> mapLots = this.paramEdits[ParamNames.ItemLotParam_map].Values.ToList();
+        List<ParamEdit> enemyLots = [.. this.paramEdits[ParamNames.ItemLotParam_enemy].Values];
+        List<ParamEdit> mapLots = [.. this.paramEdits[ParamNames.ItemLotParam_map].Values];
 
         HashSet<int> preExistingIds = dataAccess.ItemLotParamMap.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 })
             .Concat(dataAccess.ItemLotParamEnemy.GetAll().SelectMany(s => new List<int>() { s.lotItemId01, s.lotItemId02, s.lotItemId03, s.lotItemId04, s.lotItemId05, s.lotItemId06, s.lotItemId07, s.lotItemId08 }))
@@ -45,12 +43,12 @@ public class ParamEditsRepository(
 
         StringBuilder errorMessages = new();
 
-        if (itemIdsNotInItemLots.Any())
+        if (itemIdsNotInItemLots.Count != 0)
         {
             errorMessages.AppendLine($"Generated Item Ids ({string.Join(",", itemIdsNotInItemLots)}) that don't exist in Item Lots");
         }
 
-        if (itemIdsNotGeneratedForItemLots.Any())
+        if (itemIdsNotGeneratedForItemLots.Count != 0)
         {
             errorMessages.AppendLine($"Item lots referencing Ids ({string.Join(",", itemIdsNotGeneratedForItemLots)}) that were not generated");
         }
@@ -61,7 +59,7 @@ public class ParamEditsRepository(
             .Select(g => g.Key)
             .ToList();
 
-        if (duplicatedEnemyLotIds.Any())
+        if (duplicatedEnemyLotIds.Count != 0)
         {
             errorMessages.AppendLine($"Enemy Item lots are duplicated: {string.Join(",", duplicatedEnemyLotIds)}");
         }
@@ -72,7 +70,7 @@ public class ParamEditsRepository(
             .Select(g => g.Key)
             .ToList();
 
-        if (duplicatedMapLotIds.Any())
+        if (duplicatedMapLotIds.Count != 0)
         {
             errorMessages.AppendLine($"Map Item lots are duplicated: {string.Join(",", duplicatedMapLotIds)}");
         }
@@ -82,7 +80,7 @@ public class ParamEditsRepository(
             .Select(d => d.ParamObject.ID)
             .ToList();
 
-        if (mapLotsWithoutFlagIds.Any())
+        if (mapLotsWithoutFlagIds.Count != 0)
         {
             errorMessages.AppendLine($"Map lots without acquisition flag Ids: {string.Join(",", mapLotsWithoutFlagIds)}");
         }
@@ -115,7 +113,7 @@ public class ParamEditsRepository(
 
         if (progressTracker != null)
         {
-            switch(paramEdit.ParamName)
+            switch (paramEdit.ParamName)
             {
                 case ParamNames.EquipParamWeapon:
                     progressTracker.GeneratedWeapons += 1;

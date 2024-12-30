@@ -1,6 +1,7 @@
 ﻿namespace DSLRNet.Core.Generators;
 
 using DSLRNet.Core.Common;
+using DSLRNet.Core.Contracts.Params;
 using DSLRNet.Core.DAL;
 using System.Collections.Concurrent;
 
@@ -83,9 +84,9 @@ public class ItemLotGenerator : BaseHandler
         this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Values.Sum(d => d.ItemLotIds.Distinct().Count());
         this.progressTracker.CurrentStageProgress = 0;
 
-        foreach (var gameStageConfig in itemLotSettings.GameStageConfigs.Values)
+        foreach (GameStageConfig gameStageConfig in itemLotSettings.GameStageConfigs.Values)
         {
-            List<int> itemLotIds = gameStageConfig.ItemLotIds.ToList();
+            List<int> itemLotIds = [.. gameStageConfig.ItemLotIds];
 
             itemLotIds.AddRange(itemLotIds
                 .SelectMany(id => this.FindSequentialItemLotIds(
@@ -102,7 +103,7 @@ public class ItemLotGenerator : BaseHandler
 
             for (int x = 0; x < itemLotIds.Count; x++)
             {
-                if (this.GeneratedDataRepository.TryGetParamEdit(ParamNames.ItemLotParam_enemy, itemLotIds[x], out var itemLotParam))
+                if (this.GeneratedDataRepository.TryGetParamEdit(ParamNames.ItemLotParam_enemy, itemLotIds[x], out ParamEdit? itemLotParam))
                 {
                     this.logger.LogDebug($"Enemy item lot {itemLotIds[x]} has already been processed, skipping");
                     continue;
@@ -143,8 +144,8 @@ public class ItemLotGenerator : BaseHandler
                     throw new Exception("No open item spots in item lot");
                 }
 
-                var startingIndex = offset;
-                var endingIndex = Math.Clamp(offset + this.settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy, 1, ItemLotParamMax);
+                int startingIndex = offset;
+                int endingIndex = Math.Clamp(offset + this.settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy, 1, ItemLotParamMax);
 
                 for (int y = startingIndex; y < endingIndex; y++)
                 {
@@ -192,14 +193,14 @@ public class ItemLotGenerator : BaseHandler
 
     private void CreateItemLot_Map(ItemLotSettings itemLotSettings)
     {
-        var defaultValue = GenericParam.FromObject(this.ItemLotTemplate.Clone());
+        GenericParam defaultValue = GenericParam.FromObject(this.ItemLotTemplate.Clone());
 
         this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Values.Sum(d => d.ItemLotIds.Count);
         this.progressTracker.CurrentStageProgress = 0;
 
-        foreach (var gameStageConfig in itemLotSettings.GameStageConfigs.Values)
+        foreach (GameStageConfig gameStageConfig in itemLotSettings.GameStageConfigs.Values)
         {
-            foreach (var itemLotId in gameStageConfig.ItemLotIds)
+            foreach (int itemLotId in gameStageConfig.ItemLotIds)
             {
                 List<int> itemLotIds = this.FindSequentialItemLotIds(
                     itemLotSettings,
@@ -224,7 +225,7 @@ public class ItemLotGenerator : BaseHandler
 
                     int offset = 1;
 
-                    var lootPerLot = itemLotSettings.IsForBosses ? this.settings.ItemLotGeneratorSettings.LootPerItemLot_Bosses : this.settings.ItemLotGeneratorSettings.LootPerItemLot_Map;
+                    int lootPerLot = itemLotSettings.IsForBosses ? this.settings.ItemLotGeneratorSettings.LootPerItemLot_Bosses : this.settings.ItemLotGeneratorSettings.LootPerItemLot_Map;
                     for (int y = 0; y < lootPerLot; y++)
                     {
                         this.CreateItemLotEntry(
@@ -254,7 +255,7 @@ public class ItemLotGenerator : BaseHandler
             }
         }
 
-        if (itemLotSettings.NpcIds.Any() && itemLotSettings.NpcItemlotids.Any())
+        if (itemLotSettings.NpcIds.Count != 0 && itemLotSettings.NpcItemlotids.Count != 0)
         {
             this.GeneratedDataRepository.AddParamEdit(
                 new ParamEdit()
@@ -295,8 +296,8 @@ public class ItemLotGenerator : BaseHandler
 
         bool IsIdTaken(int id)
         {
-            var existsInData = existsInDataCheck(id);
-            var existsInEdits = this.GeneratedDataRepository.ContainsParamEdit(itemLotSettings.ParamName, id);
+            bool existsInData = existsInDataCheck(id);
+            bool existsInEdits = this.GeneratedDataRepository.ContainsParamEdit(itemLotSettings.ParamName, id);
 
             return existsInData || existsInEdits;
         }
@@ -402,7 +403,7 @@ public class ItemLotGenerator : BaseHandler
 
     private float GetDropChance(bool dropGauranteed, float dropMutliplier, int lootPerItemLot)
     {
-        var itemDropChance = this.settings.ItemLotGeneratorSettings.GlobalDropChance + Math.Max(0, 6 - lootPerItemLot) * 9;
+        float itemDropChance = this.settings.ItemLotGeneratorSettings.GlobalDropChance + Math.Max(0, 6 - lootPerItemLot) * 9;
 
         return Math.Clamp(dropGauranteed ? 1000 / lootPerItemLot : (int)(itemDropChance * dropMutliplier), 0, 1000);
     }

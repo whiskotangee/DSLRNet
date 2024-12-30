@@ -1,3 +1,7 @@
+namespace DSLRNet.Core.Contracts.Params;
+
+using System;
+
 public class SpEffectParam : ParamBase<SpEffectParam>
 {
     public string Name { get { return this.GetValue<string>("Name"); } set { this.SetValue("Name", value); } }

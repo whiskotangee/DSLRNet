@@ -1,4 +1,4 @@
-﻿namespace DSLRNet.Core.Data;
+﻿namespace DSLRNet.Core.DAL;
 public abstract class BaseDataSource<T>(RandomProvider random) : IDataSource<T>
     where T : class, ICloneable<T>, new()
 {
@@ -30,7 +30,7 @@ public abstract class BaseDataSource<T>(RandomProvider random) : IDataSource<T>
     {
         if (this.CachedData.Count == 0)
         {
-            var loadedData = await this.LoadDataAsync();
+            IEnumerable<T> loadedData = await this.LoadDataAsync();
             this.CachedData = loadedData.Where(d => ignoreIds == null || !ignoreIds.Contains(this.GetId(d))).ToDictionary(this.GetId);
         }
     }

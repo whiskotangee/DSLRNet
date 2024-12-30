@@ -7,16 +7,16 @@ using System.Xml.Serialization;
 public class TextureAtlas
 {
     [XmlAttribute("imagePath")]
-    public string ImagePath { get; set; }
+    public string ImagePath { get; set; } = string.Empty;
 
     [XmlElement("SubTexture")]
-    public List<SubTexture> SubTextures { get; set; }
+    public List<SubTexture> SubTextures { get; set; } = [];
 }
 
 public class SubTexture
 {
     [XmlAttribute("name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     [XmlAttribute("x")]
     public int X { get; set; }
@@ -37,17 +37,17 @@ public class SubTexture
 public class TextureAtlasSerializer 
 { 
     public static string Serialize(TextureAtlas textureAtlas) 
-    { 
-        var serializer = new XmlSerializer(typeof(TextureAtlas)); 
-        using var stringWriter = new StringWriter(); 
+    {
+        XmlSerializer serializer = new(typeof(TextureAtlas)); 
+        using StringWriter stringWriter = new(); 
         serializer.Serialize(stringWriter, textureAtlas); 
         return stringWriter.ToString(); 
     } 
-    public static TextureAtlas Deserialize(string xml) 
-    { 
-        var serializer = new XmlSerializer(typeof(TextureAtlas)); 
-        using var stringReader = new StringReader(xml); 
-        return (TextureAtlas)serializer.Deserialize(stringReader); 
+    public static TextureAtlas? Deserialize(string xml) 
+    {
+        XmlSerializer serializer = new(typeof(TextureAtlas)); 
+        using StringReader stringReader = new(xml); 
+        return serializer.Deserialize(stringReader) as TextureAtlas; 
     } 
 }
 

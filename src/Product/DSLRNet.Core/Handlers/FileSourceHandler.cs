@@ -14,11 +14,11 @@ public class FileSourceHandler(IOptions<Settings> settings)
             throw new InvalidOperationException("Mod paths not set");
         }
 
-        fullPath = null;
+        fullPath = string.Empty;
 
         foreach (string path in settings.Value.OrderedModPaths)
         {
-            var combined = Path.Combine(path, fileName);
+            string combined = Path.Combine(path, fileName);
             if (File.Exists(combined))
             {
                 fullPath = combined;
@@ -48,10 +48,10 @@ public class FileSourceHandler(IOptions<Settings> settings)
             throw new InvalidOperationException("Mod paths not set");
         }
 
-        var files = new List<string>();
+        List<string> files = [];
         foreach (string path in settings.Value.OrderedModPaths)
         {
-            var testPath = Path.Combine(path, basePath);
+            string testPath = Path.Combine(path, basePath);
             if (Directory.Exists(testPath))
             {
                 files.AddRange(

@@ -2,7 +2,7 @@
 
 public class WeightedValue<T>
 {
-    public T Value { get; set; }
+    public required T Value { get; set; }
 
     public int Weight { get; set; }
 

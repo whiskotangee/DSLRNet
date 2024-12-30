@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Core;
 
+using DSLRNet.Core.DAL;
 using DSLRNet.Core.Generators;
 using DSLRNet.Core.Scan;
 using Microsoft.Extensions.Logging;
@@ -100,7 +101,7 @@ public class DSLRNetBuilder(
 
             csv.WriteCsv(csvFile, parms.Select(d =>
             {
-                GenericParam? ret = d.Clone() as GenericParam;
+                GenericParam ret = d?.Clone() as GenericParam ?? throw new Exception($"Encountered null param when writing csv for {paramName}");
                 ret.Name = string.Empty;
                 return ret;
             }).ToList());
@@ -147,9 +148,9 @@ public class DSLRNetBuilder(
             this.logger.LogInformation($"Processing {Path.GetFileName(sourceFile)}");
             BND4 bnd = BND4.Read(sourceFile);
 
-            List<IGrouping<string, ParamEdit>> categories = paramEdits.Where(d => d.MessageText != null).GroupBy(d => d.MessageText.Category).ToList();
+            List<IGrouping<string?, ParamEdit>> categories = paramEdits.Where(d => d.MessageText != null).GroupBy(d => d.MessageText?.Category).ToList();
 
-            foreach (IGrouping<string, ParamEdit>? category in categories)
+            foreach (IGrouping<string?, ParamEdit>? category in categories)
             {
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key}");
                 List<BinderFile> captionFilesToUpdate = bnd.Files.Where(d => d.Name.Contains($"{category.Key}Caption")).ToList();
@@ -160,32 +161,32 @@ public class DSLRNetBuilder(
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} captions");
                 foreach (BinderFile? captionFile in captionFilesToUpdate)
                 {
-                    FMG fmg = FMG.Read(captionFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Caption != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Caption)));
+                    FMG fmg = FMG.Read([.. captionFile.Bytes]);
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText?.Caption != null).Select(d => new FMG.Entry(d.ParamObject.ID, d.MessageText?.Caption)));
                     captionFile.Bytes = fmg.Write();
                 }
 
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} info");
                 foreach (BinderFile? infoFile in infoFilesToUpdate)
                 {
-                    FMG fmg = FMG.Read(infoFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Info != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Info)));
+                    FMG fmg = FMG.Read([.. infoFile.Bytes]);
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText?.Info != null).Select(d => new FMG.Entry(d.ParamObject.ID, d.MessageText?.Info)));
                     infoFile.Bytes = fmg.Write();
                 }
 
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} names");
                 foreach (BinderFile? nameFile in nameFilesToUpdate)
                 {
-                    FMG fmg = FMG.Read(nameFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Name != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Name)));
+                    FMG fmg = FMG.Read([.. nameFile.Bytes]);
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText?.Name != null).Select(d => new FMG.Entry(d.ParamObject.ID, d.MessageText?.Name)));
                     nameFile.Bytes = fmg.Write();
                 }
 
                 this.logger.LogInformation($"Processing category {Path.GetFileName(sourceFile)}-{category.Key} effects");
                 foreach (BinderFile? effectFile in effectFilesToUpdate)
                 {
-                    FMG fmg = FMG.Read(effectFile.Bytes.ToArray());
-                    fmg.Entries.AddRange(category.Where(d => d.MessageText.Effect != null).Select(d => new FMG.Entry((int)d.ParamObject.Properties["ID"], d.MessageText.Effect)));
+                    FMG fmg = FMG.Read([.. effectFile.Bytes]);
+                    fmg.Entries.AddRange(category.Where(d => d.MessageText?.Effect != null).Select(d => new FMG.Entry(d.ParamObject.ID, d.MessageText?.Effect)));
                     effectFile.Bytes = fmg.Write();
                 }
 

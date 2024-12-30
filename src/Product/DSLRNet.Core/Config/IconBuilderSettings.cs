@@ -18,10 +18,10 @@ public class IconSheetSettings
 {
     public int GoalIconsPerSheet { get; set; }
 
-    public IconDimensions IconDimensions { get; set; }
+    public IconDimensions IconDimensions { get; set; } = new IconDimensions();
 
     public int StartAt { get; set; }
-    public List<RarityIconDetails> Rarities { get; set; }
+    public List<RarityIconDetails> Rarities { get; set; } = [];
 }
 
 public class IconDimensions
@@ -33,7 +33,7 @@ public class IconDimensions
 
 public class RarityIconDetails
 {
-    public List<int> RarityIds { get; set; }
+    public List<int> RarityIds { get; set; } = [];
 
-    public string BackgroundImageName { get; set; }
+    public string BackgroundImageName { get; set; } = string.Empty;
 }

@@ -1,5 +1,4 @@
-﻿namespace DSLRNet.Core.Data;
-
+﻿namespace DSLRNet.Core.DAL;
 public class Csv(ILogger<Csv> logger)
 {
     public List<T> LoadCsv<T>(string filename)
@@ -8,8 +7,8 @@ public class Csv(ILogger<Csv> logger)
         using StreamReader reader = new(filename);
         using CsvReader csv = new(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
         {
-            PrepareHeaderForMatch = (PrepareHeaderForMatchArgs args) => args.Header.ToLower(),
-            MissingFieldFound = (MissingFieldFoundArgs args) => logger.LogError($"{filename} missing field at index {args.Index}"),
+            PrepareHeaderForMatch = (args) => args.Header.ToLower(),
+            MissingFieldFound = (args) => logger.LogError($"{filename} missing field at index {args.Index}"),
             HasHeaderRecord = true
         });
 
@@ -46,9 +45,9 @@ public class Csv(ILogger<Csv> logger)
                     }
                     else
                     {
-                        values.Add(value?.ToString());
+                        values.Add(value?.ToString() ?? string.Empty);
                     }
-                    
+
                 }
                 else
                 {

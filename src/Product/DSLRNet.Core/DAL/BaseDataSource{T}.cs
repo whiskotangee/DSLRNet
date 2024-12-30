@@ -1,12 +1,12 @@
-﻿namespace DSLRNet.Core.Data;
+﻿namespace DSLRNet.Core.DAL;
 public abstract class BaseDataSource<T>(RandomProvider random) : IDataSource<T>
     where T : class, ICloneable<T>, new()
 {
-    protected Dictionary<int, T> CachedData { get; set; }
+    protected Dictionary<int, T> CachedData { get; set; } = [];
 
     public T? GetItemById(int id)
     {
-        if (this.CachedData.TryGetValue(id, out T item))
+        if (this.CachedData.TryGetValue(id, out T? item))
         {
             return item.Clone();
         }
@@ -28,16 +28,16 @@ public abstract class BaseDataSource<T>(RandomProvider random) : IDataSource<T>
 
     public async Task InitializeDataAsync(IEnumerable<int>? ignoreIds = null)
     {
-        if (this.CachedData == null)
+        if (this.CachedData.Count == 0)
         {
-            var loadedData = await this.LoadDataAsync();
+            IEnumerable<T> loadedData = await this.LoadDataAsync();
             this.CachedData = loadedData.Where(d => ignoreIds == null || !ignoreIds.Contains(this.GetId(d))).ToDictionary(this.GetId);
         }
     }
 
     private int GetId(T value)
     {
-        return (int)typeof(T).GetProperty("ID").GetValue(value);
+        return (int)(typeof(T).GetProperty("ID")?.GetValue(value) ?? -1);
     }
 
     public int Count()

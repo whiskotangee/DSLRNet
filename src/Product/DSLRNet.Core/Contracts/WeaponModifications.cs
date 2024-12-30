@@ -1,18 +1,12 @@
 ﻿namespace DSLRNet.Core.Contracts;
 
-public class WeaponModifications
+public class WeaponModifications(DamageTypeSetup primaryDamage, DamageTypeSetup? secondaryDamage)
 {
-    public WeaponModifications(DamageTypeSetup primaryDamage, DamageTypeSetup? secondaryDamage)
-    {
-        this.PrimaryDamageType = primaryDamage;
-        this.SecondaryDamageType = secondaryDamage;
-    }
-
-    public DamageTypeSetup PrimaryDamageType { get; set; }
+    public DamageTypeSetup PrimaryDamageType { get; set; } = primaryDamage;
 
     public float? PrimaryDamageValue { get; set; }
 
-    public DamageTypeSetup? SecondaryDamageType { get; set; }
+    public DamageTypeSetup? SecondaryDamageType { get; set; } = secondaryDamage;
 
     public float? SecondaryDamageValue { get; set; }
 

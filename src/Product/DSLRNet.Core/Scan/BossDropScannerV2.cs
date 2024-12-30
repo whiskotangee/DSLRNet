@@ -2,11 +2,10 @@
 
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
-using System.Diagnostics.CodeAnalysis;
 
 using static SoulsFormats.EMEVD.Instruction;
 
-public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Configuration> config, FileSourceHandler fileHandler, DataAccess dataAccess)
+public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, FileSourceHandler fileHandler, DataAccess dataAccess)
 {
     private Dictionary<long, CommonBossEventConfig> bossDeathFunctions = [];
     private Dictionary<long, CommonBossEventConfig> itemRewardingFunctions = [];
@@ -16,8 +15,8 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
     {
         // start with GameAreaParam, these are boss entity ids
 
-        var bossDeathFlags = new Dictionary<uint, int>();
-        foreach (var gameAreaParam in dataAccess.GameAreaParam.GetAll())
+        Dictionary<uint, int> bossDeathFlags = [];
+        foreach (GameAreaParam gameAreaParam in dataAccess.GameAreaParam.GetAll())
         {
             if (gameAreaParam.defeatBossFlagId > 0)
             {
@@ -33,37 +32,33 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
 
         ScanFunctionDefinitions(EMEVD.Read(GetCommonEmevdFile("common_func.emevd.dcx")), "common_func");
 
-        List<EventDropItemLotDetails> commonEventsDetails = [];
         List<EventDropItemLotDetails> lotDetails = [];
-        var commonEmevdFile = GetCommonEmevdFile("common.emevd.dcx");
+        string commonEmevdFile = GetCommonEmevdFile("common.emevd.dcx");
 
         EMEVD emevd = EMEVD.Read(commonEmevdFile);
         ScanFunctionDefinitions(emevd, Path.GetFileNameWithoutExtension(commonEmevdFile));
-        ScanMapEvents(emevd, Path.GetFileNameWithoutExtension(commonEmevdFile), commonEventsDetails, lotDetails);
+        ScanMapEvents(emevd, Path.GetFileNameWithoutExtension(commonEmevdFile), lotDetails);
 
         // scan all other emevds, look for boss defeat events, then for setting flags that trigger item lots
 
         //var otherEmveds = fileHandler.ListFilesFromAllModDirectories("event", "m60_38_41*emevd.dcx");
-        var otherEmveds = fileHandler.ListFilesFromAllModDirectories("event", "m*emevd.dcx");
-        foreach (var mapEventFile in otherEmveds.Distinct())
+        List<string> otherEmveds = fileHandler.ListFilesFromAllModDirectories("event", "m*emevd.dcx");
+        foreach (string? mapEventFile in otherEmveds.Distinct())
         {
             EMEVD mapEmevd = EMEVD.Read(mapEventFile);
-            var mapId = GetMapId(mapEventFile);
+            string mapId = GetMapId(mapEventFile);
             logger.LogInformation($"Scanning events from {mapId} for boss drops");
             ScanFunctionDefinitions(mapEmevd, mapId);
-            ScanMapEvents(mapEmevd, mapId, commonEventsDetails, lotDetails);
+            ScanMapEvents(mapEmevd, mapId, lotDetails);
         }
 
-        var missingCommonEvents = commonEventsDetails.Where(d => d.IsCompleteEvent() && !lotDetails.Any(s => s.EventTriggerFlagId == d.EventTriggerFlagId)).ToList();
-        lotDetails.AddRange(missingCommonEvents);
+        Dictionary<uint, int> filteredBossFlags = bossDeathFlags.Where(d => !lotDetails.Any(s => (s.EventTriggerFlagId == d.Key || s.EntityId == d.Key) && s.ItemLotId > 0)).ToDictionary(d => d.Key, d => d.Value);
 
-        var filteredBossFlags = bossDeathFlags.Where(d => !lotDetails.Any(s => (s.EventTriggerFlagId == d.Key || s.EntityId == d.Key) && s.ItemLotId > 0)).ToDictionary(d => d.Key, d => d.Value);
-
-        logger.LogDebug($"Bosses missing event drops {filteredBossFlags.Count()} - {string.Join(",", filteredBossFlags.Select(d => d.Key))}");
+        logger.LogDebug($"Bosses missing event drops {filteredBossFlags.Count} - {string.Join(",", filteredBossFlags.Select(d => d.Key))}");
         logger.LogInformation($"Found {lotDetails.Where(d => d.ItemLotId > 0).DistinctBy(d => d.ItemLotId).Count()} boss drop events");
 
-        var res = EventDropItemLotDetails.SummarizeUnsetProperties(lotDetails);
-        foreach (var toLog in res)
+        Dictionary<string, IEnumerable<EventDropItemLotDetails>> res = EventDropItemLotDetails.SummarizeUnsetProperties(lotDetails);
+        foreach (KeyValuePair<string, IEnumerable<EventDropItemLotDetails>> toLog in res)
         {
             logger.LogInformation($"{toLog.Key} - {string.Join(Environment.NewLine, toLog.Value)}");
         }
@@ -83,26 +78,26 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
 
     private string GetMapId(string mapEventFile)
     {
-        var mapId = Path.GetFileName(mapEventFile);
+        string mapId = Path.GetFileName(mapEventFile);
         return mapId[..mapId.IndexOf('.')];
     }
 
-    private EventDropItemLotDetails? EvaluateInitializeEventInstruction(string mapName, EMEVD emevd, EMEVD.Event ev, EMEVD.Instruction instruction, List<long> args)
+    private EventDropItemLotDetails? EvaluateInitializeEventInstruction(string mapName, EMEVD.Instruction instruction, List<long> args)
     {
         if (!instruction.IsInitializeEvent())
         {
             return null;
         }
 
-        var eventId = args[1];
+        long eventId = args[1];
 
-        if (this.bossDeathFunctions.TryGetValue(eventId, out CommonBossEventConfig value))
+        if (this.bossDeathFunctions.TryGetValue(eventId, out CommonBossEventConfig? value))
         {
             long itemLotId = 0;
 
-            if (value.HardCodedFlags.Any())
+            if (value.HardCodedFlags.Count != 0)
             {
-                foreach (var flag in value.HardCodedFlags)
+                foreach (long flag in value.HardCodedFlags)
                 {
                     if (this.flagToItemLotMapping.TryGetValue(flag, out long flagBasedItemLotId))
                     {
@@ -111,7 +106,7 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
                 }
             }
 
-            if (value.HardCodedItemLots.Any())
+            if (value.HardCodedItemLots.Count != 0)
             {
                 itemLotId = value.HardCodedItemLots.First();
             }
@@ -119,24 +114,24 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
             {
                 if (itemLotId == 0)
                 {
-                    itemLotId = value.ItemLotIdIndexes.Any() && value.ItemLotIdIndexes.First() < args.Count ? args[value.ItemLotIdIndexes.First()] : value.HardCodedItemLots.FirstOrDefault();
+                    itemLotId = value.ItemLotIdIndexes.Count != 0 && value.ItemLotIdIndexes.First() < args.Count ? args[value.ItemLotIdIndexes.First()] : value.HardCodedItemLots.FirstOrDefault();
                 }
             }
 
             return new EventDropItemLotDetails()
             {
-                EntityId = value.EntityIdIndexes.Any() && value.EntityIdIndexes.First() < args.Count ? (int)args[value.EntityIdIndexes.First()] : (int)value.HardCodedEntityId,
+                EntityId = value.EntityIdIndexes.Count != 0 && value.EntityIdIndexes.First() < args.Count ? (int)args[value.EntityIdIndexes.First()] : (int)value.HardCodedEntityId,
                 MapId = mapName,
-                EventTriggerFlagId = value.FlagIndexes.Any() && value.FlagIndexes.First() < args.Count ? (int)args[value.FlagIndexes.First()] : (int)value.HardCodedFlags.First(),
+                EventTriggerFlagId = value.FlagIndexes.Count != 0 && value.FlagIndexes.First() < args.Count ? (int)args[value.FlagIndexes.First()] : (int)value.HardCodedFlags.First(),
                 ItemLotId = (int)itemLotId,
             };
         }
         else if(this.itemRewardingFunctions.TryGetValue(eventId, out value))
         {
-            if (value.HardCodedFlags.Any() || value.FlagIndexes.Any(d => d >= 0))
+            if (value.HardCodedFlags.Count != 0 || value.FlagIndexes.Any(d => d >= 0))
             {
-                var flag = value.FlagIndexes.Any() && value.FlagIndexes.First() < args.Count ? (int)args[value.FlagIndexes.First()] : (int)value.HardCodedFlags.First();
-                var itemLotId = value.ItemLotIdIndexes.Any() && value.ItemLotIdIndexes.First() < args.Count ? args[value.ItemLotIdIndexes.First()] : value.HardCodedItemLots.First();
+                int flag = value.FlagIndexes.Count != 0 && value.FlagIndexes.First() < args.Count ? (int)args[value.FlagIndexes.First()] : (int)value.HardCodedFlags.First();
+                long itemLotId = value.ItemLotIdIndexes.Count != 0 && value.ItemLotIdIndexes.First() < args.Count ? args[value.ItemLotIdIndexes.First()] : value.HardCodedItemLots.First();
 
                 if (itemLotId > 0)
                 {
@@ -152,7 +147,7 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
     {
         logger.LogInformation($"Compiling list of relevant functions from {mapId}");
 
-        foreach (var ev in mapEmevd.Events)
+        foreach (EMEVD.Event? ev in mapEmevd.Events)
         {
             bool isBossDeathFunction = ev.Instructions.Any(d => d.IsProcessHandleBossDefeatAndDisplayBanner());
             bool isItemRewardingFunction = ev.Instructions.Any(d => d.IsProcessAwardItemsIncludingClients());
@@ -191,17 +186,17 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
 
             for (int i = 0; i < ev.Instructions.Count; i++)
             {
-                var instruction = ev.Instructions[i];
+                EMEVD.Instruction instruction = ev.Instructions[i];
 
-                var instructionCount = instruction.ArgData.Length / 4;
+                int instructionCount = instruction.ArgData.Length / 4;
                 List<long> args = instruction.UnpackArgs(Enumerable.Repeat(ArgType.Int32, instructionCount)).Select(Convert.ToInt64).ToList();
 
-                var parameters = ev.Parameters.Where(d => d.InstructionIndex == i).ToList();
+                List<EMEVD.Parameter> parameters = ev.Parameters.Where(d => d.InstructionIndex == i).ToList();
 
                 if (instruction.IsProcessHandleBossDefeatAndDisplayBanner())
                 {
                     // entity Id parameter index is based on this
-                    var entityId = args[0];
+                    long entityId = args[0];
                     if (entityId > 0)
                     {
                         config.HardCodedEntityId = entityId;
@@ -214,7 +209,7 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
                 }
                 else if (instruction.IsProcessSetEventFlagID())
                 {
-                    var flagId = args[1];
+                    long flagId = args[1];
                     if (flagId > 0)
                     {
                         config.HardCodedFlags.Add(flagId);
@@ -228,7 +223,7 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
                 else if (instruction.IsProcessAwardItemsIncludingClients()
                     || instruction.IsProcessAwardItemLot())
                 {
-                    var itemLotId = args[0];
+                    long itemLotId = args[0];
                     if (itemLotId > 0)
                     {
                         config.HardCodedItemLots.Add(itemLotId);
@@ -241,8 +236,8 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
                 }
                 else if (instruction.IsProcessUnknown200476())
                 {
-                    var flagId = args[0];
-                    var itemLotId = args[1];
+                    long flagId = args[0];
+                    long itemLotId = args[1];
 
                     if (flagId > 0)
                     {
@@ -267,24 +262,24 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
         }
     }
 
-    private void ScanMapEvents(EMEVD mapEmevd, string mapId, List<EventDropItemLotDetails> commonEventsDetails, List<EventDropItemLotDetails> lotDetailsList)
+    private void ScanMapEvents(EMEVD mapEmevd, string mapId, List<EventDropItemLotDetails> lotDetailsList)
     {
         logger.LogInformation($"Scanning events from {mapId}"); 
 
-        foreach (var ev in mapEmevd.Events)
+        foreach (EMEVD.Event? ev in mapEmevd.Events)
         {
-            var lotDetails = new EventDropItemLotDetails();
+            EventDropItemLotDetails lotDetails = new();
 
-            foreach (var instruction in ev.Instructions)
+            foreach (EMEVD.Instruction? instruction in ev.Instructions)
             {
-                var instructionCount = instruction.ArgData.Length / 4;
+                int instructionCount = instruction.ArgData.Length / 4;
                 List<long> args = instruction.UnpackArgs(Enumerable.Repeat(ArgType.Int32, instructionCount)).Select(Convert.ToInt64).ToList();
 
-                var str = string.Join(',', args);
+                string str = string.Join(',', args);
 
                 // common event happens, find it in boss death, if boss death has hard coded flag then look up flag in item functions
 
-                var itemLotDetails = EvaluateInitializeEventInstruction(mapId, mapEmevd, ev, instruction, args);
+                EventDropItemLotDetails? itemLotDetails = EvaluateInitializeEventInstruction(mapId, instruction, args);
                 if (itemLotDetails != null)
                 {
                     AddOrUpdate(itemLotDetails, lotDetailsList);
@@ -295,22 +290,22 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
 
     private void AddOrUpdate(EventDropItemLotDetails lotDetails, List<EventDropItemLotDetails> lotDetailsList)
     {
-        List<EventDropItemLotDetails> existing = new();
+        List<EventDropItemLotDetails> existing = [];
 
         if (lotDetails.EventTriggerFlagId > 0)
         {
             existing = lotDetailsList.Where(d => d.EventTriggerFlagId == lotDetails.EventTriggerFlagId).ToList();
         }
 
-        if (!existing.Any() && lotDetails.EntityId > 0)
+        if (existing.Count == 0 && lotDetails.EntityId > 0)
         {
             existing = lotDetailsList.Where(d => d.EntityId == lotDetails.EntityId).ToList();
         }
 
-        if (existing.Any())
+        if (existing.Count != 0)
         {
-            logger.LogInformation($"Found event {lotDetails.ToString()} but matched {existing.Count} already found events");
-            foreach (var existingLotDetails in existing)
+            logger.LogInformation($"Found event {lotDetails} but matched {existing.Count} already found events");
+            foreach (EventDropItemLotDetails existingLotDetails in existing)
             {
                 existingLotDetails.CopyFrom(logger, lotDetails);
             }

@@ -1,7 +1,6 @@
 ﻿namespace DSLRNet.Core.Scan;
 
 using DSLRNet.Core.DAL;
-using DSLRNet.Core.Data;
 using DSLRNet.Core.Extensions;
 
 public class ItemLotScanner(
@@ -35,26 +34,29 @@ public class ItemLotScanner(
             return generatedItemLotSettings;
         }
 
-        ItemLotSettings remainingMapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]);
-        ItemLotSettings remainingEnemyLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]);
-        ItemLotSettings bossLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]);
+        ItemLotSettings remainingMapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]) 
+            ?? throw new Exception("Could not read default item lot settings for map drops");
+        ItemLotSettings remainingEnemyLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]) 
+            ?? throw new Exception("Could not read default item lot settings for enemy drops");
+        ItemLotSettings bossLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1]) 
+            ?? throw new Exception("Could not read default item lot settings for boss drops");
 
         List<EventDropItemLotDetails> eventItemLotDetails = bossDropScanner.ScanEventsForBossDrops();
 
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Enemy, [remainingEnemyLots]);
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Map, [remainingMapLots, bossLots]);
 
-        foreach (var mapFile in msbProvider.GetAllMsbs().OrderBy(d => d.Key))
+        foreach (KeyValuePair<string, MSBE> mapFile in msbProvider.GetAllMsbs().OrderBy(d => d.Key))
         {
             string mapFileName = mapFile.Key;
             MSBE msb = mapFile.Value;
 
             List<NpcParam> npcs = msb.FilterRelevantNpcs(logger, npcParams, mapFileName);
 
-            Dictionary<GameStage, int> enemiesAdded = SetupEnemyLots(mapFileName, claimedIds[ItemLotCategory.ItemLot_Enemy], npcs, remainingEnemyLots);
+            Dictionary<GameStage, int> enemiesAdded = SetupEnemyLots(claimedIds[ItemLotCategory.ItemLot_Enemy], npcs, remainingEnemyLots);
             Dictionary<GameStage, int> mapItemsAdded = SetupMapLots(mapFileName, msb, claimedIds[ItemLotCategory.ItemLot_Map], npcs, remainingMapLots, eventItemLotDetails);
 
-            Dictionary<GameStage, int> eventItemsAdded = SetupEventLots(mapFileName, msb, claimedIds[ItemLotCategory.ItemLot_Map], bossLots, eventItemLotDetails);
+            Dictionary<GameStage, int> eventItemsAdded = SetupEventLots(msb, claimedIds[ItemLotCategory.ItemLot_Map], bossLots, eventItemLotDetails);
             logger.LogInformation($"Map {mapFileName} Enemies: {JsonConvert.SerializeObject(enemiesAdded)} Treasures: {JsonConvert.SerializeObject(mapItemsAdded)} BossDrops: {JsonConvert.SerializeObject(eventItemsAdded)}");
         }
 
@@ -63,11 +65,11 @@ public class ItemLotScanner(
         return generatedItemLotSettings;
     }
 
-    private Dictionary<GameStage, int> SetupEventLots(string mapFile, MSBE msb, HashSet<int> claimedIds, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
+    private Dictionary<GameStage, int> SetupEventLots(MSBE msb, HashSet<int> claimedIds, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
     {
         Dictionary<GameStage, int> assigned = [];
 
-        var withEntityId = lotDetails.Where(d => d.EntityId > 0);
+        IEnumerable<EventDropItemLotDetails> withEntityId = lotDetails.Where(d => d.EntityId > 0);
 
         foreach (EventDropItemLotDetails? details in withEntityId)
         {
@@ -101,7 +103,7 @@ public class ItemLotScanner(
         return assigned;
     }
 
-    private Dictionary<GameStage, int> SetupEnemyLots(string mapFile, HashSet<int> claimedIds, List<NpcParam> npcParams, ItemLotSettings settings)
+    private Dictionary<GameStage, int> SetupEnemyLots(HashSet<int> claimedIds, List<NpcParam> npcParams, ItemLotSettings settings)
     {
         Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 
@@ -154,7 +156,7 @@ public class ItemLotScanner(
                     .Select(s => s.ItemLotID));
             }
 
-            if (candidateTreasures.Any())
+            if (candidateTreasures.Count != 0)
             {
                 candidateTreasures = candidateTreasures
                     .Union(npcParams
@@ -165,9 +167,9 @@ public class ItemLotScanner(
             }
 
             candidateTreasures = candidateTreasures.Where(d => IsValidItemLotId(d, ItemLotCategory.ItemLot_Map)).ToList();
-            foreach (var treasure in candidateTreasures)
+            foreach (int treasure in candidateTreasures)
             {
-                var gameStage = this.random.PassesPercentCheck(60) ? maxConfig : minConfig;
+                GameStageConfig gameStage = this.random.PassesPercentCheck(60) ? maxConfig : minConfig;
 
                 addedByStage[gameStage.Stage] += candidateTreasures.Count;
 
@@ -178,7 +180,7 @@ public class ItemLotScanner(
         return addedByStage;
     }
 
-    Dictionary<string, string> mapAverageStage = [];
+    readonly Dictionary<string, string> mapAverageStage = [];
 
     private (GameStageConfig minConfig, GameStageConfig maxConfig) GetGameStageConfigRangeForMap(string name, MSBE msb, List<NpcParam> npcs, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
     {

@@ -1,6 +1,5 @@
-﻿namespace DSLRNet.Core.Data;
+﻿namespace DSLRNet.Core.DAL;
 
-using DSLRNet.Core.DAL;
 using System.Collections.Concurrent;
 
 public class RegulationBinDataSource<T>(
@@ -11,7 +10,7 @@ public class RegulationBinDataSource<T>(
 {
     private PARAM? readParam = null;
     private bool pocoCreated = false;
-    private static SemaphoreSlim semaphore = new(1);
+    private static readonly SemaphoreSlim semaphore = new(1);
     private Dictionary<int, string> namesMapping = [];
 
     public async override Task<IEnumerable<T>> LoadDataAsync()
@@ -21,8 +20,8 @@ public class RegulationBinDataSource<T>(
             this.readParam = regulationBinReader.GetParam(paramSource.Name);
         }
 
-        var names = File.ReadAllLines($"Assets\\Data\\PARAM\\ER\\Names\\{paramSource.Name}.txt");
-        this.namesMapping = names.ToDictionary(s => Convert.ToInt32(s.Substring(0, s.IndexOf(" "))), d => d.Substring(d.IndexOf(" ")).Trim().ToString());
+        string[] names = File.ReadAllLines($"Assets\\Data\\PARAM\\ER\\Names\\{paramSource.Name}.txt");
+        this.namesMapping = names.ToDictionary(s => Convert.ToInt32(s[..s.IndexOf(' ')]), d => d[d.IndexOf(' ')..].Trim().ToString());
 
         ConcurrentBag<T> loadedValues = [];
         await Parallel.ForEachAsync(
@@ -38,12 +37,12 @@ public class RegulationBinDataSource<T>(
 
     private async Task<T> CreateFromPARAMAsync(PARAM.Row row)
     {
-        if (!pocoCreated)
+        if (false && !pocoCreated)
         {
             await semaphore.WaitAsync();
 
             if (!pocoCreated)
-            { 
+            {
                 PocoGenerator.GenerateClass(typeof(T).Name, row);
                 pocoCreated = true;
             }
@@ -58,7 +57,7 @@ public class RegulationBinDataSource<T>(
 
         newObject.GenericParam.Name = this.namesMapping.TryGetValue(row.ID, out string? value) ? value : row.Name;
 
-        foreach (var cell in row.Cells)
+        foreach (PARAM.Cell? cell in row.Cells)
         {
             newObject.SetValue(cell.Def.InternalName, cell.Value);
         }
@@ -70,11 +69,12 @@ public class RegulationBinDataSource<T>(
     {
         if (paramSource.Filters != null)
         {
-            var countBefore = data.Count();
+            int countBefore = data.Count();
 
             IEnumerable<T> filteredData = data;
-            foreach (var filter in paramSource.Filters)
+            foreach (Filter filter in paramSource.Filters)
             {
+                string valueString = filter.Value.ToString() ?? throw new ArgumentNullException(nameof(filter.Value), $"Filter {filter.Operator} on param {paramSource.Name}");
                 switch (filter.Operator)
                 {
                     case FilterOperator.GreaterThan:
@@ -84,16 +84,16 @@ public class RegulationBinDataSource<T>(
                         filteredData = filteredData.Where(d => d.GetValue<int>(filter.Field) < Convert.ToInt32(filter.Value));
                         break;
                     case FilterOperator.StartsWith:
-                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().StartsWith(filter.Value.ToString()));
+                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().StartsWith(valueString));
                         break;
                     case FilterOperator.EndsWith:
-                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().EndsWith(filter.Value.ToString()));
+                        filteredData = filteredData.Where(d => d.GetValue<string>(filter.Field).ToString().EndsWith(valueString));
                         break;
                     case FilterOperator.NotEqual:
-                        filteredData = filteredData.Where(d => !d.GetValue<string>(filter.Field).Equals(filter.Value.ToString(), StringComparison.OrdinalIgnoreCase));
+                        filteredData = filteredData.Where(d => !d.GetValue<string>(filter.Field).Equals(valueString, StringComparison.OrdinalIgnoreCase));
                         break;
                     case FilterOperator.NotInRange:
-                        var range = filter.Value.ToString().Split("..");
+                        string[] range = valueString.Split("..");
                         filteredData = filteredData.Where(d => !Enumerable.Range(Convert.ToInt32(range[0]), Convert.ToInt32(range[1]) - Convert.ToInt32(range[0])).ToList().Contains(d.GetValue<int>(filter.Field)));
                         break;
                 }

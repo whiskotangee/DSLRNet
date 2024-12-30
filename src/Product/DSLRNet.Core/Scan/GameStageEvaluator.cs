@@ -8,20 +8,18 @@ public class GameStageEvaluator
 {
     private readonly ILogger<GameStageEvaluator> logger;
     private readonly Dictionary<int, NpcParam> npcParams;
-    private readonly Configuration configuration;
     private readonly Dictionary<int, SpEffectParam> allSpEffects;
     private readonly List<SpEffectParam> areaScalingSpEffects;
     private readonly List<SpEffectParam> vanillaSpEffects;
     private readonly List<SpEffectParam> dlcSpEffects;
 
-    private ConcurrentDictionary<int, (Dictionary<int, GameStage> vanilla, Dictionary<int, GameStage> dlc)> scaleCache = [];
+    private readonly ConcurrentDictionary<int, (Dictionary<int, GameStage> vanilla, Dictionary<int, GameStage> dlc)> scaleCache = [];
 
     public GameStageEvaluator(ILogger<GameStageEvaluator> logger, IOptions<Configuration> config, DataAccess dataAccess)
     {
         this.logger = logger;
         this.allSpEffects = dataAccess.SpEffectParam.GetAll().ToDictionary(k => k.ID, v => v);
         this.npcParams = dataAccess.NpcParam.GetAll().ToDictionary(k => k.ID, v => v);
-        this.configuration = config.Value;
         this.areaScalingSpEffects =
             this.allSpEffects.Values
                 .Where(d => config.Value.ScannerConfig.AreaScalingSpEffectIds.Contains(d.ID))
@@ -41,12 +39,12 @@ public class GameStageEvaluator
     {
         // evalute difficulty and return game stage for the given map drops
 
-        var regularEnemies = msb.Parts.Enemies
+        IEnumerable<MSBE.Part.Enemy> regularEnemies = msb.Parts.Enemies
             .Where(d => !bossDropDetails.Any(s => s.EntityId == d.EntityID))
             .Where(d => relevantNpcs.Any(s => s.ID == d.NPCParamID))
             .DistinctBy(d => d.NPCParamID);
 
-        var bossEnemies = msb.Parts.Enemies
+        IEnumerable<MSBE.Part.Enemy> bossEnemies = msb.Parts.Enemies
             .Where(d => bossDropDetails.Any(s => s.EntityId == d.EntityID));
 
         var gameStages = regularEnemies
@@ -56,13 +54,13 @@ public class GameStageEvaluator
             .Select(d => new { ID = d.NPCParamID, GameStage = EvaluateDifficulty(settings, npcParams[d.NPCParamID], true) })
             .ToList();
 
-        var averageDifficulty = 0.0;
+        double averageDifficulty = 0.0;
 
         if (gameStages.Any())
         {
             averageDifficulty = gameStages.Average(d => (int)d.GameStage);
         }
-        else if (bossGameStages.Any())
+        else if (bossGameStages.Count != 0)
         {
             averageDifficulty = bossGameStages.Average(d => (int)d.GameStage);
         }
@@ -76,10 +74,10 @@ public class GameStageEvaluator
 
     public GameStage EvaluateDifficulty(ItemLotSettings settings, NpcParam npc, bool isBoss)
     {
-        var (vanilla, dlc) = this.scaleCache.GetOrAdd(settings.ID, InitializeHpMultMaps(settings));
+        (Dictionary<int, GameStage> vanilla, Dictionary<int, GameStage> dlc) = this.scaleCache.GetOrAdd(settings.ID, InitializeHpMultMaps(settings));
 
-        var spEffectId = npc.spEffectID3;
-        var gameStage = GameStage.Early;
+        int spEffectId = npc.spEffectID3;
+        GameStage gameStage = GameStage.Early;
 
         if (spEffectId <= 0)
         {
@@ -87,14 +85,14 @@ public class GameStageEvaluator
         }
         else
         {
-            var spEffect = this.allSpEffects[spEffectId];
+            SpEffectParam spEffect = this.allSpEffects[spEffectId];
 
             if (!vanilla.TryGetValue(spEffect.ID, out gameStage) && !dlc.TryGetValue(spEffect.ID, out gameStage))
             {
                 // could be a custom scaling spEffect - try that
-                var nearestHpMultiplier = MathFunctions.GetNearestValue(spEffect.maxHpRate, areaScalingSpEffects.Select(d => d.maxHpRate));
+                float nearestHpMultiplier = MathFunctions.GetNearestValue(spEffect.maxHpRate, areaScalingSpEffects.Select(d => d.maxHpRate));
 
-                var areaScalingId = areaScalingSpEffects.First(d => d.maxHpRate == nearestHpMultiplier).ID;
+                int areaScalingId = areaScalingSpEffects.First(d => d.maxHpRate == nearestHpMultiplier).ID;
 
                 if (!vanilla.TryGetValue(areaScalingId, out gameStage) && !dlc.TryGetValue(areaScalingId, out gameStage))
                 {
@@ -104,7 +102,7 @@ public class GameStageEvaluator
 
             if (isBoss)
             {
-                var totalHp = npc.hp * (spEffect?.maxHpRate ?? 1.0f);
+                float totalHp = npc.hp * (spEffect?.maxHpRate ?? 1.0f);
 
                 gameStage = (GameStage)Math.Clamp((int)gameStage + 1, (int)GameStage.Early, (int)GameStage.End);
                 logger.LogInformation($"Boss {npc.Name} of Id {npc.ID} with total hp {totalHp:F2} returned game stage {gameStage}");

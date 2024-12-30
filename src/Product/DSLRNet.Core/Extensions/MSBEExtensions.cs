@@ -9,14 +9,14 @@ public static class MSBEExtensions
     {
         List<NpcParam> npcs = [];
 
-        foreach (var enemy in msb.Parts.Enemies)
+        foreach (MSBE.Part.Enemy? enemy in msb.Parts.Enemies)
         {
-            int modelNumber = int.Parse(enemy.ModelName.Substring(1));
+            int modelNumber = int.Parse(enemy.ModelName[1..]);
 
             // Range is to ignore wildlife drops
             if (modelNumber >= 2000 && modelNumber <= 6000 || modelNumber >= 6200)
             {
-                if (!allNpcs.TryGetValue(enemy.NPCParamID, out NpcParam item))
+                if (!allNpcs.TryGetValue(enemy.NPCParamID, out NpcParam? item))
                 {
                     logger.LogDebug($"NPC with ID {enemy.NPCParamID} from map {mapFileName} with model {modelNumber} did not match a param");
                     continue;

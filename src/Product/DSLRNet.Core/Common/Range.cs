@@ -6,18 +6,12 @@ public class FloatValueRange(float min, float max)
     public float Max { get; set; } = max;
 }
 
-public class IntValueRange
+public class IntValueRange(int min, int max)
 {
     public static IntValueRange PercentRange = new(0, 101);
 
-    public IntValueRange(int min, int max)
-    {
-        Min = min; Max = max;
-    }
-
-    public int Min { get; set; }
-
-    public int Max { get; set; }
+    public int Min { get; set; } = min;
+    public int Max { get; set; } = max;
 
     public bool Contains(int value)
     {

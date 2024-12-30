@@ -24,6 +24,6 @@ public class ParamBase<T> : ICloneable<T> where T : class
 
     public T Clone()
     {
-        return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(this));
+        return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(this)) ?? throw new Exception($"COuld not deserialize object");
     }
 }

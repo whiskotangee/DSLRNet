@@ -4,7 +4,6 @@ using DSLRNet.Core.Common;
 using DSLRNet.Core.Config;
 using DSLRNet.Core.Contracts;
 using DSLRNet.Core.DAL;
-using DSLRNet.Core.Data;
 using DSLRNet.Core.Handlers;
 using Microsoft.Extensions.Options;
 using System;
@@ -51,9 +50,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
 
         newTalisman.ID = (int)this.CumulativeID.GetNext();
         newTalisman.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
-        newTalisman.accessoryGroup = newTalismanConfig.NoStackingGroupID < 0
-            ? (short)AccessoryGroupCumulativeID.GetNext()
-            : newTalismanConfig.NoStackingGroupID;
+        newTalisman.accessoryGroup = newTalismanConfig.NoStackingGroupID;
 
         newTalisman.iconId = this.RarityHandler.GetIconId(newTalisman.iconId, rarityId);
         newTalisman.SetValue(availableSlot, newTalismanConfig.RefSpEffect);
@@ -108,8 +105,6 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
 
         return parms.Where(d => new List<int>() { 0, -1 }.Contains(newTalisman.GetValue<int>(d))).ToList().Count;
     }
-
-    public static CumulativeID AccessoryGroupCumulativeID { get; set; }
 
     public List<TalismanConfig> TalismanConfigs { get; set; } = [];
 

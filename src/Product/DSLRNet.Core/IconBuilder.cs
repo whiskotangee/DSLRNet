@@ -40,36 +40,27 @@ public partial class IconBuilder(
         IconBuilderSettings iconSettings = settings.IconBuilderSettings;
 
         string bakedSheetsSource = $"Assets\\LootIcons\\BakedSheets";
-        string preBakedSheetsSource = $"Assets\\LootIcons\\PreBakedSheets";
         string iconMappingsFile = Path.Combine(bakedSheetsSource, "iconmappings.json");
 
         Directory.CreateDirectory(bakedSheetsSource);
 
-        // Check if there are no DDS files in bakedSheetsSource
-        if (Directory.GetFiles(bakedSheetsSource, "*.dds").Length == 0)
-        {
-            // Copy everything from PreBakedSheets to BakedSheets
-            var preBakedFiles = Directory.GetFiles(preBakedSheetsSource, "*.dds");
-            foreach (var preBakedFile in preBakedFiles)
-            {
-                string destinationFile = Path.Combine(bakedSheetsSource, Path.GetFileName(preBakedFile));
-                File.Copy(preBakedFile, destinationFile, overwrite: true);
-            }
-        }
-        progressTracker.CurrentStageProgress += 1;
+        RarityIconMappingConfig sheetConfig = new();
 
         if (!File.Exists(iconMappingsFile))
         {
-            File.Copy(Path.Combine(preBakedSheetsSource, Path.GetFileName(iconMappingsFile)), iconMappingsFile);
+            logger.LogInformation("Could not find baked sheets, forcing regeneration of icon files");
+            iconSettings.RegenerateIconSheets = true;
         }
-
-        RarityIconMappingConfig sheetConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText(iconMappingsFile));
+        else
+        {
+            sheetConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText(iconMappingsFile)) ?? throw new Exception($"Icon mappings file {iconMappingsFile} could not be deserialized to config object");
+        }
 
         // Step 1: Regenerate if needed
         if (iconSettings.RegenerateIconSheets)
         {
-            var originalStageCount = progressTracker.CurrentStageStepCount;
-            var originalStep = progressTracker.CurrentStageProgress;
+            int originalStageCount = progressTracker.CurrentStageStepCount;
+            int originalStep = progressTracker.CurrentStageProgress;
 
             Directory.Delete(bakedSheetsSource, recursive: true);
             Directory.CreateDirectory(bakedSheetsSource);
@@ -90,6 +81,7 @@ public partial class IconBuilder(
 
             progressTracker.CurrentStageStepCount = originalStageCount;
             progressTracker.CurrentStageProgress = originalStep;
+            iconSettings.RegenerateIconSheets = false;
         }
 
         progressTracker.CurrentStageProgress += 1;
@@ -97,11 +89,11 @@ public partial class IconBuilder(
         // Step 2: Use the icon sheets from BakedSheets
         logger.LogInformation($"Using baked icon sheet files from {bakedSheetsSource}");
 
-        var bakedFiles = Directory.GetFiles(bakedSheetsSource, "*.dds");
+        string[] bakedFiles = Directory.GetFiles(bakedSheetsSource, "*.dds");
 
-        foreach (var bakedFile in bakedFiles)
+        foreach (string bakedFile in bakedFiles)
         {
-            var existing = sheetConfig.IconSheets
+            IconSheetParameters? existing = sheetConfig.IconSheets
                 .SingleOrDefault(d => Path.GetFileNameWithoutExtension(d.Name).Equals(Path.GetFileNameWithoutExtension(bakedFile), StringComparison.OrdinalIgnoreCase));
 
             if (existing != null)
@@ -116,18 +108,18 @@ public partial class IconBuilder(
         }
 
         TPF commonIcons = TPF.Read(sourcePath);
-        var removeIcons = commonIcons.Textures.Where(d => d.Name.Contains(nameBase)).ToList();
+        List<TPF.Texture> removeIcons = commonIcons.Textures.Where(d => d.Name.Contains(nameBase)).ToList();
 
-        foreach (var item in removeIcons)
+        foreach (TPF.Texture? item in removeIcons)
         {
             commonIcons.Textures.Remove(item);
         }
 
         progressTracker.CurrentStageProgress += 1;
 
-        string basePath = Path.GetDirectoryName(commonIcons.Textures.First().Name);
+        string basePath = Path.GetDirectoryName(commonIcons.Textures.First().Name) ?? string.Empty;
 
-        foreach (var iconSheet in sheetConfig.IconSheets)
+        foreach (IconSheetParameters iconSheet in sheetConfig.IconSheets)
         {
             TPF.Texture tex = new(Path.GetFileNameWithoutExtension(iconSheet.Name).Trim(), 102, 0, iconSheet.GeneratedBytes, TPF.TPFPlatform.PC);
             commonIcons.Textures.Add(tex);
@@ -147,7 +139,7 @@ public partial class IconBuilder(
 
     private async Task<RarityIconMappingConfig> RegenerateIconSheets(IconBuilderSettings settings)
     {
-        var layoutAtlases = ReadLayoutFiles();
+        List<TextureAtlas> layoutAtlases = ReadLayoutFiles();
 
         RarityIconMappingConfig sheetConfig = new()
         { 
@@ -182,7 +174,7 @@ public partial class IconBuilder(
         {
             int overallSheetCounter = 1;
 
-            foreach (var rarity in settings.IconSheetSettings.Rarities)
+            foreach (RarityIconDetails rarity in settings.IconSheetSettings.Rarities)
             {
                 logger.LogInformation($"Generating icon sheets for loot type {lootType} and icon background{rarity.BackgroundImageName}");
 
@@ -198,7 +190,7 @@ public partial class IconBuilder(
 
                 int iconCounter = 0;
 
-                foreach(var splitItem in splitIcons)
+                foreach(List<ushort> splitItem in splitIcons)
                 {
                     IconSheetParameters newItem = new()
                     {
@@ -253,7 +245,7 @@ public partial class IconBuilder(
         Image<Bgra32> image = this.GetOriginalIcon(baseIconId, commonIcons, textureAtlases);
 
         // Create a transparent image for compositing
-        var result = new Image<Rgba32>(image.Width, image.Height);
+        Image<Rgba32> result = new(image.Width, image.Height);
         result.Mutate(x => x.BackgroundColor(Color.Transparent));
 
         // Composite the background image onto the result
@@ -270,17 +262,22 @@ public partial class IconBuilder(
 
     private byte[] CreateMontage(IconSheetSettings sheetSettings, List<IconMapping> iconMappings)
     {
-        var iconSheetSizeDetails = CalculateIconSheetSize(sheetSettings, iconMappings.Count);
+        (Size size, int iconsPerRow, int totalRows) = CalculateIconSheetSize(sheetSettings, iconMappings.Count);
         // Create a blank canvas
-        using var canvas = new Image<Rgba32>(iconSheetSizeDetails.size.Width, iconSheetSizeDetails.size.Height);
+        using Image<Rgba32> canvas = new(size.Width, size.Height);
 
         canvas.Mutate(ctx => ctx.BackgroundColor(Color.Transparent));
 
         int count = 0;
 
-        foreach (var iconMapping in iconMappings)
+        foreach (IconMapping iconMapping in iconMappings)
         {
-            (int x, int y) = GetImageCoordinates(count, sheetSettings, iconSheetSizeDetails.iconsPerRow);
+            if (iconMapping.ConvertedIcon == null)
+            {
+                throw new Exception($"Failed to generate icon due to {iconMapping.SourceIconPath} not having a converted icon loaded");
+            }
+
+            (int x, int y) = GetImageCoordinates(count, sheetSettings, iconsPerRow);
 
             iconMapping.TileX = x;
             iconMapping.TileY = y;
@@ -289,7 +286,7 @@ public partial class IconBuilder(
 
             count += 1;
 
-            iconMapping.ConvertedIcon.Dispose();
+            iconMapping.ConvertedIcon?.Dispose();
             iconMapping.ConvertedIcon = null;
         }
 
@@ -319,7 +316,7 @@ public partial class IconBuilder(
 
         BND4 bnd = BND4.Read(sourcePath);
 
-        return bnd.Files.Select(d => TextureAtlasSerializer.Deserialize(Encoding.UTF8.GetString(d.Bytes))).ToList();
+        return bnd.Files.Select(d => TextureAtlasSerializer.Deserialize(Encoding.UTF8.GetString(d.Bytes)) ?? throw new Exception($"Could not deserialize layout file {d.Name} to texture atlas object")).ToList();
     }
 
     private Image<Bgra32> GetOriginalIcon(int iconId, TPF commonIcons, List<TextureAtlas> textureAtlas)
@@ -327,7 +324,7 @@ public partial class IconBuilder(
         TextureAtlas? matchingAtlas = null;
         SubTexture? matchingSubTexture = null;
 
-        foreach (var atlas in textureAtlas)
+        foreach (TextureAtlas atlas in textureAtlas)
         {
             matchingSubTexture = atlas.SubTextures.SingleOrDefault(d => Path.GetFileNameWithoutExtension(d.Name).EndsWith(iconId.ToString("D5")));
 
@@ -343,13 +340,13 @@ public partial class IconBuilder(
             throw new Exception("Could not find icon based on icon Id in known texture atlases");
         }
 
-        var originalIcon = loadedDDSImageCache.GetOrAdd(iconId.ToString(), (n) =>
+        Image<Bgra32> originalIcon = loadedDDSImageCache.GetOrAdd(iconId.ToString(), (n) =>
         {
-            var matchingIconSheet = loadedDDSImageCache.GetOrAdd(matchingAtlas.ImagePath, (name) =>
+            Image<Bgra32> matchingIconSheet = loadedDDSImageCache.GetOrAdd(matchingAtlas.ImagePath, (name) =>
             {
-                var bytes = commonIcons.Textures.Single(d => Path.GetFileNameWithoutExtension(d.Name) == Path.GetFileNameWithoutExtension(name)).Bytes;
-                using var memStream = new MemoryStream(bytes);
-                using var ddsImage = Pfim.Pfimage.FromStream(memStream);
+                byte[] bytes = commonIcons.Textures.Single(d => Path.GetFileNameWithoutExtension(d.Name) == Path.GetFileNameWithoutExtension(name)).Bytes;
+                using MemoryStream memStream = new(bytes);
+                using Pfim.IImage ddsImage = Pfim.Pfimage.FromStream(memStream);
                 return Image.LoadPixelData<Bgra32>(ddsImage.Data, ddsImage.Width, ddsImage.Height);
             });
 
@@ -368,8 +365,8 @@ public partial class IconBuilder(
             throw new Exception("Could not find common icon layout file");
         }
 
-        var fileDestination = Path.Combine(destinationPath, "menu", "hi", "01_common.sblytbnd.dcx");
-        var preDSLRFile = fileDestination.Replace(".dcx", "pre-dslr.dcx");
+        string fileDestination = Path.Combine(destinationPath, "menu", "hi", "01_common.sblytbnd.dcx");
+        string preDSLRFile = fileDestination.Replace(".dcx", "pre-dslr.dcx");
 
         if (!File.Exists(preDSLRFile))
         {
@@ -380,13 +377,13 @@ public partial class IconBuilder(
 
         BND4 bnd = BND4.Read(fileSource);
 
-        var dslrAtlases = bnd.Files.Where(d => d.Name.Contains(nameBase)).ToList();
-        foreach (var atlas in dslrAtlases)
+        List<BinderFile> dslrAtlases = bnd.Files.Where(d => d.Name.Contains(nameBase)).ToList();
+        foreach (BinderFile? atlas in dslrAtlases)
         {
             bnd.Files.Remove(atlas);
         }
 
-        string? pathBase = Path.GetDirectoryName(bnd.Files.Last().Name);
+        string? pathBase = Path.GetDirectoryName(bnd.Files.Last().Name) ?? string.Empty;
         int id = bnd.Files.Last().ID + 1;
 
         foreach (IconSheetParameters sheet in sheets)
@@ -394,7 +391,7 @@ public partial class IconBuilder(
             string sheetName = Path.GetFileNameWithoutExtension(sheet.Name);
 
             List<IconMapping> items = sheet.IconMappings.IconReplacements;
-            var newAtlas = new TextureAtlas()
+            TextureAtlas newAtlas = new()
             {
                 ImagePath = $"{sheetName}.png",
                 SubTextures = items
@@ -458,7 +455,7 @@ public partial class IconBuilder(
     {
         return loadedPNGImageCache.GetOrAdd(rarity.BackgroundImageName, (name) =>
         {
-            var image = Image.Load<Rgba32>(rarity.BackgroundImageName);
+            Image<Rgba32> image = Image.Load<Rgba32>(rarity.BackgroundImageName);
             image.Mutate(x => x.Resize(new Size(settings.IconSheetSettings.IconDimensions.IconSize)));
             return image;
         });
@@ -466,7 +463,7 @@ public partial class IconBuilder(
     
     private static (int x, int y) GetImageCoordinates(int index, IconSheetSettings settings, int iconsPerRow)
     {
-        var columns = iconsPerRow;
+        int columns = iconsPerRow;
 
         int row = index / columns;
         int col = index % columns;
@@ -479,12 +476,12 @@ public partial class IconBuilder(
 
     private void ClearCaches()
     {
-        foreach (var image in loadedDDSImageCache.Values)
+        foreach (Image<Bgra32> image in loadedDDSImageCache.Values)
         {
             image.Dispose();
         }
 
-        foreach (var image in loadedPNGImageCache.Values)
+        foreach (Image<Rgba32> image in loadedPNGImageCache.Values)
         {
             image.Dispose();
         }

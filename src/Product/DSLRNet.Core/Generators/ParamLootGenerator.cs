@@ -1,5 +1,7 @@
 ﻿namespace DSLRNet.Core.Generators;
 
+using DSLRNet.Core.DAL;
+
 public class ParamLootGenerator<TParamType>(
     RarityHandler rarityHandler,
     SpEffectHandler spEffectHandler,
@@ -23,9 +25,9 @@ public class ParamLootGenerator<TParamType>(
 
     public Settings Settings { get; set; } = settings.Value;
 
-    public CumulativeID CumulativeID { get; set; }
+    public required CumulativeID CumulativeID { get; set; }
 
-    public IDataSource<TParamType> DataSource { get; set; }
+    public required IDataSource<TParamType> DataSource { get; set; }
 
     public ParamNames OutputParamName { get; } = outputParamName;
 
@@ -125,7 +127,8 @@ public class ParamLootGenerator<TParamType>(
 
     public List<string> GetPassiveSpEffectFieldNames()
     {
-        return this.Configuration.LootParam.Speffects.GetType().GetProperty(this.OutputParamName.ToString()).GetValue(this.Configuration.LootParam.Speffects) as List<string>;
+        return this.Configuration.LootParam.Speffects.GetType().GetProperty(this.OutputParamName.ToString())?.GetValue(this.Configuration.LootParam.Speffects) as List<string>
+            ?? throw new Exception($"Could not get spEffect property names for {this.OutputParamName} param");
     }
 
     public List<string> GetAvailableSpEffectSlots(GenericParam itemParam)

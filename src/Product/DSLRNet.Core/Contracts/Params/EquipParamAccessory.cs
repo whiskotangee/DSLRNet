@@ -1,6 +1,9 @@
+namespace DSLRNet.Core.Contracts.Params;
+
+using System;
+
 public class EquipParamAccessory : ParamBase<EquipParamAccessory>
 {
-    public int ID { get { return this.GetValue<int>("ID"); } set { this.SetValue("ID", value); } }
     public string Name { get { return this.GetValue<string>("Name"); } set { this.SetValue("Name", value); } }
     public byte disableParam_NT { get { return this.GetValue<byte>("disableParam_NT"); } set { this.SetValue("disableParam_NT", value); } }
     public byte disableParamReserve1 { get { return this.GetValue<byte>("disableParamReserve1"); } set { this.SetValue("disableParamReserve1", value); } }

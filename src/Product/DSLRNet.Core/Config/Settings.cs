@@ -24,28 +24,27 @@ public class Settings
         }
     }
 
-    public string DeployPath { get; set; }
+    public string DeployPath { get; set; } = string.Empty;
 
-    public List<string> OrderedModPaths { get; set; }
+    public List<string> OrderedModPaths { get; set; } = [];
 
-    public ItemLotGeneratorSettings ItemLotGeneratorSettings { get; set; }
+    public ItemLotGeneratorSettings ItemLotGeneratorSettings { get; set; } = new ItemLotGeneratorSettings();
 
     public int RandomSeed { get; set; }
 
-    public string GamePath { get; set; }
+    public string GamePath { get; set; } = string.Empty;
 
-    public List<string> MessageFileNames { get; set; }
+    public List<string> MessageFileNames { get; set; } = [];
 
-    public ArmorGeneratorSettings ArmorGeneratorSettings { get; set; }
+    public ArmorGeneratorSettings ArmorGeneratorSettings { get; set; } = new ArmorGeneratorSettings();
 
-    public WeaponGeneratorSettings WeaponGeneratorSettings { get; set; }
+    public WeaponGeneratorSettings WeaponGeneratorSettings { get; set; } = new WeaponGeneratorSettings();
 
-    public IconBuilderSettings IconBuilderSettings { get; set; }
+    public IconBuilderSettings IconBuilderSettings { get; set; } = new IconBuilderSettings() { IconSheetSettings  = new IconSheetSettings() };
 
     public void SaveSettings(string path)
     {
-        var parser = new FileIniDataParser();
-        IniData data = new IniData();
+        IniData data = new();
         data["Settings"]["DeployPath"] = DeployPath;
         data["Settings"]["OrderedModPaths"] = string.Join(",", OrderedModPaths);
         data["Settings"]["RandomSeed"] = RandomSeed.ToString();
@@ -102,7 +101,7 @@ public class Settings
 
     public static Settings? CreateFromSettingsIni()
     {
-        var parser = new FileIniDataParser();
+        FileIniDataParser parser = new();
         IniData data;
 
         if (File.Exists("Settings.User.ini"))
@@ -114,7 +113,7 @@ public class Settings
             data = parser.ReadFile("Settings.ini");
         }
 
-        var settings = new Settings
+        Settings settings = new()
         {
             DeployPath = data["Settings"]["DeployPath"],
             OrderedModPaths = [.. data["Settings"]["OrderedModPaths"].Split(",")],

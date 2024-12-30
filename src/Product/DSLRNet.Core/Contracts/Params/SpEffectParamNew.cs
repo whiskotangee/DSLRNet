@@ -1,6 +1,7 @@
-﻿public class SpEffectParamNew : ParamBase<SpEffectParamNew>
+﻿namespace DSLRNet.Core.Contracts.Params;
+
+public class SpEffectParamNew : ParamBase<SpEffectParamNew>
 {
-    public int ID { get { return this.GetValue<int>("ID"); } set { this.SetValue("ID", value); } }
     public string Name { get { return this.GetValue<string>("Name"); } set { this.SetValue("Name", value); } }
     public int iconId { get { return this.GetValue<int>("iconId"); } set { this.SetValue("iconId", value); } }
     public float conditionHp { get { return this.GetValue<float>("conditionHp"); } set { this.SetValue("conditionHp", value); } }

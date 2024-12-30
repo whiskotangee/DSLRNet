@@ -2,21 +2,13 @@
 
 using System.Collections.Concurrent;
 
-public class MSBProvider
+public class MSBProvider(IOptions<Settings> settings, ILogger<MSBProvider> logger, IOperationProgressTracker progressTracker, FileSourceHandler fileSourceHandler)
 {
-    private readonly Settings settings;
-    private readonly ILogger<MSBProvider> logger;
-    private readonly IOperationProgressTracker progressTracker;
-    private readonly FileSourceHandler fileSourceHandler;
-    private ConcurrentDictionary<string, MSBE> msbData = [];
-
-    public MSBProvider(IOptions<Settings> settings, ILogger<MSBProvider> logger, IOperationProgressTracker progressTracker, FileSourceHandler fileSourceHandler)
-    {
-        this.logger = logger;
-        this.progressTracker = progressTracker;
-        this.fileSourceHandler = fileSourceHandler;
-        this.settings = settings.Value;
-    }
+    private readonly Settings settings = settings.Value;
+    private readonly ILogger<MSBProvider> logger = logger;
+    private readonly IOperationProgressTracker progressTracker = progressTracker;
+    private readonly FileSourceHandler fileSourceHandler = fileSourceHandler;
+    private readonly ConcurrentDictionary<string, MSBE> msbData = [];
 
     public Dictionary<string, MSBE> GetAllMsbs()
     {
@@ -35,7 +27,7 @@ public class MSBProvider
 
         await Parallel.ForEachAsync(mapStudioFiles, (mapFile, c) =>
         {
-            var name = Path.GetFileName(mapFile);
+            string name = Path.GetFileName(mapFile);
             name = name[..name.IndexOf('.')];
 
             progressTracker.CurrentStageProgress++;

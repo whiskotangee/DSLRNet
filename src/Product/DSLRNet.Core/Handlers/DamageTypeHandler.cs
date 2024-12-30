@@ -54,7 +54,7 @@ public class DamageTypeHandler : BaseHandler
             Value = d.ID
         }).ToList();
 
-        var chosenValue = this.random.NextWeightedValue(weightedValues);
+        int chosenValue = this.random.NextWeightedValue(weightedValues);
 
         return this.DamageTypes.Single(d => d.ID == chosenValue);
     }

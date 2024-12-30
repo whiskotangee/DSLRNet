@@ -15,11 +15,11 @@ public class ItemLotGeneratorSettings
 
     public int LootPerItemLot_Bosses { get; set; }
 
-    public ScannerSettings ChestLootScannerSettings { get; set; }
+    public ScannerSettings ChestLootScannerSettings { get; set; } = new ScannerSettings();
 
-    public ScannerSettings MapLootScannerSettings { get; set; }
+    public ScannerSettings MapLootScannerSettings { get; set; } = new ScannerSettings();
 
-    public ScannerSettings EnemyLootScannerSettings { get; set; }
+    public ScannerSettings EnemyLootScannerSettings { get; set; } = new ScannerSettings();
 
     public bool ChaosLootEnabled { get; set; }
 

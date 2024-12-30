@@ -1,4 +1,4 @@
-﻿namespace DSLRNet.Core.Data;
+﻿namespace DSLRNet.Core.DAL;
 using IniParser;
 
 public enum GameStage { Early, Mid, Late, End }
@@ -7,23 +7,18 @@ public class GameStageConfig
 {
     public GameStage Stage { get; set; }
 
-    public HashSet<int> ItemLotIds { get; set; }
+    public HashSet<int> ItemLotIds { get; set; } = [];
 
-    public HashSet<int> AllowedRarities { get; set; }
+    public HashSet<int> AllowedRarities { get; set; } = [];
 }
 
 public class ItemLotSettings
 {
-    public static ItemLotSettings? Create(string file, Category category)
+    public static ItemLotSettings Create(string file, Category category)
     {
-        DslItemLotSetup? setup = DslItemLotSetup.Create(file);
+        DslItemLotSetup? setup = DslItemLotSetup.Create(file) ?? throw new Exception($"Could not load ini file from {file}");
+        ItemLotSettings? obj = JsonConvert.DeserializeObject<ItemLotSettings>(JsonConvert.SerializeObject(setup)) ?? throw new Exception($"Could not deserialize item lot settings file {file}");
 
-        if (setup == null)
-        {
-            return null;
-        }
-
-        ItemLotSettings? obj = JsonConvert.DeserializeObject<ItemLotSettings>(JsonConvert.SerializeObject(setup));
         obj.GameStageConfigs = [];
         obj.GameStageConfigs.Add(GameStage.Early, new GameStageConfig
         {
@@ -88,21 +83,21 @@ public class ItemLotSettings
 
     public ParamNames ParamName { get; set; }
 
-    public string NpcParamCategory { get; set; }
+    public string NpcParamCategory { get; set; } = string.Empty;
 
     public bool IsForBosses { get; set; } = false;
 
     public int ID { get; set; }
-    public string Realname { get; set; }
+    public string Realname { get; set; } = string.Empty;
     public int Enabled { get; set; }
     public bool GuaranteedDrop { get; set; }
     public float DropChanceMultiplier { get; set; }
-    public Dictionary<GameStage, GameStageConfig> GameStageConfigs { get; set; }
-    public List<WeightedValue<LootType>> LootWeightsByType { get; set; }
-    public List<WeightedValue<WeaponTypes>> WeaponWeightsByType { get; set; }
-    public List<List<int>> NpcIds { get; set; }
-    public List<List<int>> NpcItemlotids { get; set; }
-    public List<int> ClearItemlotids { get; set; }
+    public Dictionary<GameStage, GameStageConfig> GameStageConfigs { get; set; } = [];
+    public List<WeightedValue<LootType>> LootWeightsByType { get; set; } = [];
+    public List<WeightedValue<WeaponTypes>> WeaponWeightsByType { get; set; } = [];
+    public List<List<int>> NpcIds { get; set; } = [];
+    public List<List<int>> NpcItemlotids { get; set; } = [];
+    public List<int> ClearItemlotids { get; set; } = [];
 }
 
 public enum ItemLotCategory
@@ -153,22 +148,22 @@ class DslItemLotSetup
     }
 
     public int Id { get; set; }
-    public string Realname { get; set; }
+    public string Realname { get; set; } = string.Empty;
     public int Enabled { get; set; }
-    public List<int> ItemLotIdsEarly { get; set; }
-    public List<int> ItemLotIdsMid { get; set; }
-    public List<int> ItemLotIdsLate { get; set; }
-    public List<int> ItemLotIdsEnd { get; set; }
-    public List<int> AllowedRaritiesEarly { get; set; }
-    public List<int> AllowedRaritiesMid { get; set; }
-    public List<int> AllowedRaritiesLate { get; set; }
-    public List<int> AllowedRaritiesEnd { get; set; }
+    public List<int> ItemLotIdsEarly { get; set; } = [];
+    public List<int> ItemLotIdsMid { get; set; } = [];
+    public List<int> ItemLotIdsLate { get; set; } = [];
+    public List<int> ItemLotIdsEnd { get; set; } = [];
+    public List<int> AllowedRaritiesEarly { get; set; } = [];
+    public List<int> AllowedRaritiesMid { get; set; } = [];
+    public List<int> AllowedRaritiesLate { get; set; } = [];
+    public List<int> AllowedRaritiesEnd { get; set; } = [];
     public int GuaranteedDrop { get; set; }
-    public List<int> LootTypeWeights { get; set; }
-    public List<int> WeaponTypeWeights { get; set; }
+    public List<int> LootTypeWeights { get; set; } = [];
+    public List<int> WeaponTypeWeights { get; set; } = [];
     public float DropChanceMultiplier { get; set; }
-    public List<List<int>> NpcIds { get; set; }
-    public List<List<int>> NpcItemLotIds { get; set; }
+    public List<List<int>> NpcIds { get; set; } = [];
+    public List<List<int>> NpcItemLotIds { get; set; } = [];
 
     static List<int> ParseList(string input)
     {
@@ -194,7 +189,7 @@ class DslItemLotSetup
         List<List<int>> result = [];
         if (!string.IsNullOrEmpty(input))
         {
-            foreach (string item in input.Split(new[] { "], [" }, StringSplitOptions.None))
+            foreach (string item in input.Split(["], ["], StringSplitOptions.None))
             {
                 result.Add(ParseList(item));
             }

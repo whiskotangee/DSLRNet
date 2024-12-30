@@ -1,12 +1,13 @@
+namespace DSLRNet.Core.Contracts.Params;
+
 using System;
 
 public class GameAreaParam : ParamBase<GameAreaParam>
 {
-    public int ID { get { return this.GetValue<int>("ID"); } set { this.SetValue("ID", value); } }
     public string Name { get { return this.GetValue<string>("Name"); } set { this.SetValue("Name", value); } }
     public byte disableParam_NT { get { return this.GetValue<byte>("disableParam_NT"); } set { this.SetValue("disableParam_NT", value); } }
     public byte disableParamReserve1 { get { return this.GetValue<byte>("disableParamReserve1"); } set { this.SetValue("disableParamReserve1", value); } }
-    public byte[] disableParamReserve2 { get { return this.GetValue<byte[]>("disableParamReserve2"); } set { this.SetValue("disableParamReserve2", value); } }
+    public Byte[] disableParamReserve2 { get { return this.GetValue<Byte[]>("disableParamReserve2"); } set { this.SetValue("disableParamReserve2", value); } }
     public uint bonusSoul_single { get { return this.GetValue<uint>("bonusSoul_single"); } set { this.SetValue("bonusSoul_single", value); } }
     public uint bonusSoul_multi { get { return this.GetValue<uint>("bonusSoul_multi"); } set { this.SetValue("bonusSoul_multi", value); } }
     public uint humanityPointCountFlagIdTop { get { return this.GetValue<uint>("humanityPointCountFlagIdTop"); } set { this.SetValue("humanityPointCountFlagIdTop", value); } }
@@ -35,5 +36,5 @@ public class GameAreaParam : ParamBase<GameAreaParam>
     public byte bossMapAreaNo { get { return this.GetValue<byte>("bossMapAreaNo"); } set { this.SetValue("bossMapAreaNo", value); } }
     public byte bossMapBlockNo { get { return this.GetValue<byte>("bossMapBlockNo"); } set { this.SetValue("bossMapBlockNo", value); } }
     public byte bossMapMapNo { get { return this.GetValue<byte>("bossMapMapNo"); } set { this.SetValue("bossMapMapNo", value); } }
-    public byte[] reserve { get { return this.GetValue<byte[]>("reserve"); } set { this.SetValue("reserve", value); } }
+    public Byte[] reserve { get { return this.GetValue<Byte[]>("reserve"); } set { this.SetValue("reserve", value); } }
 }

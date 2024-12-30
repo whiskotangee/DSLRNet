@@ -4,7 +4,6 @@ global using DSLRNet.Core.Common;
 global using DSLRNet.Core.Config;
 global using DSLRNet.Core.Contracts;
 global using DSLRNet.Core.Contracts.Params;
-global using DSLRNet.Core.Data;
 global using DSLRNet.Core.Handlers;
 global using Microsoft.Extensions.Options;
 global using Newtonsoft.Json;

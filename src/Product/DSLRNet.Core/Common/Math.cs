@@ -46,9 +46,9 @@ public static class MathFunctions
 
     public static Dictionary<int, int> MapToRange<T>(IEnumerable<T> values, Func<T, float> getMeasurement, Func<T, int> getKey, int targetMin, int targetMax)
     {
-        var sortedValues = values.OrderBy(v => getMeasurement(v)).ToList(); 
+        List<T> sortedValues = values.OrderBy(v => getMeasurement(v)).ToList();
 
-        var valueToQuantile = new Dictionary<int, int>(); 
+        Dictionary<int, int> valueToQuantile = []; 
         int numQuantiles = targetMax - targetMin + 1; 
         int numValues = sortedValues.Count; 
 

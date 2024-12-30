@@ -45,7 +45,7 @@ public class DSLRNetBuilder(
         takenIds[ItemLotCategory.ItemLot_Map] = mapOverrides.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.Value.ItemLotIds).Distinct().ToHashSet();
         takenIds[ItemLotCategory.ItemLot_Enemy] = enemyOverrides.SelectMany(s => s.GameStageConfigs).SelectMany(s => s.Value.ItemLotIds).Distinct().ToHashSet();
 
-        Dictionary<ItemLotCategory, List<ItemLotSettings>> scanned = itemLotScanner.ScanAndCreateItemLotSets(takenIds);
+        Dictionary<ItemLotCategory, List<ItemLotSettings>> scanned = itemLotScanner.LoadScanned(takenIds);
         progressTracker.OverallProgress += 1;
 
         itemLotGenerator.CreateItemLots(enemyOverrides);

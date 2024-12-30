@@ -2,6 +2,7 @@
 
 using DSLRNet.Core.Contracts;
 using DSLRNet.Core.Contracts.Params;
+using DSLRNet.Core.DAL;
 
 public class DataAccess
 {

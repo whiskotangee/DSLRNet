@@ -16,7 +16,7 @@ public class TextureAtlas
 public class SubTexture
 {
     [XmlAttribute("name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     [XmlAttribute("x")]
     public int X { get; set; }
@@ -43,11 +43,11 @@ public class TextureAtlasSerializer
         serializer.Serialize(stringWriter, textureAtlas); 
         return stringWriter.ToString(); 
     } 
-    public static TextureAtlas Deserialize(string xml) 
+    public static TextureAtlas? Deserialize(string xml) 
     { 
         var serializer = new XmlSerializer(typeof(TextureAtlas)); 
         using var stringReader = new StringReader(xml); 
-        return (TextureAtlas)serializer.Deserialize(stringReader); 
+        return serializer.Deserialize(stringReader) as TextureAtlas; 
     } 
 }
 

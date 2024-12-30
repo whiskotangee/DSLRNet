@@ -1,7 +1,6 @@
 
 namespace DSLRNet.Models;
 using DSLRNet.Core.Config;
-using System.ComponentModel.DataAnnotations;
 
 public class IconBuilderSettingsWrapper : BaseModel<IconBuilderSettings>
 {

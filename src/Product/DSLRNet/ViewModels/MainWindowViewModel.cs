@@ -16,18 +16,6 @@ public class MainWindowViewModel : INotifyPropertyChanged
 {
     public static readonly object lockObject = new object();
 
-    public MainWindowViewModel()
-    {
-        this.settingsWrapper = new SettingsWrapper(Core.Config.Settings.CreateFromSettingsIni() ?? new Settings());
-        GenerateLootCommand = new AsyncRelayCommand(GenerateLootAsync, () => !IsRunning);
-        ChangeImageCommand = new RelayCommand<object>(ChangeImage);
-        ProgressTracker = new OperationProgressTracker();
-        IsRunning = false;
-        LogMessages = new ThreadSafeObservableCollection<string>();
-
-        BindingOperations.EnableCollectionSynchronization(LogMessages, lockObject);
-    }
-
     private SettingsWrapper settingsWrapper;
     private ThreadSafeObservableCollection<string> logMessages;
     private OperationProgressTracker progressTracker;
@@ -39,6 +27,18 @@ public class MainWindowViewModel : INotifyPropertyChanged
     private bool hasRun;
     private int selectedTabIndex;
 
+    public MainWindowViewModel()
+    {
+        this.settingsWrapper = new SettingsWrapper(Core.Config.Settings.CreateFromSettingsIni() ?? new Settings());
+        GenerateLootCommand = new AsyncRelayCommand(GenerateLootAsync, () => !IsRunning);
+        ChangeImageCommand = new RelayCommand<object?>(ChangeImage);
+        progressTracker = new OperationProgressTracker();
+        IsRunning = false;
+        logMessages = [];
+
+        BindingOperations.EnableCollectionSynchronization(LogMessages, lockObject);
+    }
+
     private async Task GenerateLootAsync()
     {
         // Your logic to generate loot goes here
@@ -49,6 +49,11 @@ public class MainWindowViewModel : INotifyPropertyChanged
         {
             ProgressTracker.Reset();
             LogMessages.Clear();
+            if (settingsWrapper.OriginalObject == null)
+            {
+                throw new InvalidOperationException("Settings detected as null, cannot build");
+            }
+
             LogMessages.Add($"Saving current config to Settings.User.ini");
             settingsWrapper.OriginalObject.ValidatePaths();
             if (settingsWrapper.RandomSeed == 0)
@@ -85,8 +90,11 @@ public class MainWindowViewModel : INotifyPropertyChanged
         }
     }
 
-    private void ChangeImage(object item)
+    private void ChangeImage(object? item)
     {
+        if (item == null)
+            return;
+
         var openFileDialog = new OpenFileDialog
         {
             Filter = "PNG Files (*.png)|*.png"
@@ -175,7 +183,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         if (Application.Current.Dispatcher.CheckAccess())
         {

@@ -3,8 +3,7 @@ namespace DSLRNet.Core.Contracts;
 
 public partial class RaritySetup : ParamBase<RaritySetup>
 {
-    public int ID { get; set; }
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
     public int WeaponDmgAddMin { get; set; }
     public int WeaponDmgAddMax { get; set; }
     public float ArmorCutRateAddMin { get; set; }
@@ -23,7 +22,7 @@ public partial class RaritySetup : ParamBase<RaritySetup>
     public int LootDropChance { get; set; }
     public float WeightMultMin { get; set; }
     public float WeightMultMax { get; set; }
-    public string ColorHex { get; set; }
+    public string ColorHex { get; set; } = string.Empty;
     public int SellValueMin { get; set; }
     public int SellValueMax { get; set; }
     public int RarityParamValue { get; set; }

@@ -8,7 +8,6 @@ namespace DSLRNet.Models
         private int currentStageStepCount;
         private int generatedMapItemLots;
         private int generatedEnemyItemLots;
-        private int generatedBossItemLots;
         private int generatedWeapons;
         private int generatedArmor;
         private int generatedTalismans;

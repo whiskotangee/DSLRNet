@@ -13,7 +13,7 @@ public class ParamEdit
 
     public LootFMG? MessageText { get; set; }
 
-    public string MassEditString { get; set; }
+    public string MassEditString { get; set; } = string.Empty;
 
-    public GenericParam ParamObject { get; set; }
+    public GenericParam? ParamObject { get; set; }
 }

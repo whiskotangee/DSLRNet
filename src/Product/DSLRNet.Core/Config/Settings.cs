@@ -24,23 +24,23 @@ public class Settings
         }
     }
 
-    public string DeployPath { get; set; }
+    public string DeployPath { get; set; } = string.Empty;
 
-    public List<string> OrderedModPaths { get; set; }
+    public List<string> OrderedModPaths { get; set; } = [];
 
-    public ItemLotGeneratorSettings ItemLotGeneratorSettings { get; set; }
+    public ItemLotGeneratorSettings ItemLotGeneratorSettings { get; set; } = new ItemLotGeneratorSettings();
 
     public int RandomSeed { get; set; }
 
-    public string GamePath { get; set; }
+    public string GamePath { get; set; } = string.Empty;
 
-    public List<string> MessageFileNames { get; set; }
+    public List<string> MessageFileNames { get; set; } = [];
 
-    public ArmorGeneratorSettings ArmorGeneratorSettings { get; set; }
+    public ArmorGeneratorSettings ArmorGeneratorSettings { get; set; } = new ArmorGeneratorSettings();
 
-    public WeaponGeneratorSettings WeaponGeneratorSettings { get; set; }
+    public WeaponGeneratorSettings WeaponGeneratorSettings { get; set; } = new WeaponGeneratorSettings();
 
-    public IconBuilderSettings IconBuilderSettings { get; set; }
+    public IconBuilderSettings IconBuilderSettings { get; set; } = new IconBuilderSettings() { IconSheetSettings  = new IconSheetSettings() };
 
     public void SaveSettings(string path)
     {

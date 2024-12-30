@@ -55,7 +55,7 @@ public class PocoGenerator
 
     private static string GetFriendlyTypeName(Type type)
     {
-        return typeMap.TryGetValue(type, out string friendlyName) ? friendlyName : type.Name;
+        return typeMap.TryGetValue(type, out string? friendlyName) ? friendlyName : type.Name;
     }
 }
 

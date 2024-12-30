@@ -46,7 +46,7 @@ public class Csv(ILogger<Csv> logger)
                     }
                     else
                     {
-                        values.Add(value?.ToString());
+                        values.Add(value?.ToString() ?? string.Empty);
                     }
                     
                 }

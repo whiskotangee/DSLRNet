@@ -69,6 +69,10 @@ public class DSLRRunner
             if (existingFile == null)
             {
                 string? oo2GameCore = Directory.GetFiles(activeSettings.GamePath, "oo2core*dll").FirstOrDefault();
+                if (oo2GameCore == null)
+                {
+                    throw new InvalidOperationException("Could not find oo2core file in directory or game directory");
+                }
                 File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
             }
 

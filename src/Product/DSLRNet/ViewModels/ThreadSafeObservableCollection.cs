@@ -6,10 +6,11 @@ using System.Windows.Threading;
 
 public class ThreadSafeObservableCollection<T> : ObservableCollection<T>
 {
-    public override event NotifyCollectionChangedEventHandler CollectionChanged;
+    public override event NotifyCollectionChangedEventHandler? CollectionChanged = delegate { };
+
     protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
     {
-        NotifyCollectionChangedEventHandler CollectionChanged = this.CollectionChanged;
+        NotifyCollectionChangedEventHandler? CollectionChanged = this.CollectionChanged;
 
         if (CollectionChanged != null)
         {
@@ -28,13 +29,13 @@ public class ThreadSafeObservableCollection<T> : ObservableCollection<T>
                                 {
                                     nh.Invoke(this, e); 
                                 } 
-                                catch (Exception ex) 
+                                catch (Exception) 
                                 {
                                     // nom nom we don't care if a logging thing caused an exception
                                 }
                             }, DispatcherPriority.DataBind);
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             // nom nom we don't care if a logging thing caused an exception
                         }

@@ -11,7 +11,7 @@ public interface IDataSource<T> : IDataSource
 
     T GetRandomItem();
 
-    T GetItemById(int id);
+    T? GetItemById(int id);
 
     int Count();
 }

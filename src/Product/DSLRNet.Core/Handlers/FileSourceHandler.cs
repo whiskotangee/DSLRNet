@@ -14,7 +14,7 @@ public class FileSourceHandler(IOptions<Settings> settings)
             throw new InvalidOperationException("Mod paths not set");
         }
 
-        fullPath = null;
+        fullPath = string.Empty;
 
         foreach (string path in settings.Value.OrderedModPaths)
         {

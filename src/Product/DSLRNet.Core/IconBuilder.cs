@@ -40,30 +40,21 @@ public partial class IconBuilder(
         IconBuilderSettings iconSettings = settings.IconBuilderSettings;
 
         string bakedSheetsSource = $"Assets\\LootIcons\\BakedSheets";
-        string preBakedSheetsSource = $"Assets\\LootIcons\\PreBakedSheets";
         string iconMappingsFile = Path.Combine(bakedSheetsSource, "iconmappings.json");
 
         Directory.CreateDirectory(bakedSheetsSource);
 
-        // Check if there are no DDS files in bakedSheetsSource
-        if (Directory.GetFiles(bakedSheetsSource, "*.dds").Length == 0)
-        {
-            // Copy everything from PreBakedSheets to BakedSheets
-            var preBakedFiles = Directory.GetFiles(preBakedSheetsSource, "*.dds");
-            foreach (var preBakedFile in preBakedFiles)
-            {
-                string destinationFile = Path.Combine(bakedSheetsSource, Path.GetFileName(preBakedFile));
-                File.Copy(preBakedFile, destinationFile, overwrite: true);
-            }
-        }
-        progressTracker.CurrentStageProgress += 1;
+        RarityIconMappingConfig sheetConfig = new RarityIconMappingConfig();
 
         if (!File.Exists(iconMappingsFile))
         {
-            File.Copy(Path.Combine(preBakedSheetsSource, Path.GetFileName(iconMappingsFile)), iconMappingsFile);
+            logger.LogInformation("Could not find baked sheets, forcing regeneration of icon files");
+            iconSettings.RegenerateIconSheets = true;
         }
-
-        RarityIconMappingConfig sheetConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText(iconMappingsFile));
+        else
+        {
+            sheetConfig = JsonConvert.DeserializeObject<RarityIconMappingConfig>(File.ReadAllText(iconMappingsFile)) ?? throw new Exception($"Icon mappings file {iconMappingsFile} could not be deserialized to config object");
+        }
 
         // Step 1: Regenerate if needed
         if (iconSettings.RegenerateIconSheets)
@@ -90,6 +81,7 @@ public partial class IconBuilder(
 
             progressTracker.CurrentStageStepCount = originalStageCount;
             progressTracker.CurrentStageProgress = originalStep;
+            iconSettings.RegenerateIconSheets = false;
         }
 
         progressTracker.CurrentStageProgress += 1;
@@ -125,7 +117,7 @@ public partial class IconBuilder(
 
         progressTracker.CurrentStageProgress += 1;
 
-        string basePath = Path.GetDirectoryName(commonIcons.Textures.First().Name);
+        string basePath = Path.GetDirectoryName(commonIcons.Textures.First().Name) ?? string.Empty;
 
         foreach (var iconSheet in sheetConfig.IconSheets)
         {
@@ -289,7 +281,7 @@ public partial class IconBuilder(
 
             count += 1;
 
-            iconMapping.ConvertedIcon.Dispose();
+            iconMapping.ConvertedIcon?.Dispose();
             iconMapping.ConvertedIcon = null;
         }
 
@@ -319,7 +311,7 @@ public partial class IconBuilder(
 
         BND4 bnd = BND4.Read(sourcePath);
 
-        return bnd.Files.Select(d => TextureAtlasSerializer.Deserialize(Encoding.UTF8.GetString(d.Bytes))).ToList();
+        return bnd.Files.Select(d => TextureAtlasSerializer.Deserialize(Encoding.UTF8.GetString(d.Bytes)) ?? throw new Exception($"Could not deserialize layout file {d.Name} to texture atlas object")).ToList();
     }
 
     private Image<Bgra32> GetOriginalIcon(int iconId, TPF commonIcons, List<TextureAtlas> textureAtlas)
@@ -386,7 +378,7 @@ public partial class IconBuilder(
             bnd.Files.Remove(atlas);
         }
 
-        string? pathBase = Path.GetDirectoryName(bnd.Files.Last().Name);
+        string? pathBase = Path.GetDirectoryName(bnd.Files.Last().Name) ?? string.Empty;
         int id = bnd.Files.Last().ID + 1;
 
         foreach (IconSheetParameters sheet in sheets)

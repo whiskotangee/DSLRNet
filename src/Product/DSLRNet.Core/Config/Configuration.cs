@@ -47,74 +47,74 @@ public class DataSourceConfig
 
     public DataSourceType SourceType { get; set; }
 
-    public string SourcePath { get; set; }
+    public string SourcePath { get; set; } = string.Empty;
 
-    public List<Filter> Filters { get; set; }
+    public List<Filter> Filters { get; set; } = [];
 }
 
 public class ItemlotsConfig
 {
-    public List<Category> Categories { get; set; }
+    public List<Category> Categories { get; set; } = [];
 }
 
 public class Category
 {
-    public string ParamCategory { get; set; }
+    public string ParamCategory { get; set; } = string.Empty;
 
-    public string NpcParamCategory { get; set; }
+    public string NpcParamCategory { get; set; } = string.Empty;
 }
 
 public class DSLRDescTextConfig
 {
-    public string Effect { get; set; }
-    public string NoStacking { get; set; }
+    public string Effect { get; set; } = string.Empty;
+    public string NoStacking { get; set; } = string.Empty;
 }
 
 public class LootParamConfig
 {
-    public List<string> WeaponBehSpeffects { get; set; }
-    public SpeffectsConfig Speffects { get; set; }
-    public List<string> SpeffectMsg { get; set; }
-    public WeaponSpecialMotionCategoriesConfig WeaponSpecialMotionCategories { get; set; }
-    public List<string> WeaponsVfxParam { get; set; }
-    public List<string> WeaponsVfxDummyParam { get; set; }
-    public List<int> WeaponsVfxDummies { get; set; }
+    public List<string> WeaponBehSpeffects { get; set; } = [];
+    public SpeffectsConfig Speffects { get; set; } = new SpeffectsConfig();
+    public List<string> SpeffectMsg { get; set; } = [];
+    public WeaponSpecialMotionCategoriesConfig WeaponSpecialMotionCategories { get; set; } = new WeaponSpecialMotionCategoriesConfig();
+    public List<string> WeaponsVfxParam { get; set; } = [];
+    public List<string> WeaponsVfxDummyParam { get; set; } = [];
+    public List<int> WeaponsVfxDummies { get; set; } = [];
 }
 
 public class SpeffectsConfig
 {
-    public List<string> EquipParamWeapon { get; set; }
-    public List<string> EquipParamProtector { get; set; }
-    public List<string> EquipParamAccessory { get; set; }
+    public List<string> EquipParamWeapon { get; set; } = [];
+    public List<string> EquipParamProtector { get; set; } = [];
+    public List<string> EquipParamAccessory { get; set; } = [];
 }
 
 public class WeaponSpecialMotionCategoriesConfig
 {
-    public List<int> Shields { get; set; }
-    public List<int> StaffsSeals { get; set; }
-    public List<int> BowsCrossbows { get; set; }
+    public List<int> Shields { get; set; } = [];
+    public List<int> StaffsSeals { get; set; } = [];
+    public List<int> BowsCrossbows { get; set; } = [];
 }
 
 public class RarityIconMappingConfig
 {
-    public List<IconSheetParameters> IconSheets { get; set; }
+    public List<IconSheetParameters> IconSheets { get; set; } = [];
 }
 
 public class IconSheetParameters
 {
     [JsonIgnore]
-    public byte[] GeneratedBytes { get; set; }
+    public byte[] GeneratedBytes { get; set; } = [];
 
-    public RarityIconMapping IconMappings { get; set; }
+    public RarityIconMapping IconMappings { get; set; } = new RarityIconMapping();
 
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 }
 
 public class RarityIconMapping
 {
-    public List<int> RarityIds { get; set; }
+    public List<int> RarityIds { get; set; } = [];
 
-    public List<IconMapping> IconReplacements { get; set; }
+    public List<IconMapping> IconReplacements { get; set; } = [];
 }
 
 public class IconMapping
@@ -123,7 +123,7 @@ public class IconMapping
 
     public ushort NewIconId { get; set; }
 
-    public string SourceIconPath { get; set; }
+    public string SourceIconPath { get; set; } = string.Empty;
 
     public int TileX { get; set; }
 
@@ -141,7 +141,7 @@ public class ScannerConfig
 public class CommonBossEventConfig
 {
     public long EventId { get; set; }
-    public string EventName { get; set; }
+    public string EventName { get; set; } = string.Empty;
 
     public int BankId { get; set; }
 

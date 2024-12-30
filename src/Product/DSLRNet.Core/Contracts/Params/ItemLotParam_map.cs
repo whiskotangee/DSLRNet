@@ -1,6 +1,5 @@
 public class ItemLotParam_map : ParamBase<ItemLotParam_map>
 {
-    public int ID { get { return this.GetValue<int>("ID"); } set { this.SetValue("ID", value); } }
     public string Name { get { return this.GetValue<string>("Name"); } set { this.SetValue("Name", value); } }
     public int lotItemId01 { get { return this.GetValue<int>("lotItemId01"); } set { this.SetValue("lotItemId01", value); } }
     public int lotItemId02 { get { return this.GetValue<int>("lotItemId02"); } set { this.SetValue("lotItemId02", value); } }

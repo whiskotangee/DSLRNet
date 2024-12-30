@@ -1,6 +1,7 @@
 ﻿namespace DSLRNet.Core.Data;
 
 using DSLRNet.Core.DAL;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 public class ParamEditsRepository(
@@ -100,7 +101,7 @@ public class ParamEditsRepository(
         return this.paramEdits[paramName].ContainsKey(Id);
     }
 
-    public bool TryGetParamEdit(ParamNames paramName, long Id, out ParamEdit? paramEdit)
+    public bool TryGetParamEdit(ParamNames paramName, long Id, [NotNullWhen(true)] out ParamEdit? paramEdit)
     {
         return this.paramEdits[paramName].TryGetValue(Id, out paramEdit);
     }

@@ -6,7 +6,7 @@ public abstract class BaseDataSource<T>(RandomProvider random) : IDataSource<T>
 
     public T? GetItemById(int id)
     {
-        if (this.CachedData.TryGetValue(id, out T item))
+        if (this.CachedData.TryGetValue(id, out T? item))
         {
             return item.Clone();
         }

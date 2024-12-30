@@ -1,6 +1,5 @@
 public class EquipParamCustomWeapon : ParamBase<EquipParamCustomWeapon>
 {
-    public int ID { get { return this.GetValue<int>("ID"); } set { this.SetValue("ID", value); } }
     public string Name { get { return this.GetValue<string>("Name"); } set { this.SetValue("Name", value); } }
     public int baseWepId { get { return this.GetValue<int>("baseWepId"); } set { this.SetValue("baseWepId", value); } }
     public int gemId { get { return this.GetValue<int>("gemId"); } set { this.SetValue("gemId", value); } }

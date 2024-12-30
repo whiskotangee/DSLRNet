@@ -2,11 +2,10 @@
 
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
-using System.Diagnostics.CodeAnalysis;
 
 using static SoulsFormats.EMEVD.Instruction;
 
-public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Configuration> config, FileSourceHandler fileHandler, DataAccess dataAccess)
+public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, FileSourceHandler fileHandler, DataAccess dataAccess)
 {
     private Dictionary<long, CommonBossEventConfig> bossDeathFunctions = [];
     private Dictionary<long, CommonBossEventConfig> itemRewardingFunctions = [];
@@ -96,7 +95,7 @@ public class BossDropScannerV2(ILogger<BossDropScannerV2> logger, IOptions<Confi
 
         var eventId = args[1];
 
-        if (this.bossDeathFunctions.TryGetValue(eventId, out CommonBossEventConfig value))
+        if (this.bossDeathFunctions.TryGetValue(eventId, out CommonBossEventConfig? value))
         {
             long itemLotId = 0;
 

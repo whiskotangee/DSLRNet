@@ -14,6 +14,25 @@ public class GameStageConfig
 
 public class ItemLotSettings
 {
+    public void Save(string file)
+    {
+        DslItemLotSetup setup = JsonConvert.DeserializeObject<DslItemLotSetup>(JsonConvert.SerializeObject(this)) ?? throw new Exception($"Could not deserialize item lot settings into DslItemLotSetup");
+        setup.AllowedRaritiesEarly = this.GameStageConfigs[GameStage.Early].AllowedRarities.ToList();
+        setup.AllowedRaritiesMid = this.GameStageConfigs[GameStage.Mid].AllowedRarities.ToList();
+        setup.AllowedRaritiesLate = this.GameStageConfigs[GameStage.Late].AllowedRarities.ToList();
+        setup.AllowedRaritiesEnd = this.GameStageConfigs[GameStage.End].AllowedRarities.ToList();
+
+        setup.ItemLotIdsEarly = this.GameStageConfigs[GameStage.Early].ItemLotIds.ToList();
+        setup.ItemLotIdsMid = this.GameStageConfigs[GameStage.Mid].ItemLotIds.ToList();
+        setup.ItemLotIdsLate = this.GameStageConfigs[GameStage.Late].ItemLotIds.ToList();
+        setup.ItemLotIdsEnd = this.GameStageConfigs[GameStage.End].ItemLotIds.ToList();
+
+        setup.LootTypeWeights = this.LootWeightsByType.Select(d => d.Weight).ToList();
+        setup.WeaponTypeWeights = this.WeaponWeightsByType.Select(d => d.Weight).ToList();
+
+        setup.Save(file);
+    }
+
     public static ItemLotSettings Create(string file, Category category)
     {
         DslItemLotSetup? setup = DslItemLotSetup.Create(file) ?? throw new Exception($"Could not load ini file from {file}");
@@ -85,11 +104,14 @@ public class ItemLotSettings
 
     public string NpcParamCategory { get; set; } = string.Empty;
 
+    [JsonConverter(typeof(BoolToIntConverter))]
     public bool IsForBosses { get; set; } = false;
 
     public int ID { get; set; }
     public string Realname { get; set; } = string.Empty;
     public int Enabled { get; set; }
+
+    [JsonConverter(typeof(BoolToIntConverter))]
     public bool GuaranteedDrop { get; set; }
     public float DropChanceMultiplier { get; set; }
     public Dictionary<GameStage, GameStageConfig> GameStageConfigs { get; set; } = [];
@@ -97,7 +119,6 @@ public class ItemLotSettings
     public List<WeightedValue<WeaponTypes>> WeaponWeightsByType { get; set; } = [];
     public List<List<int>> NpcIds { get; set; } = [];
     public List<List<int>> NpcItemlotids { get; set; } = [];
-    public List<int> ClearItemlotids { get; set; } = [];
 }
 
 public enum ItemLotCategory
@@ -141,8 +162,38 @@ class DslItemLotSetup
             return null;
         }
     }
+    public void Save(string file)
+    {
+        if (string.IsNullOrEmpty(file))
+        {
+            throw new ArgumentException(nameof(file));
+        }
 
-    protected DslItemLotSetup()
+        FileIniDataParser iniParser = new();
+        IniParser.Model.IniData data = new();
+
+        data["dslitemlotsetup"]["id"] = Id.ToString();
+        data["dslitemlotsetup"]["realname"] = Realname;
+        data["dslitemlotsetup"]["enabled"] = Enabled.ToString();
+        data["dslitemlotsetup"]["itemlotids_early"] = ListToString(ItemLotIdsEarly);
+        data["dslitemlotsetup"]["itemlotids_mid"] = ListToString(ItemLotIdsMid);
+        data["dslitemlotsetup"]["itemlotids_late"] = ListToString(ItemLotIdsLate);
+        data["dslitemlotsetup"]["itemlotids_end"] = ListToString(ItemLotIdsEnd);
+        data["dslitemlotsetup"]["allowedrarities_early"] = ListToString(AllowedRaritiesEarly);
+        data["dslitemlotsetup"]["allowedrarities_mid"] = ListToString(AllowedRaritiesMid);
+        data["dslitemlotsetup"]["allowedrarities_late"] = ListToString(AllowedRaritiesLate);
+        data["dslitemlotsetup"]["allowedrarities_end"] = ListToString(AllowedRaritiesEnd);
+        data["dslitemlotsetup"]["guaranteeddrop"] = GuaranteedDrop.ToString();
+        data["dslitemlotsetup"]["loottypeweights"] = ListToString(LootTypeWeights);
+        data["dslitemlotsetup"]["weapontypeweights"] = ListToString(WeaponTypeWeights);
+        data["dslitemlotsetup"]["dropchancemultiplier"] = DropChanceMultiplier.ToString();
+        data["dslitemlotsetup"]["npc_ids"] = NestedListToString(NpcIds);
+        data["dslitemlotsetup"]["npc_itemlotids"] = NestedListToString(NpcItemLotIds);
+
+        iniParser.WriteFile(file, data);
+    }
+
+    public DslItemLotSetup()
     {
 
     }
@@ -195,5 +246,27 @@ class DslItemLotSetup
             }
         }
         return result;
+    }
+
+    static string ListToString(List<int> list)
+    {
+        return $"[{string.Join(", ", list)}]";
+    }
+
+    static string NestedListToString(List<List<int>> nestedList)
+    {
+        return $"[{string.Join("], [", nestedList.Select(ListToString))}]";
+    }
+}
+public class BoolToIntConverter : JsonConverter<bool>
+{
+    public override void WriteJson(JsonWriter writer, bool value, JsonSerializer serializer)
+    {
+        writer.WriteValue(value ? 1 : 0);
+    }
+
+    public override bool ReadJson(JsonReader reader, Type objectType, bool existingValue, bool hasExistingValue, JsonSerializer serializer)
+    {
+        return reader.Value is int intValue && intValue == 1;
     }
 }

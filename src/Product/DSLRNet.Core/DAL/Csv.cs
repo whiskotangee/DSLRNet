@@ -1,4 +1,5 @@
 ﻿namespace DSLRNet.Core.DAL;
+
 public class Csv(ILogger<Csv> logger)
 {
     public List<T> LoadCsv<T>(string filename)

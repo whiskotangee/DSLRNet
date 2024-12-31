@@ -30,8 +30,8 @@ public class MainWindowViewModel : INotifyPropertyChanged
     private bool isRunning;
     private bool hasRun;
     private int selectedTabIndex;
-    private string lastRunCompleteMessage;
-    private Brush lastRunCompleteColor;
+    private string lastRunCompleteMessage = string.Empty;
+    private Brush lastRunCompleteColor = new SolidColorBrush(Colors.Black);
 
     public MainWindowViewModel()
     {

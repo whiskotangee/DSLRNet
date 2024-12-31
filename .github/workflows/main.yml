@@ -48,6 +48,11 @@ jobs:
         mkdir ${{ github.workspace }}/${{ env.Output_Path }}/combined
         cp -r ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet/* ${{ github.workspace }}/${{ env.Output_Path }}/combined/
         cp -r -Force ${{ github.workspace }}/${{ env.Output_Path }}/DSLRNet.Console/* ${{ github.workspace }}/${{ env.Output_Path }}/combined/
+        Remove-Item -Recurse -Force ${{ github.workspace }}/${{ env.Output_Path }}/combined/runtimes/linux-x64
+        Remove-Item -Recurse -Force ${{ github.workspace }}/${{ env.Output_Path }}/combined/runtimes/linux-arm64
+        Remove-Item -Recurse -Force ${{ github.workspace }}/${{ env.Output_Path }}/combined/runtimes/linux-musl-x64
+        Remove-Item -Recurse -Force ${{ github.workspace }}/${{ env.Output_Path }}/combined/runtimes/osx-x64
+        Remove-Item -Recurse -Force ${{ github.workspace }}/${{ env.Output_Path }}/combined/runtimes/osx-arm64
 
     - name: Upload zip file
       uses: actions/upload-artifact@v3

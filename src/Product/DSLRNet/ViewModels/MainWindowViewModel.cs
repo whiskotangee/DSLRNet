@@ -21,17 +21,11 @@ public class MainWindowViewModel : INotifyPropertyChanged
     private SettingsWrapper settingsWrapper;
     private ThreadSafeObservableCollection<string> logMessages;
     private OperationProgressTracker progressTracker;
-
-    public IAsyncRelayCommand GenerateLootCommand { get; private set; }
-    public ICommand ChangeImageCommand { get; private set; }
-
-    public ICommand OpenLogFolderCommand { get; private set; }
-
     private bool isRunning;
     private bool hasRun;
     private int selectedTabIndex;
-    private string lastRunCompleteMessage;
-    private Brush lastRunCompleteColor;
+    private string lastRunCompleteMessage = string.Empty;
+    private Brush lastRunCompleteColor = new SolidColorBrush(Colors.Black);
 
     public MainWindowViewModel()
     {
@@ -39,11 +33,17 @@ public class MainWindowViewModel : INotifyPropertyChanged
         GenerateLootCommand = new AsyncRelayCommand(GenerateLootAsync, () => !IsRunning);
         ChangeImageCommand = new RelayCommand<object?>(ChangeImage);
         OpenLogFolderCommand = new RelayCommand(OpenLogFolder);
+        PickUniqueNameColorCommand = new RelayCommand(PickUniqueNameColor);
         progressTracker = new OperationProgressTracker();
         IsRunning = false;
         logMessages = [];
 
         BindingOperations.EnableCollectionSynchronization(LogMessages, lockObject);
+    }
+
+    private void PickUniqueNameColor()
+    {
+
     }
 
     private async Task GenerateLootAsync()
@@ -155,6 +155,16 @@ public class MainWindowViewModel : INotifyPropertyChanged
             MessageBox.Show("Log folder does not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
+
+
+    public IAsyncRelayCommand GenerateLootCommand { get; private set; }
+
+    public ICommand ChangeImageCommand { get; private set; }
+
+    public ICommand OpenLogFolderCommand { get; private set; }
+
+    public ICommand PickUniqueNameColorCommand { get; private set; }
+
 
     public bool IsRunning
     {

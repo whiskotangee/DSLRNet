@@ -81,7 +81,10 @@ public class ItemLotGenerator : BaseHandler
 
     private void CreateItemLot_Enemy(ItemLotSettings itemLotSettings)
     {
-        this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Values.Sum(d => d.ItemLotIds.Distinct().Count());
+        this.progressTracker.CurrentStageStepCount =
+            itemLotSettings.GameStageConfigs.Values.Sum(d => d.ItemLotIds.Distinct().Count())
+            * settings.ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot;
+
         this.progressTracker.CurrentStageProgress = 0;
 
         foreach (GameStageConfig gameStageConfig in itemLotSettings.GameStageConfigs.Values)
@@ -95,7 +98,7 @@ public class ItemLotGenerator : BaseHandler
                     this.settings.ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot,
                     (i) => this.itemLotParam_Enemy.ContainsKey(i))).ToList());
 
-            itemLotIds = itemLotIds.Distinct().ToList();
+            itemLotIds = [.. itemLotIds.Distinct().OrderBy(d => d)];
 
             bool dropGuaranteed = this.settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
 
@@ -195,7 +198,10 @@ public class ItemLotGenerator : BaseHandler
     {
         GenericParam defaultValue = GenericParam.FromObject(this.ItemLotTemplate.Clone());
 
-        this.progressTracker.CurrentStageStepCount = itemLotSettings.GameStageConfigs.Count * itemLotSettings.GameStageConfigs.Values.Sum(d => d.ItemLotIds.Count);
+        this.progressTracker.CurrentStageStepCount = 
+            (itemLotSettings.IsForBosses ? settings.ItemLotGeneratorSettings.LootPerItemLot_Map : settings.ItemLotGeneratorSettings.LootPerItemLot_Bosses) 
+            * itemLotSettings.GameStageConfigs.Values.Sum(d => d.ItemLotIds.Count);
+
         this.progressTracker.CurrentStageProgress = 0;
 
         foreach (GameStageConfig gameStageConfig in itemLotSettings.GameStageConfigs.Values)

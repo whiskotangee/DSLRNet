@@ -9,6 +9,9 @@ public class ItemLotGeneratorSettingsWrapper : BaseModel<ItemLotGeneratorSetting
     {
         _settings = settings;
         OriginalObject = _settings;
+        ChestLootScannerSettings = new(_settings.ChestLootScannerSettings);
+        MapLootScannerSettings = new(_settings.MapLootScannerSettings);
+        EnemyLootScannerSettings = new(_settings.EnemyLootScannerSettings);
     }
 
     public int ItemLotsPerBaseMapLot
@@ -89,11 +92,11 @@ public class ItemLotGeneratorSettingsWrapper : BaseModel<ItemLotGeneratorSetting
         }
     }
 
-    public ScannerSettingsWrapper ChestLootScannerSettings => new(_settings.ChestLootScannerSettings);
+    public ScannerSettingsWrapper ChestLootScannerSettings { get; } 
 
-    public ScannerSettingsWrapper MapLootScannerSettings => new(_settings.MapLootScannerSettings);
+    public ScannerSettingsWrapper MapLootScannerSettings { get; }
 
-    public ScannerSettingsWrapper EnemyLootScannerSettings => new(_settings.EnemyLootScannerSettings);
+    public ScannerSettingsWrapper EnemyLootScannerSettings { get; }
 
     public bool ChaosLootEnabled
     {

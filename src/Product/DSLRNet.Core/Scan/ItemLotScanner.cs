@@ -139,10 +139,11 @@ public class ItemLotScanner(
 
         foreach (var gameStage in settings.GameStageConfigs)
         {
+            int countBefore = gameStage.Value.ItemLotIds.Count;
+
             gameStage.Value.ItemLotIds =
                 gameStage.Value.ItemLotIds
-                    .Where(d => !claimedIds.Contains(d))
-                    .Where(d => this.random.PassesPercentCheck(scannerSettings.ApplyPercent))
+                    .Where(d => !claimedIds.Contains(d) && this.random.PassesPercentCheck(scannerSettings.ApplyPercent))
                     .ToHashSet();
         }
 

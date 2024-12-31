@@ -82,15 +82,11 @@
         </TabControl>
 
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Grid.Row="0" Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" Margin="0,5">
                     <TextBlock Text="Map Item Lots: " Margin="5,5"/>
                     <TextBlock Text="{Binding ProgressTracker.GeneratedMapItemLots}" Margin="5,5"/>
@@ -110,9 +106,11 @@
                     <ProgressBar Value="{Binding ProgressTracker.CurrentStageProgress}" Maximum="{Binding ProgressTracker.CurrentStageStepCount}" Height="20" Margin="5"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource MaterialDesignTextBlock}" HorizontalAlignment="Left" Text="{Binding LastRunCompleteMessage}" Foreground="{Binding LastRunCompleteColor}" />
+                <Button Visibility="{Binding HasRun, Converter={StaticResource BoolToVisibilityConverter}}" Command="{Binding OpenLogFolderCommand}" Content="Open Logs Folder" IsEnabled="{Binding HasRun}" Margin="10"/>
                 <Button Command="{Binding GenerateLootCommand}" Content="Generate Loot" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}" Margin="10"/>
-                <Button Visibility="Collapsed" Command="{Binding SaveSettingsCommand}" Content="Save Output For Sharing" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}" Margin="10"/>
             </StackPanel>
         </Grid>
     </Grid>

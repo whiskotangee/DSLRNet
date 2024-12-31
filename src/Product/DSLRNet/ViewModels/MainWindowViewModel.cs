@@ -11,6 +11,8 @@ using DSLRNet.Core;
 using DSLRNet.Models;
 using System.Windows.Data;
 using System.Windows;
+using System.Windows.Media;
+using System.Diagnostics;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {
@@ -23,15 +25,20 @@ public class MainWindowViewModel : INotifyPropertyChanged
     public IAsyncRelayCommand GenerateLootCommand { get; private set; }
     public ICommand ChangeImageCommand { get; private set; }
 
+    public ICommand OpenLogFolderCommand { get; private set; }
+
     private bool isRunning;
     private bool hasRun;
     private int selectedTabIndex;
+    private string lastRunCompleteMessage;
+    private Brush lastRunCompleteColor;
 
     public MainWindowViewModel()
     {
         this.settingsWrapper = new SettingsWrapper(Core.Config.Settings.CreateFromSettingsIni() ?? new Settings());
         GenerateLootCommand = new AsyncRelayCommand(GenerateLootAsync, () => !IsRunning);
         ChangeImageCommand = new RelayCommand<object?>(ChangeImage);
+        OpenLogFolderCommand = new RelayCommand(OpenLogFolder);
         progressTracker = new OperationProgressTracker();
         IsRunning = false;
         logMessages = [];
@@ -44,6 +51,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
         // Your logic to generate loot goes here
         HasRun = true;
         IsRunning = true;
+        bool success = false;
 
         try
         {
@@ -64,7 +72,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
             settingsWrapper.OriginalObject.SaveSettings("Settings.User.ini");
 
             LogMessages.Add("Starting loot generation...");
-
+            
             await Task.Run(async () =>
             {
                 await Task.Yield();
@@ -73,20 +81,33 @@ public class MainWindowViewModel : INotifyPropertyChanged
                 {
                     await DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages, ProgressTracker);
                     LogMessages.Add("Loot generation completed successfully.");
+                    success = true;
                 }
                 catch (Exception ex)
                 {
                     LogMessages.Add($"Exception caught - loot Generation is most likely incomplete: {ex}");
                 }
             });
+
         }
         catch (Exception ex)
         {
             LogMessages.Add($"Exception caught, cannot generate loot: {ex}");
+            success = false;
         }
         finally
         {
             IsRunning = false;
+            if (success)
+            {
+                LastRunCompleteMessage = "Success!";
+                LastRunCompleteColor = new SolidColorBrush(Colors.LightGreen);
+            }
+            else
+            {
+                LastRunCompleteMessage = "Last Run Failed - Check Logs";
+                LastRunCompleteColor = new SolidColorBrush(Colors.Crimson);
+            }
         }
     }
 
@@ -117,6 +138,24 @@ public class MainWindowViewModel : INotifyPropertyChanged
         }
     }
 
+    private void OpenLogFolder()
+    {
+        string logFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log");
+        if (Directory.Exists(logFolderPath))
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = logFolderPath,
+                UseShellExecute = true,
+                Verb = "open"
+            });
+        }
+        else
+        {
+            MessageBox.Show("Log folder does not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     public bool IsRunning
     {
         get => isRunning;
@@ -138,6 +177,31 @@ public class MainWindowViewModel : INotifyPropertyChanged
         }
     }
 
+    public string LastRunCompleteMessage 
+    { 
+        get => lastRunCompleteMessage; 
+        set
+        {
+            if (lastRunCompleteMessage != value)
+            {
+                lastRunCompleteMessage = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public Brush LastRunCompleteColor
+    {
+        get => lastRunCompleteColor;
+        set
+        {
+            if (lastRunCompleteColor != value)
+            {
+                lastRunCompleteColor = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     public int SelectedTabIndex
     {
         get => selectedTabIndex;

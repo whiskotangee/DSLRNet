@@ -22,9 +22,6 @@
     <Content Include="appsettings.Default.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="appsettings.Default.LoreConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Settings.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -109,6 +109,13 @@ public partial class IconBuilder(
             throw new Exception("Could not find common icon file");
         }
 
+        Directory.CreateDirectory(Path.Combine(settings.DeployPath, "menu", "hi"));
+
+        if (!File.Exists(Path.Combine(settings.DeployPath, "menu", "hi", "01_common.pre-dslr.tpf.dcx")))
+        {
+            File.Copy(sourcePath, Path.Combine(settings.DeployPath, "menu", "hi", "01_common.pre-dslr.tpf.dcx"));
+        }
+
         logger.LogInformation($"Reading common tpf...");
         TPF commonIcons = TPF.Read(sourcePath);
         List<TPF.Texture> removeIcons = commonIcons.Textures.Where(d => d.Name.Contains(nameBase)).ToList();

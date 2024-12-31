@@ -9,6 +9,29 @@ public class LoreConfig
     public LoreTemplates MadLibsConfig { get; set; } = new LoreTemplates();
 
     public UniqueNameConfig UniqueNamesConfig { get; set; } = new UniqueNameConfig();
+
+    public static LoreConfig LoadConfig()
+    {
+        return new LoreConfig()
+        {
+            Names = File.ReadAllLines("Assets\\Lore\\Names.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+            Locations = File.ReadAllLines("Assets\\Lore\\Locations.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+            MadLibsConfig = new LoreTemplates
+            {
+                Prefixes = File.ReadAllLines("Assets\\Lore\\MadLibsConfig.Prefixes.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                PostFixes = File.ReadAllLines("Assets\\Lore\\MadLibsConfig.Postfixes.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                Interfixes = File.ReadAllLines("Assets\\Lore\\MadLibsConfig.Interfixes.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+            },
+            UniqueNamesConfig = new UniqueNameConfig
+            {
+                UniqueNameFirstHalf = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameFirstHalf.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                UniqueNameFirstWord = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameFirstWord.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                UniqueNameSecondHalf = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameSecondHalf.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                UniqueNameSecondWord = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameSecondWord.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                UniqueNameSecondHalfShield = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameSecondHalfShield.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList()
+            }
+        };
+    }
 }
 
 public class LoreTemplates

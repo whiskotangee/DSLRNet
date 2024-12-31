@@ -8,9 +8,14 @@ public class Settings
 {
     public void ValidatePaths()
     {
+        if (string.IsNullOrEmpty(DeployPath))
+        {
+            throw new DirectoryNotFoundException($"Deploy path must be specified");
+        }
+
         if (!Directory.Exists(DeployPath))
         {
-            throw new DirectoryNotFoundException($"Deploy path {DeployPath} does not exist.");
+            Directory.CreateDirectory(DeployPath);
         }
 
         if (OrderedModPaths.Count > 0 && OrderedModPaths.Any(x => !string.IsNullOrWhiteSpace(x) && !Directory.Exists(x)))
@@ -20,7 +25,7 @@ public class Settings
 
         if (!Directory.Exists(GamePath))
         {
-            throw new DirectoryNotFoundException($"Game path {GamePath} does not exist.");
+            throw new DirectoryNotFoundException($"Game path {GamePath} does not exist or is not specified.");
         }
     }
 
@@ -82,6 +87,7 @@ public class Settings
         data["Settings.WeaponGeneratorSettings.OtherBaseScalingRange"]["Min"] = WeaponGeneratorSettings.OtherBaseScalingRange.Min.ToString();
         data["Settings.WeaponGeneratorSettings.OtherBaseScalingRange"]["Max"] = WeaponGeneratorSettings.OtherBaseScalingRange.Max.ToString();
         data["Settings.IconBuilderSettings"]["RegenerateIconSheets"] = IconBuilderSettings.RegenerateIconSheets.ToString();
+        data["Settings.IconBuilderSettings.IconSheetSettings"]["StartAt"] = IconBuilderSettings.IconSheetSettings.StartAt.ToString();
         data["Settings.IconBuilderSettings.IconSheetSettings"]["GoalIconsPerSheet"] = IconBuilderSettings.IconSheetSettings.GoalIconsPerSheet.ToString();
         data["Settings.IconBuilderSettings.IconSheetSettings.IconDimensions"]["IconSize"] = IconBuilderSettings.IconSheetSettings.IconDimensions.IconSize.ToString();
         data["Settings.IconBuilderSettings.IconSheetSettings.IconDimensions"]["Padding"] = IconBuilderSettings.IconSheetSettings.IconDimensions.Padding.ToString();
@@ -183,6 +189,7 @@ public class Settings
                 IconSheetSettings = new IconSheetSettings
                 {
                     GoalIconsPerSheet = int.Parse(data["Settings.IconBuilderSettings.IconSheetSettings"]["GoalIconsPerSheet"]),
+                    StartAt = int.Parse(data["Settings.IconBuilderSettings.IconSheetSettings"]["StartAt"]),
                     IconDimensions = new IconDimensions
                     {
                         IconSize = int.Parse(data["Settings.IconBuilderSettings.IconSheetSettings.IconDimensions"]["IconSize"]),

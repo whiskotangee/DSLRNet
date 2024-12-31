@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dslrconverters="clr-namespace:DSLRNet.Converters"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:DSLRNet.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <dslrconverters:HexStringToColorConverter x:Key="HexStringToColorConverter"/>
+        <SolidColorBrush x:Key="UniqueNameColorBrush" Color="{Binding UniqueItemNameColor, Converter={StaticResource HexStringToColorConverter}}"/>
     </UserControl.Resources>
     <GroupBox Header="Weapon Settings">
         <Grid>
@@ -29,10 +29,11 @@
                 <Grid Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBox Text="{Binding UniqueItemNameColor, Mode=TwoWay}" IsEnabled="False" Grid.Column="0" Width="70"/>
-                    <xctk:ColorPicker SelectedColor="{Binding UniqueItemNameColor, Converter={StaticResource HexStringToColorConverter}, Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1"/>
+                    
+                    <Rectangle Width="50" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="{StaticResource UniqueNameColorBrush}" Grid.Column="0" Margin="5"/>
+                    <Button Content="Pick Color" Grid.Column="1" Margin="5" Width="100" Click="UniqueColor_Click"/>
                 </Grid>
 
                 <TextBlock Text="Split Damage Type Chance" Margin="0,5,0,5"/>

@@ -12,7 +12,6 @@ public static class IServiceCollectionExtensions
     {
         // configurations
         services.Configure<Configuration>(configuration.GetSection(nameof(Configuration)))
-                .Configure<LoreConfig>(configuration.GetSection(nameof(LoreConfig)))
                 .Configure<Settings>(c =>
                 {
                     c.DeployPath = settings.DeployPath;
@@ -48,7 +47,8 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<RegulationBinBank>()
                 .AddSingleton<DataSourceFactory>()
                 .AddSingleton<FileSourceHandler>()
-                .AddSingleton<IOperationProgressTracker>((sp) => progressTracker ?? new DefaultProgressTracker())
+                .AddSingleton(sp => LoreConfig.LoadConfig())
+                .AddSingleton((sp) => progressTracker ?? new DefaultProgressTracker())
                 .AddSingleton((sp) =>
                 {
                     return new RandomProvider(sp.GetRequiredService<IOptions<Settings>>().Value.RandomSeed);

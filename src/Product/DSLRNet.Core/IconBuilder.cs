@@ -93,6 +93,8 @@ public partial class IconBuilder(
 
         foreach (string bakedFile in bakedFiles)
         {
+            logger.LogInformation($"Reading baked icon sheet {Path.GetFileName(bakedFile)}");
+
             IconSheetParameters? existing = sheetConfig.IconSheets
                 .SingleOrDefault(d => Path.GetFileNameWithoutExtension(d.Name).Equals(Path.GetFileNameWithoutExtension(bakedFile), StringComparison.OrdinalIgnoreCase));
 
@@ -107,6 +109,7 @@ public partial class IconBuilder(
             throw new Exception("Could not find common icon file");
         }
 
+        logger.LogInformation($"Reading common tpf...");
         TPF commonIcons = TPF.Read(sourcePath);
         List<TPF.Texture> removeIcons = commonIcons.Textures.Where(d => d.Name.Contains(nameBase)).ToList();
 
@@ -121,11 +124,13 @@ public partial class IconBuilder(
 
         foreach (IconSheetParameters iconSheet in sheetConfig.IconSheets)
         {
+            logger.LogInformation($"Applying icon sheet {Path.GetFileNameWithoutExtension(iconSheet.Name)}");
             TPF.Texture tex = new(Path.GetFileNameWithoutExtension(iconSheet.Name).Trim(), 102, 0, iconSheet.GeneratedBytes, TPF.TPFPlatform.PC);
             commonIcons.Textures.Add(tex);
             iconSheet.GeneratedBytes = [];
         }
 
+        logger.LogInformation($"Writing common tpf");
         commonIcons.Write(Path.Combine(settings.DeployPath, "menu", "hi", "01_common.tpf.dcx"));
 
         progressTracker.CurrentStageProgress += 1;

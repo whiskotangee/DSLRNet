@@ -28,7 +28,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         DataAccess dataAccess,
         ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamWeapon, logger)
     {
-        this.CumulativeID = new CumulativeID(logger);
+        this.IDGenerator = new IDGenerator();
         this.ashofWarHandler = ashofWarHandler;
         this.damageTypeHandler = damageTypeHandler;
         this.DataSource = dataAccess.EquipParamWeapon;
@@ -63,7 +63,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         EquipParamWeapon newWeapon = this.GetNewWeapon(weaponType);
 
-        newWeapon.ID = (int)this.CumulativeID.GetNext();
+        newWeapon.ID = (int)this.IDGenerator.GetNext();
         newWeapon.sellValue = this.RarityHandler.GetSellValue(rarityId);
         newWeapon.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
         newWeapon.iconId = this.RarityHandler.GetIconId(newWeapon.iconId, rarityId, isUnique: isUniqueWeapon);

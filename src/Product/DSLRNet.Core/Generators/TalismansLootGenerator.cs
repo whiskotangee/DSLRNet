@@ -23,7 +23,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         ILogger<ParamLootGenerator<EquipParamAccessory>> logger)
         : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamAccessory, logger)
     {
-        this.CumulativeID = new CumulativeID(logger) { IDMultiplier = 10 };
+        this.IDGenerator = new IDGenerator() { Multiplier = 10 };
 
         this.TalismanConfigs = dataAccess.TalismanConfig.GetAll().ToList();
 
@@ -48,7 +48,7 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
 
         string availableSlot = this.GetAvailableSpEffectSlots(newTalisman.GenericParam).First();
 
-        newTalisman.ID = (int)this.CumulativeID.GetNext();
+        newTalisman.ID = (int)this.IDGenerator.GetNext();
         newTalisman.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
         newTalisman.accessoryGroup = newTalismanConfig.NoStackingGroupID;
 

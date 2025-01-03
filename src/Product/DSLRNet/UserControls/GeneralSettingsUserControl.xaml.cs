@@ -48,7 +48,7 @@ namespace DSLRNet.UserControls
                     Title = "Select Elden Ring Game Exe",
                     FileName = settingsWrapper.GamePath,
                     InitialDirectory = settingsWrapper.GamePath,
-                    Filter = "Elden Ring Exe (*.exe)|*.exe",
+                    Filter = "eldenring.exe",
                     ValidateNames = false
                 };
 
@@ -67,7 +67,7 @@ namespace DSLRNet.UserControls
                 {
                     CheckFileExists = true,
                     CheckPathExists = true,
-                    Title = "Select mod engine toml file",
+                    Title = "Select mod engine 2 toml file",
                     FileName = "Choose toml file",
                     InitialDirectory = settingsWrapper.DeployPath,
                     Filter = "TOML files (*.toml)|*.toml",

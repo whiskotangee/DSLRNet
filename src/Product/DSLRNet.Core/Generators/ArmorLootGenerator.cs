@@ -17,7 +17,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         ILogger<ParamLootGenerator<EquipParamProtector>> logger)
         : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamProtector, logger)
     {
-        this.CumulativeID = new CumulativeID(logger);
+        this.IDGenerator = new IDGenerator();
 
         this.DataSource = dataAccess.EquipParamProtector;
     }
@@ -26,7 +26,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
     {
         EquipParamProtector newArmor = this.GetNewLootItem();
 
-        newArmor.ID = (int)this.CumulativeID.GetNext();
+        newArmor.ID = (int)this.IDGenerator.GetNext();
         newArmor.sellValue = this.RarityHandler.GetSellValue(rarity);
         newArmor.rarity = this.RarityHandler.GetRarityParamValue(rarity);
         newArmor.iconIdM = this.RarityHandler.GetIconId(newArmor.iconIdM, rarity);

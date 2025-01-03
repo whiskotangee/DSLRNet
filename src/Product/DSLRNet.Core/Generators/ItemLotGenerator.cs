@@ -17,9 +17,8 @@ public class ItemLotGenerator : BaseHandler
     private readonly RandomProvider random;
     private readonly ILogger<ItemLotGenerator> logger;
     private readonly IOperationProgressTracker progressTracker;
-    private readonly Configuration configuration;
     private readonly Settings settings;
-    private readonly CumulativeID itemAcquisitionCumulativeId;
+    private readonly IDGenerator acquisitionFlagIDGenerator;
     private readonly Dictionary<int, ItemLotParam_map> itemLotParam_Map = [];
     private readonly Dictionary<int, ItemLotParam_enemy> itemLotParam_Enemy = [];
 
@@ -43,12 +42,14 @@ public class ItemLotGenerator : BaseHandler
         this.random = random;
         this.logger = logger;
         this.progressTracker = progressTracker;
-        this.configuration = configuration.Value;
         this.settings = settingsOptions.Value;
-        this.itemAcquisitionCumulativeId = new CumulativeID(logger)
+        this.acquisitionFlagIDGenerator = new IDGenerator()
         {
-            IsItemFlagAcquisitionCumulativeID = true,
-            UseWrapAround = true
+            StartingID = 1024260000,
+            Multiplier = 1,
+            AllowedOffsets = [0, 4, 7, 8, 9],
+            WrapAroundLimit = 998,
+            IsWrapAround = true
         };
 
         this.ItemLotTemplate = dataAccess.ItemLotBase.GetAll().First();
@@ -171,26 +172,12 @@ public class ItemLotGenerator : BaseHandler
                     {
                         ParamName = itemLotSettings.ParamName,
                         Operation = ParamOperation.Create,
-                        MassEditString = this.CreateMassEdit(genericDict, itemLotSettings.ParamName, newItemLot.ID),
                         MessageText = null,
                         ParamObject = genericDict
                     });
 
                 this.progressTracker.CurrentStageProgress += 1;
             }
-        }
-
-        if (itemLotSettings.NpcIds.Count > 0 && itemLotSettings.NpcItemlotids.Count > 0)
-        {
-            this.GeneratedDataRepository.AddParamEdit(
-                new ParamEdit()
-                {
-                    ParamName = ParamNames.NpcParam,
-                    Operation = ParamOperation.MassEdit,
-                    MassEditString = this.CreateNpcMassEdit(itemLotSettings, itemLotSettings.NpcIds, itemLotSettings.NpcItemlotids),
-                    MessageText = null,
-                    ParamObject = new GenericParam()
-                });
         }
     }
 
@@ -224,7 +211,7 @@ public class ItemLotGenerator : BaseHandler
 
                     if (newItemLot.getItemFlagId <= 0)
                     {
-                        newItemLot.getItemFlagId = this.itemAcquisitionCumulativeId.GetNext();
+                        newItemLot.getItemFlagId = Convert.ToUInt32(this.acquisitionFlagIDGenerator.GetNext());
                     }
 
                     newItemLot.Name = string.Empty;
@@ -245,13 +232,11 @@ public class ItemLotGenerator : BaseHandler
                     }
 
                     GenericParam genericParam = GenericParam.FromObject(newItemLot);
-                    string itemLotMassEdit = this.CreateMassEdit(genericParam, itemLotSettings.ParamName, newItemLot.ID, defaultValue: defaultValue);
                     this.GeneratedDataRepository.AddParamEdit(
                         new ParamEdit()
                         {
                             ParamName = itemLotSettings.ParamName,
                             Operation = ParamOperation.Create,
-                            MassEditString = itemLotMassEdit,
                             MessageText = null,
                             ParamObject = genericParam
                         });
@@ -259,19 +244,6 @@ public class ItemLotGenerator : BaseHandler
 
                 this.progressTracker.CurrentStageProgress += 1;
             }
-        }
-
-        if (itemLotSettings.NpcIds.Count != 0 && itemLotSettings.NpcItemlotids.Count != 0)
-        {
-            this.GeneratedDataRepository.AddParamEdit(
-                new ParamEdit()
-                {
-                    ParamName = ParamNames.NpcParam,
-                    Operation = ParamOperation.MassEdit,
-                    MassEditString = this.CreateNpcMassEdit(itemLotSettings, itemLotSettings.NpcIds, itemLotSettings.NpcItemlotids),
-                    MessageText = null,
-                    ParamObject = new GenericParam()
-                });
         }
     }
 
@@ -438,31 +410,6 @@ public class ItemLotGenerator : BaseHandler
         finalBaseChance = Math.Clamp(finalBaseChance, fallback, baseChance);
 
         itemLot.lotItemBasePoint01 = finalBaseChance;
-    }
-
-    private string CreateNpcMassEdit(ItemLotSettings itemLotSettings, List<List<int>> npcIds, List<List<int>> npcItemLots)
-    {
-        if (npcIds.Count == 0 || npcIds.Any(d => d.Count == 0) || npcItemLots.Count == 0 || npcItemLots.Any(d => d.Count == 0))
-        {
-            return string.Empty;
-        }
-
-        string finalString = string.Empty;
-
-        for (int x = 0; x < npcIds.Count - 1; x++)
-        {
-            List<int> currentIds = npcIds[x];
-            List<int> currentItemLots = npcItemLots[x];
-            int maxItemLots = currentItemLots.Count - 1;
-
-            for (int y = 0; y < currentIds.Count; y++)
-            {
-                int assignedLot = currentItemLots[this.random.NextInt(0, maxItemLots)];
-                finalString += CreateMassEditLine(ParamNames.NpcParam, currentIds[y], itemLotSettings.NpcParamCategory, assignedLot.ToString());
-            }
-        }
-
-        return finalString;
     }
 }
 

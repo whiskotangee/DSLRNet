@@ -3,7 +3,7 @@ namespace DSLRNet.Core.Contracts;
 
 using DSLRNet.Core.Common;
 
-public enum ParamOperation { Create, MassEdit, TextOnly }
+public enum ParamOperation { Create, TextOnly }
 
 public class ParamEdit
 {
@@ -12,8 +12,6 @@ public class ParamEdit
     public ParamNames ParamName { get; set; }
 
     public LootFMG? MessageText { get; set; }
-
-    public string MassEditString { get; set; } = string.Empty;
 
     public required GenericParam ParamObject { get; set; }
 }

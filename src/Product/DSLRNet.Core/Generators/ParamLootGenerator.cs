@@ -25,7 +25,7 @@ public class ParamLootGenerator<TParamType>(
 
     public Settings Settings { get; set; } = settings.Value;
 
-    public required CumulativeID CumulativeID { get; set; }
+    public required IDGenerator IDGenerator { get; set; }
 
     public required IDataSource<TParamType> DataSource { get; set; }
 
@@ -45,17 +45,11 @@ public class ParamLootGenerator<TParamType>(
         string description = "", 
         string summary = "")
     {
-        string finalMassEditOutput = this.CreateMassEdit(
-            lootItem, 
-            this.OutputParamName, 
-            lootItem.ID);
-
         this.GeneratedDataRepository.AddParamEdit(
             new ParamEdit
             {
                 ParamName = this.OutputParamName,
                 Operation = ParamOperation.Create,
-                MassEditString = finalMassEditOutput,
                 MessageText = new LootFMG()
                     {
                         Category = this.OutputLootRealNames[lootType],

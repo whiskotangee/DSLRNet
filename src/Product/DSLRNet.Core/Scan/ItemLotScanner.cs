@@ -1,7 +1,9 @@
 ﻿namespace DSLRNet.Core.Scan;
 
+using DSLRNet.Core.Config;
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
+using System.Diagnostics;
 
 public class ItemLotScanner(
     ILogger<ItemLotScanner> logger,
@@ -11,6 +13,7 @@ public class ItemLotScanner(
     DataAccess dataAccess,
     BossDropScannerV2 bossDropScanner,
     GameStageEvaluator gameStageEvaluator,
+    ParamEditsRepository paramEditsRepository,
     MSBProvider msbProvider)
 {
     private readonly ILogger<ItemLotScanner> logger = logger;
@@ -20,6 +23,12 @@ public class ItemLotScanner(
     private readonly Dictionary<int, ItemLotParam_map> itemLotParam_Map = dataAccess.ItemLotParamMap.GetAll().ToDictionary(k => k.ID);
     private readonly Dictionary<int, ItemLotParam_enemy> itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll().ToDictionary(k => k.ID);
     private readonly Dictionary<int, NpcParam> npcParams = dataAccess.NpcParam.GetAll().ToDictionary(k => k.ID);
+    private readonly IDGenerator itemLotIdGenerator = new IDGenerator()
+    {
+        StartingID = 100000000,
+        Multiplier = 100,
+        IsWrapAround = false
+    };
 
     public Dictionary<ItemLotCategory, List<ItemLotSettings>> LoadScanned(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
     {
@@ -59,6 +68,8 @@ public class ItemLotScanner(
             configuration.Itemlots.Categories[1],
             new ScannerSettings() { Enabled = true, ApplyPercent = 100 },
             claimedIds[ItemLotCategory.ItemLot_Map]);
+
+        RegisterNpcDuplicates(generatedItemLotSettings);
 
         if (enemies != null)
         {
@@ -103,6 +114,9 @@ public class ItemLotScanner(
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Enemy, [enemyLots]);
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Map, [mapLots, bossLots]);
 
+        Dictionary<int, (NpcParam, GameStage)> itemLotToNpcMapping = [];
+        Dictionary<int, DuplicateNpcGameStage> scannedNpcDuplicates = [];
+
         foreach (KeyValuePair<string, MSBE> mapFile in msbProvider.GetAllMsbs().OrderBy(d => d.Key))
         {
             string mapFileName = mapFile.Key;
@@ -110,7 +124,7 @@ public class ItemLotScanner(
 
             List<NpcParam> npcs = msb.FilterRelevantNpcs(logger, npcParams, mapFileName);
 
-            Dictionary<GameStage, int> enemiesAdded = ScanEnemyLots(npcs, enemyLots);
+            Dictionary<GameStage, int> enemiesAdded = ScanEnemyLots(npcs, enemyLots, itemLotToNpcMapping, scannedNpcDuplicates);
             Dictionary<GameStage, int> mapItemsAdded = ScanMapLots(mapFileName, msb, npcs, mapLots, eventItemLotDetails, false, true);
             Dictionary<GameStage, int> chestItemsAdded = ScanMapLots(mapFileName, msb, npcs, chestsLots, eventItemLotDetails, true, false);
             Dictionary<GameStage, int> eventItemsAdded = ScanEventLots(msb, bossLots, eventItemLotDetails);
@@ -126,6 +140,7 @@ public class ItemLotScanner(
         chestsLots.Save("ScannedLots\\Chests.ini");
         enemyLots.Save("ScannedLots\\Enemies.ini");
         bossLots.Save("ScannedLots\\Bosses.ini");
+        File.WriteAllText("ScannedLots\\npcGameStageEvaluations.json", JsonConvert.SerializeObject(scannedNpcDuplicates.Values, Formatting.Indented));
     }
 
     private ItemLotSettings? GetItemLots(string file, Category category, ScannerSettings scannerSettings, HashSet<int> claimedIds)
@@ -137,7 +152,7 @@ public class ItemLotScanner(
 
         ItemLotSettings settings = ItemLotSettings.Create(file, category);
 
-        foreach (var gameStage in settings.GameStageConfigs)
+        foreach (KeyValuePair<GameStage, GameStageConfig> gameStage in settings.GameStageConfigs)
         {
             int countBefore = gameStage.Value.ItemLotIds.Count;
 
@@ -148,6 +163,43 @@ public class ItemLotScanner(
         }
 
         return settings;
+    }
+
+    private void RegisterNpcDuplicates(Dictionary<ItemLotCategory, List<ItemLotSettings>> generatedItemLotSettings)
+    {
+        // create one for the duplicate enemies, also register the NpcParam edits here
+        ItemLotSettings? duplicateEnemies = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Scanned\\Enemies.ini", configuration.Itemlots.Categories[0]);
+
+        List<DuplicateNpcGameStage> npcDuplicates = JsonConvert.DeserializeObject<List<DuplicateNpcGameStage>>(File.ReadAllText("Assets\\Data\\ItemLots\\Scanned\\npcGameStageEvaluations.json"))
+            .Where(d => d.RequiresNewItemLot)
+            .ToList()
+            ?? throw new Exception("Duplicate enemies config does not exist");
+
+        foreach (var npcDuplicate in npcDuplicates)
+        {
+            var existingNpcParam = dataAccess.NpcParam.GetItemById(npcDuplicate.NpcID);
+            var gameStage = npcDuplicate.GameStage;
+            var itemLot = dataAccess.ItemLotParamEnemy.GetItemById(existingNpcParam.itemLotId_enemy).Clone();
+
+            itemLot.ID = itemLotIdGenerator.GetNext();
+            existingNpcParam.itemLotId_enemy = itemLot.ID;
+
+            paramEditsRepository.AddParamEdit(new ParamEdit
+            {
+                ParamObject = itemLot.GenericParam,
+                ParamName = ParamNames.ItemLotParam_enemy,
+                Operation = ParamOperation.Create
+            });
+
+            paramEditsRepository.AddParamEdit(new ParamEdit
+            {
+                ParamObject = existingNpcParam.GenericParam,
+                ParamName = ParamNames.NpcParam,
+                Operation = ParamOperation.Create
+            });
+        }
+
+        generatedItemLotSettings[ItemLotCategory.ItemLot_Enemy].Add(duplicateEnemies);
     }
 
     private Dictionary<GameStage, int> ScanEventLots(MSBE msb, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
@@ -181,22 +233,66 @@ public class ItemLotScanner(
         return assigned;
     }
 
-    private Dictionary<GameStage, int> ScanEnemyLots(List<NpcParam> npcParams, ItemLotSettings settings)
+    private Dictionary<GameStage, int> ScanEnemyLots(List<NpcParam> npcParams, ItemLotSettings settings, Dictionary<int, (NpcParam, GameStage)> enemyItemLotMapping, Dictionary<int, DuplicateNpcGameStage> scannedNpcDuplicates)
     {
         Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 
-        foreach (NpcParam? npc in npcParams.Where(d => d.itemLotId_enemy > 0))
+        foreach (NpcParam? npc in npcParams.Where(d => d.itemLotId_enemy > 0).DistinctBy(d => d.ID))
         {
             GameStage assignedGameStage = gameStageEvaluator.EvaluateDifficulty(settings, npc, false);
 
-            settings.GetGameStageConfig(assignedGameStage).ItemLotIds.Add(npc.itemLotId_enemy);
+            if (!enemyItemLotMapping.TryGetValue(npc.itemLotId_enemy, out (NpcParam OriginalNpc, GameStage OriginalGameStage) originalNpc))
+            {
+                originalNpc = (npc, assignedGameStage);
+                enemyItemLotMapping[npc.itemLotId_enemy] = originalNpc;
+            }
+
+            var itemLotId = npc.itemLotId_enemy;
+
+            if (npc.ID == 40700052)
+            {
+                bool idsMisMatch = npc.ID != originalNpc.OriginalNpc.ID;
+                bool lotIdsMatch = npc.itemLotId_enemy == originalNpc.OriginalNpc.itemLotId_enemy;
+                bool differentgameStage = assignedGameStage != originalNpc.OriginalGameStage;
+                bool alreadyHandled = scannedNpcDuplicates.ContainsKey(npc.ID);
+                bool requiresNewLot = npc.ID != originalNpc.OriginalNpc.ID
+                    && npc.itemLotId_enemy == originalNpc.OriginalNpc.itemLotId_enemy
+                    && assignedGameStage != originalNpc.OriginalGameStage && !scannedNpcDuplicates.ContainsKey(npc.ID);
+
+                Debugger.Break();
+            }
+
+            scannedNpcDuplicates.TryAdd(
+                npc.ID, 
+                new DuplicateNpcGameStage
+                    {
+                        NpcID = npc.ID,
+                        GameStage = assignedGameStage,
+                        // a single item lot could be shared across many npcs throughout the whole game.
+                        // i.e. Wolves have NPC ids 40700010, 40700011, 40700012, etc but all share item lot id 407000000
+                        // We need to create new duplicate item lots for each npc and evaluate the difficulty individually
+                        RequiresNewItemLot =
+                            npc.ID != originalNpc.OriginalNpc.ID
+                            && npc.itemLotId_enemy == originalNpc.OriginalNpc.itemLotId_enemy
+                            && assignedGameStage != originalNpc.OriginalGameStage && !scannedNpcDuplicates.ContainsKey(npc.ID)
+                    }
+            );
+
+            settings.GetGameStageConfig(assignedGameStage).ItemLotIds.Add(itemLotId);
             addedByStage[assignedGameStage] += 1;
         }
 
         return addedByStage;
     }
 
-    private Dictionary<GameStage, int> ScanMapLots(string name, MSBE msb, List<NpcParam> npcParams, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails, bool scanChests, bool scanMapDrops)
+    private Dictionary<GameStage, int> ScanMapLots(
+        string name,
+        MSBE msb,
+        List<NpcParam> npcParams,
+        ItemLotSettings settings,
+        List<EventDropItemLotDetails> lotDetails,
+        bool scanChests,
+        bool scanMapDrops)
     {
         Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 

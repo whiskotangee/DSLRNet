@@ -32,13 +32,7 @@ public class SpEffectHandler : BaseHandler
                 new ParamEdit
                 {
                     ParamName = ParamNames.SpEffectParam,
-                    Operation = ParamOperation.MassEdit,
-                    MassEditString = this.CreateMassEdit(
-                        spEffectParam.GenericParam,
-                        ParamNames.SpEffectParam,
-                        spEffectParam.ID,
-                        bannedEquals: ["0", "-1"],
-                        mandatoryKeys: ["conditionHp", "effectEndurance", "conditionHpRate"]),
+                    Operation = ParamOperation.Create,
                     MessageText = null,
                     ParamObject = spEffectParam.GenericParam
                 });

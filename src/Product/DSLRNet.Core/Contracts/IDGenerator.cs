@@ -37,11 +37,11 @@ public class IDGenerator()
         // Split off depending on if we're getting an ItemFlagAcquisitionID or not
         if (AllowedOffsets.Any())
         {
-            return this.StartingID + this.cumulativeId + AllowedOffsets[currentOffset] * 1000;
+            return this.StartingID + (this.cumulativeId + AllowedOffsets[currentOffset] * 1000);
         }
         else
         {
-            return (this.StartingID + this.cumulativeId) * this.Multiplier;
+            return this.StartingID + (this.cumulativeId * this.Multiplier);
         }
     }
 

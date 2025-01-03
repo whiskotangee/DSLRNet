@@ -99,14 +99,6 @@ public class GameStageEvaluator
                     throw new Exception("Literally can't find what the hell scaling SPEffect {spEffectId} is");
                 }
             }
-
-            //if (isBoss)
-            //{
-            //    float totalHp = npc.hp * (spEffect?.maxHpRate ?? 1.0f);
-
-            //    gameStage = (GameStage)Math.Clamp((int)gameStage + 1, (int)GameStage.Early, (int)GameStage.End);
-            //    logger.LogInformation($"Boss {npc.Name} of Id {npc.ID} with total hp {totalHp:F2} returned game stage {gameStage}");
-            //}
         }
 
         return gameStage;

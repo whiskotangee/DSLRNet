@@ -109,6 +109,7 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource MaterialDesignTextBlock}" HorizontalAlignment="Left" Text="{Binding LastRunCompleteMessage}" Foreground="{Binding LastRunCompleteColor}" />
+                <Button Command="{Binding EditSettingsCommand}" Content="View Settings.ini" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}" Margin="10" ToolTip="Click to see what all settings, even those not set by UI elements are. If edited, reload app to have them apply"/>
                 <Button Visibility="{Binding HasRun, Converter={StaticResource BoolToVisibilityConverter}}" Command="{Binding OpenLogFolderCommand}" Content="Open Logs Folder" IsEnabled="{Binding HasRun}" Margin="10"/>
                 <Button Command="{Binding GenerateLootCommand}" Content="Generate Loot" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}" Margin="10"/>
             </StackPanel>

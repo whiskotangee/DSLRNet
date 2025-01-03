@@ -2,7 +2,7 @@
 
 using DSLRNet.Core.DAL;
 
-public class DuplicateNpcGameStage
+public class NpcGameStage
 {
     public int NpcID { get; set; }
 

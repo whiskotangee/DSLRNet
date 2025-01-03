@@ -92,14 +92,15 @@ public class ItemLotGenerator : BaseHandler
         {
             List<int> itemLotIds = [.. gameStageConfig.ItemLotIds];
 
-            itemLotIds.AddRange(itemLotIds
+            itemLotIds = [.. itemLotIds
                 .SelectMany(id => this.FindSequentialItemLotIds(
                     itemLotSettings,
                     id,
                     this.settings.ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot,
-                    (i) => this.itemLotParam_Enemy.ContainsKey(i))).ToList());
-
-            itemLotIds = [.. itemLotIds.Distinct().OrderBy(d => d)];
+                    (i) => this.itemLotParam_Enemy.ContainsKey(i),
+                    allowUseSame: true))
+                .Distinct()
+                .OrderBy(d => d)];
 
             bool dropGuaranteed = this.settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
 
@@ -119,6 +120,7 @@ public class ItemLotGenerator : BaseHandler
                 {
                     this.logger.LogDebug($"ItemLot {itemLotIds[x]} already exists in data for type {itemLotSettings.Category}, basing template on existing");
                     newItemLot = existingItemLot.CloneToBase();
+                    
                 }
                 else if (this.GeneratedDataRepository.TryGetParamEdit(itemLotSettings.ParamName, itemLotIds[x], out ParamEdit? paramEdit))
                 {
@@ -129,7 +131,7 @@ public class ItemLotGenerator : BaseHandler
                 {
                     newItemLot = this.ItemLotTemplate.Clone();
                     newItemLot.ID = itemLotIds[x];
-
+                    this.logger.LogDebug($"Enemy itemlot {newItemLot.ID} does not exist in either source, creating new");
                     if (!dropGuaranteed)
                     {
                         newItemLot.lotItemBasePoint01 = 1000;
@@ -163,9 +165,7 @@ public class ItemLotGenerator : BaseHandler
                         dropGuaranteed);
                 }
 
-                this.CalculateNoItemChance(newItemLot);
-
-                GenericParam genericDict = GenericParam.FromObject(newItemLot);
+                this.RestrictItemChances(newItemLot, Enumerable.Range(startingIndex, endingIndex - startingIndex).ToArray(), 1000);
 
                 this.GeneratedDataRepository.AddParamEdit(
                     new ParamEdit()
@@ -173,7 +173,7 @@ public class ItemLotGenerator : BaseHandler
                         ParamName = itemLotSettings.ParamName,
                         Operation = ParamOperation.Create,
                         MessageText = null,
-                        ParamObject = genericDict
+                        ParamObject = newItemLot.GenericParam
                     });
 
                 this.progressTracker.CurrentStageProgress += 1;
@@ -247,7 +247,7 @@ public class ItemLotGenerator : BaseHandler
         }
     }
 
-    private List<int> FindSequentialItemLotIds(ItemLotSettings itemLotSettings, int startingId, int goalItemLots, Func<int, bool> existsInDataCheck)
+    private List<int> FindSequentialItemLotIds(ItemLotSettings itemLotSettings, int startingId, int goalItemLots, Func<int, bool> existsInDataCheck, bool allowUseSame = false)
     {
         List<int> returnIds = [];
 
@@ -264,6 +264,10 @@ public class ItemLotGenerator : BaseHandler
                 || returnIds.Contains(currentId + 1))
             {
                 this.logger.LogWarning($"Base item lot {startingId} could not find a sequential item lot, tried {currentId} but itemLot {currentId + 1} exists.");
+                if (allowUseSame)
+                {
+                    returnIds.Add(startingId);
+                }
                 break;
             }
 
@@ -386,30 +390,84 @@ public class ItemLotGenerator : BaseHandler
         return Math.Clamp(dropGauranteed ? 1000 / lootPerItemLot : (int)(itemDropChance * dropMutliplier), 0, 1000);
     }
 
-    private ushort GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)
+    private void RestrictItemChances(ItemLotBase itemLot, int[] addedItemIndexes, ushort max = 1000)
     {
-        ushort itemLotChanceSum = 0;
+        /*
+         * formula -> 
+            // with only new items
+            difference = Math.Round(((max - sum) - itemNoDropValue) / newItemCount)
+            // with all items
+            difference = Math.Round(((max - sum) - itemNoDropValue) / newItemCount)
 
-        int offset = includeFirst ? 1 : 2;
+            // get sum of all
+            // find and get value for none drop where there is basepoint > 0 but quantity == 0, keep that index
+            // get indexes of added items
+            // see if you can subtract from them without them getting < 0
+            // if so reduce
+            // if not - add existing item in lot that is not new and recalculate difference
+            // else give up and just let it be > 1000 and log that this happened
+        */
 
-        for (int x = 0; x < ItemLotParamMax - (offset - 1); x++)
+        if (addedItemIndexes.Length == 0)
         {
-            itemLotChanceSum += itemLotDict.GetValue<ushort>($"lotItemBasePoint0{x + offset}");
+            logger.LogError($"Tried to restrict item chances for item lot {itemLot.ID} but no items were added");
+            return;
         }
 
-        return itemLotChanceSum;
-    }
+        List<(string name, ushort basePointValue, ushort quantity, bool isNew)> items = [];
 
-    private void CalculateNoItemChance(ItemLotBase itemLot, ushort baseChance = 1000, ushort fallback = 25)
-    {
-        ushort finalBaseChance = baseChance;
+        (string name, ushort basePointValue, ushort quantity, bool isNew) noDropItem = (string.Empty, 0, 0, false);
 
-        ushort otherBasePointTotal = this.GetItemLotChanceSum(itemLot, false);
+        // do a pass and figure out what items slots are for what
+        var itemChanceFields = itemLot.GetFieldNamesByFilter("lotItemBasePoint0");
+        for(int i = 1; i < itemChanceFields.Count; i++)
+        {
+            (string name, ushort basePointValue, ushort quantity, bool isNew) = 
+                ($"lotItemBasePoint0{i}", itemLot.GetValue<ushort>($"lotItemBasePoint0{i}"), itemLot.GetValue<ushort>($"lotItemNum0{i}"), addedItemIndexes.Contains(i));
 
-        finalBaseChance -= otherBasePointTotal;
-        finalBaseChance = Math.Clamp(finalBaseChance, fallback, baseChance);
+            if (basePointValue > 0 && itemLot.GetValue<int>($"lotItemId0{i}") == 0 && noDropItem.basePointValue == 0)
+            {
+                noDropItem = (name, basePointValue, quantity, isNew);
+            }
+            else
+            {
+                items.Add((name, basePointValue, quantity, isNew));
+            }
+        }
 
-        itemLot.lotItemBasePoint01 = finalBaseChance;
+        var totalSum = items.Sum(d => d.basePointValue) + noDropItem.basePointValue;
+        var excessPoints = totalSum - max;
+        if (excessPoints > 0)
+        {
+            // first, remove from the no drop entry down to zero
+            if (noDropItem.basePointValue > 0)
+            {
+                var coveredAmount = Math.Min(excessPoints, noDropItem.basePointValue);
+                if (coveredAmount > 0)
+                {
+                    itemLot.SetValue(noDropItem.name, noDropItem.basePointValue - coveredAmount);
+                    excessPoints -= coveredAmount;  
+                }
+            }
+
+            // if remaining then take it from the new items
+            if (excessPoints > 0)
+            {
+                var itemsToSplitCost = items.Where(d => d.isNew).ToList();
+                var splitAmount = excessPoints / itemsToSplitCost.Count;
+
+                if (splitAmount > itemsToSplitCost.Min(d => d.basePointValue))
+                {
+                    itemsToSplitCost = items.Where(d => d.basePointValue > 0).ToList();
+                }
+
+                foreach (var (name, basePointValue, quantity, isNew) in itemsToSplitCost)
+                {
+                    itemLot.SetValue(name, basePointValue - splitAmount);
+                    excessPoints -= splitAmount;
+                }
+            }
+        }
     }
 }
 

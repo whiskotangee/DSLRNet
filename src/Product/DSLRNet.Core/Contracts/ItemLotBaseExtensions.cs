@@ -12,18 +12,17 @@ public static class ItemLotBaseExtensions
 
     public static int GetIndexOfFirstOpenLotItemId(this ItemLotBase itemLot)
     {
-        IOrderedEnumerable<System.Reflection.PropertyInfo> properties = itemLot.GetType().GetProperties()
-            .Where(p => p.Name.StartsWith("lotItemId") && p.PropertyType == typeof(int))
-            .OrderBy(p => p.Name);
+        var itemIdFieldNames = itemLot.GetFieldNamesByFilter("lotItemId0");
+        var itemDropChanceFieldNames = itemLot.GetFieldNamesByFilter("lotItemBasePoint0");
 
-        foreach (System.Reflection.PropertyInfo? property in properties)
+        for (int i = 0; i < itemIdFieldNames.Count; i++)
         {
-            if (property != null && (int)(property.GetValue(itemLot) ?? -1) == 0)
+            if (itemLot.GetValue<int>(itemIdFieldNames[i]) == 0 && itemLot.GetValue<int>(itemDropChanceFieldNames[i]) == 0)
             {
-                return int.Parse(property.Name[^2..]);
+                return i + 1;
             }
         }
 
-        return -1; // or return a default value indicating none found
+        return -1;
     }
 }

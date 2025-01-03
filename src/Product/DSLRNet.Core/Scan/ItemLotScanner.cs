@@ -124,7 +124,7 @@ public class ItemLotScanner(
 
             List<NpcParam> npcs = msb.FilterRelevantNpcs(logger, npcParams, mapFileName);
 
-            Dictionary<GameStage, int> enemiesAdded = ScanEnemyLots(npcs, enemyLots, itemLotToNpcMapping, scannedNpcDuplicates);
+            Dictionary<GameStage, int> enemiesAdded = ScanEnemyLots(npcs, enemyLots, itemLotToNpcMapping, scannedNpcDuplicates, eventItemLotDetails);
             Dictionary<GameStage, int> mapItemsAdded = ScanMapLots(mapFileName, msb, npcs, mapLots, eventItemLotDetails, false, true);
             Dictionary<GameStage, int> chestItemsAdded = ScanMapLots(mapFileName, msb, npcs, chestsLots, eventItemLotDetails, true, false);
             Dictionary<GameStage, int> eventItemsAdded = ScanEventLots(msb, bossLots, eventItemLotDetails);
@@ -235,11 +235,29 @@ public class ItemLotScanner(
         return assigned;
     }
 
-    private Dictionary<GameStage, int> ScanEnemyLots(List<NpcParam> npcParams, ItemLotSettings settings, Dictionary<int, (NpcParam, GameStage)> enemyItemLotMapping, Dictionary<int, NpcGameStage> scannedNpcDuplicates)
+    private Dictionary<GameStage, int> ScanEnemyLots(
+        List<NpcParam> npcParams, 
+        ItemLotSettings settings, 
+        Dictionary<int, (NpcParam, GameStage)> enemyItemLotMapping, 
+        Dictionary<int, NpcGameStage> scannedNpcDuplicates,
+        List<EventDropItemLotDetails> bossDetails)
     {
         Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 
-        foreach (NpcParam? npc in npcParams.Where(d => d.itemLotId_enemy > 0).DistinctBy(d => d.ID))
+        var filteredNpcs = npcParams
+            // has an item lot already
+            .Where(d => d.itemLotId_enemy > 0)
+            // does not end with 00
+            .Where(d => d.getSoul > 0)
+            // has scaling
+            .Where(d => d.spEffectID3 > 0)
+            .Where(d => !bossDetails.Any(b => d.ID == b.NpcId))
+            .DistinctBy(d => d.ID)
+            .ToList();
+
+        logger.LogInformation($"Scanning {filteredNpcs.Count} npcs for item lots");
+
+        foreach (NpcParam? npc in filteredNpcs)
         {
             GameStage assignedGameStage = gameStageEvaluator.EvaluateDifficulty(settings, npc, false);
 

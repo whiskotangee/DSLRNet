@@ -95,11 +95,6 @@
     "RequiresNewItemLot": false
   },
   {
-    "NpcID": 30100214,
-    "GameStage": 0,
-    "RequiresNewItemLot": false
-  },
-  {
     "NpcID": 30200014,
     "GameStage": 0,
     "RequiresNewItemLot": false
@@ -428,11 +423,6 @@
     "NpcID": 47700070,
     "GameStage": 2,
     "RequiresNewItemLot": false
-  },
-  {
-    "NpcID": 34510179,
-    "GameStage": 0,
-    "RequiresNewItemLot": true
   },
   {
     "NpcID": 33000062,
@@ -935,11 +925,6 @@
     "RequiresNewItemLot": true
   },
   {
-    "NpcID": 46200062,
-    "GameStage": 2,
-    "RequiresNewItemLot": true
-  },
-  {
     "NpcID": 34703068,
     "GameStage": 3,
     "RequiresNewItemLot": false
@@ -1231,11 +1216,6 @@
   },
   {
     "NpcID": 38601024,
-    "GameStage": 1,
-    "RequiresNewItemLot": false
-  },
-  {
-    "NpcID": 40708024,
     "GameStage": 1,
     "RequiresNewItemLot": false
   },
@@ -2052,11 +2032,6 @@
   {
     "NpcID": 59600198,
     "GameStage": 2,
-    "RequiresNewItemLot": false
-  },
-  {
-    "NpcID": 51301099,
-    "GameStage": 3,
     "RequiresNewItemLot": false
   },
   {
@@ -4560,11 +4535,6 @@
     "RequiresNewItemLot": false
   },
   {
-    "NpcID": 34519020,
-    "GameStage": 1,
-    "RequiresNewItemLot": false
-  },
-  {
     "NpcID": 41800020,
     "GameStage": 1,
     "RequiresNewItemLot": false
@@ -4668,11 +4638,6 @@
     "NpcID": 41404022,
     "GameStage": 2,
     "RequiresNewItemLot": true
-  },
-  {
-    "NpcID": 42011100,
-    "GameStage": 0,
-    "RequiresNewItemLot": false
   },
   {
     "NpcID": 22740020,
@@ -5310,11 +5275,6 @@
     "RequiresNewItemLot": true
   },
   {
-    "NpcID": 36612132,
-    "GameStage": 1,
-    "RequiresNewItemLot": false
-  },
-  {
     "NpcID": 38501032,
     "GameStage": 1,
     "RequiresNewItemLot": false
@@ -5660,11 +5620,6 @@
     "RequiresNewItemLot": true
   },
   {
-    "NpcID": 49600032,
-    "GameStage": 1,
-    "RequiresNewItemLot": false
-  },
-  {
     "NpcID": 41600032,
     "GameStage": 1,
     "RequiresNewItemLot": true
@@ -5836,11 +5791,6 @@
   },
   {
     "NpcID": 22710030,
-    "GameStage": 1,
-    "RequiresNewItemLot": false
-  },
-  {
-    "NpcID": 30800830,
     "GameStage": 1,
     "RequiresNewItemLot": false
   },
@@ -7320,11 +7270,6 @@
     "RequiresNewItemLot": true
   },
   {
-    "NpcID": 38000000,
-    "GameStage": 0,
-    "RequiresNewItemLot": false
-  },
-  {
     "NpcID": 44420040,
     "GameStage": 1,
     "RequiresNewItemLot": false
@@ -7343,11 +7288,6 @@
     "NpcID": 38001040,
     "GameStage": 1,
     "RequiresNewItemLot": true
-  },
-  {
-    "NpcID": 36619040,
-    "GameStage": 1,
-    "RequiresNewItemLot": false
   },
   {
     "NpcID": 44300040,
@@ -7533,16 +7473,6 @@
     "NpcID": 45050042,
     "GameStage": 2,
     "RequiresNewItemLot": false
-  },
-  {
-    "NpcID": 36610000,
-    "GameStage": 0,
-    "RequiresNewItemLot": true
-  },
-  {
-    "NpcID": 37010000,
-    "GameStage": 0,
-    "RequiresNewItemLot": true
   },
   {
     "NpcID": 43740542,
@@ -7767,11 +7697,6 @@
   {
     "NpcID": 43811150,
     "GameStage": 2,
-    "RequiresNewItemLot": true
-  },
-  {
-    "NpcID": 30800852,
-    "GameStage": 3,
     "RequiresNewItemLot": true
   },
   {
@@ -8335,11 +8260,6 @@
     "RequiresNewItemLot": true
   },
   {
-    "NpcID": 35001000,
-    "GameStage": 0,
-    "RequiresNewItemLot": true
-  },
-  {
     "NpcID": 41610050,
     "GameStage": 2,
     "RequiresNewItemLot": true
@@ -8750,11 +8670,6 @@
     "RequiresNewItemLot": false
   },
   {
-    "NpcID": 63207180,
-    "GameStage": 2,
-    "RequiresNewItemLot": false
-  },
-  {
     "NpcID": 50900080,
     "GameStage": 2,
     "RequiresNewItemLot": false
@@ -9125,11 +9040,6 @@
     "RequiresNewItemLot": false
   },
   {
-    "NpcID": 56800081,
-    "GameStage": 2,
-    "RequiresNewItemLot": false
-  },
-  {
     "NpcID": 58300281,
     "GameStage": 2,
     "RequiresNewItemLot": false
@@ -9243,11 +9153,6 @@
     "NpcID": 55230095,
     "GameStage": 2,
     "RequiresNewItemLot": true
-  },
-  {
-    "NpcID": 63207195,
-    "GameStage": 2,
-    "RequiresNewItemLot": false
   },
   {
     "NpcID": 50110094,
@@ -9555,11 +9460,6 @@
     "RequiresNewItemLot": false
   },
   {
-    "NpcID": 54010000,
-    "GameStage": 0,
-    "RequiresNewItemLot": true
-  },
-  {
     "NpcID": 54010090,
     "GameStage": 2,
     "RequiresNewItemLot": false
@@ -9725,11 +9625,6 @@
     "RequiresNewItemLot": true
   },
   {
-    "NpcID": 56900090,
-    "GameStage": 2,
-    "RequiresNewItemLot": false
-  },
-  {
     "NpcID": 58300290,
     "GameStage": 2,
     "RequiresNewItemLot": false
@@ -9753,11 +9648,6 @@
     "NpcID": 58900090,
     "GameStage": 2,
     "RequiresNewItemLot": false
-  },
-  {
-    "NpcID": 54211000,
-    "GameStage": 0,
-    "RequiresNewItemLot": true
   },
   {
     "NpcID": 55300190,
@@ -9958,11 +9848,6 @@
     "NpcID": 54401181,
     "GameStage": 2,
     "RequiresNewItemLot": false
-  },
-  {
-    "NpcID": 54900000,
-    "GameStage": 0,
-    "RequiresNewItemLot": true
   },
   {
     "NpcID": 62902090,
@@ -10680,11 +10565,6 @@
     "RequiresNewItemLot": false
   },
   {
-    "NpcID": 55800085,
-    "GameStage": 3,
-    "RequiresNewItemLot": false
-  },
-  {
     "NpcID": 54102090,
     "GameStage": 2,
     "RequiresNewItemLot": false
@@ -10698,11 +10578,6 @@
     "NpcID": 55900585,
     "GameStage": 3,
     "RequiresNewItemLot": false
-  },
-  {
-    "NpcID": 63207185,
-    "GameStage": 0,
-    "RequiresNewItemLot": true
   },
   {
     "NpcID": 50600793,

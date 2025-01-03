@@ -17,7 +17,6 @@ public class IDGenerator()
 
     public int GetNext()
     {
-        this.cumulativeId += 1;
         int IDBeforeWrap = this.cumulativeId;
 
         if (IDBeforeWrap > this.WrapAroundLimit)
@@ -34,14 +33,21 @@ public class IDGenerator()
             this.cumulativeId = this.Wrap(this.cumulativeId, 0, this.WrapAroundLimit);
         }
 
-        // Split off depending on if we're getting an ItemFlagAcquisitionID or not
-        if (AllowedOffsets.Any())
+        try
         {
-            return this.StartingID + (this.cumulativeId + AllowedOffsets[currentOffset] * 1000);
+            // Split off depending on if we're getting an ItemFlagAcquisitionID or not
+            if (AllowedOffsets.Any())
+            {
+                return this.StartingID + (this.cumulativeId + AllowedOffsets[currentOffset] * 1000);
+            }
+            else
+            {
+                return this.StartingID + (this.cumulativeId * this.Multiplier);
+            }
         }
-        else
+        finally
         {
-            return this.StartingID + (this.cumulativeId * this.Multiplier);
+            this.cumulativeId += 1;
         }
     }
 

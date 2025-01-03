@@ -23,7 +23,11 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         ILogger<ParamLootGenerator<EquipParamAccessory>> logger)
         : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamAccessory, logger)
     {
-        this.IDGenerator = new IDGenerator() { Multiplier = 10 };
+        this.IDGenerator = new IDGenerator() 
+        {
+            StartingID = 80000,
+            Multiplier = 10 
+        };
 
         this.TalismanConfigs = dataAccess.TalismanConfig.GetAll().ToList();
 

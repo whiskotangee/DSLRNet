@@ -17,7 +17,11 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         ILogger<ParamLootGenerator<EquipParamProtector>> logger)
         : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamProtector, logger)
     {
-        this.IDGenerator = new IDGenerator();
+        this.IDGenerator = new IDGenerator()
+        {
+            StartingID = 80000000,
+            Multiplier = 1000,
+        };
 
         this.DataSource = dataAccess.EquipParamProtector;
     }

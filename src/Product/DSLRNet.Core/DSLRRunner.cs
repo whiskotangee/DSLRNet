@@ -41,7 +41,7 @@ public class DSLRRunner
             IconBuilder iconbuilder = sp.GetRequiredService<IconBuilder>();
             DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
 
-            await iconbuilder.ApplyIcons();
+            //await iconbuilder.ApplyIcons();
             progress.OverallProgress += 1;
 
             dslrBuilder.BuildItemLots();
@@ -53,6 +53,7 @@ public class DSLRRunner
         catch (Exception ex)
         {
             logger.LogError($"An error occurred during execution {ex}");
+            throw;
         }
     }
 

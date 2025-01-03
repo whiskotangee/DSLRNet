@@ -96,7 +96,7 @@ public class GameStageEvaluator
 
                 if (!vanilla.TryGetValue(areaScalingId, out gameStage) && !dlc.TryGetValue(areaScalingId, out gameStage))
                 {
-                    throw new Exception("Literally can't find what the hell scaling SPEffect {spEffectId} is");
+                    throw new Exception("Literally can't find what scaling SPEffect {spEffectId} is");
                 }
             }
         }

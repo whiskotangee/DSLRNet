@@ -28,7 +28,11 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         DataAccess dataAccess,
         ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamWeapon, logger)
     {
-        this.IDGenerator = new IDGenerator();
+        this.IDGenerator = new IDGenerator()
+        {
+            StartingID = 80000000,
+            Multiplier = 1000,
+        };
         this.ashofWarHandler = ashofWarHandler;
         this.damageTypeHandler = damageTypeHandler;
         this.DataSource = dataAccess.EquipParamWeapon;
@@ -305,7 +309,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         IntValueRange dmgRange = this.RarityHandler.GetDamageAdditionRange(rarityId);
 
-        List<string> dmgParams = weapon.GetFieldNamesByFilter("attackBase");
+        List<string> dmgParams = weapon.GetFieldNamesByFilter("attackBase", excludeFilter: "attackBaseRepel");
 
         long maxOriginalValue = dmgParams.Max(weapon.GetValue<long>);
 

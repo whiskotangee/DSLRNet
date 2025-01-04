@@ -172,7 +172,7 @@ public class ItemLotGenerator : BaseHandler
                     {
                         ParamName = itemLotSettings.ParamName,
                         Operation = ParamOperation.Create,
-                        MessageText = null,
+                        ItemText = null,
                         ParamObject = newItemLot.GenericParam
                     });
 
@@ -237,7 +237,7 @@ public class ItemLotGenerator : BaseHandler
                         {
                             ParamName = itemLotSettings.ParamName,
                             Operation = ParamOperation.Create,
-                            MessageText = null,
+                            ItemText = null,
                             ParamObject = genericParam
                         });
                 }
@@ -392,22 +392,6 @@ public class ItemLotGenerator : BaseHandler
 
     private void RestrictItemChances(ItemLotBase itemLot, int[] addedItemIndexes, ushort max = 1000)
     {
-        /*
-         * formula -> 
-            // with only new items
-            difference = Math.Round(((max - sum) - itemNoDropValue) / newItemCount)
-            // with all items
-            difference = Math.Round(((max - sum) - itemNoDropValue) / newItemCount)
-
-            // get sum of all
-            // find and get value for none drop where there is basepoint > 0 but quantity == 0, keep that index
-            // get indexes of added items
-            // see if you can subtract from them without them getting < 0
-            // if so reduce
-            // if not - add existing item in lot that is not new and recalculate difference
-            // else give up and just let it be > 1000 and log that this happened
-        */
-
         if (addedItemIndexes.Length == 0)
         {
             logger.LogError($"Tried to restrict item chances for item lot {itemLot.ID} but no items were added");
@@ -454,7 +438,7 @@ public class ItemLotGenerator : BaseHandler
             if (excessPoints > 0)
             {
                 var itemsToSplitCost = items.Where(d => d.isNew).ToList();
-                var splitAmount = excessPoints / itemsToSplitCost.Count;
+                var splitAmount = (int)Math.Floor((double)excessPoints / itemsToSplitCost.Count);
 
                 if (splitAmount > itemsToSplitCost.Min(d => d.basePointValue))
                 {

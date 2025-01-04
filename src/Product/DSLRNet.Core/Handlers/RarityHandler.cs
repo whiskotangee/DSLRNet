@@ -6,58 +6,58 @@ using DSLRNet.Core.Extensions;
 public class RarityHandler(
     RandomProvider randomProvider,
     ParamEditsRepository dataRepository,
-    DataAccess dataAccess) : BaseHandler(dataRepository)
+    DataAccess dataAccess,
+    IOptions<Settings> settingsOptions) : BaseHandler(dataRepository)
 {
     private readonly RandomProvider randomProvider = randomProvider;
     private RarityIconMappingConfig iconMappingConfig = new();
-
+    private Settings settings = settingsOptions.Value;
     private readonly Dictionary<int, RaritySetup> RarityConfigs = dataAccess.RaritySetup.GetAll().ToDictionary(d => d.ID);
 
     public Dictionary<int, int> CountByRarity { get; set; } = [];
 
     public int ChooseRarityFromIdSet(IntValueRange range)
     {
-        List<WeightedValue<int>> weightedValues = [];
+        int finalId;
 
-        foreach (int x in range.ToRangeOfValues())
+        if (this.settings.ItemLotGeneratorSettings.ChaosLootEnabled)
         {
-            weightedValues.Add(new WeightedValue<int> { Value = this.GetNearestRarity(x).ID, Weight = this.RarityConfigs[x].SelectionWeight });
+            finalId = randomProvider.GetRandomItem(RarityConfigs.Keys);
+        }
+        else
+        {
+            List<WeightedValue<int>> weightedValues = [];
+
+            foreach (int x in range.ToRangeOfValues())
+            {
+                weightedValues.Add(new WeightedValue<int> { Value = this.GetNearestRarity(x).ID, Weight = this.RarityConfigs[x].SelectionWeight });
+            }
+
+            finalId = this.randomProvider.NextWeightedValue(weightedValues);
         }
 
-        int finalid = this.randomProvider.NextWeightedValue(weightedValues);
-
-        if (!CountByRarity.TryGetValue(finalid, out int _))
+        if (!CountByRarity.TryGetValue(finalId, out int _))
         {
-            CountByRarity[finalid] = 0;
+            CountByRarity[finalId] = 0;
         }
 
-        CountByRarity[finalid]++;
+        CountByRarity[finalId]++;
 
-        return finalid;
+        return finalId;
     }
 
-    public Queue<bool> GetRarityEffectChances(int desiredCount, int rarityId, LootType lootType, float chanceMultiplier)
+    public List<bool> GetRarityEffectChances(int rarityId, float chanceMultiplier)
     {
-        Queue<bool> chanceQueue = [];
+        List<bool> chanceEvaluations = [];
 
         RaritySetup rarity = this.GetNearestRarity(rarityId);
-        int offset = 0;
 
-        if (lootType != LootType.Weapon && rarityId >= 5)
-        {
-            chanceQueue.Enqueue(true);
-            offset = 1;
-        }
+        chanceEvaluations.Add(this.randomProvider.PassesPercentCheck(rarity.SpEffectChance0 * chanceMultiplier));
+        chanceEvaluations.Add(this.randomProvider.PassesPercentCheck(rarity.SpEffectChance1 * chanceMultiplier));
+        chanceEvaluations.Add(this.randomProvider.PassesPercentCheck(rarity.SpEffectChance2 * chanceMultiplier));
+        chanceEvaluations.Add(this.randomProvider.PassesPercentCheck(rarity.SpEffectChance3 * chanceMultiplier));
 
-        for (int i = offset; i < desiredCount; i++)
-        {
-            string paramName = $"SpEffect{i}Chance";
-
-            float chance = Convert.ToSingle(rarity.GetType().GetProperties().Single(d => d.Name.Contains(paramName)).GetValue(rarity));
-            chanceQueue.Enqueue(this.randomProvider.PassesPercentCheck(chance * chanceMultiplier));
-        }
-
-        return chanceQueue;
+        return chanceEvaluations;
     }
 
     public IntValueRange GetStatRequiredAdditionRange(int rarityId)

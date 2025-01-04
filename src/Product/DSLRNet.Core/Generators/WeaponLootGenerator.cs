@@ -9,6 +9,7 @@ using DSLRNet.Core.Handlers;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 {
@@ -16,7 +17,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
     private readonly DamageTypeHandler damageTypeHandler;
 
     public WeaponLootGenerator(
-        IOptions<Configuration> configuration,
+        IOptions<Configuration> configurationOptions,
         IOptions<Settings> settings,
         AshofWarHandler ashofWarHandler,
         RarityHandler rarityHandler,
@@ -26,11 +27,11 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         DamageTypeHandler damageTypeHandler,
         ParamEditsRepository dataRepository,
         DataAccess dataAccess,
-        ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamWeapon, logger)
+        ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, spEffectHandler, loreGenerator, random, configurationOptions, settings, dataRepository, ParamNames.EquipParamWeapon, logger)
     {
         this.IDGenerator = new IDGenerator()
         {
-            StartingID = 80000000,
+            StartingID = 800000000,
             Multiplier = 1000,
         };
         this.ashofWarHandler = ashofWarHandler;
@@ -280,7 +281,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         mods.PrimaryDamageValue = value;
 
-        IEnumerable<SpEffectText> nameParts = this.ApplySpEffects(rarityId, [0], weapon.GenericParam, spEffectMultiplier, LootType.Weapon);
+        IEnumerable<SpEffectDetails> nameParts = this.ApplySpEffects(rarityId, [0], weapon.GenericParam, spEffectMultiplier, LootType.Weapon);
 
         mods.SpEffectTexts = nameParts.ToList();
 
@@ -294,14 +295,14 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weapon);
 
-        IEnumerable<SpEffectText> nameParts = this.ApplySpEffects(rarityId, options, weapon.GenericParam, 1.0f, LootType.Weapon);
+        IEnumerable<SpEffectDetails> nameParts = this.ApplySpEffects(rarityId, options, weapon.GenericParam, 1.0f, LootType.Weapon);
 
         modifications.SpEffectTexts = nameParts.ToList();
 
         return modifications;
     }
 
-    private WeaponModifications ApplyNormalDamageChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, EquipParamWeapon weapon, int rarityId, bool isUniqueWeapon)
+    private WeaponModifications ApplyWeaponDamageChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, EquipParamWeapon weapon, int rarityId, bool isUniqueWeapon)
     {
         WeaponModifications mods = new(dT1, dT2);
 
@@ -389,7 +390,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             effectStrings.Add(mods.SecondaryDamageType.EffectDescription);
         }
 
-        mods.SpEffectDescriptions = effectStrings.Select(s => $"Effect: {s}").ToList();
+        mods.SpEffectDescriptions = effectStrings.Where(d => !string.IsNullOrWhiteSpace(d)).Select(s => $"{this.Configuration.DSLRDescText.Effect} {s}").ToList();
 
         byte hitVfx = mods.PrimaryDamageType.HitEffectCategory;
         if (mods.SecondaryDamageType != null && mods.SecondaryDamageType.HitEffectCategory > 0)
@@ -437,7 +438,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             WeaponTypes.StaffsSeals => this.ApplyStaffDamageChanges(weapon, rarityId),
             WeaponTypes.Shields => this.ApplyShieldCutRateChanges(primary, secondary, weapon, rarityId),
-            _ => this.ApplyNormalDamageChanges(primary, secondary, weapon, rarityId, isUniqueWeapon),
+            _ => this.ApplyWeaponDamageChanges(primary, secondary, weapon, rarityId, isUniqueWeapon),
         };
     }
 

@@ -59,9 +59,9 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         newTalisman.iconId = this.RarityHandler.GetIconId(newTalisman.iconId, rarityId);
         newTalisman.SetValue(availableSlot, newTalismanConfig.RefSpEffect);
 
-        List<SpEffectText> spEffs =
+        List<SpEffectDetails> spEffs =
         [
-            new SpEffectText()
+            new SpEffectDetails()
             {
                 ID = newTalismanConfig.RefSpEffect,
                 Description = this.GetTalismanConfigEffectDescription(newTalismanConfig),

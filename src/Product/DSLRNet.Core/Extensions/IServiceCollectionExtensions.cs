@@ -38,6 +38,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<ParamEditsRepository>()
                 .AddSingleton<DSLRNetBuilder>()
                 .AddSingleton<ItemLotScanner>()
+                .AddSingleton<ScannedItemLotLoader>()
                 .AddSingleton<IconBuilder>()
                 .AddSingleton<BossDropScannerV2>()
                 .AddSingleton<GameStageEvaluator>()

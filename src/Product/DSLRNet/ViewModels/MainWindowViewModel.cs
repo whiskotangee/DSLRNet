@@ -13,6 +13,8 @@ using System.Windows.Data;
 using System.Windows;
 using System.Windows.Media;
 using System.Diagnostics;
+using SixLabors.ImageSharp.PixelFormats;
+using ImageMagick;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {
@@ -149,6 +151,13 @@ public class MainWindowViewModel : INotifyPropertyChanged
 
             // Ensure the directory exists
             Directory.CreateDirectory(Path.Combine("Assets", "LootIcons"));
+
+            using var imageTest = new MagickImage(selectedFilePath);
+            if (imageTest.Width != imageTest.Height)
+            {
+                MessageBox.Show("Image must be 1024x1024", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             // Copy the file to the destination
             File.Copy(selectedFilePath, destinationPath, true);

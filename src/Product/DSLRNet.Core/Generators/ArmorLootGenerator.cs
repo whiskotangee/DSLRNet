@@ -19,7 +19,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
     {
         this.IDGenerator = new IDGenerator()
         {
-            StartingID = 80000000,
+            StartingID = 800000000,
             Multiplier = 1000,
         };
 
@@ -30,7 +30,8 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
     {
         EquipParamProtector newArmor = this.GetNewLootItem();
 
-        newArmor.ID = (int)this.IDGenerator.GetNext();
+        var nextId = (int)this.IDGenerator.GetNext();
+        newArmor.ID = nextId;
         newArmor.sellValue = this.RarityHandler.GetSellValue(rarity);
         newArmor.rarity = this.RarityHandler.GetRarityParamValue(rarity);
         newArmor.iconIdM = this.RarityHandler.GetIconId(newArmor.iconIdM, rarity);
@@ -42,10 +43,10 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
         newArmor.weight = this.RarityHandler.GetRandomizedWeight(newArmor.weight, rarity);
 
-        IEnumerable<SpEffectText> speffs = this.ApplySpEffects(rarity, [0], newArmor.GenericParam, 1.0f, LootType.Armor, -1, true);
+        IEnumerable<SpEffectDetails> spEffects = this.ApplySpEffects(rarity, [0], newArmor.GenericParam, 1.0f, LootType.Armor, -1, true);
 
         string originalName = newArmor.Name;
-        string finalTitle = this.CreateLootTitle(originalName.Replace(" (Altered)", ""), rarity, "", speffs, true, false);
+        string finalTitle = this.CreateLootTitle(originalName.Replace(" (Altered)", ""), rarity, "", spEffects, true, false);
 
         //newArmor.Name = finalTitle;
 
@@ -53,7 +54,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
             newArmor.GenericParam, 
             LootType.Armor, 
             finalTitle, 
-            this.CreateArmorDescription(string.Join(Environment.NewLine, speffs.Select(s => s.Description).ToList()), armorStatDesc),
+            this.CreateArmorDescription(string.Join(Environment.NewLine, spEffects.Select(s => s.Description).ToList()), armorStatDesc),
             this.LoreGenerator.GenerateDescription(finalTitle, true));
 
         return newArmor.ID;
@@ -95,8 +96,13 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
         }
     }
 
-    public string CreateArmorDescription(string speffects = "", string extraProtection = "")
+    public string CreateArmorDescription(string spEffects = "", string extraProtection = "")
     {
-        return $"{speffects}{Environment.NewLine}{extraProtection}";
+        if (string.IsNullOrEmpty(spEffects))
+        {
+            return extraProtection;
+        }
+
+        return $"{spEffects}{Environment.NewLine}{extraProtection}";
     }
 }

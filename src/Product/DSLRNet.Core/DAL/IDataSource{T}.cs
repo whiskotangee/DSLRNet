@@ -5,6 +5,7 @@ public interface IDataSource
 }
 
 public interface IDataSource<T> : IDataSource
+    where T : class, ICloneable<T>
 {
     IEnumerable<T> GetAll();
 

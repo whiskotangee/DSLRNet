@@ -11,6 +11,19 @@ public class RarityIconDetailsWrapper : BaseModel<RarityIconDetails>
         OriginalObject = _rarity;
     }
 
+    public string Name
+    {
+        get => _rarity.Name;
+        set
+        {
+            if (_rarity.Name != value)
+            {
+                _rarity.Name = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public string RarityIds
     {
         get => string.Join(",", _rarity.RarityIds);

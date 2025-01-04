@@ -111,7 +111,7 @@ public class ItemLotGeneratorSettingsWrapper : BaseModel<ItemLotGeneratorSetting
         }
     }
 
-    public float GlobalDropChance
+    public int GlobalDropChance
     {
         get => _settings.GlobalDropChance;
         set

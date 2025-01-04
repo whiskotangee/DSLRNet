@@ -23,7 +23,7 @@ public class ItemLotGeneratorSettings
 
     public bool ChaosLootEnabled { get; set; }
 
-    public float GlobalDropChance { get; set; }
+    public int GlobalDropChance { get; set; }
 
     public bool AllLootGauranteed { get; set; }
 }

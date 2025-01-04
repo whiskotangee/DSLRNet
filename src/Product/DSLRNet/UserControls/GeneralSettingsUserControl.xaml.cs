@@ -46,10 +46,10 @@ namespace DSLRNet.UserControls
                     CheckFileExists = true,
                     CheckPathExists = true,
                     Title = "Select Elden Ring Game Exe",
-                    FileName = settingsWrapper.GamePath,
+                    FileName = "eldenring.exe",
                     InitialDirectory = settingsWrapper.GamePath,
-                    Filter = "eldenring.exe",
-                    ValidateNames = false
+                    Filter = "Elden Ring Executable (eldenring.exe)|eldenring.exe",
+                    ValidateNames = true
                 };
 
                 if (dialog.ShowDialog() == DialogResult.OK)

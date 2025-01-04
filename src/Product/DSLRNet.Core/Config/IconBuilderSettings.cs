@@ -8,6 +8,7 @@ public class IconBuilderSettings
     /// Generating hi def icons and adding them to 00_solo results in great game instability.
     /// The file goes from 1.4gb to 4.8gb and the game will continually crash.
     /// Unless a whole new approach to icon backgrounds is made the compromise is that hidef icons are not available.
+    /// maybe some kind of modifications to the menu gfx files that allows for a rarity layer to be rendered underneath the normal icons.
     /// </summary>
     public bool GenerateHiDefIcons { get; set; } = false;
 
@@ -33,6 +34,8 @@ public class IconDimensions
 
 public class RarityIconDetails
 {
+    public string Name { get; set; } = string.Empty;
+
     public List<int> RarityIds { get; set; } = [];
 
     public string BackgroundImageName { get; set; } = string.Empty;

@@ -13,7 +13,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <Slider Grid.Column="0" MinWidth="200" Minimum="{Binding Minimum, RelativeSource={RelativeSource AncestorType=UserControl}}"
+        <Slider Grid.Column="0" Minimum="{Binding Minimum, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     Maximum="{Binding Maximum, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                     Value="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}"
                     TickFrequency="{Binding TickFrequency, RelativeSource={RelativeSource AncestorType=UserControl}}"

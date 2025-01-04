@@ -110,14 +110,12 @@ public class Settings
         FileIniDataParser parser = new();
         IniData data;
 
-        if (File.Exists("Settings.User.ini"))
+        if (!File.Exists("Settings.User.ini"))
         {
-            data = parser.ReadFile("Settings.User.ini");
+            File.Copy("Settings.ini", "Settings.User.ini");
         }
-        else
-        {
-            data = parser.ReadFile("Settings.ini");
-        }
+
+        data = parser.ReadFile("Settings.User.ini");
 
         Settings settings = new()
         {
@@ -150,7 +148,7 @@ public class Settings
                     ApplyPercent = int.Parse(data["Settings.ItemLotGeneratorSettings.EnemyLootScannerSettings"]["ApplyPercent"])
                 },
                 ChaosLootEnabled = bool.Parse(data["Settings.ItemLotGeneratorSettings"]["ChaosLootEnabled"]),
-                GlobalDropChance = float.Parse(data["Settings.ItemLotGeneratorSettings"]["GlobalDropChance"]),
+                GlobalDropChance = int.Parse(data["Settings.ItemLotGeneratorSettings"]["GlobalDropChance"]),
                 AllLootGauranteed = bool.Parse(data["Settings.ItemLotGeneratorSettings"]["AllLootGauranteed"])
             },
             ArmorGeneratorSettings = new ArmorGeneratorSettings
@@ -195,30 +193,35 @@ public class Settings
                         IconSize = int.Parse(data["Settings.IconBuilderSettings.IconSheetSettings.IconDimensions"]["IconSize"]),
                         Padding = int.Parse(data["Settings.IconBuilderSettings.IconSheetSettings.IconDimensions"]["Padding"])
                     },
-                    Rarities = 
+                    Rarities =
                     [
                         new RarityIconDetails
                         {
+                            Name = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity1"]["Name"],
                             RarityIds = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity1"]["RarityIds"].Split(',').Select(int.Parse).ToList(),
                             BackgroundImageName = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity1"]["BackgroundImageName"]
                         },
                         new RarityIconDetails
                         {
+                            Name = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity2"]["Name"],
                             RarityIds = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity2"]["RarityIds"].Split(',').Select(int.Parse).ToList(),
                             BackgroundImageName = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity2"]["BackgroundImageName"]
                         },
                         new RarityIconDetails
                         {
+                            Name = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity3"]["Name"],
                             RarityIds = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity3"]["RarityIds"].Split(',').Select(int.Parse).ToList(),
                             BackgroundImageName = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity3"]["BackgroundImageName"]
                         },
                         new RarityIconDetails
                         {
+                            Name = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity4"]["Name"],
                             RarityIds = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity4"]["RarityIds"].Split(',').Select(int.Parse).ToList(),
                             BackgroundImageName = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity4"]["BackgroundImageName"]
                         },
                         new RarityIconDetails
-                        {
+                        {   
+                            Name = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity5"]["Name"],
                             RarityIds = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity5"]["RarityIds"].Split(',').Select(int.Parse).ToList(),
                             BackgroundImageName = data["Settings.IconBuilderSettings.IconSheetSettings.Rarities.Rarity5"]["BackgroundImageName"]
                         }

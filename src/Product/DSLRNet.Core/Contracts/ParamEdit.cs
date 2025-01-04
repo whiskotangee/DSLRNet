@@ -11,7 +11,7 @@ public class ParamEdit
 
     public ParamNames ParamName { get; set; }
 
-    public LootFMG? MessageText { get; set; }
+    public LootFMG? ItemText { get; set; }
 
     public required GenericParam ParamObject { get; set; }
 }

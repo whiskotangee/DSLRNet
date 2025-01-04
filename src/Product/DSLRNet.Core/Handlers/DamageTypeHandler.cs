@@ -30,7 +30,7 @@ public class DamageTypeHandler : BaseHandler
                     {
                         ParamName = ParamNames.TextOnly,
                         Operation = ParamOperation.TextOnly,
-                        MessageText = new LootFMG()
+                        ItemText = new LootFMG()
                         {
                             Category = LootType.Weapon.ToString(),
                             Effect = d.EffectDescription

@@ -12,6 +12,7 @@ public class ParamLootGenerator<TParamType>(
     ParamEditsRepository dataRepository,
     ParamNames outputParamName,
     ILogger<ParamLootGenerator<TParamType>> logger) : BaseHandler(dataRepository)
+    where TParamType : class, ICloneable<TParamType>
 {
     public RarityHandler RarityHandler { get; set; } = rarityHandler;
 
@@ -50,7 +51,7 @@ public class ParamLootGenerator<TParamType>(
             {
                 ParamName = this.OutputParamName,
                 Operation = ParamOperation.Create,
-                MessageText = new LootFMG()
+                ItemText = new LootFMG()
                     {
                         Category = this.OutputLootRealNames[lootType],
                         Name = title,
@@ -61,7 +62,7 @@ public class ParamLootGenerator<TParamType>(
             });
     }
 
-    public IEnumerable<SpEffectText> ApplySpEffects(
+    public IEnumerable<SpEffectDetails> ApplySpEffects(
         int rarityId,
         List<int> allowedSpefTypes,
         GenericParam lootItem,
@@ -70,7 +71,7 @@ public class ParamLootGenerator<TParamType>(
         int spefNumOverride = -1,
         bool overwriteExistingSpEffects = false)
     {
-        List<SpEffectText> spEffectTexts = [];
+        List<SpEffectDetails> spEffectTexts = [];
 
         List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailableSpEffectSlots(lootItem) : this.GetPassiveSpEffectFieldNames();
         if (speffectParam.Count == 0)
@@ -80,7 +81,7 @@ public class ParamLootGenerator<TParamType>(
         }
 
         int finalNumber = spefNumOverride < 0 && spefNumOverride <= speffectParam.Count ? speffectParam.Count : spefNumOverride;
-        List<SpEffectText> speffectsToApply = this.SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, lootType, spefChanceMult);
+        List<SpEffectDetails> speffectsToApply = this.SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, spefChanceMult);
 
         if (speffectsToApply.Count != 0)
         {
@@ -99,7 +100,7 @@ public class ParamLootGenerator<TParamType>(
         return spEffectTexts;
     }
 
-    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, IEnumerable<SpEffectText>? namePartsCollection, bool colorCoded = true, bool includeSuffix = false)
+    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, IEnumerable<SpEffectDetails>? namePartsCollection, bool colorCoded = true, bool includeSuffix = false)
     {
         List<string> additions =
         [
@@ -116,7 +117,7 @@ public class ParamLootGenerator<TParamType>(
 
     public TParamType GetNewLootItem()
     {
-        return this.DataSource.GetRandomItem();
+        return this.DataSource.GetRandomItem().Clone();
     }
 
     public List<string> GetPassiveSpEffectFieldNames()

@@ -8,12 +8,15 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:CustomColorTheme BaseTheme="Dark" PrimaryColor="Chocolate"  SecondaryColor="DarkOrange"  />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Amber.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <localconverters:ImagePathConverter x:Key="ImagePathConverter" />
             <BitmapImage x:Key="DSLRIcon" UriSource="pack://application:,,,/DSLRNet;component/Resources/dslr_eldenring_icon.ico" />
+            <localconverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <localconverters:BoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" Inverse="True"/>
+            <localconverters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

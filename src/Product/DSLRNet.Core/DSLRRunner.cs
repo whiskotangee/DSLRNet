@@ -41,7 +41,7 @@ public class DSLRRunner
             IconBuilder iconbuilder = sp.GetRequiredService<IconBuilder>();
             DSLRNetBuilder dslrBuilder = sp.GetRequiredService<DSLRNetBuilder>();
 
-            //await iconbuilder.ApplyIcons();
+            await iconbuilder.ApplyIcons();
             progress.OverallProgress += 1;
 
             dslrBuilder.BuildItemLots();

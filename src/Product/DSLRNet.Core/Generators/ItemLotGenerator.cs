@@ -333,12 +333,12 @@ public class ItemLotGenerator : BaseHandler
         int itemCategory;
         int itemId;
 
-        if (LootType.Armor == itemType && this.armorLootGenerator.HasLootTemplates())
+        if (LootType.Armor == itemType && this.armorLootGenerator.IsLoaded())
         {
             itemId = this.armorLootGenerator.CreateArmor(rarityId);
             itemCategory = 3;
         }
-        else if (LootType.Talisman == itemType && this.talismanLootGenerator.HasLootTemplates())
+        else if (LootType.Talisman == itemType && this.talismanLootGenerator.IsLoaded())
         {
             itemId = this.talismanLootGenerator.CreateTalisman(rarityId);
             itemCategory = 4;

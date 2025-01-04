@@ -39,29 +39,6 @@ public class ParamLootGenerator<TParamType>(
         { LootType.Talisman, "Accessory" }
     };
 
-    public void AddLootDetails(
-        GenericParam lootItem, 
-        LootType lootType, 
-        string title = "", 
-        string description = "", 
-        string summary = "")
-    {
-        this.GeneratedDataRepository.AddParamEdit(
-            new ParamEdit
-            {
-                ParamName = this.OutputParamName,
-                Operation = ParamOperation.Create,
-                ItemText = new LootFMG()
-                    {
-                        Category = this.OutputLootRealNames[lootType],
-                        Name = title,
-                        Caption = description,
-                        Info = summary
-                    },
-                ParamObject = lootItem
-            });
-    }
-
     public IEnumerable<SpEffectDetails> ApplySpEffects(
         int rarityId,
         List<int> allowedSpefTypes,
@@ -73,10 +50,10 @@ public class ParamLootGenerator<TParamType>(
     {
         List<SpEffectDetails> spEffectTexts = [];
 
-        List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailableSpEffectSlots(lootItem) : this.GetPassiveSpEffectFieldNames();
+        List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailablePassiveSpEffectSlots(lootItem) : this.GetPassiveSpEffectFieldNames();
         if (speffectParam.Count == 0)
         {
-            logger.LogWarning($"New item {lootItem.ID} of type {lootType} has no available spEffect slots, not applying any");
+            logger.LogInformation($"New item {lootItem.ID} of type {lootType} has no available spEffect slots, not applying any");
             return [];
         }
 
@@ -115,18 +92,13 @@ public class ParamLootGenerator<TParamType>(
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)).Distinct());
     }
 
-    public TParamType GetNewLootItem()
-    {
-        return this.DataSource.GetRandomItem().Clone();
-    }
-
     public List<string> GetPassiveSpEffectFieldNames()
     {
         return this.Configuration.LootParam.Speffects.GetType().GetProperty(this.OutputParamName.ToString())?.GetValue(this.Configuration.LootParam.Speffects) as List<string>
             ?? throw new Exception($"Could not get spEffect property names for {this.OutputParamName} param");
     }
 
-    public List<string> GetAvailableSpEffectSlots(GenericParam itemParam)
+    public List<string> GetAvailablePassiveSpEffectSlots(GenericParam itemParam)
     {
         List<string> baseParams = this.GetPassiveSpEffectFieldNames();
         List<string> finalArray = [];
@@ -140,7 +112,7 @@ public class ParamLootGenerator<TParamType>(
         return finalArray;
     }
 
-    public bool HasLootTemplates()
+    public bool IsLoaded()
     {
         return this.DataSource.Count() > 0;
     }

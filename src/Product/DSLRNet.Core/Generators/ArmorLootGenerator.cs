@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Core.Generators;
 
+using DSLRNet.Core.Contracts;
 using DSLRNet.Core.DAL;
 using System.Linq;
 
@@ -28,7 +29,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
     public int CreateArmor(int rarity)
     {
-        EquipParamProtector newArmor = this.GetNewLootItem();
+        EquipParamProtector newArmor = this.DataSource.GetRandomItem().Clone();
 
         var nextId = (int)this.IDGenerator.GetNext();
         newArmor.ID = nextId;
@@ -47,15 +48,22 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
 
         string originalName = newArmor.Name;
         string finalTitle = this.CreateLootTitle(originalName.Replace(" (Altered)", ""), rarity, "", spEffects, true, false);
-
+        string description = string.Join(Environment.NewLine, spEffects.Select(s => s.Description).Append(armorStatDesc).Append(this.LoreGenerator.GenerateDescription(finalTitle, true)));
         //newArmor.Name = finalTitle;
 
-        this.AddLootDetails(
-            newArmor.GenericParam, 
-            LootType.Armor, 
-            finalTitle, 
-            this.CreateArmorDescription(string.Join(Environment.NewLine, spEffects.Select(s => s.Description).ToList()), armorStatDesc),
-            this.LoreGenerator.GenerateDescription(finalTitle, true));
+        this.GeneratedDataRepository.AddParamEdit(
+            new ParamEdit
+            {
+                ParamName = this.OutputParamName,
+                Operation = ParamOperation.Create,
+                ItemText = new LootFMG()
+                {
+                    Category = this.OutputLootRealNames[LootType.Armor],
+                    Name = finalTitle,
+                    Caption = description
+                },
+                ParamObject = newArmor.GenericParam
+            });
 
         return newArmor.ID;
     }
@@ -82,7 +90,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
             newArmor.SetValue(param, 0);
         }
 
-        return $"+{addition*100:F1}% {string.Join("/", descriptionStrings)} Defense";
+        return $"+{addition * 100:F1}% {string.Join("/", descriptionStrings)} Defense";
     }
 
     private void ModifyArmorResistance(EquipParamProtector newArmor, int rarity)

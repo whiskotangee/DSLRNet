@@ -39,18 +39,18 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
         List<string> talismanDescriptions = [];
         List<string> talismanSummaries = [];
 
-        EquipParamAccessory newTalisman = this.GetNewLootItem();
+        EquipParamAccessory newTalisman = this.DataSource.GetRandomItem().Clone();
 
-        int freeSlotCount = this.GetAvailableSpeffectSlotCount(newTalisman.GenericParam);
+        var freeSpEffectSlots = this.GetAvailablePassiveSpEffectSlots(newTalisman.GenericParam);
 
-        if (freeSlotCount <= 0)
+        if (freeSpEffectSlots.Count <= 0)
         {
             return 0;
         }
 
         TalismanConfig newTalismanConfig = this.Random.GetRandomItem(this.TalismanConfigs);
 
-        string availableSlot = this.GetAvailableSpEffectSlots(newTalisman.GenericParam).First();
+        string availableSlot = this.GetAvailablePassiveSpEffectSlots(newTalisman.GenericParam).First();
 
         newTalisman.ID = (int)this.IDGenerator.GetNext();
         newTalisman.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
@@ -93,21 +93,22 @@ public class TalismanLootGenerator : ParamLootGenerator<EquipParamAccessory>
          spEffs,
          true);
 
-        this.AddLootDetails(
-            newTalisman.GenericParam, 
-            LootType.Talisman, 
-            talismanFinalTitleColored, 
-            string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()), 
-            string.Join(Environment.NewLine, talismanSummaries));
+        this.GeneratedDataRepository.AddParamEdit(
+            new ParamEdit
+            {
+                ParamName = this.OutputParamName,
+                Operation = ParamOperation.Create,
+                ItemText = new LootFMG()
+                {
+                    Category = this.OutputLootRealNames[LootType.Talisman],
+                    Name = talismanFinalTitleColored,
+                    Caption = string.Join(Environment.NewLine, talismanDescriptions.Select(s => s.Replace(Environment.NewLine, "")).ToList()),
+                    Info = string.Join(Environment.NewLine, talismanSummaries)
+                },
+                ParamObject = newTalisman.GenericParam
+            });
 
         return newTalisman.ID;
-    }
-
-    private int GetAvailableSpeffectSlotCount(GenericParam newTalisman)
-    {
-        List<string> parms = this.GetPassiveSpEffectFieldNames();
-
-        return parms.Where(d => new List<int>() { 0, -1 }.Contains(newTalisman.GetValue<int>(d))).ToList().Count;
     }
 
     public List<TalismanConfig> TalismanConfigs { get; set; } = [];

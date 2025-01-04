@@ -122,13 +122,19 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
 
-        var attackId = newWeapon.attackElementCorrectId;
-
-        this.AddLootDetails(
-            newWeapon.GenericParam, 
-            LootType.Weapon, 
-            weaponFinalTitleColored, 
-            weaponDesc + Environment.NewLine + this.LoreGenerator.GenerateDescription(weaponFinalTitle, false));
+        this.GeneratedDataRepository.AddParamEdit(
+            new ParamEdit
+            {
+                ParamName = ParamNames.EquipParamWeapon,
+                Operation = ParamOperation.Create,
+                ItemText = new LootFMG()
+                {
+                    Category = this.OutputLootRealNames[LootType.Weapon],
+                    Name = weaponFinalTitleColored,
+                    Caption = weaponDesc + Environment.NewLine + this.LoreGenerator.GenerateDescription(weaponFinalTitle, false)
+                },
+                ParamObject = newWeapon.GenericParam
+            });
 
         return newWeapon.ID;
     }

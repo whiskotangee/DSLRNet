@@ -16,6 +16,8 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
     private readonly AshofWarHandler ashofWarHandler;
     private readonly DamageTypeHandler damageTypeHandler;
 
+    private Dictionary<WeaponTypes, List<EquipParamWeapon>> weaponsByWeaponType = [];
+
     public WeaponLootGenerator(
         IOptions<Configuration> configurationOptions,
         IOptions<Settings> settings,
@@ -31,29 +33,17 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
     {
         this.IDGenerator = new IDGenerator()
         {
-            StartingID = 800000000,
+            StartingID = 80000000,
             Multiplier = 1000,
         };
         this.ashofWarHandler = ashofWarHandler;
         this.damageTypeHandler = damageTypeHandler;
         this.DataSource = dataAccess.EquipParamWeapon;
-    }
 
-    public EquipParamWeapon GetNewWeapon(WeaponTypes type)
-    {
-        bool found = false;
-        do
+        foreach (var weaponType in Enum.GetValues<WeaponTypes>())
         {
-            EquipParamWeapon weaponCandidate = this.GetNewLootItem();
-            if (this.GetWeaponType(weaponCandidate.wepmotionCategory) == type)
-            {
-                return weaponCandidate;
-            }
+            this.weaponsByWeaponType[weaponType] = this.DataSource.GetAll().Where(d => this.GetWeaponType(d.wepmotionCategory) == weaponType).ToList();
         }
-        while (!found);
-
-        // we didn't find something, return whatever comes
-        return this.GetNewLootItem();
     }
 
     public int uniqueWeaponCounter = 0;
@@ -66,7 +56,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         WeaponTypes weaponType = this.Random.NextWeightedValue(itemLotSettings.WeaponWeightsByType);
 
-        EquipParamWeapon newWeapon = this.GetNewWeapon(weaponType);
+        EquipParamWeapon newWeapon = this.Random.GetRandomItem(this.weaponsByWeaponType[weaponType]).Clone();
 
         newWeapon.ID = (int)this.IDGenerator.GetNext();
         newWeapon.sellValue = this.RarityHandler.GetSellValue(rarityId);
@@ -132,6 +122,8 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
 
+        var attackId = newWeapon.attackElementCorrectId;
+
         this.AddLootDetails(
             newWeapon.GenericParam, 
             LootType.Weapon, 
@@ -185,7 +177,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
     private void ApplyWeaponScalingRange(EquipParamWeapon newWeapon, WeaponModifications modifications, int rarityId)
     {
-        var damageParams = newWeapon.GetFieldNamesByFilter("correct").Select(d => new { ParamName = d, Value = newWeapon.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
+        var damageParams = newWeapon.GetFieldNamesByFilter("correct", excludeFilter: "Type_").Select(d => new { ParamName = d, Value = newWeapon.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
 
         List<string> takenParams = [];
 

@@ -132,7 +132,7 @@ public class ParamLootGenerator<TParamType>(
         List<string> finalArray = [];
         foreach (string param in baseParams)
         {
-            if (itemParam.ContainsKey(param) && itemParam.GetValue<int>(param) <= 0)
+            if (itemParam.GetValue<int>(param) <= 0)
             {
                 finalArray.Add(param);
             }

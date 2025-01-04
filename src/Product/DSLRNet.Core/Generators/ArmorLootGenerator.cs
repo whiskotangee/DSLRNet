@@ -19,7 +19,7 @@ public class ArmorLootGenerator : ParamLootGenerator<EquipParamProtector>
     {
         this.IDGenerator = new IDGenerator()
         {
-            StartingID = 800000000,
+            StartingID = 80000000,
             Multiplier = 1000,
         };
 

@@ -102,9 +102,9 @@ public class ItemLotGenerator : BaseHandler
                 .Distinct()
                 .OrderBy(d => d)];
 
-            bool dropGuaranteed = this.settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
+            bool dropGauranteed = this.settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
 
-            this.logger.LogDebug($"Generating {itemLotIds.Count} item lots for enemy with drop guaranteed: {dropGuaranteed}");
+            this.logger.LogDebug($"Generating {itemLotIds.Count} item lots for enemy with drop guaranteed: {dropGauranteed}");
 
             for (int x = 0; x < itemLotIds.Count; x++)
             {
@@ -132,22 +132,20 @@ public class ItemLotGenerator : BaseHandler
                     newItemLot = this.ItemLotTemplate.Clone();
                     newItemLot.ID = itemLotIds[x];
                     this.logger.LogDebug($"Enemy itemlot {newItemLot.ID} does not exist in either source, creating new");
-                    if (!dropGuaranteed)
-                    {
-                        newItemLot.lotItemBasePoint01 = 1000;
-                        newItemLot.lotItemId01 = 0;
-                        newItemLot.lotItemNum01 = 0;
-                        newItemLot.lotItemCategory01 = 0;
-                    }
+
+                    newItemLot.lotItemBasePoint01 = (ushort)(dropGauranteed ? 0 : 1000);
+                    newItemLot.lotItemId01 = 0;
+                    newItemLot.lotItemNum01 = 0;
+                    newItemLot.lotItemCategory01 = 0;
                 }
 
                 newItemLot.Name = string.Empty;
 
-                int offset = Math.Max(newItemLot.GetIndexOfFirstOpenLotItemId(), dropGuaranteed ? 1 : 2);
+                int offset = Math.Max(newItemLot.GetIndexOfFirstOpenLotItemId(), dropGauranteed ? 1 : 2);
 
                 if (offset < 0)
                 {
-                    throw new Exception("No open item spots in item lot");
+                    throw new Exception($"No open item spots in item lot {newItemLot.ID}");
                 }
 
                 int startingIndex = offset;
@@ -162,7 +160,7 @@ public class ItemLotGenerator : BaseHandler
                         this.settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy,
                         y,
                         (float)itemLotSettings.DropChanceMultiplier,
-                        dropGuaranteed);
+                        dropGauranteed);
                 }
 
                 this.RestrictItemChances(newItemLot, Enumerable.Range(startingIndex, endingIndex - startingIndex).ToArray(), 1000);
@@ -429,8 +427,8 @@ public class ItemLotGenerator : BaseHandler
                 var coveredAmount = Math.Min(excessPoints, noDropItem.basePointValue);
                 if (coveredAmount > 0)
                 {
-                    itemLot.SetValue(noDropItem.name, noDropItem.basePointValue - coveredAmount);
-                    excessPoints -= coveredAmount;  
+                    itemLot.SetValue(noDropItem.name, Math.Max(noDropItem.basePointValue - coveredAmount, 1));
+                    excessPoints -= coveredAmount;
                 }
             }
 

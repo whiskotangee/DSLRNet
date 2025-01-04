@@ -1,87 +1,25 @@
 ﻿namespace DSLRNet.Core.Scan;
 
+using DSLRNet.Core.Config;
 using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
+using System.Diagnostics;
 
 public class ItemLotScanner(
     ILogger<ItemLotScanner> logger,
     RandomProvider random,
     IOptions<Configuration> configuration,
-    IOptions<Settings> settings,
     DataAccess dataAccess,
     BossDropScannerV2 bossDropScanner,
-    GameStageEvaluator gameStageEvaluator,
+    DifficultyEvaluator difficultyEvaluator,
     MSBProvider msbProvider)
 {
     private readonly ILogger<ItemLotScanner> logger = logger;
     private readonly RandomProvider random = random;
     private readonly Configuration configuration = configuration.Value;
-    private readonly Settings settings = settings.Value;
     private readonly Dictionary<int, ItemLotParam_map> itemLotParam_Map = dataAccess.ItemLotParamMap.GetAll().ToDictionary(k => k.ID);
     private readonly Dictionary<int, ItemLotParam_enemy> itemLotParam_Enemy = dataAccess.ItemLotParamEnemy.GetAll().ToDictionary(k => k.ID);
     private readonly Dictionary<int, NpcParam> npcParams = dataAccess.NpcParam.GetAll().ToDictionary(k => k.ID);
-
-    public Dictionary<ItemLotCategory, List<ItemLotSettings>> LoadScanned(Dictionary<ItemLotCategory, HashSet<int>> claimedIds)
-    {
-        Dictionary<ItemLotCategory, List<ItemLotSettings>> generatedItemLotSettings = new()
-        {
-            { ItemLotCategory.ItemLot_Map, [] },
-            { ItemLotCategory.ItemLot_Enemy, [] }
-        };
-
-        if (!this.settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.Enabled &&
-            !this.settings.ItemLotGeneratorSettings.MapLootScannerSettings.Enabled &&
-            !this.settings.ItemLotGeneratorSettings.ChestLootScannerSettings.Enabled)
-        {
-            return generatedItemLotSettings;
-        }
-
-        ItemLotSettings? remainingMapLots = this.GetItemLots(
-            "Assets\\Data\\ItemLots\\Scanned\\MapDrops.ini",
-            configuration.Itemlots.Categories[1],
-            settings.ItemLotGeneratorSettings.MapLootScannerSettings,
-            claimedIds[ItemLotCategory.ItemLot_Map]);
-
-        ItemLotSettings? chests = this.GetItemLots(
-            "Assets\\Data\\ItemLots\\Scanned\\Chests.ini",
-            configuration.Itemlots.Categories[1],
-            settings.ItemLotGeneratorSettings.ChestLootScannerSettings,
-            claimedIds[ItemLotCategory.ItemLot_Map]);
-
-        ItemLotSettings? enemies = this.GetItemLots(
-            "Assets\\Data\\ItemLots\\Scanned\\Enemies.ini",
-            configuration.Itemlots.Categories[0],
-            settings.ItemLotGeneratorSettings.EnemyLootScannerSettings,
-            claimedIds[ItemLotCategory.ItemLot_Enemy]);
-
-        ItemLotSettings? bosses = this.GetItemLots(
-            "Assets\\Data\\ItemLots\\Scanned\\Bosses.ini",
-            configuration.Itemlots.Categories[1],
-            new ScannerSettings() { Enabled = true, ApplyPercent = 100 },
-            claimedIds[ItemLotCategory.ItemLot_Map]);
-
-        if (enemies != null)
-        {
-            generatedItemLotSettings[ItemLotCategory.ItemLot_Enemy].Add(enemies);
-        }
-
-        if (chests != null)
-        {
-            generatedItemLotSettings[ItemLotCategory.ItemLot_Map].Add(chests);
-        }
-
-        if (remainingMapLots != null)
-        {
-            generatedItemLotSettings[ItemLotCategory.ItemLot_Map].Add(remainingMapLots);
-        }
-
-        if (bosses != null)
-        {
-            generatedItemLotSettings[ItemLotCategory.ItemLot_Map].Add(bosses);
-        }
-
-        return generatedItemLotSettings;
-    }
 
     public void ScanAndCreateItemLotSets()
     {
@@ -98,105 +36,133 @@ public class ItemLotScanner(
         ItemLotSettings bossLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1])
             ?? throw new Exception("Could not read default item lot settings for boss drops");
 
-        List<EventDropItemLotDetails> eventItemLotDetails = bossDropScanner.ScanEventsForBossDrops();
+        List<EventDropItemLotDetails> bossDetails = bossDropScanner.ScanEventsForBossDrops();
+
+        var allMSBs = msbProvider.GetAllMsbs().OrderBy(d => d.Key);
 
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Enemy, [enemyLots]);
         generatedItemLotSettings.TryAdd(ItemLotCategory.ItemLot_Map, [mapLots, bossLots]);
 
-        foreach (KeyValuePair<string, MSBE> mapFile in msbProvider.GetAllMsbs().OrderBy(d => d.Key))
+        Dictionary<int, (NpcParam, GameStage)> itemLotToNpcMapping = [];
+        Dictionary<int, NpcGameStage> scannedNpcDuplicates = [];
+
+        foreach (KeyValuePair<string, MSBE> mapFile in allMSBs)
         {
             string mapFileName = mapFile.Key;
             MSBE msb = mapFile.Value;
 
             List<NpcParam> npcs = msb.FilterRelevantNpcs(logger, npcParams, mapFileName);
 
-            Dictionary<GameStage, int> enemiesAdded = ScanEnemyLots(npcs, enemyLots);
-            Dictionary<GameStage, int> mapItemsAdded = ScanMapLots(mapFileName, msb, npcs, mapLots, eventItemLotDetails, false, true);
-            Dictionary<GameStage, int> chestItemsAdded = ScanMapLots(mapFileName, msb, npcs, chestsLots, eventItemLotDetails, true, false);
-            Dictionary<GameStage, int> eventItemsAdded = ScanEventLots(msb, bossLots, eventItemLotDetails);
+            Dictionary<GameStage, int> enemiesAdded = ScanEnemyLots(npcs, enemyLots, itemLotToNpcMapping, scannedNpcDuplicates, bossDetails);
+            Dictionary<GameStage, int> mapItemsAdded = ScanMapLots(mapFileName, msb, npcs, mapLots, bossDetails, false, true);
+            Dictionary<GameStage, int> chestItemsAdded = ScanMapLots(mapFileName, msb, npcs, chestsLots, bossDetails, true, false);
 
-            logger.LogInformation($"Map {mapFileName} Enemies: {JsonConvert.SerializeObject(enemiesAdded)} Treasures: {JsonConvert.SerializeObject(mapItemsAdded)} BossDrops: {JsonConvert.SerializeObject(eventItemsAdded)}");
+            var duplicates = enemyLots.GameStageConfigs.SelectMany(d => d.Value.ItemLotIds).GroupBy(d => d).Where(c => c.Count() > 1).ToList();
+
+            if (duplicates.Any())
+            {
+                logger.LogError($"{duplicates.Count()} duplicated enemy itemlot entries found");
+            }
+
+            logger.LogInformation($"Map {mapFileName} Enemies: {JsonConvert.SerializeObject(enemiesAdded)} Treasures: {JsonConvert.SerializeObject(mapItemsAdded)}");
         }
 
         logger.LogInformation($"Map averages: {JsonConvert.SerializeObject(this.mapAverageStage, Formatting.Indented)}");
 
-        Directory.CreateDirectory("ScannedLots");
+        difficultyEvaluator.AssignBossGameStages(allMSBs.ToDictionary(), bossLots, bossDetails);
 
-        mapLots.Save("ScannedLots\\MapDrops.ini");
-        chestsLots.Save("ScannedLots\\Chests.ini");
-        enemyLots.Save("ScannedLots\\Enemies.ini");
-        bossLots.Save("ScannedLots\\Bosses.ini");
-    }
-
-    private ItemLotSettings? GetItemLots(string file, Category category, ScannerSettings scannerSettings, HashSet<int> claimedIds)
-    {
-        if (!scannerSettings.Enabled)
+        foreach (var gameStage in bossLots.GameStageConfigs)
         {
-            return null;
+            var bosses = bossDetails.Where(d => d.FinalGameStage == gameStage.Key);
+            gameStage.Value.ItemLotIds.UnionWith(bosses.Select(d => d.ItemLotId));
+            logger.LogInformation($"{gameStage.Key} has {bosses.Count()} bosses");
+            logger.LogInformation($"Bosses for {gameStage.Key}: {string.Join(Environment.NewLine, bosses.Select(d => d.NpcParam?.Name))}");
         }
 
-        ItemLotSettings settings = ItemLotSettings.Create(file, category);
+        bossLots.IsForBosses = true;
 
-        foreach (var gameStage in settings.GameStageConfigs)
-        {
-            int countBefore = gameStage.Value.ItemLotIds.Count;
+        var savePath = Path.Combine("Assets", "Data", "ItemLots", "Scanned");
+        Directory.CreateDirectory(savePath);
 
-            gameStage.Value.ItemLotIds =
-                gameStage.Value.ItemLotIds
-                    .Where(d => !claimedIds.Contains(d) && this.random.PassesPercentCheck(scannerSettings.ApplyPercent))
-                    .ToHashSet();
-        }
-
-        return settings;
+        mapLots.Save(Path.Combine(savePath, "MapDrops.ini"));
+        chestsLots.Save(Path.Combine(savePath, "Chests.ini"));
+        enemyLots.Save(Path.Combine(savePath, "Enemies.ini"));
+        bossLots.Save(Path.Combine(savePath, "Bosses.ini"));
+        File.WriteAllText(Path.Combine(savePath, "npcGameStageEvaluations.json"), JsonConvert.SerializeObject(scannedNpcDuplicates.Values, Formatting.Indented));
     }
 
-    private Dictionary<GameStage, int> ScanEventLots(MSBE msb, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
-    {
-        Dictionary<GameStage, int> assigned = [];
-
-        IEnumerable<EventDropItemLotDetails> withEntityId = lotDetails.Where(d => d.EntityId > 0);
-
-        foreach (EventDropItemLotDetails? details in withEntityId)
-        {
-            MSBE.Part.Enemy? foundEvent = msb.Parts.Enemies.Where(d => d.EntityID == details.EntityId).FirstOrDefault();
-            if (foundEvent != null)
-            {
-                NpcParam foundNpc = npcParams[foundEvent.NPCParamID];
-                details.NpcId = foundNpc.ID;
-
-                GameStage evaluatedStage = gameStageEvaluator.EvaluateDifficulty(settings, foundNpc, true);
-
-                settings.GetGameStageConfig(evaluatedStage).ItemLotIds.Add(details.ItemLotId);
-                if (!assigned.TryGetValue(evaluatedStage, out int count))
-                {
-                    assigned.Add(evaluatedStage, 0);
-                }
-
-                assigned[evaluatedStage] += 1;
-
-                settings.IsForBosses = true;
-            }
-        }
-
-        return assigned;
-    }
-
-    private Dictionary<GameStage, int> ScanEnemyLots(List<NpcParam> npcParams, ItemLotSettings settings)
+    private Dictionary<GameStage, int> ScanEnemyLots(
+        List<NpcParam> npcParams, 
+        ItemLotSettings settings, 
+        Dictionary<int, (NpcParam, GameStage)> enemyItemLotMapping, 
+        Dictionary<int, NpcGameStage> scannedNpcDuplicates,
+        List<EventDropItemLotDetails> bossDetails)
     {
         Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 
-        foreach (NpcParam? npc in npcParams.Where(d => d.itemLotId_enemy > 0))
-        {
-            GameStage assignedGameStage = gameStageEvaluator.EvaluateDifficulty(settings, npc, false);
+        var filteredNpcs = npcParams
+            // has an item lot already
+            .Where(d => d.itemLotId_enemy > 0)
+            // does not end with 00
+            .Where(d => d.getSoul > 0)
+            // has scaling
+            .Where(d => d.spEffectID3 > 0)
+            .Where(d => !bossDetails.Any(b => d.ID == b.NpcId))
+            .DistinctBy(d => d.ID)
+            .ToList();
 
-            settings.GetGameStageConfig(assignedGameStage).ItemLotIds.Add(npc.itemLotId_enemy);
-            addedByStage[assignedGameStage] += 1;
+        logger.LogInformation($"Scanning {filteredNpcs.Count} npcs for item lots");
+
+        foreach (NpcParam? npc in filteredNpcs)
+        {
+            GameStage assignedGameStage = difficultyEvaluator.EvaluateDifficultyByScalingSpEffect(settings, npc);
+
+            if (!enemyItemLotMapping.TryGetValue(npc.itemLotId_enemy, out (NpcParam OriginalNpc, GameStage OriginalGameStage) originalNpc))
+            {
+                originalNpc = (npc, assignedGameStage);
+                enemyItemLotMapping[npc.itemLotId_enemy] = originalNpc;
+            }
+
+            var itemLotId = npc.itemLotId_enemy;
+
+            // a single item lot could be shared across many npcs throughout the whole game.
+            // i.e. Wolves have NPC ids 40700010, 40700011, 40700012, etc but all share item lot id 407000000
+            // We need to create new duplicate item lots for each npc and evaluate the difficulty individually
+            bool hasBeenSeenBefore = scannedNpcDuplicates.ContainsKey(npc.ID);
+
+            bool requiresNewItemLot =
+                    npc.ID != originalNpc.OriginalNpc.ID
+                    && npc.itemLotId_enemy == originalNpc.OriginalNpc.itemLotId_enemy
+                    && assignedGameStage != originalNpc.OriginalGameStage && !hasBeenSeenBefore;
+
+            scannedNpcDuplicates.TryAdd(
+                npc.ID,
+                new NpcGameStage
+                {
+                    NpcID = npc.ID,
+                    GameStage = assignedGameStage,
+                    RequiresNewItemLot = requiresNewItemLot
+                }
+            );
+
+            if (!requiresNewItemLot && !hasBeenSeenBefore)
+            {
+                settings.GetGameStageConfig(assignedGameStage).ItemLotIds.Add(itemLotId);
+                addedByStage[assignedGameStage] += 1;
+            }
         }
 
         return addedByStage;
     }
 
-    private Dictionary<GameStage, int> ScanMapLots(string name, MSBE msb, List<NpcParam> npcParams, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails, bool scanChests, bool scanMapDrops)
+    private Dictionary<GameStage, int> ScanMapLots(
+        string name,
+        MSBE msb,
+        List<NpcParam> npcParams,
+        ItemLotSettings settings,
+        List<EventDropItemLotDetails> lotDetails,
+        bool scanChests,
+        bool scanMapDrops)
     {
         Dictionary<GameStage, int> addedByStage = Enum.GetValues<GameStage>().ToDictionary(d => d, s => 0);
 
@@ -251,7 +217,7 @@ public class ItemLotScanner(
 
     private (GameStageConfig minConfig, GameStageConfig maxConfig) GetGameStageConfigRangeForMap(string name, MSBE msb, List<NpcParam> npcs, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
     {
-        GameStage gameStage = gameStageEvaluator.EvaluateDifficulty(settings, msb, npcs, name, lotDetails);
+        GameStage gameStage = difficultyEvaluator.EvaluateDifficulty(settings, msb, npcs, name, lotDetails);
 
         mapAverageStage[name] = gameStage.ToString();
 

@@ -9,14 +9,17 @@ using DSLRNet.Core.Handlers;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 {
     private readonly AshofWarHandler ashofWarHandler;
     private readonly DamageTypeHandler damageTypeHandler;
 
+    private Dictionary<WeaponTypes, List<EquipParamWeapon>> weaponsByWeaponType = [];
+
     public WeaponLootGenerator(
-        IOptions<Configuration> configuration,
+        IOptions<Configuration> configurationOptions,
         IOptions<Settings> settings,
         AshofWarHandler ashofWarHandler,
         RarityHandler rarityHandler,
@@ -26,29 +29,21 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         DamageTypeHandler damageTypeHandler,
         ParamEditsRepository dataRepository,
         DataAccess dataAccess,
-        ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, spEffectHandler, loreGenerator, random, configuration, settings, dataRepository, ParamNames.EquipParamWeapon, logger)
+        ILogger<ParamLootGenerator<EquipParamWeapon>> logger) : base(rarityHandler, spEffectHandler, loreGenerator, random, configurationOptions, settings, dataRepository, ParamNames.EquipParamWeapon, logger)
     {
-        this.CumulativeID = new CumulativeID(logger);
+        this.IDGenerator = new IDGenerator()
+        {
+            StartingID = 80000000,
+            Multiplier = 1000,
+        };
         this.ashofWarHandler = ashofWarHandler;
         this.damageTypeHandler = damageTypeHandler;
         this.DataSource = dataAccess.EquipParamWeapon;
-    }
 
-    public EquipParamWeapon GetNewWeapon(WeaponTypes type)
-    {
-        bool found = false;
-        do
+        foreach (var weaponType in Enum.GetValues<WeaponTypes>())
         {
-            EquipParamWeapon weaponCandidate = this.GetNewLootItem();
-            if (this.GetWeaponType(weaponCandidate.wepmotionCategory) == type)
-            {
-                return weaponCandidate;
-            }
+            this.weaponsByWeaponType[weaponType] = this.DataSource.GetAll().Where(d => this.GetWeaponType(d.wepmotionCategory) == weaponType).ToList();
         }
-        while (!found);
-
-        // we didn't find something, return whatever comes
-        return this.GetNewLootItem();
     }
 
     public int uniqueWeaponCounter = 0;
@@ -61,9 +56,9 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         WeaponTypes weaponType = this.Random.NextWeightedValue(itemLotSettings.WeaponWeightsByType);
 
-        EquipParamWeapon newWeapon = this.GetNewWeapon(weaponType);
+        EquipParamWeapon newWeapon = this.Random.GetRandomItem(this.weaponsByWeaponType[weaponType]).Clone();
 
-        newWeapon.ID = (int)this.CumulativeID.GetNext();
+        newWeapon.ID = (int)this.IDGenerator.GetNext();
         newWeapon.sellValue = this.RarityHandler.GetSellValue(rarityId);
         newWeapon.rarity = this.RarityHandler.GetRarityParamValue(rarityId);
         newWeapon.iconId = this.RarityHandler.GetIconId(newWeapon.iconId, rarityId, isUnique: isUniqueWeapon);
@@ -127,11 +122,19 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
 
-        this.AddLootDetails(
-            newWeapon.GenericParam, 
-            LootType.Weapon, 
-            weaponFinalTitleColored, 
-            weaponDesc + Environment.NewLine + this.LoreGenerator.GenerateDescription(weaponFinalTitle, false));
+        this.GeneratedDataRepository.AddParamEdit(
+            new ParamEdit
+            {
+                ParamName = ParamNames.EquipParamWeapon,
+                Operation = ParamOperation.Create,
+                ItemText = new LootFMG()
+                {
+                    Category = this.OutputLootRealNames[LootType.Weapon],
+                    Name = weaponFinalTitleColored,
+                    Caption = weaponDesc + Environment.NewLine + this.LoreGenerator.GenerateDescription(weaponFinalTitle, false)
+                },
+                ParamObject = newWeapon.GenericParam
+            });
 
         return newWeapon.ID;
     }
@@ -180,7 +183,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
     private void ApplyWeaponScalingRange(EquipParamWeapon newWeapon, WeaponModifications modifications, int rarityId)
     {
-        var damageParams = newWeapon.GetFieldNamesByFilter("correct").Select(d => new { ParamName = d, Value = newWeapon.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
+        var damageParams = newWeapon.GetFieldNamesByFilter("correct", excludeFilter: "Type_").Select(d => new { ParamName = d, Value = newWeapon.GetValue<float>(d) }).ToDictionary(d => d.ParamName);
 
         List<string> takenParams = [];
 
@@ -276,7 +279,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         mods.PrimaryDamageValue = value;
 
-        IEnumerable<SpEffectText> nameParts = this.ApplySpEffects(rarityId, [0], weapon.GenericParam, spEffectMultiplier, LootType.Weapon);
+        IEnumerable<SpEffectDetails> nameParts = this.ApplySpEffects(rarityId, [0], weapon.GenericParam, spEffectMultiplier, LootType.Weapon);
 
         mods.SpEffectTexts = nameParts.ToList();
 
@@ -290,14 +293,14 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         List<int> options = this.SpEffectHandler.GetPossibleWeaponSpeffectTypes(weapon);
 
-        IEnumerable<SpEffectText> nameParts = this.ApplySpEffects(rarityId, options, weapon.GenericParam, 1.0f, LootType.Weapon);
+        IEnumerable<SpEffectDetails> nameParts = this.ApplySpEffects(rarityId, options, weapon.GenericParam, 1.0f, LootType.Weapon);
 
         modifications.SpEffectTexts = nameParts.ToList();
 
         return modifications;
     }
 
-    private WeaponModifications ApplyNormalDamageChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, EquipParamWeapon weapon, int rarityId, bool isUniqueWeapon)
+    private WeaponModifications ApplyWeaponDamageChanges(DamageTypeSetup dT1, DamageTypeSetup? dT2, EquipParamWeapon weapon, int rarityId, bool isUniqueWeapon)
     {
         WeaponModifications mods = new(dT1, dT2);
 
@@ -305,7 +308,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
         IntValueRange dmgRange = this.RarityHandler.GetDamageAdditionRange(rarityId);
 
-        List<string> dmgParams = weapon.GetFieldNamesByFilter("attackBase");
+        List<string> dmgParams = weapon.GetFieldNamesByFilter("attackBase", excludeFilter: "attackBaseRepel");
 
         long maxOriginalValue = dmgParams.Max(weapon.GetValue<long>);
 
@@ -385,7 +388,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             effectStrings.Add(mods.SecondaryDamageType.EffectDescription);
         }
 
-        mods.SpEffectDescriptions = effectStrings.Select(s => $"Effect: {s}").ToList();
+        mods.SpEffectDescriptions = effectStrings.Where(d => !string.IsNullOrWhiteSpace(d)).Select(s => $"{this.Configuration.DSLRDescText.Effect} {s}").ToList();
 
         byte hitVfx = mods.PrimaryDamageType.HitEffectCategory;
         if (mods.SecondaryDamageType != null && mods.SecondaryDamageType.HitEffectCategory > 0)
@@ -433,7 +436,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             WeaponTypes.StaffsSeals => this.ApplyStaffDamageChanges(weapon, rarityId),
             WeaponTypes.Shields => this.ApplyShieldCutRateChanges(primary, secondary, weapon, rarityId),
-            _ => this.ApplyNormalDamageChanges(primary, secondary, weapon, rarityId, isUniqueWeapon),
+            _ => this.ApplyWeaponDamageChanges(primary, secondary, weapon, rarityId, isUniqueWeapon),
         };
     }
 

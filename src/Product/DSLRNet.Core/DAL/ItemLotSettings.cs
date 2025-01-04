@@ -117,8 +117,6 @@ public class ItemLotSettings
     public Dictionary<GameStage, GameStageConfig> GameStageConfigs { get; set; } = [];
     public List<WeightedValue<LootType>> LootWeightsByType { get; set; } = [];
     public List<WeightedValue<WeaponTypes>> WeaponWeightsByType { get; set; } = [];
-    public List<List<int>> NpcIds { get; set; } = [];
-    public List<List<int>> NpcItemlotids { get; set; } = [];
 }
 
 public enum ItemLotCategory
@@ -153,8 +151,6 @@ class DslItemLotSetup
                 LootTypeWeights = ParseList(data["dslitemlotsetup"]["loottypeweights"]),
                 WeaponTypeWeights = ParseList(data["dslitemlotsetup"]["weapontypeweights"]),
                 DropChanceMultiplier = float.Parse(data["dslitemlotsetup"]["dropchancemultiplier"]),
-                NpcIds = ParseNestedList(data["dslitemlotsetup"]["npc_ids"]),
-                NpcItemLotIds = ParseNestedList(data["dslitemlotsetup"]["npc_itemlotids"])
             };
         }
         catch (Exception)
@@ -187,8 +183,6 @@ class DslItemLotSetup
         data["dslitemlotsetup"]["loottypeweights"] = ListToString(LootTypeWeights);
         data["dslitemlotsetup"]["weapontypeweights"] = ListToString(WeaponTypeWeights);
         data["dslitemlotsetup"]["dropchancemultiplier"] = DropChanceMultiplier.ToString();
-        data["dslitemlotsetup"]["npc_ids"] = NestedListToString(NpcIds);
-        data["dslitemlotsetup"]["npc_itemlotids"] = NestedListToString(NpcItemLotIds);
 
         iniParser.WriteFile(file, data);
     }
@@ -213,8 +207,6 @@ class DslItemLotSetup
     public List<int> LootTypeWeights { get; set; } = [];
     public List<int> WeaponTypeWeights { get; set; } = [];
     public float DropChanceMultiplier { get; set; }
-    public List<List<int>> NpcIds { get; set; } = [];
-    public List<List<int>> NpcItemLotIds { get; set; } = [];
 
     static List<int> ParseList(string input)
     {
@@ -234,30 +226,12 @@ class DslItemLotSetup
         return result;
     }
 
-    static List<List<int>> ParseNestedList(string input)
-    {
-        input = input.Trim('[', ']');
-        List<List<int>> result = [];
-        if (!string.IsNullOrEmpty(input))
-        {
-            foreach (string item in input.Split(["], ["], StringSplitOptions.None))
-            {
-                result.Add(ParseList(item));
-            }
-        }
-        return result;
-    }
-
     static string ListToString(List<int> list)
     {
         return $"[{string.Join(", ", list)}]";
     }
-
-    static string NestedListToString(List<List<int>> nestedList)
-    {
-        return $"[{string.Join("], [", nestedList.Select(ListToString))}]";
-    }
 }
+
 public class BoolToIntConverter : JsonConverter<bool>
 {
     public override void WriteJson(JsonWriter writer, bool value, JsonSerializer serializer)

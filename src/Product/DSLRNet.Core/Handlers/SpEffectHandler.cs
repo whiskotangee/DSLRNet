@@ -1,6 +1,7 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
 using DSLRNet.Core.DAL;
+using System.Diagnostics;
 
 public class SpEffectHandler : BaseHandler
 {
@@ -12,6 +13,7 @@ public class SpEffectHandler : BaseHandler
     public IEnumerable<SpEffectConfig> LoadedSpEffectConfigs { get; set; }
 
     public SpEffectHandler(
+        ILogger<SpEffectHandler> logger,
         IOptions<Configuration> configuration,
         RarityHandler rarityHandler,
         RandomProvider random,
@@ -24,36 +26,29 @@ public class SpEffectHandler : BaseHandler
 
         this.LoadedSpEffectConfigs = dataAccess.SpEffectConfig.GetAll();
 
-        IEnumerable<SpEffectParamNew> loadedSpEffectParams = dataAccess.SpEffectParamNew.GetAll().ToList();
+        IEnumerable<SpEffectParamNew> spEffectsToAdd = dataAccess.SpEffectParamNew.GetAll().ToList();
 
-        foreach (SpEffectParamNew? spEffectParam in loadedSpEffectParams)
+        foreach (SpEffectParamNew? spEffectParam in spEffectsToAdd)
         {
             this.GeneratedDataRepository.AddParamEdit(
                 new ParamEdit
                 {
                     ParamName = ParamNames.SpEffectParam,
-                    Operation = ParamOperation.MassEdit,
-                    MassEditString = this.CreateMassEdit(
-                        spEffectParam.GenericParam,
-                        ParamNames.SpEffectParam,
-                        spEffectParam.ID,
-                        bannedEquals: ["0", "-1"],
-                        mandatoryKeys: ["conditionHp", "effectEndurance", "conditionHpRate"]),
-                    MessageText = null,
+                    Operation = ParamOperation.Create,
                     ParamObject = spEffectParam.GenericParam
                 });
         }
     }
 
-    public List<SpEffectText> GetSpEffects(int desiredCount, List<int> allowedtypes, int rarityId, LootType lootType, float chanceMultiplier = 1.0f)
+    public List<SpEffectDetails> GetSpEffects(int desiredCount, List<int> allowedtypes, int rarityId, float chanceMultiplier = 1.0f)
     {
-        Queue<bool> chanceQueue = this.rarityHandler.GetRarityEffectChances(desiredCount, rarityId, lootType, chanceMultiplier);
+        List<bool> spEffectApplyResults = this.rarityHandler.GetRarityEffectChances(rarityId, chanceMultiplier);
 
         IntValueRange powerRange = this.rarityHandler.GetSpeffectPowerRange(rarityId);
 
-        desiredCount = Math.Clamp(desiredCount, 0, 4);
+        desiredCount = Math.Clamp(desiredCount, 0, 3);
 
-        List<SpEffectText> effects = [];
+        List<SpEffectDetails> effects = [];
 
         if (desiredCount > 0)
         {
@@ -62,18 +57,19 @@ public class SpEffectHandler : BaseHandler
             {
                 return effects;
             }
-            while (chanceQueue.TryDequeue(out bool result))
+
+            for(int i = 0; i < desiredCount; i++)
             {
-                if (result)
+                if (spEffectApplyResults[i])
                 {
                     SpEffectConfig newSpEffect = this.randomNumberGetter.GetRandomItem(spEffectChoices);
 
-                    string description = this.GetSpeffectDescriptionWithValue(
+                    string description = this.GetSpeffectDescription(
                         newSpEffect.Description,
                         newSpEffect.Value.ToString(),
                         newSpEffect.Stacks == 1);
 
-                    string summary = this.GetSpeffectDescriptionWithValue(
+                    string summary = this.GetSpeffectDescription(
                         newSpEffect.ShortDescription == ""
                             ? newSpEffect.Description
                             : newSpEffect.ShortDescription,
@@ -81,7 +77,7 @@ public class SpEffectHandler : BaseHandler
                         newSpEffect.Stacks == 1,
                         true);
 
-                    effects.Add(new SpEffectText
+                    effects.Add(new SpEffectDetails
                     {
                         ID = newSpEffect.ID,
                         Description = description,
@@ -99,13 +95,18 @@ public class SpEffectHandler : BaseHandler
         return effects;
     }
 
-    public string GetSpeffectDescriptionWithValue(string description, string value, bool stacks = false, bool noeffecttext = false)
+    public string GetSpeffectDescription(string description, string value, bool stacks = false, bool includeEffectText = false)
     {
-        string stacking = !stacks ? this.configuration.DSLRDescText.NoStacking : string.Empty;
-        string effecttext = !noeffecttext ? this.configuration.DSLRDescText.Effect : string.Empty;
-        string returnstring = description.Replace("{VALUE}", value);
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return string.Empty;
+        }
 
-        return effecttext + returnstring + stacking;
+        string stacking = !stacks ? this.configuration.DSLRDescText.NoStacking : string.Empty;
+        string effectText = !includeEffectText ? this.configuration.DSLRDescText.Effect : string.Empty;
+        string replacedValue = description.Replace("{VALUE}", value);
+
+        return effectText + replacedValue + stacking;
     }
 
     public List<int> GetPossibleWeaponSpeffectTypes(EquipParamWeapon weapon, bool allowstandardspeffects = true)

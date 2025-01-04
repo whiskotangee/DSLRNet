@@ -17,12 +17,15 @@
         <StackPanel Grid.Column="0">
             <GroupBox Header="Item Drops">
                 <StackPanel  Margin="5">
-                    <TextBlock Text="Global drop chance for items. (0-1000, 1000 == 100%)" />
-                    <local:SliderWithTextUserControl Minimum="0" Maximum="1000" Value="{Binding GlobalDropChance, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
+                    <TextBlock Text="Global drop chance for items. (1-100%)" />
+                    <local:SliderWithTextUserControl Minimum="5" Maximum="100" Value="{Binding GlobalDropChance, Mode=TwoWay}" 
+                                                     TickFrequency="1" 
+                                                     IsSnapToTickEnabled="True" 
+                                                     IsEnabled="{Binding AllLootGauranteed, Converter={StaticResource InverseBooleanConverter}}" />
 
                     <StackPanel Margin="0,0,0,10">
                         <CheckBox Content="Chaos Loot Enabled" IsChecked="{Binding ChaosLootEnabled, Mode=TwoWay}" />
-                        <TextBlock Text="Enable or disable chaos loot. Anything of any rarity can drop anywhere." Margin="0,5,0,5"/>
+                        <TextBlock Text="Enable or disable chaos loot. Any rarity of any type can drop anywhere." Margin="0,5,0,5"/>
                         <CheckBox Content="All item lots Guaranteed" IsChecked="{Binding AllLootGauranteed, Mode=TwoWay}" />
                         <TextBlock Text="Guarantee all loot drops.  Something will always drop" Margin="0,5,0,5"/>
                     </StackPanel>
@@ -40,7 +43,7 @@
                     <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBaseEnemyLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
                     
                     <TextBlock Text="Number of loot options per drop lot for enemies" Margin="0,5,0,5"/>
-                    <local:SliderWithTextUserControl Minimum="0" Maximum="7" Value="{Binding LootPerItemLot_Enemy, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
+                    <local:SliderWithTextUserControl Minimum="1" Maximum="6" Value="{Binding LootPerItemLot_Enemy, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
 
                 </StackPanel>
             </GroupBox>

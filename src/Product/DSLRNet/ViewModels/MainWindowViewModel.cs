@@ -13,6 +13,8 @@ using System.Windows.Data;
 using System.Windows;
 using System.Windows.Media;
 using System.Diagnostics;
+using SixLabors.ImageSharp.PixelFormats;
+using ImageMagick;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {
@@ -34,11 +36,31 @@ public class MainWindowViewModel : INotifyPropertyChanged
         ChangeImageCommand = new RelayCommand<object?>(ChangeImage);
         OpenLogFolderCommand = new RelayCommand(OpenLogFolder);
         PickUniqueNameColorCommand = new RelayCommand(PickUniqueNameColor);
+        EditSettingsCommand = new RelayCommand(EditSettings);
         progressTracker = new OperationProgressTracker();
         IsRunning = false;
         logMessages = [];
 
         BindingOperations.EnableCollectionSynchronization(LogMessages, lockObject);
+    }
+
+    private void EditSettings()
+    {
+        LogMessages.Add($"Saving current config to Settings.User.ini");
+        settingsWrapper.OriginalObject.ValidatePaths();
+
+        if (settingsWrapper.RandomSeed == 0)
+        {
+            settingsWrapper.RandomSeed = new Random().Next();
+        }
+
+        settingsWrapper.OriginalObject.SaveSettings("Settings.User.ini");
+
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "notepad.exe",
+            Arguments = "Settings.User.ini"
+        });
     }
 
     private void PickUniqueNameColor()
@@ -130,6 +152,13 @@ public class MainWindowViewModel : INotifyPropertyChanged
             // Ensure the directory exists
             Directory.CreateDirectory(Path.Combine("Assets", "LootIcons"));
 
+            using var imageTest = new MagickImage(selectedFilePath);
+            if (imageTest.Width != imageTest.Height)
+            {
+                MessageBox.Show("Image must be 1024x1024", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             // Copy the file to the destination
             File.Copy(selectedFilePath, destinationPath, true);
 
@@ -158,6 +187,8 @@ public class MainWindowViewModel : INotifyPropertyChanged
 
 
     public IAsyncRelayCommand GenerateLootCommand { get; private set; }
+
+    public ICommand EditSettingsCommand { get; private set; }
 
     public ICommand ChangeImageCommand { get; private set; }
 

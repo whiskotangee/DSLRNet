@@ -117,11 +117,11 @@ ID,Value,SpEffectPower,Prefix,Interfix,Suffix,Description,ShortDescription,SpEff
 80000077,8,69,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300082,0,1,0
 80000078,9,79,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300081,0,1,0
 80000079,10,90,Arcanist,Arcane,of Arcane,ARC +{VALUE},,0,18000,300081,0,1,0
-80000080,1,30,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300099,0,1,0
-80000081,2,50,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300098,0,1,0
-80000082,3,60,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300097,0,1,0
-80000083,4,70,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300096,0,1,0
-80000084,5,80,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300095,0,1,0
+80000080,1,50,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300099,0,1,0
+80000081,2,60,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300098,0,1,0
+80000082,3,70,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300097,0,1,0
+80000083,4,80,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300096,0,1,0
+80000084,5,90,Talented,Gifted,of Talent,All Stats +{VALUE},,0,18000,300095,0,1,0
 80030000,0,90,Infighter's,Infighting,of Close Combat,"<font color=""#ada184"">Infighter</font>: Attacking with Claws or Fists bestows an infinitely stacking buff to Poise/Stamina Regen/Damage/Poise Damage for 7 seconds","<font color=""#ada184"">Infighter</font>",0,18800,999999,1,1,0
 80030200,0,90,Pyromaniac's,Firestarter,of the Pyromaniac,"<font color=""#f48c25"">Pyromaniac</font>: When wielding a Torch all Fire Attack Power +20% & attacking imparts -5% Fire Resist/+5% Fire Attack stacking infinitely","<font color=""#f48c25"">Pyromaniac</font>",0,18250,999999,1,1,0
 80030300,0,90,Fortress,Fortress,of the Iron Fortress,"<font color=""#8fbdbe"">Fortress</font>: When wielding any shield receive Max HP/Poise/Aggro. Effect increases at Heavy Equip Load.","<font color=""#8fbdbe"">Fortress</font>",0,18220,999999,1,1,0

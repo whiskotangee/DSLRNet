@@ -1,14 +1,14 @@
 ﻿namespace DSLRNet;
 
 using DSLRNet.ViewModels;
+using MahApps.Metro.Controls;
 using System.Collections.Specialized;
 using System.Windows;
-using System.Windows.Controls.Primitives;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow : MetroWindow
 {
     public MainWindow()
     {
@@ -27,8 +27,8 @@ public partial class MainWindow : Window
         }
     }
 
-    private void OutputBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+    private void Exit_MenuItem_Click(object sender, RoutedEventArgs e)
     {
-        ((TextBoxBase)sender).ScrollToEnd();
+        Application.Current.Shutdown();
     }
 }

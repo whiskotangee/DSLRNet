@@ -1,0 +1,10622 @@
+[
+  {
+    "NpcID": 21400114,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30003214,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30003014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30000114,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30001014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30000014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30002014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30003514,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30001214,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30001314,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30001114,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30000214,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30000814,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30000714,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30000614,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30102014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30100814,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30100014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30100114,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30200014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600114,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40900014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41600014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41610014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42101214,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42101014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42101114,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42100114,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42100014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46000014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46900014,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21000034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30800034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30801034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30806034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34000034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34001034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34500034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34501034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34510034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34600034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35000034,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36100034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36200034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36500034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36501034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600034,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36610034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36703034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37010034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37011034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37030034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37031034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41600034,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41610034,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42407034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42500034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43132034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43133034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130334,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130234,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43530034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43532034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43531034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43531534,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43730534,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43732534,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44701034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44810034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46600034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 47702034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 47701034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 48208034,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600070,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44800370,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44810370,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46600070,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 47700070,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33000062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33001062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33002062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33202262,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33200062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33200262,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33202062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33201062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33200162,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33300862,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33300662,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33300762,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33600062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36000062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37500060,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37502060,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37501060,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37501062,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37502062,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37500062,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38100062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41400062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41500060,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41500862,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41500062,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42800160,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42800060,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42800062,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42800462,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42801162,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42800862,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42810062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43800062,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44800162,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44810162,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46202060,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22700064,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22710064,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22710065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 31810065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33002065,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 33001065,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 33201065,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 33201165,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 33200265,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 33300665,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33605064,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33605564,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33607264,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33606064,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33607064,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33600065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33600265,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33602265,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33600565,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33601265,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33601365,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33601065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33602365,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33605264,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33605764,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33606264,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33700865,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33700065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33700265,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37500065,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37502065,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40700165,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800064,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40800065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40900064,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41800065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42200064,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42300064,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44800064,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44810064,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46000065,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 70001065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 70002065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 70003165,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 70000065,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41500066,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42800566,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42800066,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42800466,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42800166,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42810066,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43150066,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43150366,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43151366,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43151066,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43153066,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43152066,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43551166,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43550066,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43552066,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43650066,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46300766,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46300066,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 47702066,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34703068,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34700268,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34701468,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34704268,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34702468,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34715268,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35500068,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36615068,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41650068,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41710468,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45610068,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37500064,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37502064,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30102172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30100172,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30101172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30610072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30611072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35003172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35000172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35001172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35004172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35002172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39700072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39700172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39703172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39700272,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39702072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39702272,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39701272,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39700472,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39702172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39700372,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39701072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39702372,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39703072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39701172,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41620072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41630072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42102072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45100572,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45701072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45801072,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22740024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22750024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22751024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36000024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36614024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36624024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37020024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37021024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37022024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37023024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37024024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37031024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38501024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38502024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38500024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38601024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41610024,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43005024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43000024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43401024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44700024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44701024,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44908124,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910124,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 20410056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33501556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33500556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33502556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34500054,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34501354,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34501054,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34510354,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34510054,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34600054,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34600354,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36100054,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36200054,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36300054,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36613254,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36613154,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36613054,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37040054,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38000056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38001056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38100056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38103056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208156,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208256,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208356,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208456,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41402054,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42800054,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43160156,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43160256,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43161056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43160356,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43162056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43163056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43160056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43161156,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43162556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43160556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43161656,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43160656,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43163556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43161556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43160856,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43560556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43561556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43562556,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43562056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43561056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43761756,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43760056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43766056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43767056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44820054,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44820056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44830054,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44831054,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44831056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 48110056,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600838,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36601438,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36602338,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36702238,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36701138,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36701038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36702138,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36702038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36703038,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 39010038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39502038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39500038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39504038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39501138,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39503038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40401038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41400038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41500038,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41610038,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42000038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000138,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42900138,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006838,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006638,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44701038,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44700038,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44907038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910238,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 48208138,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 48208038,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30004007,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30005007,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30100507,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30102507,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30800007,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30806007,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46900007,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50400088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900288,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51900088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51903088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51920088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51920094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 51930088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51930094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 52402088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52405288,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52405388,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406488,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52410088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52500088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52501088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52501189,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52500988,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53110089,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000188,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59600088,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50400089,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50900389,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52402089,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52405289,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52500189,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52501289,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52501389,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52501489,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52510089,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53111089,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53207089,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000089,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 51600098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51602398,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51602198,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52401098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55110198,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55110098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55300198,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55300098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56400098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56400198,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56410098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56612098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56610098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300698,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300598,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400198,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400398,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59600098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59600198,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51601099,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51602099,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51600099,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 51602299,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51600199,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52404399,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52404099,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52404699,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55300099,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55300199,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 56610099,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 56611099,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56612099,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 51601198,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52700298,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52700098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52710098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508098,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57510498,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50804087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50803087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50800087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900487,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900587,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54300087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54900087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55900487,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55917587,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56003087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56001087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56000187,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56000087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56003287,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56002187,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59400087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59400487,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59401087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59500087,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52402086,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400386,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400586,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400886,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52501086,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 52500086,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 53110086,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53111086,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53207086,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57600886,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57610886,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35101012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35100012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35103012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35102012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35100112,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30800012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36610812,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30800010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30806020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30800020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30801120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30800110,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22720020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22730020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35100020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35100120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35102020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35101020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35103020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36603020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21401120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21400120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22700032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30801232,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30806032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36610032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41700032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43530032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30800030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30806030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34000030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36610030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40000030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40001030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208130,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208230,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35100032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35102032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35100132,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35101032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36640032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37030032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42900132,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43005032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21400633,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35100033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35101033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35102033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35100133,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41500033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35100010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35100110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35102010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21400130,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34500030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34510030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41610030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30800033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30801233,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30806033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30801133,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30802033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907133,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907233,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907333,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44910233,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44910333,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22710040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30800040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30806040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30801040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41700240,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35101040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35102040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44820040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44830040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44831040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30800042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30801042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30806042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38000142,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43740342,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30800050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30806050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39001050,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39000050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39100150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42604150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46000150,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30801150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42605150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42604650,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44400050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44410050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907350,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907450,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907250,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910350,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910250,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30800052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30806052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38000052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38001052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42605152,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42604652,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42200052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42300052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43210152,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43211152,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43212152,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43772012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43770012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43772512,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40900012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40900010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41700312,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43850012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43850112,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43850212,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44810012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40700010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40710010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43850020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43850120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43850220,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44800020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44810020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41000020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41001020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41002020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41010020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41100020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41200020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41404020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37020020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37023020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37040020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40800032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40900032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41700332,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130132,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43850132,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43850032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43850232,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44800032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41000032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41002032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41001032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41010032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41100032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41200032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40700042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40710042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46300342,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37021040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37022040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37023040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41404040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43831040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43830040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43840040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34501052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34510052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40800052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41800052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41800152,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41000010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41002010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41010010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42000110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000210,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42200010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42300010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37011030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37010030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44800430,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44810430,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46202030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30600030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35000030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35004030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35001030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40800040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43858140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43858040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43858240,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36612040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40900040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43210040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43211040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41402050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34500012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34501012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43821012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43820012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43827012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41610010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43820010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43821010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43822010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43823010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38501020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38500020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43830020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43831020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43840020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130130,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43530030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43823030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43820030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43821030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43829030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38600030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41404030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43831030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43830030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42200040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42300040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43140140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43140040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43142040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43140240,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43820140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43822140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43829140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38103040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38100040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36000052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36001052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43820052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43821052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43827052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42102010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46601010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46600010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800028,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42500028,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001528,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43123028,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43120028,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43210033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43212033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43826033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43828033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44301033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44701033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39011042,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43142242,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43143242,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130150,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43531150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43532050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43630050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43737050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43734050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21401435,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 21400335,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 21400435,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 21401235,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 21400235,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21400035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 21400135,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 21401035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30802035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30806035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30801035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30800035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36600035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36610035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36611035,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36612035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36621035,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40000035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40208035,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40400035,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40900035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41402035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41500035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42407035,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42500035,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44200035,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44800035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44810035,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44907035,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910035,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000126,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000226,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017426,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42018026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017526,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42200026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42300026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43210026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43211026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43212026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43825026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43820026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43821026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43822026,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55900081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300681,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300581,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300381,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700281,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700481,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700381,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58800281,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300595,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400195,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700195,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700295,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700395,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58710095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58800095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59900095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700391,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700291,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700491,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58700191,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58727091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58800191,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58800091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400180,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52700080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52700280,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52710280,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508280,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508480,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508580,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57510480,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400590,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52700090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55900190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508390,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57510490,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57600090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57610090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400584,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52700184,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52700084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52710084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508184,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57508284,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57510484,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57600084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57610084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52600081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55000281,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55000581,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55000381,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52602090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52600090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55000090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55000290,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55000190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52601090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55000590,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62900290,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52602095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52602295,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52601095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55000295,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50800490,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50801490,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50802190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55400090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55410090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53604181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53603181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53600181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53601181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59200181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59310081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59311081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41610220,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43002020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43120120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43727020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43722020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46001020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46000010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43133030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43132030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130330,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43400430,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43737030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43736030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46001030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46607012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40500010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40600010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43005010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43002010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43000110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43003010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43000210,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43110010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46001010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37030052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43003052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43005052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43000052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43005252,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006252,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40500052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41610252,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43005152,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46609050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46607033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46605140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40700052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 31810022,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 33500022,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 45020022,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33501022,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44300022,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36500020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38502020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41800020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42200020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42300020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017420,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44300020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41800120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44201020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44200020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46010120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40000020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41601020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43121020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43123020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43121120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43120020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43400020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43520020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43521120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43620020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40710022,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41404022,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22740020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22740120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22750120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22750020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36700120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36701120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36704020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37000020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002322,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34702120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34715120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44810220,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34700120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34701120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44800220,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40001020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43724020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43720020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40700020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002320,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42500020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33000820,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40900020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 48200820,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40000022,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40208122,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208022,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33501020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41610020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34703020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46900020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35500020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43120320,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43721820,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44607020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 32101720,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40710020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42900220,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44700020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46300020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44202020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34704120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34702320,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44400020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43000020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43003020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22740021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 31800021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35000020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35002020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36709020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36701121,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36701021,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37022021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37030021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42408821,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407821,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407421,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407121,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42408021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407721,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42408521,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407521,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42408121,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407621,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407221,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407321,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42408321,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42408421,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42408221,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42500021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43005020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43121321,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43120021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43122021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43121021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43120321,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43123021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43121820,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44701021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907221,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44907121,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910021,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46018021,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43131032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43810032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43810132,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44607032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44607132,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39000032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 39100032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41800032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42407132,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42500032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44608032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 31809020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39000020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43811020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34701020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34704020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34700020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43122020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30600020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35004020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43150020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43150320,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43151020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43550020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43723020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 32101820,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43821020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44410020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 31810020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37010830,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44800330,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44810330,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44810830,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44811830,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 48208030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36601030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46300032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38501032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38500032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38502032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38601532,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43730032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43210020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43211020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43212020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30601020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33600520,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33600020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800320,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40900320,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44800120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44810120,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44607220,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21401030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21400030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40700030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41800030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37021032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44701132,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44811330,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37020032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40700032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40710032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 32102132,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38600632,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41500032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43133032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43136032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43135032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43134232,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43530132,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43531232,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43738032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43737032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46900032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43720520,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 32101520,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40000120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002220,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43530020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40403020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43810020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600020,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44607120,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46606020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600620,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36601220,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46601030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46600030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41001030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41002030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41000030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41010030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41100030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41200030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006230,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43732530,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35000032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35001032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35003032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35002032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35004032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41600032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41610032,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43132032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43401032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43736032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43730532,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44700032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44701032,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46010220,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22760020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22770020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44908320,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44908420,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44910720,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46010020,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34501030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34502030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43211030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43210030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44300030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 21400930,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 21401930,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43000030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43005030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43131030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43131130,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43401130,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43531130,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43630030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43730530,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43731530,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43734030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22700030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22710030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35500030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41650030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43006130,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46001130,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006630,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43004130,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43130332,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43212030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43401030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43730030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45702030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36611031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36621031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37000031,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37001031,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37030031,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38000031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38001031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40000031,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40001031,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208031,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40208131,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40400031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41500031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41600031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41610031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43000131,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002031,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001031,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44820031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44830031,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35000010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35003010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41800010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43800130,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43130230,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43532030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43731730,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40710030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42300830,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40402030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41640830,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41650830,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41700130,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41710430,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 45700030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43004030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43003030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43400030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 37040830,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40900030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22710012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 32101612,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36610012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38502012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38500012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38501012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42000012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43150012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42200012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22710010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 32101310,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41001010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43006010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43005210,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46606010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35001010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35004010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41800110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43111210,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43112010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43111310,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43111110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43114010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43113010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43711510,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43710010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43710510,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43712010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44300010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30601030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46300030,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43531030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36500030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30701030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30700030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30703030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30704030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30702030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36612030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40702012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40710012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000112,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42300012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43111112,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43110012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43511112,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43610012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43710012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43714012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43711012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43710512,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43711712,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40500012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40700012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41001012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44300012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35000012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35004012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37030012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40800212,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41800012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22700010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41700110,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 32100010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43112110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43511010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44400010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44301010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40403010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41601010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41610210,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43510010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43712510,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36501833,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36500033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40700033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43730033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43737033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40403033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40710033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 47700033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42000033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42017433,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006133,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43000130,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43005230,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43731630,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43732030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43731030,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46000033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43131330,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22700013,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22710013,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41801013,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34500013,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34501013,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34510013,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40800013,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41610013,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41700013,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43110013,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43114013,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43401013,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43714013,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43710013,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800312,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42017412,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36500012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36601212,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36600612,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41200012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44800012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41000012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41002012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41010012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43000012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43005012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43002012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43003012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36000010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006210,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43005110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40700110,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43401110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43511110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43610010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43714010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44400033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40400033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42000133,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43005033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43006633,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43001033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43003033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43000033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43006233,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43004033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 32101933,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35002733,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35001733,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35003733,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35004733,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35000733,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41403033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43005133,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22720112,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36611012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41800112,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34510012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 32101412,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40900312,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41610012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46000012,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44811012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43002110,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002410,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43000010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43711010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44800010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44810010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35002010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43716010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46300010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22760033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22770033,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600733,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43800012,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 32101210,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 32103010,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46300310,
+    "GameStage": 0,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46300033,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46600133,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43400010,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43510110,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43711710,
+    "GameStage": 0,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43141140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43542040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43747040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41700140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43143040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36502040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36616040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36626040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41610040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41670040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46300152,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41660040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43000240,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43000140,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43000040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46003140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 20410040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36622040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38101040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43401040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43541040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43746040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43740540,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43741040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43743040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43850240,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43850040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43850140,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44608040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44607040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43140340,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43141040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43540040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43823040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44607840,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45500040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45501040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45600040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43740040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44608640,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45502040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43211150,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43210150,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43212150,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36600652,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 36602152,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36601252,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40800352,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40900352,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46004152,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34702552,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41650052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41700152,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43002052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43150052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43152052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43153052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43151052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43550052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43751052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41800852,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30100140,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44420040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 32102240,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38000040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38001040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44300040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44301040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44608840,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44700040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46300240,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44300340,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44608740,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45500042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 45502042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46605040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 32102542,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34001852,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33602352,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 33700052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 22750052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 31700052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 31800052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 21000052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 31701052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34000852,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40710052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42300852,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43541140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43640040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 45503040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 32102340,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38500040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38501140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38502040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38600040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38601040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42900040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35000040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38501240,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38501040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43002140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45050042,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43740542,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43747042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43742042,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42103050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 71000150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41404052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43006152,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43004052,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43004152,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 22740052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34703252,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34700352,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34704352,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34715352,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 34701552,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34700452,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36502052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46000040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41000040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41001040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41002040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000140,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017440,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017640,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017540,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017740,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017840,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45504040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30601040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30600040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33300040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35001040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35002040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35003040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35004040,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37040040,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36502042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 45040042,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42405050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42405150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42500150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46020050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39101150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43811150,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 31811052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 34701652,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40403052,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41002050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42001050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000141,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017441,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36600041,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 37030041,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 41610041,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41700141,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43140041,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43140341,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43143041,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43141141,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43401041,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43540041,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43541041,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43741541,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43741441,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43747041,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43742041,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43741841,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43740541,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43740041,
+    "GameStage": 1,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43746041,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44702041,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46003041,
+    "GameStage": 1,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40900042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42000042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42000142,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42017542,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017642,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42017442,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42018042,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43142042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43143042,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43140042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43140342,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43141342,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 43141042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 46604142,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 33300042,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43210142,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43211142,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43212142,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42000242,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40403050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42405250,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42405350,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42405450,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42405550,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42405650,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42410150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45601850,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 45601050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42405750,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42405850,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42406150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42406250,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 45506050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 32102650,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41000050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41010050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41100050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42001150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42000150,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 46602050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30005051,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30004051,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30004151,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30004351,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30006051,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30100451,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30101651,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30101451,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30102651,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 30200151,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36702051,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36702251,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 36703051,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40400051,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40700051,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40710051,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 40800051,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41403050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 42104551,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 49500050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42406350,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 42406450,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 39100250,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 40800050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41602050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41610350,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43810250,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 43810350,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41200050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 45506650,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 35001050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35000050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35003050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35004050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 35002050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 38501050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38502050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38600050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38600150,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38601050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41001050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 30601050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41610050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 45506450,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 38500050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 41800050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 44203050,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 44300050,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 51701084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51700080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51702094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57900095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51700083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51700090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51700091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51701090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55500093,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55600093,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52404180,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 52407580,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54900080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55220081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54011080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50400494,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400994,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52402094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52408194,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406794,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52500194,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53110094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54011094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54102094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54900094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54901094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55230094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50801094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406894,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52501094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 52500094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54011095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54700094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55260094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55270094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56610095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56611095,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 56612095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57407094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57404094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51903094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 51901094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51901095,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 51900095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54302095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54300095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54400194,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54400094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54400095,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54401195,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54900095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57800095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50807080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50802080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50801080,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50800080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50801180,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54506080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800080,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55270080,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55300180,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55300080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403480,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 52403280,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 52400780,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 52400280,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100880,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54901080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55230080,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54500080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100080,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55220080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403295,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403495,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400795,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52404195,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403595,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406394,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52410095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100095,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55220095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50810194,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900295,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54302094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54300094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 57406095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57405095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57404095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57407095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57901094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52405294,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52500095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53800094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53810094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54506095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58000094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 63000094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54401095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100683,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100283,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400783,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52404183,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100083,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54506083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54600183,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55130083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55230083,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 56300083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56400083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56410083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100084,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54800083,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54800183,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54900083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57001083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57010083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50400080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100184,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54102084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54211080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54401080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54504080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54503080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800084,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 57002083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57000083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57100083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57200083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57600080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57610080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58500180,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500880,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56511581,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56510081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300281,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52407080,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54010081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100081,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54102081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54900081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56400081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56410081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100781,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400295,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406295,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52407495,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52501095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54700095,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54710095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800095,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54800181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54901095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55230095,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50110094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50400094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50800094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 51900094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 51902094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406494,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52405194,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406495,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406594,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406694,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800194,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000194,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54211094,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55900483,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54011083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54600083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100183,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403583,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53900083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50110084,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50900284,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53600084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53602084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53604084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53601084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53800084,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 53810084,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54506084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54900084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58108083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59301084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59300084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54011084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54300080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54302084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54400080,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 58300680,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52407480,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54011081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900281,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53110080,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 53111080,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 56307081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50801081,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50800081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52404181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55210081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55230081,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55300181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56512081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57600081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59600081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53910082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800082,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54900082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55240082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55250082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55300081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56512082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56510082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300382,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300282,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300582,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300490,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300390,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300690,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62310081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62311081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62322082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62330082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 63202382,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 63202082,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53910190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100090,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54506090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54900090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54901090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55210090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56511890,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56510590,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56610081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56611081,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 58300290,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300590,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58900090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55300190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56612081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57901095,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50800095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50801095,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50802095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50800194,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50802094,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50810195,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55200095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55250095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56510095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56512095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56514095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300395,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403483,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55500083,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 52400883,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54211083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54401084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56200084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54503083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54302086,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55210080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58500183,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58500083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54301086,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 58300280,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300380,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300180,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400080,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53810081,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54507186,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54507086,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57600386,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50400081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100081,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53800081,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54100881,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54401181,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62902090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100082,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54506190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500890,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56300090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58300482,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400290,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62900090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62901090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62910090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54210090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56510090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56512090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58400390,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62310090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62311090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54400090,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54400190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56512595,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62900095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62901095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62910095,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010092,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54100092,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010085,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54503084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800184,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55600083,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50600083,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53603184,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53601184,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53600184,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59310084,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53110486,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53111286,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53110586,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53602184,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 58500184,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52800086,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 57610386,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100690,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100790,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54401090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56512590,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56516090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59700190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59701290,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59809090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59809290,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59809190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50400090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403490,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400790,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400290,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52403590,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52407590,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52406290,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53111090,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 53110090,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 53110190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55230090,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55300090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53800390,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53810390,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54011090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56510890,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500092,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54501092,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62100092,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 62200092,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50600883,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50600683,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50610883,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50400091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51900090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51920090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52407091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54401190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54400890,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 59000191,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52400890,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54700091,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54710091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54720091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800091,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54800191,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55220090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55900091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50900091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53800091,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 53810091,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54700090,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54900091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55700090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55701090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55702090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 52404191,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54901091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55701190,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53602790,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53603790,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53601790,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53600790,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 53604790,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010093,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54300090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54400093,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54500093,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54901093,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54900093,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54210093,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54211093,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54501093,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54010091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56610091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 56611091,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 56612091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50110091,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54100091,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54401091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54400091,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54400191,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54401191,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54102091,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54800090,
+    "GameStage": 2,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55701290,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50600093,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54700093,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54710093,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54720093,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54800193,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54010885,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54011085,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54100885,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54102090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54600090,
+    "GameStage": 2,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 55900585,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50600793,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50600593,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 50610893,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 50600193,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 54100093,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  },
+  {
+    "NpcID": 51100693,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 54401193,
+    "GameStage": 3,
+    "RequiresNewItemLot": true
+  },
+  {
+    "NpcID": 55510093,
+    "GameStage": 3,
+    "RequiresNewItemLot": false
+  }
+]

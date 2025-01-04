@@ -85,6 +85,19 @@ public class ParamEditsRepository(
             errorMessages.AppendLine($"Map lots without acquisition flag Ids: {string.Join(",", mapLotsWithoutFlagIds)}");
         }
 
+        HashSet<int> itemLotsWithIncorrectChanceSums = 
+            enemyLots
+                .Where(d => d.ParamObject.GetFieldNamesByFilter("lotItemBasePoint0").Select(s => d.ParamObject.GetValue<int>(s)).Sum() > 1000)
+                .Select(d => d.ParamObject.ID)
+            .Union(mapLots
+                .Where(d => d.ParamObject.GetFieldNamesByFilter("lotItemBasePoint0").Select(s => d.ParamObject.GetValue<int>(s)).Sum() > 1000)
+                .Select(d => d.ParamObject.ID))
+            .ToHashSet();
+        if (itemLotsWithIncorrectChanceSums.Count > 0)
+        {
+            logger.LogWarning($"Item lots with chance sums over max count {itemLotsWithIncorrectChanceSums.Count()}");
+        }
+
         if (errorMessages.Length > 0)
         {
             logger.LogError(errorMessages.ToString());

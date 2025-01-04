@@ -14,10 +14,10 @@ public partial class RaritySetup : ParamBase<RaritySetup>
     public float ShieldGuardRateMultMax { get; set; }
     public int SpEffectPowerMin { get; set; }
     public int SpEffectPowerMax { get; set; }
-    public float SpEffect0Chance { get; set; }
-    public float SpEffect1Chance { get; set; }
-    public float SpEffect2Chance { get; set; }
-    public float SpEffect3Chance { get; set; }
+    public float SpEffectChance0 { get; set; }
+    public float SpEffectChance1 { get; set; }
+    public float SpEffectChance2 { get; set; }
+    public float SpEffectChance3 { get; set; }
     public int SelectionWeight { get; set; }
     public int LootDropChance { get; set; }
     public float WeightMultMin { get; set; }

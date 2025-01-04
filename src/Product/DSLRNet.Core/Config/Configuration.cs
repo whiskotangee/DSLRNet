@@ -26,6 +26,7 @@ public enum DataSourceNames
     EquipParamCustomWeapon,
     EquipParamAccessory,
     EquipParamProtector,
+    EquipMtrlSetParam,
     EquipParamGem,
     NpcParam,
     SpEffectParamNew,

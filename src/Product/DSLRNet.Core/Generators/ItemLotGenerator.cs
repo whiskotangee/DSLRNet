@@ -17,9 +17,8 @@ public class ItemLotGenerator : BaseHandler
     private readonly RandomProvider random;
     private readonly ILogger<ItemLotGenerator> logger;
     private readonly IOperationProgressTracker progressTracker;
-    private readonly Configuration configuration;
     private readonly Settings settings;
-    private readonly CumulativeID itemAcquisitionCumulativeId;
+    private readonly IDGenerator acquisitionFlagIDGenerator;
     private readonly Dictionary<int, ItemLotParam_map> itemLotParam_Map = [];
     private readonly Dictionary<int, ItemLotParam_enemy> itemLotParam_Enemy = [];
 
@@ -43,12 +42,14 @@ public class ItemLotGenerator : BaseHandler
         this.random = random;
         this.logger = logger;
         this.progressTracker = progressTracker;
-        this.configuration = configuration.Value;
         this.settings = settingsOptions.Value;
-        this.itemAcquisitionCumulativeId = new CumulativeID(logger)
+        this.acquisitionFlagIDGenerator = new IDGenerator()
         {
-            IsItemFlagAcquisitionCumulativeID = true,
-            UseWrapAround = true
+            StartingID = 1024260000,
+            Multiplier = 1,
+            AllowedOffsets = [0, 4, 7, 8, 9],
+            WrapAroundLimit = 998,
+            IsWrapAround = true
         };
 
         this.ItemLotTemplate = dataAccess.ItemLotBase.GetAll().First();
@@ -91,18 +92,19 @@ public class ItemLotGenerator : BaseHandler
         {
             List<int> itemLotIds = [.. gameStageConfig.ItemLotIds];
 
-            itemLotIds.AddRange(itemLotIds
+            itemLotIds = [.. itemLotIds
                 .SelectMany(id => this.FindSequentialItemLotIds(
                     itemLotSettings,
                     id,
                     this.settings.ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot,
-                    (i) => this.itemLotParam_Enemy.ContainsKey(i))).ToList());
+                    (i) => this.itemLotParam_Enemy.ContainsKey(i),
+                    allowUseSame: true))
+                .Distinct()
+                .OrderBy(d => d)];
 
-            itemLotIds = [.. itemLotIds.Distinct().OrderBy(d => d)];
+            bool dropGauranteed = this.settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
 
-            bool dropGuaranteed = this.settings.ItemLotGeneratorSettings.AllLootGauranteed || itemLotSettings.GuaranteedDrop;
-
-            this.logger.LogDebug($"Generating {itemLotIds.Count} item lots for enemy with drop guaranteed: {dropGuaranteed}");
+            this.logger.LogDebug($"Generating {itemLotIds.Count} item lots for enemy with drop guaranteed: {dropGauranteed}");
 
             for (int x = 0; x < itemLotIds.Count; x++)
             {
@@ -118,6 +120,7 @@ public class ItemLotGenerator : BaseHandler
                 {
                     this.logger.LogDebug($"ItemLot {itemLotIds[x]} already exists in data for type {itemLotSettings.Category}, basing template on existing");
                     newItemLot = existingItemLot.CloneToBase();
+                    
                 }
                 else if (this.GeneratedDataRepository.TryGetParamEdit(itemLotSettings.ParamName, itemLotIds[x], out ParamEdit? paramEdit))
                 {
@@ -128,23 +131,21 @@ public class ItemLotGenerator : BaseHandler
                 {
                     newItemLot = this.ItemLotTemplate.Clone();
                     newItemLot.ID = itemLotIds[x];
+                    this.logger.LogDebug($"Enemy itemlot {newItemLot.ID} does not exist in either source, creating new");
 
-                    if (!dropGuaranteed)
-                    {
-                        newItemLot.lotItemBasePoint01 = 1000;
-                        newItemLot.lotItemId01 = 0;
-                        newItemLot.lotItemNum01 = 0;
-                        newItemLot.lotItemCategory01 = 0;
-                    }
+                    newItemLot.lotItemBasePoint01 = (ushort)(dropGauranteed ? 0 : 1000);
+                    newItemLot.lotItemId01 = 0;
+                    newItemLot.lotItemNum01 = 0;
+                    newItemLot.lotItemCategory01 = 0;
                 }
 
                 newItemLot.Name = string.Empty;
 
-                int offset = Math.Max(newItemLot.GetIndexOfFirstOpenLotItemId(), dropGuaranteed ? 1 : 2);
+                int offset = Math.Max(newItemLot.GetIndexOfFirstOpenLotItemId(), dropGauranteed ? 1 : 2);
 
                 if (offset < 0)
                 {
-                    throw new Exception("No open item spots in item lot");
+                    throw new Exception($"No open item spots in item lot {newItemLot.ID}");
                 }
 
                 int startingIndex = offset;
@@ -159,38 +160,22 @@ public class ItemLotGenerator : BaseHandler
                         this.settings.ItemLotGeneratorSettings.LootPerItemLot_Enemy,
                         y,
                         (float)itemLotSettings.DropChanceMultiplier,
-                        dropGuaranteed);
+                        dropGauranteed);
                 }
 
-                this.CalculateNoItemChance(newItemLot);
-
-                GenericParam genericDict = GenericParam.FromObject(newItemLot);
+                this.RestrictItemChances(newItemLot, Enumerable.Range(startingIndex, endingIndex - startingIndex).ToArray(), 1000);
 
                 this.GeneratedDataRepository.AddParamEdit(
                     new ParamEdit()
                     {
                         ParamName = itemLotSettings.ParamName,
                         Operation = ParamOperation.Create,
-                        MassEditString = this.CreateMassEdit(genericDict, itemLotSettings.ParamName, newItemLot.ID),
-                        MessageText = null,
-                        ParamObject = genericDict
+                        ItemText = null,
+                        ParamObject = newItemLot.GenericParam
                     });
 
                 this.progressTracker.CurrentStageProgress += 1;
             }
-        }
-
-        if (itemLotSettings.NpcIds.Count > 0 && itemLotSettings.NpcItemlotids.Count > 0)
-        {
-            this.GeneratedDataRepository.AddParamEdit(
-                new ParamEdit()
-                {
-                    ParamName = ParamNames.NpcParam,
-                    Operation = ParamOperation.MassEdit,
-                    MassEditString = this.CreateNpcMassEdit(itemLotSettings, itemLotSettings.NpcIds, itemLotSettings.NpcItemlotids),
-                    MessageText = null,
-                    ParamObject = new GenericParam()
-                });
         }
     }
 
@@ -224,7 +209,7 @@ public class ItemLotGenerator : BaseHandler
 
                     if (newItemLot.getItemFlagId <= 0)
                     {
-                        newItemLot.getItemFlagId = this.itemAcquisitionCumulativeId.GetNext();
+                        newItemLot.getItemFlagId = Convert.ToUInt32(this.acquisitionFlagIDGenerator.GetNext());
                     }
 
                     newItemLot.Name = string.Empty;
@@ -245,14 +230,12 @@ public class ItemLotGenerator : BaseHandler
                     }
 
                     GenericParam genericParam = GenericParam.FromObject(newItemLot);
-                    string itemLotMassEdit = this.CreateMassEdit(genericParam, itemLotSettings.ParamName, newItemLot.ID, defaultValue: defaultValue);
                     this.GeneratedDataRepository.AddParamEdit(
                         new ParamEdit()
                         {
                             ParamName = itemLotSettings.ParamName,
                             Operation = ParamOperation.Create,
-                            MassEditString = itemLotMassEdit,
-                            MessageText = null,
+                            ItemText = null,
                             ParamObject = genericParam
                         });
                 }
@@ -260,22 +243,9 @@ public class ItemLotGenerator : BaseHandler
                 this.progressTracker.CurrentStageProgress += 1;
             }
         }
-
-        if (itemLotSettings.NpcIds.Count != 0 && itemLotSettings.NpcItemlotids.Count != 0)
-        {
-            this.GeneratedDataRepository.AddParamEdit(
-                new ParamEdit()
-                {
-                    ParamName = ParamNames.NpcParam,
-                    Operation = ParamOperation.MassEdit,
-                    MassEditString = this.CreateNpcMassEdit(itemLotSettings, itemLotSettings.NpcIds, itemLotSettings.NpcItemlotids),
-                    MessageText = null,
-                    ParamObject = new GenericParam()
-                });
-        }
     }
 
-    private List<int> FindSequentialItemLotIds(ItemLotSettings itemLotSettings, int startingId, int goalItemLots, Func<int, bool> existsInDataCheck)
+    private List<int> FindSequentialItemLotIds(ItemLotSettings itemLotSettings, int startingId, int goalItemLots, Func<int, bool> existsInDataCheck, bool allowUseSame = false)
     {
         List<int> returnIds = [];
 
@@ -292,6 +262,10 @@ public class ItemLotGenerator : BaseHandler
                 || returnIds.Contains(currentId + 1))
             {
                 this.logger.LogWarning($"Base item lot {startingId} could not find a sequential item lot, tried {currentId} but itemLot {currentId + 1} exists.");
+                if (allowUseSame)
+                {
+                    returnIds.Add(startingId);
+                }
                 break;
             }
 
@@ -359,12 +333,12 @@ public class ItemLotGenerator : BaseHandler
         int itemCategory;
         int itemId;
 
-        if (LootType.Armor == itemType && this.armorLootGenerator.HasLootTemplates())
+        if (LootType.Armor == itemType && this.armorLootGenerator.IsLoaded())
         {
             itemId = this.armorLootGenerator.CreateArmor(rarityId);
             itemCategory = 3;
         }
-        else if (LootType.Talisman == itemType && this.talismanLootGenerator.HasLootTemplates())
+        else if (LootType.Talisman == itemType && this.talismanLootGenerator.IsLoaded())
         {
             itemId = this.talismanLootGenerator.CreateTalisman(rarityId);
             itemCategory = 4;
@@ -414,55 +388,68 @@ public class ItemLotGenerator : BaseHandler
         return Math.Clamp(dropGauranteed ? 1000 / lootPerItemLot : (int)(itemDropChance * dropMutliplier), 0, 1000);
     }
 
-    private ushort GetItemLotChanceSum(ItemLotBase itemLotDict, bool includeFirst = false)
+    private void RestrictItemChances(ItemLotBase itemLot, int[] addedItemIndexes, ushort max = 1000)
     {
-        ushort itemLotChanceSum = 0;
-
-        int offset = includeFirst ? 1 : 2;
-
-        for (int x = 0; x < ItemLotParamMax - (offset - 1); x++)
+        if (addedItemIndexes.Length == 0)
         {
-            itemLotChanceSum += itemLotDict.GetValue<ushort>($"lotItemBasePoint0{x + offset}");
+            logger.LogError($"Tried to restrict item chances for item lot {itemLot.ID} but no items were added");
+            return;
         }
 
-        return itemLotChanceSum;
-    }
+        List<(string name, ushort basePointValue, ushort quantity, bool isNew)> items = [];
 
-    private void CalculateNoItemChance(ItemLotBase itemLot, ushort baseChance = 1000, ushort fallback = 25)
-    {
-        ushort finalBaseChance = baseChance;
+        (string name, ushort basePointValue, ushort quantity, bool isNew) noDropItem = (string.Empty, 0, 0, false);
 
-        ushort otherBasePointTotal = this.GetItemLotChanceSum(itemLot, false);
-
-        finalBaseChance -= otherBasePointTotal;
-        finalBaseChance = Math.Clamp(finalBaseChance, fallback, baseChance);
-
-        itemLot.lotItemBasePoint01 = finalBaseChance;
-    }
-
-    private string CreateNpcMassEdit(ItemLotSettings itemLotSettings, List<List<int>> npcIds, List<List<int>> npcItemLots)
-    {
-        if (npcIds.Count == 0 || npcIds.Any(d => d.Count == 0) || npcItemLots.Count == 0 || npcItemLots.Any(d => d.Count == 0))
+        // do a pass and figure out what items slots are for what
+        var itemChanceFields = itemLot.GetFieldNamesByFilter("lotItemBasePoint0");
+        for(int i = 1; i < itemChanceFields.Count; i++)
         {
-            return string.Empty;
-        }
+            (string name, ushort basePointValue, ushort quantity, bool isNew) = 
+                ($"lotItemBasePoint0{i}", itemLot.GetValue<ushort>($"lotItemBasePoint0{i}"), itemLot.GetValue<ushort>($"lotItemNum0{i}"), addedItemIndexes.Contains(i));
 
-        string finalString = string.Empty;
-
-        for (int x = 0; x < npcIds.Count - 1; x++)
-        {
-            List<int> currentIds = npcIds[x];
-            List<int> currentItemLots = npcItemLots[x];
-            int maxItemLots = currentItemLots.Count - 1;
-
-            for (int y = 0; y < currentIds.Count; y++)
+            if (basePointValue > 0 && itemLot.GetValue<int>($"lotItemId0{i}") == 0 && noDropItem.basePointValue == 0)
             {
-                int assignedLot = currentItemLots[this.random.NextInt(0, maxItemLots)];
-                finalString += CreateMassEditLine(ParamNames.NpcParam, currentIds[y], itemLotSettings.NpcParamCategory, assignedLot.ToString());
+                noDropItem = (name, basePointValue, quantity, isNew);
+            }
+            else
+            {
+                items.Add((name, basePointValue, quantity, isNew));
             }
         }
 
-        return finalString;
+        var totalSum = items.Sum(d => d.basePointValue) + noDropItem.basePointValue;
+        var excessPoints = totalSum - max;
+        if (excessPoints > 0)
+        {
+            // first, remove from the no drop entry down to zero
+            if (noDropItem.basePointValue > 0)
+            {
+                var coveredAmount = Math.Min(excessPoints, noDropItem.basePointValue);
+                if (coveredAmount > 0)
+                {
+                    itemLot.SetValue(noDropItem.name, Math.Max(noDropItem.basePointValue - coveredAmount, 1));
+                    excessPoints -= coveredAmount;
+                }
+            }
+
+            // if remaining then take it from the new items
+            if (excessPoints > 0)
+            {
+                var itemsToSplitCost = items.Where(d => d.isNew).ToList();
+                var splitAmount = (int)Math.Floor((double)excessPoints / itemsToSplitCost.Count);
+
+                if (splitAmount > itemsToSplitCost.Min(d => d.basePointValue))
+                {
+                    itemsToSplitCost = items.Where(d => d.basePointValue > 0).ToList();
+                }
+
+                foreach (var (name, basePointValue, quantity, isNew) in itemsToSplitCost)
+                {
+                    itemLot.SetValue(name, basePointValue - splitAmount);
+                    excessPoints -= splitAmount;
+                }
+            }
+        }
     }
 }
 

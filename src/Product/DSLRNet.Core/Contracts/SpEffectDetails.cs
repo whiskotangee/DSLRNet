@@ -1,6 +1,6 @@
 ﻿namespace DSLRNet.Core.Contracts;
 
-public class SpEffectText
+public class SpEffectDetails
 {
     public long ID { get; set; }
 

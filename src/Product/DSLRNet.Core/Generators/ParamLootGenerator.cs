@@ -12,6 +12,7 @@ public class ParamLootGenerator<TParamType>(
     ParamEditsRepository dataRepository,
     ParamNames outputParamName,
     ILogger<ParamLootGenerator<TParamType>> logger) : BaseHandler(dataRepository)
+    where TParamType : class, ICloneable<TParamType>
 {
     public RarityHandler RarityHandler { get; set; } = rarityHandler;
 
@@ -25,7 +26,7 @@ public class ParamLootGenerator<TParamType>(
 
     public Settings Settings { get; set; } = settings.Value;
 
-    public required CumulativeID CumulativeID { get; set; }
+    public required IDGenerator IDGenerator { get; set; }
 
     public required IDataSource<TParamType> DataSource { get; set; }
 
@@ -38,36 +39,7 @@ public class ParamLootGenerator<TParamType>(
         { LootType.Talisman, "Accessory" }
     };
 
-    public void AddLootDetails(
-        GenericParam lootItem, 
-        LootType lootType, 
-        string title = "", 
-        string description = "", 
-        string summary = "")
-    {
-        string finalMassEditOutput = this.CreateMassEdit(
-            lootItem, 
-            this.OutputParamName, 
-            lootItem.ID);
-
-        this.GeneratedDataRepository.AddParamEdit(
-            new ParamEdit
-            {
-                ParamName = this.OutputParamName,
-                Operation = ParamOperation.Create,
-                MassEditString = finalMassEditOutput,
-                MessageText = new LootFMG()
-                    {
-                        Category = this.OutputLootRealNames[lootType],
-                        Name = title,
-                        Caption = description,
-                        Info = summary
-                    },
-                ParamObject = lootItem
-            });
-    }
-
-    public IEnumerable<SpEffectText> ApplySpEffects(
+    public IEnumerable<SpEffectDetails> ApplySpEffects(
         int rarityId,
         List<int> allowedSpefTypes,
         GenericParam lootItem,
@@ -76,17 +48,17 @@ public class ParamLootGenerator<TParamType>(
         int spefNumOverride = -1,
         bool overwriteExistingSpEffects = false)
     {
-        List<SpEffectText> spEffectTexts = [];
+        List<SpEffectDetails> spEffectTexts = [];
 
-        List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailableSpEffectSlots(lootItem) : this.GetPassiveSpEffectFieldNames();
+        List<string> speffectParam = !overwriteExistingSpEffects ? this.GetAvailablePassiveSpEffectSlots(lootItem) : this.GetPassiveSpEffectFieldNames();
         if (speffectParam.Count == 0)
         {
-            logger.LogWarning($"New item {lootItem.ID} of type {lootType} has no available spEffect slots, not applying any");
+            logger.LogInformation($"New item {lootItem.ID} of type {lootType} has no available spEffect slots, not applying any");
             return [];
         }
 
         int finalNumber = spefNumOverride < 0 && spefNumOverride <= speffectParam.Count ? speffectParam.Count : spefNumOverride;
-        List<SpEffectText> speffectsToApply = this.SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, lootType, spefChanceMult);
+        List<SpEffectDetails> speffectsToApply = this.SpEffectHandler.GetSpEffects(finalNumber, allowedSpefTypes, rarityId, spefChanceMult);
 
         if (speffectsToApply.Count != 0)
         {
@@ -105,7 +77,7 @@ public class ParamLootGenerator<TParamType>(
         return spEffectTexts;
     }
 
-    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, IEnumerable<SpEffectText>? namePartsCollection, bool colorCoded = true, bool includeSuffix = false)
+    public string CreateLootTitle(string originalTitle, int rarityId, string damageType, IEnumerable<SpEffectDetails>? namePartsCollection, bool colorCoded = true, bool includeSuffix = false)
     {
         List<string> additions =
         [
@@ -120,24 +92,19 @@ public class ParamLootGenerator<TParamType>(
         return string.Join(" ", additions.Where(d => !string.IsNullOrWhiteSpace(d)).Distinct());
     }
 
-    public TParamType GetNewLootItem()
-    {
-        return this.DataSource.GetRandomItem();
-    }
-
     public List<string> GetPassiveSpEffectFieldNames()
     {
         return this.Configuration.LootParam.Speffects.GetType().GetProperty(this.OutputParamName.ToString())?.GetValue(this.Configuration.LootParam.Speffects) as List<string>
             ?? throw new Exception($"Could not get spEffect property names for {this.OutputParamName} param");
     }
 
-    public List<string> GetAvailableSpEffectSlots(GenericParam itemParam)
+    public List<string> GetAvailablePassiveSpEffectSlots(GenericParam itemParam)
     {
         List<string> baseParams = this.GetPassiveSpEffectFieldNames();
         List<string> finalArray = [];
         foreach (string param in baseParams)
         {
-            if (itemParam.ContainsKey(param) && itemParam.GetValue<int>(param) <= 0)
+            if (itemParam.GetValue<int>(param) <= 0)
             {
                 finalArray.Add(param);
             }
@@ -145,7 +112,7 @@ public class ParamLootGenerator<TParamType>(
         return finalArray;
     }
 
-    public bool HasLootTemplates()
+    public bool IsLoaded()
     {
         return this.DataSource.Count() > 0;
     }

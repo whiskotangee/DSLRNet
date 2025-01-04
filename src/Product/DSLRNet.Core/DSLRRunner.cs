@@ -21,7 +21,7 @@ public class DSLRRunner
     public static async Task Run(Settings settings, ICollection<string>? logWatcher = null, IOperationProgressTracker? progressTracker = null)
     {
         progressTracker ??= new DefaultProgressTracker();
-        progressTracker.OverallStepCount = 14;
+        progressTracker.OverallStepCount = 12;
 
         var sp = await DSLRCommonSetupAsync(settings, false, logWatcher, progressTracker);
 
@@ -51,6 +51,7 @@ public class DSLRRunner
         catch (Exception ex)
         {
             logger.LogError($"An error occurred during execution {ex}");
+            throw;
         }
     }
 

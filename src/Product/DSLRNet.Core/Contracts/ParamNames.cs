@@ -5,6 +5,7 @@ public enum ParamNames
     EquipParamWeapon,
     EquipParamProtector,
     EquipParamAccessory,
+    EquipMtrlSetParam,
     EquipParamGem,
     SpEffectParam,
     NpcParam,

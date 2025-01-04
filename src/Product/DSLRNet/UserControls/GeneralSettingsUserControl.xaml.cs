@@ -46,10 +46,10 @@ namespace DSLRNet.UserControls
                     CheckFileExists = true,
                     CheckPathExists = true,
                     Title = "Select Elden Ring Game Exe",
-                    FileName = settingsWrapper.GamePath,
+                    FileName = "eldenring.exe",
                     InitialDirectory = settingsWrapper.GamePath,
-                    Filter = "Elden Ring Exe (*.exe)|*.exe",
-                    ValidateNames = false
+                    Filter = "Elden Ring Executable (eldenring.exe)|eldenring.exe",
+                    ValidateNames = true
                 };
 
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -67,7 +67,7 @@ namespace DSLRNet.UserControls
                 {
                     CheckFileExists = true,
                     CheckPathExists = true,
-                    Title = "Select mod engine toml file",
+                    Title = "Select mod engine 2 toml file",
                     FileName = "Choose toml file",
                     InitialDirectory = settingsWrapper.DeployPath,
                     Filter = "TOML files (*.toml)|*.toml",
@@ -78,6 +78,14 @@ namespace DSLRNet.UserControls
                 {
                     ParseModDirectoriesFromToml(settingsWrapper, dialog.FileName);
                 }
+            }
+        }
+
+        private void ClearModDirectories_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext is SettingsWrapper settingsWrapper)
+            {
+                settingsWrapper.ModPaths.Clear();
             }
         }
 
@@ -135,5 +143,9 @@ namespace DSLRNet.UserControls
             
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

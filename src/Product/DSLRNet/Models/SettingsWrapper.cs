@@ -69,6 +69,19 @@ public class SettingsWrapper : BaseModel<Settings>
         }
     }
 
+    public bool RestrictSmithingStoneCost
+    {
+        get => _settings.RestrictSmithingStoneCost;
+        set
+        {
+            if (_settings.RestrictSmithingStoneCost != value)
+            {
+                _settings.RestrictSmithingStoneCost = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public ObservableCollection<string> ModPaths { get; set; }
 
     public List<string> MessageFileNames

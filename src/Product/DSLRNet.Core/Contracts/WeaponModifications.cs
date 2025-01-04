@@ -12,7 +12,7 @@ public class WeaponModifications(DamageTypeSetup primaryDamage, DamageTypeSetup?
 
     public List<string> SpEffectDescriptions { get; set; } = [];
 
-    public List<SpEffectText> SpEffectTexts { get; set; } = [];
+    public List<SpEffectDetails> SpEffectTexts { get; set; } = [];
 }
 
 public class NameParts

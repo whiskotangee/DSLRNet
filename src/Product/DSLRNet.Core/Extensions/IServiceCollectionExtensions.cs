@@ -23,6 +23,7 @@ public static class IServiceCollectionExtensions
                     c.WeaponGeneratorSettings = settings.WeaponGeneratorSettings;
                     c.IconBuilderSettings = settings.IconBuilderSettings;
                     c.OrderedModPaths = settings.OrderedModPaths;
+                    c.RestrictSmithingStoneCost = settings.RestrictSmithingStoneCost;
                 });
 
         // Services
@@ -38,15 +39,17 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<ParamEditsRepository>()
                 .AddSingleton<DSLRNetBuilder>()
                 .AddSingleton<ItemLotScanner>()
+                .AddSingleton<ScannedItemLotLoader>()
                 .AddSingleton<IconBuilder>()
                 .AddSingleton<BossDropScannerV2>()
-                .AddSingleton<GameStageEvaluator>()
+                .AddSingleton<DifficultyEvaluator>()
                 .AddSingleton<MSBProvider>()
                 .AddSingleton<DataAccess>()
                 .AddSingleton<Csv>()
                 .AddSingleton<RegulationBinBank>()
                 .AddSingleton<DataSourceFactory>()
                 .AddSingleton<FileSourceHandler>()
+                .AddSingleton<SmithingStoneCostHandler>()
                 .AddSingleton(sp => LoreConfig.LoadConfig())
                 .AddSingleton((sp) => progressTracker ?? new DefaultProgressTracker())
                 .AddSingleton((sp) =>
@@ -55,14 +58,5 @@ public static class IServiceCollectionExtensions
                 });
 
         return services;
-    }
-
-    public static IDataSource<T> CreateDataSource<T>(DataSourceFactory factory, DataSourceNames configName, Configuration configSettings)
-        where T : ParamBase<T>, ICloneable<T>, new()
-    {
-        DataSourceConfig config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
-        IDataSource<T> dataSource = factory.CreateDataSource<T>(config);
-
-        return dataSource;
     }
 }

@@ -12,7 +12,7 @@ if (args.Contains("--rescan"))
     await DSLRRunner.ScanAsync(loadedSettings);
 
     // Open the "ScannedLots" folder
-    string scannedLotsPath = Path.Combine(Directory.GetCurrentDirectory(), "ScannedLots");
+    string scannedLotsPath = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "Data", "ItemLots", "Scanned");
     if (Directory.Exists(scannedLotsPath))
     {
         Process.Start(new ProcessStartInfo

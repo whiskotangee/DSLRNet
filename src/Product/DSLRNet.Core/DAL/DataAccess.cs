@@ -27,6 +27,7 @@ public class DataAccess
         EquipParamAccessory = CreateDataSource<EquipParamAccessory>(DataSourceNames.EquipParamAccessory);
         EquipParamGem = CreateDataSource<EquipParamGem>(DataSourceNames.EquipParamGem);
         EquipParamProtector = CreateDataSource<EquipParamProtector>(DataSourceNames.EquipParamProtector);
+        EquipMtrlSetParam = CreateDataSource<EquipMtrlSetParam>(DataSourceNames.EquipMtrlSetParam);
         SpEffectParam = CreateDataSource<SpEffectParam>(DataSourceNames.SpEffectParam);
         SpEffectParamNew = CreateDataSource<SpEffectParamNew>(DataSourceNames.SpEffectParamNew);
         ItemLotParamEnemy = CreateDataSource<ItemLotParam_enemy>(DataSourceNames.ItemLotParam_enemy);
@@ -38,6 +39,7 @@ public class DataAccess
         DamageTypeSetup = CreateDataSource<DamageTypeSetup>(DataSourceNames.DamageTypeSetup);
         TalismanConfig = CreateDataSource<TalismanConfig>(DataSourceNames.TalismanConfig);
         SpEffectConfig = CreateDataSource<SpEffectConfig>(DataSourceNames.SpEffectConfig);
+        
     }
 
     public IDataSource<EquipParamWeapon> EquipParamWeapon { get; }
@@ -56,6 +58,8 @@ public class DataAccess
     public IDataSource<DamageTypeSetup> DamageTypeSetup { get; }
     public IDataSource<TalismanConfig> TalismanConfig { get; }
     public IDataSource<SpEffectConfig> SpEffectConfig { get; }
+
+    public IDataSource<EquipMtrlSetParam> EquipMtrlSetParam { get; }
 
     public async Task InitializeDataSourcesAsync()
     {
@@ -79,7 +83,8 @@ public class DataAccess
             DamageTypeSetup.InitializeDataAsync(),
             TalismanConfig.InitializeDataAsync(),
             SpEffectConfig.InitializeDataAsync(),
-            GameAreaParam.InitializeDataAsync()
+            GameAreaParam.InitializeDataAsync(),
+            EquipMtrlSetParam.InitializeDataAsync()
         ];
 
         await Task.WhenAll(tasks);

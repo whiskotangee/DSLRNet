@@ -61,6 +61,8 @@ public class DSLRNetBuilder(
         dataRepository.VerifyItemLots();
 
         smithingStoneCostHandler.ReduceSmithingStoneCostIfEnabled();
+
+        progressTracker.OverallProgress += 1;
     }
 
     public async Task ApplyAsync()

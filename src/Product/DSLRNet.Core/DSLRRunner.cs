@@ -7,8 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
-//todo - armor not getting descriptions
-//todo - wolves in limgrave dropping godslaying things.  Should probably limit itemlot to lowest game stage available - look into this
 public class DSLRRunner
 {
     public static async Task ScanAsync(Settings settings)
@@ -23,7 +21,7 @@ public class DSLRRunner
     public static async Task Run(Settings settings, ICollection<string>? logWatcher = null, IOperationProgressTracker? progressTracker = null)
     {
         progressTracker ??= new DefaultProgressTracker();
-        progressTracker.OverallStepCount = 14;
+        progressTracker.OverallStepCount = 12;
 
         var sp = await DSLRCommonSetupAsync(settings, false, logWatcher, progressTracker);
 

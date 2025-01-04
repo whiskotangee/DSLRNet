@@ -23,6 +23,7 @@ public static class IServiceCollectionExtensions
                     c.WeaponGeneratorSettings = settings.WeaponGeneratorSettings;
                     c.IconBuilderSettings = settings.IconBuilderSettings;
                     c.OrderedModPaths = settings.OrderedModPaths;
+                    c.RestrictSmithingStoneCost = settings.RestrictSmithingStoneCost;
                 });
 
         // Services
@@ -48,6 +49,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<RegulationBinBank>()
                 .AddSingleton<DataSourceFactory>()
                 .AddSingleton<FileSourceHandler>()
+                .AddSingleton<SmithingStoneCostHandler>()
                 .AddSingleton(sp => LoreConfig.LoadConfig())
                 .AddSingleton((sp) => progressTracker ?? new DefaultProgressTracker())
                 .AddSingleton((sp) =>

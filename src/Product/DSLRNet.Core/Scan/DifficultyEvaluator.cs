@@ -4,9 +4,9 @@ using DSLRNet.Core.DAL;
 using DSLRNet.Core.Extensions;
 using System.Collections.Concurrent;
 
-public class GameStageEvaluator
+public class DifficultyEvaluator
 {
-    private readonly ILogger<GameStageEvaluator> logger;
+    private readonly ILogger<DifficultyEvaluator> logger;
     private readonly Dictionary<int, NpcParam> npcParams;
     private readonly Dictionary<int, SpEffectParam> allSpEffects;
     private readonly List<SpEffectParam> areaScalingSpEffects;
@@ -15,7 +15,7 @@ public class GameStageEvaluator
 
     private readonly ConcurrentDictionary<int, (Dictionary<int, GameStage> vanilla, Dictionary<int, GameStage> dlc)> scaleCache = [];
 
-    public GameStageEvaluator(ILogger<GameStageEvaluator> logger, IOptions<Configuration> config, DataAccess dataAccess)
+    public DifficultyEvaluator(ILogger<DifficultyEvaluator> logger, IOptions<Configuration> config, DataAccess dataAccess)
     {
         this.logger = logger;
         this.allSpEffects = dataAccess.SpEffectParam.GetAll().ToDictionary(k => k.ID, v => v);
@@ -35,6 +35,61 @@ public class GameStageEvaluator
 
     }
 
+    public void AssignBossGameStages(Dictionary<string, MSBE> maps, ItemLotSettings settings, List<EventDropItemLotDetails> lotDetails)
+    {
+        // pass through and compile all bosses across the game
+
+        logger.LogInformation($"Compiling all boss hp ranges for more fine tuned rankings");
+        Dictionary<GameStage, IntValueRange> gameStageHpRanges = [];
+
+        IEnumerable<EventDropItemLotDetails> withEntityId = lotDetails.Where(d => d.EntityId > 0);
+        foreach (var msb in maps)
+        {
+            logger.LogDebug($"Checking map {msb.Key}");
+            foreach (EventDropItemLotDetails? details in withEntityId)
+            {
+                MSBE.Part.Enemy? foundEvent = msb.Value.Parts.Enemies.Where(d => d.EntityID == details.EntityId).FirstOrDefault();
+                if (foundEvent != null)
+                {
+                    NpcParam foundNpc = npcParams[foundEvent.NPCParamID];
+                    details.NpcId = foundNpc.ID;
+                    details.NpcParam = foundNpc;
+                    details.EvaluatedGameStage = EvaluateDifficultyByScalingSpEffect(settings, foundNpc);
+                    details.FinalGameStage = details.EvaluatedGameStage;
+                    details.TotalHp = Convert.ToInt32(this.allSpEffects[foundNpc.spEffectID3].maxHpRate * foundNpc.hp);
+
+                    if (!gameStageHpRanges.TryGetValue(details.EvaluatedGameStage, out var value))
+                    {
+                        gameStageHpRanges[details.EvaluatedGameStage] = new IntValueRange((int)details.NpcParam.hp, (int)details.NpcParam.hp + 1);
+                        value = gameStageHpRanges[details.EvaluatedGameStage];
+                    }
+                    else
+                    {
+                        value.Expand((int)details.NpcParam.hp);
+                    }
+
+                    logger.LogDebug($"Boss HP range for game stage {details.EvaluatedGameStage} is now {value}");
+                }
+            }
+        }
+
+        logger.LogInformation($"Bumping top 20% bosses by HP up a game stage to simulate 'better drops for harder bosses'");
+        // with the hp ranges known per game stage based on spEffect scaling
+        // We can fine tune and give a game stage bump to the top % hardest bosses in the map
+        foreach (var gameStage in Enum.GetValues<GameStage>())
+        {
+            var hpRange = gameStageHpRanges[gameStage];
+            var bosses = lotDetails.Where(d => d.EvaluatedGameStage == gameStage).ToList();
+            var topBosses = bosses.Where(d => d.NpcParam != null).OrderByDescending(d => d.NpcParam.hp).Take((int)(bosses.Count * 0.2));
+            foreach (var topBoss in topBosses)
+            {
+                var oldGameStage = topBoss.EvaluatedGameStage;
+                topBoss.FinalGameStage = (GameStage)Math.Clamp((int)topBoss.EvaluatedGameStage + 1, (int)GameStage.Early, (int)GameStage.End);
+                logger.LogDebug($"Boss {topBoss.NpcId}-{topBoss.NpcParam.Name} is being bumped from {oldGameStage} to {topBoss.FinalGameStage}");
+            }
+        }
+    }
+
     public GameStage EvaluateDifficulty(ItemLotSettings settings, MSBE msb, List<NpcParam> relevantNpcs, string mapName, List<EventDropItemLotDetails> bossDropDetails)
     {
         // evalute difficulty and return game stage for the given map drops
@@ -48,10 +103,10 @@ public class GameStageEvaluator
             .Where(d => bossDropDetails.Any(s => s.EntityId == d.EntityID));
 
         var gameStages = regularEnemies
-            .Select(d => new { ID = d.NPCParamID, GameStage = EvaluateDifficulty(settings, npcParams[d.NPCParamID], false) });
+            .Select(d => new { ID = d.NPCParamID, GameStage = EvaluateDifficultyByScalingSpEffect(settings, npcParams[d.NPCParamID]) });
 
         var bossGameStages = bossEnemies
-            .Select(d => new { ID = d.NPCParamID, GameStage = EvaluateDifficulty(settings, npcParams[d.NPCParamID], true) })
+            .Select(d => new { ID = d.NPCParamID, GameStage = EvaluateDifficultyByScalingSpEffect(settings, npcParams[d.NPCParamID]) })
             .ToList();
 
         double averageDifficulty = 0.0;
@@ -72,7 +127,7 @@ public class GameStageEvaluator
         return averageGameStage;
     }
 
-    public GameStage EvaluateDifficulty(ItemLotSettings settings, NpcParam npc, bool isBoss)
+    public GameStage EvaluateDifficultyByScalingSpEffect(ItemLotSettings settings, NpcParam npc)
     {
         (Dictionary<int, GameStage> vanilla, Dictionary<int, GameStage> dlc) = this.scaleCache.GetOrAdd(settings.ID, InitializeHpMultMaps(settings));
 

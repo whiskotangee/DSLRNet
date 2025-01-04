@@ -81,6 +81,14 @@ namespace DSLRNet.UserControls
             }
         }
 
+        private void ClearModDirectories_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext is SettingsWrapper settingsWrapper)
+            {
+                settingsWrapper.ModPaths.Clear();
+            }
+        }
+
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextNumeric(e.Text);
@@ -135,5 +143,9 @@ namespace DSLRNet.UserControls
             
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

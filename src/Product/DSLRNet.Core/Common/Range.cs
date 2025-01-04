@@ -18,9 +18,26 @@ public class IntValueRange(int min, int max)
         return Min <= value && value <= Max;
     }
 
+    public void Expand(int value)
+    {
+        if (value < Min)
+        {
+            Min = value;
+        }
+        if (value > Max)
+        {
+            Max = value;
+        }
+    }
+
     public static IntValueRange CreateFrom(IEnumerable<int> values)
     {
         return new IntValueRange(values.Min(), values.Max());
+    }
+
+    public override string ToString()
+    {
+        return $"Min: {Min} - Max: {Max}";
     }
 
     public IEnumerable<int> ToRangeOfValues()

@@ -41,7 +41,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<ScannedItemLotLoader>()
                 .AddSingleton<IconBuilder>()
                 .AddSingleton<BossDropScannerV2>()
-                .AddSingleton<GameStageEvaluator>()
+                .AddSingleton<DifficultyEvaluator>()
                 .AddSingleton<MSBProvider>()
                 .AddSingleton<DataAccess>()
                 .AddSingleton<Csv>()
@@ -56,14 +56,5 @@ public static class IServiceCollectionExtensions
                 });
 
         return services;
-    }
-
-    public static IDataSource<T> CreateDataSource<T>(DataSourceFactory factory, DataSourceNames configName, Configuration configSettings)
-        where T : ParamBase<T>, ICloneable<T>, new()
-    {
-        DataSourceConfig config = configSettings.DataSourceConfigs.Single(d => d.Name == configName);
-        IDataSource<T> dataSource = factory.CreateDataSource<T>(config);
-
-        return dataSource;
     }
 }

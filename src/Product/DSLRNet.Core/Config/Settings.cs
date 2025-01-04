@@ -41,6 +41,8 @@ public class Settings
 
     public List<string> MessageFileNames { get; set; } = [];
 
+    public bool RestrictSmithingStoneCost { get; set; }
+
     public ArmorGeneratorSettings ArmorGeneratorSettings { get; set; } = new ArmorGeneratorSettings();
 
     public WeaponGeneratorSettings WeaponGeneratorSettings { get; set; } = new WeaponGeneratorSettings();
@@ -55,6 +57,7 @@ public class Settings
         data["Settings"]["RandomSeed"] = RandomSeed.ToString();
         data["Settings"]["GamePath"] = GamePath;
         data["Settings"]["MessageFileNames"] = string.Join(",", MessageFileNames);
+        data["Settings"]["RestrictSmithingStoneCost"] = RestrictSmithingStoneCost.ToString();
         data["Settings.ItemLotGeneratorSettings"]["ItemLotsPerBaseMapLot"] = ItemLotGeneratorSettings.ItemLotsPerBaseMapLot.ToString();
         data["Settings.ItemLotGeneratorSettings"]["ItemLotsPerBaseEnemyLot"] = ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot.ToString();
         data["Settings.ItemLotGeneratorSettings"]["ItemLotsPerBossLot"] = ItemLotGeneratorSettings.ItemLotsPerBossLot.ToString();
@@ -121,9 +124,10 @@ public class Settings
         {
             DeployPath = data["Settings"]["DeployPath"],
             OrderedModPaths = [.. data["Settings"]["OrderedModPaths"].Split(",")],
-            RandomSeed = int.TryParse(data["Settings"]["RandomSeed"], out int result) ? result : 0,
+            RandomSeed = int.TryParse(data["Settings"]["RandomSeed"], out int result) ? result : new Random().Next(),
             GamePath = data["Settings"]["GamePath"],
             MessageFileNames = [.. data["Settings"]["MessageFileNames"].Split(",")],
+            RestrictSmithingStoneCost = bool.Parse(data["Settings"]["RestrictSmithingStoneCost"]),
             ItemLotGeneratorSettings = new ItemLotGeneratorSettings
             {
                 ItemLotsPerBaseMapLot = int.Parse(data["Settings.ItemLotGeneratorSettings"]["ItemLotsPerBaseMapLot"]),

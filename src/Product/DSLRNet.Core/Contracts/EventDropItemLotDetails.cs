@@ -1,5 +1,7 @@
 ﻿namespace DSLRNet.Core.Contracts;
 
+using DSLRNet.Core.DAL;
+
 public class EventDropItemLotDetails
 {
     public string MapId { get; set; } = string.Empty;
@@ -14,10 +16,13 @@ public class EventDropItemLotDetails
 
     public int NpcId { get; set; }
 
-    public bool IsCompleteEvent()
-    {
-        return EventTriggerFlagId > 0 && ItemLotId > 0 && EntityId > 0 && AcquisitionFlag > 0;
-    }
+    public NpcParam NpcParam { get; set; }
+
+    public int TotalHp { get; set; }
+
+    public GameStage EvaluatedGameStage { get; set; }
+
+    public GameStage FinalGameStage { get; set; }
 
     public void CopyFrom(ILogger logger, EventDropItemLotDetails from)
     {

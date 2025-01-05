@@ -130,6 +130,8 @@ public class MainWindowViewModel : INotifyPropertyChanged
                 LastRunCompleteMessage = "Last Run Failed - Check Logs";
                 LastRunCompleteColor = new SolidColorBrush(Colors.Crimson);
             }
+
+            MessageBox.Show($"{LastRunCompleteMessage}", "DSLR Completed Running");
         }
     }
 

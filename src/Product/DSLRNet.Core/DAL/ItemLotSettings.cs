@@ -104,7 +104,6 @@ public class ItemLotSettings
 
     public string NpcParamCategory { get; set; } = string.Empty;
 
-    [JsonConverter(typeof(BoolToIntConverter))]
     public bool IsForBosses { get; set; } = false;
 
     public int ID { get; set; }
@@ -151,6 +150,7 @@ class DslItemLotSetup
                 LootTypeWeights = ParseList(data["dslitemlotsetup"]["loottypeweights"]),
                 WeaponTypeWeights = ParseList(data["dslitemlotsetup"]["weapontypeweights"]),
                 DropChanceMultiplier = float.Parse(data["dslitemlotsetup"]["dropchancemultiplier"]),
+                IsForBosses = bool.Parse(data["dslitemlotsetup"]["isforbosses"])
             };
         }
         catch (Exception)
@@ -183,7 +183,7 @@ class DslItemLotSetup
         data["dslitemlotsetup"]["loottypeweights"] = ListToString(LootTypeWeights);
         data["dslitemlotsetup"]["weapontypeweights"] = ListToString(WeaponTypeWeights);
         data["dslitemlotsetup"]["dropchancemultiplier"] = DropChanceMultiplier.ToString();
-
+        data["dslitemlotsetup"]["isforbosses"] = IsForBosses.ToString();
         iniParser.WriteFile(file, data);
     }
 
@@ -207,6 +207,8 @@ class DslItemLotSetup
     public List<int> LootTypeWeights { get; set; } = [];
     public List<int> WeaponTypeWeights { get; set; } = [];
     public float DropChanceMultiplier { get; set; }
+
+    public bool IsForBosses { get; set; }
 
     static List<int> ParseList(string input)
     {

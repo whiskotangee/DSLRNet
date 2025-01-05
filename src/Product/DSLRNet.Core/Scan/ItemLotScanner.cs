@@ -27,14 +27,27 @@ public class ItemLotScanner(
 
         Dictionary<ItemLotCategory, List<ItemLotSettings>> generatedItemLotSettings = [];
 
+        var startingId = 9990;
+
         ItemLotSettings mapLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1])
             ?? throw new Exception("Could not read default item lot settings for map drops");
+        mapLots.ID = startingId++;
+        mapLots.Realname = "Map Drops";
+
         ItemLotSettings chestsLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1])
             ?? throw new Exception("Could not read default item lot settings for chests drops");
+        chestsLots.ID = startingId++;
+        chestsLots.Realname = "Opened Chests Drops";
+
         ItemLotSettings enemyLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0])
             ?? throw new Exception("Could not read default item lot settings for enemy drops");
+        enemyLots.ID = startingId++;
+        enemyLots.Realname = "Enemy Drops";
+
         ItemLotSettings bossLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Map_Drops.ini", configuration.Itemlots.Categories[1])
             ?? throw new Exception("Could not read default item lot settings for boss drops");
+        bossLots.ID = startingId++;
+        bossLots.Realname = "Boss Drops";
 
         List<EventDropItemLotDetails> bossDetails = bossDropScanner.ScanEventsForBossDrops();
 

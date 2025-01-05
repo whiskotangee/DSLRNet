@@ -19,6 +19,10 @@
             <Setter Property="Width" Value="250" />
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
+        <Style TargetType="metro:MetroTabItem" BasedOn="{StaticResource {x:Type metro:MetroTabItem}}">
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -34,29 +38,29 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TabControl Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedIndex="{Binding SelectedTabIndex}" Padding="0,5">
-                <TabItem Header="General" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+            <metro:MetroTabControl Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedIndex="{Binding SelectedTabIndex}" Padding="0,5">
+                <metro:MetroTabItem Header="General" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
                     <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <dslrusercontrols:GeneralSettingsUserControl DataContext="{Binding Settings}" />
                             <dslrusercontrols:ItemLotSettingsUserControl DataContext="{Binding Settings.ItemLotGeneratorSettings}"/>
                         </StackPanel>
                     </ScrollViewer>
-                </TabItem>
-                <TabItem Header="Loot Generation Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                </metro:MetroTabItem>
+                <metro:MetroTabItem Header="Loot Generation Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
                     <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <dslrusercontrols:WeaponSettingsUserControl DataContext="{Binding Settings.WeaponGeneratorSettings}"/>
                             <dslrusercontrols:ArmorSettingsUserControl DataContext="{Binding Settings.ArmorGeneratorSettings}"/>
                         </StackPanel>
                     </ScrollViewer>
-                </TabItem>
-                <TabItem Header="Icon Builder Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                </metro:MetroTabItem>
+                <metro:MetroTabItem Header="Icon Builder Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
                     <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                         <dslrusercontrols:IconBuilderUserControl DataContext="{Binding Settings.IconBuilderSettings}" />
                     </ScrollViewer>
-                </TabItem>
-                <TabItem Header="Output" IsEnabled="{Binding HasRun}">
+                </metro:MetroTabItem>
+                <metro:MetroTabItem Header="Output" IsEnabled="{Binding HasRun}">
                     <ScrollViewer x:Name="LogScrollViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -79,8 +83,8 @@
                             </ItemsControl>
                         </Grid>
                     </ScrollViewer>
-                </TabItem>
-            </TabControl>
+                </metro:MetroTabItem>
+            </metro:MetroTabControl>
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>

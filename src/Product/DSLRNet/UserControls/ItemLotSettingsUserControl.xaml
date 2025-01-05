@@ -17,7 +17,7 @@
         <StackPanel Grid.Column="0">
             <GroupBox Header="Item Drops">
                 <StackPanel  Margin="5">
-                    <TextBlock Text="Global drop chance for items. (1-100%)" />
+                    <TextBlock Text="Global drop chance for items dropped by enemies (excluding bosses). (1-100%)" />
                     <local:SliderWithTextUserControl Minimum="5" Maximum="100" Value="{Binding GlobalDropChance, Mode=TwoWay}" 
                                                      TickFrequency="1" 
                                                      IsSnapToTickEnabled="True" 

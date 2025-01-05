@@ -77,7 +77,6 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         newWeapon.disableGemAttr = 1;
         newWeapon.weight = this.RarityHandler.GetRandomizedWeight(newWeapon.weight, rarityId);
 
-        this.ApplyWeaponRequiredStatChanges(newWeapon, rarityId);
         this.SetWeaponOriginParam(newWeapon, newWeapon.ID);
 
         string affinity = "";
@@ -88,6 +87,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             weaponType);
 
         this.ApplyWeaponScalingRange(newWeapon, modifications, rarityId);
+        this.ApplyWeaponRequiredStatChanges(newWeapon, rarityId);
 
         this.damageTypeHandler.ApplyDamageTypeWeaponSpEffects(modifications, newWeapon.GenericParam);
 
@@ -229,23 +229,24 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
 
     private void ApplyWeaponRequiredStatChanges(EquipParamWeapon newWeapon, int rarityId)
     {
-        List<string> requirementStats = newWeapon.GetFieldNamesByFilter("proper");
+        var orderedCorrectParams = newWeapon.GetFieldNamesByFilter("correct", excludeFilter: "Type_")
+            .Select(d => new { ParamName = d, Value = newWeapon.GetValue<float>(d) })
+            .OrderByDescending(d => d.Value)
+            .ToList();
 
-        List<int> originalValues = requirementStats.Select(newWeapon.GetValue<int>).ToList();
-
-        if (originalValues.Count < requirementStats.Count)
-        {
-            originalValues.AddRange(Enumerable.Repeat(0, requirementStats.Count - originalValues.Count));
-        }
+        var orderedProperParamValues = newWeapon.GetFieldNamesByFilter("proper")
+            .Select(d => newWeapon.GetValue<int>(d))
+            .OrderByDescending(d => d)
+            .ToList();
 
         IntValueRange additionRange = RarityHandler.GetStatRequiredAdditionRange(rarityId);
 
-        List<int> randomizedStats = this.Random.GetRandomizedList(originalValues);
-
-        for (int i = 0; i < requirementStats.Count; i++)
+        for (int i = 0; i < orderedCorrectParams.Count; i++)
         {
-            string? req = requirementStats[i];
-            newWeapon.SetValue<int>(req, originalValues[i] + this.Random.NextInt(additionRange));
+            var correctParam = orderedCorrectParams[i];
+            var properValue = orderedProperParamValues[i];
+
+            newWeapon.SetValue(correctParam.ParamName.Replace("correct", "proper"), properValue + this.Random.NextInt(additionRange));
         }
     }
 

@@ -61,7 +61,7 @@ public class FileSourceHandler(IOptions<Settings> settings)
             }
         }
 
-        // pick up any files in the game path that are not in the mod paths, just in case we need them
+        // pick up any files in the game path that are not in the mod paths or vanilla files path just in case we need them
         if (Directory.Exists(Path.Combine(settings.Value.GamePath, basePath)))
         {
             files.AddRange(
@@ -70,11 +70,15 @@ public class FileSourceHandler(IOptions<Settings> settings)
                     .ToList());
         }
 
-        // finally grab from our own vanilla files
-        files.AddRange(
-                Directory.GetFiles(Path.Combine("Assets", "VanillaFiles", basePath), filter)
-                    .Where(d => !files.Any(t => Path.GetFileName(t) == Path.GetFileName(d)))
-                    .ToList());
+        // finally include the packaged vanilla files, just in case there are no other mods and UXM has never been used to unpack the game
+        var includedVanillaFiles = Path.Combine("Assets", "VanillaFiles", basePath);
+        if (Directory.Exists(includedVanillaFiles))
+        {
+            files.AddRange(
+            Directory.GetFiles(includedVanillaFiles, filter)
+                .Where(d => !files.Any(t => Path.GetFileName(t) == Path.GetFileName(d)))
+                .ToList());
+        }
 
         return files;
     }

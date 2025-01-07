@@ -39,7 +39,7 @@ public partial class IconBuilder(
         Settings settings = settingsOptions.Value;
         IconBuilderSettings iconSettings = settings.IconBuilderSettings;
 
-        string bakedSheetsSource = $"Assets\\LootIcons\\BakedSheets";
+        string bakedSheetsSource = PathHelper.FullyQualifyAppDomainPath("Assets\\LootIcons\\BakedSheets");
         string iconMappingsFile = Path.Combine(bakedSheetsSource, "iconmappings.json");
 
         Directory.CreateDirectory(bakedSheetsSource);

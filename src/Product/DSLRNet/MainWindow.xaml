@@ -7,7 +7,6 @@
         xmlns:dslrusercontrols="clr-namespace:DSLRNet.UserControls"
         xmlns:viewModels="clr-namespace:DSLRNet.ViewModels"
         xmlns:behaviors="clr-namespace:DSLRNet.Behaviors"
-        d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="Diablo Style Loot (Remade) For Elden Ring"
         Height="960"

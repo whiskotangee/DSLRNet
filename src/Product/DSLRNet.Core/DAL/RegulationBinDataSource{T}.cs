@@ -20,7 +20,7 @@ public class RegulationBinDataSource<T>(
             this.readParam = regulationBinReader.GetParam(paramSource.Name);
         }
 
-        string[] names = File.ReadAllLines($"Assets\\Data\\PARAM\\ER\\Names\\{paramSource.Name}.txt");
+        string[] names = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath($"Assets","Data","PARAM","ER","Names",$"{paramSource.Name}.txt"));
         this.namesMapping = names.ToDictionary(s => Convert.ToInt32(s[..s.IndexOf(' ')]), d => d[d.IndexOf(' ')..].Trim().ToString());
 
         ConcurrentBag<T> loadedValues = [];

@@ -3,6 +3,7 @@
 using IniParser.Model;
 using IniParser;
 using System.Collections.Generic;
+using DSLRNet.Core.Extensions;
 
 public class Settings
 {
@@ -110,15 +111,18 @@ public class Settings
 
     public static Settings CreateFromSettingsIni()
     {
+        string settingsFilePath = PathHelper.FullyQualifyAppDomainPath("Settings.ini");
+        string userSettingsFilePath = PathHelper.FullyQualifyAppDomainPath("Settings.User.ini");
+
         FileIniDataParser parser = new();
         IniData data;
 
-        if (!File.Exists("Settings.User.ini"))
+        if (!File.Exists(userSettingsFilePath))
         {
-            File.Copy("Settings.ini", "Settings.User.ini");
+            File.Copy(settingsFilePath, userSettingsFilePath, true);
         }
 
-        data = parser.ReadFile("Settings.User.ini");
+        data = parser.ReadFile(userSettingsFilePath);
 
         Settings settings = new();
         settings.Initialize(data);

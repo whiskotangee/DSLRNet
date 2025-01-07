@@ -10,10 +10,9 @@ using System.Windows;
 /// </summary>
 public partial class MainWindow : MetroWindow
 {
-    public MainWindow()
+    public MainWindow(MainWindowViewModel viewModel)
     {
         InitializeComponent();
-        var viewModel = new MainWindowViewModel();
         this.DataContext = viewModel;
 
         viewModel.LogMessages.CollectionChanged += LogMessages_CollectionChanged;

@@ -16,5 +16,4 @@ public static class StringExtensions
 
         return $"<font{combinedAttributes}>{text}</font>";
     }
-
 }

@@ -1,9 +1,8 @@
 ﻿namespace DSLRNet.Core.Handlers;
 
+using DSLRNet.Core.Extensions;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using Tomlyn;
-using Tomlyn.Model;
 
 public class FileSourceHandler(IOptions<Settings> settings)
 {
@@ -32,9 +31,9 @@ public class FileSourceHandler(IOptions<Settings> settings)
             return true;
         }
 
-        if (File.Exists(Path.Combine("Assets", "VanillaFiles", fileName)))
+        if (File.Exists(PathHelper.FullyQualifyAppDomainPath("Assets", "VanillaFiles", fileName)))
         {
-            fullPath = Path.Combine("Assets", "VanillaFiles", fileName);
+            fullPath = PathHelper.FullyQualifyAppDomainPath("Assets", "VanillaFiles", fileName);
             return true;
         }
 
@@ -71,7 +70,7 @@ public class FileSourceHandler(IOptions<Settings> settings)
         }
 
         // finally include the packaged vanilla files, just in case there are no other mods and UXM has never been used to unpack the game
-        var includedVanillaFiles = Path.Combine("Assets", "VanillaFiles", basePath);
+        var includedVanillaFiles = PathHelper.FullyQualifyAppDomainPath("Assets", "VanillaFiles", basePath);
         if (Directory.Exists(includedVanillaFiles))
         {
             files.AddRange(

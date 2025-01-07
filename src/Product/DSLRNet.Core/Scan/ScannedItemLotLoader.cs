@@ -127,7 +127,7 @@ public class ScannedItemLotLoader(
         // create one for the duplicate enemies, also register the NpcParam edits here
         ItemLotSettings? enemyRequiringNewLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]);
 
-        List<NpcGameStage> npcEvaluations = JsonConvert.DeserializeObject<List<NpcGameStage>>(File.ReadAllText("Assets\\Data\\ItemLots\\Scanned\\npcGameStageEvaluations.json"))
+        List<NpcGameStage> npcEvaluations = JsonConvert.DeserializeObject<List<NpcGameStage>>(File.ReadAllText(PathHelper.FullyQualifyAppDomainPath("Assets", "Data", "ItemLots", "Scanned", "npcGameStageEvaluations.json")))
             .Where(d => d.RequiresNewItemLot)
             .ToList()
             ?? throw new Exception("Duplicate enemies config does not exist");

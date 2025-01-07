@@ -94,7 +94,7 @@ public class ItemLotScanner(
 
         bossLots.IsForBosses = true;
 
-        var savePath = Path.Combine("Assets", "Data", "ItemLots", "Scanned");
+        var savePath = PathHelper.FullyQualifyAppDomainPath("Assets", "Data", "ItemLots", "Scanned");
         Directory.CreateDirectory(savePath);
 
         mapLots.Save(Path.Combine(savePath, "MapDrops.ini"));

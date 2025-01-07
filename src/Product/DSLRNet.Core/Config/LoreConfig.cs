@@ -14,21 +14,21 @@ public class LoreConfig
     {
         return new LoreConfig()
         {
-            Names = File.ReadAllLines("Assets\\Lore\\Names.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
-            Locations = File.ReadAllLines("Assets\\Lore\\Locations.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+            Names = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "Names.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+            Locations = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "Locations.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
             MadLibsConfig = new LoreTemplates
             {
-                Prefixes = File.ReadAllLines("Assets\\Lore\\MadLibsConfig.Prefixes.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
-                PostFixes = File.ReadAllLines("Assets\\Lore\\MadLibsConfig.Postfixes.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
-                Interfixes = File.ReadAllLines("Assets\\Lore\\MadLibsConfig.Interfixes.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                Prefixes = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "MadLibsConfig.Prefixes.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                PostFixes = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "MadLibsConfig.Postfixes.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                Interfixes = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "MadLibsConfig.Interfixes.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
             },
             UniqueNamesConfig = new UniqueNameConfig
             {
-                UniqueNameFirstHalf = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameFirstHalf.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
-                UniqueNameFirstWord = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameFirstWord.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
-                UniqueNameSecondHalf = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameSecondHalf.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
-                UniqueNameSecondWord = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameSecondWord.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
-                UniqueNameSecondHalfShield = File.ReadAllLines("Assets\\Lore\\UniqueNamesConfig.UniqueNameSecondHalfShield.txt").Where(s => !string.IsNullOrWhiteSpace(s)).ToList()
+                UniqueNameFirstHalf = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "UniqueNamesConfig.UniqueNameFirstHalf.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                UniqueNameFirstWord = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "UniqueNamesConfig.UniqueNameFirstWord.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                UniqueNameSecondHalf = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "UniqueNamesConfig.UniqueNameSecondHalf.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                UniqueNameSecondWord = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "UniqueNamesConfig.UniqueNameSecondWord.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList(),
+                UniqueNameSecondHalfShield = File.ReadAllLines(PathHelper.FullyQualifyAppDomainPath("Assets", "Lore", "UniqueNamesConfig.UniqueNameSecondHalfShield.txt")).Where(s => !string.IsNullOrWhiteSpace(s)).ToList()
             }
         };
     }

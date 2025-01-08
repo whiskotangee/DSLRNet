@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics;
 
 public class ScannedItemLotLoader(
+    ILogger<ScannedItemLotLoader> logger,
     RandomProvider random,
     IOptions<Configuration> configuration,
     IOptions<Settings> settings,
@@ -100,7 +101,7 @@ public class ScannedItemLotLoader(
             return null;
         }
 
-        ItemLotSettings settings = ItemLotSettings.Create(file, category);
+        ItemLotSettings settings = ItemLotSettings.Create(logger, file, category);
 
         foreach (KeyValuePair<GameStage, GameStageConfig> gameStage in settings.GameStageConfigs)
         {
@@ -125,7 +126,7 @@ public class ScannedItemLotLoader(
         }
 
         // create one for the duplicate enemies, also register the NpcParam edits here
-        ItemLotSettings? enemyRequiringNewLots = ItemLotSettings.Create("Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]);
+        ItemLotSettings? enemyRequiringNewLots = ItemLotSettings.Create(logger, "Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]);
 
         List<NpcGameStage> npcEvaluations = JsonConvert.DeserializeObject<List<NpcGameStage>>(File.ReadAllText(PathHelper.FullyQualifyAppDomainPath("Assets", "Data", "ItemLots", "Scanned", "npcGameStageEvaluations.json")))
             .Where(d => d.RequiresNewItemLot)

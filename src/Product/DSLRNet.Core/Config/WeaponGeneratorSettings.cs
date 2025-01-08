@@ -1,9 +1,6 @@
 ﻿namespace DSLRNet.Core.Config;
 
 using IniParser.Model;
-using Newtonsoft.Json.Linq;
-using PaintDotNet;
-using System;
 
 public enum WeaponTypes { Normal, Shields, StaffsSeals, BowsCrossbows }
 
@@ -76,18 +73,18 @@ public class WeaponGeneratorSettings
             }
         }
     }
-
-    public class AshOfWarConfig
-    {
-        public List<WeaponTypeCanMountWepFlag> WeaponTypeCanMountWepFlags { get; set; } = [];
-    }
-
-    public class WeaponTypeCanMountWepFlag
-    {
-        public long Id { get; set; }
-
-        public string FriendlyName { get; set; } = string.Empty;
-
-        public string FlagName { get; set; } = string.Empty;
-    }
 }
+public class AshOfWarConfig
+{
+    public List<WeaponTypeCanMountWepFlag> WeaponTypeCanMountWepFlags { get; set; } = [];
+}
+
+public class WeaponTypeCanMountWepFlag
+{
+    public long Id { get; set; }
+
+    public string FriendlyName { get; set; } = string.Empty;
+
+    public string FlagName { get; set; } = string.Empty;
+}
+

@@ -33,9 +33,9 @@ public class ItemLotSettings
         setup.Save(file);
     }
 
-    public static ItemLotSettings Create(string file, Category category)
+    public static ItemLotSettings Create(ILogger logger, string file, Category category)
     {
-        DslItemLotSetup? setup = DslItemLotSetup.Create(file) ?? throw new Exception($"Could not load ini file from {file}");
+        DslItemLotSetup? setup = DslItemLotSetup.Create(logger, file) ?? throw new Exception($"Could not load ini file from {file}");
         ItemLotSettings? obj = JsonConvert.DeserializeObject<ItemLotSettings>(JsonConvert.SerializeObject(setup)) ?? throw new Exception($"Could not deserialize item lot settings file {file}");
 
         obj.GameStageConfigs = [];
@@ -126,13 +126,12 @@ public enum ItemLotCategory
 
 class DslItemLotSetup
 {
-    public static DslItemLotSetup? Create(string file)
+    public static DslItemLotSetup? Create(ILogger logger, string file)
     {
-        FileIniDataParser iniParser = new();
-        IniParser.Model.IniData data = iniParser.ReadFile(file);
-
         try
         {
+            FileIniDataParser iniParser = new();
+            IniParser.Model.IniData data = iniParser.ReadFile(file);
             return new DslItemLotSetup
             {
                 Id = int.Parse(data["dslitemlotsetup"]["id"]),
@@ -153,8 +152,9 @@ class DslItemLotSetup
                 IsForBosses = bool.Parse(data["dslitemlotsetup"]["isforbosses"])
             };
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            logger.LogError($"Failed to parse itemlot ini definition file {file}: {ex}");
             return null;
         }
     }

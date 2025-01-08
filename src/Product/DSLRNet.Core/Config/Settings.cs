@@ -137,7 +137,7 @@ public class Settings
         RandomSeed = section.ContainsKey("RandomSeed") && int.TryParse(section["RandomSeed"], out int result) ? result : new Random().Next();
         GamePath = section.ContainsKey("GamePath") ? section["GamePath"] : string.Empty;
         MessageFileNames = section.ContainsKey("MessageFileNames") ? [.. section["MessageFileNames"].Split(',')] : [];
-        RestrictSmithingStoneCost = section.ContainsKey("RestrictSmithingStoneCost") && bool.Parse(section["RestrictSmithingStoneCost"]);
+        RestrictSmithingStoneCost = !section.ContainsKey("RestrictSmithingStoneCost") || !bool.TryParse(section["RestrictSmithingStoneCost"], out var boolVal) || boolVal;
 
         ItemLotGeneratorSettings = new ItemLotGeneratorSettings();
         ItemLotGeneratorSettings.Initialize(data);

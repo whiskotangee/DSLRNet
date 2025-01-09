@@ -13,7 +13,6 @@ using System.Windows.Data;
 using System.Windows;
 using System.Windows.Media;
 using System.Diagnostics;
-using SixLabors.ImageSharp.PixelFormats;
 using ImageMagick;
 
 public class MainWindowViewModel : INotifyPropertyChanged

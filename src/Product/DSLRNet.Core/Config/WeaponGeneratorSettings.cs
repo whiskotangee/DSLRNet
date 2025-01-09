@@ -31,7 +31,7 @@ public class WeaponGeneratorSettings
         {
             var weaponSection = data[section];
             UniqueNameChance = weaponSection.ContainsKey("UniqueNameChance") && int.TryParse(weaponSection["UniqueNameChance"], out var uniqueNameChance) ? uniqueNameChance : 4;
-            UniqueWeaponMultiplier = weaponSection.ContainsKey("UniqueWeaponMultiplier") && float.TryParse(weaponSection["UniqueWeaponMultiplier"], NumberStyles.Float, CultureInfo.InvariantCulture, out var uniqueWeaponMultiplier) ? uniqueWeaponMultiplier : 1.2f;
+            UniqueWeaponMultiplier = weaponSection.ContainsKey("UniqueWeaponMultiplier") && float.TryParse(weaponSection["UniqueWeaponMultiplier"], CultureInfo.InvariantCulture, out var uniqueWeaponMultiplier) ? uniqueWeaponMultiplier : 1.2f;
             UniqueItemNameColor = weaponSection.ContainsKey("UniqueItemNameColor") ? weaponSection["UniqueItemNameColor"] : "ffa3c5";
             SplitDamageTypeChance = weaponSection.ContainsKey("SplitDamageTypeChance") && int.TryParse(weaponSection["SplitDamageTypeChance"], out var splitDamageTypeChance) ? splitDamageTypeChance : 70;
             DamageIncreasesStaminaThreshold = weaponSection.ContainsKey("DamageIncreasesStaminaThreshold") && int.TryParse(weaponSection["DamageIncreasesStaminaThreshold"], out var damageIncreasesStaminaThreshold) ? damageIncreasesStaminaThreshold : 170;

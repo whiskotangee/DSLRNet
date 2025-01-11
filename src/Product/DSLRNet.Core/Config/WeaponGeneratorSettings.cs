@@ -24,6 +24,9 @@ public class WeaponGeneratorSettings
 
     public IntValueRange OtherBaseScalingRange { get; set; } = new IntValueRange(5, 25);
 
+    public bool ApplyRarityStatReqAddition { get; set; } = true;
+    public int StatReqReductionPercent { get; set; } = 0;
+
     public void Initialize(IniData data)
     {
         var section = "Settings.WeaponGeneratorSettings";
@@ -35,6 +38,8 @@ public class WeaponGeneratorSettings
             UniqueItemNameColor = weaponSection.ContainsKey("UniqueItemNameColor") ? weaponSection["UniqueItemNameColor"] : "ffa3c5";
             SplitDamageTypeChance = weaponSection.ContainsKey("SplitDamageTypeChance") && int.TryParse(weaponSection["SplitDamageTypeChance"], out var splitDamageTypeChance) ? splitDamageTypeChance : 70;
             DamageIncreasesStaminaThreshold = weaponSection.ContainsKey("DamageIncreasesStaminaThreshold") && int.TryParse(weaponSection["DamageIncreasesStaminaThreshold"], out var damageIncreasesStaminaThreshold) ? damageIncreasesStaminaThreshold : 170;
+            StatReqReductionPercent = weaponSection.ContainsKey(nameof(StatReqReductionPercent)) && int.TryParse(weaponSection[nameof(StatReqReductionPercent)], out int statReqPercent) ? statReqPercent : 0;
+            ApplyRarityStatReqAddition = !weaponSection.ContainsKey(nameof(ApplyRarityStatReqAddition)) || !bool.TryParse(weaponSection[nameof(ApplyRarityStatReqAddition)], out bool applyRarityStatReq) || applyRarityStatReq;
 
             var critChanceRangeSection = $"{section}.CritChanceRange";
             if (data.Sections.ContainsSection(critChanceRangeSection))

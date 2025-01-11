@@ -20,7 +20,7 @@ public class SmithingStoneCostHandler(
             {
                 if (materialCostParam.itemNum01 > 1)
                 {
-                    materialCostParam.itemNum01 = 1;
+                    materialCostParam.itemNum01 = Math.Min(materialCostParam.itemNum01, (sbyte)settings.Value.MaxSmithingStoneCost);
 
                     GeneratedDataRepository.AddParamEdit(new ParamEdit
                     {

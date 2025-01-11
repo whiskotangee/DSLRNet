@@ -19,7 +19,10 @@
                     TickFrequency="{Binding TickFrequency, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     IsSnapToTickEnabled="{Binding IsSnapToTickEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     HorizontalAlignment="Stretch"/>
-        <TextBlock Grid.Column="1" Text="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, Converter={StaticResource ConditionalDecimalConverter}}" 
-                     Margin="10,0,0,0" VerticalAlignment="Center" MinWidth="50" Width="Auto"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0">
+            <TextBlock Grid.Column="1" Text="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, Converter={StaticResource ConditionalDecimalConverter}}" 
+                         Margin="5,0,0,0" VerticalAlignment="Center" Width="Auto"/>
+            <TextBlock Grid.Column="1" Text="%" Visibility="{Binding IsPercentile, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center" Width="Auto"/>
+        </StackPanel>
     </Grid>
 </UserControl>

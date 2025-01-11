@@ -40,7 +40,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         this.damageTypeHandler = damageTypeHandler;
         this.DataSource = dataAccess.EquipParamWeapon;
 
-        foreach (var weaponType in Enum.GetValues<WeaponTypes>())
+        foreach (WeaponTypes weaponType in Enum.GetValues<WeaponTypes>())
         {
             this.weaponsByWeaponType[weaponType] = this.DataSource.GetAll().Where(d => this.GetWeaponType(d.wepmotionCategory) == weaponType).ToList();
         }
@@ -234,19 +234,27 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             .OrderByDescending(d => d.Value)
             .ToList();
 
-        var orderedProperParamValues = newWeapon.GetFieldNamesByFilter("proper")
+        List<int> orderedProperParamValues = newWeapon.GetFieldNamesByFilter("proper")
             .Select(d => newWeapon.GetValue<int>(d))
             .OrderByDescending(d => d)
             .ToList();
 
         IntValueRange additionRange = RarityHandler.GetStatRequiredAdditionRange(rarityId);
 
+        float percentValue = 1.0f - (Settings.WeaponGeneratorSettings.StatReqReductionPercent / 100.0f);
+
         for (int i = 0; i < orderedCorrectParams.Count; i++)
         {
             var correctParam = orderedCorrectParams[i];
-            var properValue = orderedProperParamValues[i];
+            int properValue = orderedProperParamValues[i];
 
-            newWeapon.SetValue(correctParam.ParamName.Replace("correct", "proper"), properValue + this.Random.NextInt(additionRange));
+            var addition = Settings.WeaponGeneratorSettings.ApplyRarityStatReqAddition ? this.Random.NextInt(additionRange) : 0;
+
+            int calculatedValue = Convert.ToInt32((properValue + addition) * percentValue);
+
+            newWeapon.SetValue(
+                correctParam.ParamName.Replace("correct", "proper"), 
+                calculatedValue);
         }
     }
 

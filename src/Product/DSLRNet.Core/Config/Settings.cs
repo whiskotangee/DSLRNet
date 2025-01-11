@@ -44,6 +44,8 @@ public class Settings
 
     public bool RestrictSmithingStoneCost { get; set; }
 
+    public int MaxSmithingStoneCost { get; set; } = 1;
+
     public ArmorGeneratorSettings ArmorGeneratorSettings { get; set; } = new ArmorGeneratorSettings();
 
     public WeaponGeneratorSettings WeaponGeneratorSettings { get; set; } = new WeaponGeneratorSettings();
@@ -58,6 +60,7 @@ public class Settings
         data["Settings"]["RandomSeed"] = RandomSeed.ToString();
         data["Settings"]["GamePath"] = GamePath;
         data["Settings"]["MessageFileNames"] = string.Join(",", MessageFileNames);
+        data["Settings"]["MaxSmithingStoneCost"] = MaxSmithingStoneCost.ToString();
         data["Settings"]["RestrictSmithingStoneCost"] = RestrictSmithingStoneCost.ToString();
         data["Settings.ItemLotGeneratorSettings"]["ItemLotsPerBaseMapLot"] = ItemLotGeneratorSettings.ItemLotsPerBaseMapLot.ToString();
         data["Settings.ItemLotGeneratorSettings"]["ItemLotsPerBaseEnemyLot"] = ItemLotGeneratorSettings.ItemLotsPerBaseEnemyLot.ToString();
@@ -82,6 +85,7 @@ public class Settings
         data["Settings.WeaponGeneratorSettings"]["UniqueItemNameColor"] = WeaponGeneratorSettings.UniqueItemNameColor;
         data["Settings.WeaponGeneratorSettings"]["SplitDamageTypeChance"] = WeaponGeneratorSettings.SplitDamageTypeChance.ToString();
         data["Settings.WeaponGeneratorSettings"]["DamageIncreasesStaminaThreshold"] = WeaponGeneratorSettings.DamageIncreasesStaminaThreshold.ToString();
+        data["Settings.WeaponGeneratorSettings"]["StatReqReductionPercent"] = WeaponGeneratorSettings.StatReqReductionPercent.ToString();
         data["Settings.WeaponGeneratorSettings.CritChanceRange"]["Min"] = WeaponGeneratorSettings.CritChanceRange.Min.ToString();
         data["Settings.WeaponGeneratorSettings.CritChanceRange"]["Max"] = WeaponGeneratorSettings.CritChanceRange.Max.ToString();
         data["Settings.WeaponGeneratorSettings.PrimaryBaseScalingRange"]["Min"] = WeaponGeneratorSettings.PrimaryBaseScalingRange.Min.ToString();
@@ -138,6 +142,7 @@ public class Settings
         GamePath = section.ContainsKey("GamePath") ? section["GamePath"] : string.Empty;
         MessageFileNames = section.ContainsKey("MessageFileNames") ? [.. section["MessageFileNames"].Split(',')] : [];
         RestrictSmithingStoneCost = !section.ContainsKey("RestrictSmithingStoneCost") || !bool.TryParse(section["RestrictSmithingStoneCost"], out var boolVal) || boolVal;
+        MaxSmithingStoneCost = section.ContainsKey("MaxSmithingStoneCost") && int.TryParse(section["MaxSmithingStoneCost"], out int maxCost) ? maxCost : 1;
 
         ItemLotGeneratorSettings = new ItemLotGeneratorSettings();
         ItemLotGeneratorSettings.Initialize(data);

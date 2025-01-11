@@ -78,6 +78,32 @@ public class WeaponGeneratorSettingsWrapper : BaseModel<WeaponGeneratorSettings>
         }
     }
 
+    public int StatReqReductionPercent
+    {
+        get => _settings.StatReqReductionPercent;
+        set
+        {
+            if (_settings.StatReqReductionPercent != value)
+            {
+                _settings.StatReqReductionPercent = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public bool ApplyRarityStatReqAddition
+    {
+        get => _settings.ApplyRarityStatReqAddition;
+        set
+        {
+            if (_settings.ApplyRarityStatReqAddition != value)
+            {
+                _settings.ApplyRarityStatReqAddition = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public IntValueRangeWrapper CritChanceRange { get; }
 
     public IntValueRangeWrapper PrimaryBaseScalingRange { get; }

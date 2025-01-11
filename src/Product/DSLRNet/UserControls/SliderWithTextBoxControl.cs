@@ -19,6 +19,8 @@ namespace DSLRNet.UserControls
         public static readonly DependencyProperty IsSnapToTickEnabledProperty =
             DependencyProperty.Register("IsSnapToTickEnabled", typeof(bool), typeof(SliderWithTextUserControl), new PropertyMetadata(true));
 
+        public static readonly DependencyProperty IsPercentileProperty =
+            DependencyProperty.Register("IsPercentile", typeof(bool), typeof(SliderWithTextUserControl), new PropertyMetadata(false));
 
         public double Minimum
         {
@@ -48,6 +50,12 @@ namespace DSLRNet.UserControls
         {
             get { return (bool)GetValue(TickFrequencyProperty); }
             set { SetValue(TickFrequencyProperty, value); }
+        }
+
+        public bool IsPercentile
+        {
+            get { return (bool)GetValue(IsPercentileProperty); }
+            set { SetValue(IsPercentileProperty, value); }
         }
     }
 }

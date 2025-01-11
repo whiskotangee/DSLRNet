@@ -35,12 +35,12 @@ public class ItemLotGeneratorSettings
         if (data.Sections.ContainsSection(section))
         {
             var itemLotSection = data[section];
-            ItemLotsPerBaseMapLot = itemLotSection.ContainsKey("ItemLotsPerBaseMapLot") ? int.Parse(itemLotSection["ItemLotsPerBaseMapLot"]) : 1;
-            ItemLotsPerBaseEnemyLot = itemLotSection.ContainsKey("ItemLotsPerBaseEnemyLot") ? int.Parse(itemLotSection["ItemLotsPerBaseEnemyLot"]) : 1;
-            ItemLotsPerBossLot = itemLotSection.ContainsKey("ItemLotsPerBossLot") ? int.Parse(itemLotSection["ItemLotsPerBossLot"]) : 2;
-            LootPerItemLot_Enemy = itemLotSection.ContainsKey("LootPerItemLot_Enemy") ? int.Parse(itemLotSection["LootPerItemLot_Enemy"]) : 4;
-            LootPerItemLot_Map = itemLotSection.ContainsKey("LootPerItemLot_Map") ? int.Parse(itemLotSection["LootPerItemLot_Map"]) : 1;
-            LootPerItemLot_Bosses = itemLotSection.ContainsKey("LootPerItemLot_Bosses") ? int.Parse(itemLotSection["LootPerItemLot_Bosses"]) : 1;
+            ItemLotsPerBaseMapLot = itemLotSection.ContainsKey("ItemLotsPerBaseMapLot") && int.TryParse(itemLotSection["ItemLotsPerBaseMapLot"], out int val) ? val : 1;
+            ItemLotsPerBaseEnemyLot = itemLotSection.ContainsKey("ItemLotsPerBaseEnemyLot") && int.TryParse(itemLotSection["ItemLotsPerBaseEnemyLot"], out val) ? val : 1;
+            ItemLotsPerBossLot = itemLotSection.ContainsKey("ItemLotsPerBossLot") && int.TryParse(itemLotSection["ItemLotsPerBossLot"], out val) ? val : 2;
+            LootPerItemLot_Enemy = itemLotSection.ContainsKey("LootPerItemLot_Enemy") && int.TryParse(itemLotSection["LootPerItemLot_Enemy"], out val) ? val : 4;
+            LootPerItemLot_Map = itemLotSection.ContainsKey("LootPerItemLot_Map") && int.TryParse(itemLotSection["LootPerItemLot_Map"], out val) ? val : 1;
+            LootPerItemLot_Bosses = itemLotSection.ContainsKey("LootPerItemLot_Bosses") && int.TryParse(itemLotSection["LootPerItemLot_Bosses"], out val) ? val : 1;
 
             ChestLootScannerSettings = new ScannerSettings();
             ChestLootScannerSettings.Initialize(data, section);
@@ -51,14 +51,12 @@ public class ItemLotGeneratorSettings
             EnemyLootScannerSettings = new ScannerSettings();
             EnemyLootScannerSettings.Initialize(data, section);
 
-            ChaosLootEnabled = itemLotSection.ContainsKey("ChaosLootEnabled") && bool.Parse(itemLotSection["ChaosLootEnabled"]);
-            GlobalDropChance = itemLotSection.ContainsKey("GlobalDropChance") ? int.Parse(itemLotSection["GlobalDropChance"]) : 4;
-            AllLootGauranteed = itemLotSection.ContainsKey("AllLootGauranteed") && bool.Parse(itemLotSection["AllLootGauranteed"]);
+            ChaosLootEnabled = itemLotSection.ContainsKey("ChaosLootEnabled") && bool.TryParse(itemLotSection["ChaosLootEnabled"], out bool boolVal) && boolVal;
+            GlobalDropChance = itemLotSection.ContainsKey("GlobalDropChance") && int.TryParse(itemLotSection["GlobalDropChance"], out val) ? val : 4;
+            AllLootGauranteed = itemLotSection.ContainsKey("AllLootGauranteed") && bool.TryParse(itemLotSection["AllLootGauranteed"], out boolVal) && boolVal;
         }
     }
 }
-
-
 
 public class ScannerSettings
 {
@@ -72,8 +70,8 @@ public class ScannerSettings
         if (data.Sections.ContainsSection(section))
         {
             var scannerSection = data[section];
-            Enabled = scannerSection.ContainsKey("Enabled") && bool.Parse(scannerSection["Enabled"]);
-            ApplyPercent = scannerSection.ContainsKey("ApplyPercent") ? int.Parse(scannerSection["ApplyPercent"]) : 0;
+            Enabled = scannerSection.ContainsKey("Enabled") && bool.TryParse(scannerSection["Enabled"], out var boolVal) && boolVal;
+            ApplyPercent = scannerSection.ContainsKey("ApplyPercent") && int.TryParse(scannerSection["ApplyPercent"], out var val) ? val : 0;
         }
     }
 }

@@ -16,8 +16,8 @@ public class ArmorGeneratorSettings
         {
             var armorSection = data[section];
             CutRateDescriptionTemplate = armorSection.ContainsKey("CutRateDescriptionTemplate") ? armorSection["CutRateDescriptionTemplate"] : string.Empty;
-            ResistParamBuffCount = armorSection.ContainsKey("ResistParamBuffCount") ? int.Parse(armorSection["ResistParamBuffCount"]) : 3;
-            CutRateParamBuffCount = armorSection.ContainsKey("CutRateParamBuffCount") ? int.Parse(armorSection["CutRateParamBuffCount"]) : 3;
+            ResistParamBuffCount = armorSection.ContainsKey("ResistParamBuffCount") && int.TryParse(armorSection["ResistParamBuffCount"], out int val) ? val : 3;
+            CutRateParamBuffCount = armorSection.ContainsKey("CutRateParamBuffCount") && int.TryParse(armorSection["CutRateParamBuffCount"], out val) ? val : 3;
         }
     }
 }

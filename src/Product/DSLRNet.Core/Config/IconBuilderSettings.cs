@@ -22,7 +22,7 @@ public class IconBuilderSettings
         if (data.Sections.ContainsSection(section))
         {
             var iconBuilderSection = data[section];
-            RegenerateIconSheets = iconBuilderSection.ContainsKey("RegenerateIconSheets") && bool.Parse(iconBuilderSection["RegenerateIconSheets"]);
+            RegenerateIconSheets = iconBuilderSection.ContainsKey("RegenerateIconSheets") && bool.TryParse(iconBuilderSection["RegenerateIconSheets"], out var boolVal) && boolVal;
 
             IconSheetSettings = new IconSheetSettings();
             IconSheetSettings.Initialize(data);
@@ -45,8 +45,8 @@ public class IconSheetSettings
         if (data.Sections.ContainsSection(section))
         {
             var iconSheetSection = data[section];
-            GoalIconsPerSheet = iconSheetSection.ContainsKey("GoalIconsPerSheet") ? int.Parse(iconSheetSection["GoalIconsPerSheet"]) : 0;
-            StartAt = iconSheetSection.ContainsKey("StartAt") ? int.Parse(iconSheetSection["StartAt"]) : 0;
+            GoalIconsPerSheet = iconSheetSection.ContainsKey("GoalIconsPerSheet") && int.TryParse(iconSheetSection["GoalIconsPerSheet"], out int val) ? val : 300;
+            StartAt = iconSheetSection.ContainsKey("StartAt") && int.TryParse(iconSheetSection["StartAt"], out val) ? val : 0;
 
             IconDimensions = new IconDimensions();
             IconDimensions.Initialize(data);
@@ -60,7 +60,18 @@ public class IconSheetSettings
                     var rarity = new RarityIconDetails
                     {
                         Name = data[raritySection].ContainsKey("Name") ? data[raritySection]["Name"] : string.Empty,
-                        RarityIds = data[raritySection].ContainsKey("RarityIds") ? data[raritySection]["RarityIds"].Split(',').Select(int.Parse).ToList() : new List<int>(),
+                        RarityIds = data[raritySection].ContainsKey("RarityIds") ? data[raritySection]["RarityIds"]
+                            .Split(',')
+                            .Select(d => 
+                            {
+                                if (!int.TryParse(d, out int rarityId))
+                                {
+                                    rarityId = 0;
+                                }
+
+                                return rarityId;
+                            })
+                            .ToList() : [],
                         BackgroundImageName = data[raritySection].ContainsKey("BackgroundImageName") ? data[raritySection]["BackgroundImageName"] : string.Empty
                     };
                     Rarities.Add(rarity);
@@ -82,8 +93,8 @@ public class IconDimensions
         if (data.Sections.ContainsSection(section))
         {
             var iconDimSection = data[section];
-            IconSize = iconDimSection.ContainsKey("IconSize") ? int.Parse(iconDimSection["IconSize"]) : 0;
-            Padding = iconDimSection.ContainsKey("Padding") ? int.Parse(iconDimSection["Padding"]) : 0;
+            IconSize = iconDimSection.ContainsKey("IconSize") && int.TryParse(iconDimSection["IconSize"], out var val) ? val : 0;
+            Padding = iconDimSection.ContainsKey("Padding") && int.TryParse(iconDimSection["Padding"], out val) ? val : 0;
         }
     }
 }

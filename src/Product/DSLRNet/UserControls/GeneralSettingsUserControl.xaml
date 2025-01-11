@@ -28,10 +28,11 @@
                 <TextBlock Text="Random Seed" Margin="0,10,0,5"/>
                 <TextBox Text="{Binding RandomSeed, Mode=TwoWay}" PreviewTextInput="NumberValidationTextBox" />
 
-                <StackPanel Orientation="Horizontal" Margin="0,10">
-                    <CheckBox Content="Limit smithing stone upgrade cost to 1 stone" IsChecked="{Binding RestrictSmithingStoneCost}" />
+                <StackPanel Margin="0,10,0,0">
+                    <CheckBox Content="Limit smithing stone upgrade cost" IsChecked="{Binding RestrictSmithingStoneCost}" />
+                    <local:SliderWithTextUserControl Minimum="0" Maximum="6" Value="{Binding MaxSmithingStoneCost, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" IsEnabled="{Binding RestrictSmithingStoneCost}"/>
                 </StackPanel>
-                <TextBlock Text="(Highly Recommended due to sheer number of weapons)" Margin="0,10,0,5"/>
+                <TextBlock Text="(Highly Recommended due to sheer number of weapons)"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <TextBlock Margin="0,0,0,20" Text="For users with multiple mod directories that have msg, menu and regulation files changed in different folders.  Use the Parse ModEngine toml button on config_eldenring.toml file typically included with a ModEngine setup to automatically include all mod directories in order." TextWrapping="Wrap"/>

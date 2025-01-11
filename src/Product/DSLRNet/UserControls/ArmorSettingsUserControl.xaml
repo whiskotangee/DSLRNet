@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DSLRNet.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <GroupBox Header="ArmorSettings">
+    <GroupBox Header="Armor Settings">
         <Grid>
             <StackPanel Margin="5">
                 <TextBlock Text="Number of resistance stats to include rarity based buffs for" Margin="0,0,0,10"/>

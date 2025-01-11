@@ -13,7 +13,6 @@ using System.Windows.Data;
 using System.Windows;
 using System.Windows.Media;
 using System.Diagnostics;
-using SixLabors.ImageSharp.PixelFormats;
 using ImageMagick;
 
 public class MainWindowViewModel : INotifyPropertyChanged
@@ -206,7 +205,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
         {
             isRunning = value;
             OnPropertyChanged();
-            SelectedTabIndex = value ? 3 : hasRun ? 3 : 0;
+            SelectedTabIndex = value ? 4 : hasRun ? 4 : 0;
         }
     }
 

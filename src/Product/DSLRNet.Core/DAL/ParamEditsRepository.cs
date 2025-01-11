@@ -121,7 +121,7 @@ public class ParamEditsRepository(
     {
         if (paramEdit.ParamObject != null && this.ContainsParamEdit(paramEdit.ParamName, paramEdit.ParamObject.ID))
         {
-            throw new Exception($"Attempting to add param {paramEdit.ParamName} edit with Id {paramEdit.ParamObject.ID} that already exists");
+            logger.LogError($"Attempting to add param {paramEdit.ParamName} edit with Id {paramEdit.ParamObject.ID} that already exists");
         }
 
         if (progressTracker != null)

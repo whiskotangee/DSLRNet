@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Core.DAL;
 using IniParser;
+using IniParser.Model;
 
 public enum GameStage { Early, Mid, Late, End }
 
@@ -33,9 +34,9 @@ public class ItemLotSettings
         setup.Save(file);
     }
 
-    public static ItemLotSettings Create(string file, Category category)
+    public static ItemLotSettings Create(ILogger logger, string file, Category category)
     {
-        DslItemLotSetup? setup = DslItemLotSetup.Create(file) ?? throw new Exception($"Could not load ini file from {file}");
+        DslItemLotSetup? setup = DslItemLotSetup.Create(logger, file) ?? throw new Exception($"Could not load ini file from {file}");
         ItemLotSettings? obj = JsonConvert.DeserializeObject<ItemLotSettings>(JsonConvert.SerializeObject(setup)) ?? throw new Exception($"Could not deserialize item lot settings file {file}");
 
         obj.GameStageConfigs = [];
@@ -126,38 +127,41 @@ public enum ItemLotCategory
 
 class DslItemLotSetup
 {
-    public static DslItemLotSetup? Create(string file)
-    {
-        FileIniDataParser iniParser = new();
-        IniParser.Model.IniData data = iniParser.ReadFile(file);
 
+    public static DslItemLotSetup? Create(ILogger logger, string file)
+    {
         try
         {
+            FileIniDataParser iniParser = new();
+            IniData data = iniParser.ReadFile(file);
+
             return new DslItemLotSetup
             {
-                Id = int.Parse(data["dslitemlotsetup"]["id"]),
-                Realname = data["dslitemlotsetup"]["realname"],
-                Enabled = int.Parse(data["dslitemlotsetup"]["enabled"]),
-                ItemLotIdsEarly = ParseList(data["dslitemlotsetup"]["itemlotids_early"]),
-                ItemLotIdsMid = ParseList(data["dslitemlotsetup"]["itemlotids_mid"]),
-                ItemLotIdsLate = ParseList(data["dslitemlotsetup"]["itemlotids_late"]),
-                ItemLotIdsEnd = ParseList(data["dslitemlotsetup"]["itemlotids_end"]),
-                AllowedRaritiesEarly = ParseList(data["dslitemlotsetup"]["allowedrarities_early"]),
-                AllowedRaritiesMid = ParseList(data["dslitemlotsetup"]["allowedrarities_mid"]),
-                AllowedRaritiesLate = ParseList(data["dslitemlotsetup"]["allowedrarities_late"]),
-                AllowedRaritiesEnd = ParseList(data["dslitemlotsetup"]["allowedrarities_end"]),
-                GuaranteedDrop = int.Parse(data["dslitemlotsetup"]["guaranteeddrop"]),
-                LootTypeWeights = ParseList(data["dslitemlotsetup"]["loottypeweights"]),
-                WeaponTypeWeights = ParseList(data["dslitemlotsetup"]["weapontypeweights"]),
-                DropChanceMultiplier = float.Parse(data["dslitemlotsetup"]["dropchancemultiplier"]),
-                IsForBosses = bool.Parse(data["dslitemlotsetup"]["isforbosses"])
+                Id = data["dslitemlotsetup"].ContainsKey("id") && int.TryParse(data["dslitemlotsetup"]["id"], out var id) ? id : 1111,
+                Realname = data["dslitemlotsetup"].ContainsKey("realname") ? data["dslitemlotsetup"]["realname"] : string.Empty,
+                Enabled = data["dslitemlotsetup"].ContainsKey("enabled") && int.TryParse(data["dslitemlotsetup"]["enabled"], out var enabled) ? enabled : 1,
+                ItemLotIdsEarly = data["dslitemlotsetup"].ContainsKey("itemlotids_early") ? ParseList(data["dslitemlotsetup"]["itemlotids_early"]) : [],
+                ItemLotIdsMid = data["dslitemlotsetup"].ContainsKey("itemlotids_mid") ? ParseList(data["dslitemlotsetup"]["itemlotids_mid"]) : [],
+                ItemLotIdsLate = data["dslitemlotsetup"].ContainsKey("itemlotids_late") ? ParseList(data["dslitemlotsetup"]["itemlotids_late"]) : [],
+                ItemLotIdsEnd = data["dslitemlotsetup"].ContainsKey("itemlotids_end") ? ParseList(data["dslitemlotsetup"]["itemlotids_end"]) : [],
+                AllowedRaritiesEarly = data["dslitemlotsetup"].ContainsKey("allowedrarities_early") ? ParseList(data["dslitemlotsetup"]["allowedrarities_early"]) : [0,3],
+                AllowedRaritiesMid = data["dslitemlotsetup"].ContainsKey("allowedrarities_mid") ? ParseList(data["dslitemlotsetup"]["allowedrarities_mid"]) : [4,6],
+                AllowedRaritiesLate = data["dslitemlotsetup"].ContainsKey("allowedrarities_late") ? ParseList(data["dslitemlotsetup"]["allowedrarities_late"]) : [7,9],
+                AllowedRaritiesEnd = data["dslitemlotsetup"].ContainsKey("allowedrarities_end") ? ParseList(data["dslitemlotsetup"]["allowedrarities_end"]) : [8,10],
+                GuaranteedDrop = data["dslitemlotsetup"].ContainsKey("guaranteeddrop") && int.TryParse(data["dslitemlotsetup"]["guaranteeddrop"], out var guaranteedDrop) ? guaranteedDrop : 0,
+                LootTypeWeights = data["dslitemlotsetup"].ContainsKey("loottypeweights") ? ParseList(data["dslitemlotsetup"]["loottypeweights"]) : [100, 80, 20],
+                WeaponTypeWeights = data["dslitemlotsetup"].ContainsKey("weapontypeweights") ? ParseList(data["dslitemlotsetup"]["weapontypeweights"]) : [110, 20, 30, 40],
+                DropChanceMultiplier = data["dslitemlotsetup"].ContainsKey("dropchancemultiplier") && float.TryParse(data["dslitemlotsetup"]["dropchancemultiplier"], NumberStyles.Any, CultureInfo.InvariantCulture, out var dropChanceMultiplier) ? dropChanceMultiplier : 1.0f,
+                IsForBosses = data["dslitemlotsetup"].ContainsKey("isforbosses") && bool.TryParse(data["dslitemlotsetup"]["isforbosses"], out var isForBosses) && isForBosses
             };
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            logger.LogError($"Failed to parse itemlot ini definition file {file}: {ex}");
             return null;
         }
     }
+
     public void Save(string file)
     {
         if (string.IsNullOrEmpty(file))

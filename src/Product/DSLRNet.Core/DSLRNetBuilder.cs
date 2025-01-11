@@ -28,12 +28,12 @@ public class DSLRNetBuilder(
         Directory.CreateDirectory(this.settings.DeployPath);
 
         List<ItemLotSettings> enemyOverrides = Directory.GetFiles("Assets\\Data\\ItemLots\\EnemiesOverrides", "*.ini", SearchOption.AllDirectories)
-            .Select(s => ItemLotSettings.Create(s, this.configuration.Itemlots.Categories[0]))
+            .Select(s => ItemLotSettings.Create(logger, s, this.configuration.Itemlots.Categories[0]))
             .Where(s => s != null)
             .ToList();
 
         List<ItemLotSettings> mapOverrides = Directory.GetFiles("Assets\\Data\\ItemLots\\MapsOverrides", "*.ini", SearchOption.AllDirectories)
-            .Select(s => ItemLotSettings.Create(s, this.configuration.Itemlots.Categories[1]))
+            .Select(s => ItemLotSettings.Create(logger, s, this.configuration.Itemlots.Categories[1]))
             .Where(s => s != null)
             .ToList();
 

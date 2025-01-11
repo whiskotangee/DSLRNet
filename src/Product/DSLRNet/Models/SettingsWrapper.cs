@@ -82,6 +82,19 @@ public class SettingsWrapper : BaseModel<Settings>
         }
     }
 
+    public int MaxSmithingStoneCost
+    {
+        get => _settings.MaxSmithingStoneCost;
+        set
+        {
+            if (_settings.MaxSmithingStoneCost != value)
+            {
+                _settings.MaxSmithingStoneCost = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public ObservableCollection<string> ModPaths { get; set; }
 
     public List<string> MessageFileNames

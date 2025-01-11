@@ -24,6 +24,7 @@ public static class IServiceCollectionExtensions
                     c.IconBuilderSettings = settings.IconBuilderSettings;
                     c.OrderedModPaths = settings.OrderedModPaths;
                     c.RestrictSmithingStoneCost = settings.RestrictSmithingStoneCost;
+                    c.MaxSmithingStoneCost = settings.MaxSmithingStoneCost;
                 });
 
         // Services

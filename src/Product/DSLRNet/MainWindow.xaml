@@ -8,7 +8,7 @@
         xmlns:viewModels="clr-namespace:DSLRNet.ViewModels"
         xmlns:behaviors="clr-namespace:DSLRNet.Behaviors"
         mc:Ignorable="d"
-        Title="Diablo Style Loot (Remade) For Elden Ring"
+        Title="Diablo Style Loot (Rewritten) For Elden Ring"
         Height="960"
         Width="1000"
         Icon="{StaticResource DSLRIcon}">
@@ -46,15 +46,21 @@
                         </StackPanel>
                     </ScrollViewer>
                 </metro:MetroTabItem>
-                <metro:MetroTabItem Header="Loot Generation Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                <metro:MetroTabItem Header="Weapon Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
                     <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <dslrusercontrols:WeaponSettingsUserControl DataContext="{Binding Settings.WeaponGeneratorSettings}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </metro:MetroTabItem>
+                <metro:MetroTabItem Header="Armor Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                    <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
                             <dslrusercontrols:ArmorSettingsUserControl DataContext="{Binding Settings.ArmorGeneratorSettings}"/>
                         </StackPanel>
                     </ScrollViewer>
                 </metro:MetroTabItem>
-                <metro:MetroTabItem Header="Icon Builder Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+                <metro:MetroTabItem Header="Icon Options" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}">
                     <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
                         <dslrusercontrols:IconBuilderUserControl DataContext="{Binding Settings.IconBuilderSettings}" />
                     </ScrollViewer>

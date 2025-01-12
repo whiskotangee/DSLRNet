@@ -68,8 +68,13 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         {
             // 42300 allows scaling from all sources (STR,DEX,INT,FTH,ARC)
             newWeapon.attackElementCorrectId = 42300;
+
             // 0 is for weapon without affinity (heavy, keen, etc) upgrade path
             newWeapon.reinforceTypeId = 0;
+
+            // Regular smithing stone upgrades
+            newWeapon.materialSetId = 0;
+
             this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
 

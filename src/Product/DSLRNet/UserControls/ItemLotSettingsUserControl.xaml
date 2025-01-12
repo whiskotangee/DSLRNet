@@ -15,15 +15,8 @@
         <!-- Left half for general settings -->
 
         <StackPanel Grid.Column="0">
-            <GroupBox Header="Item Drops">
+            <GroupBox Header="General">
                 <StackPanel  Margin="5">
-                    <TextBlock Text="Global drop chance for items dropped by enemies (excluding bosses). (1-100%)" />
-                    <local:SliderWithTextUserControl Minimum="5" Maximum="100" Value="{Binding GlobalDropChance, Mode=TwoWay}" 
-                                                     IsPercentile="True"
-                                                     TickFrequency="1" 
-                                                     IsSnapToTickEnabled="True" 
-                                                     IsEnabled="{Binding AllLootGauranteed, Converter={StaticResource InverseBooleanConverter}}" />
-
                     <StackPanel Margin="0,0,0,10">
                         <CheckBox Content="Chaos Loot Enabled" IsChecked="{Binding ChaosLootEnabled, Mode=TwoWay}" />
                         <TextBlock Text="Enable or disable chaos loot. Any rarity of any type can drop anywhere." Margin="0,5,0,5"/>
@@ -32,47 +25,11 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Item Lots">
-                <StackPanel Margin="5">
-                    <TextBlock Text="Drops Per Map Pickup" Margin="0,5,0,5"/>
-                    <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBaseMapLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
-
-                    <TextBlock Text="Drops Per Boss" Margin="0,5,0,5"/>
-                    <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBossLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
-
-                    <TextBlock Text="Drop chances per enemy (Number of consecutive item lots)" Margin="0,5,0,5"/>
-                    <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBaseEnemyLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
-                    
-                    <TextBlock Text="Number of loot options per drop lot for enemies" Margin="0,5,0,5"/>
-                    <local:SliderWithTextUserControl Minimum="1" Maximum="6" Value="{Binding LootPerItemLot_Enemy, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
-
-                </StackPanel>
-            </GroupBox>
-        </StackPanel>
-
-        <!-- Right half for scanner settings -->
-        <GroupBox Grid.Column="1" Header="Scanner Settings">
-            <StackPanel Margin="5">
+            <GroupBox Header="Map Pickups/Chests">
                 <StackPanel>
-
-                    <CheckBox Content="Chest Loot Enabled" IsChecked="{Binding ChestLootScannerSettings.Enabled, Mode=TwoWay}" />
-
-                    <TextBlock Text="Percentage of chests to generate loot for." Margin="0,5,0,5"/>
-                    <local:SliderWithTextUserControl 
-                        IsPercentile="True"
-                        DataContext="{Binding ChestLootScannerSettings}"
-                        Minimum="0" 
-                        Maximum="100" 
-                        Value="{Binding ApplyPercent, Mode=TwoWay}" 
-                        TickFrequency="1" 
-                        IsSnapToTickEnabled="True"
-                        IsEnabled="{Binding Enabled, Mode=OneWay}"/>
-                </StackPanel>
-
-                <StackPanel Margin="0,5">
                     <CheckBox Content="Map Loot Enabled" IsChecked="{Binding MapLootScannerSettings.Enabled, Mode=TwoWay}" />
 
-                    <TextBlock Text="Percentage of map pickups to generate loot for." Margin="0,5,0,5"/>
+                    <TextBlock Text="Percentage of map pickups that will drop loot." Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl 
                         IsPercentile="True"
                         DataContext="{Binding MapLootScannerSettings}"
@@ -81,25 +38,72 @@
                         Value="{Binding ApplyPercent, Mode=TwoWay}" 
                         TickFrequency="1" 
                         IsSnapToTickEnabled="True"
-                        IsEnabled="{Binding Enabled, Mode=OneWay}"/>
-                </StackPanel>
+                        IsEnabled="{Binding Enabled, Mode=OneWay}" Margin="0,0,0,10"/>
 
-                <StackPanel>
-                    <CheckBox Content="Enemy Drops Enabled" IsChecked="{Binding EnemyLootScannerSettings.Enabled, Mode=TwoWay}" />
+                    <CheckBox Content="Chest Loot Enabled" IsChecked="{Binding ChestLootScannerSettings.Enabled, Mode=TwoWay}" />
 
-                    <TextBlock Text="Percentage of enemies to generate loot for." Margin="0,5,0,5"/>
+                    <TextBlock Text="Percentage of chests that will drop loot." Margin="0,5,0,5"/>
                     <local:SliderWithTextUserControl 
                         IsPercentile="True"
-                        DataContext="{Binding EnemyLootScannerSettings}"
+                        DataContext="{Binding ChestLootScannerSettings}"
                         Minimum="0" 
                         Maximum="100" 
                         Value="{Binding ApplyPercent, Mode=TwoWay}" 
                         TickFrequency="1" 
                         IsSnapToTickEnabled="True"
-                        IsEnabled="{Binding Enabled, Mode=OneWay}"/>
+                        IsEnabled="{Binding Enabled, Mode=OneWay}" Margin="0,0,0,10"/>
+                    <TextBlock Text="Drops Per Map/Chest Pickup" Margin="0,5,0,5"/>
+                    <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBaseMapLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" Margin="0,0,0,10"/>
                 </StackPanel>
-            </StackPanel>
-        </GroupBox>
+
+            </GroupBox>
+
+        </StackPanel>
+
+        <!-- Right half for scanner settings -->
+        <StackPanel Grid.Column="1">
+            <GroupBox Header="Enemies">
+                <StackPanel>
+
+                    <CheckBox Content="Drops Enabled" IsChecked="{Binding EnemyLootScannerSettings.Enabled, Mode=TwoWay}" />
+
+                    <TextBlock Text="Percentage of enemies that will drop loot." Margin="0,5,0,5"/>
+                    <local:SliderWithTextUserControl 
+                            IsPercentile="True"
+                            DataContext="{Binding EnemyLootScannerSettings}"
+                            Minimum="0" 
+                            Maximum="100" 
+                            Value="{Binding ApplyPercent, Mode=TwoWay}" 
+                            TickFrequency="1" 
+                            IsSnapToTickEnabled="True"
+                            IsEnabled="{Binding Enabled, Mode=OneWay}"
+                        Margin="0,0,0,10"/>
+                    
+                    <TextBlock Text="Drop chance per Item Lot" />
+                    <local:SliderWithTextUserControl Minimum="5" Maximum="100" Value="{Binding GlobalDropChance, Mode=TwoWay}" 
+                                                     IsPercentile="True"
+                                                     TickFrequency="1" 
+                                                     IsSnapToTickEnabled="True" 
+                                                     IsEnabled="{Binding AllLootGauranteed, Converter={StaticResource InverseBooleanConverter}}" 
+                                                     Margin="0,0,0,10"/>
+                    <TextBlock Text="Number of item lots per enemy" Margin="0,5,0,5"/>
+                    <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBaseEnemyLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                     Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Number of possible items per item lot" Margin="0,5,0,5"/>
+                    <local:SliderWithTextUserControl Minimum="1" Maximum="6" Value="{Binding LootPerItemLot_Enemy, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                                     Margin="0,0,0,10"/>
+
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Bosses">
+                <StackPanel>
+                    <TextBlock Text="Item Drops Per Boss" Margin="0,5,0,5"/>
+                    <local:SliderWithTextUserControl Minimum="0" Maximum="5" Value="{Binding ItemLotsPerBossLot, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
     </Grid>
 </UserControl>
 

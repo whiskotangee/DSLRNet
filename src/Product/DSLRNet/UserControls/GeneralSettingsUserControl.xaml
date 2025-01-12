@@ -35,7 +35,7 @@
                 <TextBlock Text="(Highly Recommended due to sheer number of weapons)"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <TextBlock Margin="0,0,0,20" Text="For users with multiple mod directories that have msg, menu and regulation files changed in different folders.  Use the Parse ModEngine toml button on config_eldenring.toml file typically included with a ModEngine setup to automatically include all mod directories in order." TextWrapping="Wrap"/>
+                <TextBlock Margin="5,10" Text="For users with multiple mod directories that have msg, menu and regulation files changed in different folders.  Use the Parse ModEngine toml button to load the config_eldenring.toml file typically included with a ModEngine setup. This will automatically include all mod directories in order and this app will generate loot based on the file it finds based on the priority loaded here." TextWrapping="Wrap"/>
                 <StackPanel>
                     <Grid>
                         <Grid.RowDefinitions>

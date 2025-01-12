@@ -72,11 +72,11 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             // 0 is for weapon without affinity (heavy, keen, etc) upgrade path
             newWeapon.reinforceTypeId = 0;
 
-            // Regular smithing stone upgrades
-            newWeapon.materialSetId = 0;
-
             this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
+
+        // Regular smithing stone upgrades
+        newWeapon.materialSetId = 0;
 
         newWeapon.gemMountType = (byte)(weaponType == WeaponTypes.StaffsSeals ? 0 : 2);
         newWeapon.disableGemAttr = 1;

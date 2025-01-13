@@ -47,7 +47,7 @@ public class UpgradeCostHandler(
 
                 GeneratedDataRepository.AddParamEdit(new ParamEdit
                 {
-                    ParamObject = materialCostParam.GenericParam,
+                    ParamObject = newCostParam.GenericParam,
                     ParamName = ParamNames.EquipMtrlSetParam,
                     Operation = ParamOperation.Create
                 });

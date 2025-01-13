@@ -14,7 +14,7 @@ public class DSLRNetBuilder(
     ParamEditsRepository dataRepository,
     ScannedItemLotLoader scannedItemLotLoader,
     FileSourceHandler fileSourceHandler,
-    SmithingStoneCostHandler smithingStoneCostHandler,
+    UpgradeCostHandler smithingStoneCostHandler,
     Csv csv,
     IOperationProgressTracker progressTracker)
 {
@@ -60,7 +60,7 @@ public class DSLRNetBuilder(
 
         dataRepository.VerifyItemLots();
 
-        smithingStoneCostHandler.ReduceSmithingStoneCostIfEnabled();
+        smithingStoneCostHandler.ModifyCostOfUpgrades();
 
         progressTracker.OverallProgress += 1;
     }

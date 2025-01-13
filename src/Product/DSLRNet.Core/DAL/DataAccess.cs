@@ -39,7 +39,7 @@ public class DataAccess
         DamageTypeSetup = CreateDataSource<DamageTypeSetup>(DataSourceNames.DamageTypeSetup);
         TalismanConfig = CreateDataSource<TalismanConfig>(DataSourceNames.TalismanConfig);
         SpEffectConfig = CreateDataSource<SpEffectConfig>(DataSourceNames.SpEffectConfig);
-        
+        ReinforceParamWeapon = CreateDataSource<ReinforceParamWeapon>(DataSourceNames.ReinforceParamWeapon);
     }
 
     public IDataSource<EquipParamWeapon> EquipParamWeapon { get; }
@@ -60,6 +60,8 @@ public class DataAccess
     public IDataSource<SpEffectConfig> SpEffectConfig { get; }
 
     public IDataSource<EquipMtrlSetParam> EquipMtrlSetParam { get; }
+
+    public IDataSource<ReinforceParamWeapon> ReinforceParamWeapon { get; }
 
     public async Task InitializeDataSourcesAsync()
     {
@@ -84,7 +86,8 @@ public class DataAccess
             TalismanConfig.InitializeDataAsync(),
             SpEffectConfig.InitializeDataAsync(),
             GameAreaParam.InitializeDataAsync(),
-            EquipMtrlSetParam.InitializeDataAsync()
+            EquipMtrlSetParam.InitializeDataAsync(),
+            ReinforceParamWeapon.InitializeDataAsync()
         ];
 
         await Task.WhenAll(tasks);

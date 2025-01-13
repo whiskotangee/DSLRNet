@@ -11,5 +11,6 @@ public enum ParamNames
     NpcParam,
     ItemLotParam_enemy,
     ItemLotParam_map,
+    ReinforceParamWeapon,
     TextOnly
 }

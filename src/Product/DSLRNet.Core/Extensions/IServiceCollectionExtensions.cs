@@ -50,7 +50,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<RegulationBinBank>()
                 .AddSingleton<DataSourceFactory>()
                 .AddSingleton<FileSourceHandler>()
-                .AddSingleton<SmithingStoneCostHandler>()
+                .AddSingleton<UpgradeCostHandler>()
                 .AddSingleton(sp => LoreConfig.LoadConfig())
                 .AddSingleton((sp) => progressTracker ?? new DefaultProgressTracker())
                 .AddSingleton((sp) =>

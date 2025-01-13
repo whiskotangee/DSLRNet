@@ -75,8 +75,8 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             this.ashofWarHandler.AssignAshOfWar(newWeapon);
         }
 
-        // Regular smithing stone upgrades
-        newWeapon.materialSetId = 0;
+        // DSLR special upgrades path
+        newWeapon.materialSetId = Settings.EquipMtrlParamStartId;
 
         newWeapon.gemMountType = (byte)(weaponType == WeaponTypes.StaffsSeals ? 0 : 2);
         newWeapon.disableGemAttr = 1;

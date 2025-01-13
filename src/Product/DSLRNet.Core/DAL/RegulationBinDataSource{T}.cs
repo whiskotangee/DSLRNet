@@ -96,6 +96,10 @@ public class RegulationBinDataSource<T>(
                         string[] range = valueString.Split("..");
                         filteredData = filteredData.Where(d => !Enumerable.Range(Convert.ToInt32(range[0]), Convert.ToInt32(range[1]) - Convert.ToInt32(range[0])).ToList().Contains(d.GetValue<int>(filter.Field)));
                         break;
+                    case FilterOperator.InRange:
+                        string[] inRange = valueString.Split("..");
+                        filteredData = filteredData.Where(d => Enumerable.Range(Convert.ToInt32(inRange[0]), Convert.ToInt32(inRange[1]) - Convert.ToInt32(inRange[0])).ToList().Contains(d.GetValue<int>(filter.Field)));
+                        break;
                 }
             }
 

@@ -14,6 +14,7 @@ public enum FilterOperator
     LessThan, 
     StartsWith, 
     EndsWith,
-    NotInRange
+    NotInRange,
+    InRange
 }
 

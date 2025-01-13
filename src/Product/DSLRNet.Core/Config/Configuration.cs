@@ -34,6 +34,7 @@ public enum DataSourceNames
     ItemLotParam_enemy,
     ItemLotParam_map,
     GameAreaParam,
+    ReinforceParamWeapon,
     // config setups
     RaritySetup,
     ItemLotBase,

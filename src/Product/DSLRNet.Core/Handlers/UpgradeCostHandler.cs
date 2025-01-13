@@ -43,7 +43,7 @@ public class UpgradeCostHandler(
                 var newCostParam = materialCostParam.Clone();
                 newCostParam.ID += settings.Value.EquipMtrlParamStartId;
 
-                newCostParam.itemNum01 = Math.Min(materialCostParam.itemNum01, (sbyte)settings.Value.MaxSmithingStoneCost);
+                newCostParam.itemNum01 = Math.Min(newCostParam.itemNum01, (sbyte)settings.Value.MaxSmithingStoneCost);
 
                 GeneratedDataRepository.AddParamEdit(new ParamEdit
                 {

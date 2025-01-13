@@ -14,8 +14,13 @@ public class UpgradeCostHandler(
         {
             var newReinforceParam = reinforceParam.Clone();
             newReinforceParam.ID += settings.Value.EquipMtrlParamStartId;
-            // reduce the new weapon base attack increase by roughly 8% to make up for the scaling and balance things better.
-            newReinforceParam.baseAtkRate *= 0.50f;
+
+            // normalize the scaling to be equal
+            var baseAttackRate = newReinforceParam.correctStrengthRate;
+            newReinforceParam.correctAgilityRate = baseAttackRate;
+            newReinforceParam.correctFaithRate = baseAttackRate;
+            newReinforceParam.correctMagicRate = baseAttackRate;
+            newReinforceParam.correctLuckRate = baseAttackRate;
 
             GeneratedDataRepository.AddParamEdit(new ParamEdit
             {
@@ -36,7 +41,7 @@ public class UpgradeCostHandler(
                 // copy over 0-25 to 9000-9025
 
                 var newCostParam = materialCostParam.Clone();
-                newCostParam.ID += 9000;
+                newCostParam.ID += settings.Value.EquipMtrlParamStartId;
 
                 newCostParam.itemNum01 = Math.Min(materialCostParam.itemNum01, (sbyte)settings.Value.MaxSmithingStoneCost);
 

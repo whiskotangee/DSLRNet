@@ -46,7 +46,7 @@ public class Settings
 
     public int MaxSmithingStoneCost { get; set; } = 1;
 
-    public int EquipMtrlParamStartId { get; set; } = 9000;
+    public int EquipMtrlParamStartId { get; set; } = 40000;
 
     public ArmorGeneratorSettings ArmorGeneratorSettings { get; set; } = new ArmorGeneratorSettings();
 
@@ -146,7 +146,7 @@ public class Settings
         MessageFileNames = section.ContainsKey("MessageFileNames") ? [.. section["MessageFileNames"].Split(',')] : [];
         RestrictSmithingStoneCost = !section.ContainsKey("RestrictSmithingStoneCost") || !bool.TryParse(section["RestrictSmithingStoneCost"], out var boolVal) || boolVal;
         MaxSmithingStoneCost = section.ContainsKey("MaxSmithingStoneCost") && int.TryParse(section["MaxSmithingStoneCost"], out int maxCost) ? maxCost : 1;
-        EquipMtrlParamStartId = section.ContainsKey(nameof(EquipMtrlParamStartId)) && int.TryParse(section[nameof(EquipMtrlParamStartId)], out int startId) ? startId : 9000;
+        EquipMtrlParamStartId = section.ContainsKey(nameof(EquipMtrlParamStartId)) && int.TryParse(section[nameof(EquipMtrlParamStartId)], out int startId) ? startId : 40000;
 
         ItemLotGeneratorSettings = new ItemLotGeneratorSettings();
         ItemLotGeneratorSettings.Initialize(data);

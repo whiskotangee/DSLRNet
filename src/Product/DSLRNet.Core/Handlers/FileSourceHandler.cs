@@ -8,11 +8,6 @@ public class FileSourceHandler(IOptions<Settings> settings)
 {
     public bool TryGetFile(string fileName, [NotNullWhen(true)] out string fullPath)
     {
-        if (settings.Value.OrderedModPaths.Count == 0)
-        {
-            throw new InvalidOperationException("Mod paths not set");
-        }
-
         fullPath = string.Empty;
 
         foreach (string path in settings.Value.OrderedModPaths)
@@ -42,11 +37,6 @@ public class FileSourceHandler(IOptions<Settings> settings)
 
     public List<string> ListFilesFromAllModDirectories(string basePath, string filter)
     {
-        if (settings.Value.OrderedModPaths.Count == 0)
-        {
-            throw new InvalidOperationException("Mod paths not set");
-        }
-
         List<string> files = [];
         foreach (string path in settings.Value.OrderedModPaths)
         {

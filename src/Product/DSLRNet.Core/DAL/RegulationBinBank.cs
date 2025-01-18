@@ -137,7 +137,7 @@ public class RegulationBinBank
     {
         if (!fileHandler.TryGetFile("regulation.pre-dslr.bin", out string regBinPath))
         {
-            if (fileHandler.TryGetFile("regulation.bin", out regBinPath))
+            if (!fileHandler.TryGetFile("regulation.bin", out regBinPath))
             {
                 regBinPath = Path.Combine(this.settings.GamePath, "regulation.bin");
             }

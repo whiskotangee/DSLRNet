@@ -153,6 +153,24 @@ public partial class IconBuilder(
     {
         List<TextureAtlas> layoutAtlases = ReadLayoutFiles();
 
+        Regex iconMenuNameRegex = IconNameRegex();
+
+        int maxIconId = layoutAtlases
+            .SelectMany(s => 
+                s.SubTextures
+                    .Where(d => iconMenuNameRegex.Matches(d.Name).Count > 0)
+                    .Select(d => Path.GetFileNameWithoutExtension(d.Name)[(d.Name.LastIndexOf('_') + 1)..]))
+            .Max(d =>
+            {
+                return int.TryParse(d, out int res) ? res : -1;
+            });
+
+        if (maxIconId > settings.IconSheetSettings.StartAt)
+        {
+            logger.LogInformation($"Configured icon starting Id of {settings.IconSheetSettings.StartAt} is lower than max Id currently in use {maxIconId}, defaulting to {maxIconId + 1}");
+            settings.IconSheetSettings.StartAt = maxIconId;
+        }
+
         RarityIconMappingConfig sheetConfig = new()
         { 
             IconSheets = []
@@ -338,7 +356,8 @@ public partial class IconBuilder(
 
         foreach (TextureAtlas atlas in textureAtlas)
         {
-            matchingSubTexture = atlas.SubTextures.SingleOrDefault(d => Path.GetFileNameWithoutExtension(d.Name).EndsWith(iconId.ToString("D5")));
+            // This should be SingleOrDefault, but if this is run on top of other mods that aren't nice with the icon ids then multiple results can be found
+            matchingSubTexture = atlas.SubTextures.FirstOrDefault(d => Path.GetFileNameWithoutExtension(d.Name).EndsWith(iconId.ToString("D5")));
 
             if (matchingSubTexture != null)
             {
@@ -349,7 +368,7 @@ public partial class IconBuilder(
 
         if (matchingAtlas == null || matchingSubTexture == null)
         {
-            throw new Exception("Could not find icon based on icon Id in known texture atlases");
+            throw new Exception($"Could not find icon based on icon Id {iconId} in known texture atlases");
         }
 
         Image<Bgra32> originalIcon = loadedDDSImageCache.GetOrAdd(iconId.ToString(), (n) =>
@@ -504,4 +523,7 @@ public partial class IconBuilder(
 
     [GeneratedRegex(@"(\d+)\.dds$")]
     private static partial Regex MyRegex();
+
+    [GeneratedRegex("MENU_ItemIcon_(\\d+)[^\\d+]")]
+    private static partial Regex IconNameRegex();
 }

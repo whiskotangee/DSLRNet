@@ -138,7 +138,7 @@ public class ScannedItemLotLoader(
             NpcParam? existingNpcParam = dataAccess.NpcParam.GetItemById(npcEvaluation.NpcID);
             int originalItemLotId = existingNpcParam.itemLotId_enemy;
 
-            if (existingNpcParam == null || !random.PassesPercentCheck(this.settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))
+            if (existingNpcParam == null || existingNpcParam.itemLotId_enemy <= 0 || !random.PassesPercentCheck(this.settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))
             {
                 continue;
             }

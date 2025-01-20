@@ -63,30 +63,35 @@ public class ScannedItemLotLoader(
             settings.ItemLotGeneratorSettings.ChestLootScannerSettings,
             claimedIds[ItemLotCategory.ItemLot_Map]);
 
-        ItemLotSettings? enemiesWithNewItemLots = CreateForEnemiesRequiringNewItemLotIds(claimedIds[ItemLotCategory.ItemLot_Enemy]);
+        ItemLotSettings? enemiesWithNewItemLots = CreateForEnemiesRequiringNewItemLotIds();
 
         if (enemies != null)
         {
+            logger.LogInformation($"Loaded {enemies.GameStageConfigs.Sum(d => d.Value.ItemLotIds.Count)} enemy item lots");
             generatedItemLotSettings[ItemLotCategory.ItemLot_Enemy].Add(enemies);
         }
 
         if (enemiesWithNewItemLots != null)
         {
+            logger.LogInformation($"Loaded {enemiesWithNewItemLots.GameStageConfigs.Sum(d => d.Value.ItemLotIds.Count)} enemy item lots requiring new item lots");
             generatedItemLotSettings[ItemLotCategory.ItemLot_Enemy].Add(enemiesWithNewItemLots);
         }
 
         if (chests != null)
         {
+            logger.LogInformation($"Loaded {chests.GameStageConfigs.Sum(d => d.Value.ItemLotIds.Count)} chest item lots");
             generatedItemLotSettings[ItemLotCategory.ItemLot_Map].Add(chests);
         }
 
         if (remainingMapLots != null)
         {
+            logger.LogInformation($"Loaded {remainingMapLots.GameStageConfigs.Sum(d => d.Value.ItemLotIds.Count)} map item lots");
             generatedItemLotSettings[ItemLotCategory.ItemLot_Map].Add(remainingMapLots);
         }
 
         if (bosses != null)
         {
+            logger.LogInformation($"Loaded {bosses.GameStageConfigs.Sum(d => d.Value.ItemLotIds.Count)} boss item lots");
             generatedItemLotSettings[ItemLotCategory.ItemLot_Map].Add(bosses);
         }
 
@@ -101,7 +106,7 @@ public class ScannedItemLotLoader(
             return null;
         }
 
-        ItemLotSettings settings = ItemLotSettings.Create(logger, file, category);
+        ItemLotSettings settings = ItemLotSettings.Create(logger, PathHelper.FullyQualifyAppDomainPath(file), category);
 
         foreach (KeyValuePair<GameStage, GameStageConfig> gameStage in settings.GameStageConfigs)
         {
@@ -118,7 +123,7 @@ public class ScannedItemLotLoader(
         return settings;
     }
 
-    private ItemLotSettings? CreateForEnemiesRequiringNewItemLotIds(HashSet<int> claimedIds)
+    private ItemLotSettings? CreateForEnemiesRequiringNewItemLotIds()
     {
         if (!this.settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.Enabled)
         {

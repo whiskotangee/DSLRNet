@@ -126,17 +126,30 @@ public class ScannedItemLotLoader(
         }
 
         // create one for the duplicate enemies, also register the NpcParam edits here
-        ItemLotSettings? enemyRequiringNewLots = ItemLotSettings.Create(logger, "Assets\\Data\\ItemLots\\Default_Enemy.ini", configuration.Itemlots.Categories[0]);
+        ItemLotSettings? enemyRequiringNewLots = ItemLotSettings.Create(logger, PathHelper.FullyQualifyAppDomainPath("Assets\\Data\\ItemLots\\Default_Enemy.ini"), configuration.Itemlots.Categories[0]);
 
-        List<NpcGameStage> npcEvaluations = JsonConvert.DeserializeObject<List<NpcGameStage>>(File.ReadAllText(PathHelper.FullyQualifyAppDomainPath("Assets", "Data", "ItemLots", "Scanned", "npcGameStageEvaluations.json")))
-            .Where(d => d.RequiresNewItemLot)
-            .ToList()
-            ?? throw new Exception("Duplicate enemies config does not exist");
+        enemyRequiringNewLots.ID = Int32.MaxValue - 1;
+
+        string npcGameStageEvaluationsJson = File.ReadAllText(PathHelper.FullyQualifyAppDomainPath("Assets", "Data", "ItemLots", "Scanned", "npcGameStageEvaluations.json"));
+
+        if (string.IsNullOrEmpty(npcGameStageEvaluationsJson))
+        {
+            return null;
+        }
+
+        List<NpcGameStage>? npcEvaluations = JsonConvert.DeserializeObject<List<NpcGameStage>>(npcGameStageEvaluationsJson);
+
+        if (npcEvaluations == null)
+        {
+            return null;
+        }
+
+        npcEvaluations = npcEvaluations.Where(d => d.RequiresNewItemLot).ToList();
 
         foreach (NpcGameStage npcEvaluation in npcEvaluations)
         {
             NpcParam? existingNpcParam = dataAccess.NpcParam.GetItemById(npcEvaluation.NpcID);
-            int originalItemLotId = existingNpcParam.itemLotId_enemy;
+            int originalItemLotId = existingNpcParam?.itemLotId_enemy ?? -1;
 
             if (existingNpcParam == null || existingNpcParam.itemLotId_enemy <= 0 || !random.PassesPercentCheck(this.settings.ItemLotGeneratorSettings.EnemyLootScannerSettings.ApplyPercent))
             {
@@ -145,7 +158,12 @@ public class ScannedItemLotLoader(
 
             GameStage gameStage = npcEvaluation.GameStage;
 
-            ItemLotParam_enemy itemLot = dataAccess.ItemLotParamEnemy.GetItemById(existingNpcParam.itemLotId_enemy).Clone();
+            ItemLotParam_enemy? itemLot = dataAccess.ItemLotParamEnemy.GetItemById(originalItemLotId)?.Clone();
+            if (itemLot == null)
+            {
+                continue;
+            }
+
             itemLot.ID = itemLotIdGenerator.GetNext();
             existingNpcParam.itemLotId_enemy = itemLot.ID;
 
@@ -169,16 +187,6 @@ public class ScannedItemLotLoader(
             });
 
             enemyRequiringNewLots.GetGameStageConfig(gameStage).ItemLotIds.Add(itemLot.ID);
-
-            if (enemyRequiringNewLots.GameStageConfigs.Any(d => d.Value.ItemLotIds.Contains(214000000)))
-            {
-                Debugger.Break();
-            }
-        }
-
-        if (enemyRequiringNewLots.GameStageConfigs.Any(d => d.Value.ItemLotIds.Contains(214000000)))
-        {
-            Debugger.Break();
         }
 
         return enemyRequiringNewLots;

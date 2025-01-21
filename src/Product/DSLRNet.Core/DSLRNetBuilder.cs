@@ -123,7 +123,7 @@ public class DSLRNetBuilder(
 
         foreach (string fileName in this.settings.MessageFileNames)
         {
-            if (fileSourceHandler.TryGetFile(fileName, out string existingPath))
+            if (fileSourceHandler.TryGetFile(Path.Combine("msg", settings.MessageFileLocale, Path.GetFileName(fileName)), out string existingPath))
             {
                 gameMsgFiles.Add(existingPath);
                 continue;
@@ -131,18 +131,18 @@ public class DSLRNetBuilder(
 
             if (string.IsNullOrEmpty(existingPath))
             {
-                throw new Exception($"Could not find message file {fileName}");
+                throw new Exception($"Could not find message file {Path.GetFileName(fileName)} for locale {settings.MessageFileLocale}");
             }
         }
 
-        Directory.CreateDirectory(Path.Combine(this.settings.DeployPath, "msg", "engus"));
+        Directory.CreateDirectory(Path.Combine(this.settings.DeployPath, "msg", settings.MessageFileLocale));
 
         await Parallel.ForEachAsync(gameMsgFiles, (gameMsgFile, c) =>
         {
             // delete working file
             // copy msg file to a working file
             // process using working file as base
-            string destinationFile = Path.Combine(this.settings.DeployPath, "msg", "engus", Path.GetFileName(gameMsgFile));
+            string destinationFile = Path.Combine(this.settings.DeployPath, "msg", settings.MessageFileLocale, Path.GetFileName(gameMsgFile));
             string sourceFile = destinationFile.Replace(".dcx", "pre-dslr.dcx");
 
             if (!File.Exists(sourceFile))

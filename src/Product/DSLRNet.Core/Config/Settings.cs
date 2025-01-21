@@ -42,6 +42,8 @@ public class Settings
 
     public List<string> MessageFileNames { get; set; } = [];
 
+    public string MessageFileLocale { get; set; } = "engus";
+
     public bool RestrictSmithingStoneCost { get; set; }
 
     public int MaxSmithingStoneCost { get; set; } = 1;
@@ -62,6 +64,7 @@ public class Settings
         data["Settings"]["RandomSeed"] = RandomSeed.ToString();
         data["Settings"]["GamePath"] = GamePath;
         data["Settings"]["MessageFileNames"] = string.Join(",", MessageFileNames);
+        data["Settings"]["MessageFileLocale"] = MessageFileLocale;
         data["Settings"]["MaxSmithingStoneCost"] = MaxSmithingStoneCost.ToString();
         data["Settings"]["RestrictSmithingStoneCost"] = RestrictSmithingStoneCost.ToString();
         data["Settings"][nameof(EquipMtrlParamStartId)] = EquipMtrlParamStartId.ToString();
@@ -144,6 +147,7 @@ public class Settings
         RandomSeed = section.ContainsKey("RandomSeed") && int.TryParse(section["RandomSeed"], out int result) ? result : new Random().Next();
         GamePath = section.ContainsKey("GamePath") ? section["GamePath"] : string.Empty;
         MessageFileNames = section.ContainsKey("MessageFileNames") ? [.. section["MessageFileNames"].Split(',')] : [];
+        MessageFileLocale = section.ContainsKey("MessageFileLocale") ? section["MessageFileLocale"] : "engus";
         RestrictSmithingStoneCost = !section.ContainsKey("RestrictSmithingStoneCost") || !bool.TryParse(section["RestrictSmithingStoneCost"], out var boolVal) || boolVal;
         MaxSmithingStoneCost = section.ContainsKey("MaxSmithingStoneCost") && int.TryParse(section["MaxSmithingStoneCost"], out int maxCost) ? maxCost : 1;
         EquipMtrlParamStartId = section.ContainsKey(nameof(EquipMtrlParamStartId)) && int.TryParse(section[nameof(EquipMtrlParamStartId)], out int startId) ? startId : 40000;

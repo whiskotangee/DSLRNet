@@ -1,5 +1,6 @@
 ﻿namespace DSLRNet.Core.DAL;
 
+using DSLRNet.Core.Handlers;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
@@ -10,8 +11,10 @@ public class RegulationBinBank
     private readonly ILogger<RegulationBinBank> logger;
     private readonly FileSourceHandler fileHandler;
     private readonly BND4 paramBnd;
+    private readonly string sourcePath;
 
     private readonly ConcurrentDictionary<DataSourceNames, PARAMDEF> paramDefs = [];
+    private readonly ConcurrentDictionary<DataSourceNames, List<string>> strippedNames = [];
     private readonly ConcurrentDictionary<DataSourceNames, PARAM> loadedParams = [];
 
     public RegulationBinBank(IOptions<Settings> settings, ILogger<RegulationBinBank> logger, FileSourceHandler fileHandler)
@@ -19,7 +22,9 @@ public class RegulationBinBank
         this.settings = settings.Value;
         this.logger = logger;
         this.fileHandler = fileHandler;
-        paramBnd = GetRegulationBin();
+        var paramBnd = GetRegulationBin();
+        this.paramBnd = paramBnd.bnd;
+        this.sourcePath = paramBnd.path;
     }
 
     public (int updatedRows, int addedRows) AddOrUpdateRows(DataSourceNames dataSourceName, IEnumerable<ParamEdit> paramEdits)
@@ -37,7 +42,7 @@ public class RegulationBinBank
 
             if (row == null)
             {
-                row = new(edit.ParamObject.ID, string.Empty, param.AppliedParamdef);
+                row = new(edit.ParamObject.ID, edit.ParamObject.Name, param.AppliedParamdef);
                 param.Rows.Add(row);
             }
 
@@ -66,7 +71,7 @@ public class RegulationBinBank
         {
             string paramName = Path.GetFileNameWithoutExtension(f.Name);
 
-            if (Enum.TryParse<DataSourceNames>(paramName, out DataSourceNames readName) && readName == name)
+            if (Enum.TryParse(paramName, out DataSourceNames readName) && readName == name)
             {
                 f.Bytes = param.Write();
                 break;
@@ -85,11 +90,12 @@ public class RegulationBinBank
                 {
                     string paramName = Path.GetFileNameWithoutExtension(f.Name);
 
-                    if (Enum.TryParse<DataSourceNames>(paramName, out DataSourceNames readName) && readName == name)
+                    if (Enum.TryParse(paramName, out DataSourceNames readName) && readName == name)
                     {
                         this.logger.LogInformation($"Creating PARAM object for {name}");
                         PARAM readParam = PARAM.Read(f.Bytes);
                         readParam.ApplyParamdef(GetParamDef(name));
+                        this.ApplyStrippedNames(readParam, paramName);
                         return readParam;
                     }
                 }
@@ -103,13 +109,29 @@ public class RegulationBinBank
         });
     }
 
+    private void ApplyStrippedNames(PARAM param, string name)
+    {
+        var modDefinitionNames = Directory.EnumerateFiles(Path.GetDirectoryName(this.sourcePath), $"{name}.txt", SearchOption.AllDirectories);
+
+        foreach (string modDefinitionName in modDefinitionNames)
+        {
+            string[] strippedNames = File.ReadAllLines(modDefinitionName);
+            for (int i = 0;i < strippedNames.Length; i++)
+            {
+                var strippedName = strippedNames[i].Split('-')[0];
+                // set the name to the strippedName up until the first non letter or space character
+                param.Rows[i].Name = strippedName.Where(d => Char.IsLetter(d) || d == ' ').ToArray().ToString()?.Trim() ?? param.Rows[i].Name;
+            }
+        }
+    }
+
     private PARAMDEF GetParamDef(DataSourceNames paramName)
     {
         return paramDefs.GetOrAdd(paramName, (name) =>
         {
             string fileName = GetFileName(name);
 
-            string path = $"Assets\\Data\\PARAM\\ER\\Defs\\{fileName}.xml";
+            string path = PathHelper.FullyQualifyAppDomainPath($"Assets\\Data\\PARAM\\ER\\Defs\\{fileName}.xml");
             this.logger.LogInformation($"Loading PARAMDEF {path} for {fileName}");
             return PARAMDEF.XmlDeserialize(path);
         });
@@ -133,7 +155,8 @@ public class RegulationBinBank
 
         return fileName;
     }
-    private BND4 GetRegulationBin()
+
+    private (BND4 bnd, string path) GetRegulationBin()
     {
         if (!fileHandler.TryGetFile("regulation.pre-dslr.bin", out string regBinPath))
         {
@@ -145,6 +168,6 @@ public class RegulationBinBank
 
         this.logger.LogInformation($"Loading regulation bin from {regBinPath}");
 
-        return SFUtil.DecryptERRegulation(regBinPath);
+        return (SFUtil.DecryptERRegulation(regBinPath), regBinPath);
     }
 }

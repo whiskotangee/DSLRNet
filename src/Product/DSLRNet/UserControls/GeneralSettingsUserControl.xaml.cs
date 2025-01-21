@@ -33,6 +33,10 @@ namespace DSLRNet.UserControls
                 if (folderChooser.ShowDialog() == DialogResult.OK)
                 {
                     ((SettingsWrapper)DataContext).DeployPath = folderChooser.SelectedPath;
+                    if (settingsWrapper.ModPaths.Count > 0)
+                    {
+                        settingsWrapper.ModPaths.Remove(Path.Combine(Path.GetDirectoryName(settingsWrapper.DeployPath) ?? string.Empty, folderChooser.SelectedPath.ToString() ?? string.Empty));
+                    }
                 }
             }
         }
@@ -135,17 +139,12 @@ namespace DSLRNet.UserControls
             {
                 if (mod.TryGetValue("enabled", out var enabled)
                     && (bool)enabled
-                    && mod.TryGetValue("path", out var path))
+                    && mod.TryGetValue("path", out var path)
+                    && !string.Equals(settings.DeployPath, Path.Combine(Path.GetDirectoryName(fullPath) ?? string.Empty, path.ToString() ?? string.Empty), StringComparison.OrdinalIgnoreCase))
                 {
                     settings.ModPaths.Add(Path.Combine(Path.GetDirectoryName(fullPath) ?? string.Empty, path.ToString() ?? string.Empty));
                 }
             }
-            
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

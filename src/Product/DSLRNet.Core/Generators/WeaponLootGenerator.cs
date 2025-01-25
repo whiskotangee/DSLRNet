@@ -125,7 +125,7 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
             weaponFinalTitleColored = uniqueName.WrapTextWithProperties(color: this.Settings.WeaponGeneratorSettings.UniqueItemNameColor);
         }
 
-        //weaponDictionary.SetValue("Name", "DSLR " + weaponFinalTitle);
+        // newWeapon.Name = "DSLR " + weaponFinalTitle;
 
         this.GeneratedDataRepository.AddParamEdit(
             new ParamEdit

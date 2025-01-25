@@ -1,8 +1,7 @@
 {
   "profiles": {
     "DSLRNet.Console": {
-      "commandName": "Project",
-      "commandLineArgs": "--rescan"
+      "commandName": "Project"
     }
   }
 }

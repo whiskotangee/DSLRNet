@@ -35,16 +35,18 @@ public class FileSourceHandler(IOptions<Settings> settings)
         return false;
     }
 
-    public List<string> ListFilesFromAllModDirectories(string basePath, string filter)
+    public List<string> ListFilesFromAllModDirectories(string basePath, string filter, bool recursive = false)
     {
+        var searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+
         List<string> files = [];
-        foreach (string path in settings.Value.OrderedModPaths)
+        foreach (string path in settings.Value.OrderedModPaths.Where(d => !string.Equals(d, settings.Value.DeployPath, StringComparison.OrdinalIgnoreCase)))
         {
             string testPath = Path.Combine(path, basePath);
             if (Directory.Exists(testPath))
             {
                 files.AddRange(
-                    Directory.GetFiles(testPath, filter)
+                    Directory.GetFiles(testPath, filter, searchOption)
                         .Where(d => !files.Any(t => Path.GetFileName(t) == Path.GetFileName(d)))
                         .ToList());
             }
@@ -54,7 +56,7 @@ public class FileSourceHandler(IOptions<Settings> settings)
         if (Directory.Exists(Path.Combine(settings.Value.GamePath, basePath)))
         {
             files.AddRange(
-                Directory.GetFiles(Path.Combine(settings.Value.GamePath, basePath), filter)
+                Directory.GetFiles(Path.Combine(settings.Value.GamePath, basePath), filter, searchOption)
                     .Where(d => !files.Any(t => Path.GetFileName(t) == Path.GetFileName(d)))
                     .ToList());
         }
@@ -64,7 +66,7 @@ public class FileSourceHandler(IOptions<Settings> settings)
         if (Directory.Exists(includedVanillaFiles))
         {
             files.AddRange(
-            Directory.GetFiles(includedVanillaFiles, filter)
+            Directory.GetFiles(includedVanillaFiles, filter, searchOption)
                 .Where(d => !files.Any(t => Path.GetFileName(t) == Path.GetFileName(d)))
                 .ToList());
         }

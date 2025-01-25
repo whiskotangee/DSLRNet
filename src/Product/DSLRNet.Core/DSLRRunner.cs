@@ -107,6 +107,8 @@ public class DSLRRunner
             File.Copy(oo2GameCore, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(oo2GameCore)));
         }
 
+        sp.GetRequiredService<LocalizedNameSource>().Initialize();
+
         List<Task> initializeTasks = [];
         initializeTasks.Add(sp.GetRequiredService<DataAccess>().InitializeDataSourcesAsync());
         if (initializeMSB)

@@ -1,11 +1,14 @@
 ﻿namespace DSLRNet.Core.DAL;
 
+using Org.BouncyCastle.Utilities.IO.Pem;
 using System.Collections.Concurrent;
 
 public class RegulationBinDataSource<T>(
     DataSourceConfig paramSource,
     RandomProvider random,
-    RegulationBinBank regulationBinReader) : BaseDataSource<T>(random)
+    RegulationBinBank regulationBinReader,
+    LocalizedNameSource nameSource,
+    FileSourceHandler fileSourceHandler) : BaseDataSource<T>(random)
     where T : ParamBase<T>, ICloneable<T>, new()
 {
     private PARAM? readParam = null;
@@ -55,7 +58,25 @@ public class RegulationBinDataSource<T>(
             ID = row.ID
         };
 
-        newObject.GenericParam.Name = this.namesMapping.TryGetValue(row.ID, out string? value) ? value : row.Name;
+        // msg files based name
+        // name baked into regulation bin
+        // definition name
+        if (nameSource.TryGetNameFromMessageFiles(paramSource.Name, row.ID, out string? name))
+        {
+            newObject.GenericParam.Name = name;
+        }
+        else if (!string.IsNullOrEmpty(row.Name))
+        {
+            newObject.GenericParam.Name = row.Name;
+        }
+        else if (this.namesMapping.TryGetValue(row.ID, out string? value))
+        {
+            newObject.GenericParam.Name = value;
+        }
+        else
+        {
+            newObject.GenericParam.Name = string.Empty;
+        }
 
         foreach (PARAM.Cell? cell in row.Cells)
         {
@@ -67,11 +88,12 @@ public class RegulationBinDataSource<T>(
 
     protected IEnumerable<T> ApplyFilters(IEnumerable<T> data)
     {
+        var filteredData = data;
+
         if (paramSource.Filters != null)
         {
             int countBefore = data.Count();
 
-            IEnumerable<T> filteredData = data;
             foreach (Filter filter in paramSource.Filters)
             {
                 string valueString = filter.Value.ToString() ?? throw new ArgumentNullException(nameof(filter.Value), $"Filter {filter.Operator} on param {paramSource.Name}");
@@ -102,10 +124,8 @@ public class RegulationBinDataSource<T>(
                         break;
                 }
             }
-
-            return filteredData.ToList();
         }
 
-        return data;
+        return filteredData;
     }
 }

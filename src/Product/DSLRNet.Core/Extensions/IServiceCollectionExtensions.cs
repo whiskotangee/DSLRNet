@@ -51,6 +51,7 @@ public static class IServiceCollectionExtensions
                 .AddSingleton<DataSourceFactory>()
                 .AddSingleton<FileSourceHandler>()
                 .AddSingleton<UpgradeCostHandler>()
+                .AddSingleton<LocalizedNameSource>()
                 .AddSingleton(sp => LoreConfig.LoadConfig())
                 .AddSingleton((sp) => progressTracker ?? new DefaultProgressTracker())
                 .AddSingleton((sp) =>

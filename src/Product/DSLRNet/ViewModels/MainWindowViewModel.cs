@@ -32,6 +32,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
     {
         this.settingsWrapper = new SettingsWrapper(Core.Config.Settings.CreateFromSettingsIni() ?? new Settings());
         GenerateLootCommand = new AsyncRelayCommand(GenerateLootAsync, () => !IsRunning);
+        RescanLootCommand = new AsyncRelayCommand(RescanLootAsync, () => !IsRunning);
         ChangeImageCommand = new RelayCommand<object?>(ChangeImage);
         OpenLogFolderCommand = new RelayCommand(OpenLogFolder);
         PickUniqueNameColorCommand = new RelayCommand(PickUniqueNameColor);
@@ -67,13 +68,11 @@ public class MainWindowViewModel : INotifyPropertyChanged
 
     }
 
-    private async Task GenerateLootAsync()
+    private async Task PerformDSLRAction(Func<Task> action, string operation)
     {
-        // Your logic to generate loot goes here
         HasRun = true;
         IsRunning = true;
         bool success = false;
-
         try
         {
             ProgressTracker.Reset();
@@ -82,34 +81,28 @@ public class MainWindowViewModel : INotifyPropertyChanged
             {
                 throw new InvalidOperationException("Settings detected as null, cannot build");
             }
-
             LogMessages.Add($"Saving current config to Settings.User.ini");
             settingsWrapper.OriginalObject.ValidatePaths();
             if (settingsWrapper.RandomSeed == 0)
             {
                 settingsWrapper.RandomSeed = new Random().Next();
             }
-
             settingsWrapper.OriginalObject.SaveSettings("Settings.User.ini");
-
-            LogMessages.Add("Starting loot generation...");
-            
+            LogMessages.Add($"Starting {operation}...");
             await Task.Run(async () =>
             {
                 await Task.Yield();
-
                 try
                 {
-                    await DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages, ProgressTracker);
-                    LogMessages.Add("Loot generation completed successfully.");
+                    await action();
+                    LogMessages.Add("{operation} completed successfully.");
                     success = true;
                 }
                 catch (Exception ex)
                 {
-                    LogMessages.Add($"Exception caught - loot Generation is most likely incomplete: {ex}");
+                    LogMessages.Add($"Exception caught - {operation} is most likely incomplete: {ex}");
                 }
             });
-
         }
         catch (Exception ex)
         {
@@ -129,9 +122,37 @@ public class MainWindowViewModel : INotifyPropertyChanged
                 LastRunCompleteMessage = "Last Run Failed - Check Logs";
                 LastRunCompleteColor = new SolidColorBrush(Colors.Crimson);
             }
-
             MessageBox.Show($"{LastRunCompleteMessage}", "DSLR Completed Running");
         }
+    }
+
+    private async Task RescanLootAsync()
+    {
+        if (string.IsNullOrWhiteSpace(settingsWrapper.GamePath))
+        {
+            MessageBox.Show("Paths not setup, cannot rescan", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        if (!Directory.Exists(Path.Combine(settingsWrapper.GamePath, "map", "mapstudio")) 
+            || !Directory.Exists(Path.Combine(settingsWrapper.GamePath, "msg", settingsWrapper.OriginalObject.MessageLocale)))
+        {
+            MessageBox.Show("Game does not appear to have been unpacked, cannot rescan.  Please run UXM unpacker https://www.nexusmods.com/eldenring/mods/1651 and unpack the game before performing a rescan.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        var result = MessageBox.Show("This will rescan all events, maps and existing item lots to regenerate the base data that the app depends on, continue?", "Rescan?", MessageBoxButton.OK, MessageBoxImage.Warning);
+        if (result != MessageBoxResult.OK)
+        {
+            return;
+        }
+
+        await this.PerformDSLRAction(() => DSLRRunner.ScanAsync(settingsWrapper.OriginalObject, LogMessages), "loot rescan");
+    }
+
+    private async Task GenerateLootAsync()
+    {
+        await PerformDSLRAction(() => DSLRRunner.Run(settingsWrapper.OriginalObject, LogMessages, ProgressTracker), "loot generation");
     }
 
     private void ChangeImage(object? item)
@@ -188,6 +209,8 @@ public class MainWindowViewModel : INotifyPropertyChanged
 
 
     public IAsyncRelayCommand GenerateLootCommand { get; private set; }
+
+    public IAsyncRelayCommand RescanLootCommand { get; private set; }
 
     public ICommand EditSettingsCommand { get; private set; }
 

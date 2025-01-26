@@ -9,9 +9,9 @@ using Serilog;
 
 public class DSLRRunner
 {
-    public static async Task ScanAsync(Settings settings)
+    public static async Task ScanAsync(Settings settings, ICollection<string>? logWatcher = null)
     {
-        IServiceProvider sp = await DSLRCommonSetupAsync(settings, true);
+        IServiceProvider sp = await DSLRCommonSetupAsync(settings, true, logWatcher);
 
         var scanner = sp.GetRequiredService<ItemLotScanner>();
 

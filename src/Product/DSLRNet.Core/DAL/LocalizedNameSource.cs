@@ -27,10 +27,12 @@ public class LocalizedNameSource(
         nameFileCache[DataSourceNames.EquipParamWeapon] = [];
         nameFileCache[DataSourceNames.EquipParamProtector] = [];
         nameFileCache[DataSourceNames.EquipParamAccessory] = [];
+        nameFileCache[DataSourceNames.NpcParam] = [];
+        nameFileCache[DataSourceNames.EquipParamCustomWeapon] = [];
 
-        List<string> gameFMGFiles = fileSourceHandler.ListFilesFromAllModDirectories(Path.Combine("msg", settings.Value.MessageFileLocale), "item*.msgbnd.dcx");
+        List<string> gameItemFMGFiles = fileSourceHandler.ListFilesFromAllModDirectories(Path.Combine("msg", settings.Value.MessageLocale), "item*.msgbnd.dcx");
 
-        foreach (string gameMsgFile in gameFMGFiles)
+        foreach (string gameMsgFile in gameItemFMGFiles)
         {
             logger.LogInformation($"Loading message file {Path.GetFileName(gameMsgFile)}");
 
@@ -39,6 +41,7 @@ public class LocalizedNameSource(
             List<BinderFile> weaponNameFiles = bnd.Files.Where(d => d.Name.Contains($"WeaponName")).ToList();
             List<BinderFile> armorNameFiles = bnd.Files.Where(d => d.Name.Contains($"ProtectorName")).ToList();
             List<BinderFile> talismanNameFiles = bnd.Files.Where(d => d.Name.Contains($"AccessoryName")).ToList();
+            List<BinderFile> npcNameFiles = bnd.Files.Where(d => d.Name.Contains($"Character")).ToList();
 
             foreach (var weaponNameFile in weaponNameFiles)
             {
@@ -53,6 +56,11 @@ public class LocalizedNameSource(
             foreach (var talismanNameFile in talismanNameFiles)
             {
                 AddToCache(nameFileCache[DataSourceNames.EquipParamAccessory], FMG.Read(talismanNameFile.Bytes));
+            }
+
+            foreach (var npcNameFile in npcNameFiles)
+            {
+                AddToCache(nameFileCache[DataSourceNames.NpcParam], FMG.Read(npcNameFile.Bytes));
             }
         }
     }

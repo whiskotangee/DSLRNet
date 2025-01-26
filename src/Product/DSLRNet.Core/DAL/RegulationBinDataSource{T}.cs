@@ -61,7 +61,15 @@ public class RegulationBinDataSource<T>(
         // msg files based name
         // name baked into regulation bin
         // definition name
-        if (nameSource.TryGetNameFromMessageFiles(paramSource.Name, row.ID, out string? name))
+        if (typeof(T) == typeof(NpcParam) && nameSource.TryGetNameFromMessageFiles(paramSource.Name, (int)row.Cells.First(c => c.Def.InternalName == "nameId").Value, out string? name))
+        {
+            newObject.GenericParam.Name = name;
+        }
+        else if (typeof(T) == typeof(EquipParamCustomWeapon) && nameSource.TryGetNameFromMessageFiles(DataSourceNames.EquipParamWeapon, (int)row.Cells.First(d => d.Def.InternalName == "baseWepId").Value, out name))
+        {
+            newObject.GenericParam.Name = name;
+        }   
+        else if (nameSource.TryGetNameFromMessageFiles(paramSource.Name, row.ID, out name))
         {
             newObject.GenericParam.Name = name;
         }

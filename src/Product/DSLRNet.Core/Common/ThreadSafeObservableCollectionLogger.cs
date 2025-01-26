@@ -1,8 +1,13 @@
 namespace DSLRNet.Core.Common;
 
-public class CollectionLogger(ICollection<string> logMessages) : ILogger
+public class CollectionLogger : ILogger
 {
-    private readonly ICollection<string> logMessages = logMessages;
+    private readonly ICollection<string> logMessages;
+
+    public CollectionLogger(ICollection<string> logMessages)
+    {
+        this.logMessages = logMessages;
+    }
 
     public IDisposable BeginScope<TState>(TState state) => null;
 

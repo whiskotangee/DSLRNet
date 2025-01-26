@@ -34,6 +34,8 @@ public class MSBProvider(IOptions<Settings> settings, ILogger<MSBProvider> logge
 
             msbData.TryAdd(name, MSBE.Read(mapFile));
 
+            logger.LogInformation($"Loaded MSB {mapFile}");
+
             return ValueTask.CompletedTask;
         });
 

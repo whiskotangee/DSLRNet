@@ -97,11 +97,46 @@ public class ItemLotScanner(
         var savePath = PathHelper.FullyQualifyAppDomainPath("Assets", "Data", "ItemLots", "Scanned");
         Directory.CreateDirectory(savePath);
 
-        mapLots.Save(Path.Combine(savePath, "MapDrops.ini"));
-        chestsLots.Save(Path.Combine(savePath, "Chests.ini"));
-        enemyLots.Save(Path.Combine(savePath, "Enemies.ini"));
-        bossLots.Save(Path.Combine(savePath, "Bosses.ini"));
+        this.CompareAndSaveIni(enemyLots, enemyLots, savePath, "Enemies");
+        this.CompareAndSaveIni(mapLots, mapLots, savePath, "MapDrops");
+        this.CompareAndSaveIni(chestsLots, chestsLots, savePath, "Chests");
+        this.CompareAndSaveIni(bossLots, bossLots, savePath, "Bosses");
+
+        var originalNpcGameStageEvaluations = JsonConvert.DeserializeObject<List<NpcGameStage>>(File.ReadAllText(Path.Combine(savePath, "npcGameStageEvaluations.json")));
+
+        if (originalNpcGameStageEvaluations != null)
+        {
+            var missingNpcs = originalNpcGameStageEvaluations.Where(d => !scannedNpcDuplicates.ContainsKey(d.NpcID)).ToList();
+            var newNpcs = scannedNpcDuplicates.Values.Where(d => !originalNpcGameStageEvaluations.Any(s => s.NpcID == d.NpcID)).ToList();
+
+            logger.LogInformation($"Removed npc count: {missingNpcs.Count}, New npc count: {newNpcs.Count}");
+        }
+
+        if (!File.Exists(Path.Combine(savePath, "npcGameStageEvaluations.json")))
+        {
+            File.Copy(Path.Combine(savePath, "npcGameStageEvaluations.vanilla.json"), Path.Combine(savePath, "npcGameStageEvaluations.json"));
+        }
         File.WriteAllText(Path.Combine(savePath, "npcGameStageEvaluations.json"), JsonConvert.SerializeObject(scannedNpcDuplicates.Values, Formatting.Indented));
+    }
+
+    private void CompareAndSaveIni(ItemLotSettings original, ItemLotSettings itemLotSettings, string savePath, string name)
+    {
+        var gameStageDifferences = itemLotSettings.DiffGameStages(original);
+
+        foreach (var gameStage in Enum.GetValues<GameStage>())
+        {
+            var originalCount = original.GameStageConfigs[gameStage].ItemLotIds.Count;
+            var newCount = itemLotSettings.GameStageConfigs[gameStage].ItemLotIds.Count;
+
+            logger.LogInformation($"{name} stage {gameStage} scanned itemLot differences - Original: {originalCount}, New: {newCount}, Difference: {newCount - originalCount}");
+        }
+
+        if (!File.Exists(Path.Combine(savePath, $"{name}.original.ini")))
+        {
+            File.Copy(Path.Combine(savePath, $"{name}.ini"), Path.Combine(savePath, $"{name}.original.ini"));
+        }
+
+        itemLotSettings.Save(Path.Combine(savePath, $"{name}.ini"));
     }
 
     private Dictionary<GameStage, int> ScanEnemyLots(

@@ -40,9 +40,11 @@ public class WeaponLootGenerator : ParamLootGenerator<EquipParamWeapon>
         this.damageTypeHandler = damageTypeHandler;
         this.DataSource = dataAccess.EquipParamWeapon;
 
+        var weapons = this.DataSource.GetAll().Where(d => !string.IsNullOrWhiteSpace(d.Name)).ToList();
+
         foreach (WeaponTypes weaponType in Enum.GetValues<WeaponTypes>())
         {
-            this.weaponsByWeaponType[weaponType] = this.DataSource.GetAll().Where(d => this.GetWeaponType(d.wepmotionCategory) == weaponType).ToList();
+            this.weaponsByWeaponType[weaponType] = weapons.Where(d => this.GetWeaponType(d.wepmotionCategory) == weaponType).ToList();
         }
     }
 

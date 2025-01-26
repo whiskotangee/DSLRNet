@@ -95,7 +95,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
                 try
                 {
                     await action();
-                    LogMessages.Add("{operation} completed successfully.");
+                    LogMessages.Add($"{operation} completed successfully.");
                     success = true;
                 }
                 catch (Exception ex)

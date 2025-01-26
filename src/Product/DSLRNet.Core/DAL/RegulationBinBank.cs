@@ -88,14 +88,14 @@ public class RegulationBinBank
             {
                 foreach (BinderFile f in this.paramBnd.Files)
                 {
-                    string paramName = Path.GetFileNameWithoutExtension(f.Name);
+                    string paramNameStr = Path.GetFileNameWithoutExtension(f.Name);
 
-                    if (Enum.TryParse(paramName, out DataSourceNames readName) && readName == name)
+                    if (Enum.TryParse(paramNameStr, out DataSourceNames readName) && readName == name)
                     {
                         this.logger.LogInformation($"Creating PARAM object for {name}");
                         PARAM readParam = PARAM.Read(f.Bytes);
                         readParam.ApplyParamdef(GetParamDef(name));
-                        this.ApplyStrippedNames(readParam, paramName);
+                        this.ApplyStrippedNames(readParam, paramNameStr);
                         return readParam;
                     }
                 }
@@ -120,7 +120,8 @@ public class RegulationBinBank
             {
                 var strippedName = strippedNames[i].Split('-')[0];
                 // set the name to the strippedName up until the first non letter or space character
-                param.Rows[i].Name = strippedName.Where(d => Char.IsLetter(d) || d == ' ').ToArray().ToString()?.Trim() ?? param.Rows[i].Name;
+                string? trimmedName = new string(strippedName.Where(d => Char.IsLetter(d) || d == ' ').ToArray());
+                param.Rows[i].Name = trimmedName ?? param.Rows[i].Name;
             }
         }
     }

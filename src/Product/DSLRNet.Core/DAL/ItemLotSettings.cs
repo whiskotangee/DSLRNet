@@ -117,6 +117,20 @@ public class ItemLotSettings
     public Dictionary<GameStage, GameStageConfig> GameStageConfigs { get; set; } = [];
     public List<WeightedValue<LootType>> LootWeightsByType { get; set; } = [];
     public List<WeightedValue<WeaponTypes>> WeaponWeightsByType { get; set; } = [];
+
+    public Dictionary<GameStage, int> DiffGameStages(ItemLotSettings other)
+    {
+        Dictionary<GameStage, int> stageDifferences = [];
+        foreach (GameStage stage in Enum.GetValues(typeof(GameStage)))
+        {
+            if (GameStageConfigs[stage].ItemLotIds.Count != other.GameStageConfigs[stage].ItemLotIds.Count)
+            {
+                stageDifferences.Add(stage, GameStageConfigs[stage].ItemLotIds.Count - other.GameStageConfigs[stage].ItemLotIds.Count);
+            }
+        }
+
+        return stageDifferences;
+    }
 }
 
 public enum ItemLotCategory

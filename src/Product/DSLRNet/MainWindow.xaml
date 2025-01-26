@@ -120,6 +120,7 @@
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Left" Text="{Binding LastRunCompleteMessage}" Foreground="{Binding LastRunCompleteColor}" />
                     <Button Visibility="{Binding HasRun, Converter={StaticResource BoolToVisibilityConverter}}" Command="{Binding OpenLogFolderCommand}" Content="Open Logs Folder" IsEnabled="{Binding HasRun}" Margin="10"/>
+                    <Button Command="{Binding RescanLootCommand}" Content="Re-scan Game" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}" Margin="10"/>
                     <Button Command="{Binding GenerateLootCommand}" Content="Generate Loot" IsEnabled="{Binding IsRunning, Converter={StaticResource InverseBooleanConverter}}" Margin="10"/>
                 </StackPanel>
             </Grid>

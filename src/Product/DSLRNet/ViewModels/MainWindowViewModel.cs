@@ -128,22 +128,22 @@ public class MainWindowViewModel : INotifyPropertyChanged
 
     private async Task RescanLootAsync()
     {
+        var result = MessageBox.Show("This will rescan all events, maps and existing item lots to regenerate the base data that the app depends on.  This is best done as part of running the app on top of large overhaul mods like convergence or mods that significantly change map and enemy drops. Additionally, it requires UXM Unpacker to have been run to unpack the base game.  Continue?", "Rescan?", MessageBoxButton.OK, MessageBoxImage.Warning);
+        if (result != MessageBoxResult.OK)
+        {
+            return;
+        }
+
         if (string.IsNullOrWhiteSpace(settingsWrapper.GamePath))
         {
             MessageBox.Show("Paths not setup, cannot rescan", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
 
-        if (!Directory.Exists(Path.Combine(settingsWrapper.GamePath, "map", "mapstudio")) 
+        if (!Directory.Exists(Path.Combine(settingsWrapper.GamePath, "map", "mapstudio"))
             || !Directory.Exists(Path.Combine(settingsWrapper.GamePath, "msg", settingsWrapper.OriginalObject.MessageLocale)))
         {
             MessageBox.Show("Game does not appear to have been unpacked, cannot rescan.  Please run UXM unpacker https://www.nexusmods.com/eldenring/mods/1651 and unpack the game before performing a rescan.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
-        }
-
-        var result = MessageBox.Show("This will rescan all events, maps and existing item lots to regenerate the base data that the app depends on, continue?", "Rescan?", MessageBoxButton.OK, MessageBoxImage.Warning);
-        if (result != MessageBoxResult.OK)
-        {
             return;
         }
 
